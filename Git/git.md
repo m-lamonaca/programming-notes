@@ -187,6 +187,7 @@ It’s generally recommended creating annotated tags so it's possible to have al
 `git branch`: show list of all existing branches  (* indicates current)  
 `git checkout <branch-name>`: change current branch (update HEAD) and update working directory  
 `git branch -d <branch-name>`: delete specified branch
+`git branch -m <old_name> <new_name>`: rename a branch without affecting the branch’s history
 
 `git merge <branch-name>`: merges into current branch  
 `git merge --continue`: continue previous merge after solving a merge conflinct  
