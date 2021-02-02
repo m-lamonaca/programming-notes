@@ -485,7 +485,7 @@ In `Project.csproj`:
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <TargetFramework>...</TargetFramework>
 
         <!-- set nullabilty context at project level -->
         <Nullable>enable | warning | annotations | disable</Nullable>
@@ -518,10 +518,14 @@ Type? variable = null;  // the variable can also contain the NULL value (nullabl
 // same as
 variable?.property  // if variable != null access it's property (null conditional), return null otherwise
 
-if (variable != null)
+if (variable != null) 
+{
     return variable;
+}
 else
+{
     return value;
+}
 // same as
 var variable = var ?? value  // return var if var != null, return value otherwise
 
@@ -950,8 +954,6 @@ using (Type obj = new Type())  // obj disposed at the end of the using block
     using Type obj = new Type();  // disposed at the end of the block
 
 }
-
-
 ```
 
 ### `Cheched`/`Unchecked` Statements
