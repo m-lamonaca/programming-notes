@@ -936,13 +936,22 @@ yield return <expression>;    // returns the results one at a time.
 yield break;    // concludes the iteration
 ```
 
-### Context Statement
+### Context Statement & Using Declarations
 
 ```cs
-using (assignement)
+using (Type obj = new Type())  // obj disposed at the end of the using block
 {
     // code here
 }
+
+// or (C# 8+)
+{
+    // inside a code block (if, loop, function)
+    using Type obj = new Type();  // disposed at the end of the block
+
+}
+
+
 ```
 
 ### `Cheched`/`Unchecked` Statements
