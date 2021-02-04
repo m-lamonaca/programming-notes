@@ -149,7 +149,7 @@ Launch Settings & Deployement Settings.
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "BookListRazor": {
+    "<project>": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
