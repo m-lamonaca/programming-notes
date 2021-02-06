@@ -100,9 +100,6 @@ def load_reference(name_or_id):
 `git add <filename1 filename2 ...>`: add files to the staging area
 `git add -p <files>`: interacively stage chuncks of a file
 
-`git stash`: temporarily remove modifications to working directory (must be staged to be stashed)
-`git stash pop`: recuperate stashed changes
-
 `git blame <file>`: show who last edited which line
 
 `git commit`: save the snapshot to the project history  
@@ -116,6 +113,15 @@ def load_reference(name_or_id):
 `git diff <firts-branch>...<second-branch>`: show content diff between two branches
 
 `git bisect`: binary search history (e.g. for regressions)
+
+### Stashes
+
+`git stash [push -m|--message]`: add all changes to the stash (and provide message)
+`git stash list` list all stashes
+`git stash show [<stash>]`: show changes in the stash
+`git stash pop`: restore last stash
+`git stash drop [<stash>]`: remove a stash from the list
+`git stash clear`: remove all stashes
 
 ### Remotes
 
