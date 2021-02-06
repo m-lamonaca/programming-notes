@@ -116,12 +116,12 @@ def load_reference(name_or_id):
 
 ### Stashes
 
-`git stash [push -m|--message]`: add all changes to the stash (and provide message)
-`git stash list` list all stashes
-`git stash show [<stash>]`: show changes in the stash
-`git stash pop`: restore last stash
-`git stash drop [<stash>]`: remove a stash from the list
-`git stash clear`: remove all stashes
+`git stash [push -m|--message]`: add all changes to the stash (and provide message)  
+`git stash list` list all stashes  
+`git stash show [<stash>]`: show changes in the stash  
+`git stash pop`: restore last stash  
+`git stash drop [<stash>]`: remove a stash from the list  
+`git stash clear`: remove all stashes  
 
 ### Remotes
 
