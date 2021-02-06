@@ -96,40 +96,40 @@ def load_reference(name_or_id):
 
 ### Making Changes
 
-`git status`: shows the status of changes as untracked, modified, or staged
-`git add <filename1 filename2 ...>`: add files to the staging area
-`git add -p <files>`: interacively stage chuncks of a file
+`git status`: shows the status of changes as untracked, modified, or staged  
+`git add <filename1 filename2 ...>`: add files to the staging area  
+`git add -p <files>`: interacively stage chuncks of a file  
 
-`git stash`: temporarily remove modifications to working directory (must be staged to be stashed)
-`git stash pop`: recuperate stashed changes
+`git stash`: temporarily remove modifications to working directory (must be staged to be stashed)  
+`git stash pop`: recuperate stashed changes  
 
-`git blame <file>`: show who last edited which line
+`git blame <file>`: show who last edited which line  
 
 `git commit`: save the snapshot to the project history  
 `git commit -m "message"`: commit and provide a message  
 `git commit -a`: automatically notice any modified (but not new) files and commit  
 
-`git diff <filename>`: show difference since the last commit
-`git diff <commit> <filename>`: show differences in a file since a particular snapshot
-`git diff <reference_1> <reference_2> <filename>`: show differences in a file between two snapshots
+`git diff <filename>`: show difference since the last commit  
+`git diff <commit> <filename>`: show differences in a file since a particular snapshot  
+`git diff <reference_1> <reference_2> <filename>`: show differences in a file between two snapshots  
 `git diff  --cached`: show what is about to be committed  
-`git diff <firts-branch>...<second-branch>`: show content diff between two branches
+`git diff <firts-branch>...<second-branch>`: show content diff between two branches  
 
-`git bisect`: binary search history (e.g. for regressions)
+`git bisect`: binary search history (e.g. for regressions)  
 
 ### Remotes
 
-`git remote`: list remotes
-`git remote -v`: list remotes names and URLs
+`git remote`: list remotes  
+`git remote -v`: list remotes names and URLs  
 `git remote show <remote>`: inspect the remote
 
-`git remote add <remote> <url | path>`: add a remote
+`git remote add <remote> <url | path>`: add a remote  
 `git branch --set-upstream-to=<remote>/<remote branch>`: set up correspondence between local and remote branch
 
-`git push <remote> <branch>`: send objects to remote
+`git push <remote> <branch>`: send objects to remote  
 `git push <remote> <local branch>:<remote branch>`: send objects to remote, and update remote reference
 
-`git fetch [<remote>]`: retrieve objects/references from a remote
+`git fetch [<remote>]`: retrieve objects/references from a remote  
 `git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`
 
 `git fetch && git show <remote>/<branch>`: show incoming changes
@@ -137,7 +137,7 @@ def load_reference(name_or_id):
 `git clone <url> [<folder_name>]`: download repository and repo history from remote  
 `git clone --shallow`: clone only repo files, not history of commits
 
-`git remote remove <remote>`: remove the specified remote
+`git remote remove <remote>`: remove the specified remote  
 `git remote rename <old_name> <new_name>`: rename a remote
 
 ### Viewing Project History
@@ -150,32 +150,32 @@ def load_reference(name_or_id):
 `git log  --oneline`: compact log  
 
 `git show <commit>`: output metadata and content changes of commit  
-`git cat-file -p <commit>`: output commit metadata
+`git cat-file -p <commit>`: output commit metadata  
 
 ### Tag
 
-Git supports two types of tags: *lightweight* and *annotated*.
+Git supports two types of tags: *lightweight* and *annotated*.  
 
-A lightweight tag is very much like a branch that doesn’t change—it’s just a pointer to a specific commit.
+A lightweight tag is very much like a branch that doesn’t change—it’s just a pointer to a specific commit.  
 
-Annotated tags, however, are stored as full objects in the Git database.
-They’re checksummed;contain the tagger name, email, and date; have a tagging message; and can be signed and verifiedwith GNU Privacy Guard (GPG).
-It’s generally recommended creating annotated tags so it's possible to have all this information.
+Annotated tags, however, are stored as full objects in the Git database.  
+They’re checksummed;contain the tagger name, email, and date; have a tagging message; and can be signed and verifiedwith GNU Privacy Guard (GPG).  
+It’s generally recommended creating annotated tags so it's possible to have all this information.  
 
-`git tag`: list existing tags
-`git tag -l|--list <pattern>`: list existing tags mathcing a wildard or pattern
+`git tag`: list existing tags  
+`git tag -l|--list <pattern>`: list existing tags mathcing a wildard or pattern  
 
-`git tag <tag> [<commit_hash>]`: create a *lightweight* tag on the commit
-`git tag -a <tag> [<commit_hash> -m <message>]`: create am *annotated* tag on the commit
+`git tag <tag> [<commit_hash>]`: create a *lightweight* tag on the commit  
+`git tag -a <tag> [<commit_hash> -m <message>]`: create am *annotated* tag on the commit  
 
-`git push <remote> <tagname>`: push a tag to the remote
-`git push <remote> --tags`: push commits and their tags (both types) to the remote
+`git push <remote> <tagname>`: push a tag to the remote  
+`git push <remote> --tags`: push commits and their tags (both types) to the remote  
 
-`git tag -d <tagname>`: delete a tag
-`git push <remote> :refs/tags<tagname>:`: remove a tag from the remote
-`git push <remote> --delete <tagname>`: remove a tag from the remote
+`git tag -d <tagname>`: delete a tag  
+`git push <remote> :refs/tags<tagname>:`: remove a tag from the remote  
+`git push <remote> --delete <tagname>`: remove a tag from the remote  
 
-`git checkout <tag>`: checkout a tag - **WARNING**: will go into *detached HEAD*
+`git checkout <tag>`: checkout a tag - **WARNING**: will go into *detached HEAD*  
 
 ### Branching And Merging
 
@@ -241,9 +241,7 @@ git checkout <branch>  # checkout remote branch (omit <remote>/)
 git pull  # clone branch
 ```
 
-### [Sync Forks][github sync frok guide]
-
-[github sync frok guide](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+### [Sync Forks](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
 ```ps1
 git fetch upstream  # Fetch the branches and their respective commits from the upstream repository
