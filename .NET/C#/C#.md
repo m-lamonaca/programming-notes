@@ -14,16 +14,16 @@ Current Page: 423/761
 
 **.NET** Core is a development platform that includes a **Common Language Runtime** (**CoreCLR**), which manages the execution of code, and a **Base Class Library** (**BCL**), which provides a rich library of classes to build applications from.
 
-The C# compiler (named **Roslyn**) used by the dotnet CLI tool converts C# source code into **intermediate language** (**IL**) code and stores the IL in an _assembly_ (a DLL or EXE file).
+The C# compiler (named **Roslyn**) used by the dotnet CLI tool converts C# source code into **intermediate language** (**IL**) code and stores the IL in an _assembly_ (a DLL or EXE file).  
 IL code statements are like assembly language instructions, which are executed by .NET Core's virtual machine, known as **CoreCLR**.
 
-At runtime, CoreCLR loads the IL code from the assembly, the **just-in-time** (JIT) compiler compiles it into native CPU instructions, and then it is executed by the CPU on your machine.
-The benefit of this three-step compilation process is that Microsoftis able to create CLRs for Linux and macOS, as well as for Windows.
-The same IL code runs everywhere because of the second compilation process, which generates code for the native operating system and CPU instruction set.
+At runtime, CoreCLR loads the IL code from the assembly, the **just-in-time** (JIT) compiler compiles it into native CPU instructions, and then it is executed by the CPU on your machine.  
+The benefit of this three-step compilation process is that Microsoftis able to create CLRs for Linux and macOS, as well as for Windows.  
+The same IL code runs everywhere because of the second compilation process, which generates code for the native operating system and CPU instruction set.  
 Regardless of which language the source code is written in, for example, C#, Visual Basic or F#, all .NET applications use IL code for their instructions stored in an assembly.
 
 Another .NET initiative is called _.NET Native_. This compiles C# code to native CPU instructions **ahead of time** (**AoT**), rather than using the CLR to compile IL code JIT
-to native code later.
+to native code later.  
 .NET Native improves execution speed and reduces the memory footprint for applications because the native code is generated at build time and then deployed instead of the IL code.
 
 ## Basics
@@ -146,11 +146,11 @@ Console.WriteLine(
 
 `$"{number:C}"` formats the number as a _currency_. Currency symbol & symbol position are determined by `CultureInfo`.  
 `$"{number:D}"` formats the number with decimal digits.  
-`$"{number:F}"` formats the number with a fixed number of decimal digits.
-`$"{number:E}"` formats the number in _scientific notation_.
-`$"{number:E}"` formats the number in the more compact of either fixed-point or scientific notation.
+`$"{number:F}"` formats the number with a fixed number of decimal digits.  
+`$"{number:E}"` formats the number in _scientific notation_.  
+`$"{number:E}"` formats the number in the more compact of either fixed-point or scientific notation.  
 `$"{number:N}"` formats the number as a _measure_. Digits separators are determined by `CultureInfo`.  
-`$"{number:P}"` formats the number as a _percentage_.
+`$"{number:P}"` formats the number as a _percentage_.  
 `$"{number:X}"` formats the number as a _hexadecimal_.
 
 ## Variable Types
@@ -196,7 +196,7 @@ The static fields and methods of the `MathF` class correspond to those of the `M
 
 ### BigInteger
 
-`BigInteger` represents an integer that will grow as large as is necessary to accommodate values.
+`BigInteger` represents an integer that will grow as large as is necessary to accommodate values.  
 Unlike the builtin numeric types, it has no theoretical limit on its range.
 
 ```cs
@@ -251,7 +251,7 @@ x.Key;  // member access
 
 ### Index & Range Types (Structs)
 
-[System.Index][index_type]: Represents a type that can be used to index a collection either from the start or the end.
+[System.Index][index_type]: Represents a type that can be used to index a collection either from the start or the end.  
 [System.Range][range_type]: Represents a range that has start and end indexes.
 
 [index_type]: https://docs.microsoft.com/en-us/dotnet/api/system.index
@@ -282,7 +282,7 @@ array[start..^n];  // select elements between start index and n-th last item (no
 
 Tuples are designed as a convenient way to package together a few values in cases where defining a whole new type wouldn’t really be justified.
 
-Tuples support comparison, so it's possible to use the `==` and `!=` relational operators.
+Tuples support comparison, so it's possible to use the `==` and `!=` relational operators.  
 To be considered equal, two tuples must have the same shape and each value in the first tuple must be equal to its counterpart in thesecond tuple.
 
 ```cs
@@ -328,15 +328,15 @@ RecordName record = new RecordName { Property1 = value1, ...};  // insantiation
 
 ### `with`-expressions
 
-When working with immutable data, a common pattern is to create new values from existing ones to represent a new state.
+When working with immutable data, a common pattern is to create new values from existing ones to represent a new state.  
 To help with this style of programming, records allow for a new kind of expression; the with-expression.
 
 ```cs
 var newRecord = oldRecord with { Property = value };
 ```
 
-With-expressions use object initializer syntax to state what’s different in the new object from the old object. it's possible to specify multiple properties.
-A record implicitly defines a protected “copy constructor” – a constructor that takes an existing record object and copies it field by field to the new one.
+With-expressions use object initializer syntax to state what’s different in the new object from the old object. it's possible to specify multiple properties.  
+A record implicitly defines a protected “copy constructor” – a constructor that takes an existing record object and copies it field by field to the new one.  
 The `with` expression causes the copy constructor to get called, and then applies the object initializer on top to change the properties accordingly.
 
 ```cs
@@ -347,14 +347,15 @@ protected RecordName(RecordName original) { /* copy all the fields */ } // gener
 
 ### Value-based Equality
 
-All objects inherit a virtual `Equals(object)` method from the object class. This is used as the basis for the `Object.Equals(object, object)` static method when both parameters are non-null.
-Structs override this to have “value-based equality”, comparing each field of the struct by calling `Equals` on them recursively. Records do the same.
+All objects inherit a virtual `Equals(object)` method from the object class. This is used as the basis for the `Object.Equals(object, object)` static method when both parameters are non-null.  
+Structs override this to have “value-based equality”, comparing each field of the struct by calling `Equals` on them recursively. Records do the same.  
 This means that in accordance with their “value-ness” two record objects can be equal to one another without being the same object.
 
 ### `with`-expressions & Inheriance
 
-Records have a hidden virtual method that is entrusted with “cloning” the whole object.
-Every derived record type overrides this method to call the copy constructor of that type, and the copy constructor of a derived record chains to the copy constructor of the base record. A with-expression simply calls the hidden “clone” method and applies the object initializer to the result.
+Records have a hidden virtual method that is entrusted with “cloning” the whole object.  
+Every derived record type overrides this method to call the copy constructor of that type, and the copy constructor of a derived record chains to the copy constructor of the base record.  
+A with-expression simply calls the hidden “clone” method and applies the object initializer to the result.
 
 ```cs
 public record Base{ Type Prop1, Type Prop2 };
@@ -366,7 +367,7 @@ newBase = _base with { Prop2 = value };  // new Derived record even if type of _
 
 ### Value-based Equality & Inheritance
 
-Records have a virtual protected property called `EqualityContract`.
+Records have a virtual protected property called `EqualityContract`.  
 Every derived record overrides it, and in order to compare equal, the two objects musts have the same `EqualityContract`.
 
 ```cs
@@ -380,8 +381,8 @@ Base rec2 = new Derived { Prop1 = value1, Prop2 =  value2, Prop3 = value3 };
 
 ## Strings
 
-.NET strings are _immutable_. The downside of immutability is that string processing can be inefficient.
-If a work performs a series of modifications to a string it will end up allocating a lot of memory, because it will return a separate string for each modification.
+.NET strings are _immutable_. The downside of immutability is that string processing can be inefficient.  
+If a work performs a series of modifications to a string it will end up allocating a lot of memory, because it will return a separate string for each modification.  
 This creates a lot of extra work for .NET’s garbage collector, causing the program to use more CPU time than necessary.
 
 In these situations, it's possible to can use a type called `StringBuilder`. This is conceptually similar to astring but it is modifiable.
@@ -433,7 +434,7 @@ String.Empty;  // value of an empty stiing, used for string init
 
 A **nullable value type** `T?` represents all values of its underlying value type `T` and an additional `null` value.
 
-Any nullable value type is an instance of the generic `System.Nullable<T>` structure.
+Any nullable value type is an instance of the generic `System.Nullable<T>` structure.  
 Refer to a nullable value type with an underlying type `T` in any of the following interchangeable forms: `Nullable<T>` or `T?`
 
 ### [Nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references)
@@ -577,19 +578,19 @@ The `ToString` method converts the current value of any variable into a textual 
 The rule for rounding (in explicit casting) in C# is subtly different from the primary school rule:
 
 - It always rounds _down_ if the decimal part is less than the midpoint `.5`.
-- It always rounds _up_ if the decimal part is more than the midpoint _.5_.
-- It will round _up_ if the decimal part is the midpoint .5 and the non-decimal part is odd, but it will round _down_ if the non-decimal part is even.
+- It always rounds _up_ if the decimal part is more than the midpoint `.5`.
+- It will round _up_ if the decimal part is the midpoint `.5` and the non-decimal part is odd, but it will round _down_ if the non-decimal part is even.
 
 This rule is known as **Banker's Rounding**, and it is preferred because it reduces bias by alternating when it rounds up or down.
 
 ### Converting from a binary object to a string
 
-The safest thing to do is to convert the binary object into a string of safe characters. Programmers call this **Base64 encoding**.
+The safest thing to do is to convert the binary object into a string of safe characters. Programmers call this **Base64 encoding**.  
 The `Convert` type has a pair of methods, `ToBase64String` and `FromBase64String`, that perform this conversion.
 
 ### Parsing from strings to numbers or dates and times
 
-The second most common conversion is from strings to numbers or date and time values.
+The second most common conversion is from strings to numbers or date and time values.  
 The opposite of `ToString` is `Parse`. Only a few types have a `Parse` method, including all the number types and `DateTime`.
 
 ## Random Numbers
@@ -607,12 +608,15 @@ randomNumber = rand.NextDouble();  // random number between 0.0 and 1.0
 
 ## Preprocessor Directives
 
-C# offers a `#define` directive that lets you define a compilation symbol. These symmbols are commonly used in conjunction with the `#if` directive to compile code in diffferent ways for different situations.
+C# offers a `#define` directive that lets you define a compilation symbol.  
+These symmbols are commonly used in conjunction with the `#if` directive to compile code in diffferent ways for different situations.  
 It’s common to define compilation symbols through the _compiler build settings_: open up the `.csproj` file and define the values you want in a `<DefineConstants>` element of any `<PropertyGroup>`.
 
 Compilation symbols are typically used in conjunction with the `#if`, `#else`, `#elif`, and `#endif` directives (`#if false` also exists).
 
-The _.NET SDK_ defines certain symbols by default. It supports two configurations: **Debug** and **Release**. It defines a `DEBUG` compilation symbol in the Debug configuration, whereas Release will define `RELEASE` instead. It defines a symbol called `TRACE` in both configurations.
+The _.NET SDK_ defines certain symbols by default. It supports two configurations: **Debug** and **Release**.  
+It defines a `DEBUG` compilation symbol in the Debug configuration, whereas Release will define `RELEASE` instead.  
+It defines a symbol called `TRACE` in both configurations.
 
 ```cs
 #if DEBUG
@@ -620,7 +624,9 @@ The _.NET SDK_ defines certain symbols by default. It supports two configuration
 #endif
 ```
 
-C# provides a more subtle mechanism to support this sort of thing, called a _conditional method_. The compiler recognizes an attribute defined by the .NET class libraries, called `ConditionalAttribute`, for which it provides special compiletime behavior. Method annotated with this attribute will not be present in a non-Debug release.
+C# provides a more subtle mechanism to support this sort of thing, called a _conditional method_.  
+The compiler recognizes an attribute defined by the .NET class libraries, called `ConditionalAttribute`, for which it provides special compiletime behavior.  
+Method annotated with this attribute will not be present in a non-Debug release.
 
 ```cs
 [System.Diagnostics.Conditional("DEBUG")]
@@ -639,7 +645,7 @@ C# allows choose to generate _compiler errors_ or warnings with the `#error` and
 
 ### `#pragma`
 
-The `#pragma` directive provides two features: it can be used to disable selected compiler warnings, and it can also be used to override the checksum values the compilerputs into the `.pdb` file it generates containing debug information.
+The `#pragma` directive provides two features: it can be used to disable selected compiler warnings, and it can also be used to override the checksum values the compilerputs into the `.pdb` file it generates containing debug information.  
 Both of these aredesigned primarily for code generation scenarios, although they can occasionally beuseful to disable warnings in ordinary code.
 
 ```cs
@@ -912,8 +918,8 @@ foreach (type item in iterabile)
 }
 ```
 
-**NOTE**: Due to the use of an *iterator*, the variable declared in a foreach statement cannot be used to modify the value of the current item.
-**NOTE**: From C# 9 it's possible to implement GetEnumerator() as an *extensione method* making enumrable an class that normally isn't.
+**NOTE**: Due to the use of an *iterator*, the variable declared in a foreach statement cannot be used to modify the value of the current item.  
+**NOTE**: From C# 9 it's possible to implement `GetEnumerator()` as an *extensione method* making enumrable an class that normally isn't.
 
 Example:
 
@@ -961,7 +967,7 @@ using (Type obj = new Type())  // obj disposed at the end of the using block
 In checked code block ore expression the mathematic overflow causes an `OverflowException`.  
 In unchecked code block the mathematic overflow is _ignored_ end the result is _truncated_.
 
-It's possible configure the C# compiler to put everything into a checked context by default, so that only explicitly unchecked expressions and statements will be able to overflow silently.
+It's possible configure the C# compiler to put everything into a checked context by default, so that only explicitly unchecked expressions and statements will be able to overflow silently.  
 It is done by editing the `.csproj` file, adding `<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>` inside a `<PropertyGroup>`.
 
 **NOTE**: checking can make individual integer operations several times slower.
@@ -1082,7 +1088,7 @@ Enum.IsDefined(enumType, value);  // whether a given integral value, or its name
 
 The method signature is the number & type of the input parameters defined for the method.
 
-C# makes the fairly common distinction between _parameters_ and _arguments_: a method defines a list of the inputs it expects (the parameters) and the code inside the method refers to these parameters by name.
+C# makes the fairly common distinction between _parameters_ and _arguments_: a method defines a list of the inputs it expects (the parameters) and the code inside the method refers to these parameters by name.  
 The values seen by the code could be different each time the method is invoked, and the term argument refers to the specific value supplied for a parameter in a particular invocation.
 
 ```cs
@@ -1128,10 +1134,10 @@ MethodName(value, param2: value);
 
 ### [Optional Arguments](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments)
 
-The definition of a method, constructor, indexer, or delegate can specify that its parameters are required or that they are optional.
+The definition of a method, constructor, indexer, or delegate can specify that its parameters are required or that they are optional.  
 Any call must provide arguments for all required parameters, but can omit arguments for optional parameters.
 
-Each optional parameter has a default value as part of its definition. If no argument is sent for that parameter, the default value is used.
+Each optional parameter has a default value as part of its definition. If no argument is sent for that parameter, the default value is used.  
 Optional parameters are defined at the end of the parameter list, after any required parameters.
 
 A default value must be one of the following types of expressions:
@@ -1156,10 +1162,10 @@ MethodName(required: value, secondOptional: value);  // use default for first op
 [ref]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref
 [out]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/out-parameter-modifier
 
-The `out`, `in`, `ref` keywords cause arguments to be _passed by reference_. It makes the _formal parameter_ an alias for the argument, which must be a variable.
+The `out`, `in`, `ref` keywords cause arguments to be _passed by reference_. It makes the _formal parameter_ an alias for the argument, which must be a variable.  
 In other words, any operation on the parameter is made _on the argument_. This behaviour is the same for classses and structs.
 
-An argument that is passed to a `ref` or `in` parameter **must be initialized** before it is passed. However `in` arguments _cannot be modified_ by the called method.
+An argument that is passed to a `ref` or `in` parameter **must be initialized** before it is passed. However `in` arguments _cannot be modified_ by the called method.  
 Variables passed as `out` arguments do not have to be initialized before being passed in a method call. However, the called method is **required to assign a value** before the method returns.
 
 Use cases:
@@ -1170,7 +1176,7 @@ Use cases:
 
 **NOTE**: use `in` only with readonly value types, because mutable value types can undo the performance benefits. (Mutable value types are typically a bad idea in any case.)
 
-While the method can use members of the passed reference type, it can’t normally replace it with a different object.
+While the method can use members of the passed reference type, it can’t normally replace it with a different object.  
 But if a reference type argument is marked with ref, the method has access to the variable, so it could replace it with a reference to a completely different object.
 
 ```cs
@@ -1238,8 +1244,8 @@ type OuterMethod(...)
 
 ### Extension Methods
 
-Extension methods allow their usage appliad to the extended type as if their declaration was inside the object's class.
-Extension methods are not really members of the class for which they are defined.
+Extension methods allow their usage appliad to the extended type as if their declaration was inside the object's class.  
+Extension methods are not really members of the class for which they are defined.  
 It’s just anillusion maintained by the C# compiler, one that it keeps up even in situations where method invocation happens implicitly.
 
 **NOTE**: Extension Method can be declared only inside static classes. Extension methods are avaiable only if their nemaespce is imported with the `using` keyword.
@@ -1263,7 +1269,7 @@ var.ExtensionMethod();  // use the method on a object as if the method belongs t
 
 An iterator can be used to step through collections such as lists and arrays.
 
-An iterator method or `get` accessor performs a custom iteration over a collection. An iterator method uses the `yield return` statement to return each element one at a time.
+An iterator method or `get` accessor performs a custom iteration over a collection. An iterator method uses the `yield return` statement to return each element one at a time.  
 When a `yield return` statement is reached, the current location in code is remembered. Execution is restarted from that location the next time the iterator function is called.
 
 It's possible to use a `yield break` statement or exception to end the iteration.
@@ -1290,16 +1296,18 @@ public static System.Collections.IEnumerable<int> IterateRange(int start = 0, in
 
 **Class** types have _reference semantics_. That is, a variable of a class type contains a _reference to an instance_ of the type, not the instance itself.
 
-Typically, you use structure types to design small data-centric types that provide little or no behavior. If you're focused on the behavior of a type, consider defining a class.
+Typically, you use structure types to design small data-centric types that provide little or no behavior. If you're focused on the behavior of a type, consider defining a class.  
 Because structure types have value semantics, we recommend you to define immutable structure types.
 
-Creating a new instance of a value type doesn’t necessarily mean allocating more memory, whereas with reference types, a new instance means anew heap block.
+Creating a new instance of a value type doesn’t necessarily mean allocating more memory, whereas with reference types, a new instance means anew heap block.  
 This is why it’s OK for each operation performed with a value type to produce a new instance.
 
 The most important question is : does the identity of an instance matter? In otherwords, is the distinction between one object and another object important?
 
-An important and related question is: does an instance of the type contain state that changes over time? Modifiable value types tend to be problematic, because it’s all too easy to end up working with some copy of a value, and not the correct instance.
-So it’susually a good idea for value types to be immutable. This doesn’t mean that variables of these types cannot be modified; it just means that to modify the variable, its contents must be repalced entirely with a different value.
+An important and related question is: does an instance of the type contain state that changes over time?  
+Modifiable value types tend to be problematic, because it’s all too easy to end up working with some copy of a value, and not the correct instance.  
+So it’susually a good idea for value types to be immutable. This doesn’t mean that variables of these types cannot be modified;  
+it just means that to modify the variable, its contents must be repalced entirely with a different value.
 
 ```cs
 public struct Point
@@ -1362,7 +1370,7 @@ If any part declares a base type, then the whole type inherits that class.
 
 ### Class Declaration
 
-A _field_ is a variable of any type that is declared directly in a class or struct. Fields are members of their containing type.
+A _field_ is a variable of any type that is declared directly in a class or struct. Fields are members of their containing type.  
 A _property_ is a member that provides a flexible mechanism to read, write, or compute the value of a private field.
 
 The `static` keyword declares that a member is not associated with any particular instance of the class.
@@ -1412,7 +1420,7 @@ class Class
 
 ### [Object and Collection Initializers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers)
 
-**Object initializers** allow to assign values to any accessible fields or properties of an object at creation time without having to invoke a constructor followed by lines of assignment statements.
+**Object initializers** allow to assign values to any accessible fields or properties of an object at creation time without having to invoke a constructor followed by lines of assignment statements.  
 The object initializer syntax enables to specify arguments for a constructor or omit the arguments (and parentheses syntax).
 
 ```cs
@@ -1585,7 +1593,7 @@ public class ClassName
 
 ### Indexers
 
-An **indexer** is a property that takes one or more arguments, and is accessed with the same syntax as is used for arrays.
+An **indexer** is a property that takes one or more arguments, and is accessed with the same syntax as is used for arrays.  
 This is useful when writing a class that contains a collection of objects.
 
 ```cs
@@ -1605,7 +1613,8 @@ Class? c = objWithIndexer == null ? null : onjWithIndexer[index];
 
 ### Abstract Classes
 
-The `abstract` modifier indicates that the thing being modified has a missing or incomplete implementation. The `abstract` modifier can be used with classes, methods, properties, indexers, and events.  
+The `abstract` modifier indicates that the thing being modified has a missing or incomplete implementation.  
+The `abstract` modifier can be used with classes, methods, properties, indexers, and events.  
 Use the `abstract` modifier in a class declaration to indicate that a class is intended only to be a base class of other classes, not instantiated on its own.  
 Members marked as `abstract` must be implemented by non-abstract classes that derive from the abstract class.
 
@@ -1668,6 +1677,7 @@ IClonable.Clone();  //  Creates a new object that is a copy of the current insta
 ### Deconstruction
 
 Deconstruction is not limited to tuples. By providing a `Deconstruct(...)` method(s) C# allows to use the same syntax with the users types.
+
 **NOTE**: Types with a deconstructor can also use _positional pattern matching_.
 
 ```cs
@@ -1796,7 +1806,8 @@ public readonly struct Fraction
 
 ### Nested Types
 
-A type defined at _global scope_ can be only `public`or `internal`; private would'nt make sense since that makes something accessible only from within its containing type, and there is no containing type at global scope.
+A type defined at _global scope_ can be only `public`or `internal`.
+private wouldn't make sense since that makes something accessible only from within its containing type, and there is no containing type at global scope.  
 But a nested type does have a containing type, so if a nested type is `private`, that type can be used only from inside the type within which it is nested.
 
 **NOTE**: Code in a nested type is allowed to use nonpublic members of its containing type. However, an instance of a nested type does not automatically get a reference to an instance of its containing type.
@@ -1805,7 +1816,7 @@ But a nested type does have a containing type, so if a nested type is `private`,
 
 ## Interfaces
 
-An interface declares methods, properties, and events, but it doesn’t have to definetheir bodies.
+An interface declares methods, properties, and events, but it doesn’t have to definetheir bodies.  
 An interface is effectively a list of the members that a type will need to provide if it wants to implement the interface.
 
 C# 8.0 adds the ability to define default implementations for some or all methods, and also to define nested types and static fields.
@@ -1832,8 +1843,9 @@ public interface IContract
 public interface IContract<T> {}  // interfaces can be generic
 ```
 
-**NOTE**: Interfaces are reference types. Despite this, it's possible tp implement interfaces on both classes and structs.
-However, be careful when doing so with a struct, because when getting hold of an interface-typed reference to a struct, it will be a reference to a _box_, which is effectively an object that holds a copy of a struct in a way that can be referred to via a reference.
+**NOTE**: Interfaces are reference types. Despite this, it's possible tp implement interfaces on both classes and structs.  
+However, be careful when doing so with a struct, because when getting hold of an interface-typed reference to a struct, it will be a reference to a _box_,  
+which is effectively an object that holds a copy of a struct in a way that can be referred to via a reference.
 
 ---
 
@@ -1926,12 +1938,12 @@ public T GenericMethod<T>() where T : class?
 
 ## Inheritance
 
-Classes support only single inheritance. Interfaces offer a form of multiple inheritance. Value types do not support inheritance at all.
+Classes support only single inheritance. Interfaces offer a form of multiple inheritance. Value types do not support inheritance at all.  
 One reason for this is that value types are not normally used by reference, which removes one of the main benefits of inheritance: runtime polymorphism.
 
 Since a derived class inherits everything the base class has—all its fields, methods, and other members, both public and private—an instance of the derived class can doanything an instance of the base could do.
 
-**NOTE**: When deriving from a class, it's not possible to make the derived class more visible than its base. This restriction does not apply to interfaces.
+**NOTE**: When deriving from a class, it's not possible to make the derived class more visible than its base. This restriction does not apply to interfaces.  
 A `public` class is free to implement `internal` or `private` interfaces. However, it does apply to an interface’s bases: a `public` interface cannot derive from an `internal` interface.
 
 ```cs
@@ -1969,8 +1981,8 @@ if(b is Derived) {}  // simple type pattern (if conversion fails IS returns FALS
 
 ### Inheritance & Constructors
 
-All of a base class’s constructors are available to aderived type, but they can be invoked only by constructors in the derived class.
-All constructors are required to invoke a constructor on their base class, and if it's not specified which to invoke, the compiler invokes the base’s zero-argument constructor.
+All of a base class’s constructors are available to aderived type, but they can be invoked only by constructors in the derived class.  
+All constructors are required to invoke a constructor on their base class, and if it's not specified which to invoke, the compiler invokes the base’s zero-argument constructor.  
 If the base has not a zero-argument constructor the compilation will cause an error. It's possible to invoke a base constructor explicitly to avoid this error.
 
 Initializaton order:
@@ -1995,7 +2007,8 @@ public class Derived
 
 ### Generics Inheritance
 
-If you derive from a generic class, you must supply the type arguments it requires. You must provide concrete types unless your derived type is generic, in which case itcan use its own type parameters as arguments.
+If you derive from a generic class, you must supply the type arguments it requires.  
+You must provide concrete types unless your derived type is generic, in which case itcan use its own type parameters as arguments.
 
 ```cs
 public class GenericBase1<T>
@@ -2025,7 +2038,7 @@ public class Derived<T> where T : Derived<T>
 
 [The theory behind covariance and contravariance in C#](http://tomasp.net/blog/variance-explained.aspx/)
 
-**Covariance** and **Contravariance** are terms that refer to the ability to use a more derived type (more specific) or a less derived type (less specific) than originally specified.
+**Covariance** and **Contravariance** are terms that refer to the ability to use a more derived type (more specific) or a less derived type (less specific) than originally specified.  
 Generic type parameters support covariance and contravariance to provide greater flexibility in assigning and using generic types.
 
 - **Covariance**: Enables to use a more derived type than originally specified.
@@ -2070,10 +2083,10 @@ CompareDericed(baseComparator);  // valid since baseComparator can compare Base 
 
 ## Delegates
 
-A **delegate** is a type that represents a _reference to a method_ with a particular parameter list and return type. Delegates are used to pass methods as arguments to other methods.
+A **delegate** is a type that represents a _reference to a method_ with a particular parameter list and return type. Delegates are used to pass methods as arguments to other methods.  
 This ability to refer to a method as a parameter makes delegates ideal for defining callback methods.
 
-Any method from any accessible class or struct that matches the delegate type can be assigned to the delegate. The method can be either static or an instance method.
+Any method from any accessible class or struct that matches the delegate type can be assigned to the delegate. The method can be either static or an instance method.  
 This makes it possible to programmatically change method calls, and also plug new code into existing classes.
 
 ```cs
@@ -2096,12 +2109,12 @@ multicastDelegate += method;  // add method to delegate
 multicastDelegate -= method;  // remove method from delegate
 ```
 
-**NOTE**: Delegate removal behaves in a potentially surprising way if the delegate removed refers to multiple methods.
+**NOTE**: Delegate removal behaves in a potentially surprising way if the delegate removed refers to multiple methods.  
 Subtraction of a multicast delegate succeeds only if the delegate from which subtract contains all of the methods in the delegate being subtracted _sequentially and in the same order_.
 
 ### Delegate Invocation
 
-Invoking a delegate with a single target method works as though the code had called the target method in the conventional way.
+Invoking a delegate with a single target method works as though the code had called the target method in the conventional way.  
 Invoking a multicast delegate is just like calling each of its target methods in turn.
 
 ```cs
@@ -2125,7 +2138,8 @@ public delegate bool Predicate<in T1, ...>(T1 arg1, ...);
 
 ### Type Compatibility
 
-Delegate types do not derive from one another. Any delegate type defined in C# will derive directly from `MulticastDelegate`. However, the type system supports certain implicit reference conversions for generic delegate types through covariance and contravariance. The rules arevery similar to those for interfaces.
+Delegate types do not derive from one another. Any delegate type defined in C# will derive directly from `MulticastDelegate`.  
+However, the type system supports certain implicit reference conversions for generic delegate types through covariance and contravariance. The rules are very similar to those for interfaces.
 
 ## Anonymous Functions (Lambda Expressions)
 
@@ -2156,7 +2170,7 @@ Type variable = delegate { <expression>; };  // ignore arguments of the method p
 
 Structs and classes can declare events. This kind of member enables a type to provide notifications when interesting things happen, using a subscription-based model.
 
-The class who raises events is called _Publisher_, and the class who receives the notification is called _Subscriber_. There can be multiple subscribers of a single event.
+The class who raises events is called _Publisher_, and the class who receives the notification is called _Subscriber_. There can be multiple subscribers of a single event.  
 Typically, a publisher raises an event when some action occurred. The subscribers, who are interested in getting a notification when an action occurred, should register with an event and handle it.
 
 ```cs
@@ -2196,8 +2210,8 @@ public class Subscriber
 
 ### Built-In EventHandler Delegate
 
-.NET includes built-in delegate types `EventHandler` and `EventHandler<TEventArgs>` for the most common events.
-Typically, any event should include two parameters: the _source_ of the event and event _data_.
+.NET includes built-in delegate types `EventHandler` and `EventHandler<TEventArgs>` for the most common events.  
+Typically, any event should include two parameters: the _source_ of the event and event _data_.  
 The `EventHandler` delegate is used for all events that do not include event data, the `EventHandler<TEventArgs>` delegate is used for events that include data to be sent to handlers.
 
 ```cs
@@ -2264,47 +2278,51 @@ public class Subsciber
 
 ## Assemblies
 
-In .NET the proper term for a software component is an **assembly**, and it is typically a `.dll` or `.exe` file.
+In .NET the proper term for a software component is an **assembly**, and it is typically a `.dll` or `.exe` file.  
 Occasionally, an assembly will be split into multiple files, but even then it is an indivisible unit of deployment: it has to be wholly available to the runtime, or not at all.
 
-Assemblies are an important aspect of the type system, because each type is identified not just by its *name* and *namespace*, but also by its containing *assembly*.
+Assemblies are an important aspect of the type system, because each type is identified not just by its *name* and *namespace*, but also by its containing *assembly*.  
 Assemblies provide a kind of encapsulation that operatesat a larger scale than individual types, thanks to the `internal` accessibility specifier, which works at the assembly level.
 
-The runtime provides an *assembly loader*, which automatically finds and loads the assemblies a program needs.
+The runtime provides an *assembly loader*, which automatically finds and loads the assemblies a program needs.  
 To ensure that the loader can find the right components, assemblies have structured names that include version information, and they can optionally contain a globally unique element to prevent ambiguity.
 
 ### Anatomy of an Assembly
 
 Assemblies use the **Win32 Portable Executable** (PE) file format, the same format that executables (EXEs) and dynamic link libraries (DLLs) have always used in "modern" (since NT) versions of Windows.
 
-The C# compiler produces an assembly as its output, with an extension of either `.dll` or `.exe`.
-Tools that understand the PE file format will recognize a .NET assembly as avalid, but rather dull, PE file.
+The C# compiler produces an assembly as its output, with an extension of either `.dll` or `.exe`.  
+Tools that understand the PE file format will recognize a .NET assembly as avalid, but rather dull, PE file.  
 The CLR essentially uses PE files as containers for a .NET-specific data format, so to classic Win32 tools, a C# DLL will not appear to export any APIs.
 
-With .NET Core 3.0 or later, .NET  assemblies won't be built with  an  extension of `.exe`. Even project types that produce directly runnable outputs (such as console or WPF applications) produce a `.dll` as their primary output.
+With .NET Core 3.0 or later, .NET  assemblies won't be built with  an  extension of `.exe`.  
+Even project types that produce directly runnable outputs (such as console or WPF applications) produce a `.dll` as their primary output.  
 They also generate an executable file too, but it’s not a .NET assembly. It’s just a bootstrapper that starts theruntime and then loads and executes your application’s main assembly.
 
-**NOTE**: C# compiles to a binary intermediate language (IL), which is not directly executable. The normal Windows mechanisms for loading and running the code in an executable or DLL won’t work with IL, because that can run only with the help of the CLR.
+**NOTE**: C# compiles to a binary intermediate language (IL), which is not directly executable.  
+The normal Windows mechanisms for loading and running the code in an executable or DLL won’t work with IL, because that can run only with the help of the CLR.
 
 ### .NET MEtadata
 
-As well as containing the compiled IL, an assembly contains metadata, which provides a full description of all of the types it defines, whether `public` or `private`.
+As well as containing the compiled IL, an assembly contains metadata, which provides a full description of all of the types it defines, whether `public` or `private`.  
 The CLR needs to have complete knowledge of all the types that the code uses to be able to make sense of the IL and turn it into running code, the binary format for IL frequently refers to the containing assembly’s metadata and is meaningless without it.
 
 ### Resources
 
-It's possible to embed binary resources in a DLL alongside the code and metadata. To embed a file select "Embedded Rersource" as it's *Build Action* in the file prperties. This compiles a copy of the file into the assembly.
+It's possible to embed binary resources in a DLL alongside the code and metadata. To embed a file select "Embedded Rersource" as it's *Build Action* in the file prperties.  
+This compiles a copy of the file into the assembly.
 
 To extract the resource at runtime use the `Assembly` class's `GetManifestResourceSttream` method which is par of the **Reflection API**.
 
 ### Multifile Assembly
 
-.NET Framework allowed an assembly to span multiple files.
+.NET Framework allowed an assembly to span multiple files.  
 It was possible to split the code and metadata across multiple modules, and it was also possible for some binary streams that are logically embedded in an assembly to be put in separate files.  
-This feature was rarely used, and .NET Core does not support it. However, it’s necessary to know about it because some of its consequences persist.
+This feature was rarely used, and .NET Core does not support it. However, it’s necessary to know about it because some of its consequences persist.  
 In particular, parts of the design of the Reflection API make no sense unless this feature is known.
 
-With a multifile assembly, there’s always one master file that represents the assembly. This will be a PE file, and it contains a particular element of the metadata called the **assembly manifest**. This is not to be confused with the Win32-style manifest that most executables contain.
+With a multifile assembly, there’s always one master file that represents the assembly. This will be a PE file, and it contains a particular element of the metadata called the **assembly manifest**.  
+This is not to be confused with the Win32-style manifest that most executables contain.  
 The assembly manifest is just a description of what’s in the assembly, including a list of any external modules or other external files; in a multimodule assembly, the manifest describes which types are defined in which files.
 
 ### Assembly Resolution
@@ -2318,7 +2336,7 @@ When the runtime needs to load an assembly, it goes through a process called *as
 
 ### Self-Contained Deplyment
 
-When publishing a self-contained application, it includes a complete copy of .NET Core, the whole of the CLR and all the built-in assemblies.
+When publishing a self-contained application, it includes a complete copy of .NET Core, the whole of the CLR and all the built-in assemblies.  
 When building this way, assembly resolution is pretty straightforward because everything ends up in one folder.
 
 There are two main advantages to self-contained deployment:
@@ -2330,10 +2348,10 @@ With self-contained deployment, unless the application directs the CLR to look e
 
 #### Framework-Dependent Deployment
 
-The default build behavior for applications is to create a framework-dependent executable. In this case, the code relies on a suitable version of .NET Core already being installed on the machine.
+The default build behavior for applications is to create a framework-dependent executable. In this case, the code relies on a suitable version of .NET Core already being installed on the machine.  
 Framework-dependent applications necessarily use a more complex resolution mech‐anism than self-contained ones.
 
-When such an application starts up it will first determine exactly which version of .NET Core to run.
+When such an application starts up it will first determine exactly which version of .NET Core to run.  
 The chosen runtime version selects not just the CLR, but also the assemblies making up the parts of the class library built into .NET.
 
 ### Assembly Names
@@ -2347,15 +2365,16 @@ Assembly names always include a **version number**. There are also some optional
 
 If an assembly’s name includes a public key token, it is said to be a **strong name**. Microsoft advises that any .NET component that is published for shared use (e.g: made available via NuGet) should have a strong name.
 
-As the terminology suggests, an assembly name’s public key token has a connection with cryptography. It is the hexadecimal representation of a 64-bit hash of a publickey.
-Strongly named assemblies are required to contain a copy of the full public keyfrom which the hash was generated. The assembly file format also provides space fora digital signature, generated with the corresponding private key.
+As the terminology suggests, an assembly name’s public key token has a connection with cryptography. It is the hexadecimal representation of a 64-bit hash of a publickey.  
+Strongly named assemblies are required to contain a copy of the full public keyfrom which the hash was generated.  
+The assembly file format also provides space fora digital signature, generated with the corresponding private key.
 
-The uniqueness of a strong name relies on the fact that key generation systems use cryptographically secure random-number generators, and the chances of two people generating two key pairs with the same public key token are vanishingly small.
+The uniqueness of a strong name relies on the fact that key generation systems use cryptographically secure random-number generators, and the chances of two people generating two key pairs with the same public key token are vanishingly small.  
 The assurance that the assembly has ot been tampered with comes from the fact thatastrongly named assembly must be signed, and only someone in possession of the private key can generate a valid signature. Any attempt to modify the assembly aftersigning it will invalidate the signature.
 
 #### Version
 
-All assembly names include a four-part version number: `major.minor.build.revision`. However, there’s no particular significance to  any  of  these.
+All assembly names include a four-part version number: `major.minor.build.revision`. However, there’s no particular significance to  any  of  these.  
 The binary format that IL uses for assembly names and references limits the range of these numbers, each part must fit in a 16-bit unsigned integer (a  `ushort`), and the highest allowable value in a version part is actually one less than the maximum value that would fit, making the highest legal version number `65534.65534.65534.65534`.
 
 As far as the CLR is concerned, there’s really only one interesting thing you can do with a version number, which is to compare it with some otherversion number, either they match or one is higher than the other.
@@ -2366,7 +2385,7 @@ The build system tells the compiler which version number to use for the assembly
 
 #### Culture
 
-All assembly names include a **culture** component.
+All assembly names include a **culture** component.  
 This is not optional, although the most common value for this is the default `neutral`, indicating that the assembly contains no culture-specific code or data.
 
 The culture is usually set to something else only on assemblies that containculture-specific resources. The culture of an assembly’s name is designed to support localization of resources such as images and strings.
@@ -2375,7 +2394,7 @@ The culture is usually set to something else only on assemblies that containcult
 
 ## Reflection
 
-The CLR knows a great deal about the types the programs define and use. It requires all assemblies to provide detailed metadata, describing each member of every type, including private implementation details.
+The CLR knows a great deal about the types the programs define and use. It requires all assemblies to provide detailed metadata, describing each member of every type, including private implementation details.  
 It relies on this information to perform critical functions, such as JIT compilation and garbage collection. However, it does not keep this knowledge to itself.
 
 The **reflection API** grants access to this detailed type information, so the code can discover everything that the runtime can see.
@@ -2386,12 +2405,12 @@ The reflection API defines various classes in the `System.Reflection` namespace.
 
 ### Assembly
 
-The `Assembly` class defines three context-sensitive static methods that each return an `Assembly`.
-The `GetEntryAssembly` method returns the object representing the EXE file containing the program’s `Main` method.
-The `GetExecutingAssembly` method returns the assembly that contains the method from which it has benn called it.
+The `Assembly` class defines three context-sensitive static methods that each return an `Assembly`.  
+The `GetEntryAssembly` method returns the object representing the EXE file containing the program’s `Main` method.  
+The `GetExecutingAssembly` method returns the assembly that contains the method from which it has benn called it.  
 `GetCallingAssembly` walks up the stack by one level, and returns the assembly containing the code that called the method that called `GetCallingAssembly`.
 
-To inspect an assembly info use the `ReflectionOnlyLoadFrom` (or `ReflectionOnlyLoad`) method of the `Assembly` class.
+To inspect an assembly info use the `ReflectionOnlyLoadFrom` (or `ReflectionOnlyLoad`) method of the `Assembly` class.  
 This loads the assembly in such a way that it's poossible to inspect its type information, but no code in the assembly will execute, nor will any assemblies it depends on be loaded automatically.
 
 <!-- TODO: Page 570 of "Ian Griffiths - Programming C# 8.0 - Build Cloud, Web, and Desktop Applications.pdf" MethodInfo, Type, TypeInfo, MethodBase, ConstructorInfo, ParameterInfo, FiledInfo, PropertyInfo, EventInfo -->
@@ -2400,19 +2419,19 @@ This loads the assembly in such a way that it's poossible to inspect its type in
 
 ## Attributes
 
-In .NET, it's possible to *annotate* components, types, and their members with attributes.
+In .NET, it's possible to *annotate* components, types, and their members with attributes.  
 An attribute’s purpose is to control or modify the behavior of a framework, a tool, the compiler, or the CLR.
 
 Attributes are passive containers of information that do nothing on their own.
 
 ### Applaying Attributes
 
-To avoid having to introduce an extra set of concepts into the type system, .NET models attributes as instances of .NET types.
+To avoid having to introduce an extra set of concepts into the type system, .NET models attributes as instances of .NET types.  
 To be used as an attribute, a type must derive from the `System.Attribute` class, but it can otherwise be entirely ordinary.
 
 It's possible to pass arguments to the attribute *constructor* in the annotation.
 
-Some attributes can be controlled only through *properties* or *fields*, and not constructor arguments.
+Some attributes can be controlled only through *properties* or *fields*, and not constructor arguments.  
 The syntax for this is to write one or more `PropertyOrFieldName = Value` entries after the constructor arguments.
 
 ```cs
@@ -2436,12 +2455,12 @@ The syntax for this is to write one or more `PropertyOrFieldName = Value` entrie
 
 ### Attribute Targets
 
-Attributes can be applied to numerous different kinds of targets.
-Specifically, it's possible to apply attributes to *assemblies*, *modules*, *types*, *methods*, *method parameters*, *constructors*, *fields*, *properties*, *events*, and *generic type parameters*.
+Attributes can be applied to numerous different kinds of targets.  
+Specifically, it's possible to apply attributes to *assemblies*, *modules*, *types*, *methods*, *method parameters*, *constructors*, *fields*, *properties*, *events*, and *generic type parameters*.  
 In addition, it's possible to supply attributes that target a *method’s return value*.
 
-Since assemblies or modules don't have a single feature that represents them, attributes are applied by stating explicitly he target at the start the attribute.
-It's possible to put assembly-level attributes in any file. The sole restriction is that they must appear before any namespace or type definitions.
+Since assemblies or modules don't have a single feature that represents them, attributes are applied by stating explicitly he target at the start the attribute.  
+It's possible to put assembly-level attributes in any file. The sole restriction is that they must appear before any namespace or type definitions.  
 The only things that should comebefore assembly-level attributes are whichever using directives are needed, comments, and whitespace (all of which are optional).
 
 ```cs
@@ -2449,7 +2468,7 @@ The only things that should comebefore assembly-level attributes are whichever u
 [module : AttrName]
 ```
 
-Methods’ return values can be annotated, and this also requires qualification, becaus ereturn value attributes go in front of the method, the same place as attributes that apply to the method itself.
+Methods’ return values can be annotated, and this also requires qualification, because return value attributes go in front of the method, the same place as attributes that apply to the method itself.
 
 ```cs
 [AttrName]
@@ -2457,8 +2476,8 @@ Methods’ return values can be annotated, and this also requires qualification,
 Type Method() { /* statements */ }
 ```
 
-Another kind of target that needs qualification is a *compiler-generated field*.
-Examples are properties in which code for the getter or setter is not supplied, and event members without explicit add and remove implementations.
+Another kind of target that needs qualification is a *compiler-generated field*.  
+Examples are properties in which code for the getter or setter is not supplied, and event members without explicit add and remove implementations.  
 Without the `field:` qualifiers these attributes would apply to the property or event itself.
 
 ```cs
@@ -2483,7 +2502,7 @@ public class CustomAttribute : Attribute
 
 ### Rerieving Attributes
 
-It's possilble to discover which attrubutes have been applied through the reflection API.
+It's possilble to discover which attrubutes have been applied through the reflection API.  
 The various targets of attribute have a reflection type representing them (`MethodInfo`, `PropertyInfo`, ...) which all implement the interface `ICustomAttributeProvider`.
 
 ```cs
@@ -2499,10 +2518,11 @@ public interface ICustomAttributeProvider
 
 ## Files & Streams
 
-A .NET **stream** is simply a _sequence of bytes_. That makes a stream a useful abstraction for many commonly encountered features such as a file on disk, or the body of an HTTPresponse.
+A .NET **stream** is simply a _sequence of bytes_. That makes a stream a useful abstraction for many commonly encountered features such as a file on disk, or the body of an HTTP response.  
 A console application uses streams to represent its input and output.
 
-The `Stream` class is defined in the `System.IO` namespace. It is an abstract base class, with concrete derived types such as `FileStream` or `GZipStream` representing particular kinds of streams.
+The `Stream` class is defined in the `System.IO` namespace.  
+It is an abstract base class, with concrete derived types such as `FileStream` or `GZipStream` representing particular kinds of streams.
 
 ```cs
 // The most important members of Stream
@@ -2511,26 +2531,26 @@ public abstract void Write(byte[] buffer, int offset, int count);
 public abstract long Position { get; set; }
 ```
 
-Some streams are _read-only_. For example, if input stream for a console app represents the keyboard or the output of some other program, there’s no meaningful way for the program to write to that stream.
-Some streams are _write-only_, such as the output stream of a console application.
+Some streams are _read-only_. For example, if input stream for a console app represents the keyboard or the output of some other program, there’s no meaningful way for the program to write to that stream.  
+Some streams are _write-only_, such as the output stream of a console application.  
 If `Read` is called on a write-only stream or `Write` on a read-only one, these methods throw a `NotSupportedException`.
 
-Both `Read` and `Write` take a `byte[]` array as their first argument, and these methods copy data into or out of that array, respectively.
-The `offset` and `count` arguments that follow indicate the array element at which to start, and the number of bytes to read or write.
-There are no arguments to specify the _offset_ within the stream at which to read or write. This is managed by the `Position` property.
+Both `Read` and `Write` take a `byte[]` array as their first argument, and these methods copy data into or out of that array, respectively.  
+The `offset` and `count` arguments that follow indicate the array element at which to start, and the number of bytes to read or write.  
+There are no arguments to specify the _offset_ within the stream at which to read or write. This is managed by the `Position` property.  
 This starts at zero, but at each read or write, the position advances by the number of bytes processed.
 
-The `Read` method returns an `int`. This tells how many bytes were read from the stream, the method _does not guarantee_ to provide the amount of data requested.
+The `Read` method returns an `int`. This tells how many bytes were read from the stream, the method _does not guarantee_ to provide the amount of data requested.  
 The reason `Read` is slightly tricky is that some streams are live, representing a source of information that produces data gradually as the program runs.
 
 **NOTE**: If asked for more than one byte at a time, a `Stream` is always free to return less data than requested from Read for any reason. Never presume that a call to `Read` returned as much data as it could.
 
 ### Position & Seeking
 
-Streams automatically update their current position each time a read or write operation is completed. The `Position` property can be set to move to the desired location.
+Streams automatically update their current position each time a read or write operation is completed. The `Position` property can be set to move to the desired location.  
 This is not guaranteed to work because it's not always possible to support it. Some streams will throw `NotSupportedException` when trying to set the `Position` property.
 
-Stream also defines a Seek method, this allows to specify the position required relative to the stream’s current position.
+Stream also defines a Seek method, this allows to specify the position required relative to the stream’s current position.  
 Passsing `SeekOrigin.Current` as second argument will set the positio by adding the first argument to the current position.
 
 ```cs
@@ -2539,17 +2559,19 @@ public abstract long Seek(long offset, SeekOrigin origin);  // offset can be neg
 
 ### Flushing
 
-Writing data to a Stream does not necessarily cause the data to reach its destination immediately.
+Writing data to a Stream does not necessarily cause the data to reach its destination immediately.  
 When a call to `Write` returns, all that is known is that it has copied the data _somewhere_; but that might be a buffer in memory, not the final target.
 
 The Stream class therefore offers a `Flush` method. This tells the stream that it has to do whatever work is required to ensure that any buffered data is written to its target, even if that means making suboptimal use of the buffer.
 
-A stream automatically flushes its contents when calling `Dispose`. Flush only when ity's needed to keep a stream open after writing out buffered data.
+A stream automatically flushes its contents when calling `Dispose`. Flush only when ity's needed to keep a stream open after writing out buffered data.  
 It is particularly important if there will be extended periods during which the stream isopen but inactive.
 
-**NOTE**: When using a `FileStream`, the `Flush` method does not necessarily guarantee that the data being flushed has made it to disk yet. It merely makes the stream pass the data to the OS.
-Before calling `Flush`, the OS hasn’t even seen the data, so if the process terminates suddenly, the data would be lost. After `Flush` has returned, the OS has everything the code has written, so the process could be terminated without loss of data.
+**NOTE**: When using a `FileStream`, the `Flush` method does not necessarily guarantee that the data being flushed has made it to disk yet. It merely makes the stream pass the data to the OS.  
+Before calling `Flush`, the OS hasn’t even seen the data, so if the process terminates suddenly, the data would be lost.  
+After `Flush` has returned, the OS has everything the code has written, so the process could be terminated without loss of data.  
 However, the OS may perform additional buffering of its own, so if the power fails before the OS gets around to writing everything to disk, the data will still be lost.
+
 To guarantee that data has been written persistently (rather than merely ensuring that it has been handed it to the OS), use either the `WriteThrough` flag, or call the `Flush` overload that takes a bool, passing `true` to force flushing to disk.
 
 ### [StreamReader][stream_reader_docs] & [StreamWriter][stream_writer_docs] (Text Files)
@@ -2557,7 +2579,7 @@ To guarantee that data has been written persistently (rather than merely ensurin
 [stream_reader_docs]: https://docs.microsoft.com/en-us/dotnet/api/system.io.streamreader
 [stream_writer_docs]: https://docs.microsoft.com/en-us/dotnet/api/system.io.streamwriter
 
-The most useful concrete text-oriented streams types are `StreamReader` and `StreamWriter`, which wrap a `Stream` object.
+The most useful concrete text-oriented streams types are `StreamReader` and `StreamWriter`, which wrap a `Stream` object.  
 It's possible to constructing them by passing a `Stream` as a constructor argument, or a string containing the path of a file, in which case they will automatically construct a `FileStream` and then wrap that.
 
 [Encoding](https://docs.microsoft.com/en-us/dotnet/api/system.text.encoding)
@@ -2597,8 +2619,8 @@ catch (Exception e)
 
 ### StringReader & StringWriter
 
-The `StringReader` and `StringWriter` classes serve a similar purpose to `MemoryStream`: they are useful when working with an API that requires either a `TextReader` or `TextWriter` (abstract text streams), but you want to work entirely in memory.
-Whereas `MemoryStream` presents a Stream API on top of a `byte[]` array, StringReader wraps a string as a `TextReader`, while `StringWriter` presents a `TextWriter` API on top of a `StringBuilder`.
+The `StringReader` and `StringWriter` classes serve a similar purpose to `MemoryStream`: they are useful when working with an API that requires either a `TextReader` or `TextWriter` (abstract text streams), but you want to work entirely in memory.  
+Whereas `MemoryStream` presents a Stream API on top of a `byte[]` array, `StringReader` wraps a string as a `TextReader`, while `StringWriter` presents a `TextWriter` API on top of a `StringBuilder`.
 
 ## Files & Directories
 
@@ -2843,7 +2865,7 @@ match.Groups[index].Index;  // position in the input string of the matched group
 
 To test a project add a **MSTest Test Projet** to the solution.
 
-The test runner will execute any methods marked with `[TestInitialize]` once for every test the class contains, and will do so before running the actual test method itself.
+The test runner will execute any methods marked with `[TestInitialize]` once for every test the class contains, and will do so before running the actual test method itself.  
 The `[TestMethod]` attribute tells the test runner which methods represent tests.
 
 In `TestClass.cs`:
