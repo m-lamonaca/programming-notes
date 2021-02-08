@@ -2,12 +2,11 @@
 
 ## Terminologia & concetti base
 
-Il database è un contenitore di **collezioni** (tabelle in DB relazionali). Le collezioni sono mini contenitori di **documenti** (record in DB relazionali).
+The database is a container of **collections**. The collections are containers of **documents**.
 
-I documenti sono *schema-less* ovvero hanno una struttura dinamica ed essa può cambiare tra documenti all'interno della stessa collezione.  
-La struttura di un documento è quella del JSON.
+The documents are *schema-less* that is they have a dynamic structure that can change between documents in the same colletion.
 
-### Tipi di dati
+### Data Types
 
 | Tipo              | Documento                                      | Funzione                |
 |-------------------|------------------------------------------------|-------------------------|
@@ -20,13 +19,13 @@ La struttura di un documento è quella del JSON.
 | Embedded Document | `{"a": {...}}`                                 |
 | Embedded Array    | `{"b": [...]}`                                 |
 
-E' obbligatorio per ogni documento avere un campo `_id` univoco.  
-MongoDB di occupa di creare un `ObjectId()` in automatico.
+It's mandatory for each document ot have an uniwue field `_id`.
+MongoDB automatically creates an `ObjectId()` if it's not provided.
 
-### Uso Database
+### Database Usage
 
-Per creare un database è sufficiente effettuare uno switch verso un db non-esistente (creazione implicita): `use [database]`  
-il db non viene creato finchè non si inserisce un dato.
+To create a database is sufficient to switch towards a non existing one with `use <database>` (implicit creation).
+The database is not actually created until a document is inserted.
 
 ```sh
 show dbs  # list all databases
@@ -36,14 +35,14 @@ show collections  # list all collection for the current database
 dbs.dropDatabase()  # delete current database
 ```
 
-## Uso Collezioni
+## Collection Ussage
 
 ```sh
-db.createCollection(name, {options})  # creazione collezione
-db.<collection>.insertOne({document})  # creazione implicita collezione
+db.createCollection(name, {options})  # explicit collection creation
+db.<collection>.insertOne({document})  # implicit collection creation
 ```
 
-## Operazioni CRUD
+## CRUD Operations
 
 ### Filters
 
@@ -65,12 +64,12 @@ Membership: `{ key: { $in: [value_1, value_2, ...] } }` or `{ key: { $nin: [valu
 
 ### Create
 
-È possibile inserire documenti con il comando `insertOne()` (un documento alla volta) o `insertMany()` (più documenti).
+It's possible to insert a single document with the command `insertOne()` or multiple documents with `insertMany()`.
 
-Risultati inserimento:
+Isertion results:
 
-- errore -> rollback
-- successo -> salvataggio intero documneto
+- error -> rollback
+- success -> entire documents gets saved
 
 ```sh
 # explicit collection creation, all options are otional
