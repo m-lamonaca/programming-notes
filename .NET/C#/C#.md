@@ -508,7 +508,7 @@ In `Program.cs`:
 #nullable restore annotations  // Restores the annotation warning context to the project settings.
 ```
 
-### Null Conditional, Null Coalescing, Null Forgiving Operator
+### Null Conditional, Null Coalescing, Null Forgiving Operator, Null Checks
 
 ```cs
 Type? variable = null;  // the variable can also contain the NULL value (nullable type)
@@ -533,6 +533,10 @@ var variable = var ?? value  // return var if var != null, return value otherwis
 variable = variable?.property ?? value  // if (variable == null) -> variable = value -- null coalescing
 // same as
 variable ??= value;  // if (variable == null) -> variable = value -- null coalescing
+
+// null checks through patter matching
+variable is null
+varaible is not null
 ```
 
 ### Nullable Attributes
@@ -778,15 +782,35 @@ switch (expr)
     case key_1:
         // code here
         break;  // or return or goto
+
     case key_2:
         // code here
         goto case key_2;  // explicit fall-through (omitting break is not possible in c#)
+
     case key_3 when (when-condition):
         // code here
         break;
+
     case Type t:  // if expr matches Type result is stored in t local variable to be used in the block
         // code here
         break;
+
+    case value when(condition):
+        // code here
+        break;
+
+    case < value:
+        // code here
+        break;
+
+    case <= value and >= value:
+        // code here
+        break;
+
+    case > value:
+        // code here
+        break;
+
     dafault:
         // code here
         break;
@@ -812,61 +836,28 @@ Type func(Type input){
 }
 ```
 
-### Patterns
+### Pattern Mathcing
 
 [Pattern Mathcing](https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching)
 
 A pattern describes one or more criteria that a value can be tested against.
 
 ```cs
-switch(o)
-{
-    case Type t:  // type pattern
-        // code here
-        break;
+<expr> is Type t  // type pattern
+<expr> is (Type X, Type Y):  // positional pattern
+<expr> is (Type X, _):  // positional pattern + dicard pattern
+<expr> is Type {Property : value}:  // property patten (check Type and that the property has a certain value)
+<expr> is Type {Property : value} p:  // property patten with output (variable p is usable in the block)
 
-    case (Type X, Type Y):  // positional pattern
-        // code here
-        break;
+// constant pattern
+<expr> is literalValue  // e.g. 1, 'c', "literal"
+<expr> is CONSTANT
+<expr> is Enum.Value
 
-    case (Type X, _):  // positional pattern + dicard pattern
-        // code here
-        break;
-
-    case Type {Property : value}:  // property patten (check Type and that the property has a certain value)
-        // code here
-        break;
-
-    case Type {Property : value} p:  // property patten with output (variable p is usable in the block)
-        // code here
-        break;
-
-    case Type {Property: Type variable}:  // Property pattern with nested pattern with output
-        // code here
-        break;
-
-    case value when(condition):
-        // code here
-        break;
-
-    case < value:
-        // code here
-        break;
-
-    case <= value and >= value:
-        // code here
-        break;
-
-    case > value
-        // code here
-        break;
-}
-
-// is pattern matching
-bool isWhatever = value is (Type X, Type Y, ...);
-if (value is (Type X, Type Y, ...)){
-    // can use X & Y
-}
+// C# 9+
+<expr> is pattern and pattern
+<expr> is pattern or pattern
+<expr> is not pattern
 ```
 
 ## Loop Statements
@@ -1608,7 +1599,7 @@ public class Class<T>
 // null conditional index access
 Class? c = objWithIndexer?[index];
 // same as
-Class? c = objWithIndexer == null ? null : onjWithIndexer[index];
+Class? c = objWithIndexer == null ? null : objWithIndexer[index];
 ```
 
 ### Abstract Classes
@@ -2849,11 +2840,11 @@ Match match = Regex.Match(string, pattern, regexOptions);
 
 match.Success;  // whether there was a match or not
 
-match.Groups[index];  // numbered capture group
+match.Groups[index];  // numbered capture group (firdt group is always whole match)
 match.Groups[name];  // named capture group
 
 match.Groups[index].Value;  // whole captured string
-match.Groups[index].Captures;  // list of string in the matched group
+match.Groups[index].Captures;  // list of strings in the matched group
 match.Groups[index].Index;  // position in the input string of the matched group
 ```
 
