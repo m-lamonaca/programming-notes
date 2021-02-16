@@ -158,36 +158,57 @@ db.<collection>.drop()  # delete whole collection
 db.dropDatabase()  # delete entire database
 ```
 
-## Mongoimport Tool
+## [Mongoimport](https://docs.mongodb.com/database-tools/mongoimport/)
 
 Utility to import all docs into a specified collection.  
 If the collection alredy exists `--drop` deletes it before reuploading it.
 **WARNING**: CSV separators must be commas (`,`)
 
 ```sh
-mongoimport -h <host:port> –d <database> –c <collection> --drop --jsonArray <souce_file>
+mongoimport <options> <connection-string> <file>
 
-mongoimport --host <HOST:PORT> --ssl --username <USERNAME> --password <PASSWORD> --authenticationDatabase admin --db <DATABASE> --collection <COLLECTION> --type <FILETYPE> --file <FILENAME>
-
-# if file is CSV and first line is header
-mongoimport ... --haderline
+--uri=<connectionString>
+--host=<hostname><:port>, -h=<hostname><:port>
+--username=<username>, -u=<username>
+--password=<password>, -p=<password>
+--collection=<collection>, -c=<collection>  # Specifies the collection to import.
+--ssl  # Enables connection to a mongod or mongos that has TLS/SSL support enabled.
+--type <json|csv|tsv>  # Specifies the file type to import. DEFAULT: json
+--drop  # drops the collection before importing the data from the input.
+--headerline  # if file is CSV and first line is header
+--jsonarray  # Accepts the import of data expressed with multiple MongoDB documents within a single json array. MAX 16 MB
 ```
 
-## Mongoexport Tool
+## [Mongoexport](https://docs.mongodb.com/database-tools/mongoexport/)
 
 Utility to export documents into a specified file.
 
 ```sh
-mongoexport -h <host:port> –d <database> –c <collection> <souce_file>
+mongoexport --collection=<collection> <options> <connection-string>
 
-mongoexport --host <host:port> --ssl --username <username> --password <PASSWORD> --authenticationDatabase admin --db <DATABASE> --collection <COLLECTION> --type <FILETYPE> --out <FILENAME>
+--uri=<connectionString>
+--host=<hostname><:port>, -h=<hostname><:port>
+--username=<username>, -u=<username>
+--password=<password>, -p=<password>
+--db=<database>, -d=<database>
+--collection=<collection>, -c=<collection>
+--type=<json|csv>
+--out=<file>, -o=<file>  #Specifies a file to write the export to. DEFAULT: stdout
+--jsonArray  # Write the entire contents of the export as a single json array.
+--pretty  # Outputs documents in a pretty-printed format JSON.
+--skip=<number>
+--limit=<number>  # Specifies a maximum number of documents to include in the export
+--sort=<JSON>  # Specifies an ordering for exported results
 ```
 
-## Mongodump & Mongorestore
+## [Mongodump][mongodump_docs] & [Mongorestore][mongorestore_docs]
 
 `mongodump` exports the content of a running server into `.bson` files.
 
 `mongorestore` Restore backups generated with `mongodump` to a running server.
+
+[mongodump_docs]: https://docs.mongodb.com/database-tools/mongodump/
+[mongorestore_docs]: https://docs.mongodb.com/database-tools/mongorestore/
 
 ## Relations
 
