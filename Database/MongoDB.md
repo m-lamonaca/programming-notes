@@ -1,28 +1,26 @@
-# MongoDB Cheat Sheet
-
-## Terminologia & concetti base
+# MongoDB
 
 The database is a container of **collections**. The collections are containers of **documents**.
 
-The documents are *schema-less* that is they have a dynamic structure that can change between documents in the same colletion.
+The documents are _schema-less_ that is they have a dynamic structure that can change between documents in the same colletion.
 
-### Data Types
+## Data Types
 
-| Tipo              | Documento                                      | Funzione                |
-|-------------------|------------------------------------------------|-------------------------|
-| Text              | `"Text"`                                       |
-| Boolean           | `true`                                         |
-| Number            | `42`                                           |
-| Objectid          | `"_id": {"$oid": "<id>"}`                      | `ObjectId("<id>")`      |
-| ISODate           | `"key": {"$date": "YYYY-MM-DDThh:mm:ss.sssZ"}` | `ISODate("YYYY-MM-DD")` |
-| Timestamp         |                                                | `Timestamp(11421532)`   |
-| Embedded Document | `{"a": {...}}`                                 |
-| Embedded Array    | `{"b": [...]}`                                 |
+| Tipo              | Documento                                        | Funzione                |
+| ----------------- | ------------------------------------------------ | ----------------------- |
+| Text              | `"Text"`                                         |
+| Boolean           | `true`                                           |
+| Number            | `42`                                             |
+| Objectid          | `"_id": {"$oid": "<id>"}`                        | `ObjectId("<id>")`      |
+| ISODate           | `"<key>": {"$date": "YYYY-MM-DDThh:mm:ss.sssZ"}` | `ISODate("YYYY-MM-DD")` |
+| Timestamp         |                                                  | `Timestamp(11421532)`   |
+| Embedded Document | `{"a": {...}}`                                   |
+| Embedded Array    | `{"b": [...]}`                                   |
 
 It's mandatory for each document ot have an uniwue field `_id`.
 MongoDB automatically creates an `ObjectId()` if it's not provided.
 
-### Database Usage
+## Databases & Collections Usage
 
 To create a database is sufficient to switch towards a non existing one with `use <database>` (implicit creation).
 The database is not actually created until a document is inserted.
@@ -33,34 +31,50 @@ use <database>  # use a particular database
 show collections  # list all collection for the current database
 
 dbs.dropDatabase()  # delete current database
-```
 
-## Collection Ussage
-
-```sh
 db.createCollection(name, {options})  # explicit collection creation
 db.<collection>.insertOne({document})  # implicit collection creation
 ```
 
+## Operators
+
+```json
+/* --- Update operators --- */
+{ "$inc":  { "<key>": <increment>, ... } }  // Increment value
+{ "$set":  { "<key>": "<value>", ... } }  // Set value
+{ "$push": { "<key>": "<value>", ... } }  // add a value to an array field
+
+/* --- Query Operators --- */
+{ "<key>": { "$in": [ "<value_1>", "<value_2>", ...] } } // Membership
+{ "<key>": { "$nin": [ "<value_1>", "<value_2>", ...] } }  // Membership
+{ "<key>": { "$exists": true } }  // Field Exists
+
+/* --- Comparison Operators (DEFAULT: $eq) --- */
+{ "<key>": { "$gt":  "<value>" }}  // >
+{ "<key>": { "$gte": "<value>" }}  // >=
+{ "<key>": { "$lt":  "<value>" }}  // <
+{ "<key>": { "$lte": "<value>" }}  // <=
+{ "<key>": { "$eq":  "<value>" }}  // ==
+{ "<key>": { "$ne":  "<value>" }}  // !=
+
+/* --- Logic Operators (DEFAULT $and) --- */
+{ "$and": [ { <statement> }, ...] }
+{ "$or":  [ { <statement> }, ...] }
+{ "$nor": [ { <statement> }, ...] }
+{ "$not": { <statement> } }
+```
+
+### Expressive Query Operator
+
+`$<key>` is used to access the value of the field dynamically
+
+```json
+{ "$expr": { <expression> } }  // aggregetion expresion, variables, conditional expressions
+
+{ "$expr":  { "$comparison_operator": [ "$<key>", "$<key>" ] } }  // compare field values
+```
+
 ## CRUD Operations
-
-### Filters
-
-Base Syntax: `{ "outerKey.innerKey": "value" }`
-Comparison: `{ key: { $operator : "value"} }`
-
-| Operator | Math Symbol |
-|----------|-------------|
-| `$gt`    | >           |
-| `$gte`   | =>          |
-| `$lt`    | <           |
-| `$lte`   | <=          |
-| `$eq`    | ==          |
-| `$ne`    | !=          |
-
-Field Exists: `{ key: {$exists: true} }`
-Logical `Or`: `{ $or: [ {filter_1}, {filter_2}, ... ] }`
-Membership: `{ key: { $in: [value_1, value_2, ...] } }` or `{ key: { $nin: [value_1, value_2, ...] } }`
 
 ### Create
 
@@ -97,18 +111,18 @@ db.createCollection("name", { capped: true, size: max_bytes, max: max_docs_num }
 # implicit creation at doc insertion
 db.<collection>.insertOne({ document }, options)  # insert a document in a collection
 db.<collection>.insertMany([ { document }, { document }, ... ], options)  # insert multiple docs
-db.<collection>.insert()
+db.<collection>.insertMany([ { document }, { document } ] , { "ordered": false })  # allow the unordered insertion, only documents that cause errors wont be inserted
 ```
 
-Se `insertMany()` causa un errore il processo di inserimento si arresta. Non viene eseguito il rollback dei documenti già inseriti.
+**NOTE**: If `insertMany()` fails the already inserted documents are not rolled back but all the successive ones (even the correct ones) will not be inserted.
 
 ### Read
 
 ```sh
 db.<collection>.findOne()  # find only one document
 db.<collection>.find(filter)  # show selected documents
-db.<collection>.find(filter, {key: 1})  # show selected values form documents (1 or true => show, 0 or false => dont show, cant mix 0 and 1)
-db.<collection>.find(filter, {_id: 0, key: 1})  # only _id can be set to 0 with other keys at 1
+db.<collection>.find(filter, {"<key>": 1})  # show selected values form documents (1 or true => show, 0 or false => dont show, cant mix 0 and 1)
+db.<collection>.find(filter, {_id: 0, "<key>": 1})  # only _id can be set to 0 with other keys at 1
 db.<collection>.find().pretty()  # show documents formatted
 db.<collection>.find().limit(n)  # show n documents
 db.<collection>.find().limit(n).skip(k)  # show n documents skipping k docs
@@ -128,7 +142,7 @@ db.<collection>.find(
     }
 )
 
-db.<collection>.find().hint( { <field>: 1 } )  # specify the index
+db.<collection>.find().hint( { "<key>": 1 } )  # specify the index
 db.<collection>.find().hint( "index-name" )  # specify the index using the index name
 
 db.<collection>.find().hint( { $natural : 1 } )  # force the query to perform a forwards collection scan
@@ -140,8 +154,8 @@ db.<collection>.find().hint( { $natural : -1 } )  # force the query to perform a
 [Update Operators](https://docs.mongodb.com/manual/reference/operator/update/ "Update Operators Documentation")
 
 ```sh
-db.<collection>.updateOne(filter, $set: {key: value})  # add or modify values
-db.<collection>.updateOne(filter, $set: {key: value}, {upsert: true})  # add or modify values, if attribute doesent exists create it
+db.<collection>.updateOne(filter, $set: {"<key>": value})  # add or modify values
+db.<collection>.updateOne(filter, $set: {"<key>": value}, {upsert: true})  # add or modify values, if attribute doesent exists create it
 
 db.<collection>.updateMany(filter, update)
 
@@ -221,12 +235,12 @@ mongoexport --collection=<collection> <options> <connection-string>
 ```json
 {
     _id: Objectid()
-    key: "value"
-    key: "value"
+    "<key>": "value"
+    "<key>": "value"
 
     innerDocument: {
-        key: "value"
-        key: "value"
+        "<key>": "value"
+        "<key>": "value"
     }
 }
 ```
@@ -241,14 +255,14 @@ NoSQL databases do not have relations and references. It's the app that has to h
 
 ```json
 {
-    key: "value"
+    "<key>": "value"
     references: ["id1", "id2"]
 }
 
 // referenced
 {
     _id: "id1"
-    key: "value"
+    "<key>": "value"
 }
 ```
 
@@ -256,12 +270,12 @@ NoSQL databases do not have relations and references. It's the app that has to h
 
 Indexes support the efficient execution of queries in MongoDB.
 
-Without indexes, MongoDB must perform a *collection scan* (*COLLSCAN*): scan every document in a collection, to select those documents that match the query statement.  
-If an appropriate index exists for a query, MongoDB can use the index to limit the number of documents it must inspect (*IXSCAN*).
+Without indexes, MongoDB must perform a _collection scan_ (_COLLSCAN_): scan every document in a collection, to select those documents that match the query statement.  
+If an appropriate index exists for a query, MongoDB can use the index to limit the number of documents it must inspect (_IXSCAN_).
 
 Indexes are special data structures that store a small portion of the collection’s data set in an easy to traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field. The ordering of the index entries supports efficient equality matches and range-based query operations. In addition, MongoDB can return sorted results by using the ordering in the index.
 
-Indexes *slow down writing operations* since the index must be updated at every writing.
+Indexes _slow down writing operations_ since the index must be updated at every writing.
 
 ![IXSCAN](https://docs.mongodb.com/manual/_images/index-for-sort.bakedsvg.svg ".find() using an index")
 
@@ -288,13 +302,13 @@ db.explain("executionStats").<collection>.find({...})  # more info
 ```sh
 db.<collection>.createIndex( <key and index type specification>, <options> )
 
-db.<collection>.createIndex( { <field>: <type>, <field>: <type>, ... } )  # normal, compound or multikey (field is array) index
-db.<collection>.createIndex( { <field>: "text" } )  # text index
-db.<collection>.createIndex( { <field>: 2dsphere } )  # geospatial 2dsphere index
+db.<collection>.createIndex( { "<key>": <type>, "<key>": <type>, ... } )  # normal, compound or multikey (field is array) index
+db.<collection>.createIndex( { "<key>": "text" } )  # text index
+db.<collection>.createIndex( { "<key>": 2dsphere } )  # geospatial 2dsphere index
 
 # sparse index
 db.<collection>.createIndex(
-    { <field>: <type>, <field>: <type>, ... },
+    { "<key>": <type>, "<key>": <type>, ... },
     { sparse: true }  # sparse option
 )
 
@@ -328,7 +342,7 @@ Profiling Levels:
 - `1`: data on operations slower than `slowms`
 - `2`: data on all operations
 
-Logs are saved in the `system.profile` *capped* collection.
+Logs are saved in the `system.profile` _capped_ collection.
 
 ```sh
 db.setProgilingLevel(n)  # set profiler level
@@ -380,7 +394,7 @@ db.createUser(
 **Sharding** is a MongoDB concept through which big datasests are subdivided in smaller sets and distribuited towards multiple instances of MongoDB.  
 It's a technique used to improve the performances of large queries towards large quantities of data that require al lot of resources from the server.
 
-A collection containing several documents is splitted in more smaller collections (*shards*)
+A collection containing several documents is splitted in more smaller collections (_shards_)
 Shards are implemented via cluster that are none other a group of MongoDB instances.
 
 Shard components are:
@@ -397,17 +411,17 @@ A **replica set** in MongoDB is a group of `mongod` processes that maintain the 
 
 ## Aggregations
 
-Sequence of operations applied to a collection as a *pipeline* to get a result: `db.collection.aggregate(pipeline, options)`.
+Sequence of operations applied to a collection as a _pipeline_ to get a result: `db.collection.aggregate(pipeline, options)`.
 
-[Aggragations Stages][AggrStgs]:
+[Aggragations Stages][aggeregation_stages_docs]:
 
 - `$lookup`: Right Join
 - `$match`: Where
 - `$sort`: Order By
-- `$project`: Select *
+- `$project`: Select \*
 - ...
 
-[AggrStgs]: https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/
+[aggeregation_stages_docs]: https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/
 
 Example:
 
