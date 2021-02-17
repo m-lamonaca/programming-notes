@@ -12,9 +12,18 @@ namespace App
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();  // start and config ASP.NET App
+            CreateHostBuilder(args).Build().Run();  // start and config ASP.NET Core App
+
+            // or start Blazor WASM Single Page App
+            var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            builder.RootComponents.Add<App>("#app");
+
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            await builder.Build().RunAsync();
         }
 
+        // for MVC, Razor Pages and Blazor Server
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -65,6 +74,8 @@ namespace App
             services.AddControllers();  // controllers w/o views
             //or
             sevices.AddControllersWithViews();  // MVC Controllers
+            //or
+            services.AddServerSideBlazor();  // needs Razor Pages
             
             // set dependency injection lifetimes
             services.AddSingleton<ITransientService, ServiceImplementation>();
@@ -104,6 +115,9 @@ namespace App
                 endpoints.MapControllers();  // map controllers w/o views
                 // or
                 endpoints.MapRazorPages();
+                // or
+                endpoints.MapRazorHub();
+                endpoints.MapFallbackToPage("/_Host");  // fallback for razor server
             });
         }
     }
