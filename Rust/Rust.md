@@ -561,6 +561,41 @@ fn match_variant(e: Enum) {
 
 ### Vector
 
+Vectors allow to store more than one value in a single data structure that puts all the values next to each other in memory. Vectors can only store values of the *same type*.  
+Like any other struct, a vector is freed when it goes out of scope. When the vector gets dropped, all of its contents are also dropped.
+
+```rs
+let v: Vec<Type> = Vec<Type>::new();  // empty vec init
+let mut v: vec![item1, item2, ...];  // vec init (type inferred)
+
+v.push(item);  // add elements to vector
+
+// element access
+v.get(index);  // get method (returns Option<&T>)
+&v[index];  // index synatx  (returns reference, panic on index out of bounds)
+
+// iterate over mutable references to each element in a mutable vector in order to make changes to all the elements
+for i in mut &v {
+    *i = value;  // dereference and modify value
+}
+```
+
+A vector can hold different types if those type are variants of the same enum. It's also possible to use trait objects.
+
+```rs
+enum Enum {
+    Int(i32),
+    Float(f64),
+    Text(String)
+}
+
+let v = vec![
+    Enum::Int(2),
+    Enum::Float(3.14),
+    Enum::Text("TEST")
+];
+```
+
 ### String
 
 ### Hash Map
