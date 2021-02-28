@@ -1440,7 +1440,10 @@ Class obj = new(arg1, ...)
 
 // object initializers
 Class obj = new Class { Prop2 = arg2, Prop1 = arg1 };  // w/o constructor
-Cat sameCat = new Cat(arg1){ Prop2 = arg2 };  // w/ constructor
+Class obj = new Class(arg1) { Prop2 = arg2 };  // w/ constructor
+
+// with keyword
+var copy = original with { Prop = newValue };  // other props are copies of the original
 ```
 
 ```cs
@@ -1544,10 +1547,11 @@ class Class
     // EXPRESSION-BODIED READ-ONLY PROPERTY
     public type Field => <expr>;
 
-    // AUTO-PROPERTIES (cannot be write only)
+    // AUTO-PROPERTIES
     public Property { get; set; }
-    public Property { get; private set; }
-    public Property { get; }  // effectively read-only ever without keyword, can only be setted by constructor
+    public Property { get; private set; }  // settable only inside class
+    public Property { get; init; } // settable only in constructor, initilizer, keyword with
+    public Property { get; }  // can only be setted by constructor
 
     // MIXED
     public type Property
@@ -1561,26 +1565,8 @@ class Class
 }
 ```
 
-### Init-Only Properties
-
-The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.
-
+**NOTE**: The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.  
 Because `init` accessors can only be called during initialization, they are allowed to *mutate* `readonly` fields of the enclosing class, just like in a constructor.
-
-```cs
-public class ClassName
-{
-    private readonly Type field;
-
-    public Type Property
-    {
-        get => field;
-        init => field (value ?? throw new ArgumentNullException(nameof(field)));
-    }
-
-    public Type Property { get; init; }
-}
-```
 
 ### Indexers
 
