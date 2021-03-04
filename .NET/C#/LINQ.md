@@ -59,6 +59,12 @@ IEnumerable<T>.Min();
 
 IEnumerable<T>.All(Func<T, bool> predicate);  // check if condition is true for all elements
 IEnumerable<T>.Any(Func<T, bool> predicate);  // check if condition is true for at least one element
+
+IEnumerable<T>.Concat(IEnumerable<T> enumerable);
+
+// Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results.
+IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable, Func<TFirst, TSecoind, TResult> func);
+IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable); // Produces a sequence of tuples with elements from the two specified sequences.
 ```
 
 **NOTE**: `Enumerable` provides a set of `static` methods for querying objects that implement `IEnumerable<T>`. Most methods are extensions of `IEnumerable<T>`
