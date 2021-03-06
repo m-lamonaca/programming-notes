@@ -1055,22 +1055,33 @@ public class CustomException : Exception  // must derive from Excpetion (either 
 
 ## Enums
 
-Declare a set of named integer numeric constants (`int`, `long`, `byte`, ...).  
+An enumeration type (or enum type) is a value type defined by a set of **named constants** of the underlying *integral numeric* type (`int`, `long`, `byte`, ...).  
 Consecutive names increase the value by one.
 
 ```cs
-[System.Flags]  // indicate that the flag can be conbined (best if values are binary)
-enum enumType : IntegralNumericType // named values MUST match IntegerNumericType allowed values
+[Flags]  // indicate that the flag can be conbined (best if values are binary) as a bit mask
+enum EnumType : IntegralNumericType // named values MUST match IntegerNumericType allowed values
 {
-    name1,          // if uninitiated values id zero (0)
-    name2 = 10,     // value is 10
-    name3,          // value is name2 + 1
-    name4,          // value is name3 + 1
+    None = 0,            // if uninitiated value is zero
+    Const = 2,     // value is 2
+    Const2,          // value is Const + 1
+    ...
 }
 
-(Type) enumType.name1;  // extract the value, will return the name otherwise
-(enumType) value;  // convert from associated value to enum
-Enum.IsDefined(enumType, value);  // whether a given integral value, or its name as a string, exists in a specified enumeration.
+(Type) EnumType.Const;  // extract the value, will return the name otherwise
+(EnumType) value;  // convert from associated value to enum
+
+Enum.IsDefined(typeof(EnumType), value);  // whether a given integral value, or its name as a string, exists in a specified enumeration.
+enumObj.HasValue(enumType.Const)  // test whether a flag is set in a numeric value
+
+EnumType instance = (EnumType) EnumType.ToOnject(typeof(EnumType), value);  // convert a value of any integral type to an enumeration value
+
+// Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object
+Enum.Parse(typeof(EnumType), value);
+Enum.TryParse<EnumType>(string, out EnumType enumObj);
+
+// retrieve a string array containing the names of the enumeration members
+string[] enumNames = Enum.GetNames(typeof(EnumType));
 ```
 
 ---
