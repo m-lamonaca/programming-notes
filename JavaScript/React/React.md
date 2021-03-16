@@ -220,3 +220,39 @@ Hook used to create a state object.
 ```js
 const [state, setState] = useState(default);
 ```
+
+### `useEffect`
+
+Hook used to trigger an action on each reder of the component.
+
+```js
+useEffect(() =>
+    // introduce side effect of the render
+
+    return () => {/* clean up side effect */}
+);
+```
+
+### Custom Hooks
+
+```js
+// hook definitions
+const useCutomHook = () => {
+    // eventual state definitions
+
+    // eventual function definitions
+
+    // ...
+    
+    return { obj1, obj2, ... };
+}
+
+const Component(){
+    // retrieve elements from the hook
+    const {
+        obj1,
+        obj2,
+        ...
+    } = useCustomHook();
+}
+```
