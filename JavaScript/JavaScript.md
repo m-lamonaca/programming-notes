@@ -444,7 +444,7 @@ let merge = [ ...array1, ...attay2 ];  // merge the arrays contents in new array
 
 // objects
 let obj = { prop1: value1, prop2: value2 };
-let clone = { ...obj };
+let clone = { ...obj, prop: value };  // shallow copy, and update copy prop
 let cloneAndAdd = { prop0: value0, ...obj, prop3: value3 };
 
 // strings
