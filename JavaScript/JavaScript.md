@@ -916,7 +916,6 @@ if(date1 > date2){
 In `page.html`
 
 ```html
-<!-- must specyfy module as type for importer and source -->
 <script src="scripts/module.js"></script>
 <script src="scripts/script.js"></script>
 ```
