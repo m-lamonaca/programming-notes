@@ -15,12 +15,12 @@ In `package.json`:
     "jest": {
         // calls additional setups for enzyme, react tesing library, ...
         "setupFiles": [
-            "./tools/testSetup.js"  
+            "path/to/testSetup.js"  
         ],
         "moduleNameMapper": {
             // file imports to ignore 
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/fileMock.js",
-            "\\.(css|less)$": "<rootDir>/tools/styleMock.js"
+            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "path/to/fileMock.js",
+            "\\.(css|less)$": "path/to/styleMock.js"
         }
   },
 }
@@ -87,7 +87,7 @@ it("test descrtiption", () => {
 ### Enzyme Configuration
 
 ```js
-// <root>/tools/testSetup.js
+// testSetup.js
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapert-react-<version>";
 
