@@ -29,8 +29,17 @@ The store will run its reducer function and save the new state value inside.
 **Selectors** are functions that know how to extract specific pieces of information from a store state value.
 
 ```js
+import { createStore, applyMiddleware, compose } from "redux";
+
 function configStore(initialState) {
-    return createStore(rootReducer, initialState);
+    const composeEnhancers =
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // support for redux devtools
+
+    return  createStore(
+        rootReducer, 
+        initialState, 
+        composeEnhancers(applyMiddleware(middleware, ...))
+    );
 }
 
 replaceReducer(newReducer);  // replace an existing reducer, useful for Hot Reload
@@ -70,6 +79,8 @@ const rootReducer = combineReducers({
     entity: entityReducer
 });
 ```
+
+**NOTE**: multiple reducers can be triggered by the same action since each one operates on a different portion of the state.
 
 ## [React-Redux](https://react-redux.js.org/)
 
@@ -142,7 +153,60 @@ function mapDispathToProps(dispatch) {
     };
 }
 
-// both args ar optional
+// both args are optional
 // if mapDispatch is missing the dispatch function is added to the props
 export default connect(mapStateToProps, mapDispatchToProps)(Component)
+```
+
+## Async Operations with [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
+
+**Note**: Redux middleware runs *after* and action and *before* it's reducer.
+
+Redux-Thunk allows to retrurn functions instead of objects from action creators.  
+A "thunk" is a function that wraps an expression to delay it's evaluation.
+
+```js
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+
+function configStore(initialState) {
+    const composeEnhancers =
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // support for redux devtools
+
+    return  createStore(
+        rootReducer, 
+        initialState, 
+        composeEnhancers(applyMiddleware(thunk, ...))  // add thunks middleware
+    );
+}
+```
+
+```js
+// usally action on async func success
+function actionCreator(arg) {
+    return { type: TYPE, data: arg };
+}
+
+export function thunk() {
+    return function (dispatch) {  // redux-thunk injects dispatch as arg
+        return asyncFunction().then((data) => {  // async function returns a promise
+                dispatch(actionCreator(data));
+            })
+            .catch((error) => {
+                throw error;
+            });
+    };
+}
+
+// or using async/await
+export async function thunk() {
+    return function (dispatch) {  // redux-thunk injects dispatch as arg
+        try {
+            let data = await asyncFunction();
+            return dispatch(actionCreator(data));
+        } catch(error) {
+                throw error;
+        }
+    }
+}
 ```
