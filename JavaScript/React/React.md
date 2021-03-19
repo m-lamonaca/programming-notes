@@ -114,6 +114,8 @@ class Button extends React.Component {
         super(props);
         this.state = {count: 0};
     }
+
+    componentDidMount() {}  // called on successful component mount
     
     handleClick = () => {
         this.setState({ count: this.state.count + 1 });
@@ -223,14 +225,15 @@ const [state, setState] = useState(default);
 
 ### `useEffect`
 
-Hook used to trigger an action on each reder of the component.
+Hook used to trigger an action on each reder of the component or when one of the watched items changes.
 
 ```js
-useEffect(() =>
-    // introduce side effect of the render
 
-    return () => {/* clean up side effect */}
-);
+useEffect(() => {
+    // "side effects" operations
+
+    return () => {/* clean up side effect */}  // optional
+}, [/* list of watched items, empty triggers once */]);
 ```
 
 ### Custom Hooks
