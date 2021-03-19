@@ -2,7 +2,7 @@
 
 ## Components
 
-Thera are two types of react componets:
+Thera are two types of react components:
 
 - Function Components
 - Class Components
