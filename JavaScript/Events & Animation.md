@@ -16,6 +16,7 @@ Event Types:
 var domNode = document.getElementById("id");
 
 var onEvent = function(event) {  // parameter contains info on the triggered event
+    event.preventDefault();  // block execution of default action
     // logic here
 }
 
@@ -39,8 +40,11 @@ Event Options:
 
 ```js
 let event = new Event(type [,options]);  // create the event, type can be custom
+let event = new CustomEvent(type, { detail: /* custom data */ });  // create event w/ custom data
 domNode.dispatchEvent(event);  // launch the event
 ```
+
+![Event Inheritace](https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/images/event-inheritance.svg)
 
 ## Animation
 
