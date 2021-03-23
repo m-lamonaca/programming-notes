@@ -28,10 +28,21 @@ The store will run its reducer function and save the new state value inside.
 
 **Selectors** are functions that know how to extract specific pieces of information from a store state value.
 
+In `initialState.js`;
+
 ```js
+export default {
+    // initial state here
+}
+```
+
+In `configStore.js`:
+
+```js
+// configStore.js
 import { createStore, applyMiddleware, compose } from "redux";
 
-function configStore(initialState) {
+export function configStore(initialState) {
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // support for redux devtools
 
@@ -61,7 +72,9 @@ Instead, they must make *immutable updates*, by copying the existing `state` and
 - They must not do any asynchronous logic, calculate random values, or cause other "side effects"
 
 ```js
-function reducer(state, action) {
+import initialState from "path/to/initialState";
+
+function reducer(state = initialState, action) {
     switch(action.type){
         case "ACTION_TYPE":
             return { ...state, prop: value };  // return modified copy of state (using spread operator)
@@ -108,11 +121,13 @@ Used at the root component and wraps all the application.
 // index.js
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import { Provider } from 'react-redux'
-import store from './store'
 
+import { configStore } from 'path/to/configStore';
+import initialState from "path/to/initialState";
 import App from './App'
+
+const store = configStore(initialState);
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(
