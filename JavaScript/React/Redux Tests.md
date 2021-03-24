@@ -53,32 +53,13 @@ import * as actions from "path/to/actionCreators";
 // import eventual action types constants
 // import mock data
 
-describe("Async Actions", () => {
-    afterEach(() => {
-        fetchMock.restore();  // init fecth mok for each test
-    });
+it("test description", () => {
+    const data = /* mock data */
+    const expectedAction = { type: TYPE, /* ... */ };
 
-    it("test description", () => {
-        // mimic API call
-        fetchMock.mock(
-            "*",  // capture any fetch call
-            {
-                body: /* body contents */,
-                headers: { "content-type": "application/json" }
-            }
-        );
+    const actualAction = actions.actionCreator(data);
 
-        const expectedActions = [
-            { type: TYPE, /* ... */ },
-            { type: TYPE, /* ... */ }
-        ];
-
-        const store = mockStore({ data: value, ... });
-        return store.dispatch(actions.actionCreator())
-            .then(() => {
-                expect(store.getActions()).toEqual(expectedActions);
-            });
-    });
+    expect(actualAction).toEqual(expectedAction);
 });
 ```
 
@@ -130,22 +111,44 @@ Thunk testing requires the mocking of:
 
 ```js
 import thunk from "redux-thunk";
-import fetchMock from "getch-mock";
+import fetchMock from "fetch-mock";
 import configureMockStore from "redux-mock-store";
+
+// needed for testing async thunks
+const middleware = [thunk];  // mock middlewares
+const mockStore = configureMockStore(middleware);  // mock the store
 
 import * as actions from "path/to/actionCreators";
 // import eventual action types constants
 // import mock data
 
-const middleware = [thunk];  // mock middlewares
-const mockStore = configureMockStore(middleware);  // mock the store
+describe("Async Actions", () => {
+    afterEach(() => {
+        fetchMock.restore();  // init fecth mock for each test
+    });
 
-it("test description", () => {
-    const data = /* mock data */
-    const expectedAction = { type: TYPE, /* ... */ };
+    it("test description", () => {
+        // mimic API call
+        fetchMock.mock(
+            "*",  // capture any fetch call
+            {
+                body: /* body contents */,
+                headers: { "content-type": "application/json" }
+            }
+        );
 
-    const actualAction = actions.actionCreator(data);
+        // expected action fired from the thunk
+        const expectedActions = [
+            { type: TYPE, /* ... */ },
+            { type: TYPE, /* ... */ }
+        ];
 
-    expect(actualAction).toEqual(expectedAction);
+        const store = mockStore({ data: value, ... });  // init mock store
+
+        return store.dispatch(actions.actionCreator())  // act
+            .then(() => {
+                expect(store.getActions()).toEqual(expectedActions);  // assert
+            });
+    });
 });
 ```
