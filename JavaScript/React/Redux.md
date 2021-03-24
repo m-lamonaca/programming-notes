@@ -14,7 +14,7 @@ By convention, that information is stored in a field called `payload`.
 ```js
 function actionCreator(data)
 {
-    return { type: ACTION_TYPE, payload: data }  // action obj
+    return { type: ACTION_TYPE, payload: data };  // action obj
 }
 ```
 
@@ -53,8 +53,8 @@ export function configStore(initialState) {
     );
 }
 
+// available functions & methods
 replaceReducer(newReducer);  // replace an existing reducer, useful for Hot Reload
-
 store.dispatch(action);  // trigger a state change based on an action
 store.subscribe(listener);
 store.getState();  // retireve current state
@@ -119,46 +119,46 @@ Used at the root component and wraps all the application.
 
 ```js
 // index.js
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import { configStore } from 'path/to/configStore';
 import initialState from "path/to/initialState";
-import App from './App'
+import App from './App';
 
 const store = configStore(initialState);
 
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('root');
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
   rootElement
-)
+);
 ```
 
 ```js
 // Component.js
-import { connect } from 'react-redux'
-import { increment, decrement, reset } from './actionCreators'
+import { connect } from 'react-redux';
+import { increment, decrement, reset } from './actionCreators';
 
 // const Component = ...
 
 // specifies which state is passed to the component (called on satte change)
 const mapStateToProps = (state, ownProps /* optional */) => {
     // structure of the props passsed to the component
-    return { propName: state.property }
-}
+    return { propName: state.property };
+};
 
 // specifies the action passed to a component (the key is the name that the prop will have )
-const mapDispatchToProps = { actionCreator: actionCreator }
+const mapDispatchToProps = { actionCreator: actionCreator };
 // or
 function mapDispathToProps(dispatch) {
     return {
         // wrap action creators
         actionCreator: (args) => dispatch(actionCreator(args))
-    }
+    };
 }
 // or
 function mapDispathToProps(dispatch) {
@@ -170,7 +170,7 @@ function mapDispathToProps(dispatch) {
 
 // both args are optional
 // if mapDispatch is missing the dispatch function is added to the props
-export default connect(mapStateToProps, mapDispatchToProps)(Component)
+export default connect(mapStateToProps, mapDispatchToProps)(Component);
 ```
 
 ## Async Operations with [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
@@ -179,6 +179,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(Component)
 
 Redux-Thunk allows to retrurn functions instead of objects from action creators.  
 A "thunk" is a function that wraps an expression to delay it's evaluation.
+
+In `configStore.js`:
 
 ```js
 import { createStore, applyMiddleware, compose } from "redux";
