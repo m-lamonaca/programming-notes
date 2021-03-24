@@ -70,14 +70,14 @@ import reducer from "path/to/reducer";
 import * as actions from "path/to/actionCreators";
 
 it("test description", () => {
-    const initialState = /* satte before the action */;
-    const stateUpdate = /* modified state */;
+    const initialState = /* state before the action */;
+    const finalState = /* expected state after the action */
+    const data = /* data passed to the action creator */;
 
-    const action = actions.actionCreator(stateUpdate);
-
+    const action = actions.actionCreator(data);
     const newState = reducer(initialState, action);
 
-    expect(newState.property).toEqual(actual);
+    expect(newState).toEqual(finalState);
 });
 ```
 
@@ -93,12 +93,14 @@ import * as actions from "path/to/actionCreators";
 it("test description", () => {
     const store = createStore(toorReducer, initialState);
 
-    const stateUpdate = /* modified state */;
-    const action = actions.actionCreator(stateUpdate);
+    const expectedState = /* state after the update */
+
+    const data = /* action creator input */;
+    const action = actions.actionCreator(data);
     store.dispatch(action);
 
     const state = store.getState();
-    expect(state).toEqual(stateUpdate);
+    expect(state).toEqual(expectedState);
 });
 ```
 
