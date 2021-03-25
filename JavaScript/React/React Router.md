@@ -46,22 +46,8 @@ import { Route, Switch } from "react-router-dom";
 <Switch>
     <Route path="/" exact component={Component} />
     <Route path="/route" component={Component} />
-    <Route component={PageNotFound} /> {/* mathes all non-existent URLs */}
+    <Route component={PageNotFound} /> {/* matches all non-existent URLs */}
 </Switch>
-```
-
-### Redirectin
-
-```js
-import { Redirect } from "react-router-dom";
-
-// redirects to another URL, should'nt be rendered on component mount but after an action
-<Redirect to="/route" />
-<Redirect from="/old-route" to="/new-route" />
-{ condition &&  <Redirect to="/route" /> }  // redirect if condition is true
-
-// or redirect manipolating the history (alwais in props)
-props.history.push("/new-route");  
 ```
 
 ### URL Parameters & Query String
@@ -78,12 +64,26 @@ function Component(props) {
 }
 ```
 
-### Propts
+### Redirecting
+
+```js
+import { Redirect } from "react-router-dom";
+
+// redirects to another URL, should'nt be rendered on component mount but after an action
+<Redirect to="/route" />
+<Redirect from="/old-route" to="/new-route" />
+{ condition &&  <Redirect to="/route" /> }  // redirect if condition is true
+
+// or redirect manipolating the history (always in props)
+props.history.push("/new-route");  
+```
+
+### Prompts
 
 ```js
 import { Prompt } from "react-router-dom";
 
-// displayes a prompt when the conditioni true
+// displayes a prompt when the condition is true
 <Prompt when={condition} message="prompt message" />
 ```
 
