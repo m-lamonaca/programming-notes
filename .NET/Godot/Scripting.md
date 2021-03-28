@@ -30,8 +30,6 @@ public class NodeName : NodeType
     {
         
     }
-
-    public void _OnEmitterSignal() { }
 }
 ```
 
