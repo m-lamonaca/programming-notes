@@ -30,9 +30,9 @@
 
 ### Naming Conventions
 
-Elements  | Case
-----------|-----------
-variable  | camelCase
+| Elements | Case      |
+| -------- | --------- |
+| variable | camelCase |
 
 ### Modern Mode
 
@@ -225,82 +225,82 @@ Number("A") == NaN;  //false ?!?
 
 ## Operators
 
-Operator       | Operation
----------------|----------------
-`(...)`        | grouping
-a`.`b          | member access
-`new` a(...)   | object creation
-a `in` b       | membership
+| Operator     | Operation       |
+| ------------ | --------------- |
+| `(...)`      | grouping        |
+| a`.`b        | member access   |
+| `new` a(...) | object creation |
+| a `in` b     | membership      |
 
 ### Mathemetical Operators
 
-Operator   | Operation
------------|----------------
-a `+` b    | addition
-a `-` b    | subtraction
-a `*` b    | multiplication
-a `**` b   | a^b
-a `/` b    | division
-a `%` b    | modulus
+| Operator | Operation      |
+| -------- | -------------- |
+| a `+` b  | addition       |
+| a `-` b  | subtraction    |
+| a `*` b  | multiplication |
+| a `**` b | a^b            |
+| a `/` b  | division       |
+| a `%` b  | modulus        |
 
 ### Unary Increment Operators
 
-Operator      | Operation
---------------|------------------
-`--`variable  |  prefix decrement
-`++`variable  | prefix incremente
-variable`--`  | postfiz decrement
-variable`++`  | ostfix increment
+| Operator     | Operation         |
+| ------------ | ----------------- |
+| `--`variable | prefix decrement  |
+| `++`variable | prefix incremente |
+| variable`--` | postfiz decrement |
+| variable`++` | ostfix increment  |
 
 ### Logical Operators
 
-Operator | Operation
----------|----------------
-a `&&` b | logical **AND**
-a `||` b | logical **OR**
-`!`a     | logical **NOT**
+| Operator | Operation       |
+| -------- | --------------- |
+| a `&&` b | logical **AND** |
+| a `||` b | logical **OR**  |
+| `!`a     | logical **NOT** |
 
 ### Comparison Operators
 
-Operator  | Operation
-----------|--------------------
-a `<` b   | less than
-a `<=` b  | less or equal to
-a `>` b   | greater than
-a `>=` b  | greater or equal to
-a `==` b  | equaltity
-a `!=` b  | inequality
-a `===` b | strict equality
-a `!==` b | strict inequality
+| Operator  | Operation           |
+| --------- | ------------------- |
+| a `<` b   | less than           |
+| a `<=` b  | less or equal to    |
+| a `>` b   | greater than        |
+| a `>=` b  | greater or equal to |
+| a `==` b  | equaltity           |
+| a `!=` b  | inequality          |
+| a `===` b | strict equality     |
+| a `!==` b | strict inequality   |
 
 ### Bitwise Logical Operators
 
-Operator  | Operation
------------|-----------------------------
-a `&` b    | bitwise AND
-a `|` b    | bitwise OR
-a `^` b    | bitwise XOR
-`~`a       | bitwise NOT
-a `<<` b   | bitwise left shift
-a `>>` b   | bitwise rigth sigt
-a `>>>` b  | bitwise unsigned rigth shift
+| Operator  | Operation                    |
+| --------- | ---------------------------- |
+| a `&` b   | bitwise AND                  |
+| a `|` b   | bitwise OR                   |
+| a `^` b   | bitwise XOR                  |
+| `~`a      | bitwise NOT                  |
+| a `<<` b  | bitwise left shift           |
+| a `>>` b  | bitwise rigth sigt           |
+| a `>>>` b | bitwise unsigned rigth shift |
 
 ### Compound Operators
 
-Operator    | Operation
-------------|-------------
-a `+=` b    | a = a + b
-a `-=` b    | a = a - b
-a `*=` b    | a = a * b
-a `**=` b   | a = a ** b
-a `/=` b    | a = a / b
-a `%=` b    | a = a % b
-a `<<=` b   | a = a << b
-a `>>=` b   | a = a >> b
-a `>>>=` b  | a = a >>> b
-a `&=` b    | a = a & b
-a `^=` b    | a = a ^ b
-a `|=` b    | a = a ! b
+| Operator   | Operation   |
+| ---------- | ----------- |
+| a `+=` b   | a = a + b   |
+| a `-=` b   | a = a - b   |
+| a `*=` b   | a = a * b   |
+| a `**=` b  | a = a ** b  |
+| a `/=` b   | a = a / b   |
+| a `%=` b   | a = a % b   |
+| a `<<=` b  | a = a << b  |
+| a `>>=` b  | a = a >> b  |
+| a `>>>=` b | a = a >>> b |
+| a `&=` b   | a = a & b   |
+| a `^=` b   | a = a ^ b   |
+| a `|=` b   | a = a ! b   |
 
 ## Decision Statements
 
@@ -444,7 +444,7 @@ let merge = [ ...array1, ...attay2 ];  // merge the arrays contents in new array
 
 // objects
 let obj = { prop1: value1, prop2: value2 };
-let clone = { ...obj };
+let clone = { ...obj, prop: value };  // shallow copy, and update copy prop
 let cloneAndAdd = { prop0: value0, ...obj, prop3: value3 };
 
 // strings
@@ -559,7 +559,7 @@ let variable = value;
 // object literal
 let obj = {
     property: value,
-    variable,  // instead of variable: variable to use the variable's value -> variable: value
+    variable,  // same as variable: variable
 
     object: {
         ...
@@ -916,7 +916,6 @@ if(date1 > date2){
 In `page.html`
 
 ```html
-<!-- must specyfy module as type for importer and source -->
 <script src="scripts/module.js"></script>
 <script src="scripts/script.js"></script>
 ```

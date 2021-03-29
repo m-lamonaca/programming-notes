@@ -60,8 +60,6 @@ UTF-8 is a character encoding capable of encoding all possible characters, or co
 
 XHTML and HTML4: `<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>`
 
-Per essere compatibile con XHTML i meta-tag devono essere sempre chiusi.
-
 HTML5: `<meta charset="utf-8">`
 
 ### HTML Shiv (Polyfill)
