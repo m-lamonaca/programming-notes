@@ -149,7 +149,7 @@ namespace <App>
     {
         private readonly RequestDelegate _next;
 
-        public RequestCultureMiddleware(RequestDelegate next)
+        public CustomMiddleware(RequestDelegate next)
         {
             _next = next;
         }
