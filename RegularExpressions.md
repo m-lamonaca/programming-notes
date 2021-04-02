@@ -19,7 +19,7 @@
 `+` one or more repetitions  
 `*` zero or more repetitions  
 `?` zero or one repetition  
-`{m}` exactly *m* times
+`{m}` exactly *m* times  
 `{m, n}` at least *m* times, at most *n* times
 
 The `*`, `x`, and `?` qualifiers are all greedy; they match as much text as possible  
@@ -27,7 +27,7 @@ Adding `?` *after* the qualifier makes it perform the match in non-greedy or min
 
 ## Special Characters
 
-`\a, \b, \f, \n, \r, \t, \u, \U, \v, \x, \\, \?, \*, \+ , \., \^, \$` special characters
+`\a, \b, \f, \n, \r, \t, \u, \U, \v, \x, \\, \?, \*, \+ , \., \^, \$` special characters  
 `\(`, `\)`, `\[`, `\]` brackets escaping
 
 ## Delimiters
@@ -42,24 +42,24 @@ Adding `?` *after* the qualifier makes it perform the match in non-greedy or min
 `[__]{m , n}` consecutive characters in the class (`[aeiou]{2}` --> ae, ao, ...)  
 `[a-z]` sequence of lowercase characters  
 `[A-Z]` sequence of uppercase characters  
-`[a-zA-Z]` sequence of lowercase or uppercase characters
-`[a-z][A-Z]` sequence of lowercase characters followed by sequence of uppercase charaters
+`[a-zA-Z]` sequence of lowercase or uppercase characters  
+`[a-z][A-Z]` sequence of lowercase characters followed by sequence of uppercase charaters  
 `[^__]` anything but the elements of the class (include `\n` to avoid matching line endings)
 
 `^`, `\`, `-` and `]` must be escaped to be used in clases: `[ \]\[\^\- ]`
 
 ## Groups
 
-`(__)` REGEX subgroup
-`(REGEX_1 | REGEX_2)` match in multiple regex (R1 OR R2)
+`(__)` REGEX subgroup  
+`(REGEX_1 | REGEX_2)` match in multiple regex (R1 OR R2)  
 `(?=__)` match only if `__` is next substring  
 `(?!__)` match only if `__` is not next substring  
 `(?<=__)` match only if `__` is previous substring  
 `(?<!__)` match only if `__` is not previous substring  
 
-`\<number>` refers to n-th group
+`\<number>` refers to n-th group  
 
 ## Special Cases
 
-`(.*)` match anything
+`(.*)` match anything  
 `(.*?)` match anything, non-greedy match
