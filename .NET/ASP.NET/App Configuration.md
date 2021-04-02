@@ -76,6 +76,8 @@ namespace App
             sevices.AddControllersWithViews();  // MVC Controllers
             //or
             services.AddServerSideBlazor();  // needs Razor Pages
+
+            services.AddSignalR();
             
             // set dependency injection lifetimes
             services.AddSingleton<ITransientService, ServiceImplementation>();
@@ -116,7 +118,9 @@ namespace App
                 // or
                 endpoints.MapRazorPages();
                 // or
-                endpoints.MapRazorHub();
+                endpoints.MapBlazorHub();  // SignalR Hub for Blazor Server
+
+                endpoints.MapHub("/hub/endpoint");  // SignalR Hub
                 endpoints.MapFallbackToPage("/_Host");  // fallback for razor server
             });
         }
