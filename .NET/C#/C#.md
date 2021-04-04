@@ -435,7 +435,20 @@ String.Empty;  // value of an empty stiing, used for string init
 A **nullable value type** `T?` represents all values of its underlying value type `T` and an additional `null` value.
 
 Any nullable value type is an instance of the generic `System.Nullable<T>` structure.  
-Refer to a nullable value type with an underlying type `T` in any of the following interchangeable forms: `Nullable<T>` or `T?`
+Refer to a nullable value type with an underlying type `T` in any of the following interchangeable forms: `Nullable<T>` or `T?`.
+
+**Note**: Nullable Value Types default to `null`.
+
+When a nullable type is boxed, the common language runtime automatically boxes the underlying value of the `Nullable<T>` object, not the `Nullable<T>` object itself. That is, if the HasValue property is true, the contents of the `Value` property is boxed. When the underlying value of a nullable type is unboxed, the common language runtime creates a new `Nullable<T>` structure initialized to the underlying value.
+
+If the `HasValue` property of a nullable type is `false`, the result of a boxing operation is `null`. Consequently, if a boxed nullable type is passed to a method that expects an object argument, that method must be prepared to handle the case where the argument is `null`. When `null` is unboxed into a nullable type, the common language runtime creates a new `Nullable<T>` structure and initializes its `HasValue` property to `false`.
+
+```cs
+Type? nullableValueType = default;  // assigns null
+
+nullableValueType.HasValue  // boolean, use for null check
+nullableValueType.Value  // undelying value type contents
+```
 
 ### [Nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references)
 
