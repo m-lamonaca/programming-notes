@@ -538,6 +538,16 @@ selector {
 }
 ```
 
+### Aspect Ratio
+
+The aspect-ratio  CSS property sets a preferred aspect ratio for the box, which will be used in the calculation of auto sizes and some other layout functions.
+
+```css
+selector {
+    aspect-ratio: <width> / <height>;
+}
+```
+
 ### Min-Max Width/Height
 
 Set upper or lower limits to the size of elements.  
@@ -547,9 +557,6 @@ An element cannot be larger than its `max-width` or `max-height`.
 ```css
 selector {
     max-width: 100%;    /* may be no wider than the containing element */
-}
-
-selector {
     width: 30%;    /* will be 30% of the width of the containing element */
     min-width: 200px;    /* but will stop shrinking with its parent at 200px */
 }
@@ -774,6 +781,7 @@ div {
     display: inline; /* Default of all elements, unless UA (user agent) stylesheet overrides */
     display: block; /* block is default for elements like <div> and <section>*/
     display: inline-block; /* Characteristics of block, but sits on a line */
+    display: grid; /* divide page into major regions or define the relationship in terms of size */
     display: none; /* Hide */
 }
 ```
@@ -832,15 +840,15 @@ To place two block level elements to be side by side float both elements, one le
 
 ```css
 .float-child-left {
-float: left;
-width: 200px;
-background: #4fc3f7;
+    float: left;
+    width: 200px;
+    background: #4fc3f7;
 }
 
 .float-child-right {
-float: right;
-width: 150px;
-background: #ffa726;
+    float: right;
+    width: 150px;
+    background: #ffa726;
 }
 ```
 
@@ -940,7 +948,46 @@ selector {
 }
 ```
 
-<!-- TODO: grid, grid-template, clamp, aspect-ratio, place-items, flex -- https://www.youtube.com/watch?v=qm0IfG1GyZU  -->
+### [Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
+
+```css
+selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;  /* 3 equl columns */
+    grid-template-rows: 1fr 1fr 1fr;  /* 3 equal rows */
+}
+```
+
+## Functions
+
+### Clamp
+
+The `clamp()` CSS function clamps a value between an upper and lower bound. It takes three parameters: a minimum value, a preferred value, and a maximum allowed value.  
+The `clamp()` function can be used anywhere a `<length>`, `<frequency>`, `<angle>`, `<time>`, `<percentage>`, `<number>`, or `<integer>` is allowed.
+
+clamp(MIN, VAL, MAX) is resolved as max(MIN, min(VAL, MAX))
+
+```css
+selector {
+    length: clamp(MIN, VAL, MAX)  /* is resolved as max(MIN, min(VAL, MAX)) */
+}
+```
+
+### Var & Variables
+
+```css
+:root {
+    /* define variables on :root element */
+    --variable: value;
+}
+
+selector {
+    --variable: value;  /* overwrite value */
+    prop: var(--variable);  /* use value of variable */
+}
+```
+
+---
 
 ## Content First
 
