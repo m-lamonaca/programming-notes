@@ -31,6 +31,7 @@ Project
 | |- favicon.ico
 |
 |-Pages
+| |- _Host.cshtml  --> fallback page
 | |- Page.cshtml
 | |- Page.cshtml.cs
 | |- Component.razor
@@ -86,7 +87,7 @@ Project
 
 ```cs
 <Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true">
-    <Found Context="routeData">
+    <Found Context="routeData">  // for component routing
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
     <NotFound>
@@ -97,24 +98,105 @@ Project
 </Router>
 ```
 
-## Components (`.razor`)
+### `MainLayout.razor` (Blazor Server/WASM)
 
 ```cs
-@page "/route"
+@inherits LayoutComponentBase
 
-<!-- html of the page -->
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />  // NavMenu Component
+    </div>
 
-<Component  Property="value"/>  // insert component into page
+    <div class="main">
+        <div class="top-row px-4">
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>
+```
+
+### `_Host.cshtml` (Blazor Server)
+
+```html
+@page "/"
+@namespace BlazorServerDemo.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlazorServerDemo</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="BlazorServerDemo.styles.css" rel="stylesheet" />
+</head>
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>
+```
+
+## Components (`.razor`)
+
+[Blazor Components](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/)
+
+```cs
+@page "/route/{RouteParameter?}"  // make component accessible from a URL (optional)
+
+@namespace <Namespace>  // set the component namespace
+@using <Namespace>  // using statement
+@inherits BaseType  // inheritance
+@attribute [Attribute]  // apply an attribute
+@inject Type objectName  // dependency injection
+
+// html of the page here
+
+<Namespace.ComponentFolder.Component />  // access component w/o @using
+<Component Property="value"/>  // insert component into page, passing attributes
+<Component @onclick="@CallbackMethod">
+    @ChildContent  // segment of UI content
+</Component>
 
 @code {
     // component model (Properties, Methods, ...)
 
-    [Parameter]  // use prop as HTML attribute
-    purblic Type Property { get; set; } = defaultValue;
+    [Parameter]  // capture attribute 
+    public Type Property { get; set; } = defaultValue;
+
+    [Parameter]  // capture route parameters
+    public type RouteParameter { get; set;}
+
+    [Parameter] // segment of UI content
+    public RenderFragment ChildContent { get; set;}
+
+    private void CallbackMethod() { }
 }
 ```
 
-<!-- ## Javascript/.NET Interop
+## Javascript/.NET Interop
 
 [Call Javascript from .NET](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet)  
-[Call .NET from Javascript](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-dotnet-from-javascript) -->
+[Call .NET from Javascript](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-dotnet-from-javascript)
