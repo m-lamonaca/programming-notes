@@ -61,8 +61,9 @@ using System;  // import the System Namespace
 using Alias = Namespace;  // set an alias for a specific namespace
 using static System.Console;  // statically import a class to use its static methods w/o qualification
 
-
-namespace Namespace  // dichiarazione namespace di appartenenza (classi e librerie)
+namespace Namesapce;  // [C# 10]
+//or
+namespace Namespace  // namespace declaration
 {
     // class here
 }
@@ -247,6 +248,8 @@ dynamic variable = value;
 // cannot be used as return types
 var x = new { Key = value, ...};  // read only properties
 x.Key;  // member access
+
+var y = x with { Key = value };  // with expression [C# 10]
 ```
 
 ### Index & Range Types (Structs)
@@ -1398,16 +1401,18 @@ class Class
     public static type Field = value;    // static (non-instance) public field  w/ initializer
 
     // runs before instance's constructor
-    private type Field = value;    // private instance field w/ initializer
+    private type _field = value;    // private instance field w/ initializer
 
     private type _field;  // private instance field, initialized by consturctor
 
     // static constructor, not called explicitly, has no arguments
-    // triggered by one of two events, whichever occurs first: creating an instance, or accessing any staticmember of the class.
-    // since its static and takes no arguments there can be at most one for each class
-    static Class(){
+    // triggered by one of two events, whichever occurs first: creating an instance, or accessing any static member of the class.
+    // since it's static and takes no arguments there can be at most one for each class
+    static Class() { 
         // place to init static fields
     }
+
+    public Class() { /* ... */}  // parameterless constructor
 
     // class constructor
     public Class(type parameter) {
@@ -1430,6 +1435,56 @@ class Class
     type Method(arguments) {}    // instance method, can ONLY operate on INSTANCE VARIABLES
 }
 ```
+
+### Properties
+
+[Properties Docs](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)
+
+```cs
+class Class
+{
+    private type _backingField;
+
+    // PROPERTY
+    public type Property
+    {
+        get { return _backingField }
+        set { _backingField = value; }
+    }
+
+    // PROPERTY WITH EXPRESSION BODY DEFINITIONS
+    public type Property
+    {
+        get => _backingField;
+        set => _backingField = value;
+    }
+
+    // access backing field with the field keyword [C# 10]
+    public Type Property { get; set => field = value; }
+
+    // EXPRESSION-BODIED READ-ONLY PROPERTY
+    public type Property => <expr>;
+
+    // AUTO-PROPERTIES
+    public Property { get; set; }
+    public Property { get; private set; }  // settable only inside class
+    public Property { get; init; } // settable only in constructor, initilizer, keyword with
+    public Property { get; }  // can only be setted by constructor
+
+    // MIXED
+    public type Property
+    {
+        get => _backingField;
+        set => { ... }
+    }
+
+    Property = value;  // set
+    Property;  // get
+}
+```
+
+**NOTE**: The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.  
+Because `init` accessors can only be called during initialization, they are allowed to *mutate* `readonly` fields of the enclosing class, just like in a constructor.
 
 **NOTE**: creating at least one constructor hides the one provided by default (w/ zero parameters).
 
@@ -1473,13 +1528,13 @@ var copy = original with { Prop = newValue };  // other props are copies of the 
 ```cs
 public class Matrix
 {
-    private double[,] storage = new double[3, 3];
+    private double[,] matrix = new double[3, 3];
 
     public double this[int row, int column]
     {
         // The embedded array will throw out of range exceptions as appropriate.
-        get { return storage[row, column]; }
-        set { storage[row, column] = value; }
+        get { return matrix[row, column]; }
+        set { matrix[row, column] = value; }
     }
 }
 
@@ -1532,65 +1587,6 @@ static class Class
 **Object Creation**: `Class object = new Class(arguments);`
 **Instance Method Usage**: `object.method(arguments);`
 **Static Method Useage**: `Class.method(arguments);`
-
-### Getters & Setters
-
-[Properties Docs](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)
-
-```cs
-class Class
-{
-    private type _field;
-
-    // Java Style Getter
-    public type GetField()
-    {
-        return _field;
-    }
-
-    // Java Style Setter
-    public void SetField(type value)
-    {
-        this_.field = value;
-    }
-
-    // PROPERTY
-    public type Field
-    {
-        get { return field }
-        set { field = value; }
-    }
-
-    // PROPERTY WITH EXPRESSION BODY DEFINITIONS
-    public type Field
-    {
-        get => field;
-        set => field = value;
-    }
-
-    // EXPRESSION-BODIED READ-ONLY PROPERTY
-    public type Field => <expr>;
-
-    // AUTO-PROPERTIES
-    public Property { get; set; }
-    public Property { get; private set; }  // settable only inside class
-    public Property { get; init; } // settable only in constructor, initilizer, keyword with
-    public Property { get; }  // can only be setted by constructor
-
-    // MIXED
-    public type Property
-    {
-        get => field;
-        set => { ... }
-    }
-
-    Property = value;  // set
-    Property;  // get
-}
-```
-
-**NOTE**: The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.  
-Because `init` accessors can only be called during initialization, they are allowed to *mutate* `readonly` fields of the enclosing class, just like in a constructor.
 
 ### Indexers
 
@@ -1825,18 +1821,22 @@ C# 8.0 adds the ability to define default implementations for some or all method
 ```cs
 // can only be public or internal if not nested, any accessibility otherwise
 public interface IContract
-{
+{   
     // properties and fields
-    type Field { get; set; }
+    Type Property { get; set; }
 
     // un-implemeted methods (only signature)
-    type Method(type param, ...);
+    Type Method(Type param, ...);
 
     // DEFAULT INTERFACE IMPLEMENTATIONS
     // (method has body), if not implemented in inheriting class the implementation will be this
-    type Method(type param, ...) => <expr>;
+    Type Method(Type param, ...) => <expr>;
 
-    public const type CONSTANT = valaue;  // accessibility needed
+    public const Type CONSTANT = value;  // accessibility needed
+
+    static Type Static Property { get; set; }  // [C#]
+    static Type StaticMethod(Type param, ...);  // [C# 10]
+    static operator +(Type param, ...);  // [C# 10]
 
     // nested types are valid, accessibility is needed
 }
@@ -2147,7 +2147,7 @@ However, the type system supports certain implicit reference conversions for gen
 Delegates without explicit separated method.
 
 ```cs
-// lambad variations
+// lambda variations
 Delegate<Type> lambda = () => <expr>;
 Delegate<Type> lambda = input => <expr>;
 Delegate<Type> lambda = (input) => <expr>;
@@ -2157,6 +2157,18 @@ Delegate<Type> lambda = (input) => { return <expr>; };
 Delegate<Type> lambda = (Type input) => { return <expr>; };
 
 Type variable = delegate { <expression>; };  // ignore arguments of the method passed to the delegate
+
+// lambda type inference
+var f = Console.WriteLine;
+var f = x => x;  // inferring the return type
+var f = (string x) => x;  // inferring the signature
+var f = [Required] x => x;  // adding attributes on parameters
+var f = [Required] (int x) => x;
+var f = [return: Required] static x => x;  // adding attribute for a return type
+var f = T () => default;  // explicit return type
+var f = ref int (ref int x) => ref x;  // using ref on structs
+var f = int (x) => x;  // explicitly specifying the return type of an implicit input
+var f = static void (_) => Console.Write("Help");
 ```
 
 ### Captured Variables
