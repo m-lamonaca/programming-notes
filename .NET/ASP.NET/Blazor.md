@@ -81,6 +81,69 @@ Project
 |- Program.cs --> App entrypoint
 ```
 
+### Blazor PWA Project Structure
+
+```txt
+Project
+|-Properties
+| |- launchSettings.json
+|
+|-wwwroot --> static files
+| |-css
+| | |- site.css
+| | |- bootstrap
+| |
+| |- index.html
+| |- favicon.ico
+| |- manifest.json
+| |- service-worker.js
+| |- icon-512.png
+|
+|-Pages
+| |- Component.razor
+| |- Index.razor
+| |- ...
+|
+|-Shared
+| |- MainLayout.razor
+| |- MainLayout.razor.css
+| |- ...
+|
+|- _Imports.razor --> @using imports
+|- App.razor --> component root of the app
+|
+|- appsettings.json --> application settings
+|- Program.cs --> App entrypoint
+```
+
+### `manifest.json`, `service-worker.js` (Blazor PWA)
+
+[PWA](https://web.dev/progressive-web-apps/)  
+[PWA MDN Docs](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)  
+[PWA Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest)  
+[Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+
+```json
+// manifest.json
+{
+  "name": "<App Name>",
+  "short_name": "<Short App Name>",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#03173d",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
+```
+
+## Common Blazor Files
+
 ### `App.razor`
 
 ```cs
