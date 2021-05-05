@@ -77,15 +77,15 @@ fmt.format(number);  // apply format to a number, returns a String
 
 ```java
 import java.util.Scanner;   //package import
-Scanner nome_oggetto_scanner = new Scanner(System.in);  //Scanner obj init
-nome_oggetto_scanner.useDelimiter("delimitatore");   //delimiter setting
-nome_oggetto_scanner.close()  //closing of Scanner, releases memory
+Scanner scanner = new Scanner(System.in);  //Scanner obj init
+scanner.useDelimiter("delimitatore");   //delimiter setting
+scanner.close()  //closing of Scanner, releases memory
 
-int variabile_int_1 = nome_oggetto_scanner.nextInt();   //takes integer number
-String string_1 = nome_oggetto_scanner.nextLine();   //takes line of text (\n ends line)
-String string_1 = nome_oggetto_scanner.next();   //takes text (spacec ends word)
-double variabile_double_1 = nome_oggetto_scanner.nextDouble();  //takes double decimal number
-boolean variabile_bool = nome_oggetto_scanner.netxBoolean();  //takes boolean value
+int variabile_int_1 = scanner.nextInt();   //takes integer number
+String string_1 = scanner.nextLine();   //takes line of text (\n ends line)
+String string_1 = scanner.next();   //takes text (spacec ends word)
+double variabile_double_1 = scanner.nextDouble();  //takes double decimal number
+boolean variabile_bool = scanner.netxBoolean();  //takes boolean value
 //(TRUE, FALSE, true, false, True, False)
 ```
 
@@ -531,17 +531,17 @@ static Type methodName (Type[]...[] ArrayName) {
 
 ```java
 static Type[]...[] methodName (parameters) {
-    Type[]...[] arrayName = new Type[dimension1]...[dimensionN];
+    Type[]...[] array = new Type[dimension1]...[dimensionN];
     //array valorization
-    return nomeArray;
+    return array;
 }
 ```
 
 ### Array Length of multi-dimensional arrays
 
 ```java
-nomeArray.length  //row lenght
-nomeArray[rowIndex].length  //column length
+array.length  //row lenght
+array[rowIndex].length  //column length
 ```
 
 ### Irregular Table Visualization
@@ -678,7 +678,7 @@ void methodName (parameters) {
 ### Class Definition
 
 ```java
-public class NomeClasse {
+public class ClassName {
     //instance variables declaration
 
     //instantiation block
