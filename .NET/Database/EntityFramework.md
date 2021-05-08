@@ -30,7 +30,8 @@ namespace <Project>.Model
 NuGet Packages to install:
 
 - `Microsoft.EntityFrameworkCore`
-- `Microsoft.EntityFrameworkCore.Tools` to use migrations
+- `Microsoft.EntityFrameworkCore.Tools` to use migrations in Visual Studio
+- `Microsoft.EntityFrameworkCore.Tools.DotNet` to use migrations in `dotnet` cli (`dotnet-ef`)
 - `Microsoft.EntityFrameworkCore.Design` *or* `Microsoft.EntityFrameworkCore.<db_provider>.Design` needed for tools to work (bundled w\ tools)
 - `Microsoft.EntityFrameworkCore.<db_provider>`
 
@@ -41,15 +42,6 @@ namespace <Project>.Model
 {
     class Context : DbContext
     {
-        public Context(DbContextOptions options) : base(options)
-        {
-        }
-    }
-
-    // or
-
-    class Context : DbContext
-    {
         private const string _connectionString = "Server=<server_name>;Database=<database>;UID=<user>;Pwd=<password>";
 
         // connect to db
@@ -58,8 +50,15 @@ namespace <Project>.Model
             optionsBuilder.UseSqlServer(_connectionString);  // specify connection
         }
 
+        // or
+
+        public Context(DbContextOptions options) : base(options)
+        {
+        }
+
         //DBSet<TEntity> represents the collection of all entities in the context (or that can be queried from the database) of a given type
         public DbSet<Entity> Entities { get; set; }
+        public DbSet<Entity> Entities => Set<Entity>();  // with nullable reference types
     }
 }
 ```
