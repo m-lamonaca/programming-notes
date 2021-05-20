@@ -214,7 +214,7 @@ It’s generally recommended creating annotated tags so it's possible to have al
 `git reset <commit>`: undo all commits after specified commit, preserving changes locally  
 `git checkout <file>`: discard changes  
 `git checkout -- <file>`: discard changes, no output to screen  
-`git reset --hard`: discard all changes since last commit
+`git reset --soft <commit>`: revert to specific commit but keep changes and staged files  
 `git reset --hard <commit>`: discard all history and changes back to specified commit  
 `git rebase -i HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits
 
