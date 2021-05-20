@@ -560,6 +560,7 @@ let variable = value;
 let obj = {
     property: value,
     variable,  // same as variable: variable
+    [property]: value  // dynamic prop name
 
     object: {
         ...
