@@ -47,15 +47,23 @@ The `Where` and `Select` methods are examples of LINQ operators. A LINQ operator
 ```cs
 Enumerable.Range(int start, int end);  // IEnumerable<int> of values between start & end
 
-IEnumerable<TSource>.Select(Func<TSource, TResult> selector)  // map
-IEnumerable<TSource>.Where(Func<T, bool> predicate)  // filter
+IEnumerable<TSource>.Select(Func<TSource, TResult> selector);  // map
+IEnumerable<TSource>.Where(Func<T, bool> predicate);  // filter
 
-IEnumerable<T>.FirstOrDefault()  // first element of IEnumerable or default(T) if empty
-IEnumerable<T>.FirstOrDefault(Func<T, bool> predicate)  // first element to match predicate or default(T)
+IEnumerable<T>.FirstOrDefault();  // first element of IEnumerable or default(T) if empty
+IEnumerable<T>.FirstOrDefault(T default);  // specify returned default
+IEnumerable<T>.FirstOrDefault(Func<T, bool> predicate);  // first element to match predicate or default(T)
+// same for LastOrDefault & SingleOrDefault
+
+IEnumerable<T>.Chunk(size);  // chunk an enumerable into slices of a fixed size
 
 // T must implement IComparable<T>
-IEnumerable<T>.Max(); 
+IEnumerable<T>.Max();
 IEnumerable<T>.Min();
+
+// allow finding maximal or minimal elements using a key selector
+IEnumerable<TSource>.MaxBy(Func<TSource, TResult> selector);
+IEnumerable<TSource>.MinBy(Func<TSource, TResult> selector);
 
 IEnumerable<T>.All(Func<T, bool> predicate);  // check if condition is true for all elements
 IEnumerable<T>.Any(Func<T, bool> predicate);  // check if condition is true for at least one element
@@ -72,5 +80,5 @@ IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable); // Produces a sequence
 ```cs
 Enumerable.Method(IEnumerable<T> source, args);
 // if extension method same as
-IEnumerable<T>.Method(args)
+IEnumerable<T>.Method(args);
 ```
