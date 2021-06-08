@@ -61,6 +61,9 @@ using System;  // import the System Namespace
 using Alias = Namespace;  // set an alias for a specific namespace
 using static System.Console;  // statically import a class to use its static methods w/o qualification
 
+// gloabl using [C# 10], should be in dedicated file
+global using <namespace>;
+
 namespace Namesapce;  // [C# 10]
 //or
 namespace Namespace  // namespace declaration
@@ -553,6 +556,9 @@ variable ??= value;  // if (variable == null) -> variable = value -- null coales
 // null checks through patter matching
 variable is null
 varaible is not null
+
+// null parameter checking [C# 10]
+Method(Type argu!!) {}  // will throwArgumentNullExceptionif arg is null
 ```
 
 ### Nullable Attributes
@@ -1461,6 +1467,9 @@ class Class
 
     // access backing field with the field keyword [C# 10]
     public Type Property { get; set => field = value; }
+
+    // required property [C# 10], prop myst be set at obj init (in constructor or initializer)
+    public required Type Property { get; set; }
 
     // EXPRESSION-BODIED READ-ONLY PROPERTY
     public type Property => <expr>;
