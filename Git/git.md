@@ -137,7 +137,8 @@ def load_reference(name_or_id):
 `git push <remote> <local branch>:<remote branch>`: send objects to remote, and update remote reference
 
 `git fetch [<remote>]`: retrieve objects/references from a remote  
-`git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`
+`git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`  
+`git pull -ff`: when possible resolve the merge as a fast-forward (only update branch pointer, don't create merge commit). Otherwise create a merge commit.  
 
 `git fetch && git show <remote>/<branch>`: show incoming changes
 
