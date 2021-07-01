@@ -2,7 +2,7 @@
 
 `http://user:pass@sub.example.com:8080/p/a/t/h?query=string#hash`
 
-![URI Syntax](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/URI_syntax_diagram.svg/1920px-URI_syntax_diagram.svg.png)
+![URI Syntax](../../.images/node_url-structure.png)
 
 ## Basics
 

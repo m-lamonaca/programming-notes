@@ -44,7 +44,7 @@ let event = new CustomEvent(type, { detail: /* custom data */ });  // create eve
 domNode.dispatchEvent(event);  // launch the event
 ```
 
-![Event Inheritace](https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/images/event-inheritance.svg)
+![Event Inheritace](../.images/javascript_event-inheritance.png)
 
 ## Animation
 
