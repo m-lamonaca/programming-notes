@@ -22,7 +22,7 @@ The term *view* in Xamarin.Forms denotes familiar types of presentation and inte
 
 ## Pages
 
-![pages](https://d585tldpucybw.cloudfront.net/sfimages/default-source/blogs/2020/2020-11/pages.png)
+![pages](../../.images/dotnet_xamarin-pages.png)
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -48,7 +48,7 @@ The term *view* in Xamarin.Forms denotes familiar types of presentation and inte
 
 ## Layouts
 
-![layouts](https://d585tldpucybw.cloudfront.net/sfimages/default-source/blogs/2020/2020-11/layouts.png)
+![layouts](../../.images/dotnet_xamarin-layouts.png)
 
 - StackLayout: Organizes views linearly, either horizontally or vertically.
 - AbsoluteLayout: Organizes views by setting coordinates & size in terms of absolute values or ratios.

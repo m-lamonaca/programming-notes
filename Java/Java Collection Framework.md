@@ -12,7 +12,7 @@ The **Java Collection Framework** is constituited by:
 - **Classes** that implement the interfaces using different data structures.
 - **Algorithms** consistng in methods to operate over a collection.
 
-![Java Collection Hierarchy](https://upload.wikimedia.org/wikipedia/commons/a/ab/Java.util.Collection_hierarchy.svg "Java Collection Hierarchy")
+![Java Collection Hierarchy](../.images/java_java-collection-framework.png "Java Collection Hierarchy")
 
 ## java.util.Collections
 

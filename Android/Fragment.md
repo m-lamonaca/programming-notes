@@ -5,11 +5,11 @@
 A **Fragment** represents a behavior or a portion of user interface in a `FragmentActivity`. It's possible to combine multiple fragments in a single activity to build a multi-pane UI and reuse a fragment in multiple activities.  
 Think of a fragment as a *modular section of an activity*, which has its *own* lifecycle, receives its *own* input events, and which you can add or remove while the activity is running (sort of like a "sub activity" that you can reuse in different activities).
 
-![Fragment](https://developer.android.com/images/fundamentals/fragments.png)
+![Fragment](../.images/android_fragments.png)
 
 A fragment must always be hosted in an activity and the fragment's lifecycle is *directly affected* by the host activity's lifecycle.
 
-![Fragment Lifecycle](https://developer.android.com/images/fragment_lifecycle.png)
+![Fragment Lifecycle](../.images/android_fragment-lifecycle.png)
 
 ## Minimal Fragment Functions
 
