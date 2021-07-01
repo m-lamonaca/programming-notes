@@ -238,7 +238,7 @@ git chechout <primary_branch>
 git rebase <feature_branch>  # moves commits from the branch on top of master
 ```
 
-![branch](https://hackernoon.com/hn-images/1*iHPPa72N11sBI_JSDEGxEA.png "how branches work")
+![branch](../.images/git_branches.png "how branches work")
 
 ### Clone Branches
 

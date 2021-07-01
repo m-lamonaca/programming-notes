@@ -669,7 +669,7 @@ Specificity is usually the reason why CSS-rules don't apply to some elements whe
 
 ## Box Model
 
-![Box Model](https://hackernoon.com/hn-images/1*2jZwpWH9XO_QllhEpyGqMA.png)
+![Box Model](../.images/css_box-model.png)
 
 ### Padding
 

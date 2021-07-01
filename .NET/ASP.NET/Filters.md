@@ -13,10 +13,8 @@ Custom filters can be created to handle cross-cutting concerns. Examples of cros
 
 Filters run within the *ASP.NET Core action invocation pipeline*, sometimes referred to as the *filter pipeline*. The filter pipeline runs after ASP.NET Core selects the action to execute.
 
-![1][filter-pipeline-1] ![2][filter-pipeline-2]
-
-[filter-pipeline-1]: https://docs.microsoft.com/it-it/aspnet/core/mvc/controllers/filters/_static/filter-pipeline-1.png
-[filter-pipeline-2]: https://docs.microsoft.com/en-gb/aspnet/core/mvc/controllers/filters/_static/filter-pipeline-2.png
+![filter-pipeline-1](../../.images/dotnet_filter-pipeline-1.png)
+![filter-pipeline-2](../../.images/dotnet_filter-pipeline-2.png)
 
 ## **Filter types**
 

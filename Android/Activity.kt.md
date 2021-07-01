@@ -12,7 +12,7 @@ Log.c("tag", "logValue")    //critical log
 
 ## Activity Life Cycle
 
-![Life Cycle](https://developer.android.com/images/activity_lifecycle.png)
+![Life Cycle](../.images/android_activity-lifecycle.png)
 
 ```kotlin
 package com.its.<appname>

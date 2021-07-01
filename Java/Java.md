@@ -1,7 +1,5 @@
 # Java Cheat Sheet
 
-![Java Structure](https://raw.githubusercontent.com/maboglia/CorsoJava/master/appunti/img/2020_UF_Java.jpg)
-
 ```java
 //single line comment
 /* multi line comment */
