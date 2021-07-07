@@ -30,7 +30,8 @@ namespace <Project>.Model
 NuGet Packages to install:
 
 - `Microsoft.EntityFrameworkCore`
-- `Microsoft.EntityFrameworkCore.Tools` to use migrations
+- `Microsoft.EntityFrameworkCore.Tools` to use migrations in Visual Studio
+- `Microsoft.EntityFrameworkCore.Tools.DotNet` to use migrations in `dotnet` cli (`dotnet-ef`)
 - `Microsoft.EntityFrameworkCore.Design` *or* `Microsoft.EntityFrameworkCore.<db_provider>.Design` needed for tools to work (bundled w\ tools)
 - `Microsoft.EntityFrameworkCore.<db_provider>`
 
@@ -41,15 +42,6 @@ namespace <Project>.Model
 {
     class Context : DbContext
     {
-        public Context(DbContextOptions options) : base(options)
-        {
-        }
-    }
-
-    // or
-
-    class Context : DbContext
-    {
         private const string _connectionString = "Server=<server_name>;Database=<database>;UID=<user>;Pwd=<password>";
 
         // connect to db
@@ -58,8 +50,15 @@ namespace <Project>.Model
             optionsBuilder.UseSqlServer(_connectionString);  // specify connection
         }
 
+        // or
+
+        public Context(DbContextOptions options) : base(options)
+        {
+        }
+
         //DBSet<TEntity> represents the collection of all entities in the context (or that can be queried from the database) of a given type
         public DbSet<Entity> Entities { get; set; }
+        public DbSet<Entity> Entities => Set<Entity>();  // with nullable reference types
     }
 }
 ```
@@ -89,31 +88,10 @@ dotnet ef database update
 ### Create
 
 ```cs
-public static bool InsertOne(Entity entity)
-{
-    int rows = 0;
+context.Add(entity);
+context.AddRange(entities);
 
-    using(var context = new Context())
-    {
-        context.Add(entity);
-        context.SaveChanges();
-    }
-
-    return rows == 1;
-}
-
-public static bool InsertMany(IEnumerable<Entity> entities)
-{
-    int rows = 0;
-
-    using(var context = new Context())
-    {
-        context.AddRange(entities);
-        context.SaveChanges();
-    }
-
-    return rows == entities.Count();
-}
+context.SaveChanges();
 ```
 
 ### Read
@@ -121,83 +99,27 @@ public static bool InsertMany(IEnumerable<Entity> entities)
 [Referenced Object Not Loading Fix](https://stackoverflow.com/a/5385288)
 
 ```cs
-public static List<Entity> SelectAll()
-{
-    using(var context = new Context())
-    {
-        return context.Entities.ToList();
-    }
-}
+context.Entities.ToList();
+context.Entities.Find(id);
 
-static Entity SelectOneById(int id)
-{
-    using(var context = new Context())
-    {
-        return context.Entities.Find(id);
-
-        // force read of foreign key identifying referenced obj
-        return context.Entities.Include(c => c.ForeignObject).Find(id);
-
-    }
-}
+// force read of foreign key identifying referenced obj
+context.Entities.Include(c => c.ForeignObject).Find(id);
 ```
 
 ### Update
 
 ```cs
-public static bool UpdateOne(Entity entity)
-{
-    int rows = 0;
+context.Entities.Update(entity);
+context.UpdateRange(entities);
 
-    using(var context = new Context())
-    {
-        context.Entities.Update(entity);
-        context.SaveChanges();
-    }
-
-    return rows == 1;
-}
-
-public static bool UpdateMany(IEnumerable<Entity> entities)
-{
-    int rows = 0;
-
-    using(var context = new Context())
-    {
-        context.UpdateRange(entities);
-        context.SaveChanges();
-    }
-
-    return rows == entities.Count();
-}
+context.SaveChanges();
 ```
 
 ### Delete
 
 ```cs
-public static bool DeleteOne(Entity entity)
-{
-    int rows = 0;
+context.Entities.Remove(entity);
+context.RemoveRange(entities);
 
-    using(var context = new Context())
-    {
-        context.Entities.Remove(entity);
-        context.SaveChanges();
-    }
-
-    return rows == 1;
-}
-
-public static bool DeleteMany(IEnumerable<Entity> entities)
-{
-    int rows = 0;
-
-    using(var context = new Context())
-    {
-        context.RemoveRange(entities);
-        context.SaveChanges();
-    }
-
-    return rows == entities.Count();
-}
+context.SaveChanges();
 ```

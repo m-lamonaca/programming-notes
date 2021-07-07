@@ -9,8 +9,8 @@ Components are .NET C# classes built into .NET assemblies that:
 - Can be nested and reused.
 - Can be shared and distributed as Razor class libraries or NuGet packages.
 
-![Blazor Server Architecture](https://docs.microsoft.com/en-us/aspnet/core/blazor/index/_static/blazor-server.png)
-![Blazor WASM Architecture](https://docs.microsoft.com/en-us/aspnet/core/blazor/index/_static/blazor-webassembly.png)
+![Blazor Server Architecture](../../.images/dotnet_blazor-server.png)
+![Blazor WASM Architecture](../../.images/dotnet_blazor-webassembly.png)
 
 The component class is usually written in the form of a Razor markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*.
 
@@ -32,8 +32,6 @@ Project
 |
 |-Pages
 | |- _Host.cshtml  --> fallback page
-| |- Page.cshtml
-| |- Page.cshtml.cs
 | |- Component.razor
 | |- Index.razor
 | |- ...
@@ -82,6 +80,69 @@ Project
 |- appsettings.json --> application settings
 |- Program.cs --> App entrypoint
 ```
+
+### Blazor PWA Project Structure
+
+```txt
+Project
+|-Properties
+| |- launchSettings.json
+|
+|-wwwroot --> static files
+| |-css
+| | |- site.css
+| | |- bootstrap
+| |
+| |- index.html
+| |- favicon.ico
+| |- manifest.json
+| |- service-worker.js
+| |- icon-512.png
+|
+|-Pages
+| |- Component.razor
+| |- Index.razor
+| |- ...
+|
+|-Shared
+| |- MainLayout.razor
+| |- MainLayout.razor.css
+| |- ...
+|
+|- _Imports.razor --> @using imports
+|- App.razor --> component root of the app
+|
+|- appsettings.json --> application settings
+|- Program.cs --> App entrypoint
+```
+
+### `manifest.json`, `service-worker.js` (Blazor PWA)
+
+[PWA](https://web.dev/progressive-web-apps/)  
+[PWA MDN Docs](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)  
+[PWA Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest)  
+[Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+
+```json
+// manifest.json
+{
+  "name": "<App Name>",
+  "short_name": "<Short App Name>",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#03173d",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
+```
+
+## Common Blazor Files
 
 ### `App.razor`
 

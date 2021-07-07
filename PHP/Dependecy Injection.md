@@ -1,6 +1,4 @@
-# Dependency Injection (PHP-DI), KISS, SOLID
-
-## Dependency Injection
+# Dependency Injection
 
 Explicit definition of a class dependencies with the injection through the constructor or *getters*/*setters*.
 
@@ -14,7 +12,7 @@ class Foo
 }
 ```
 
-### Dependency Injection Container
+## Dependency Injection Container
 
 The **Dependecy Injection Container** (DIC) allow to archive all the dependencies in a single `Container` class. Some offer automatic resolution of the dependecies.
 Containers aid the developer in the handling of the dependecies: get/has/set.
@@ -43,7 +41,7 @@ $container = new DI\Container();  // DI Container
 $foo = $container->get('Foo');  // get instance of Foo (automatic DI of Bar)
 ```
 
-## DIC Configuration
+### DIC Configuration
 
 ```php
 // Foo.php

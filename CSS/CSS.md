@@ -350,6 +350,34 @@ a::after/before {
 `selector::selection {...}` identifies part of the document that has been selected, or highlighted, by a user’s actions.  
 `selector::-moz-selection {...}` Mozilla prefixed fragment pseudo-element has been added to ensure the best support for all browser.
 
+## Units
+
+### Absolute Length units
+
+| Unit | Name                | Equivalent to        |
+| ---- | ------------------- | -------------------- |
+| cm   | centimeters         | 1cm = 38px = 25/64in |
+| mm   | Millimeters         | 1mm = 1/10th of 1cm  |
+| Q    | Quarter-millimeters | 1Q = 1/40th of 1cm   |
+| in   | Inches              | 1in = 2.54cm = 96px  |
+| pc   | Picas               | 1pc = 1/6th of 1in   |
+| pt   | Points              | 1pt = 1/72th of 1in  |
+| px   | Pixels              | 1px = 1/96th of 1in  |
+
+### Relative Length Units
+
+| Unit | Relative to                                                         |
+| ---- | ------------------------------------------------------------------- |
+| rem  | Font size of the root element.                                      |
+| em   | Font size of the parent or the element itself                       |
+| ex   | x-height of the element's font.                                     |
+| ch   | The advance measure (width) of the glyph "0" of the element's font. |
+| lh   | Line height of the element.                                         |
+| vw   | 1% of the viewport's width.                                         |
+| vh   | 1% of the viewport's height.                                        |
+| vmin | 1% of the viewport's smaller dimension.                             |
+| vmax | 1% of the viewport's larger dimension.                              |
+
 ## Element Properties
 
 ### Color
@@ -566,28 +594,28 @@ selector {
 
 ### Absolute Lengths
 
-Symbol | Unit
--------|-----------------------------
-`cm`   | centimeters
-`mm`   | millimeters
-`in`   | inch (1 in = 96px = 2.54 cm)
-`px`   | pixel (1 px = 1/96 of 1 in)
-`pt`   | points (1 pt = 1/72 of 1 in)
-`pc`   | picas (1 pc = 12 pt)
+| Symbol | Unit                         |
+| ------ | ---------------------------- |
+| `cm`   | centimeters                  |
+| `mm`   | millimeters                  |
+| `in`   | inch (1 in = 96px = 2.54 cm) |
+| `px`   | pixel (1 px = 1/96 of 1 in)  |
+| `pt`   | points (1 pt = 1/72 of 1 in) |
+| `pc`   | picas (1 pc = 12 pt)         |
 
 ### Relative Lengths
 
-Symbol | Unit
--------|------------------------------------------------------------------------------------------
-`em`   | Relative to the font-size of the element (2em means 2 times the size of the current font)
-`ex`   | Relative to the x-height of the current font (rarely used)
-`ch`   | Relative to width of the "0" (zero)
-`rem`  | Relative to font-size of the root element
-`vw`   | Relative to 1% of the width of the viewport*
-`vh`   | Relative to 1% of the height of the viewport*
-`vmin` | Relative to 1% of viewport's* smaller dimension
-`vmax` | Relative to 1% of viewport's* larger dimension
-`%`    | Relative to the parent element
+| Symbol | Unit                                                                                      |
+| ------ | ----------------------------------------------------------------------------------------- |
+| `em`   | Relative to the font-size of the element (2em means 2 times the size of the current font) |
+| `ex`   | Relative to the x-height of the current font (rarely used)                                |
+| `ch`   | Relative to width of the "0" (zero)                                                       |
+| `rem`  | Relative to font-size of the root element                                                 |
+| `vw`   | Relative to 1% of the width of the viewport*                                              |
+| `vh`   | Relative to 1% of the height of the viewport*                                             |
+| `vmin` | Relative to 1% of viewport's* smaller dimension                                           |
+| `vmax` | Relative to 1% of viewport's* larger dimension                                            |
+| `%`    | Relative to the parent element                                                            |
 
 ## CSS Cascading
 
@@ -641,7 +669,7 @@ Specificity is usually the reason why CSS-rules don't apply to some elements whe
 
 ## Box Model
 
-![Box Model](https://hackernoon.com/hn-images/1*2jZwpWH9XO_QllhEpyGqMA.png)
+![Box Model](../.images/css_box-model.png)
 
 ### Padding
 
@@ -822,7 +850,7 @@ There are several methods to 'hide' elements:
 `opacity: 0` hides the element, still takes up space in the layout, events work
 
 | Rule                 | Collapse | Events | Tab Order |
-|----------------------|----------|--------|-----------|
+| -------------------- | -------- | ------ | --------- |
 | `display: none`      | Yes      | No     | No        |
 | `visibility: hidden` | No       | No     | No        |
 | `opacity: 0`         | No       | Yes    | Yes       |
@@ -1124,7 +1152,7 @@ The HTML code is not changed, only the CSS style.
 A media query is a logical expression: true or false; if a media query is true, the related rules are applied to the target device.
 
 | Type     | Used For                                     |
-|----------|----------------------------------------------|
+| -------- | -------------------------------------------- |
 | `all`    | all media type devices                       |
 | `print`  | printers                                     |
 | `screen` | computer screens, tablets, smart-phones, etc |

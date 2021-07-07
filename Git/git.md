@@ -85,7 +85,7 @@ def load_reference(name_or_id):
 
 ### Create Repository
 
-`git init [<project_name>]`: initialize a brand new Git repository and begins tracking
+`git init [<project_name>]`: initialize a brand new Git repository and begins tracking  
 `.gitignore`: specify intentionally untracked files to ignore
 
 ### Config
@@ -137,7 +137,8 @@ def load_reference(name_or_id):
 `git push <remote> <local branch>:<remote branch>`: send objects to remote, and update remote reference
 
 `git fetch [<remote>]`: retrieve objects/references from a remote  
-`git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`
+`git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`  
+`git pull -ff`: when possible resolve the merge as a fast-forward (only update branch pointer, don't create merge commit). Otherwise create a merge commit.  
 
 `git fetch && git show <remote>/<branch>`: show incoming changes
 
@@ -188,33 +189,33 @@ It’s generally recommended creating annotated tags so it's possible to have al
 
 ### Branching And Merging
 
-`git branch`: shows branches
+`git branch`: shows branches  
 `git branch -v`: show branch + last commit
 
 `git branch <branch-name>`: create new branch  
 `git checkout -b <branch-name>`: create a branch and switches to it, same as `git branch <name>; git checkout <name>`  
 `git branch`: show list of all existing branches  (* indicates current)  
 `git checkout <branch-name>`: change current branch (update HEAD) and update working directory  
-`git branch -d <branch-name>`: delete specified branch
+`git branch -d <branch-name>`: delete specified branch  
 `git branch -m <old_name> <new_name>`: rename a branch without affecting the branch’s history
 
 `git merge <branch-name>`: merges into current branch  
 `git merge --continue`: continue previous merge after solving a merge conflinct  
 `git mergetool`: use a fancy tool to help resolve merge conflicts  
-`git rebase`: rebase set of patches onto a new base
+`git rebase`: rebase set of patches onto a new base  
 `git rebase -i`: interactive rebasing
 
 `gitk`: show graph of history (git for windows only)
 
 ### Undo & [Rewriting History](https://www.themoderncoder.com/rewriting-git-history/)
 
-`git commit --amend`: replace last commit by creating a new one (can add files or rewrite commit message)
-`git commit --amend  --no-edit`: replace last commit by creating a new one (can add files or rewrite commit message)
+`git commit --amend`: replace last commit by creating a new one (can add files or rewrite commit message)  
+`git commit --amend  --no-edit`: replace last commit by creating a new one (can add files or rewrite commit message)  
 `git reset HEAD <file>`: unstage a file  
 `git reset <commit>`: undo all commits after specified commit, preserving changes locally  
 `git checkout <file>`: discard changes  
 `git checkout -- <file>`: discard changes, no output to screen  
-`git reset --hard`: discard all changes since last commit
+`git reset --soft <commit>`: revert to specific commit but keep changes and staged files  
 `git reset --hard <commit>`: discard all history and changes back to specified commit  
 `git rebase -i HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits
 
@@ -237,7 +238,7 @@ git chechout <primary_branch>
 git rebase <feature_branch>  # moves commits from the branch on top of master
 ```
 
-![branch](https://hackernoon.com/hn-images/1*iHPPa72N11sBI_JSDEGxEA.png "how branches work")
+![branch](../.images/git_branches.png "how branches work")
 
 ### Clone Branches
 
