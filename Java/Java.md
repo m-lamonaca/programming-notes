@@ -55,7 +55,7 @@ System.out.print(output_1 + _ + output_n);
 [String.format() Examples](https://dzone.com/articles/java-string-format-examples)
 
 ```java
-System.out.printf("stringa %..", variable);
+System.out.printf("string %..", variable);
 System.out.println(String.format(format, args));
 ```
 
@@ -79,11 +79,11 @@ Scanner scanner = new Scanner(System.in);  //Scanner obj init
 scanner.useDelimiter("delimitatore");   //delimiter setting
 scanner.close()  //closing of Scanner, releases memory
 
-int variabile_int_1 = scanner.nextInt();   //takes integer number
+int variable_int_1 = scanner.nextInt();   //takes integer number
 String string_1 = scanner.nextLine();   //takes line of text (\n ends line)
 String string_1 = scanner.next();   //takes text (spacec ends word)
-double variabile_double_1 = scanner.nextDouble();  //takes double decimal number
-boolean variabile_bool = scanner.netxBoolean();  //takes boolean value
+double variable_double_1 = scanner.nextDouble();  //takes double decimal number
+boolean variable_bool = scanner.netxBoolean();  //takes boolean value
 //(TRUE, FALSE, true, false, True, False)
 ```
 
@@ -137,8 +137,8 @@ Type variable = new WrapperClass(primitiveValue);  //automatic unboxing
 WrapperClass.MIN_VALUE  //constant holding min possible value of wrapper class
 WrapperClass.MAX_VALUE  //constant holding man possible value of wrapper class
 
-ClasseWrapper.parseClasseWrapper(stringa);  //converte il valore di una stringa in uno della classe wrapper (metodo statico), eccezione NumberFOrmatException se l'operazione fallisce
-ClasseWrapper.toString(valore_tipo_primitivo);  //converte il valore della classe wrapper in una string (metodo statico)
+WrapperClass.parseClasseWrapper(string);  // converts the tring to the wrapper class, NumberFOrmatException on error
+WrapperClass.toString(primitive);  // converts the wrapper class value to a string
 ```
 
 ### String & Char
@@ -167,7 +167,7 @@ Escape Character   | Character
 ### String Concatenation
 
 The value of the variable is appende to the string literal.  
-`"text" + variabile`  
+`"text" + variable`  
 String are immutable. Concatenation creates a new string.
 
 ### String Conversion to Number

@@ -95,7 +95,7 @@ echo $template->render('template_name', [ "marker" => value, ... ]);
 It's necessary to verify that the output is in the necessary format.
 
 Plates offerts `$this->escape()` or `$this->e()` to validate the output.
-In general the output validation allows toprevent [Cross-Site Scripting][owasp-xss] (XSS).
+In general the output validation allows to prevent [Cross-Site Scripting][owasp-xss] (XSS).
 
 [owasp-xss]: https://owasp.org/www-community/attacks/xss/
 

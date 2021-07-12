@@ -85,7 +85,7 @@ The body contains the actual content of the page. Everything that is contained i
 ## JavaScript
 
 XHTML and older: `<script src="js/scripts.js" type="text/javascript"></script>`  
-HTML5: `<script src="js/scripts.js"></script>`  (HTML5 spect states that `type` attribute is redundant and shoul be omitted)
+HTML5: `<script src="js/scripts.js"></script>`  (HTML5 spect states that `type` attribute is redundant and shoul be omitted)  
 The `<script>` tag is used to define a client-side script (JavaScript).  
 The `<script>` element either contains scripting statements, or it points to an external script file through the src attribute.
 

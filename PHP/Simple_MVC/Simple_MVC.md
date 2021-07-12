@@ -1,6 +1,8 @@
 # [SimpleMVC](https://github.com/ezimuel/simplemvc) Mini-Framework
 
-Mini framework MVC per scopi didattici basato su Dependency Injection ([PHP-DI][php-di]), Routing ([FastRoute][fastroute]), PSR-7 ([nyholm/psr7][psr7]) e Templates ([Plates][plates])
+SimpleMVC is a micro MVC framework for PHP using [FastRoute][fastroute], [PHP-DI][php-di], [Plates][plates] and [PHP-DI][php-di] standard for HTTP messages.
+
+This framework is mainly used as tutorial for introducing the Model-View-Controller architecture in modern PHP applications.
 
 [php-di]: https://php-di.org/
 [fastroute]: https://github.com/nikic/FastRoute

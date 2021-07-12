@@ -115,7 +115,7 @@ use <crate_name>::module as alias;  // import module w/ aliass
 pub use <crate_name>::module;  // re-exporting (import and make available to others)
 
 use <crate_name>::module::{self, Item}; // import multiple paths
-use use <crate_name>::module::*; // import all public items (Glob operator)
+pub use <crate_name>::module::*; // import all public items (Glob operator)
 
 module::function();  // use func w/ shorter path
 ```

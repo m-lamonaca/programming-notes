@@ -28,16 +28,15 @@
  */
 ```
 
-### Naming Conventions
-
-| Elements | Case      |
-| -------- | --------- |
-| variable | camelCase |
-
 ### Modern Mode
 
 If located at the top of the script the whole script works the “modern” way (enables post-ES5 functionalities).  
-`"use strict"`
+
+```js
+"use strict"
+
+// script contents
+```
 
 ### Pop-Up message
 
@@ -328,8 +327,7 @@ if (condition) {
 
 ### Ternary Operator
 
-`condition ? instruction1 : istruction2;`  
-Ff TRUE execute instruction1, execute instruction2 otherwise.
+`condition ? <expr1> : <expr2>;`  
 
 ### Switch Statement
 
@@ -480,6 +478,7 @@ for(let key in dict) {
   // do something with "key" and "value" variables
 }
 
+Object.keys(dict).forEach(key => { });
 ```
 
 ## Functions

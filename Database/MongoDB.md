@@ -328,7 +328,7 @@ db.getCollectionNames().forEach(function(collection) {
    print("Indexes for " + collection + ":");
    printjson(indexes);
 });
-db.<collection>.getIndexes()  # view collenction's index
+db.<collection>.getIndexes()  # view collection's index
 
 db.<collection>.dropIndexes()  # drop all indexes
 db.<collection>.dropIndex( { "index-name": 1 } )  # drop a specific index

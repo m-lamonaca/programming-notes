@@ -15,7 +15,7 @@ declare(strict_types=1);  # activates variable type checking on function argumen
 include "path\\file.php";  # import an external php file, E_WARNING if fails
 include_once "path\\file.php";  # imports only if not already loaded
 
-require "path\\file.php";  # # import an external php file, E_COMPILE_ERROR if fails
+require "path\\file.php";  # import an external php file, E_COMPILE_ERROR if fails
 require_once "path\\file.php";  # imports only if not already loaded
 ```
 
@@ -34,7 +34,7 @@ return [
 ```
 
 ```php
-$config = include "config.php";  // retireve config wnd store into variable
+$config = include "config.php";  // retireve config and store into variable
 ```
 
 ## Namespace
@@ -136,12 +136,12 @@ $c = 7E-10; // 0.0000000007
 ### Mathematical Operators
 
 | Operator | Operation      |
-|----------|----------------|
+| -------- | -------------- |
 | `-`      | Subtraction    |
 | `*`      | Multiplication |
 | `/`      | Division       |
 | `%`      | Modulo         |
-| `**`     | Exponentiatio  |
+| `**`     | Exponentiation |
 | `var++`  | Post Increment |
 | `++var`  | Pre Increment  |
 | `var--`  | Post Decrement |
@@ -164,7 +164,7 @@ A string is a sequrnce of ASCII characters. In PHP a string is an array of chara
 ### String Concatenation
 
 ```php
-$string1 . $string2; method 1
+$string1 . $string2; # method 1
 $string1 .= $string2;  # method 2
 ```
 
@@ -190,7 +190,7 @@ define ('CONSTANT_NAME', 'value')
 
 ### Magic Constants `__NAME__`
 
-- `__FILE__`: sctipt path + scrit filename
+- `__FILE__`: script path + script filename
 - `__DIR__`: file directory
 - `__LINE__`: current line number
 - `__FUNCTION__`: the function name, or {closure} for anonymous functions.
@@ -261,7 +261,7 @@ list($array1 [, $array2, ...]) = $data;  # Python-like tuple unpacking
 
 ### Associative Arrays
 
-Associative arrays have a value as an index. Alternative names are *hash tables* or *dictionaries*.
+Associative arrays have a value as an index. Alternative names are _hash tables_ or _dictionaries_.
 
 ```php
 $italianDay = [
@@ -282,7 +282,7 @@ $italianDay["Mon"];  # evaluates to Lunedì
 ### Conditional Opeartors
 
 | Operator    | Operation                |
-|-------------|--------------------------|
+| ----------- | ------------------------ |
 | $a `==` $b  | value equality           |
 | $a `===` $b | value & type equality    |
 | $a `!=` $b  | value inequality         |
@@ -299,13 +299,13 @@ With `==` a string evaluates to `0`.
 ### Logical Operators
 
 | Operator | Example     | Result                                               |
-|----------|-------------|------------------------------------------------------|
+| -------- | ----------- | ---------------------------------------------------- | --- | ------------------------------------ |
 | `and`    | `$a and $b` | TRUE if both `$a` and `$b` are TRUE.                 |
 | `or`     | `$a or $b`  | TRUE if either `$a` or `$b` is TRUE.                 |
-| `xor`    | `$a xor $b` | TRUE if either `$a` or `$b` is TRUE, but *not both*. |
-| `not`    | `!$a`       | TRUE if `$a` is *not* TRUE.                          |
+| `xor`    | `$a xor $b` | TRUE if either `$a` or `$b` is TRUE, but _not both_. |
+| `not`    | `!$a`       | TRUE if `$a` is _not_ TRUE.                          |
 | `and`    | `$a && $b`  | TRUE if both `$a` and `$b` are TRUE.                 |
-| `or`     | `$a || $b`  | TRUE if either `$a` or `$b` is TRUE.                 |
+| `or`     | `$a         |                                                      | $b` | TRUE if either `$a` or `$b` is TRUE. |
 
 ### Ternary Operator
 
@@ -334,7 +334,7 @@ if $a > $b
 if $a == $b
     return 0;
 if $a < $b
-    return 0;
+    return -1;
 ```
 
 ### `If` - `Elseif` - `Else`
@@ -535,7 +535,7 @@ $foo = function (type $parameter) use ($average) {
 
 ### Union Types (PHP 8)
 
-**Union types** are a collection of two or more types which indicate that *either* one of those *can be used*.
+**Union types** are a collection of two or more types which indicate that _either_ one of those _can be used_.
 
 ```php
 public function foo(Foo|Bar $input): int|float;
@@ -560,8 +560,8 @@ foo(
 
 ### Scope & Visibility
 
-`public` methods and attrivutes are visible to anyone (*default*).
-`private` methods and attrivutes are visible only inside the class in which are declared.
+`public` methods and attributes are visible to anyone (_default_).
+`private` methods and attributes are visible only inside the class in which are declared.
 `protected` methods and attributes are visible only to child classes.
 
 `final` classes cannot be extended.
@@ -595,15 +595,15 @@ class ClassName
     }
 }
 
-$object = new ClassName;  # case insensitive (CLASSNAME, CLassName, classname)
-$object->attrivute = value;
+$object = new ClassName;  # case insensitive (CLASSNAME, ClassName, classname)
+$object->attribute = value;
 $object->func();
 $object::CONSTANT;
 
 $var = $object;  # copy by reference
 $var = clone $object  # copy by value
 
-$object instanceof ClassName  // check typo of the object
+$object instanceof ClassName  // check type of the object
 ```
 
 ### Static classes, attributes & methods
@@ -698,10 +698,10 @@ class ClassName implements InterfaceName {
 
 ### Traits
 
-`Traits` allows the riutilization of code inside different classes without links of inheritance.
-It can be used to mitigate the problem of *multiple inheritance*, which is absent in PHP.
+`Traits` allows the reutilization of code inside different classes without links of inheritance.
+It can be used to mitigate the problem of _multiple inheritance_, which is absent in PHP.
 
-In case of functions name conflic it's possible to use `insteadof` to specify which function to use. It's also possible to use an *alias* to resolve the conflicts.
+In case of functions name conflic it's possible to use `insteadof` to specify which function to use. It's also possible to use an _alias_ to resolve the conflicts.
 
 ```php
 trait TraitName {
@@ -784,7 +784,7 @@ hash($algorithm, $data);
 
 Algorithms currently supported:
 
-- **PASSWORD_DEFAULT** - Use the *bcrypt* algorithm (default as of PHP 5.5.0). Note that this constant is designed to change over time as new and stronger algorithms are added to PHP.
+- **PASSWORD_DEFAULT** - Use the _bcrypt_ algorithm (default as of PHP 5.5.0). Note that this constant is designed to change over time as new and stronger algorithms are added to PHP.
 - **PASSWORD_BCRYPT** - Use the **CRYPT_BLOWFISH** algorithm to create the hash. This will produce a standard `crypt()` compatible hash using the "$2y$" identifier. The result will always be a 60 character string, or FALSE on failure.
 - **PASSWORD_ARGON2I** - Use the **Argon2i** hashing algorithm to create the hash. This algorithm is only available if PHP has been compiled with Argon2 support.
 - **PASSWORD_ARGON2ID** - Use the **Argon2id** hashing algorithm to create the hash. This algorithm is only available if PHP has been compiled with Argon2 support.
@@ -792,11 +792,11 @@ Algorithms currently supported:
 **Supported options for PASSWORD_BCRYPT**:
 
 - **salt** (string) - to manually provide a salt to use when hashing the password. Note that this will override and prevent a salt from being automatically generated.
-    If omitted, a random salt will be generated by password_hash() for each password hashed. This is the intended mode of operation.
-    **Warning**: The salt option has been deprecated as of PHP 7.0.0. It is now preferred to simply use the salt that is generated by default.
+  If omitted, a random salt will be generated by password_hash() for each password hashed. This is the intended mode of operation.
+  **Warning**: The salt option has been deprecated as of PHP 7.0.0. It is now preferred to simply use the salt that is generated by default.
 
 - **cost** (integer) - which denotes the algorithmic cost that should be used. Examples of these values can be found on the crypt() page.
-    If omitted, a default value of 10 will be used. This is a good baseline cost, but you may want to consider increasing it depending on your hardware.
+  If omitted, a default value of 10 will be used. This is a good baseline cost, but you may want to consider increasing it depending on your hardware.
 
 **Supported options for PASSWORD_ARGON2I and PASSWORD_ARGON2ID**:
 
@@ -868,19 +868,18 @@ error_log(sprintf("[%s] Error: _", date("Y-m-d h:i:s")), 3, "path\\log.log")
 
 ## Exception Handling
 
-PHP offers the possibility to handle errors with the *exception model*.
+PHP offers the possibility to handle errors with the _exception model_.
 
 ```php
 try {
     // dangerous code
-
 } catch(ExcpetionType1 | ExceptionType2 $e) {
     printf("Errore: %s", $e->getMessage());
 } catch(Excpetion $e) {
     // handle or report exception
 }
 
-throw new ExceptionType("message");  // trow an exception
+throw new ExceptionType("message");  // throw an exception
 ```
 
 All exceptions in PHP implement the interface `Throwable`.

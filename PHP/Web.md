@@ -25,9 +25,9 @@ Handling of HTTP requests happend using the following global variables:
 ```html
 <!-- method MUST BE post -->
 <!-- must have enctype="multipart/form-data" attribute -->
-<form name="invio_file" action="file.php" method="POST" enctype="multipart/form-data">
+<form name="<name>" action="file.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="photo" />
-    <input type="submit" name="Invio" />
+    <input type="submit" name="Send" />
 </form>
 ```
 
@@ -36,13 +36,13 @@ Files in `$_FILES` are memorized in a system temp folder. They can be moved with
 ```php
 if (! isset($_FILES['photo']['error'])) {
     http_response_code(400);  # send a response code
-    echo'<h1>Non è stato inviato nessun file</h1>';
+    echo'<h1>No file has been sent</h1>';
     exit();
 }
 
 if ($_FILES['photo']['error'] != UPLOAD_ERR_OK) {
         http_response_code(400);
-        echo'<h1>Il file inviato non è valido</h1>';
+        echo'<h1>The sent file is invalid</h1>';
         exit();
 }
 
@@ -50,11 +50,11 @@ $path = '/path/to/' . $_FILES['photo']['name'];
 
 if (! move_uploaded_file($_FILES['photo']['tmp_name'], $path)) {
     http_response_code(400);
-    echo'<h1>Errore durante la scrittura del file</h1>';
+    echo'<h1>Error while writing the file</h1>';
     exit();
 }
 
-echo'<h1>File inviato con successo</h1>';
+echo'<h1>File succesfully sent</h1>';
 ```
 
 ### `$_SERVER`
@@ -80,7 +80,7 @@ $_SERVER["HTTP_USER_AGENT"];
 
 All sites **must** have a page for the consensus about using cookies.
 
-**Cookies** are HTTP headers used to memorize key-value info *on the client*. They are sent from the server to the client to keep track of info on the user that is visting the website.
+**Cookies** are HTTP headers used to memorize key-value info *on the client*. They are sent from the server to the client to keep track of info on the user that is visting the website.  
 When a client recieves a HTTP response that contains `Set-Cookie` headers it has to memorize that info and reuse them in future requests.
 
 ```http
@@ -127,7 +127,8 @@ if(isset($_COOKIE["cookie_name"])) {}
 
 PHP generates a cookie named `PHPSESSID` containing a *session identifier* and an *hash* generated from `IP + timestamp + pseudo-random number`.
 
-To use the session it's necesary to recall the function `session_start()` at the beginning of a PHP script that deals with sesssions; after starting the session information in be savend in the `$_SESSION` array.
+To use the session it's necesary to recall the function `session_start()` at the beginning of a PHP script that deals with sessions.  
+After starting the session information in be savend in the `$_SESSION` array.
 
 ```php
 $_SESSION["key"] = value;  // save data in session file (serialized data)

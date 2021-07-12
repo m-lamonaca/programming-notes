@@ -15,7 +15,6 @@ class Foo
 ## Dependency Injection Container
 
 The **Dependecy Injection Container** (DIC) allow to archive all the dependencies in a single `Container` class. Some offer automatic resolution of the dependecies.
-Containers aid the developer in the handling of the dependecies: get/has/set.
 
 ## [PHP-DI](https://php-di.org/)
 
