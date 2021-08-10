@@ -1209,16 +1209,6 @@ type OutMethod(type param1, out type param2){}
 OutMethod(arg1, out var arg2);  // create out variable on the fly
 ```
 
-<!-- TODO: ### References to variables
-
-**Constraints**:
-
-```cs
-string _string = null;  // init string object
-ref string referenceToString = ref _string;  // referenceToString points to _string, it's a reference
-referenceToString = "value";  // data goes through referenceToString and into _string
-``` -->
-
 ### Returning Multiple Values with Tuples
 
 **Must** be C# 7+.  
@@ -2158,12 +2148,6 @@ Delegate<Type> lambda = (Type input) => { return <expr>; };
 
 Type variable = delegate { <expression>; };  // ignore arguments of the method passed to the delegate
 ```
-
-### Captured Variables
-
-<!-- TODO: page 396 of Ian Griffiths - Programming C%23 8.0_Build Cloud, Web, and Desktop Applications -->
-
-<!-- todo: static anonymous functions -->
 
 ---
 
