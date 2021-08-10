@@ -33,7 +33,7 @@ to native code later.
 ```cs
 // comment
 /* multi line comment */
-// / single line xml comment (docstring)
+/// single line xml comment (docstring)
 /** multi line xml string (docsting) */
 ```
 
@@ -2091,13 +2091,13 @@ Any method from any accessible class or struct that matches the delegate type ca
 This makes it possible to programmatically change method calls, and also plug new code into existing classes.
 
 ```cs
-// dedlegate definition
-public delegate Type DelegateName(Type param, ...);  // can take any method with specidied type params and return type
-public delegate bool Predicate<in T>(T obj);
+// delegate definition
+public delegate Type Delegate(Type param, ...);  // can take any method with specidied type params and return type
+public delegate Type Delegate<T>(T param);  // generic delegate
 
 // delegate creation
-var delegate = new Delegate<Type>(method);  // explicit creation, useful when compiler cannot infer delegate type
-Delegate<Type> delegate = method;  // implicit creation
+var delegate = new Delegate<Type>(Method);  // explicit creation, useful when compiler cannot infer delegate type
+Delegate<Type> delegate = Method;  // implicit creation
 ```
 
 ### [Multicast Delegates](https://docs.microsoft.com/en-us/dotnet/api/system.multicastdelegate)
@@ -2105,9 +2105,9 @@ Delegate<Type> delegate = method;  // implicit creation
 **Multicast Delegares** are delegates that can have more than one element in their invocation list.
 
 ```cs
-Delegate<Type> multicastDelegate = method1 + method2 + ...;  // multicast delegate creation
-multicastDelegate += method;  // add method to delegate
-multicastDelegate -= method;  // remove method from delegate
+Delegate<Type> multicastDelegate = Method1 + Method2 + ...;  // multicast delegate creation
+multicastDelegate += Method;  // add method to delegate
+multicastDelegate -= Method;  // remove method from delegate
 ```
 
 **NOTE**: Delegate removal behaves in a potentially surprising way if the delegate removed refers to multiple methods.  
@@ -2119,7 +2119,7 @@ Invoking a delegate with a single target method works as though the code had cal
 Invoking a multicast delegate is just like calling each of its target methods in turn.
 
 ```cs
-Delegate<Type> delegate = method;
+Delegate<Type> delegate = Method;
 
 delegate(args);  // use delegat as standard method
 delegate.DynamicInvoke(argsArray); // Dynamically invokes the method represented by the current delegate.
@@ -2175,10 +2175,11 @@ The class who raises events is called _Publisher_, and the class who receives th
 Typically, a publisher raises an event when some action occurred. The subscribers, who are interested in getting a notification when an action occurred, should register with an event and handle it.
 
 ```cs
+public delegate void EventDelegate(object sender, CustomEventArgs args);  // called on event trigger
+
 public class Publisher
 {
-
-    public event Delegate<Type> Event;
+    public event EventDelegate Event;
 
     // A derived class should always call the On<EventName> method of the base class to ensure that registered delegates receive the event.
     public virtual void OnEvent(Type param)
@@ -2193,19 +2194,15 @@ public class Publisher
 ```cs
 public class Subscriber
 {
-
     Publisher publisher = new Publisher();
 
     public Subscriber()
     {
-        publisher.Event += eh_Event;  // register handler (+= syntax)
+        publisher.OnEvent += Handler;  // register handler (+= syntax)
     }
 
-    // event handler, handles the event because it matches the signature of the Event delegate.
-    public Delegate<Type> eh_Event()
-    {
-        // act
-    }
+    // event handler, matches the signature of the Event delegate.
+    public Type Handler() { /* act */ }
 }
 ```
 
@@ -2232,22 +2229,17 @@ public class Subsciber
 
     public Subscriber()
     {
-        publisher.Event += eh_Event;  // register handler (+= syntax)
+        publisher.OnEvent += Handler;  // register handler (+= syntax)
     }
 
-    public void eh_Event(object sender, EventArgs e)
-    {
-        // act
-    }
+    public Type Handler(object sender, EventArgs e) { /* act */ }
 }
 ```
 
 ### Custom Event Args
 
 ```cs
-public class CustomEventArgs : EventArgs {
-    //  custom attributes
-}
+public class CustomEventArgs : EventArgs { }
 
 public class Publisher
 {
@@ -2265,13 +2257,10 @@ public class Subsciber
 
     public Subscriber()
     {
-        publisher.Event += eh_Event;  // register handler (+= syntax)
+        publisher.OnEvent += Handler;  // register handler (+= syntax)
     }
 
-    public void eh_Event(object sender, CustomEventArgs e)
-    {
-        // act
-    }
+    public Type Handler(object sender, CustomEventArgs e) { /* act */ }
 }
 ```
 
