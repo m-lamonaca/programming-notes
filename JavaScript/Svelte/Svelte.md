@@ -4,8 +4,10 @@
 npx degit sveltejs/template <project name>
 
 # set project to use typescript
-npm install --save-dev @tsconfig/svelte typescript svelte-preprocess svelte-check
 node scripts/setupTypeScript.js
+
+# or using vite
+npm init vite@latest
 ```
 
 ## App Entrypoint
