@@ -21,8 +21,8 @@ fn main() {  //program entry point
 
 The `Result` types are **enumerations**, often referred to as *enums*. An enumeration is a type that can have a *fixed set of values*, and those values are called the enum’s **variants**.
 
-For `Result`, the variants are `Ok` or `Err`.
-The `Ok` variant indicates the operation was *successful*, and inside `Ok` is the successfully generated value.
+For `Result`, the variants are `Ok` or `Err`.  
+The `Ok` variant indicates the operation was *successful*, and inside `Ok` is the successfully generated value.  
 The `Err` variant means the operation failed, and `Err` contains information about how or why the operation failed.
 
 The purpose of the `Result` types is to encode error-handling information.
@@ -51,7 +51,8 @@ io::stdin()  // read line from stdin
     .expect("Error Message");  // in case of errors return an error message (io::Result) -- NEEDED
 ```
 
-The `::` syntax in the `::new` line indicates that `new` is an **associated function** of the `String` type. An associated function is implemented on a type rather than on a particular instance of the type. Some languages call this a `static method`.
+The `::` syntax in the `::new` line indicates that `new` is an **associated function** of the `String` type.  
+An associated function is implemented on a type rather than on a particular instance of the type. Some languages call this a `static method`.
 
 The `&` indicates that this argument is a reference, which gives a way to let multiple parts of the code access one piece of data without needing to copy that data into memory multiple times.
 
@@ -71,10 +72,11 @@ const CONSTANT_NAME: type = value;  // constant must have the type annotation
 
 ### Shadowing
 
-It's possible declare a new variable with the *same name* as a previous variable, and the new variable *shadows* the previous variable.
+It's possible declare a new variable with the *same name* as a previous variable, and the new variable *shadows* the previous variable.  
 By using let, it's possible to perform a few transformations on a value but have the variable be immutable after those transformations have been completed.
 
-The other difference between *mut* and *shadowing* is that because we’re effectively creating a new variable when we use the let keyword again, we can change the type of the value but reuse the same name.
+The other difference between *mut* and *shadowing* is that because we’re effectively creating a new variable when we use the let keyword again,  
+we can change the type of the value but reuse the same name.
 
 ```rs
 let x: u32 = 10;
@@ -96,8 +98,8 @@ let x: i32 = 11;  // shadowing
 
 ### Floating-Point Types
 
-Rust also has two primitive types for floating-point numbers, which are numbers with decimal points.
-Rust’s floating-point types are `f32` and `f64`, which are 32 bits and 64 bits in size, respectively.
+Rust also has two primitive types for floating-point numbers, which are numbers with decimal points.  
+Rust’s floating-point types are `f32` and `f64`, which are 32 bits and 64 bits in size, respectively.  
 The default type is `f64` because on modern CPUs it’s roughly the same speed as `f32` but is capable of more precision.
 
 ### Numeric Operation
@@ -112,7 +114,7 @@ The default type is `f64` because on modern CPUs it’s roughly the same speed a
 
 ### Boolean Types
 
-Boolean types in Rust have two possible values: `true` and `false`.
+Boolean types in Rust have two possible values: `true` and `false`.  
 Booleans are one byte in size. The Boolean type in Rust is specified using `bool`.
 
 ### Character Types
@@ -136,7 +138,7 @@ s.push_str(""); // appending string literals
 
 ### Tuple Types
 
-A tuple is a general way of grouping together a number of values with a variety of types into one compound type.
+A tuple is a general way of grouping together a number of values with a variety of types into one compound type.  
 Tuples have a *fixed length*: once declared, they cannot grow or shrink in size.
 
 ```rs
@@ -149,7 +151,7 @@ tup.0;  // member access
 
 ### Array Types
 
-Every element of an array must have the *same type*. Arrays in Rust have a fixed length, like tuples.
+Every element of an array must have the *same type*. Arrays in Rust have a fixed length, like tuples.  
 An array isn’t as flexible as the `vector` type, though. A vector is a similar collection type provided by the standard library that *is allowed to grow or shrink in size*.
 
 ```rs
@@ -178,7 +180,7 @@ let slice =  &a[start..end];
 
 Rust code uses *snake_case* as the conventional style for function and variable names.
 
-Function definitions in Rust start with `fn` and have a set of parentheses after the function name.
+Function definitions in Rust start with `fn` and have a set of parentheses after the function name.  
 The curly brackets tell the compiler where the function body begins and ends.
 
 Rust doesn’t care where the functions are defined, only that they’re defined somewhere.
@@ -261,23 +263,23 @@ for i in (start..end) {  // (start..stop) is like python's range(start, stop)
 
 Ownership is Rust’s most unique feature, and it enables Rust to make memory safety guarantees without needing a garbage collector.
 
-All programs have to manage the way they use a computer’s memory while running.
-Some languages have garbage collection that constantly looks for no longer used memory as the program runs; in other languages, the programmer must explicitly allocate and free the memory.
-Rust uses a third approach: memory is managed through a system of ownership with a set of rules that the compiler checks at compile time.
+All programs have to manage the way they use a computer’s memory while running.  
+Some languages have garbage collection that constantly looks for no longer used memory as the program runs; in other languages, the programmer must explicitly allocate and free the memory.  
+Rust uses a third approach: memory is managed through a system of ownership with a set of rules that the compiler checks at compile time.  
 None of the ownership features slow down your program while it’s running.
 
 ### Stack & Heap
 
 Both the stack and the heap are parts of memory that are available to your code to use at runtime, but they are structured in different ways.
 
-The *stack* stores values in the order it gets them and removes the values in the opposite order. This is referred to as *last in, first out*.
+The *stack* stores values in the order it gets them and removes the values in the opposite order. This is referred to as *last in, first out*.  
 Adding data is called *pushing* onto the stack, and removing data is called *popping* off the stack.
 
 All data stored on the stack must have a known, fixed size. Data with an unknown size at compile time or a size that might change must be stored on the heap instead.
 
 The heap is less organized: when you put data on the heap, you request a certain amount of space. The memory allocator finds an empty spot in the heap that is big enough, marks it as being in use, and returns a **pointer**, which is the address of that location. This process is called *allocating on the heap* and is sometimes abbreviated as just *allocating*.
 
-Pushing to the stack is faster than allocating on the heap because the allocator never has to search for a place to store new data; that location is always at the top of the stack.
+Pushing to the stack is faster than allocating on the heap because the allocator never has to search for a place to store new data; that location is always at the top of the stack.  
 Comparatively, allocating space on the heap requires more work, because the allocator must first find a big enough space to hold the data and then perform bookkeeping to prepare for the next allocation.
 
 Accessing data in the heap is slower than accessing data on the stack because you have to follow a pointer to get there. Contemporary processors are faster if they jump around less in memory.
@@ -292,15 +294,15 @@ Keeping track of what parts of code are using what data on the heap, minimizing 
 
 ### Ways Variables and Data Interact
 
-A "shallow copy" of a variable allocated on the heap (C#'s reference value) the original variable goes out of scope and only the "copy" remains.
+A "shallow copy" of a variable allocated on the heap (C#'s reference value) the original variable goes out of scope and only the "copy" remains.  
 A "deep copy" (`var.clone()`) makes a copy of the data in the new variable without make the original fall out of scope.
 
 When a variable goes out of scope, Rust calls a special function for us. This function is called `drop`, and it’s where the code to return the memory is located.
 
-Rust has a special annotation called the `Copy` trait that we can place on types that are stored on the stack.
+Rust has a special annotation called the `Copy` trait that we can place on types that are stored on the stack.  
 If a type has the `Copy` trait, an older variable is still usable after assignment.
 
-Rust won’t let us annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.
+Rust won’t let us annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.  
 If the type needs something special to happen when the value goes out of scope and we add the `Copy` annotation to that type, we’ll get a compile-time error.
 
 ```rs
@@ -365,11 +367,11 @@ fn takes_and_gives_back(a_string: String) -> String { // a_string comes into sco
 
 *Mutable references* have one big restriction: you can have *only one* mutable reference to a particular piece of data in a particular scope.
 
-The benefit of having this restriction is that Rust can prevent **data races** at compile time.
+The benefit of having this restriction is that Rust can prevent **data races** at compile time.  
 A data race is similar to a race condition and happens when these three behaviors occur:
 
-- Two or more pointers access the same data at the same time.
-- At least one of the pointers is being used to write to the data.
+- Two or more pointers access the same data at the same time.  
+- At least one of the pointers is being used to write to the data.  
 - There’s no mechanism being used to synchronize access to the data.
 
 ```rs
@@ -388,8 +390,8 @@ fn borrow2(var: &mut Type) {
 
 A **struct**, or structure, is a custom data type that allows to name and package together multiple related values that make up a meaningful group.
 
-To define a struct enter the keyword struct and name the entire struct.
-A struct’s name should describe the significance of the pieces of data being grouped together.
+To define a struct enter the keyword struct and name the entire struct.  
+A struct’s name should describe the significance of the pieces of data being grouped together.  
 Then, inside curly brackets, define the names and types of the pieces of data, which we call *fields*.
 
 ```rs
@@ -518,7 +520,7 @@ impl Enum
 
 The `Option` type is used in many places because it encodes the very common scenario in which a value could be something or it could be nothing. Expressing this concept in terms of the type system means the compiler can check whether you’ve handled all the cases you should be handling; this functionality can prevent bugs that are extremely common in other programming languages.
 
-he `Option<T>` enum is so useful that it’s even included in the prelude; you don’t need to bring it into scope explicitly.
+he `Option<T>` enum is so useful that it’s even included in the prelude; you don’t need to bring it into scope explicitly.  
 In addition, so are its variants: you can use `Some` and `None` directly without the `Option::` prefix.
 
 ```rs
@@ -533,7 +535,8 @@ enum Option<T> {
 
 ### Match Expression + Comparing
 
-A **match expression** is made up of *arms*. An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm’s pattern.
+A **match expression** is made up of *arms*.  
+An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm’s pattern.  
 Rust takes the value given to match and looks through each arm’s pattern in turn.
 
 **NOTE**: `match` arms must be exaustive for compilation.
@@ -595,7 +598,3 @@ let v = vec![
     Enum::Text("TEST")
 ];
 ```
-
-### String
-
-### Hash Map

@@ -33,7 +33,7 @@ to native code later.
 ```cs
 // comment
 /* multi line comment */
-// / single line xml comment (docstring)
+/// single line xml comment (docstring)
 /** multi line xml string (docsting) */
 ```
 
@@ -1219,16 +1219,6 @@ type OutMethod(type param1, out type param2){}
 OutMethod(arg1, out var arg2);  // create out variable on the fly
 ```
 
-<!-- TODO: ### References to variables
-
-**Constraints**:
-
-```cs
-string _string = null;  // init string object
-ref string referenceToString = ref _string;  // referenceToString points to _string, it's a reference
-referenceToString = "value";  // data goes through referenceToString and into _string
-``` -->
-
 ### Returning Multiple Values with Tuples
 
 **Must** be C# 7+.  
@@ -2101,13 +2091,13 @@ Any method from any accessible class or struct that matches the delegate type ca
 This makes it possible to programmatically change method calls, and also plug new code into existing classes.
 
 ```cs
-// dedlegate definition
-public delegate Type DelegateName(Type param, ...);  // can take any method with specidied type params and return type
-public delegate bool Predicate<in T>(T obj);
+// delegate definition
+public delegate Type Delegate(Type param, ...);  // can take any method with specidied type params and return type
+public delegate Type Delegate<T>(T param);  // generic delegate
 
 // delegate creation
-var delegate = new Delegate<Type>(method);  // explicit creation, useful when compiler cannot infer delegate type
-Delegate<Type> delegate = method;  // implicit creation
+var delegate = new Delegate<Type>(Method);  // explicit creation, useful when compiler cannot infer delegate type
+Delegate<Type> delegate = Method;  // implicit creation
 ```
 
 ### [Multicast Delegates](https://docs.microsoft.com/en-us/dotnet/api/system.multicastdelegate)
@@ -2115,9 +2105,9 @@ Delegate<Type> delegate = method;  // implicit creation
 **Multicast Delegares** are delegates that can have more than one element in their invocation list.
 
 ```cs
-Delegate<Type> multicastDelegate = method1 + method2 + ...;  // multicast delegate creation
-multicastDelegate += method;  // add method to delegate
-multicastDelegate -= method;  // remove method from delegate
+Delegate<Type> multicastDelegate = Method1 + Method2 + ...;  // multicast delegate creation
+multicastDelegate += Method;  // add method to delegate
+multicastDelegate -= Method;  // remove method from delegate
 ```
 
 **NOTE**: Delegate removal behaves in a potentially surprising way if the delegate removed refers to multiple methods.  
@@ -2129,7 +2119,7 @@ Invoking a delegate with a single target method works as though the code had cal
 Invoking a multicast delegate is just like calling each of its target methods in turn.
 
 ```cs
-Delegate<Type> delegate = method;
+Delegate<Type> delegate = Method;
 
 delegate(args);  // use delegat as standard method
 delegate.DynamicInvoke(argsArray); // Dynamically invokes the method represented by the current delegate.
@@ -2181,12 +2171,6 @@ var f = int (x) => x;  // explicitly specifying the return type of an implicit i
 var f = static void (_) => Console.Write("Help");
 ```
 
-### Captured Variables
-
-<!-- TODO: page 396 of Ian Griffiths - Programming C%23 8.0_Build Cloud, Web, and Desktop Applications -->
-
-<!-- todo: static anonymous functions -->
-
 ---
 
 ## [Events](https://www.tutorialsteacher.com/csharp/csharp-event)
@@ -2197,10 +2181,11 @@ The class who raises events is called _Publisher_, and the class who receives th
 Typically, a publisher raises an event when some action occurred. The subscribers, who are interested in getting a notification when an action occurred, should register with an event and handle it.
 
 ```cs
+public delegate void EventDelegate(object sender, CustomEventArgs args);  // called on event trigger
+
 public class Publisher
 {
-
-    public event Delegate<Type> Event;
+    public event EventDelegate Event;
 
     // A derived class should always call the On<EventName> method of the base class to ensure that registered delegates receive the event.
     public virtual void OnEvent(Type param)
@@ -2215,19 +2200,15 @@ public class Publisher
 ```cs
 public class Subscriber
 {
-
     Publisher publisher = new Publisher();
 
     public Subscriber()
     {
-        publisher.Event += eh_Event;  // register handler (+= syntax)
+        publisher.OnEvent += Handler;  // register handler (+= syntax)
     }
 
-    // event handler, handles the event because it matches the signature of the Event delegate.
-    public Delegate<Type> eh_Event()
-    {
-        // act
-    }
+    // event handler, matches the signature of the Event delegate.
+    public Type Handler() { /* act */ }
 }
 ```
 
@@ -2254,22 +2235,17 @@ public class Subsciber
 
     public Subscriber()
     {
-        publisher.Event += eh_Event;  // register handler (+= syntax)
+        publisher.OnEvent += Handler;  // register handler (+= syntax)
     }
 
-    public void eh_Event(object sender, EventArgs e)
-    {
-        // act
-    }
+    public Type Handler(object sender, EventArgs e) { /* act */ }
 }
 ```
 
 ### Custom Event Args
 
 ```cs
-public class CustomEventArgs : EventArgs {
-    //  custom attributes
-}
+public class CustomEventArgs : EventArgs { }
 
 public class Publisher
 {
@@ -2287,13 +2263,10 @@ public class Subsciber
 
     public Subscriber()
     {
-        publisher.Event += eh_Event;  // register handler (+= syntax)
+        publisher.OnEvent += Handler;  // register handler (+= syntax)
     }
 
-    public void eh_Event(object sender, CustomEventArgs e)
-    {
-        // act
-    }
+    public Type Handler(object sender, CustomEventArgs e) { /* act */ }
 }
 ```
 
@@ -2900,6 +2873,53 @@ n << m
 n * 2^m
 ```
 
+## Unsafe Code & Pointers
+
+The `unsafe` keyword denotes an *unsafe context*, which is required for any operation involving pointers.
+
+In an unsafe context, several constructs are available for operating on pointers:
+
+- The `*` operator may be used to perform pointer indirection ([Pointer indirection][ptr_indirection]).
+- The `->` operator may be used to access a member of a struct through a pointer ([Pointer member access][ptr_member_acces]).
+- The `[]` operator may be used to index a pointer ([Pointer element access][ptr_elem_access]).
+- The `&` operator may be used to obtain the address of a variable ([The address-of operator][ptr_addr_of]).
+- The `++` and `--` operators may be used to increment and decrement pointers ([Pointer increment and decrement][ptr_incr_decr]).
+- The `+` and `-` operators may be used to perform pointer arithmetic ([Pointer arithmetic][ptr_math]).
+- The `==`, `!=`, `<`, `>`, `<=`, and `>=` operators may be used to compare pointers ([Pointer comparison][ptr_comparison]).
+- The `stackalloc` operator may be used to allocate memory from the call stack ([Stack allocation][stack_alloc]).
+
+The `fixed` statement prevents the garbage collector from relocating a movable variable. It's only permitted in an unsafe context.  
+It's also possible to use the fixed keyword to create fixed size buffers.
+
+The `fixed` statement sets a pointer to a managed variable and "pins" that variable during the execution of the statement.  
+Pointers to movable managed variables are useful only in a fixed context. Without a fixed context, garbage collection could relocate the variables unpredictably.  
+The C# compiler only allows to assign a pointer to a managed variable in a fixed statement.
+
+```cs
+unsafe Type UnsafeMethod() { /* unasfe context */ }
+// or
+unsafe
+{
+    // Using fixed allows the address of pt members to be taken,
+    // and "pins" pt so that it is not relocated.
+    Point pt = new Point();
+    fixed (int* p = &pt.x)
+    {
+        *p = 1;
+    }
+}
+```
+
+[ptr_indirection]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-indirection)
+[ptr_member_acces]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-member-access)
+[ptr_elem_access]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-element-access)
+[ptr_addr_of]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#the-address-of-operator)
+[ptr_incr_decr]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-increment-and-decrement)
+[ptr_math]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-arithmetic)
+[ptr_comparison]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-comparison)
+[stack_alloc]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#stack-allocation)
+[fixed_buffers]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#fixed-size-buffers)
+
 ### Native Memory
 
 ```cs
@@ -2911,4 +2931,15 @@ unsafe
 
     NativeMemory.Free(buffer);
 }
+```
+
+### DllImport & Extern
+
+The `extern` modifier is used to declare a method that is implemented externally.  
+A common use of the extern modifier is with the `DllImport` attribute when using Interop services to call into *unmanaged* code.  
+In this case, the method must also be declared as `static`.
+
+```cs
+[DllImport("avifil32.dll")]
+private static extern void AVIFileInit();
 ```

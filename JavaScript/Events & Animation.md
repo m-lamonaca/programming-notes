@@ -63,6 +63,9 @@ window.setInterval(callbackFunction, delayMilliseconds);
 //To stop an animation store the timer into a variable and clear it
 window.clearTimeout(timer);
 window.clearInterval(timer);
+
+// execute a callback at each frame
+window.requestAnimationFrame(callbackFunction);
 ```
 
 ### Element Position & dimensions

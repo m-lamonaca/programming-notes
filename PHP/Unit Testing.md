@@ -42,7 +42,8 @@ PHPUnit can be configured in a XML file called `phpunit.xml`:
 
 ### Test Structure
 
-**PHPUnit** tests are grouped in classes suffixed with `Test`. Each class *extends* `PHPUnit\Framework\TestCase`. A test is a method of a *test class* prefized with `test`.
+**PHPUnit** tests are grouped in classes suffixed with `Test`. Each class *extends* `PHPUnit\Framework\TestCase`.  
+A test is a method of a *test class* prefized with `test`.  
 PHPUnit is executed from the command line with `vendor/bin/phpunit  --colors`.
 
 ```php
@@ -120,16 +121,15 @@ public function testExceptionNotTrown()
 // same as
 
 /**
-* @dataProvider provideExamNames
 * @doesNotPerformAssertions
 */
-public function testAggiungiEsameNoExceptions(string $esame)
+public function testNoExceptions(string $esame)
 {
-    $this->studente->aggiungiEsame($esame);
+    // code that should succeed (exceptions will make the test fail)
 }
 ```
 
-### Test Setup & Teardown
+### Test Setup & Teardown (Example)
 
 ```php
 class ClassTest extends TestCase

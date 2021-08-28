@@ -257,6 +257,80 @@ Project
 }
 ```
 
+## State Management
+
+### Blazor WASM
+
+```cs
+// setup state singleton
+builder.Services.AddSingleton<StateContainer>();
+```
+
+```cs
+// StateContainer singleton
+using System;
+
+public class StateContainer
+{
+    private int _counter;
+
+    public string Property
+    {
+        get => _counter;
+        set
+        {
+            _counter = value;
+            NotifyStateChanged();  // will trigger StateHasChanged(), causing a render 
+        }
+    }
+
+    public event Action OnChange;
+
+    private void NotifyStateChanged() => OnChange?.Invoke();
+}
+```
+
+```cs
+// component that changes the state
+@inject StateContainer State
+
+// Delegate event handlers automatically trigger a UI render
+<button @onClick="@HandleClick">
+    Change State
+</button>
+
+@code {
+    private void HandleClick()
+    {
+        State.Property += 1;  // update state
+    }
+}
+```
+
+```cs
+// component that should be update on state change
+@implements IDisposable
+@inject StateContainer State
+
+<p>Property: <b>@State.Property</b></p>
+
+@code {
+
+    // StateHasChanged notifies the component that its state has changed. 
+    // When applicable, calling StateHasChanged causes the component to be rerendered.
+
+    protected override void OnInitialized()
+    {
+        State.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        State.OnChange -= StateHasChanged;
+    }
+}
+```
+
 ## Javascript/.NET Interop
 
 [Call Javascript from .NET](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet)  

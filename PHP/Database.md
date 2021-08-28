@@ -62,7 +62,7 @@ $stmt->execute();
 By default PDO converts all results into strings since it is a generic driver for multiple databases.
 Its possible to disable this behaviour setting `PDO::ATTR_STRINGIFY_FETCHES` and `PDO::ATTR_EMULATE_PREPARES` as `false`.
 
-**NOTE**: `FETCH_OBJ` abd `FETCH_CLASS` return classes and don't have this bheaviour.
+**NOTE**: `FETCH_OBJ` abd `FETCH_CLASS` return classes and don't have this behaviour.
 
 ```php
 pdo->setAttribute()
@@ -82,7 +82,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute([':marker' => value]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt->debugDumpParams();  # print the SQK query that has been sent to the database
+$stmt->debugDumpParams();  # print the SQL query that has been sent to the database
 ```
 
 ## [SQLite3](https://www.php.net/manual/en/book.sqlite3.php)

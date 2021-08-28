@@ -7,7 +7,7 @@ The document object is *globally available* in the browser. It allows to access 
 
 ### Selecting Nodes from the DOM
 
-`getElementById()` and `querySelector()` return a single element.
+`getElementById()` and `querySelector()` return a single element.  
 `getElementsByClassName()`, `getElementsByTagName()`, and `querySelectorAll()` return a collection of elements.
 
 ```js
@@ -16,14 +16,14 @@ Javascript
 var node = document.getElementById('id');
 
 // By Tag Name
-var node = document.getElementsByTagName('tag');
+var nodes = document.getElementsByTagName('tag');
 
 // By Class Name
-var node = document.getElementsByClassName('class');
+var nodes = document.getElementsByClassName('class');
 
 // By CSS Query
 var node = document.querySelector('css-selector');
-var node = document.querySelectorAll('css-selector');
+var nodes = document.querySelectorAll('css-selector');
 ```
 
 ## Manupulating the DOM
@@ -119,7 +119,7 @@ document.createTextNode('text');
 domNode.appendChild(childToAppend);  // insert childTaAppend after domNode
 
 // insert node before domNode
-domNode.insertBEfore(childToInsert, domnode);
+domNode.insertBefore(childToInsert, domnode);
 domNode.parentNode.insertBefore(childToInsert, nodeAfterChild);
 
 // remove a node

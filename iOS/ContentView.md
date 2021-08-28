@@ -4,17 +4,17 @@ A page of the app.
 
 ## Views, Functions & Variables
 
-`@State` allows the view to respond to every change of the anotated variable. This variables get initialized by the view in which they belong and are not "recieved" from external objects.
+`@State` allows the view to respond to every change of the anotated variable. This variables get initialized by the view in which they belong and are not "recieved" from external objects.  
 SwiftUI memorizes internally the value of the `@State` property and updates the view every time it changes.
 
-`@Binding` is used for properties that are passed to the view from another. The recieveing view can read the binfing value, react to changes and modify it's value.
+`@Binding` is used for properties that are passed to the view from another. The recieveing view can read the binfing value, react to changes and modify it's value.  
 `@Binding` variables are passed with the prefix `$`,
 
 ### Simple View
 
 - Simplest view.
 - Permits the visualization of simple UIs.
-- Constituited bay a body of type `View`
+- Constituited by a body of type `View`
 
 ```swift
 struct SimpleViewName: View {
@@ -58,8 +58,8 @@ Most common view to present array contents, it automatically hendles the scrolli
 I can be inegrate d in a `NavigaionView` to handle a `DeailView` of a selectted item in the list.
 
 The basic object that creates the table view is the `List()`. It's job is to create a "cell" for every element in the array.
-The array can be filttered with a *search bar*.
-The array elements can be grouped with the `Section()` object that groups cells under a common name un the table.
+The array can be filtered with a *search bar*.
+The array elements can be grouped with the `Section()` object that groups cells under a common name in the table.
 
 ```swift
 // view name can be any
@@ -83,7 +83,7 @@ struct TableCell: View {
 }
 ```
 
-Every cell can have a link to visualize he details of the selected object. This is done by using `NavigationView` and `NavigationLink`.
+Every cell can have a link to visualize the details of the selected object. This is done by using `NavigationView` and `NavigationLink`.
 
 The `NavigationView` contains the list and the property `.navigationBarTitle()` sets the view title.
 It's possible to add other controls in the top part of the view (buttons, ...) using the property `.navigationBarItems()`.
@@ -129,7 +129,7 @@ struct TabBarView: View {
 }
 ```
 
-The `TabBar` conostruction is made applying the `.tabItem{}` parameter to the object or page that the tab will link to.
+The `TabBar` construction is made applying the `.tabItem{}` parameter to the object or page that the tab will link to.
 It's possible to specify up to 5 `.tabItem{}` elements that will be displayed singularly in the `TabBar`.
 
 Fron the 6th elemnet onwards, the first 4 elemens will appear normally, meanwhile the 5th will become a "more" element that will open a `TableView` with the list of the other `.tabItem{}` elements. This page permis to define which elements will be visible.

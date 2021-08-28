@@ -11,7 +11,7 @@ https.request(
         method: "GET",  // POST, ...
         path: "/page/?param=value"
     }, 
-    (response) => {  // respnse is IncomingMessage
+    (response) => {  // response is IncomingMessage
         // do stuff
     }
 ).end();
