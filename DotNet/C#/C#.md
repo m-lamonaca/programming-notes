@@ -2850,3 +2850,61 @@ n << m
 // same as
 n * 2^m
 ```
+
+## Unsafe Code & Pointers
+
+The `unsafe` keyword denotes an *unsafe context*, which is required for any operation involving pointers.
+
+In an unsafe context, several constructs are available for operating on pointers:
+
+- The `*` operator may be used to perform pointer indirection ([Pointer indirection][ptr_indirection]).
+- The `->` operator may be used to access a member of a struct through a pointer ([Pointer member access][ptr_member_acces]).
+- The `[]` operator may be used to index a pointer ([Pointer element access][ptr_elem_access]).
+- The `&` operator may be used to obtain the address of a variable ([The address-of operator][ptr_addr_of]).
+- The `++` and `--` operators may be used to increment and decrement pointers ([Pointer increment and decrement][ptr_incr_decr]).
+- The `+` and `-` operators may be used to perform pointer arithmetic ([Pointer arithmetic][ptr_math]).
+- The `==`, `!=`, `<`, `>`, `<=`, and `>=` operators may be used to compare pointers ([Pointer comparison][ptr_comparison]).
+- The `stackalloc` operator may be used to allocate memory from the call stack ([Stack allocation][stack_alloc]).
+
+The `fixed` statement prevents the garbage collector from relocating a movable variable. It's only permitted in an unsafe context.  
+It's also possible to use the fixed keyword to create fixed size buffers.
+
+The `fixed` statement sets a pointer to a managed variable and "pins" that variable during the execution of the statement.  
+Pointers to movable managed variables are useful only in a fixed context. Without a fixed context, garbage collection could relocate the variables unpredictably.  
+The C# compiler only allows to assign a pointer to a managed variable in a fixed statement.
+
+```cs
+unsafe Type UnsafeMethod() { /* unasfe context */ }
+// or
+unsafe
+{
+    // Using fixed allows the address of pt members to be taken,
+    // and "pins" pt so that it is not relocated.
+    Point pt = new Point();
+    fixed (int* p = &pt.x)
+    {
+        *p = 1;
+    }
+}
+```
+
+[ptr_indirection]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-indirection)
+[ptr_member_acces]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-member-access)
+[ptr_elem_access]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-element-access)
+[ptr_addr_of]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#the-address-of-operator)
+[ptr_incr_decr]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-increment-and-decrement)
+[ptr_math]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-arithmetic)
+[ptr_comparison]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-comparison)
+[stack_alloc]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#stack-allocation)
+[fixed_buffers]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#fixed-size-buffers)
+
+### DllImport & Extern
+
+The `extern` modifier is used to declare a method that is implemented externally.  
+A common use of the extern modifier is with the `DllImport` attribute when using Interop services to call into *unmanaged* code.  
+In this case, the method must also be declared as `static`.
+
+```cs
+[DllImport("avifil32.dll")]
+private static extern void AVIFileInit();
+```
