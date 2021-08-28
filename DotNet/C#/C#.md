@@ -175,26 +175,26 @@ When your code uses the variable, the .NET Runtime seemlessly looks up the addre
 
 ### Integral Numeric Types
 
-| Keyword  | System Type      | Example | Bit/Byte | Min Value                  | Max Value                  |
-|:--------:|:----------------:|:-------:|:--------:|----------------------------|----------------------------|
-| `sbyte`  | `System.SByte`   |         | 8 bit    | -128                       | 127                        |
-| `byte`   | `System.Byte`    |         | 8 bit    | 0                          | 255                        |
-| `short`  | `System.Int16`   |         | 16 bit   | -32'786                    | 32'767                     |
-| `ushort` | `System.UInt16`  |         | 16 bit   | 0                          | 65'535                     |
-| `int`    | `System.Int32`   | 123     | 32 bit   | -2'47'483'648              | 2'147'483'647              |
-| `uint`   | `System.UInt32`  | 123u    | 32 bit   | 0                          | 4'294'967'296              |
-| `nint`   | `System.IntPtr`  |         | Arch     | 0                          | 18'446'744'073'709'551'615 |
-| `nuint`  | `System.UIntPtr` |         | Arch     | -9'223'372'036'854'775'808 | 9'223'372'036'854'775'807  |
-| `long`   | `System.Int64`   | 123l    | 64 bit   | -9'223'372'036'854'775'808 | 9'223'372'036'854'775'807  |
-| `ulong`  | `System.UInt64`  | 123ul   | 64 bit   | 0                          | 18'446'744'073'709'551'615 |
+| Keyword  |   System Type    | Example | Bit/Byte | Min Value                  | Max Value                  |
+| :------: | :--------------: | :-----: | :------: | -------------------------- | -------------------------- |
+| `sbyte`  |  `System.SByte`  |         |  8 bit   | -128                       | 127                        |
+|  `byte`  |  `System.Byte`   |         |  8 bit   | 0                          | 255                        |
+| `short`  |  `System.Int16`  |         |  16 bit  | -32'786                    | 32'767                     |
+| `ushort` | `System.UInt16`  |         |  16 bit  | 0                          | 65'535                     |
+|  `int`   |  `System.Int32`  |   123   |  32 bit  | -2'47'483'648              | 2'147'483'647              |
+|  `uint`  | `System.UInt32`  |  123u   |  32 bit  | 0                          | 4'294'967'296              |
+|  `nint`  | `System.IntPtr`  |         |   Arch   | 0                          | 18'446'744'073'709'551'615 |
+| `nuint`  | `System.UIntPtr` |         |   Arch   | -9'223'372'036'854'775'808 | 9'223'372'036'854'775'807  |
+|  `long`  |  `System.Int64`  |  123l   |  64 bit  | -9'223'372'036'854'775'808 | 9'223'372'036'854'775'807  |
+| `ulong`  | `System.UInt64`  |  123ul  |  64 bit  | 0                          | 18'446'744'073'709'551'615 |
 
 ### Floating-Point Numeric Types
 
-| Keyword   | System Types     | Example | Bit/Byte | Digits | Min Value                               | Max Value                              |
-|:---------:|:----------------:|:-------:|:--------:|:------:|-----------------------------------------|----------------------------------------|
-| `float`   | `System.Single`  | 3.14f   | 4 byte   | 6-9    | -3.402823 E+38                          | 3.402823 E+38                          |
-| `double`  | `System.Double`  | 3.14    | 8 byte   | 15-17  | -1.79769313486232 E+308                 | 1.79769313486232 E+308                 |
-| `decimal` | `System.Decimal` | 3.14m   | 16 byte  | 28-29  | -79'228'162'514'264'337'593'543'950'335 | 79'228'162'514'264'337'593'543'950'335 |
+|  Keyword  |   System Types   | Example | Bit/Byte | Digits | Min Value                               | Max Value                              |
+| :-------: | :--------------: | :-----: | :------: | :----: | --------------------------------------- | -------------------------------------- |
+|  `float`  | `System.Single`  |  3.14f  |  4 byte  |  6-9   | -3.402823 E+38                          | 3.402823 E+38                          |
+| `double`  | `System.Double`  |  3.14   |  8 byte  | 15-17  | -1.79769313486232 E+308                 | 1.79769313486232 E+308                 |
+| `decimal` | `System.Decimal` |  3.14m  | 16 byte  | 28-29  | -79'228'162'514'264'337'593'543'950'335 | 79'228'162'514'264'337'593'543'950'335 |
 
 The static fields and methods of the `MathF` class correspond to those of the `Math` class, except that their parameters are of type `Single` rather than `Double`, and they return `Single` rather than `Double` values.
 
@@ -538,7 +538,7 @@ Type? variable = null;  // the variable can also contain the NULL value (nullabl
 // same as
 variable?.property  // if variable != null access it's property (null conditional), return null otherwise
 
-if (variable != null) 
+if (variable != null)
 {
     return variable;
 }
@@ -558,7 +558,8 @@ variable is null
 varaible is not null
 
 // null parameter checking [C# 10]
-Method(Type argu!!) {}  // will throwArgumentNullExceptionif arg is null
+Method(Type arg!!) {}  // will throwArgumentNullException if arg is null
+ArgumentNullException.ThrowIfNull(obj);
 ```
 
 ### Nullable Attributes
@@ -739,20 +740,20 @@ Both of these aredesigned primarily for code generation scenarios, although they
 ### Logical Operators
 
 | Operator | Operation                                             | Name             |
-| -------- | ----------------------------------------------------- | ---------------- |
+| -------- | ----------------------------------------------------- | ---------------- | ----------------------------------- |
 | `~`x     | bitwise NOT                                           |
 | x `&` y  | bitwise AND                                           |
 | x `^` y  | bitwise XOR                                           |
-| x `|` y  | bitwise OR                                            |
+| x `      | ` y                                                   | bitwise OR       |
 | x `&&` y | evaluate `y` only if `x` is `true`                    |
-| x `||` y | evaluate `y` only if `x` is `false`                   |
+| x `      |                                                       | ` y              | evaluate `y` only if `x` is `false` |
 | x `??` y | evaluates to `y` only if `x` is `null`, `x` otherwise | Null coalescing  |
 | x`?.`y   | stop if `x == null`, evaluate `x.y` otherwise         | Null conditional |
 
 ### Assignement
 
 | Operator  | Operation              |
-| --------- | ---------------------- |
+| --------- | ---------------------- | ----- | --- |
 | x `+=` y  | x = x + y              |
 | x `-=` y  | x = x - y              |
 | x `*=` y  | x = x \* y             |
@@ -761,7 +762,7 @@ Both of these aredesigned primarily for code generation scenarios, although they
 | x `<<=` y | x = x << y             |
 | x `>>=` y | x = x >> y             |
 | x `&=` y  | x = x & y              |
-| x `|=` y  | x = x                  | y |
+| x `       | =` y                   | x = x | y   |
 | x `^=` y  | x = x ^ y              |
 | x `??=` y | if (x == null) {x = y} |
 
@@ -931,8 +932,8 @@ foreach (type item in iterabile)
 }
 ```
 
-**NOTE**: Due to the use of an *iterator*, the variable declared in a foreach statement cannot be used to modify the value of the current item.  
-**NOTE**: From C# 9 it's possible to implement `GetEnumerator()` as an *extensione method* making enumrable an class that normally isn't.
+**NOTE**: Due to the use of an _iterator_, the variable declared in a foreach statement cannot be used to modify the value of the current item.  
+**NOTE**: From C# 9 it's possible to implement `GetEnumerator()` as an _extensione method_ making enumrable an class that normally isn't.
 
 Example:
 
@@ -1077,7 +1078,7 @@ public class CustomException : Exception  // must derive from Excpetion (either 
 
 ## Enums
 
-An enumeration type (or enum type) is a value type defined by a set of **named constants** of the underlying *integral numeric* type (`int`, `long`, `byte`, ...).  
+An enumeration type (or enum type) is a value type defined by a set of **named constants** of the underlying _integral numeric_ type (`int`, `long`, `byte`, ...).  
 Consecutive names increase the value by one.
 
 ```cs
@@ -1414,7 +1415,7 @@ class Class
     // static constructor, not called explicitly, has no arguments
     // triggered by one of two events, whichever occurs first: creating an instance, or accessing any static member of the class.
     // since it's static and takes no arguments there can be at most one for each class
-    static Class() { 
+    static Class() {
         // place to init static fields
     }
 
@@ -1493,7 +1494,7 @@ class Class
 ```
 
 **NOTE**: The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.  
-Because `init` accessors can only be called during initialization, they are allowed to *mutate* `readonly` fields of the enclosing class, just like in a constructor.
+Because `init` accessors can only be called during initialization, they are allowed to _mutate_ `readonly` fields of the enclosing class, just like in a constructor.
 
 **NOTE**: creating at least one constructor hides the one provided by default (w/ zero parameters).
 
@@ -1630,7 +1631,7 @@ Members marked as `abstract` must be implemented by non-abstract classes that de
 - An `abstract` class may contain `abstract` methods and accessors.
 - It is not possible to modify an `abstract` class with the `sealed` modifier because the two modifiers have opposite meanings.
   The `sealed` modifier prevents a class from being inherited and the `abstract` modifier requires a class to be inherited.
-- A *non-abstract* class derived from an `abstract` class must include actual implementations of all inherited `abstract` methods and accessors.
+- A _non-abstract_ class derived from an `abstract` class must include actual implementations of all inherited `abstract` methods and accessors.
 
 **NOTE**: Use the `abstract` modifier in a method or property declaration to indicate that the method or property does not contain implementation.
 
@@ -1640,7 +1641,7 @@ Members marked as `abstract` must be implemented by non-abstract classes that de
 - `abstract` method declarations are only permitted in `abstract` classes.
 
 - Because an `abstract` method declaration provides no actual implementation, there is no method body; the method declaration simply ends with a semicolon and there are no curly braces following the signature.
-- The implementation is provided by a method *override*, which is a member of a non-abstract class.
+- The implementation is provided by a method _override_, which is a member of a non-abstract class.
 - It is an error to use the `static` or `virtual` modifiers in an `abstract` method declaration.
 
 `abstract` properties behave like `abstract` methods, except for the differences in declaration and invocation syntax.
@@ -1663,7 +1664,7 @@ public class Derived : Abstract
     public override Type Propery
     {
         // new behaviour
-        get => <expr>;  
+        get => <expr>;
         set => <expr>;
     }
 
@@ -1830,7 +1831,7 @@ C# 8.0 adds the ability to define default implementations for some or all method
 ```cs
 // can only be public or internal if not nested, any accessibility otherwise
 public interface IContract
-{   
+{
     // properties and fields
     Type Property { get; set; }
 
@@ -2303,10 +2304,10 @@ public class Subsciber
 In .NET the proper term for a software component is an **assembly**, and it is typically a `.dll` or `.exe` file.  
 Occasionally, an assembly will be split into multiple files, but even then it is an indivisible unit of deployment: it has to be wholly available to the runtime, or not at all.
 
-Assemblies are an important aspect of the type system, because each type is identified not just by its *name* and *namespace*, but also by its containing *assembly*.  
+Assemblies are an important aspect of the type system, because each type is identified not just by its _name_ and _namespace_, but also by its containing _assembly_.  
 Assemblies provide a kind of encapsulation that operatesat a larger scale than individual types, thanks to the `internal` accessibility specifier, which works at the assembly level.
 
-The runtime provides an *assembly loader*, which automatically finds and loads the assemblies a program needs.  
+The runtime provides an _assembly loader_, which automatically finds and loads the assemblies a program needs.  
 To ensure that the loader can find the right components, assemblies have structured names that include version information, and they can optionally contain a globally unique element to prevent ambiguity.
 
 ### Anatomy of an Assembly
@@ -2317,7 +2318,7 @@ The C# compiler produces an assembly as its output, with an extension of either 
 Tools that understand the PE file format will recognize a .NET assembly as avalid, but rather dull, PE file.  
 The CLR essentially uses PE files as containers for a .NET-specific data format, so to classic Win32 tools, a C# DLL will not appear to export any APIs.
 
-With .NET Core 3.0 or later, .NET  assemblies won't be built with  an  extension of `.exe`.  
+With .NET Core 3.0 or later, .NET assemblies won't be built with an extension of `.exe`.  
 Even project types that produce directly runnable outputs (such as console or WPF applications) produce a `.dll` as their primary output.  
 They also generate an executable file too, but it’s not a .NET assembly. It’s just a bootstrapper that starts theruntime and then loads and executes your application’s main assembly.
 
@@ -2331,7 +2332,7 @@ The CLR needs to have complete knowledge of all the types that the code uses to 
 
 ### Resources
 
-It's possible to embed binary resources in a DLL alongside the code and metadata. To embed a file select "Embedded Rersource" as it's *Build Action* in the file prperties.  
+It's possible to embed binary resources in a DLL alongside the code and metadata. To embed a file select "Embedded Rersource" as it's _Build Action_ in the file prperties.  
 This compiles a copy of the file into the assembly.
 
 To extract the resource at runtime use the `Assembly` class's `GetManifestResourceSttream` method which is par of the **Reflection API**.
@@ -2349,7 +2350,7 @@ The assembly manifest is just a description of what’s in the assembly, includi
 
 ### Assembly Resolution
 
-When the runtime needs to load an assembly, it goes through a process called *assembly resolution*.
+When the runtime needs to load an assembly, it goes through a process called _assembly resolution_.
 
 .NET Core supports two deployment options for applications:
 
@@ -2378,10 +2379,10 @@ The chosen runtime version selects not just the CLR, but also the assemblies mak
 
 ### Assembly Names
 
-Assembly names are structured. They always include a **simple name**,  which is the name by which normally refer to the DLL.  
+Assembly names are structured. They always include a **simple name**, which is the name by which normally refer to the DLL.  
 This is usually the same as the filename but without the extension. It doesn’t technically have to be but the assembly resolution mechanism assumes that it is.
 
-Assembly names always include a **version number**. There are also some optional components, including **the public key token**, a string of *hexadecimal digits*, which is required to have a unique name.
+Assembly names always include a **version number**. There are also some optional components, including **the public key token**, a string of _hexadecimal digits_, which is required to have a unique name.
 
 #### Strong Names
 
@@ -2396,14 +2397,14 @@ The assurance that the assembly has ot been tampered with comes from the fact th
 
 #### Version
 
-All assembly names include a four-part version number: `major.minor.build.revision`. However, there’s no particular significance to  any  of  these.  
-The binary format that IL uses for assembly names and references limits the range of these numbers, each part must fit in a 16-bit unsigned integer (a  `ushort`), and the highest allowable value in a version part is actually one less than the maximum value that would fit, making the highest legal version number `65534.65534.65534.65534`.
+All assembly names include a four-part version number: `major.minor.build.revision`. However, there’s no particular significance to any of these.  
+The binary format that IL uses for assembly names and references limits the range of these numbers, each part must fit in a 16-bit unsigned integer (a `ushort`), and the highest allowable value in a version part is actually one less than the maximum value that would fit, making the highest legal version number `65534.65534.65534.65534`.
 
 As far as the CLR is concerned, there’s really only one interesting thing you can do with a version number, which is to compare it with some otherversion number, either they match or one is higher than the other.
 
 The build system tells the compiler which version number to use for the assembly name via an assembly-level attribute.
 
-**NOTE**: NuGet packages also have version numbers, and these do not need to be connected in any way to assembly versions. NuGet does treat the components of a package version number as having particular significance: it has adopted the widely used *semantic versioning* rules.
+**NOTE**: NuGet packages also have version numbers, and these do not need to be connected in any way to assembly versions. NuGet does treat the components of a package version number as having particular significance: it has adopted the widely used _semantic versioning_ rules.
 
 #### Culture
 
@@ -2441,7 +2442,7 @@ This loads the assembly in such a way that it's poossible to inspect its type in
 
 ## Attributes
 
-In .NET, it's possible to *annotate* components, types, and their members with attributes.  
+In .NET, it's possible to _annotate_ components, types, and their members with attributes.  
 An attribute’s purpose is to control or modify the behavior of a framework, a tool, the compiler, or the CLR.
 
 Attributes are passive containers of information that do nothing on their own.
@@ -2451,9 +2452,9 @@ Attributes are passive containers of information that do nothing on their own.
 To avoid having to introduce an extra set of concepts into the type system, .NET models attributes as instances of .NET types.  
 To be used as an attribute, a type must derive from the `System.Attribute` class, but it can otherwise be entirely ordinary.
 
-It's possible to pass arguments to the attribute *constructor* in the annotation.
+It's possible to pass arguments to the attribute _constructor_ in the annotation.
 
-Some attributes can be controlled only through *properties* or *fields*, and not constructor arguments.  
+Some attributes can be controlled only through _properties_ or _fields_, and not constructor arguments.  
 The syntax for this is to write one or more `PropertyOrFieldName = Value` entries after the constructor arguments.
 
 ```cs
@@ -2478,8 +2479,8 @@ The syntax for this is to write one or more `PropertyOrFieldName = Value` entrie
 ### Attribute Targets
 
 Attributes can be applied to numerous different kinds of targets.  
-Specifically, it's possible to apply attributes to *assemblies*, *modules*, *types*, *methods*, *method parameters*, *constructors*, *fields*, *properties*, *events*, and *generic type parameters*.  
-In addition, it's possible to supply attributes that target a *method’s return value*.
+Specifically, it's possible to apply attributes to _assemblies_, _modules_, _types_, _methods_, _method parameters_, _constructors_, _fields_, _properties_, _events_, and _generic type parameters_.  
+In addition, it's possible to supply attributes that target a _method’s return value_.
 
 Since assemblies or modules don't have a single feature that represents them, attributes are applied by stating explicitly he target at the start the attribute.  
 It's possible to put assembly-level attributes in any file. The sole restriction is that they must appear before any namespace or type definitions.  
@@ -2498,7 +2499,7 @@ Methods’ return values can be annotated, and this also requires qualification,
 Type Method() { /* statements */ }
 ```
 
-Another kind of target that needs qualification is a *compiler-generated field*.  
+Another kind of target that needs qualification is a _compiler-generated field_.  
 Examples are properties in which code for the getter or setter is not supplied, and event members without explicit add and remove implementations.  
 Without the `field:` qualifiers these attributes would apply to the property or event itself.
 
@@ -2897,4 +2898,17 @@ n / 2^m
 n << m
 // same as
 n * 2^m
+```
+
+### Native Memory
+
+```cs
+using System.Runtime.InteropServices;
+
+unsafe
+{
+    byte* buffer = (byte*)NativeMemory.Alloc(100);
+
+    NativeMemory.Free(buffer);
+}
 ```
