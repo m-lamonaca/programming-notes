@@ -72,6 +72,12 @@ namespace Namespace  // namespace declaration
 }
 ```
 
+To disable .NET 6/C# 10 **implicit namespace imports**:
+
+```xml
+<DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+```
+
 ### Top Level Statements/Progrmas (C# 9)
 
 ```cs
