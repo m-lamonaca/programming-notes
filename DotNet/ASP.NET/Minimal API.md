@@ -2,62 +2,40 @@
 
 **NOTE**: Requires .NET 6+
 
-## REST API
-
 ```cs
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddSingleton<IService, Service>();
 builder.Services.AddScoped<IService, Service>();
 builder.Services.AddTransient<IService, Service>();
 
 var app = builder.Build();
 
-app.MapGet("/route/{id}", (IService service, int id) => {
-    // code to get entity from db here
-    return entity is not null ? Results.Ok(entity) : Results.NotFound();
-});
-
-app.MapPost("/route", (IService service, Entity entity) => {
-    // code to add entity to db here
-    return Results.Created($"/route/{entity.Id}", obj);
-});
+// [...]
 
 app.Run();
 //or
 app.RunAsync();
-
-public class Entity(int Id, string Name);
 ```
 
-### Swagger
+## Swagger
 
 ```cs
-var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
+// [...]
 
 app.UseSwagger();
-app.MapGet("/", () => "Hello World!");
 app.UseSwaggerUI();
-app.Run();
 ```
 
-### MVC
+## MVC
 
 ```cs
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
+//or
+builder.Services.AddControllers();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -82,6 +60,99 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+```
 
-app.Run();
+## Routing, Handlers & Results
+
+To define routes and handlers using Minimal APIs, use the `Map(Get|Post|Put|Delete)` methods.
+
+```cs
+// the dependencies are passed as parameters in the handler delegate
+app.MapGet("/route/{id}", (IService service, int id) => {
+    
+    return entity is not null ? Results.Ok(entity) : Results.NotFound();
+});
+
+// pass delegate to use default values
+app.MapGet("/search/{id}", Search);
+IResult Search(int id, int? page = 1, int? pageSize = 10) { /* ... */ }
+```
+
+## Context
+
+With Minimal APIs it's possible to access the contextual information by passing one of the following types as a parameter to your handler delegate:
+
+- `HttpContext`
+- `HttpRequest`
+- `HttpResponse`
+- `ClaimsPrincipal`
+- `CancellationToken` (RequestAborted)
+
+```cs
+app.MapGet("/hello", (ClaimsPrincipal user) => {
+    return "Hello " + user.FindFirstValue("sub");
+});
+```
+
+## Validation
+
+Using [Minimal Validation](https://github.com/DamianEdwards/MinimalValidation) by Damian Edwards.  
+Alternativeli it's possible to use [Fluent Validation](https://fluentvalidation.net/).
+
+```cs
+app.MapPost("/widgets", (Widget widget) => {
+    var isValid = MinimalValidation.TryValidate(widget, out var errors);
+
+    if(isValid)
+    {
+        return Results.Created($"/widgets/{widget.Name}", widget);
+    }
+
+    return Results.BadRequest(errors);
+});
+
+class Widget
+{
+    [Required, MinLength(3)]
+    public string? Name { get; set; }
+
+    public override string? ToString() => Name;
+}
+```
+
+## JSON Serialization
+
+```cs
+// Microsoft.AspNetCore.Http.Json.JsonOptions
+builder.Services.Configure<JsonOptions>(opt =>
+{
+    opt.SerializerOptions.PropertyNamingPolicy = new SnakeCaseNamingPolicy();
+});
+```
+
+## Authorization
+
+```cs
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer();
+
+builder.Services.AddAuthorization();
+// or
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+      .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+      .RequireAuthenticatedUser();
+})
+
+// [...]
+
+app.UseAuthentication();
+app.UseAuthorization(); // must come before routes
+
+// [...]
+
+app.MapGet("/alcohol", () => Results.Ok()).RequireAuthorization("<policy>");
+app.MapGet("/free-for-all", () => Results.Ok()).AllowAnonymous();
 ```
