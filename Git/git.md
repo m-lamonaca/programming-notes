@@ -1,4 +1,4 @@
-# Git Cheatsheet
+# Git
 
 ## Glossary
 
@@ -65,7 +65,7 @@ def load(id):
 # human-readable names for SHA-1 hashes (mutable)
 references = map<string, string>
 
-# bind a regerence to a hash
+# bind a reference to a hash
 def update_reference(name, id):
     references<name> = id
 
@@ -98,7 +98,7 @@ def load_reference(name_or_id):
 
 `git status`: shows the status of changes as untracked, modified, or staged  
 `git add <filename1 filename2 ...>`: add files to the staging area  
-`git add -p <files>`: interacively stage chuncks of a file  
+`git add -p <files>`: interactively stage chunks of a file  
 
 `git blame <file>`: show who last edited which line
 
@@ -111,7 +111,7 @@ def load_reference(name_or_id):
 `git diff <commit> <filename>`: show differences in a file since a particular snapshot  
 `git diff <reference_1> <reference_2> <filename>`: show differences in a file between two snapshots  
 `git diff  --cached`: show what is about to be committed  
-`git diff <firts-branch>...<second-branch>`: show content diff between two branches  
+`git diff <first-branch>...<second-branch>`: show content diff between two branches  
 
 `git bisect`: binary search history (e.g. for regressions)  
 
@@ -166,14 +166,14 @@ def load_reference(name_or_id):
 
 Git supports two types of tags: *lightweight* and *annotated*.  
 
-A lightweight tag is very much like a branch that doesn’t change—it’s just a pointer to a specific commit.  
+A lightweight tag is very much like a branch that doesn't change—it's just a pointer to a specific commit.  
 
 Annotated tags, however, are stored as full objects in the Git database.  
-They’re checksummed;contain the tagger name, email, and date; have a tagging message; and can be signed and verifiedwith GNU Privacy Guard (GPG).  
-It’s generally recommended creating annotated tags so it's possible to have all this information.  
+They're checksummed;contain the tagger name, email, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG).  
+It's generally recommended creating annotated tags so it's possible to have all this information.  
 
 `git tag`: list existing tags  
-`git tag -l|--list <pattern>`: list existing tags mathcing a wildard or pattern  
+`git tag -l|--list <pattern>`: list existing tags matching a wildcard or pattern  
 
 `git tag <tag> [<commit_hash>]`: create a *lightweight* tag on the commit  
 `git tag -a <tag> [<commit_hash> -m <message>]`: create am *annotated* tag on the commit  
@@ -197,10 +197,10 @@ It’s generally recommended creating annotated tags so it's possible to have al
 `git branch`: show list of all existing branches  (* indicates current)  
 `git checkout <branch-name>`: change current branch (update HEAD) and update working directory  
 `git branch -d <branch-name>`: delete specified branch  
-`git branch -m <old_name> <new_name>`: rename a branch without affecting the branch’s history
+`git branch -m <old_name> <new_name>`: rename a branch without affecting the branch's history
 
 `git merge <branch-name>`: merges into current branch  
-`git merge --continue`: continue previous merge after solving a merge conflinct  
+`git merge --continue`: continue previous merge after solving a merge conflict  
 `git mergetool`: use a fancy tool to help resolve merge conflicts  
 `git rebase`: rebase set of patches onto a new base  
 `git rebase -i`: interactive rebasing
@@ -210,6 +210,7 @@ It’s generally recommended creating annotated tags so it's possible to have al
 ### Undo & [Rewriting History](https://www.themoderncoder.com/rewriting-git-history/)
 
 `git commit --amend`: replace last commit by creating a new one (can add files or rewrite commit message)  
+`git commit --amend -m "amended message"`: replace last commit by creating a new one (can add files or rewrite commit message)  
 `git commit --amend  --no-edit`: replace last commit by creating a new one (can add files or rewrite commit message)  
 `git reset HEAD <file>`: unstage a file  
 `git reset <commit>`: undo all commits after specified commit, preserving changes locally  
@@ -234,7 +235,7 @@ git pull  # get up to date
 git checkout <feature_branch>
 git rebase <primary_branch>  # rebase commits on master (moves branch start point on last master commit)
 
-git chechout <primary_branch>
+git checkout <primary_branch>
 git rebase <feature_branch>  # moves commits from the branch on top of master
 ```
 
@@ -255,7 +256,7 @@ git pull  # clone branch
 
 ```ps1
 git fetch upstream  # Fetch the branches and their respective commits from the upstream repository
-git checkout main  # chechout fork's main primary branch
+git checkout main  # checkout fork's main primary branch
 
 git merge upstream/main  # Merge the changes from the upstream default branch into the local default branch
 
