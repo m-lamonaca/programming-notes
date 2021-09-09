@@ -28,6 +28,13 @@ namespace Project.Tests
 }
 ```
 
+### Test Setup & Teardown
+
+xUnit.net creates a new instance of the test class for every test that is run, so any code which is placed into the constructor of the test class will be run for every single test.  
+This makes the constructor a convenient place to put reusable context setup code.
+
+For context cleanup, add the `IDisposable` interface to the test class, and put the cleanup code in the `Dispose()` method.
+
 ## Mocking with Moq
 
 ```cs
