@@ -5,7 +5,7 @@
 ### Inline CSS
 
 ```html
-<tag style=”property:value”></tag>
+<tag style="property:value"></tag>
 ```
 
 Uses the HTML style attribute.  
@@ -20,14 +20,14 @@ Not recommended except in cases where choices are constrained.
         selector {
             property: value;
             /* box and display */
-            /* alignement, position */
+            /* alignment, position */
             /* margin, border, padding */
             /* max/min height-width*/
 
             /* colors */
 
             /* font */
-            /* text alignement */
+            /* text alignment */
             }
     </style>
 </head>
@@ -42,7 +42,7 @@ Not Recommended, only use when the number of rules is small and there are constr
 
 ```html
 <head>
-    <link rel=”stylesheet” type=”text/css” href=”style.css”>
+    <link rel="stylesheet" href="style.css">
 </head>
 ```
 
@@ -52,7 +52,7 @@ Easier to maintain, especially in larger projects.
 
 ## Selectors
 
-Tthe selector points to the html element to style.
+The selector points to the html element to style.
 
 ```css
 selector {property: value; property: value}
@@ -87,7 +87,7 @@ Should apply to one element on a page.
 
 ### Class Selector
 
-Many elements can have the same class, calsses are used to group HTML elements togheter.
+Many elements can have the same class, classes are used to group HTML elements together.
 
 ```css
 .selector {property: value;}    /* selects <tag class="selector"> */
@@ -291,19 +291,19 @@ selector:pseudo-class { property: value; }
 
 `a:hover {...}` selects a link when the mouse rolls over it (hover state).  
 `a:active {...}` selects the link while it's being activated (clicked or otherwise).  
-`selector:focus {...}` selects an element whent the user focuses on it (e.g. tab w/ keyboard). Often used on links, inputs, textareas.
+`selector:focus {...}` selects an element when the user focuses on it (e.g. tab w/ keyboard). Often used on links, inputs, text-areas.
 
 ### User Interface State Pseudo-Classes
 
-`input:enabled {...}` selects an input that is in the default state of enabled and aviable for use.  
-`input:disabled {...}` selects an input that has the attibute.  
+`input:enabled {...}` selects an input that is in the default state of enabled and available for use.  
+`input:disabled {...}` selects an input that has the attribute.  
 `input:checked {...}` selects checkboxes or radio buttons that are checked.  
 `input:indeterminate {...}` selects checkboxes or radio button that has neither selected nor unselected.
 
 ### Structural & Position Pseudo-Classes
 
-`selector:first-child {...}` selects an element if it’s the first child within its parent.  
-`selector:last-child {...}` selects an element if it’s the last element within its parent.  
+`selector:first-child {...}` selects an element if it's the first child within its parent.  
+`selector:last-child {...}` selects an element if it's the last element within its parent.  
 `selector:only-child {...}` will select an element if it is the only element within a parent.  
 
 `selector:first-of-type {...}` selects the first element of its type within a parent.  
@@ -339,44 +339,45 @@ When used within selectors allow unique parts of the page to be stylized. Only o
 
 ```css
 a::after/before {
-    propery: value;
+    property: value;
     content: " (" attr(attribute_name) ")";
-    propery: value;
+    property: value;
 }
 ```
 
 ### Fragment Pseudo-Elements
 
-`selector::selection {...}` identifies part of the document that has been selected, or highlighted, by a user’s actions.  
+`selector::selection {...}` identifies part of the document that has been selected, or highlighted, by a user's actions.  
 `selector::-moz-selection {...}` Mozilla prefixed fragment pseudo-element has been added to ensure the best support for all browser.
 
 ## Units
 
 ### Absolute Length units
 
-| Unit | Name                | Equivalent to        |
-| ---- | ------------------- | -------------------- |
-| cm   | centimeters         | 1cm = 38px = 25/64in |
-| mm   | Millimeters         | 1mm = 1/10th of 1cm  |
-| Q    | Quarter-millimeters | 1Q = 1/40th of 1cm   |
-| in   | Inches              | 1in = 2.54cm = 96px  |
-| pc   | Picas               | 1pc = 1/6th of 1in   |
-| pt   | Points              | 1pt = 1/72th of 1in  |
-| px   | Pixels              | 1px = 1/96th of 1in  |
+| Unit   | Name                | Equivalent to        |
+| ------ | ------------------- | -------------------- |
+| `cm`   | centimeters         | 1cm = 38px = 25/64in |
+| `mm`   | Millimeters         | 1mm = 1/10th of 1cm  |
+| `Q`    | Quarter-millimeters | 1Q = 1/40th of 1cm   |
+| `in`   | Inches              | 1in = 2.54cm = 96px  |
+| `pc`   | Picas               | 1pc = 1/6th of 1in   |
+| `pt`   | Points              | 1pt = 1/72th of 1in  |
+| `px`   | Pixels              | 1px = 1/96th of 1in  |
 
 ### Relative Length Units
 
-| Unit | Relative to                                                         |
-| ---- | ------------------------------------------------------------------- |
-| rem  | Font size of the root element.                                      |
-| em   | Font size of the parent or the element itself                       |
-| ex   | x-height of the element's font.                                     |
-| ch   | The advance measure (width) of the glyph "0" of the element's font. |
-| lh   | Line height of the element.                                         |
-| vw   | 1% of the viewport's width.                                         |
-| vh   | 1% of the viewport's height.                                        |
-| vmin | 1% of the viewport's smaller dimension.                             |
-| vmax | 1% of the viewport's larger dimension.                              |
+| Unit   | Relative to                                                         |
+| ------ | ------------------------------------------------------------------- |
+| `rem`  | Font size of the root element.                                      |
+| `em`   | Font size of the parent or the element itself                       |
+| `ex`   | x-height of the element's font.                                     |
+| `ch`   | The advance measure (width) of the glyph "0" of the element's font. |
+| `lh`   | Line height of the element.                                         |
+| `vw`   | 1% of the viewport's width.                                         |
+| `vh`   | 1% of the viewport's height.                                        |
+| `vmin` | 1% of the viewport's smaller dimension.                             |
+| `vmax` | 1% of the viewport's larger dimension.                              |
+| `%`    | Relative to the parent element                                      |
 
 ## Element Properties
 
@@ -449,7 +450,7 @@ Can also accept Keywords: `left`, `center`, `right` and `top`, `center`, `bottom
 **Background-attachment**  
 Specifies whether the background image should scroll with the page or be fixed
 
-### Font Familty
+### Font Family
 
 The font family defines which font is used. When listing multiple fonts, always  list a generic name last.
 
@@ -516,7 +517,7 @@ selector {
 ```css
 selector {
     text-decoration: line color style thickness;
-    text-align: alignement;
+    text-align: alignment;
 }
 ```
 
@@ -541,7 +542,7 @@ selector {
 ### Width
 
 Sets the width of a block-level element or img; does not work for inline elements (unless their display property is changed).  
-Accepts a veriety of length units.
+Accepts a variety of length units.
 
 ```css
 selector {
@@ -555,7 +556,7 @@ selector {
 ### Height
 
 Sets the height of a block-level element or img; does not work for inline elements (unless their display property is changed).  
-Accepts a veriety of length units.
+Accepts a variety of length units.
 
 ```css
 selector {
@@ -589,33 +590,6 @@ selector {
     min-width: 200px;    /* but will stop shrinking with its parent at 200px */
 }
 ```
-
-## CSS Units
-
-### Absolute Lengths
-
-| Symbol | Unit                         |
-| ------ | ---------------------------- |
-| `cm`   | centimeters                  |
-| `mm`   | millimeters                  |
-| `in`   | inch (1 in = 96px = 2.54 cm) |
-| `px`   | pixel (1 px = 1/96 of 1 in)  |
-| `pt`   | points (1 pt = 1/72 of 1 in) |
-| `pc`   | picas (1 pc = 12 pt)         |
-
-### Relative Lengths
-
-| Symbol | Unit                                                                                      |
-| ------ | ----------------------------------------------------------------------------------------- |
-| `em`   | Relative to the font-size of the element (2em means 2 times the size of the current font) |
-| `ex`   | Relative to the x-height of the current font (rarely used)                                |
-| `ch`   | Relative to width of the "0" (zero)                                                       |
-| `rem`  | Relative to font-size of the root element                                                 |
-| `vw`   | Relative to 1% of the width of the viewport*                                              |
-| `vh`   | Relative to 1% of the height of the viewport*                                             |
-| `vmin` | Relative to 1% of viewport's* smaller dimension                                           |
-| `vmax` | Relative to 1% of viewport's* larger dimension                                            |
-| `%`    | Relative to the parent element                                                            |
 
 ## CSS Cascading
 
@@ -689,7 +663,7 @@ selector {
 #### Padding shortcuts
 
 ```css
-selectopr {
+selector {
     padding: top right bottom left;  /* Four values (TRBL) */
     padding: top right/left bottom;  /* Three values (T/TL/B) */
     padding: top/bottom right/left;    /* Two values (TB/RL) */
@@ -728,9 +702,9 @@ selector {
 Defines whether the width and height (and min/max) of an element should include padding and borders or not.
 
 ```css
-selecot {
-    box-sizinbg: content-box;    /* Border and padding are not included */
-    box-sizinbg: border-box;    /* Include the content, padding and border */
+selector {
+    box-sizing: content-box;    /* Border and padding are not included */
+    box-sizing: border-box;    /* Include the content, padding and border */
 }
 ```
 
@@ -968,7 +942,7 @@ When elements overlap, the order of overlapping can be changed with z-index:
 - Without z-index, elements stack in the order that they appear in the DOM
 - Elements with non-static positioning will always appear on top of elements with default static positioning
 
-**Nesting is importan**t: if element *B* is on top of element *A*, a child of element *A* can never be higher than element *B*.
+**Nesting is important**: if element *B* is on top of element *A*, a child of element *A* can never be higher than element *B*.
 
 ```css
 selector {
@@ -981,7 +955,7 @@ selector {
 ```css
 selector {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;  /* 3 equl columns */
+    grid-template-columns: 1fr 1fr 1fr;  /* 3 equal columns */
     grid-template-rows: 1fr 1fr 1fr;  /* 3 equal rows */
 }
 ```
@@ -1043,7 +1017,7 @@ Risks miscommunications with clients and impacts the User Experience (UX).
 
 3. **Use content to define the layout and design**:
     Understand how content can inform design
-    Don't spend time creating templates you won’t use
+    Don't spend time creating templates you won't use
     Focus on problem-solving for your users
 
 4. **Use proto-content**:
@@ -1156,7 +1130,7 @@ A media query is a logical expression: true or false; if a media query is true, 
 | `all`    | all media type devices                       |
 | `print`  | printers                                     |
 | `screen` | computer screens, tablets, smart-phones, etc |
-| `speech` | screenreaders that "reads" the page out loud |
+| `speech` | screen readers that "reads" the page out loud |
 
 ```css
 @media type operator (feature) {
