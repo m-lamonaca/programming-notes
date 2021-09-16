@@ -28,6 +28,12 @@ builder.Services.AddSwaggerGen();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+// add returned content metadata to Swagger
+app.MapGet("/route", Handler).Produces<Type>(statusCode);
+
+// add request body contents metadata to Swagger
+app.MapPost("/route", Handler).Accepts<Type>(contentType);
 ```
 
 ## MVC
@@ -97,7 +103,7 @@ app.MapGet("/hello", (ClaimsPrincipal user) => {
 ## Validation
 
 Using [Minimal Validation](https://github.com/DamianEdwards/MinimalValidation) by Damian Edwards.  
-Alternativeli it's possible to use [Fluent Validation](https://fluentvalidation.net/).
+Alternatively it's possible to use [Fluent Validation](https://fluentvalidation.net/).
 
 ```cs
 app.MapPost("/widgets", (Widget widget) => {
@@ -133,14 +139,13 @@ builder.Services.Configure<JsonOptions>(opt =>
 ## Authorization
 
 ```cs
-builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
 builder.Services.AddAuthorization();
 // or
 builder.Services.AddAuthorization(options =>
 {
+    // for all endpoints
     options.FallbackPolicy = new AuthorizationPolicyBuilder()
       .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
       .RequireAuthenticatedUser();
@@ -153,6 +158,6 @@ app.UseAuthorization(); // must come before routes
 
 // [...]
 
-app.MapGet("/alcohol", () => Results.Ok()).RequireAuthorization("<policy>");
+app.MapGet("/alcohol", () => Results.Ok()).RequireAuthorization("<policy>");  // on specific endpoints
 app.MapGet("/free-for-all", () => Results.Ok()).AllowAnonymous();
 ```
