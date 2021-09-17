@@ -24,7 +24,7 @@ public async Task<TResult> MethodAsync
     TResult result = await resultTask;
 
     // if the is no work to be done before awaiting
-    TResutl result = await obj.OtherMethodAsync();
+    TResult result = await obj.OtherMethodAsync();
 
     return result;
 }
@@ -54,7 +54,7 @@ In combination with the `Task.Run` method, async programming is better than `Bac
 
 ### Naming Convention
 
-By convention, methods that return commonly awaitable types (for example, `Task`, `Task<T>`, `ValueTask`, `ValueTask<T>`) should have names that end with "Async". Methods that start an asynchronous operation but do not return an awaitable type should not have names that end with "Async", but may start with "Begin", "Start", or some other verb to suggest this method does not return or throw the result of the operation.
+By convention, methods that return commonly awaitable types (for example, `Task`, `Task<T>`, `ValueTask`, `ValueTask<T>`) should have names that end with *Async*. Methods that start an asynchronous operation but do not return an awaitable type should not have names that end with *Async*, but may start with "Begin", "Start", or some other verb to suggest this method does not return or throw the result of the operation.
 
 ## [Async Return Types](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/async-return-types)
 
@@ -73,7 +73,7 @@ The `Task<TResult>.Result` property is a **blocking property**. If it's accessed
 
 The `void` return type is used in asynchronous event handlers, which require a `void` return type. For methods other than event handlers that don't return a value, it's best to return a `Task` instead, because an async method that returns `void` can't be awaited. Any caller of such a method must continue to completion without waiting for the called async method to finish. The caller must be independent of any values or exceptions that the async method generates.
 
-The caller of a void-returning async method *can't catch exceptions thrown from the method*, and such unhandled exceptions are likely to cause the application to fail. If a method that returns a `Task` or `Task<TResult>` throws an exception, the exception is stored in the returned task. The exception is rethrown when the task is awaited. Therefore, make sure that any async method that can produce an exception has a return type of `Task` or `Task<TResult>` and that calls to the method are awaited.
+The caller of a void-returning async method *can't catch exceptions thrown from the method*, and such unhandled exceptions are likely to cause the application to fail. If a method that returns a `Task` or `Task<TResult>` throws an exception, the exception is stored in the returned task. The exception is re-thrown when the task is awaited. Therefore, make sure that any async method that can produce an exception has a return type of `Task` or `Task<TResult>` and that calls to the method are awaited.
 
 ### Generalized async return types and `ValueTask<TResult>`
 
@@ -86,3 +86,78 @@ Because `Task` and `Task<TResult>` are **reference types**, memory allocation in
 ### Async streams with `IAsyncEnumerable<T>`
 
 Starting with C# 8.0, an async method may return an async stream, represented by `IAsyncEnumerable<T>`. An async stream provides a way to enumerate items read from a stream when elements are generated in chunks with repeated asynchronous calls.
+
+### Async Composition
+
+```cs
+public async Task DoOperationsConcurrentlyAsync()
+{
+  Task[] tasks = new Task[3];
+  tasks[0] = DoOperation0Async();
+  tasks[1] = DoOperation1Async();
+  tasks[2] = DoOperation2Async();
+
+  // At this point, all three tasks are running at the same time.
+
+  // Now, we await them all.
+  await Task.WhenAll(tasks);
+}
+
+public async Task<int> GetFirstToRespondAsync()
+{
+  // Call two web services; take the first response.
+  Task<int>[] tasks = new[] { WebService1Async(), WebService2Async() };
+
+  // Await for the first one to respond.
+  Task<int> firstTask = await Task.WhenAny(tasks);
+
+  // Return the result.
+  return await firstTask;
+}
+```
+
+### Context & Avoiding Context
+
+What exactly is the "context"?
+
+- on a UI thread it's a UI context.
+- when responding to an ASP.NET request, then it's an ASP.NET request context.
+- Otherwise, it's usually a thread pool context.
+
+```cs
+private async Task DownloadFileAsync(string fileName)
+{
+  // Use HttpClient or whatever to download the file contents.
+  var fileContents = await DownloadFileContentsAsync(fileName).ConfigureAwait(false);
+
+  // Note that because of the ConfigureAwait(false), we are not on the original context here.
+  // Instead, we're running on the thread pool.
+
+  // Write the file contents out to a disk file.
+  await WriteToDiskAsync(fileName, fileContents).ConfigureAwait(false);
+
+  // The second call to ConfigureAwait(false) is not *required*, but it is Good Practice.
+}
+
+// UI Example
+private async void DownloadFileButton_Click(object sender, EventArgs e)
+{
+  // Since we asynchronously wait, the UI thread is not blocked by the file download.
+  await DownloadFileAsync(fileNameTextBox.Text);
+
+  // Since we resume on the UI context, we can directly access UI elements.
+  resultTextBox.Text = "File downloaded!";
+}
+
+// ASP.NET example
+protected async void MyButton_Click(object sender, EventArgs e)
+{
+  // Since we asynchronously wait, the ASP.NET thread is not blocked by the file download.
+  // This allows the thread to handle other requests while we're waiting.
+  await DownloadFileAsync(...);
+
+  // Since we resume on the ASP.NET context, we can access the current request.
+  // We may actually be on another *thread*, but we have the same ASP.NET request context.
+  Response.Write("File downloaded!");
+}
+```
