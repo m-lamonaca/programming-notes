@@ -12,7 +12,7 @@ of an Rx source demand to be given the next item. Instead, Rx uses a *push* mode
 
 Because Rx implements standard LINQ operators, it's possible to write queries against a live source. Rx goes beyond standard LINQ, adding its own operators that take into account the temporal nature of a live event source.
 
-## Foundamental Interfaces
+## Fundamental Interfaces
 
 The two most important types in Rx are the `IObservable<T>` and `IObserver<T>` interfaces.  
 They are important enough to be in the System namespace. The other parts of Rx are in the `System.Reactive` NuGet package.

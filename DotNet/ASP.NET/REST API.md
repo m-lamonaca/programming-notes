@@ -48,25 +48,28 @@ namespace <Namespace>.Profiles
 }
 ```
 
-In `StartUp.cs`:
+## Controller (No View)
+
+Uses [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) to recieve a suitable implementation of `IEntityRepo`,
+
+### Service Lifetimes
+
+- `AddSingleton`: same for every request
+- `AddScoped`: created once per client
+- `Transient`: new instance created every time
+
+In `Startup.cs`:
 
 ```cs
+// This method gets called by the runtime. Use this method to add services to the container.
 public void ConfigureServices(IServiceCollection services)
 {
-    // other services
-
-    // let AutoMapper know in what assemblies are the profiles defined
-    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-    // or create a MapperConfiguration
-    services.AddAutoMapper(cfg => {
-        cfg.CreateMap<Foo, Bar>();
-        cfg.AddProfile<FooProfile>();
-    })
+    services.AddControllers();
+    services.AddScoped<IEntityRepo, EntityRepo>();  // map the interface to its implementation, needed for dependency injection
 }
 ```
 
-### Controller with DTOs
+### Request Mappings
 
 ```cs
 using <App>.Model;
