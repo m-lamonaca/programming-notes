@@ -1,6 +1,6 @@
 # HTTP(S) Module
 
-## HTTTP(S) IncomingMessage (request)
+## HTTPS(S) IncomingMessage (request)
 
 ### Making a request
 
@@ -17,7 +17,7 @@ https.request(
 ).end();
 ```
 
-### Reqest Methods & Properties
+### Request Methods & Properties
 
 ```js
 IncomingMessage.headers
@@ -26,7 +26,7 @@ IncomingMessage.statusMessage
 IncomingMessage.url
 ```
 
-## HTTTP(S) ServerResponse (response)
+## HTTPS(S) ServerResponse (response)
 
 ### Response Methods & Properties
 

@@ -24,25 +24,25 @@ public class ClassName : MonoBehaviour {
         Time.deltaTime;  // time since last frame
     }
 
-    // FixedUpdate is calles every x seconds (not influenced by FPS instability)
-    // used for physics calculations which sould be FPS independant
+    // FixedUpdate is calls every x seconds (not influenced by FPS instability)
+    // used for physics calculations which should be FPS independent
     void FixedUpdate()
     {
         Time.fixedDeltaTime;  // fixed amount of time
-        Time.timeDelta;  // if called inside FIxedUpadate() behaves like fixedDeltaTime
+        Time.timeDelta;  // if called inside FIxedUpdate() behaves like fixedDeltaTime
     }
 }
 ```
 
-### Script comunication
+### Script communication
 
-Referencing data in a sctipt from another.
+Referencing data in a script from another.
 
 ```cs
 //example of a script to be referenced in another
 Using System;
 
-public class Player : MonoBheaviour {
+public class Player : MonoBehaviour {
 
     public float health = 10;
     public event Action OnPlayerDeath;  //event of type Action, needs using System
@@ -55,7 +55,7 @@ public class Player : MonoBheaviour {
 
         if (health <= 0) {
             if (OnPlayerDeath != null) {
-                OnPleyerDeath();  // invoke Action (if no subscribers event will be NULL, can cause errors)
+                OnPlayerDeath();  // invoke Action (if no subscribers event will be NULL, can cause errors)
             }
 
             Destroy(GameObject);  // needs to be notified
@@ -68,7 +68,7 @@ public class Player : MonoBheaviour {
 // example of script needing a reference to another
 public class GameUI : MonoBehaviour {
 
-    Player player;  //instance of referenced GameObject to be founf by its type
+    Player player;  //instance of referenced GameObject to be found by its type
 
     void Start(){
         GameObject playerObj = GameObject.Find("Player");  //reference to game object
@@ -77,7 +77,7 @@ public class GameUI : MonoBehaviour {
 
         player = FindObjectOfType<Player>();  // get reference to an object
 
-        // on event invocation all subscribet methods will be called
+        // on event invocation all subscriber methods will be called
         player.OnPlayerDeath += GameOver;  // subscribe method to event
     }
 
@@ -85,7 +85,7 @@ public class GameUI : MonoBehaviour {
         DrawHealthBar(plyer.health);  // call method passing data of player GameObject
     }
 
-    void DrawHealthbar(float playerHealth) {
+    void DrawHealthBar(float playerHealth) {
         // implementation
     }
 
@@ -100,9 +100,9 @@ public class GameUI : MonoBehaviour {
 ### 2D Screen Measures
 
 Aspect Ratio = `(screen_width [px]) / (screen_height [px])`
-Orhograpic Size `[world units]` = `(screen_height [world units] / 2)`
-Aspect Ratio * Orhograpic Size = `(screen_width [world units] / 2)`
-Screen Width `[world units]` = `(AspectRatio * OrhograpicSize * 2)`
+Orthographic Size `[world units]` = `(screen_height [world units] / 2)`
+Aspect Ratio * Orthographic Size = `(screen_width [world units] / 2)`
+Screen Width `[world units]` = `(AspectRatio * OrthographicSize * 2)`
 
 ```cs
 screenWidth = Camera.main.aspect * Camera.main.orthographicSize * 2;
@@ -123,7 +123,7 @@ public class ScriptableObjectName : ScriptableObject {
 ### Game Object Serialization
 
 ```c#
-[SeralizeField] type variable;    //access game object from code
+[SerializeField] type variable;    //access game object from code
 ```
 
 ### Game Object Data Access

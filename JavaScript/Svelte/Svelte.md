@@ -10,7 +10,7 @@ node scripts/setupTypeScript.js
 npm init vite@latest
 ```
 
-## App Entrypoint
+## App Entry-point
 
 ```js
 import App from "./App.svelte"; // import the component
@@ -74,7 +74,7 @@ export default app;
     // markup here
 {/each}
 
-{#each array as item (key)}  // usse key to determine changes
+{#each array as item (key)}  // use key to determine changes
     // markup here
 {/each}
 ```
@@ -139,7 +139,7 @@ For these, Svelte has reactive declarations. They look like this:
 
 ```js
 let count = 0;
-$: double =  count * 2;  // recaclulatd when count changes
+$: double =  count * 2;  // recalculated when count changes
 // or
 $: { }
 $: <expression>

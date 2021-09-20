@@ -37,7 +37,7 @@ cli.add_command(dropdb)
 
 The `group()` decorator works like the `command()` decorator, but creates a Group object instead which can be given multiple subcommands that can be attached with `Group.add_command()`.
 
-For simple scripts, it’s also possible to automatically attach and create a command by using the `Group.command()` decorator instead.  
+For simple scripts, it's also possible to automatically attach and create a command by using the `Group.command()` decorator instead.  
 The above script can instead be written like this:
 
 ```py
@@ -54,7 +54,7 @@ def dropdb():
     click.echo('Dropped the database')
 ```
 
-You would then invoke the Group in your setuptools entry points or other invocations:
+You would then invoke the Group in your setup-tools entry points or other invocations:
 
 ```py
 if __name__ == '__main__':

@@ -10,7 +10,7 @@ Heading 2
 ---------
 
 # Heading 1
-## Headding 2
+## Heading 2
 ### Heading 3
 ```
 
@@ -20,7 +20,7 @@ Heading 2
 *Italic*    _Italic_
 **Bold**    __Bold__
 
-~GitHub's striketrough~
+~GitHub's strike-trough~
 ```
 
 ## Links & Images
@@ -74,6 +74,6 @@ Heading 2
 ```markdown
 | column label | column label | column label  |
 |:-------------|:------------:|--------------:|
-| left-aligned | centered     | right-alinged |
+| left-aligned | centered     | right-aligned |
 | row contents | row contents | row contents  |
 ```

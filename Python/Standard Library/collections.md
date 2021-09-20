@@ -6,7 +6,7 @@
 # sottoclasse dizionario per contare oggetti hash-abili
 from collections import Counter
 Counter(sequenza)  # -> oggetto Counter
-# {item: num comparese in sequenza, ...}
+# {item: num comprese in sequenza, ...}
 
 var = Counter(sequenza)
 var.most_common(n)  # produce lista degli elementi più comuni (n più comuni)

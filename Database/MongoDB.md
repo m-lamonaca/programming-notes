@@ -2,7 +2,7 @@
 
 The database is a container of **collections**. The collections are containers of **documents**.
 
-The documents are _schema-less_ that is they have a dynamic structure that can change between documents in the same colletion.
+The documents are _schema-less_ that is they have a dynamic structure that can change between documents in the same collection.
 
 ## Data Types
 
@@ -17,7 +17,7 @@ The documents are _schema-less_ that is they have a dynamic structure that can c
 | Embedded Document | `{"a": {...}}`                                   |
 | Embedded Array    | `{"b": [...]}`                                   |
 
-It's mandatory for each document ot have an uniwue field `_id`.
+It's mandatory for each document ot have an unique field `_id`.
 MongoDB automatically creates an `ObjectId()` if it's not provided.
 
 ## Databases & Collections Usage
@@ -69,7 +69,7 @@ db.<collection>.insertOne({document})  # implicit collection creation
 `$<key>` is used to access the value of the field dynamically
 
 ```json
-{ "$expr": { <expression> } }  // aggregetion expresion, variables, conditional expressions
+{ "$expr": { <expression> } }  // aggregation expression, variables, conditional expressions
 
 { "$expr":  { "$comparison_operator": [ "$<key>", "$<key>" ] } }  // compare field values
 ```
@@ -80,13 +80,13 @@ db.<collection>.insertOne({document})  # implicit collection creation
 
 It's possible to insert a single document with the command `insertOne()` or multiple documents with `insertMany()`.
 
-Isertion results:
+Insertion results:
 
 - error -> rollback
 - success -> entire documents gets saved
 
 ```sh
-# explicit collection creation, all options are otional
+# explicit collection creation, all options are optional
 db.createCollection( <name>,
    {
         capped: <boolean>,
@@ -121,7 +121,7 @@ db.<collection>.insertMany([ { document }, { document } ] , { "ordered": false }
 ```sh
 db.<collection>.findOne()  # find only one document
 db.<collection>.find(filter)  # show selected documents
-db.<collection>.find(filter, {"<key>": 1})  # show selected values form documents (1 or true => show, 0 or false => dont show, cant mix 0 and 1)
+db.<collection>.find(filter, {"<key>": 1})  # show selected values form documents (1 or true => show, 0 or false => don't show, cant mix 0 and 1)
 db.<collection>.find(filter, {_id: 0, "<key>": 1})  # only _id can be set to 0 with other keys at 1
 db.<collection>.find().pretty()  # show documents formatted
 db.<collection>.find().limit(n)  # show n documents
@@ -155,7 +155,7 @@ db.<collection>.find().hint( { $natural : -1 } )  # force the query to perform a
 
 ```sh
 db.<collection>.updateOne(filter, $set: {"<key>": value})  # add or modify values
-db.<collection>.updateOne(filter, $set: {"<key>": value}, {upsert: true})  # add or modify values, if attribute doesent exists create it
+db.<collection>.updateOne(filter, $set: {"<key>": value}, {upsert: true})  # add or modify values, if attribute doesn't exists create it
 
 db.<collection>.updateMany(filter, update)
 
@@ -175,7 +175,7 @@ db.dropDatabase()  # delete entire database
 ## [Mongoimport](https://docs.mongodb.com/database-tools/mongoimport/)
 
 Utility to import all docs into a specified collection.  
-If the collection alredy exists `--drop` deletes it before reuploading it.
+If the collection already exists `--drop` deletes it before reuploading it.
 **WARNING**: CSV separators must be commas (`,`)
 
 ```sh
@@ -228,17 +228,17 @@ mongoexport --collection=<collection> <options> <connection-string>
 
 **Nested / Embedded Documents**:
 
-- Group data locically
+- Group data logically
 - Optimal for data belonging together that do not overlap
 - Should avoid nesting too deep or making too long arrays (max doc size 16 mb)
 
 ```json
 {
-    _id: Objectid()
+    "_id": Objectid()
     "<key>": "value"
     "<key>": "value"
 
-    innerDocument: {
+    "innerDocument": {
         "<key>": "value"
         "<key>": "value"
     }
@@ -249,19 +249,19 @@ mongoexport --collection=<collection> <options> <connection-string>
 
 - Divide data between collections
 - Optimal for related but shared data used in relations or stand-alone
-- Allows to overtake nidification and size limits
+- Allows to overtake nesting and size limits
 
 NoSQL databases do not have relations and references. It's the app that has to handle them.
 
 ```json
 {
     "<key>": "value"
-    references: ["id1", "id2"]
+    "references": ["id1", "id2"]
 }
 
 // referenced
 {
-    _id: "id1"
+    "_id": "id1"
     "<key>": "value"
 }
 ```
@@ -273,7 +273,7 @@ Indexes support the efficient execution of queries in MongoDB.
 Without indexes, MongoDB must perform a _collection scan_ (_COLLSCAN_): scan every document in a collection, to select those documents that match the query statement.  
 If an appropriate index exists for a query, MongoDB can use the index to limit the number of documents it must inspect (_IXSCAN_).
 
-Indexes are special data structures that store a small portion of the collection’s data set in an easy to traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field. The ordering of the index entries supports efficient equality matches and range-based query operations. In addition, MongoDB can return sorted results by using the ordering in the index.
+Indexes are special data structures that store a small portion of the collection's data set in an easy to traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field. The ordering of the index entries supports efficient equality matches and range-based query operations. In addition, MongoDB can return sorted results by using the ordering in the index.
 
 Indexes _slow down writing operations_ since the index must be updated at every writing.
 
@@ -283,13 +283,13 @@ Indexes _slow down writing operations_ since the index must be updated at every 
 
 - **Normal**: Fields sorted by name
 - **Compound**: Multiple Fields sorted by name
-- **Multykey**: values of sorted arrays
+- **Multikey**: values of sorted arrays
 - **Text**: Ordered text fragments
 - **Geospatial**: ordered geodata
 
 **Sparse** indexes only contain entries for documents that have the indexed field, even if the index field contains a null value. The index skips over any document that is missing the indexed field.
 
-### Diagnosys and query planning
+### Diagnosis and query planning
 
 ```sh
 db.<collection>.find({...}).explain()  # explain won't accept other functions
@@ -345,9 +345,9 @@ Profiling Levels:
 Logs are saved in the `system.profile` _capped_ collection.
 
 ```sh
-db.setProgilingLevel(n)  # set profiler level
+db.setProfilingLevel(n)  # set profiler level
 db.setProfilingLevel(1, { slowms: <ms> })
-db.getProfilingStatus()  # check profiler satus
+db.getProfilingStatus()  # check profiler status
 
 db.system.profile.find().limit(n).sort( {} ).pretty()  # see logs
 db.system.profile.find().limit(n).sort( { ts : -1 } ).pretty()  # sort by decreasing timestamp
@@ -358,7 +358,7 @@ db.system.profile.find().limit(n).sort( { ts : -1 } ).pretty()  # sort by decrea
 **Authentication**: identifies valid users
 **Authorization**: identifies what a user can do
 
-- **userAdminAnyDatabase**: can admin every db in the istance (role must be created on admin db)
+- **userAdminAnyDatabase**: can admin every db in the instance (role must be created on admin db)
 - **userAdmin**: can admin the specific db in which is created
 - **readWrite**: can read and write in the specific db in which is created
 - **read**: can read the specific db in which is created
@@ -391,7 +391,7 @@ db.createUser(
 
 ## Sharding
 
-**Sharding** is a MongoDB concept through which big datasests are subdivided in smaller sets and distribuited towards multiple instances of MongoDB.  
+**Sharding** is a MongoDB concept through which big datasets are subdivided in smaller sets and distributed towards multiple instances of MongoDB.  
 It's a technique used to improve the performances of large queries towards large quantities of data that require al lot of resources from the server.
 
 A collection containing several documents is splitted in more smaller collections (_shards_)
@@ -400,7 +400,7 @@ Shards are implemented via cluster that are none other a group of MongoDB instan
 Shard components are:
 
 - Shards (min 2), instances of MongoDB that contain a subset of the data
-- A config server, instasnce of MongoDB which contains metadata on the cluster, that is the set of instances that have the shard data.
+- A config server, instance of MongoDB which contains metadata on the cluster, that is the set of instances that have the shard data.
 - A router (or `mongos`), instance of MongoDB used to redirect the user instructions from the client to the correct server.
 
 ![Shared Cluster](../.images/mongodb_shared-cluster.png "Components of a shared cluster")
@@ -413,7 +413,7 @@ A **replica set** in MongoDB is a group of `mongod` processes that maintain the 
 
 Sequence of operations applied to a collection as a _pipeline_ to get a result: `db.collection.aggregate(pipeline, options)`.
 
-[Aggragations Stages][aggeregation_stages_docs]:
+[Aggregations Stages][aggeregation_stages_docs]:
 
 - `$lookup`: Right Join
 - `$match`: Where

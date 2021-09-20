@@ -1,4 +1,4 @@
-# Pillow Library Cheat Sheet
+# Pillow
 
 ## Standard Imports
 
@@ -16,7 +16,7 @@ image = Image.open(filepath, mode)    # open image file (returns Image object)
 
 image.format    # image file extension
 image.size    # 2-tuple (width, height) in pixels
-image.mode    # defines number and name of bands in image, pixeld type and depth
+image.mode    # defines number and name of bands in image, pixel type and depth
 ```
 
 ## SAVING IMAGE FILE

@@ -45,7 +45,7 @@ RPUSH <key> <value1> <value2> ... # add one or more values to the end of the lis
 LPUSH <key> <value1> <value2> ...  # add one or more values to the start of a list
 
 LLEN  # number of items in the list
-LRANGE <key> <start_index> <end_index>  # return a subset of the list, end index included. Negative indexes caout backwards from the end
+LRANGE <key> <start_index> <end_index>  # return a subset of the list, end index included. Negative indexes count backwards from the end
 
 LPOP  # remove and return the first item fro the list
 RPOP  # remove and return the last item fro the list
@@ -56,7 +56,7 @@ RPOP  # remove and return the last item fro the list
 A set is similar to a list, except it does not have a specific order and each element may only appear once.
 
 ```sh
-SADD <key> <value1> <value2> ... # add one or more values to the set (retunr 0 if values are alredy inside)
+SADD <key> <value1> <value2> ... # add one or more values to the set (return 0 if values are already inside)
 SREM <key> <value>  # remove the given member from the set, return 1 or 0 to signal if the member was actually there or not.
 SPOP <key> <value>  # remove and return value from the set
 
@@ -97,7 +97,7 @@ HGET <key> <field>  # get data on a single field
 HKEYS <key>  # get all the fields in a hash
 HVALS <key>  # get all the values in a hash
 
-HDEL <key> <field_1> <field_2> ...  # delete one or more field hases
+HDEL <key> <field_1> <field_2> ...  # delete one or more field hashes
 
 HMGET <key> <field> [<field> ...]  # get the values of all the given hash fields
 HMSET <key> <field> <value> [<field> <value> ...]  # set multiple hash fields to multiple values

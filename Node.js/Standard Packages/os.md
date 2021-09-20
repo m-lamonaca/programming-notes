@@ -16,5 +16,5 @@ os.homedir();  // CUrrent user home directory
 os.hostname();  // PC Name
 
 os.cpus();  // Array of CPU info
-os.networkInterfaces();  // Array of Network Interfacecs info
+os.networkInterfaces();  // Array of Network Interfaces info
 ```

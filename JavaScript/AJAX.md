@@ -20,8 +20,8 @@ var request = new XMLHttpRequest();
 request.addEventListener(event, function() {...});
 
 request.open("HttpMethod", "path/to/api", true);  // third parameter is asynchronicity (true = asynchronous)
-reqest.setRequestHeader(key, value)  // HTTP Request Headers
-reqest.send()
+request.setRequestHeader(key, value)  // HTTP Request Headers
+request.send()
 ```
 
 To check the status use `XMLHttpRequest.status` and `XMLHttpRequest.statusText`.
@@ -75,7 +75,7 @@ request.send();
 
 ### `XMLHttpRequest` Browser compatibility
 
-Old versions of IE don’t implement XMLHttpRequest. You must use the ActiveXObject if XMLHttpRequest is not available
+Old versions of IE don't implement XMLHttpRequest. You must use the ActiveXObject if XMLHttpRequest is not available
 
 ```js
 var request =window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');

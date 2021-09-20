@@ -1,6 +1,6 @@
 # AppDelegate
 
-First loaded file. It prepares the app visualiation by calling the *scene* UI.
+First loaded file. It prepares the app visualisation by calling the *scene* UI.
 
 ```swift
 import UIKit

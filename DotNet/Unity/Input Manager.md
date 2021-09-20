@@ -4,7 +4,7 @@ The Input Manager uses the following types of controls:
 
 - **Key** refers to any key on a physical keyboard, such as `W`, `Shift`, or the `space bar`.
 - **Button** refers to any button on a physical controller (for example, gamepads), such as the `X` button on an Xbox One controller.
-- A **virtual axis** (plural: axes) is mapped to a **control**, such as a button or a key. When the user activates the control, the axis receives a value in the range of `[–1..1]`.
+- A **virtual axis** (plural: axes) is mapped to a **control**, such as a button or a key. When the user activates the control, the axis receives a value in the range of `[-1..1]`.
 
 ## Virtual axes
 
@@ -30,8 +30,8 @@ The Input Manager uses the following types of controls:
 
 Axis values can be:
 
-- Between `–1` and `1` for joystick and keyboard input. The neutral position for these axes is `0`. Some types of controls, such as buttons on a keyboard, aren’t sensitive to input intensity, so they can’t produce values other than `–1`, `0`, or `1`.
-- Mouse delta (how much the mouse has moved during the last frame) for mouse input. The values for mouse input axes can be larger than `1` or smaller than `–1` when the user moves the mouse quickly.
+- Between `-1` and `1` for joystick and keyboard input. The neutral position for these axes is `0`. Some types of controls, such as buttons on a keyboard, aren't sensitive to input intensity, so they can't produce values other than `-1`, `0`, or `1`.
+- Mouse delta (how much the mouse has moved during the last frame) for mouse input. The values for mouse input axes can be larger than `1` or smaller than `-1` when the user moves the mouse quickly.
 
 ```cs
 //Define the speed at which the object moves.

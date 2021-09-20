@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 import requests
 import lxml  # better html parser than built-in
 
-response = requests.get("url")  # retuire a web page
+response = requests.get("url")  # retrieve a web page
 
 soup = BeautifulSoup(response.text, "html.parser")  # parse HTML from response w/ python default HTML parser
 soup = BeautifulSoup(response.text, "lxml")  # parse HTML from response w/ lxml parser
@@ -32,7 +32,7 @@ type(tag)  # <class 'bs4.element.Tag'>
 print(tag)  # <b class="boldest">Extremely bold</b>
 
 tag.name  # tag name
-tag["attribute"]  # access to ttag attribute  values
+tag["attribute"]  # access to tag attribute  values
 tag.attrs  # dict of attribue-value pairs
 ```
 
@@ -48,21 +48,21 @@ A string corresponds to a bit of text within a tag. Beautiful Soup uses the `Nav
 soup.<tag>.<child_tag>  # navigate using tag names
 
 <tag>.contents  # direct children as a list
-<tag>.children  # direct children as a genrator for iteration
-<tag>.descendats  # iterator over all childered, recusive
+<tag>.children  # direct children as a generator for iteration
+<tag>.descendants  # iterator over all children, recursive
 
 <tag>.string  # tag contents, does not have further children
-# If a tag’s only child is another tag, and that tag has a .string, then the parenttag is considered to have the same .string as its child
-# If a tag contains more than one thing, then it’s not clear what .string should refer to, so .string is defined to be None
+# If a tag's only child is another tag, and that tag has a .string, then the parent tag is considered to have the same .string as its child
+# If a tag contains more than one thing, then it's not clear what .string should refer to, so .string is defined to be None
 
-<tag>.strings  # generattor to iterate over all children's strings (will list white space)
-<tag>.stripped_strings  # generattor to iterate over all children's strings (will NOT list white space)
+<tag>.strings  # generator to iterate over all children's strings (will list white space)
+<tag>.stripped_strings  # generator to iterate over all children's strings (will NOT list white space)
 ```
 
 ### Going Up
 
 ```py
-<tag>.parent  # tags direct parent (BeautifleSoup has parent None, html has parent BeautifulSoup)
+<tag>.parent  # tags direct parent (BeautifulSoup has parent None, html has parent BeautifulSoup)
 <tag>.parents  # iterable over all parents
 ```
 
@@ -94,7 +94,7 @@ soup.<tag>.<child_tag>  # navigate using tag names
 soup.find_all("tag")  # by name
 soup.find_all(["tag1", "tag2"])  # multiple tags in a list
 soup.find_all(function)  # based on a bool function
-sopu.find_all(True)  # Match everyting
+soup.find_all(True)  # Match everything
 ```
 
 ## Methods
@@ -102,10 +102,10 @@ sopu.find_all(True)  # Match everyting
 Methods arguments:
 
 - `name` (string): tag to search for
-- `attrs` (dict): attributte-value pai to search for
+- `attrs` (dict): attribute-value pai to search for
 - `string` (string): search by string contents rather than by tag
 - `limit` (int). limit number of results
-- `**kwargs`: be turned into a filter on one of a tag’s attributes.
+- `**kwargs`: be turned into a filter on one of a tag's attributes.
 
 ```py
 find_all(name, attrs, recursive, string, limit, **kwargs)  # several results
@@ -140,7 +140,7 @@ soup.select("css_selector")  # search for CSS selectors of HTML tags
 <tag>["attribute"]  = "value"  # modify the attribute value
 del <tag>["attribute"]  # remove the attribute
 
-soup.new_tag("name", <attribute> = "value")  # creat a new tag with specified name and attributes
+soup.new_tag("name", <attribute> = "value")  # create a new tag with specified name and attributes
 
 <tag>.string = "new content"  # modify tag text content
 <tag>.append(item)  # append to Tag content
@@ -161,7 +161,7 @@ soup.new_tag("name", <attribute> = "value")  # creat a new tag with specified na
 <tag>.replace_with(item)  # remove a tag or string from the tree, and replaces it with the tag or string of choice
 
 <tag>.wrap(other_tag)  # wrap an element in the tag you specify, return the new wrapper
-<tag>.unwrap()  # replace a tag with whatever’s inside, good for stripping out markup
+<tag>.unwrap()  # replace a tag with whatever's inside, good for stripping out markup
 
 <tag>.smooth()  # clean up the parse tree by consolidating adjacent strings
 ```

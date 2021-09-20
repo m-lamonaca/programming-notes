@@ -14,13 +14,13 @@ class Foo
 
 ## Dependency Injection Container
 
-The **Dependecy Injection Container** (DIC) allow to archive all the dependencies in a single `Container` class. Some offer automatic resolution of the dependecies.
+The **Dependency Injection Container** (DIC) allow to archive all the dependencies in a single `Container` class. Some offer automatic resolution of the dependencies.
 
 ## [PHP-DI](https://php-di.org/)
 
 The dependency injection container for humans. Installation: `composer require php-di/php-di`
 
-- **Autowire** functionality: the ability of the container to create and inject the dependecy automatically.
+- **Autowire** functionality: the ability of the container to create and inject the dependency automatically.
 - Use of [Reflection](https://www.php.net/manual/en/intro.reflection.php)
 - Configuration of the container through annotations & PHP code.
 
@@ -57,7 +57,7 @@ class Foo
 // config.php
 use Psr\Container\ContainerInterface;
 
-// config "primitrive" dependencies (dependecy => construct & return)
+// config "primitive" dependencies (dependency => construct & return)
 return [
     'dsn' => 'sqlite:db.sq3',
     PDO::class => function(ContainerInterface $c) {

@@ -27,7 +27,7 @@ namespace AppName.ViewModels
                 field = value;
 
                 var args = new PropertyChangedEventArgs(nameof(Property));  // EVENT: let view know that the Property has changed
-                PropertyChanged?.Invoke(this, args);  // Ivoke event to notify the view
+                PropertyChanged?.Invoke(this, args);  // Invoke event to notify the view
             }
         }
     }

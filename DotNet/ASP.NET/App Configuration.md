@@ -73,7 +73,7 @@ namespace App
             // or
             services.AddControllers();  // controllers w/o views
             //or
-            sevices.AddControllersWithViews();  // MVC Controllers
+            services.AddControllersWithViews();  // MVC Controllers
             //or
             services.AddServerSideBlazor();  // needs Razor Pages
 
@@ -147,7 +147,7 @@ Connection Strings & Secrets.
 
 ## `launchsettings.json`
 
-Launch Settings & Deployement Settings.
+Launch Settings & Deployment Settings.
 
 ```json
 {

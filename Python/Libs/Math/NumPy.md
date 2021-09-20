@@ -16,7 +16,7 @@ Unless explicitly specified `np.array` tries to infer a good data type for the a
 The data type is stored in a special dtype object.
 
 ```py
-var = np.array(sequence)  # createa array
+var = np.array(sequence)  # creates array
 var = np.asarray(sequence)  # convert input to array
 var = np.ndarray(*sequence)  # creates multidimensional array
 var = np.asanyarray(*sequence)  # convert the input to an ndarray
@@ -53,12 +53,12 @@ The numerical `dtypes` are named the same way: a type name followed by a number 
 | complex64, complex128, complex256 | c8, c16, c32 | Complex numbers represented by two 32, 64, or 128 floats, respectively                     |
 | bool                              | ?            | Boolean type storing True and False values                                                 |
 | object                            | O            | Python object type                                                                         |
-| string_                           | `S<num>`       | Fixed-length string type (1 byte per character), `<num>` is string lenght                |
-| unicode_                          | `U<num>`      | Fixed-length unicode type, `<num>` is lenght                                              |
+| string_                           | `S<num>`       | Fixed-length string type (1 byte per character), `<num>` is string length                |
+| unicode_                          | `U<num>`      | Fixed-length unicode type, `<num>` is length                                              |
 
 ## OPERATIONS BETWEEN ARRAYS AND SCALARS
 
-Any arithmetic operations between equal-size arrays applies the operation elementwise.
+Any arithmetic operations between equal-size arrays applies the operation element-wise.
 
 array `+` scalar --> element-wise addition (`[1, 2, 3] + 2 = [3, 4, 5]`)
 array `-` scalar --> element-wise subtraction (`[1 , 2, 3] - 2 = [-2, 0, 1]`)
@@ -73,7 +73,7 @@ array_1 `/` array_2 --> element-wise division (`[1, 2, 3] / [3, 2, 1] = [0.33, 1
 ## SHAPE MANIPULATION
 
 ```py
-np.reshape(array, newshape)  # changes the shape of the array
+np.reshape(array, new_shape)  # changes the shape of the array
 np.ravel(array)  #  returns the array flattened
 array.resize(shape)  # modifies the array itself
 array.T  # returns the array transposed
@@ -87,7 +87,7 @@ np.swapaxes(array, first_axis, second_axis)  # interchange two axes of an array
 ```py
 np.vstack((array1, array2))   # takes tuple, vertical stack of arrays (column wise)
 np.hstack((array1, array2))  # takes a tuple, horizontal stack of arrays (row wise)
-np.dstack((array1, array2)) # takes a tuple, depth wise stack of arrays (3rd dimesion)
+np.dstack((array1, array2)) # takes a tuple, depth wise stack of arrays (3rd dimension)
 np.stack(*arrays, axis)  # joins a sequence of arrays along a new axis (axis is an int)
 np.concatenate((array1, array2, ...), axis) # joins a sequence of arrays along an existing axis (axis is an int)
 ```
@@ -95,32 +95,32 @@ np.concatenate((array1, array2, ...), axis) # joins a sequence of arrays along a
 ## SPLITTING ARRAYS
 
 ```py
-np.split(array, indices)  # splits an array into equalli long sub-arrays (indices is int), if not possible raises error
+np.split(array, indices)  # splits an array into equall7 long sub-arrays (indices is int), if not possible raises error
 np.vsplit(array, indices)  # splits an array equally into sub-arrays vertically (row wise) if not possible raises error
 np.hsplit(array, indices)  # splits an array equally into sub-arrays horizontally (column wise) if not possible raises error
 np.dsplit(array, indices)  # splits an array into equally sub-arrays along the 3rd axis (depth) if not possible raises error
-np.array_split(array, indices) # splits an array into sub-arrays, arrays can be of different lenghts
+np.array_split(array, indices) # splits an array into sub-arrays, arrays can be of different lengths
 ```
 
 ## VIEW()
 
 ```py
 var = array.view()  # creates a new array that looks at the same data
-# slicinga returnas a view
-# view shapes are separated but assignement changes all arrays
+# slicing returns a view
+# view shapes are separated but assignment changes all arrays
 ```
 
 ## COPY()
 
 ```py
-var = array.copy()  # creates a deepcopy of the array
+var = array.copy()  # creates a deep copy of the array
 ```
 
 ## INDEXING, SLICING, ITERATING
 
 1-dimensional  --> sliced, iterated and indexed as standard
-n-dimensinal --> one index per axis, index given in tuple separated by commas `[i, j] (i, j)`
-dots (`...`) represent as meny colons as needed to produce complete indexing tuple
+n-dimensional --> one index per axis, index given in tuple separated by commas `[i, j] (i, j)`
+dots (`...`) represent as many colons as needed to produce complete indexing tuple
 
 - `x[1, 2, ...] == [1, 2, :, :, :]`
 - `x[..., 3] == [:, :, :, :, 3]`
@@ -134,7 +134,7 @@ iteration on first index, use .flat() to iterate over each element
 
 ## UNIVERSAL FUNCTIONS (ufunc)
 
-Functions that performs elemen-wise operations (vectorization).
+Functions that performs element-wise operations (vectorization).
 
 ```py
 np.abs(array)  # vectorized abs(), return element absolute value
@@ -151,7 +151,7 @@ np.ceil(array)  # vectorized ceil()
 np.floor(array)  # vectorized floor()
 np.rint(array)     # vectorized round() to nearest int
 np.modf(array)  #  vectorized divmod(), returns the fractional and integral parts of element
-np.isnan(array)   # vectorized x == NaN, return bollean array
+np.isnan(array)   # vectorized x == NaN, return boolean array
 np.isinf(array)  # vectorized test for positive or negative infinity, return boolean array
 np.isfineite(array)  # vectorized test fo finiteness, returns boolean array
 np.cos(array)  # vectorized cos(x)
@@ -163,7 +163,7 @@ np.tanh(array)  # vectorized tanh(x)
 np.arccos(array)  # vectorized arccos(x)
 np.arcsinh(array)  # vectorized arcsinh(x)
 np.arctan(array)  # vectorized arctan(x)
-np.arccosh(array)  # vectorized arccos(x)
+np.arccosh(array)  # vectorized arccosh(x)
 np.arcsinh(array)  # vectorized arcsin(x)
 np.arctanh(array)  # vectorized arctanh(x)
 np.logical_not(array)  # vectorized not(x), equivalent to -array
@@ -246,13 +246,13 @@ np.setxor1d()  # Set symmetric differences; elements that are in either of the a
 ## FILE I/O WITH ARRAYS
 
 ```py
-np.save(file, array)  # save array to binary file in .npy fromat
-np.savez(file, *array) # saveseveral arrays into a single file in uncompressed .npz format
+np.save(file, array)  # save array to binary file in .npy format
+np.savez(file, *array) # save several arrays into a single file in uncompressed .npz format
 np.savez_compressed(file, *args, *kwargs)  # save several arrays into a single file in compressed .npz format
-# *ARGS: arrays to save to the file. arrays will be saved with names “arr_0”, “arr_1”, and so on
+# *ARGS: arrays to save to the file. arrays will be saved with names "arr_0", "arr_1", and so on
 # **KWARGS: arrays to save to the file. arrays will be saved in the file with the keyword names
 
-np.savetxt(file, X, fmt="%.18e", delimiter=" ")   # save arry to text file
+np.savetxt(file, X, fmt="%.18e", delimiter=" ")   # save array to text file
 # X: 1D or 2D
 # FMT: Python Format Specification Mini-Language
 # DELIMITER: {str} -- string used to separate values
@@ -272,14 +272,14 @@ np.diag(array, k=0)  # extract a diagonal or construct a diagonal array
 
 np.dot(x ,y)  # matrix dot product
 np.trace(array, offset=0, dtype=None, out=None)  # return the sum along diagonals of the array
-# OFFSET: {int} -- offest of the diagonal from the main diagonal
+# OFFSET: {int} -- offset of the diagonal from the main diagonal
 # dtype: {dtype} -- determines the data-type of the returned array
 # OUT: {ndarray} -- array into which the output is placed
 
 np.linalg.det(A)  # compute the determinant of an array
 np.linalg.eig(A)  # compute the eigenvalues and right eigenvectors of a square array
 np.linalg.inv(A)  # compute the (multiplicative) inverse of a matrix
-# Ainv satisfies dot(A, Ainv) = dor(Ainv, A) = eye(A.shape[0])
+# A_inv satisfies dot(A, A_inv) = dor(A_inv, A) = eye(A.shape[0])
 
 np.linalg.pinv(A)  # compute the (Moore-Penrose) pseudo-inverse of a matrix
 np.linalg.qr()  # factor the matrix a as qr, where q is orthonormal and r is upper-triangular
@@ -304,13 +304,13 @@ np.random.Generator.beta(a, b, size=None)  # draw samples from a Beta distributi
 
 np.random.Generator.binomial(n, p, size=None)  # draw samples from a binomial distribution
 # N: {int, array ints} -- parameter of the distribution, >= 0
-# P: {float, attay floats} -- Parameter of the distribution, >= 0 and <= 1
+# P: {float, arrey floats} -- Parameter of the distribution, >= 0 and <= 1
 
 np.random.Generator.chisquare(df, size=None)
 # DF: {float, array floats} -- degrees of freedom, > 0
 
 np.random.Generator.gamma(shape, scale=1.0, size=None)  # draw samples from a Gamma distribution
-# SHAPE: {flaot, array floats} -- shape of the gamma distribution, != 0
+# SHAPE: {float, array floats} -- shape of the gamma distribution, != 0
 
 np.random.Generator.normal(loc=0.0, scale=1.0, Size=None)  # draw random samples from a normal (Gaussian) distribution
 # LOC: {float, all floats} -- mean ("centre") of distribution

@@ -52,7 +52,7 @@ The term *view* in Xamarin.Forms denotes familiar types of presentation and inte
 
 - StackLayout: Organizes views linearly, either horizontally or vertically.
 - AbsoluteLayout: Organizes views by setting coordinates & size in terms of absolute values or ratios.
-- RelativeLayout: Organizes views by setting constraints relative to their parent’s dimensions & position.
+- RelativeLayout: Organizes views by setting constraints relative to their parent's dimensions & position.
 - Grid: Organizes views in a grid of Rows and Columns
 - FlexLayout: Organizes views horizontally or vertically with wrapping.
 - ScrollView: Layout that's capable of scrolling its content.
@@ -60,7 +60,7 @@ The term *view* in Xamarin.Forms denotes familiar types of presentation and inte
 ### Grid Layout
 
 ```xml
-<!-- "<num>*" makes the dimesions proportional -->
+<!-- "<num>*" makes the dimensions proportional -->
 <Gird.RowDefinitions>
     <!-- insert a row in the layout -->
     <RowDefinition Height="2*"/>
@@ -76,11 +76,11 @@ The term *view* in Xamarin.Forms denotes familiar types of presentation and inte
 
 ```xml
 <Image Source="" BackgroundColor="" [LayoutPosition]/>
-<!-- source contains reference to imagefile in Xamarin.[OS]/Resources/drawable -->
+<!-- source contains reference to image file in Xamarin.[OS]/Resources/drawable -->
 
 <!-- box to insert text -->
 <Editor Placeholder="placeholder text" [LayoutPosition]/>
 
 <!-- clickable button -->
-<Button Text="button text" BackgroundColor="" Clicked="function_to_call" [LayoytPosition]/>
+<Button Text="button text" BackgroundColor="" Clicked="function_to_call" [LayoutPosition]/>
 ```

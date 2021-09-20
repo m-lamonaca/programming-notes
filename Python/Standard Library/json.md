@@ -65,7 +65,7 @@ json.loads(s, cls=None)
 
 ## Default Decoder (`json.JSONDecoder()`)
 
-Convertions (JSON -> Python):
+Conversions (JSON -> Python):
 
 - object -> dict
 - array -> list
@@ -78,7 +78,7 @@ Convertions (JSON -> Python):
 
 ## Default Encoder (`json.JSONEncoder()`)
 
-Convertions (Python -> Json):
+Conversions (Python -> Json):
 
 - dict -> object
 - list, tuple -> array
@@ -96,7 +96,7 @@ import json
 class ComplexEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, complex):
-            return [obj.real, obj.imag]
+            return [obj.real, obj.image]
         # Let the base class default method raise the TypeError
             return json.JSONEncoder.default(self, obj)
 ```
@@ -105,6 +105,6 @@ class ComplexEncoder(json.JSONEncoder):
 
 ```python
 data = json.loads(json)
-data["key"]  # retieve the value associated with the key
-data["outer key"]["nested key"]  # nested key value retireval
+data["key"]  # retrieve the value associated with the key
+data["outer key"]["nested key"]  # nested key value retrieval
 ```

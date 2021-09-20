@@ -7,18 +7,18 @@ cargo new project_name  # creates project folder and basic files
 cargo new --vcs=git project_name  # init project as git repo
 ```
 
-## Building, Runnning & Checking a project
+## Building, Running & Checking a project
 
 Inside the project directory:
 
 ```ps1
-cargo build  # build progect and download eventual needed dependencies
-cargo build --release  # build project for realease (build + optimisations)
+cargo build  # build project and download eventual needed dependencies
+cargo build --release  # build project for release (build + optimisations)
 cargo run  # executes the built executable
 cargo check  # verifies buildability without producing an executable
 ```
 
-## Dependecies
+## Dependencies
 
 In `Cargo.toml`:
 
@@ -29,7 +29,7 @@ crate_name = "<version_number>"
 
 ## Code Organization
 
-Rust has a number of features that allow to manage the code’s organization, including which details are exposed, which details are private, and what names are in each scope in the programs.
+Rust has a number of features that allow to manage the code's organization, including which details are exposed, which details are private, and what names are in each scope in the programs.
 
 These features, sometimes collectively referred to as the module system, include:
 
@@ -44,7 +44,7 @@ A crate is a binary or library. The crate root is a source file that the Rust co
 A package is one or more crates that provide a set of functionality. A package contains a `Cargo.toml` file that describes how to build those crates.
 
 Several rules determine what a package can contain. A package must contain `zero` or `one` **library crates** (`lib` ?), and no more.  
-It can contain as many `binary` crates as you’d like, but it must contain at least one crate (either library or binary).
+It can contain as many `binary` crates as you'd like, but it must contain at least one crate (either library or binary).
 
 If a package contains `src/main.rs` and `src/lib.rs`, it has two crates: a library and a binary, both with the same name as the package.  
 A package can have multiple binary crates by placing files in the `src/bin` directory: each file will be a separate binary crate.
@@ -58,7 +58,7 @@ Likewise, Cargo knows that if the package directory contains `src/lib.rs`, the p
 
 Modules allow to organize code within a crate into groups for readability and easy reuse. Modules also control the privacy of items, which is whether an item can be used by outside code (*public*) or is an internal implementation detail and not available for outside use (*private*).
 
-Define a module by starting with the `mod` keyword and then specify the name of the moduleand place curly brackets around the body of the module.  
+Define a module by starting with the `mod` keyword and then specify the name of the module and place curly brackets around the body of the module.  
 Inside modules, it's possible to have other modules. Modules can also hold definitions for other items, such as structs, enums, constants, traits, or functions.
 
 ### Paths
@@ -102,7 +102,7 @@ mod file_level_module;  // define a module for the whole file (same name as file
 ```
 
 It's possible to use `pub` to designate *structs* and *enums* as public, but there are a few extra details.  
-If `pub` is used before a struct definition, this makes the struct public, but the struct’s fields will still be private.  
+If `pub` is used before a struct definition, this makes the struct public, but the struct's fields will still be private.  
 It's possible make each field public or not on a case-by-case basis.
 
 In contrast, if an enum is made public, all of its variants are then public.
@@ -114,7 +114,7 @@ use <crate_name>::module;  // import module (abs path, other crate)
 use crate::module;  // import module (abs path, same crate)
 use self::module;  // import module (rel path, same crate)
 
-use <crate_name>::module as alias;  // import module w/ aliass
+use <crate_name>::module as alias;  // import module w/ aliases
 pub use <crate_name>::module;  // re-exporting (import and make available to others)
 
 use <crate_name>::module::{self, Item}; // import multiple paths
@@ -136,7 +136,7 @@ src
 
 ```rs
 // main.rs
-mod module;  // delcare module direcotry as a module
+mod module;  // declare module directory as a module
 
 // mod.rs
 pub mod sub_module;  // declare sub_module file as a module

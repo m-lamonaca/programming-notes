@@ -13,7 +13,7 @@ The word *winfx* refers to a name once used for the .NET Framework 3.0, which in
 The `x:Class` attribute can appear only on the root element of a XAML file. It specifies the .NET namespace and name of a derived class. The base class of this derived class is the root element.
 
 In other words, this `x:Class` specification indicates that the `App` class in the `AppName` namespace derives from `Application`.
-That’s exactly the same information as the `App` class definition in the `App.xaml.cs` file.
+That's exactly the same information as the `App` class definition in the `App.xaml.cs` file.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -31,7 +31,7 @@ That’s exactly the same information as the `App` class definition in the `App.
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppName.App">
 
-    <!-- collection of shared resources definiions -->
+    <!-- collection of shared resources definitions -->
     <Application.Resources>
 
         <!-- Application resource dictionary -->
@@ -42,7 +42,7 @@ That’s exactly the same information as the `App` class definition in the `App.
 
         <!-- define a reusable style -->
         <Style x:Key="Style Name" TargetType="Element Type">
-            <!-- set poperties of the style -->
+            <!-- set properties of the style -->
             <Setter Property="PropertyName" Value="PropertyValue">
         </Style>
 

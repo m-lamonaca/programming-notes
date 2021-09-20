@@ -17,8 +17,8 @@ New-Item -ItemType SymbolicLink -Path .\link -Target .\Notice.txt  # create a sy
 Move-Item -Path <source> -Destination <target>  # move and/or rename files and folders
 Copy-Item -Path <source> -Destination <target>  # copy (and rename) files and folders
 
-Test-Path "path" -PathType Container  # check if the exising path exists and is a folder
-Test-Path "path" -PathType Leaf  # check if the exising path exists and is a file
+Test-Path "path" -PathType Container  # check if the existing path exists and is a folder
+Test-Path "path" -PathType Leaf  # check if the existing path exists and is a file
 
 # start, list , kill processes
 Start-Process -FilePath <file>  # open a file with the default process/program

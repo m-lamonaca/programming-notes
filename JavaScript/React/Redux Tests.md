@@ -2,10 +2,10 @@
 
 ## Tests for Connected Components
 
-Connected components are warpped in a call to `connect`. Way of solving the problem:
+Connected components are wrapped in a call to `connect`. Way of solving the problem:
 
 - Wrap component with `<Provider>`. Added benefit: new store dedicated to tests.
-- Add named export for unconncted component.
+- Add named export for unconnected component.
 
 In `Component.js`:
 
@@ -38,8 +38,8 @@ function testHelper(args) {
 it("test description", () => {
     const dom = testHelper();
 
-    // simulate page interation
-    dom.find("selctor").simulate("<event>");
+    // simulate page iteration
+    dom.find("selector").simulate("<event>");
 
     // find changed component
     // test expected behaviour of component
@@ -91,7 +91,7 @@ import initialState from "path/to/initialState";
 import * as actions from "path/to/actionCreators";
 
 it("test description", () => {
-    const store = createStore(toorReducer, initialState);
+    const store = createStore(storeReducer, initialState);
 
     const expectedState = /* state after the update */
 
@@ -126,7 +126,7 @@ import * as actions from "path/to/actionCreators";
 
 describe("Async Actions", () => {
     afterEach(() => {
-        fetchMock.restore();  // init fecth mock for each test
+        fetchMock.restore();  // init fetch mock for each test
     });
 
     it("test description", () => {

@@ -26,10 +26,10 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>  {
         }
     }
 
-    //adapter contructor, takes list of data
+    //adapter contractor, takes list of data
     constructor(myDataset: ArrayList<Recipe>/*, mContext: Context?*/){
         mDataset = myDataset
-        //mContenxt = mContext
+        //mContext = mContext
     }
 
 

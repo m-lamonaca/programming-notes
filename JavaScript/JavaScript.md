@@ -24,7 +24,7 @@
  * @author author's name
  * purpose of file
  *
- * detailed explanantion of what the file does on multiple lines
+ * detailed explanation of what the file does on multiple lines
  */
 ```
 
@@ -56,7 +56,7 @@ alert("message");
 
 [var vs let vs const](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/)
 
-Variable names can only contain numbers, digits, underscores and $. Varieble names are camelCase.
+Variable names can only contain numbers, digits, underscores and $. Variable names are camelCase.
 
 `let`: Block-scoped; access to variable restricted to the nearest enclosing block.
 `var`: Function-scoped
@@ -66,8 +66,8 @@ Variable names can only contain numbers, digits, underscores and $. Varieble nam
 
 ### Scope
 
-Variabled declared with `let` are in local to the code block in which are declared.
-Variabled declared with `var` are local only if declared in a function.
+Variable declared with `let` are in local to the code block in which are declared.
+Variable declared with `var` are local only if declared in a function.
 
 ```js
 function func(){
@@ -121,9 +121,9 @@ let string$ = 'text';
 let string_ = `text ${expression}`;  //string interpolation (needs backticks)
 
 string.length;  // length of the string
-let char = string.charAt(index);  // extaraction of a single character by position
+let char = string.charAt(index);  // extraction of a single character by position
 string[index]; // char extraction by property access
-let index = strinf.indexOf(substring);  // start index of substring in string
+let index = string.indexOf(substring);  // start index of substring in string
 ```
 
 Property access is unpredictable:
@@ -170,7 +170,7 @@ typeof x;  //returns the type of the variable x as a string
 typeof(x);  //returns the type of the variable x as a string
 ```
 
-The result of typeof null is "object". That’s wrong.  
+The result of typeof null is "object". That's wrong.  
 It is an officially recognized error in typeof, kept for compatibility. Of course, null is not an object.
 It is a special value with a separate type of its own. So, again, this is an error in the language.  
 
@@ -179,12 +179,12 @@ It is a special value with a separate type of its own. So, again, this is an err
 ```javascript
 String(value);  //converts value to string
 
-Number(value);  //converst value to a number
+Number(value);  //converts value to a number
 Number(undefined);  //--> NaN
 Number(null);  //--> 0
 Number(true);  //--> 1
 Number(false);  //--> 0
-Number(String);  //Whitespaces from the start and end are removed. If the remaining string is empty, the result is 0. Otherwise, the number is “read” from the string. An error gives NaN.
+Number(String);  //Whitespace from the start and end is removed. If the remaining string is empty, the result is 0. Otherwise, the number is "read" from the string. An error gives NaN.
 
 Boolean(value);  //--> true
 Boolean(0); //--> false
@@ -211,8 +211,8 @@ Number("A") == NaN;  //false ?!?
 
 ```js
 2 + 'text';  //"2text", implicit conversion and concatenation
-1 + "1";  //"11", implicit conversion and concatention
-"1" + 1;  //"11", implicit conversion and concatention
+1 + "1";  //"11", implicit conversion and concatenation
+"1" + 1;  //"11", implicit conversion and concatenation
 +"1";  //1, implicit conversion
 +"text";  // NaN
 1 == "1";  //true
@@ -231,7 +231,7 @@ Number("A") == NaN;  //false ?!?
 | `new` a(...) | object creation |
 | a `in` b     | membership      |
 
-### Mathemetical Operators
+### Mathematical Operators
 
 | Operator | Operation      |
 | -------- | -------------- |
@@ -247,9 +247,9 @@ Number("A") == NaN;  //false ?!?
 | Operator     | Operation         |
 | ------------ | ----------------- |
 | `--`variable | prefix decrement  |
-| `++`variable | prefix incremente |
-| variable`--` | postfiz decrement |
-| variable`++` | ostfix increment  |
+| `++`variable | prefix increment  |
+| variable`--` | postfix decrement |
+| variable`++` | postfix increment |
 
 ### Logical Operators
 
@@ -267,7 +267,7 @@ Number("A") == NaN;  //false ?!?
 | a `<=` b  | less or equal to    |
 | a `>` b   | greater than        |
 | a `>=` b  | greater or equal to |
-| a `==` b  | equaltity           |
+| a `==` b  | equality            |
 | a `!=` b  | inequality          |
 | a `===` b | strict equality     |
 | a `!==` b | strict inequality   |
@@ -281,8 +281,8 @@ Number("A") == NaN;  //false ?!?
 | a `^` b   | bitwise XOR                  |
 | `~`a      | bitwise NOT                  |
 | a `<<` b  | bitwise left shift           |
-| a `>>` b  | bitwise rigth sigt           |
-| a `>>>` b | bitwise unsigned rigth shift |
+| a `>>` b  | bitwise right shift          |
+| a `>>>` b | bitwise unsigned right shift |
 
 ### Compound Operators
 
@@ -364,19 +364,19 @@ do {
 ### For Loop
 
 ```javascript
-// baseic for
+// basic for
 for (begin; condition; step) { }
 
 for (var variable in iterable) { }  // for/in statement loops through the properties of an object
-for (let variable in iterable) { }  // inistatiate a new variable at each iteration
+for (let variable in iterable) { }  // instantiate a new variable at each iteration
 
 // for/of statement loops through the values of an iterable objects
 // for/of lets you loop over data structures that are iterable such as Arrays, Strings, Maps, NodeLists, and more.
 for (var variable of iterable) { }
-for (let variable of iterable) { }  // inistatiate a new variable at each iteration
+for (let variable of iterable) { }  // instantiate a new variable at each iteration
 
 // foreach (similar to for..of)
-itearble.forEach(() => { /* statements */ });
+iterable.forEach(() => { /* statements */ });
 ```
 
 ### Break & Continue statements
@@ -385,11 +385,11 @@ itearble.forEach(() => { /* statements */ });
 `continue;` skip to next loop cycle.
 
 ```javascript
-labelname: for(begin; condition; step) {
+label: for(begin; condition; step) {
     //code here
 }
 
-break labelname;  //breaks labelled loop and nested loops inside it
+break label;  //breaks labelled loop and nested loops inside it
 ```
 
 ## Arrays
@@ -405,9 +405,9 @@ array[index] = item; // change or add item by index
 array.push(item);  //add item to array
 array.pop();  // remove and return last item
 
-array.join("separator");  // constuct a string from the items of the array, sepatated by SEPARATOR
+array.join("separator");  // construct a string from the items of the array, separated by SEPARATOR
 array.find(item => condition); // returns the value of the first element in the provided array that satisfies the provided testing function
-array.fill(value, start, end);  // filla an array with the passed value
+array.fill(value, start, end);  // fills an array with the passed value
 
 
 // https://stackoverflow.com/a/37601776
@@ -438,7 +438,7 @@ let array1 = [ 1, 2, 3, 4, 5, 6 ];
 let array2 = [ 7, 8, 9, 10 ];
 let copy = [ ...array1 ];  // shallow copy
 let copyAndAdd = [ 0, ...array1, 7 ];  // insert all values in new array
-let merge = [ ...array1, ...attay2 ];  // merge the arrays contents in new array
+let merge = [ ...array1, ...array2 ];  // merge the arrays contents in new array
 
 // objects
 let obj = { prop1: value1, prop2: value2 };
@@ -507,7 +507,7 @@ function functionName(parameter=default-value, ...args) {
 ```javascript
 function functionName(parameters) {
     if (parameter == undefined) {
-        paremeter = value;
+        parameter = value;
     }
 
     //code here
@@ -542,7 +542,7 @@ let func = input => expression;
 
 func();  // function call
 
-// rerurn object literal
+// return object literal
 let func = (value) => ({property: value});
 ```
 
@@ -550,7 +550,7 @@ let func = (value) => ({property: value});
 
 An object is a collection of related data and/or functionality.
 
-**Note**: It's not possible to transform a variable in an object simply by using the object assignement.
+**Note**: It's not possible to transform a variable in an object simply by using the object assignment.
 
 ```js
 let variable = value;
@@ -567,7 +567,7 @@ let obj = {
 
     method: function() {
         // code here
-        this.properyName;  // reference to object property inside the object
+        this.propertyName;  // reference to object property inside the object
     }
 
     method; () => {
@@ -575,7 +575,7 @@ let obj = {
     }
 };
 
-// access to property (non existant porperties will return Undefined)
+// access to property (non existant properties will return Undefined)
 obj.property;  // dot notation
 obj["property"];  // array notation
 
@@ -601,12 +601,12 @@ Notice that it has all the features you'd expect in a function, although it does
 function Class(params) {
     this.property = param;
 
-    this.method = function(parms) { /* code here */ }
+    this.method = function(params) { /* code here */ }
 }
 
 let obj = new Class(params);  // object instantiation
 
-let obj = new Object();  // cretaes empty object
+let obj = new Object();  // creates empty object
 let obj = new Object({
     // JSON
 });
@@ -623,7 +623,7 @@ This is often referred to as a **prototype chain**, and explains why different o
 If a method is implemented on an object (and not it's prototype) then only that object will heve that method and not all the ones that come from the same prototype.
 
 ```js
-// constuctor function
+// constructor function
 function Obj(param1, ...) {
     this.param1 = param1,
     ...
@@ -712,10 +712,10 @@ let obj = {
 
 let { var1, var2 } = obj;  // extract values from object into variables
 let { property: var1, property2 : var2 } = obj;  // extract props in variables w/ specified names
-let { property: var1, var2 = defalut_value } = obj;  // use default values if object has less then expected props
+let { property: var1, var2 = default_value } = obj;  // use default values if object has less then expected props
 ```
 
-### Array Deconstrions
+### Array Deconstruction
 
 ```js
 let array = [ 1, 2, 3, 4, 5, 6 ];
@@ -726,10 +726,10 @@ let [first, , third, , seventh = "missing" ] = array;  // extract specific value
 
 ```js
 let object = {
-    // ojectt attributes
+    // object attributes
 }
 
-let json = JSON.stringify(object);  // serialieze onbect in JSON
+let json = JSON.stringify(object);  // serialize object in JSON
 
 let json = {  /* JSON */ };
 let object = JSON.parse(json);  // deserialize to Object
@@ -757,7 +757,7 @@ let timerId = setTimeout(function(arg1, ...){
 
 clearTimeout(timerId)  // cancel execution
 
-// exemple of multiple consecutive schedules
+// example of multiple consecutive schedules
 let list = [1 , 2, 3, 4, 5, 6, 7, 8, 9, 10, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", -1, -2, -3, -4, -5, -6, -7, -8, -9, -10]
 function useTimeout(pos=0) {
 
@@ -766,7 +766,7 @@ function useTimeout(pos=0) {
         pos += 1;  // update value for next call
 
         if (pos < list.length) {  // recursion exit condition
-            useTimeout(pos);  // schedule next call with new walue
+            useTimeout(pos);  // schedule next call with new value
         }
     }, 1_000, pos);
 }
@@ -777,7 +777,7 @@ useTimeout();
 ### `let` vs `var` with `setTimeout`
 
 ```js
-// let instantitates a new variable for each iteration
+// let instantiates a new variable for each iteration
 for (let i = 0; i < 3; ++i) {
     setTimeout(function() {
         console.log(i);
@@ -923,7 +923,7 @@ In `page.html`
 In `module.js`:
 
 ```js
-// exporting indivisual fratures
+// exporting individual fractures
 export default function() {}  // one per module
 export func = () => expression;  // zero or more per module
 

@@ -2,7 +2,7 @@
 
 ## `Page.aspx`
 
-The fist loaded page is `Default.aspx` and its undelying code.
+The fist loaded page is `Default.aspx` and its underlying code.
 
 ```html
 <!-- directive -->
@@ -76,7 +76,7 @@ namespace Project
 
         }
 
-        protected void Control_Event(object sender, EventAtgs e)
+        protected void Control_Event(object sender, EventArgs e)
         {
             // actions on event trigger
         }

@@ -34,14 +34,14 @@ Converter Type | Accepts
 `uuid`         | UUID strings
 
 ```python
-@app.route("/user/<string:username>")    # hanle URL at runtime
+@app.route("/user/<string:username>")    # handle URL at runtime
 def profile(username):
     return f"{escape(username)}'s profile'"
 ```
 
 ## Redirection
 
-`url_for(endpoint, **values)` is used to redirect passing keyeworderd arguments. It can be used in combination with `@app.route("/<value>")` to accept the paassed arguments.
+`url_for(endpoint, **values)` is used to redirect passing keyworded arguments. It can be used in combination with `@app.route("/<value>")` to accept the passed arguments.
 
 ```py
 from flask import Flask, redirect, url_for
@@ -137,7 +137,7 @@ In `parent_template.html`:
 
 The content of the block will be filled by the child class.
 
-In `child_template.hmtl`:
+In `child_template.html`:
 
 ```html
 {% extends "parent_template.html" %}

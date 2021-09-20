@@ -2,8 +2,8 @@
 
 ## Data Transfer Objects (DTOs)
 
-A **DTO** is an object that defines how the data will be sent and recieved over the network (usually as JSON).
-Without a DTO the JSON response (or reqest) could contain irrilevant, wrong or unformatted data.
+A **DTO** is an object that defines how the data will be sent and received over the network (usually as JSON).
+Without a DTO the JSON response (or request) could contain irrelevant, wrong or unformatted data.
 Moreover, by decoupling the JSON response from the actual data model, it's possible to change the latter without breaking the API.
 DTOs must be mapped to the internal methods.
 
@@ -50,7 +50,7 @@ namespace <Namespace>.Profiles
 
 ## Controller (No View)
 
-Uses [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) to recieve a suitable implementation of `IEntityRepo`,
+Uses [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) to receive a suitable implementation of `IEntityRepo`,
 
 ### Service Lifetimes
 
