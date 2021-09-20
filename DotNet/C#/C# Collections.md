@@ -2,9 +2,9 @@
 
 ## Arrays
 
-An array is an object that contains multiple elements of a particular type. The number of elements is fixed for the lifetime of the array, so it must be specied when the array is created.
+An array is an object that contains multiple elements of a particular type. The number of elements is fixed for the lifetime of the array, so it must be specified when the array is created.
 
-An array type is always a reference type, regardless of the element type. Nonetheless, the choice between reference type and value type elements makes a significant difference in an array’s behavior.
+An array type is always a reference type, regardless of the element type. Nonetheless, the choice between reference type and value type elements makes a significant difference in an array's behavior.
 
 ```cs
 type[] array = new type[dimension];
@@ -14,9 +14,9 @@ type[] array = {value1, value2, ..., valueN};  // initializer
 var array = new type[] {value1, value2, ..., valueN};  // initializer (var type needs new operator)
 var array = new[] {value1, value2, ..., valueN};  // initializer w/ element type inference (var type needs new operator), can be used as method arg
 
-array[index];    // value acces
-array[index] = value;    // value assignement
-array.Lenght;  // dimension of the array
+array[index];    // value access
+array[index] = value;    // value assignment
+array.Length;  // dimension of the array
 
 // from IEnumerable<T>
 array.OfType<Type>();  // filter array based on type, returns IEnumerable<Type>
@@ -27,17 +27,17 @@ array.OfType<Type>();  // filter array based on type, returns IEnumerable<Type>
 ```cs
 // overloaded search methods
 Array.IndexOf(array, item);  // return index of searched item in passed array
-Array.LastIndexOf(array, item); // return index of searched item staring from the end of the arrary
+Array.LastIndexOf(array, item); // return index of searched item staring from the end of the array
 Array.FindIndex(array, Predicate<T>)  // returns the index of the first item matching the predicate (can be lambda function)
 Array.FindLastIndex(array, Predicate<T>)  // returns the index of the last item matching the predicate (can be lambda function)
 Array.Find(array, Predicate<T>)  // returns the value of the first item matching the predicate (can be lambda function)
-Array.FindLast(array, Predicate<T>)  // returns the value of the last item matvhing the predicate (can be lambda function)
+Array.FindLast(array, Predicate<T>)  // returns the value of the last item matching the predicate (can be lambda function)
 Array.FindAll(array, Predicate<T>)  // returns array of all items matching the predicate (can be lambda function)
-Array.BinarySearch(array, value)  // Searches a  SORTED array for a value, using a binary search algorithm; retuns the index of the found item
+Array.BinarySearch(array, value)  // Searches a  SORTED array for a value, using a binary search algorithm; returns the index of the found item
 
 Array.Sort(array);
 Array.Reverse(array);  // reverses the  order of array elements
-Array.Clear(start_index, x);  //removes reference to x elements starting at start index. Dimension of array uncanged (cleared elements value is set tu null)
+Array.Clear(start_index, x);  //removes reference to x elements starting at start index. Dimension of array unchanged (cleared elements value is set tu null)
 Array.Resize(ref array, target_dimension);  //expands or shrinks the array dimension. Shrinking drops trailing values. Array passed by reference.
 
 // Copies elements from an Array starting at the specified index and pastes them to another Array starting at the specified destination index.
@@ -78,8 +78,8 @@ type[,] matrix = new type[n, m];  // n * m matrix
 type[,] matrix = {{}, {}, {}, ...};  // {} for each row to initialize
 type[, ,] tensor = new type[n, m, o] // n * m * o tensor
 
-matrix.Length;  // total numeber of elements (n * m)
-matrix.GetLenght(int dimension); // get the size of a particular direction
+matrix.Length;  // total number of elements (n * m)
+matrix.GetLength(int dimension); // get the size of a particular direction
 // row = 0, column = 1, ...
 ```
 
@@ -102,13 +102,13 @@ list.Insert(index, item);  // insert an item at the specified index
 list.InsertRange(index, item);  // insert items at the specified index
 
 list.IndexOf(item);  // return index of searched item in passed list
-list.LastIndexOf(item); // return index of searched item staring from the end of the arrary
+list.LastIndexOf(item); // return index of searched item staring from the end of the array
 list.FindIndex(Predicate<T>)  // returns the index of the first item matching the predicate (can be lambda function)
 list.FindLastIndex(Predicate<T>)  // returns the index of the last item matching the predicate (can be lambda function)
 list.Find(Predicate<T>)  // returns the value of the first item matching the predicate (can be lambda function)
-list.FindLast(Predicate<T>)  // returns the value of the last item matvhing the predicate (can be lambda function)
+list.FindLast(Predicate<T>)  // returns the value of the last item matching the predicate (can be lambda function)
 list.FindAll(Predicate<T>)  // returns list of all items matching the predicate (can be lambda function)
-list.BinarySearch(value)  // Searches a  SORTED list for a value, using a binary search algorithm; retuns the index of the found item
+list.BinarySearch(value)  // Searches a  SORTED list for a value, using a binary search algorithm; returns the index of the found item
 
 list.Remove(item);  // remove item from list
 list.RemoveAt(index);  // remove item at specified position
@@ -138,7 +138,7 @@ When a `yield return` statement is reached, the current location in code is reme
 
 It's possible to use a `yield break` statement or exception to end the iteration.
 
-**Note**: Since an iteartor returns an `IEnumerable<T>` is can be used to implement a `GetEnumerator()`.
+**Note**: Since an iterator returns an `IEnumerable<T>` is can be used to implement a `GetEnumerator()`.
 
 ```cs
 // simple iterator
@@ -159,7 +159,7 @@ Exposes the enumerator, which supports a simple iteration over a collection of a
 ```cs
 public interface IEnumerable<out T> : IEnumerable
 {
-    IEnumerator<T> GetEnumerator();  // retrun an enumerator
+    IEnumerator<T> GetEnumerator();  // return an enumerator
 }
 
 // iterate through a collection
@@ -227,7 +227,7 @@ Span<T> slice = array[start..end];
 ReadOnlySpan<T> slice = array[start..end];
 ```
 
-## [Dictioanaries](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2)
+## [Dictionaries](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2)
 
 [ValueCollection](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.valuecollection)
 [KeyCollection](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.keycollection)
@@ -258,10 +258,10 @@ Dictionary<TKey, TValue> dict =
 }
 
 // indexer access
-dict[key];  // read value associted with key (throws KeyNotFoundException if key does not exist)
-dict[key] = value;  // modify value associted with key (throws KeyNotFoundException if key does not exist)
+dict[key];  // read value associated with key (throws KeyNotFoundException if key does not exist)
+dict[key] = value;  // modify value associated with key (throws KeyNotFoundException if key does not exist)
 
-dict.Count;  // numer of key-value pair stored in the dict
+dict.Count;  // number of key-value pair stored in the dict
 dict.Keys;  // Dictionary<TKey,TValue>.KeyCollection containing the keys of the dict
 dict.Values;  // Dictionary<TKey,TValue>.ValueCollection containing the values of the dict
 

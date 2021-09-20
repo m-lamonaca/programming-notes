@@ -43,7 +43,7 @@ PHPUnit can be configured in a XML file called `phpunit.xml`:
 ### Test Structure
 
 **PHPUnit** tests are grouped in classes suffixed with `Test`. Each class *extends* `PHPUnit\Framework\TestCase`.  
-A test is a method of a *test class* prefized with `test`.  
+A test is a method of a *test class* prefixed with `test`.  
 PHPUnit is executed from the command line with `vendor/bin/phpunit  --colors`.
 
 ```php
@@ -85,10 +85,10 @@ class FilterTest extends TestCase
 - `assertFalse()`: verifies that the element is false
 - `assertEmpty()`: verifies that the element is empty
 - `assertEquals()`: verifies that the two elements are equal
-- `assertGreaterThan()`: verifies that the element is greter than ...
+- `assertGreaterThan()`: verifies that the element is greater than ...
 - `assertContains()`: verifies that the element is contained in an array
 - `assertInstanceOf()`: verifies that the element is an instance of a specific class
-- `assertArrayHasKey(mixed $key, array $array)`: verify taht a sopecific key is in the array
+- `assertArrayHasKey(mixed $key, array $array)`: verify that a specific key is in the array
 
 ### [PHPUnit Testing Exceptions](https://phpunit.readthedocs.io/en/9.3/writing-tests-for-phpunit.html#testing-exceptions)
 
@@ -98,13 +98,13 @@ public function testAggiungiEsameException(string $esame)
     $this->expectException(Exception::class);
     $this->expectExceptionMessage("exception_message");
 
-    // execute code that sould throw an exception
+    // execute code that should throw an exception
 }
 
 // https://github.com/sebastianbergmann/phpunit/issues/2484#issuecomment-648822531
-public function testExceptionNotTrown()
+public function testExceptionNotThrown()
 {
-    $exceptioWasTrown = false;
+    $exceptionWasThrown = false;
 
     try
     {
@@ -112,10 +112,10 @@ public function testExceptionNotTrown()
     }
     catch (EsameException $e)
     {
-        $exceptioWasTrown = true;
+        $exceptionWasThrown = true;
     }
 
-    $this->assertFalse($exceptioWasTrown);
+    $this->assertFalse($exceptionWasThrown);
 }
 
 // same as
@@ -168,7 +168,7 @@ class DataTest extends TestCase
         $this->assertEquals($expected, $a + $b);
     }
 
-    // test recieves array contents as input
+    // test receives array contents as input
     public function provider()
     {
         // must return array of arrays
@@ -178,7 +178,7 @@ class DataTest extends TestCase
         ];
     }
 
-    // test recieves array of arrays as input
+    // test receives array of arrays as input
     public function provideArrayOfArrays()
     {
         return [
@@ -226,5 +226,5 @@ class UnitTest extends TestCase
 ### Code Coverage (needs [XDebug](https://xdebug.org/))
 
 ```ps1
-vendor/bin/phpunit --coverage-text  # code cverage analisys in the terminal
+vendor/bin/phpunit --coverage-text  # code coverage analysis in the terminal
 ```

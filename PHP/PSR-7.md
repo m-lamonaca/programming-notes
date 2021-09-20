@@ -2,7 +2,7 @@
 
 ## [PSR-7](https://www.php-fig.org/psr/psr-7/)
 
-Standard of the PHP Framework Interop Group that defines common interafces for handling HTTP messages.
+Standard of the PHP Framework Interop Group that defines common interfaces for handling HTTP messages.
 
 - `Psr\Http\Message\MessageInterface`
 - `Psr\Http\Message\RequestInterface`

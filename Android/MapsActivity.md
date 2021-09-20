@@ -2,13 +2,13 @@
 
 [Google Maps Docs](https://developers.google.com/maps/documentation/android-sdk/intro)
 
-Activity sould be **Google Maps Activity**.
+Activity should be **Google Maps Activity**.
 
 In `google_maps_api.xml`:
 
 ```xml
 <resources>
-    <string name="google_maps_key" templateMergeStartegy="preserve", translateble="false">API_KEY</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve", translatable="false">API_KEY</string>
 </resources>
 ```
 
@@ -63,7 +63,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
         mMap.setOnInfoWindowClickListener(this)
 
         // Add a marker and move the camera
-        val location = LatLng(-34.0, 151.0)  // set loaction with latitude and longitude
+        val location = LatLng(-34.0, 151.0)  // set location with latitude and longitude
         mMap.addMarker(MarkerOptions().position(location).title("Marker in ..."))  // ad the marker to the map with a name and position
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location))  // move camera to the marker

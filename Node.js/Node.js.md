@@ -1,6 +1,6 @@
 # Node.js
 
-Asyncronous JavaScript Engine
+Asynchronous JavaScript Engine
 
 ## Syllabus
 

@@ -52,9 +52,9 @@ public class CustomHub : Hub
         return Clients.Caller.SendAsync("CLientMethod", args);
 
         // trigger function on clients of a group and pass args to it
-        return Clients.Group("GoupName").SendAsync("CLientMethod", args);
+        return Clients.Group("GroupName").SendAsync("CLientMethod", args);
 
-        // other opeations
+        // other operations
     }
 }
 ```
@@ -149,7 +149,7 @@ Reference the SignalR JavaScript client in the `<script>` element. For example:
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/hub/endpoint")
     .configureLogging(signalR.LogLevel.Information)
-    .withAutomaticreconnect()  // optional
+    .withAutomaticReconnect()  // optional
     .build();
 
 // async/await connection start

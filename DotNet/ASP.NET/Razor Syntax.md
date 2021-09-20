@@ -10,14 +10,14 @@
 
 @* razor comment *@
 
-// substituite @variable with it's value
+// substitute @variable with it's value
 <tag>@variable</tag>
 
 @{
     // razor code block
     // can contain C# or HTML
 
-    Model  // acces to passed @model (MVC)
+    Model  // access to passed @model (MVC)
 }
 
 @if (condition) { }
@@ -58,7 +58,7 @@ The first parameter after `@addTagHelper` specifies the Tag Helpers to load (`*`
 It's possible to disable a Tag Helper at the element level with the Tag Helper opt-out character (`!`)
 
 ```cshtml
-<!-- disable email vaidation -->
+<!-- disable email validation -->
 <!span asp-validation-for="Email" ></!span>
 ```
 
@@ -86,7 +86,7 @@ The `@tagHelperPrefix` directive allows to specify a tag prefix string to enable
 @Model.EntityProp
 
 <from>
-    // use the property as the label, eventyally w/ [DysplayName("...")]
+    // use the property as the label, eventually w/ [DisplayName("...")]
     <label asp-for="EntityProp"></label>
     @Html.LabelFor()
 
@@ -131,7 +131,7 @@ In `View.cs`
 
 <form asp-controller="Controller" asp-action="PostAction">
 
-    <select asp-for"EntityId" asp-items="Model.Enities">
+    <select asp-for"EntityId" asp-items="Model.Entities">
     </select>
 
     <button type="submit">Send<button>
@@ -145,7 +145,7 @@ public IActionResult GetAction()
 {
     var vm = new ViewModel();
 
-    vm.Entities = new SelectList(_context.Enities, "Id", "Text");  // fill SelectList
+    vm.Entities = new SelectList(_context.Entities, "Id", "Text");  // fill SelectList
     vm.EntityId = value;  // set selected option (OPTIONAL)
     
     return View(vm);

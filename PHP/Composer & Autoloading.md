@@ -13,13 +13,13 @@ function autoloader($class) {
 
     # __DIR__ -> path of calling file
     # $class -> className (hopefully same as file)
-    # if class is in namesapce $class -> Namespace\className (hopefully folders mirror Namespace)
+    # if class is in namespace $class -> Namespace\className (hopefully folders mirror Namespace)
 
     $class = str_replace("\\", DIRECTORY_SEPARATOR, $class);  # avoid linux path separator issues
 
     $fileName = sprintf("%s\\path\\%s.php", __DIR__, $class);  
     # or
-    $filename = sprintf("%s\\%s.php", __DIR__, $class);  # if class is in namespaace
+    $filename = sprintf("%s\\%s.php", __DIR__, $class);  # if class is in namespace
 
     if (file_exists($fileName)) {
         include $fileName;
@@ -41,7 +41,7 @@ require "autoload.php";
 
 ### Multiple Autoloading
 
-It's possible to resister multiple autoloading functions by calling `spl_autoloaad_register()` multiple times.
+It's possible to resister multiple autoloading functions by calling `spl_autoload_register()` multiple times.
 
 ```php
 # prepend adds the function at the start of the queue

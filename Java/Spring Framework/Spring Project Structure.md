@@ -25,7 +25,7 @@ server.port=server_port
 Model of a table of the DB
 
 ```java
-package <base_pakcage>.entities;
+package <base_package>.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -106,7 +106,7 @@ public interface IEntityService {
 In `EntityService.java`:
 
 ```java
-package com.lamonacamarcello.libri.services;
+package <base_package>.services;
 
 import java.util.List;
 
@@ -162,7 +162,7 @@ public class EntityService implements IEntityService {
 REST API routes & endpoints to supply data as JSON.
 
 ```java
-package com.lamonacamarcello.libri.integration;
+package <base_package>.integration;
 
 import java.util.List;
 
@@ -178,7 +178,7 @@ import <base_package>.services.IEntityService;
 @RequestMapping("/api")  // controller route
 public class EntityRestCtrl {
 
-    @Autowired  // connection to service (obj created by spring as needed: Inverion Of Control)
+    @Autowired  // connection to service (obj created by spring as needed: Inversion Of Control)
     private IEntityService service;
 
     @GetMapping("entities")  // site route

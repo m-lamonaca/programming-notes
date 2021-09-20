@@ -13,7 +13,7 @@ In `package.json`:
         "test": "jest --watch"  // watch re-runs test on save
     },
     "jest": {
-        // calls additional setups for enzyme, react tesing library, ...
+        // calls additional setups for enzyme, react testing library, ...
         "setupFiles": [
             "path/to/testSetup.js"  
         ],
@@ -64,16 +64,16 @@ In `Component.Snapshots.js`:
 
 ```js
 import React from "react";
-import rederer from "react-test-renderer";
+import renderer from "react-test-renderer";
 
 import Component from "./path/to/Component";
 // import mock data if necessary
 
-it("test descrtiption", () => {
+it("test description", () => {
     // renders the DOM tree of the component
     const tree = renderer.create(<Component funcProp={jest.fn() /* mock function */} /* component props */ />);
 
-    // save a snaphot of the component at this point in time ( in  __snaphsots__ folder)
+    // save a snapshot of the component at this point in time ( in  __snapshots__ folder)
     // in future test it will be checked to avoid regressions
     // can be updated during jest --watch pressing "u"
     expect(tree).matchSnapshot();
@@ -89,7 +89,7 @@ it("test descrtiption", () => {
 ```js
 // testSetup.js
 import { configure } from "enzyme";
-import Adapter from "enzyme-adapert-react-<version>";
+import Adapter from "enzyme-adapter-react-<version>";
 
 configure({ adapter: new Adapter() });
 ```
@@ -128,7 +128,7 @@ it("test description", () => {
 });
 
 // mount rendering test
-if("test descriotion" () => {
+if("test description" () => {
     const dom = mount(
         <WrapperComponent>
             <Component /* props *//>

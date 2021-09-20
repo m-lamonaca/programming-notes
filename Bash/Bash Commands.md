@@ -4,20 +4,20 @@
 
 ## Basic Commands
 
-### Elevated Priviledges and Users
+### Elevated Privileges and Users
 
 [sudo vs su](https://unix.stackexchange.com/questions/35338/su-vs-sudo-s-vs-sudo-i-vs-sudo-bash/35342)
 
 ```bash
-sudo su  # login as root (user must be sudoer, root password not required) DANGEROUS
-sudo -s  # act as root and inherit current user enviroment (env as is now, along current dir and env vars) SAFE (can modify user enviroment)
-sudo -i  # act as root and and use a clean enviroment (goes to user's home, runs .bashrc) SAFEST
+sudo su  # login as root (user must be sudoers, root password not required) DANGEROUS
+sudo -s  # act as root and inherit current user environment (env as is now, along current dir and env vars) SAFE (can modify user environment)
+sudo -i  # act as root and and use a clean environment (goes to user's home, runs .bashrc) SAFEST
 sudo COMMAND  # run a command w\ root permissions
 sudo -u USER COMMAND # run command as user
 
 su  # become root (must know root password) DANGEROUS
 su - USER  # change user and load it's home folder
-su USER  # change user but dont load it's home folder
+su USER  # change user but don't load it's home folder
 ```
 
 ### Getting Info
@@ -51,7 +51,7 @@ popd  # return to previous directory (before pushd)
 
 ```sh
 touch FILE  # change FILE timestamp fi exists, create file otherwise
-cat [FILE]  # concatenate files and print on statndard output (FD 1)
+cat [FILE]  # concatenate files and print on standard output (FD 1)
 cat >> FILE  # append following content ot file (Ctrl+D to stop)
 file FILE  # discover file extension and format
 stat FILE  # display file or file system status
@@ -60,7 +60,7 @@ tail  # output the last part of a file
 tail [-nNUM]  # output the last NUM lines
 
 more  # filter for paging through text one screenful at a time
-less  # opposite of more (display big file in pages), navigate with arrow keys or spacebar
+less  # opposite of more (display big file in pages), navigate with arrow keys or space bar
 
 cut  # remove sections from each line of files
 cut -[d --delimiter=DELIM]  # use DELIM instead of TAB for field delimiter
@@ -74,10 +74,10 @@ rmdir DIRECTORY  # remove directory only if is empty
 
 mkdir DIRECTORY  # make directories
 
-mv SOURCE DESTINATION  # move or raneme files
+mv SOURCE DESTINATION  # move or rename files
 mv SOURCE DIRECTORY  # move FILE to DIRECTORY
 
-cp SOURCE DESTINATION  # copy SOURCE to DESTIANTION
+cp SOURCE DESTINATION  # copy SOURCE to DESTINATION
 ```
 
 ### Files Permissions & Ownership
@@ -125,7 +125,7 @@ chgrp [OPTION]... GROUP FILE...  # change group ownership
 find [path] [expression]   # search file in directory hierarchy
 find [start-position] -type f -name FILENAME  # search for a file named "filename"
 find [start-position] -type d -name DIRNAME  # search for a directory named "dirname"
-find [path] -exec <command> {} \;  # ececute command on found items (identified by {})
+find [path] -exec <command> {} \;  # execute command on found items (identified by {})
 
 [ -f "path" ]  # test if a file exists
 [ -d "path" ]  # test if a folder exists
@@ -140,11 +140,11 @@ command | sudo tee FILE  # operate on file w/o using shell as su
 
 echo  # display a line of text
 echo "string" > FILE  # write lin of text to file
-echo "string" >> FILE  # append line o ftext to end of file (EOF)
+echo "string" >> FILE  # append line of text to end of file (EOF)
 
 wget URL  # download repositories to linux machine
 
-curl  # dovnlaod the contents of a URL
+curl  # download the contents of a URL
 curl [-I --head]  # Fetch the headers only
 
 ps [-ax]  # display processes
@@ -161,8 +161,8 @@ diff FILES  # compare files line by line
 shellcheck FILE  # shell linter
 
 xargs [COMMAND]  # build and execute command lines from standard input
-# xargs reads items form the standard input, delimites by blanks or newlines, and executes the COMMAND one or more times with the items as argumests
-watch [OPTIONS] COMMAND  # execute a program periodically, showing output fullscreen
+# xargs reads items form the standard input, delimited by blanks or newlines, and executes the COMMAND one or more times with the items as arguments
+watch [OPTIONS] COMMAND  # execute a program periodically, showing output full-screen
 watch -n SECONDS COMMAND  # execute command every SECONDS seconds (no less than 0.1 seconds)
 ```
 
@@ -172,10 +172,10 @@ watch -n SECONDS COMMAND  # execute command every SECONDS seconds (no less than 
 
 ```bash
 sed  # stream editor for filtering and transforming text
-sed -E "s/REGEX/replacement/"  # subsitute text ONCE (-E uses modern REGEX)
-sed -E "s/REGEX/replacement/g"  # subsitute text multiple times (every match)
+sed -E "s/REGEX/replacement/"  # substitute text ONCE (-E uses modern REGEX)
+sed -E "s/REGEX/replacement/g"  # substitute text multiple times (every match)
 
-wc [FILE] # print newline, word and byte countd for each file
+wc [FILE] # print newline, word and byte count for each file
 wc [-m --chars] FILE  # print character count
 wc [-c --bytes] FILE  # print bytes count
 wc [-l --lines] FILE  # print lines count
@@ -185,8 +185,8 @@ sort [FILE]  # sort lines of a text file
 
 uniq [INPUT [OUTPUT]]  # report or omit repeated lines (from INPUT to OUTPUT)
 uniq [-c --count]  # prefix lines w/ number of occurrences
-uniq [-d --repeated]  # plrint only duplicare lines, one for each group
-uniq [-D]  # plrint only duplicare lines
+uniq [-d --repeated]  # print only duplicare lines, one for each group
+uniq [-D]  # print only duplicare lines
 
 paste [FILE]  # merge lines of files
 paste [-d --delimiters=LIST]  # use delimiters from LIST

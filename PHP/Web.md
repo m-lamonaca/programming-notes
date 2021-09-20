@@ -12,7 +12,7 @@ PHP -S <ip:post> file.php  # redirect requests to single file
 
 ## HTTP Methods
 
-Handling of HTTP requests happend using the following global variables:
+Handling of HTTP requests happens using the following global variables:
 
 - `$_SERVER`: info on request headers, version, URL path and method (dict)
 - `$_GET`: parameters of get request (dict)
@@ -54,7 +54,7 @@ if (! move_uploaded_file($_FILES['photo']['tmp_name'], $path)) {
     exit();
 }
 
-echo'<h1>File succesfully sent</h1>';
+echo'<h1>File successfully sent</h1>';
 ```
 
 ### `$_SERVER`
@@ -80,8 +80,8 @@ $_SERVER["HTTP_USER_AGENT"];
 
 All sites **must** have a page for the consensus about using cookies.
 
-**Cookies** are HTTP headers used to memorize key-value info *on the client*. They are sent from the server to the client to keep track of info on the user that is visting the website.  
-When a client recieves a HTTP response that contains `Set-Cookie` headers it has to memorize that info and reuse them in future requests.
+**Cookies** are HTTP headers used to memorize key-value info *on the client*. They are sent from the server to the client to keep track of info on the user that is visiting the website.  
+When a client receives a HTTP response that contains `Set-Cookie` headers it has to memorize that info and reuse them in future requests.
 
 ```http
 Set-Cookie: <cookie-name>=<cookie-value>
@@ -95,7 +95,7 @@ Set-Cookie: <cookie-name>=<cookie-value>; HttpOnly
 
 Anyone can modify the contents of a cookie; for this reason cookies **must not contain** *personal or sensible info*.
 
-When a clien has memorized a cookie, it is sent in successive HTTP requests through the `Cookie` header.
+When a client has memorized a cookie, it is sent in successive HTTP requests through the `Cookie` header.
 
 ```http
 Cookie: <cookie-name>=<cookie-value>
@@ -114,7 +114,7 @@ string $name,
 [ bool $httponly = false ]  // accessible only through http (no js, ...)
 )
 
-// examle: memorize user-id 112 with 24h expiry for site example.com
+// example: memorize user-id 112 with 24h expiry for site example.com
 setcookie ("User-id", "112", time() + 3600*24, "/", "example.com");
 
 // check if a cookie exists
@@ -123,12 +123,12 @@ if(isset($_COOKIE["cookie_name"])) {}
 
 ### [$_SESSION](https://www.php.net/manual/en/ref.session.php)
 
-**Sessions** are info memorized *on the server* assoiciated to the client that makes an HTTP request.
+**Sessions** are info memorized *on the server* associated to the client that makes an HTTP request.
 
 PHP generates a cookie named `PHPSESSID` containing a *session identifier* and an *hash* generated from `IP + timestamp + pseudo-random number`.
 
-To use the session it's necesary to recall the function `session_start()` at the beginning of a PHP script that deals with sessions.  
-After starting the session information in be savend in the `$_SESSION` array.
+To use the session it's necessary to recall the function `session_start()` at the beginning of a PHP script that deals with sessions.  
+After starting the session information in be saved in the `$_SESSION` array.
 
 ```php
 $_SESSION["key"] = value;  // save data in session file (serialized data)

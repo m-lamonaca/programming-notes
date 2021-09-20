@@ -4,17 +4,17 @@ A page of the app.
 
 ## Views, Functions & Variables
 
-`@State` allows the view to respond to every change of the anotated variable. This variables get initialized by the view in which they belong and are not "recieved" from external objects.  
+`@State` allows the view to respond to every change of the annotated variable. This variables get initialized by the view in which they belong and are not "received" from external objects.  
 SwiftUI memorizes internally the value of the `@State` property and updates the view every time it changes.
 
-`@Binding` is used for properties that are passed to the view from another. The recieveing view can read the binfing value, react to changes and modify it's value.  
+`@Binding` is used for properties that are passed to the view from another. The receiving view can read the binding value, react to changes and modify it's value.  
 `@Binding` variables are passed with the prefix `$`,
 
 ### Simple View
 
 - Simplest view.
 - Permits the visualization of simple UIs.
-- Constituited by a body of type `View`
+- Constituted by a body of type `View`
 
 ```swift
 struct SimpleViewName: View {
@@ -36,7 +36,7 @@ struct SimpleViewName: View {
 
 ### HStack, VStack, ZStack
 
-Used to organize elements without dealing with constraints or forcing the visualization on devices wih differents screen sizes.
+Used to organize elements without dealing with constraints or forcing the visualization on devices wih different screen sizes.
 
 ```swift
 struct ContentView: View {
@@ -54,8 +54,8 @@ struct ContentView: View {
 
 ### Table View
 
-Most common view to present array contents, it automatically hendles the scrolling of the page with the *bounce* effect.
-I can be inegrate d in a `NavigaionView` to handle a `DeailView` of a selectted item in the list.
+Most common view to present array contents, it automatically handles the scrolling of the page with the *bounce* effect.
+It can be integrated in a `NavigationView` to handle a `DetailView` of a selected item in the list.
 
 The basic object that creates the table view is the `List()`. It's job is to create a "cell" for every element in the array.
 The array can be filtered with a *search bar*.
@@ -105,8 +105,8 @@ struct ContentView: View {
 
 ### Tab Bar View
 
-This view handles a bar on the botom of the screen with links to simple or more comlpex views.
-This is useful for designing pages that can be easely navigated by the user.
+This view handles a bar on the bottom of the screen with links to simple or more complex views.
+This is useful for designing pages that can be easily navigated by the user.
 
 ```swift
 struct TabBarView: View {
@@ -132,11 +132,11 @@ struct TabBarView: View {
 The `TabBar` construction is made applying the `.tabItem{}` parameter to the object or page that the tab will link to.
 It's possible to specify up to 5 `.tabItem{}` elements that will be displayed singularly in the `TabBar`.
 
-Fron the 6th elemnet onwards, the first 4 elemens will appear normally, meanwhile the 5th will become a "more" element that will open a `TableView` with the list of the other `.tabItem{}` elements. This page permis to define which elements will be visible.
+From the 6th element onwards, the first 4 elements will appear normally, meanwhile the 5th will become a "more" element that will open a `TableView` with the list of the other `.tabItem{}` elements. This page permission to define which elements will be visible.
 
 It's possible to integrate the NavigationView in the TabBar in two ways:
 
-- inserting it as a container for the whole `TabBar` (at the moment of the transistion to the detail page the `TabBar` will be hidden)
+- inserting it as a container for the whole `TabBar` (at the moment of the transition to the detail page the `TabBar` will be hidden)
 - inserting it as a container of a single `.tabItem{}` (the transition will happen inside the `TabBar` that will then remain visible)
 
 ## View Elements
@@ -191,12 +191,12 @@ Button(action: { /* statements */ }) {
 Common syle options:
 
 - `padding()`: adds an internal padding to the object.
-- `foregroundColor()`: defines the color of the text or containd object.
+- `foregroundColor()`: defines the color of the text or contained object.
 - `background()`: defines the background color.
 - `font()`: sets font type, size, weight, ...
 - `cornerRadius()`: modifies the angles of the containing box.
 - `frame()`: sets a fixed size for the object.
-- `resizable()`, `scaleToFill()`, `scaleToFit()`: habled the resizing of an object inside another.
+- `resizable()`, `scaleToFill()`, `scaleToFit()`: enables the resizing of an object inside another.
 - `clipShape()`: overlays a shape over the object
 - `overlay()`:  overlays an element over the object, more complex than clipShape
 - `shadow()`: Sets the object's shadow
@@ -255,7 +255,7 @@ Slider(value: $numVariable)
 ```swift
 @State private var apiItems = [<struct>]()
 
-// struct sould be Identifiable & Codable
+// struct should be Identifiable & Codable
 
 func loadData() {
     guard let url = URL(string: "https://jsonplaceholder.typicode.com/todos")

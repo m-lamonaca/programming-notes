@@ -1,16 +1,16 @@
 # Java Collection Framework - JCF
 
-All classes that permit the handling of groups of objects constituite the Java Collection Framework.
+All classes that permit the handling of groups of objects constitute the Java Collection Framework.
 
 A Collection is a *container* in which several objects are grouped in a *single entity*.
 
-The **Java Collection Framework** is constituited by:
+The **Java Collection Framework** is constituted by:
 
 - **Interfaces** the define the operations of a generic collection. They can be split into two categories:
   - **Collection**: used to optimize operations of insertion, modification and deletion of elements in a group of objects.
   - **Map**: optimized for look-up operations.
 - **Classes** that implement the interfaces using different data structures.
-- **Algorithms** consistng in methods to operate over a collection.
+- **Algorithms** consisting in methods to operate over a collection.
 
 ![Java Collection Hierarchy](../.images/java_java-collection-framework.png "Java Collection Hierarchy")
 
@@ -19,12 +19,12 @@ The **Java Collection Framework** is constituited by:
 ### Collection Functions
 
 ```java
-boolean add (Object o) e.g., <x>.add (<y>)    //append to colelction, false if fails
+boolean add (Object o) e.g., <x>.add (<y>)    //append to collection, false if fails
 boolean add (int index, Object o)    //insertion at given index
 boolean addAll (Collection c)    //appends a collection to another
 void clear()     //remove items from container
 boolean contains (Object o)    //true if object is in collection
-boolean containsAll (Collection c)    //true if all items of collectio are in another
+boolean containsAll (Collection c)    //true if all items of collection are in another
 boolean isEmpty (Object o) e.g., if (<x>.isEmpty()) ...    //true if collection is empty
 boolean remove (Object o)    //remove object from collection
 Object remove (int index)    //remove object at given index
@@ -60,19 +60,19 @@ ArrayList<Type> ArrayListName = new ArrayList<>();    //resizable array (JAVA 1.
 
 
 ArrayListName.add(item);    //append item to collection
-ArrayListName.add(index, item);  // add item at positon index, shift all item from index and successive towards the end af the ArrayList
+ArrayListName.add(index, item);  // add item at position index, shift all item from index and successive towards the end af the ArrayList
 ArrayListName.set(index, item);  // substitute EXISTING item
 ArrayListName.get(index);    //access to collection item
-ArrayListName.remove(item)    //remove first occurence of item from collection
+ArrayListName.remove(item)    //remove first occurrence of item from collection
 ArrayListName.remove(index)    //remove item at position index
-ArrayListName.clear()    //emties the ArrayList
+ArrayListName.clear()    //empties the ArrayList
 ArrayListName.contains(object);  // check if object is in the ArrayList
 ArrayListName.IndexOf(object);  // returns the index of the object
 ArrayListName.isEmpty();  // check wether the list is empty
 
 ArrayListName.size();    //dimension of the ArrayList
 ArrayListName.tirmToSize();  // reduce ArrayList size to minimum needed
-// ArrayList size doubles when a reseize is needed.
+// ArrayList size doubles when a resize is needed.
 
 //run through to the collection with functional programming (JAVA 1.8+)
 ArrayListName.forEach(item -> function(v));
@@ -94,7 +94,7 @@ class ClassName implements Comparable<ClassName> {
 
 List<ClassName> list;
 //valorize List
-Collections.sort(list);    //"natuarl" sorting uses compareTo()
+Collections.sort(list);    //"natural" sorting uses compareTo()
 ```
 
 Otherwise a `Comparator()` must be implemented:
@@ -116,7 +116,7 @@ Comparator<ClassName> comparator = new Comparator<ClassName>() {
 
 List<ClassName> list;
 //valorize List
-Collections.sort(list, comparator);    //"natuarl" sorting uses compareTo()
+Collections.sort(list, comparator);    //"natural" sorting uses compareTo()
 ```
 
-`Comparator<T>` and `Conmparable<T>` are functional interfaces
+`Comparator<T>` and `Comparable<T>` are functional interfaces

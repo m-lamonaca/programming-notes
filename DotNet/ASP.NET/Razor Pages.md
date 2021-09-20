@@ -33,7 +33,7 @@ Project
 | |- ...
 |
 |- appsettings.json --> application settings
-|- Program.cs  --> App entrypoint
+|- Program.cs  --> App entry-point
 |- Startup.cs
 ```
 
@@ -88,17 +88,17 @@ namespace App.Pages
     {
         private readonly ApplicationDbContext _db; // EF DB Context
 
-        // Get DBContex through DI
+        // Get DBContext through DI
         public IndexModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        [BindProperty]  // assumed to be recieved on POST
+        [BindProperty]  // assumed to be received on POST
         public IEnumerable<Entity> Entities { get; set; }
 
         // HTTP Method Handler
-        public aysnc Task OnGet()
+        public async Task OnGet()
         {   
             // get data from DB (example operation)
             Entities = await _db.Entities.ToListAsync();
@@ -131,12 +131,12 @@ Rules:
 - URL maps to a physical file on disk
 - Razor paged needs a root folder (Default "Pages")
 - file extension not included in URL
-- `Index.cshtml` is enrtypoint and default document (missing file in URL redirects to index)
+- `Index.cshtml` is entry-point and default document (missing file in URL redirects to index)
 
 | URL                    | Maps TO                                            |
 |------------------------|----------------------------------------------------|
 | www.domain.com         | /Pages/Index.cshtml                                |
-| www.doamin.com/Index   | /Pages/Index.html                                  |
+| www.domain.com/Index   | /Pages/Index.html                                  |
 | www.domain.com/Account | /Pages/Account.cshtml, /Pages/Account/Index.cshtml |
 
 ## Data Validation
@@ -179,7 +179,7 @@ In `View.cshtml`;
 
         <div class="col-8">
             <input asp-for="IntProp" class="form-control"/>
-            <span asp-validation-for="IntProp" class="text-danger"></span>  // error message displyed here
+            <span asp-validation-for="IntProp" class="text-danger"></span>  // error message displayed here
         </div>
     </div>
 </form>

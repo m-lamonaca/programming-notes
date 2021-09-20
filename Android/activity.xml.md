@@ -4,7 +4,7 @@
 
 ### Colors, Style, Strings
 
-These resorsces are located in `app/src/main/res/values/<resource_type>.xml`  
+These resources are located in `app/src/main/res/values/<resource_type>.xml`  
 `@color/colorName` -> access to *color definition* in `colors.xml`  
 `@string/stringName` -> access to *string definition* in `strings.xml` (useful for localization)  
 `@style/styleName` -> access to *style definition* in `styles.xml`
@@ -65,7 +65,7 @@ A **View Group** or **Layout** is a container of Views.
 
 ```
 
-`android:layout_width`, `android:layout_heigth`:
+`android:layout_width`, `android:layout_height`:
 
 * fixed value (dp, sp)  
 * match_parent  
@@ -141,7 +141,7 @@ Layout that arranges other views either horizontally in a single column or verti
 ```xml
 <!--ID is necessary for identification -->
 <View
-    android:id="@+id/uniquieId"
+    android:id="@+id/uniqueId"
     android:layout_width="value"
     android:layout_height="value"
 />
@@ -164,7 +164,7 @@ The scroll view can only have one child. If the child is a layout than the layou
 
 ```xml
 <ScrollView
-    android:id="@+id/uniquieId"
+    android:id="@+id/uniqueId"
     android:layout_width="value"
     android:layout_height="value">
         <!-- single child -->

@@ -15,7 +15,7 @@ process.arch  // processor architecture
 ## Functions
 
 ```js
-process.resourecUsage();  // resource usage for the current process
+process.resourceUsage();  // resource usage for the current process
 process.memoryUsage();  // memory usage of the Node.js process measured in bytes
 process.exit(code);  // terminate the process synchronously with an exit status of code
 ```

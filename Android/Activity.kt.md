@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
 ### Passing data between activities
 
-In *lauching* activity:
+In *laughing* activity:
 
 ```kotlin
 private fun openActivity() {
@@ -58,7 +58,7 @@ private fun openActivity() {
         //target to open Intent(opener, opened)
         val intent = Intent(this, Activity::class.java)
 
-        //pass data to lauched activity
+        //pass data to launched activity
         intent.putExtra("identifier", value)  
 
         startActivity(intent)  //launch another activity
@@ -76,7 +76,7 @@ val identifier = intent.get<Type>Extra("identifier")
 ### Resources Hooks
 
 ```kotlin
-R.<resourceType>.<resourceName>    //access to reource
+R.<resourceType>.<resourceName>    //access to resource
 
 ContextCompat.getColor(this, colorResource)    //extract color from resources
 getString(stringResource)    //extract string from resources
@@ -98,14 +98,14 @@ in `Activity.kt`:
 ```kotlin
 var element = findViewById(R.id.<id>)    //old method
 
-<id>.poperty = value    //access and modify view contents
+<id>.popery = value    //access and modify view contents
 ```
 
 ## Activity Components
 
 ### Snackbar
 
-Componed derived from material design. If using old API material design dependency must be set in gradle.
+Component derived from material design. If using old API material design dependency must be set in gradle.
 
 In `build.gradle (Module:app)`:
 
@@ -144,10 +144,10 @@ startActivity(intent)
 val intent = Intent(Intent.ACTION_SEND)
 
 intent.setType("text/plain")  //specifying shared content type
-intent.putExtra(Intent.EXTRA_MAIL, "mail@address")  //open mail client and precompile field if share w/ mail
+intent.putExtra(Intent.EXTRA_MAIL, "mail@address")  //open mail client and pre-compile field if share w/ mail
 intent.putExtra(Intent.EXTRA_SUBJECT, "subject")
 intent.putExtra(Intent.EXTRA_TEXT, "text")  //necessary since type is text
-startActivity(Initent.startChooser(intent, "chooser title"))  //let user choose the share app
+startActivity(Intent.startChooser(intent, "chooser title"))  //let user choose the share app
 ```
 
 ### App Google Maps
@@ -186,21 +186,22 @@ In `AndroidManifest.xml`:
 //https://developer.android.com/training/permissions/requesting
 
 //intercept OS response to permission popup
-override fun onRequestPermissionResult(requestCode: Int, permissins: Array<out String>, grantResults: IntArray) {
+override fun onRequestPermissionResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 }
 
 fun checkCallPermission() {
     //check if permission to make a call has been granted
     if (ContextCompact.checkSelfPermission(context!!, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-        // i permission has not been granted request it (opens OS popup, no listener aviable)
-        ActivityCompat.requestPermissions(context!!, arrrayOf(android.Manifest.permission.CALL_PHONE), requestCode)  //request code neeeds to be specific for the permission
+        // if permission has not been granted request it (opens OS popup, no listener available)
+        // request code needs to be specific for the permission
+        ActivityCompat.requestPermissions(context!!, arrayOf(android.Manifest.permission.CALL_PHONE), requestCode)
     } else {
         call()  //if permission has been already given
     }
 }
 
-@SuppressLint("MissingPermission")  // suppress warnig of unhandled permission (handled in checkCallPermission)
+@SuppressLint("MissingPermission")  // suppress warning of unhandled permission (handled in checkCallPermission)
 fun call() {
     val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel: <phone number>"))
     startActivity(intent)
@@ -230,11 +231,11 @@ recycleView.LayoutManager = layoutManager  // assign LayoutManager for the recyc
 
 // handle adapter var containing null value
 if (array != null) {
-    adapter = RecyclerViewItemAdapter(array!!)  // valorize adapter with a adaper object
-    recyclerView.adapter = adapter  // assing adapter to the recyclerView
+    adapter = RecyclerViewItemAdapter(array!!)  // valorize adapter with a adapter object
+    recyclerView.adapter = adapter  // assign adapter to the recyclerView
 }
 
-// add or remom item
+// add or remove item
 
 // tell the adapter that something is changed
 adapter?.notifyDataSetChanged()
@@ -247,7 +248,7 @@ adapter?.notifyDataSetChanged()
 ```kotlin
 webView.webViewClient = object : WebViewClient() {
 
-    // avoid openiing browsed by default, open webview instead
+    // avoid opening browsed by default, open webview instead
     override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
         view?.loadUrl(url)  // handle every url
         return true
@@ -261,7 +262,7 @@ webView.webViewClient = object : WebViewClient() {
         }
 
         Intent(Intent.ACTION_VIEW, Uri.parse(url).apply){
-            startActivity(this)  // open br br owser/app when the website changes to external URL
+            startActivity(this)  // open browser/app when the website changes to external URL
         }
         return true
     }
@@ -291,7 +292,7 @@ Import in `build.gradle`:
 implementation 'com.android.volley:volley:1.1.1'
 ```
 
-Perrmissions in `AndroidManifest.xml`:
+Permissions in `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -299,7 +300,7 @@ Perrmissions in `AndroidManifest.xml`:
 
 ### Make the request
 
-Subsequnt requests sould be delayed to avoid allowing the user to make too frequent requests.
+Subsequent requests should be delayed to avoid allowing the user to make too frequent requests.
 
 ```kotlin
 private lateinit var queue: RequestQueue
@@ -358,14 +359,14 @@ private fun getJSONArrayRequest(){
 
 override fun onStop() {
     super.onStop()
-    queue?.cancellAll("TAG")  //  delete all request with a particular tag when the activity is closed (avoid crash)
+    queue?.cancelAll("TAG")  //  delete all request with a particular tag when the activity is closed (avoid crash)
 }
 ```
 
 ### Parse JSON Request
 
 ```kotlin
-Response.Litener { response ->
+Response.Listener { response ->
     var value = response.getSting("key")
 }
 ```
@@ -374,19 +375,19 @@ Response.Litener { response ->
 
 ### Singleton
 
-Object instantiated during app init and is destroid only on app closing. It can be used for data persistance since is not affected by the destruction of an activity.
+Object instantiated during app init and is destroyed only on app closing. It can be used for data persistance since is not affected by the destruction of an activity.
 
 ```kotlin
 // Context: Interface to global information about an application environment.
-class Singleton consturctor(context: Context) {
+class Singleton constructor(context: Context) {
 
     companion object {
 
         @Volatile
         private var INSTANCE: Singleton? = null
 
-        // syncronized makes sure that all instances of the singleton are actually the only existing one
-        fun getInstance(context: Contecxt) = INSTANCE ?: syncronized(this) {
+        // synchronized makes sure that all instances of the singleton are actually the only existing one
+        fun getInstance(context: Context) = INSTANCE ?: synchronized(this) {
             INSTANCE ?: Singleton(context).also {
                 INSTANCE = it
             }

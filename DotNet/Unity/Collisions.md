@@ -2,14 +2,14 @@
 
 ## Rigidbody Component
 
-Enables physycs on the game objects.
+Enables physics on the game objects.
 
 Rigidbodies collide with other objects instead of going through them.
 
-Avoid obejct rotation on colisions:
+Avoid object rotation on collisions:
 
 1. Assign `Rigidbody` component to object
-2. Enable Freeze Rotaion in Rigidbody > Constraints
+2. Enable Freeze Rotation in Rigidbody > Constraints
 
 ```cs
 using UnityEngine;
@@ -21,19 +21,19 @@ public class GameObject : MonoBehaviour {
 
     void Start()
     {
-        rigidbody = GetComponenet<Rigidbody>();  // get rigidbody reference
+        rigidbody = GetComponent<Rigidbody>();  // get rigidbody reference
     }
 
     void Update()
     {
     }
 
-    // FixedUpdate is calles every x seconds (not influenced by FPS instability)
-    // used for physics calculations which sould be FPS independant
+    // FixedUpdate is calls every x seconds (not influenced by FPS instability)
+    // used for physics calculations which should be FPS independent
     void FixedUpdate()
     {
         Time.fixedDeltaTime;  // fixed amount of time
-        Time.timeDelta;  // if called inside FIxedUpadate() behaves like fixedDeltaTime
+        Time.timeDelta;  // if called inside FIxedUpdate() behaves like fixedDeltaTime
     }
 
 }
@@ -44,8 +44,8 @@ public class GameObject : MonoBehaviour {
 Enable `Is Trigger` to register the collision but avoid blocking the movement of the objects.
 The trigger can generate a event to signal the contact with the object.
 
-One of the collidng GameObjects *must have* the `Rigidbody` component and the other `Is Trigger` enabled.
-To detect the collison but avoid computing the physycs `Is Kinematic` must be enabled in the `Rigidbody` component.
+One of the colliding GameObjects *must have* the `Rigidbody` component and the other `Is Trigger` enabled.
+To detect the collision but avoid computing the physics `Is Kinematic` must be enabled in the `Rigidbody` component.
 
 ```cs
 using UnityEngine;
@@ -57,21 +57,21 @@ public class GameObject : MonoBehaviour {
 
     void Start()
     {
-        rigidbody = GetComponenet<Rigidbody>();  // get rigidbody reference
+        rigidbody = GetComponent<Rigidbody>();  // get rigidbody reference
     }
 
-    // FixedUpdate is calles every x seconds (not influenced by FPS instability)
-    // used for physics calculations which sould be FPS independant
+    // FixedUpdate is calls every x seconds (not influenced by FPS instability)
+    // used for physics calculations which should be FPS independent
     void FixedUpdate()
     {
         Time.fixedDeltaTime;  // fixed amount of time
-        Time.timeDelta;  // if called inside FIxedUpadate() behaves like fixedDeltaTime
+        Time.timeDelta;  // if called inside FixedUpdate() behaves like fixedDeltaTime
     }
 
     // called on box collision.
     void OnTriggerEnter(Collider triggerCollider) {
 
-        // detect a collison with a perticular GameObject(must have a TAG)
+        // detect a collision with a particular GameObject(must have a TAG)
         if (triggerCollider.tag = "tag") {
             Destroy(triggerCollider.gameObject);  // destroy tagged item on collision
             //or

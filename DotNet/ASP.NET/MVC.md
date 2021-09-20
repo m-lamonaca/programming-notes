@@ -42,7 +42,7 @@ Project
 | |-HomeController.cs
 |
 |- appsettings.json
-|- Program.cs  --> App entrypoiny
+|- Program.cs  --> App entry-point
 |- Startup.cs  --> App config
 ```
 
@@ -70,7 +70,7 @@ namespace App.Controllers
         // GET /Controller/Index
         public IActionResult Index()
         {
-            IEnumerable<Entity> enities = _db.Entities;
+            IEnumerable<Entity> entities = _db.Entities;
             return View(Entities);  // pass data to the @model
         }
 
@@ -83,7 +83,7 @@ namespace App.Controllers
         // POST /Controller/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Entity entity)  // recieve data from the @model
+        public IActionResult Create(Entity entity)  // receive data from the @model
         {
             _db.Entities.Add(entity);
             _db.SaveChanges();
@@ -104,7 +104,7 @@ namespace App.Controllers
                 return NotFound();
             }
 
-            return View(entity);  // return pupulated form for updating
+            return View(entity);  // return populated form for updating
         }
 
         // POST /Controller/Edit
@@ -136,7 +136,7 @@ namespace App.Controllers
                 return NotFound();
             }
 
-            return View(entity);  // return pupulated form for confirmation
+            return View(entity);  // return populated form for confirmation
         }
 
         // POST /Controller/Delete
@@ -197,7 +197,7 @@ In `View.cshtml`;
 
         <div class="col-8">
             <input asp-for="IntProp" class="form-control"/>
-            <span asp-validation-for="IntProp" class="text-danger"></span>  // error message displyed here
+            <span asp-validation-for="IntProp" class="text-danger"></span>  // error message displayed here
         </div>
     </div>
 </form>
@@ -230,7 +230,7 @@ namespace App.Controllers
         // GET /Controller/Index
         public IActionResult Index()
         {
-            IEnumerable<Entity> enities = _db.Entities;
+            IEnumerable<Entity> entities = _db.Entities;
             return View(Entities);  // pass data to the @model
         }
 
@@ -243,7 +243,7 @@ namespace App.Controllers
         // POST /Controller/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Entity entity)  // recieve data from the @model
+        public IActionResult Create(Entity entity)  // receive data from the @model
         {
             if (ModelState.IsValid)  // all rules in model have been met
             {

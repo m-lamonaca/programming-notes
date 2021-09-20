@@ -50,8 +50,8 @@ GraphQL comes with a set of default scalar types out of the box:
 - `Int`: A signed 32‐bit integer.
 - `Float`: A signed double-precision floating-point value.
 - `String`: A UTF‐8 character sequence.
-- `Boolean`: `true` or `false`.
-- `ID`: The ID scalar type represents a unique identifier, often used to refetch an object or as the key for a cache. The ID type is serialized in the same way as a `String`; however, defining it as an `ID` signifies that it is not intended to be human‐readable.
+- `Boolean`: `true` or `false`.
+- `ID`: The ID scalar type represents a unique identifier, often used to refetch an object or as the key for a cache. The ID type is serialized in the same way as a `String`; however, defining it as an `ID` signifies that it is not intended to be human‐readable.
 
 In most GraphQL service implementations, there is also a way to specify custom scalar types.
 
@@ -63,7 +63,7 @@ Then it's up to the implementation to define how that type should be serialized,
 
 ### Enumeration Types
 
-Also called *Enums*, enumeration types are a special kind of scalar that is restricted to a particular set of allowed values.
+Also called *Enums*, enumeration types are a special kind of scalar that is restricted to a particular set of allowed values.
 
 This allows to:
 
@@ -85,7 +85,7 @@ enum Type{
 Object types, scalars, and enums are the only kinds of types that can be defined in GraphQL.
 But when used in other parts of the schema, or in the query variable declarations, it's possible apply additional *type modifiers* that affect **validation** of those values.
 
-It's possible to mark a field as *Non-Null* by adding an exclamation mark, `!` after the type name. This means that the server always expects to return a non-null value for this field, and if it ends up getting a null value that will actually trigger a GraphQL execution error, letting the client know that something has gone wrong.
+It's possible to mark a field as *Non-Null* by adding an exclamation mark, `!` after the type name. This means that the server always expects to return a non-null value for this field, and if it ends up getting a null value that will actually trigger a GraphQL execution error, letting the client know that something has gone wrong.
 
 The *Non-Null* type modifier can also be used when defining arguments for a field, which will cause the GraphQL server to return a validation error if a null value is passed as that argument, whether in the GraphQL string or in the variables.
 
@@ -190,7 +190,7 @@ It's aldo possible to pass arguments into scalar fields, to implement data trans
 
 ### Fragments
 
-Fragments allow to construct sets of fields, and then include them in queries where thay are needed.
+Fragments allow to construct sets of fields, and then include them in queries where that are needed.
 The concept of fragments is frequently used to split complicated application data requirements into smaller chunks.
 
 ```graphql
@@ -236,9 +236,9 @@ fragment fragment on Type{
 
 ### Operation Name
 
-The *operation type* is either `query`, `mutation`, or `subscription` and describes what type of operation it's intended to be done. The operation type is required unless when using the *query shorthand syntax*, in which case it's not possible to supply a name or variable definitions for the operation.
+The *operation type* is either `query`, `mutation`, or `subscription` and describes what type of operation it's intended to be done. The operation type is required unless when using the *query shorthand syntax*, in which case it's not possible to supply a name or variable definitions for the operation.
 
-The *operation name* is a meaningful and explicit name for the operation. It is only required in multi-operation documents, but its use is encouraged because it is very helpful for debugging and server-side logging. When something goes wrong it is easier to identify a query in thecodebase by name instead of trying to decipher the contents.
+The *operation name* is a meaningful and explicit name for the operation. It is only required in multi-operation documents, but its use is encouraged because it is very helpful for debugging and server-side logging. When something goes wrong it is easier to identify a query in the codebase by name instead of trying to decipher the contents.
 
 ```graphql
 query Operation {
@@ -250,9 +250,9 @@ query Operation {
 
 When  working with variables, three things need to be done:
 
-1. Replace the static value in the query with `$variableName`
-2. Declare `$variableName` as one of the variables accepted by the query
-3. Pass `variableName: value` in the separate, transport-specific (usually JSON) variables dictionary
+1. Replace the static value in the query with `$variableName`
+2. Declare `$variableName` as one of the variables accepted by the query
+3. Pass `variableName: value` in the separate, transport-specific (usually JSON) variables dictionary
 
 ```graphql
 query Operation($var: Type = defaultValue) {
@@ -275,8 +275,8 @@ A directive can be attached to a field or fragment inclusion, and can affect exe
 
 The core GraphQL specification includes exactly two directives, which must be supported by any spec-compliant GraphQL server implementation:
 
-- `@include(if: Boolean)` Only include this field in the result if the argument is `true`.
-- `@skip(if: Boolean)` Skip this field if the argument is `true`.
+- `@include(if: Boolean)` Only include this field in the result if the argument is `true`.
+- `@skip(if: Boolean)` Skip this field if the argument is `true`.
 
 Server implementations may also add experimental features by defining completely new directives.
 
@@ -299,12 +299,12 @@ mutation Operation {
 
 ### Subscriptions
 
-Open a stable connection with the server to recieve real-time updates on the operations happening.
+Open a stable connection with the server to receive real-time updates on the operations happening.
 
 ```graphql
 subscription Operation {
   event {  # get notified when event happens
-    field  # data recieved on notification
+    field  # data received on notification
     ...
   }
 }
@@ -349,7 +349,7 @@ GraphQL allows to request `__typename`, a meta field, at any point in a query to
 
 After being validated, a GraphQL query is executed by a GraphQL server which returns a result that mirrors the shape of the requested query, typically as JSON.
 
-Each field on each type is backed by a function called the *resolver* which is provided by the GraphQL server developer. When a field is executed, the corresponding *resolver* is called to produce the next value.
+Each field on each type is backed by a function called the *resolver* which is provided by the GraphQL server developer. When a field is executed, the corresponding *resolver* is called to produce the next value.
 
 If a field produces a scalar value like a string or number, then the execution completes. However if a field produces an object value then the query will contain another selection of fields which apply to that object. This continues until scalar values are reached. GraphQL queries always end at scalar values.
 
@@ -358,7 +358,7 @@ If a field produces a scalar value like a string or number, then the execution c
 At the top level of every GraphQL server is a type that represents all of the possible entry points into the GraphQL API, it's often called the *Root* type or the *Query* type.
 
 ```graphql
-# root types for entrypoints
+# root types for entry-points
 
 type Query {
   rootField(arg: Type = defValue, ...): Type
@@ -378,7 +378,7 @@ type Subscription {
 
 A resolver function receives four arguments:
 
-- `obj` The previous object, which for a field on the root Query type is often not used.
-- `args` The arguments provided to the field in the GraphQL query.
-- `context` A value which is provided to every resolver and holds important contextual information like the currently logged in user, or access to a database.
-- `info` A value which holds field-specific information relevant to the current query as well as the schema details
+- `obj` The previous object, which for a field on the root Query type is often not used.
+- `args` The arguments provided to the field in the GraphQL query.
+- `context` A value which is provided to every resolver and holds important contextual information like the currently logged in user, or access to a database.
+- `info` A value which holds field-specific information relevant to the current query as well as the schema details

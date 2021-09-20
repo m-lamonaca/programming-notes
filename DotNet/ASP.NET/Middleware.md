@@ -7,13 +7,13 @@ Middleware is software that's assembled into an app pipeline to handle requests 
 
 Request delegates are used to build the request pipeline. The request delegates handle each HTTP request.
 
-Request delegates are configured using [Run][Run_docs], [Map][Map_docs], and [Use][Use_docs] extension methods.
+Request delegates are configured using [Run][Run_docs], [Map][Map_docs], and [Use][Use_docs] extension methods.
 
 An individual request delegate can be specified in-line as an anonymous method (called in-line middleware), or it can be defined in a reusable class.
-These reusable classes and in-line anonymous methods are *middleware*, also called *middleware components*.
+These reusable classes and in-line anonymous methods are *middleware*, also called *middleware components*.
 
 Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the pipeline.
-When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
+When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
 
 [Use_docs]: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.useextensions.use
 [Run_docs]: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.runextensions.run
@@ -166,10 +166,10 @@ namespace <App>
 
 The middleware class **must** include:
 
-- A public constructor with a parameter of type [RequestDelegate][RequestDelegate_docs].
-- A public method named `Invoke` or `InvokeAsync`. This method must:
-  - Return a `Task`.
-  - Accept a first parameter of type [HttpContext][HttpConrext_Docs].
+- A public constructor with a parameter of type [RequestDelegate][RequestDelegate_docs].
+- A public method named `Invoke` or `InvokeAsync`. This method must:
+  - Return a `Task`.
+  - Accept a first parameter of type [HttpContext][HttpConrext_Docs].
 
 [RequestDelegate_docs]: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.requestdelegate
 [HttpConrext_Docs]: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext

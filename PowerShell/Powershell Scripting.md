@@ -47,7 +47,7 @@ $a, $b = $b, $a
 
 # Interpolation
 Write-Host "text $variable"  # single quotes will not interpolate
-Write-Host (<expresion>)
+Write-Host (<expression>)
 ```
 
 ### Built-in Variables
@@ -80,10 +80,10 @@ $List = @()  # Empty List
 $String = $List -join 'separator'
 $List = $String -split 'separator'
 
-# List comprhensions
+# List comprehensions
 $List = sequence | Where-Object {$_ command}  # $_ is current object
 $Dict = @{"a" = "apple"; "b" = "ball"}  # Dict definition
-$Dict["a"] = "acron"  # Item update
+$Dict["a"] = "acorn"  # Item update
 
 # Loop through keys
 foreach ($k in $Dict.keys) {
@@ -127,16 +127,16 @@ switch(variable) {
 # syntax
 switch [-regex|-wildcard|-exact][-casesensitive] (<value>)
 {
-    "string"|number|variable|{ expression } { statementlist }
-    default { statementlist }
+    "string"|number|variable|{ expression } { statement_list }
+    default { statement_list }
 }
 
 # or
 
 switch [-regex|-wildcard|-exact][-casesensitive] -file filename
 {
-    "string"|number|variable|{ expression } { statementlist }
-    default { statementlist }
+    "string"|number|variable|{ expression } { statement_list }
+    default { statement_list }
 }
 ```
 
@@ -155,7 +155,7 @@ foreach (item in iterable) {
 }
 
 while (condition) {
-    # Code heer
+    # Code here
 }
 
 do {
@@ -251,7 +251,7 @@ function Func {
 
 ```ps1
 $args  # array of passed arguments
-$args[$index]  # access to the argumnets
+$args[$index]  # access to the arguments
 $args.count  # number of arguments
 ```
 
@@ -261,7 +261,7 @@ In `scripts.ps1`:
 
 ```ps1
 param($param1, $param2, ...)  # basic usage
-param($param1, $param2=defvalue, ...)  # with dafault values
+param($param1, $param2=defvalue, ...)  # with default values
 param([Type] $param1, $param2, ...)  # specify a type
 param([Parameter(Mandatory)]$param1, $param2, ...)  # setting a parameter as necessary
 

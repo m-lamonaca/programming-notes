@@ -67,7 +67,7 @@ public interface I<Type>DAO {
 
 ## `<Type>DAO`
 
-Class implementing `I<Type>DAO` and handling the comunication with the db.
+Class implementing `I<Type>DAO` and handling the communication with the db.
 
 ```java
 package dao;
@@ -80,8 +80,8 @@ public class <Type>DAO implements I<Type>DAO {
 
     private <Type> results;
 
-    private Statement statement;  // SQL instruction contenitor
-    private ResultSet rs;  // Query results contenitor
+    private Statement statement;  // SQL instruction container
+    private ResultSet rs;  // Query results container
     private DB db;
 
     public <Type>DAO() {

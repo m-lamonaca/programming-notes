@@ -32,7 +32,7 @@ public class <className> extends HttpServlet {
 
         // POST REQUEST: add stuff to DB, page, ...
 
-        doGet(request, response);  // return same page with new  conted added (default case)
+        doGet(request, response);  // return same page with new  content added (default case)
     }
 }
 ```

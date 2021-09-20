@@ -1,6 +1,6 @@
 # Page.aspx
 
-The fist loaded page is `Default.aspx` and its undelying code.
+The fist loaded page is `Default.aspx` and its underlying code.
 
 ```html
 <!-- directive -->
@@ -38,7 +38,7 @@ The fist loaded page is `Default.aspx` and its undelying code.
 ```xml
 <asp:Control ID="" runat="server" ...></asp:Control>
 
-<!-- Label: empty text will diplay ID, use empty space as text for empty label -->
+<!-- Label: empty text will display ID, use empty space as text for empty label -->
 <asp:Label ID="lbl_" runat="server" Text=" "></asp:Label>
 <!-- TextBox -->
 <asp:TextBox ID="txt_" runat="server"></asp:TextBox>

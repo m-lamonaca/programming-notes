@@ -57,7 +57,7 @@ export function configStore(initialState) {
 replaceReducer(newReducer);  // replace an existing reducer, useful for Hot Reload
 store.dispatch(action);  // trigger a state change based on an action
 store.subscribe(listener);
-store.getState();  // retireve current state
+store.getState();  // retrieve current state
 ```
 
 ### Reducers
@@ -106,7 +106,7 @@ Container Components:
 - Subscribe to Redux State
 - Dispatch Redux actions
 
-Presentaional Components:
+Presentational Components:
 
 - Focus on how things look
 - Unaware of Redux
@@ -145,23 +145,23 @@ import { increment, decrement, reset } from './actionCreators';
 
 // const Component = ...
 
-// specifies which state is passed to the component (called on satte change)
+// specifies which state is passed to the component (called on state change)
 const mapStateToProps = (state, ownProps /* optional */) => {
-    // structure of the props passsed to the component
+    // structure of the props passed to the component
     return { propName: state.property };
 };
 
 // specifies the action passed to a component (the key is the name that the prop will have )
 const mapDispatchToProps = { actionCreator: actionCreator };
 // or
-function mapDispathToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         // wrap action creators
         actionCreator: (args) => dispatch(actionCreator(args))
     };
 }
 // or
-function mapDispathToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         actionCreator: bindActionCreators(actionCreator, dispatch),
         actions: bindActionCreators(allActionCreators, dispatch)
@@ -177,7 +177,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Component);
 
 **Note**: Redux middleware runs *after* and action and *before* it's reducer.
 
-Redux-Thunk allows to retrurn functions instead of objects from action creators.  
+Redux-Thunk allows to return functions instead of objects from action creators.  
 A "thunk" is a function that wraps an expression to delay it's evaluation.
 
 In `configStore.js`:
@@ -199,7 +199,7 @@ function configStore(initialState) {
 ```
 
 ```js
-// usally action on async func success
+// usually action on async func success
 function actionCreator(arg) {
     return { type: TYPE, data: arg };
 }

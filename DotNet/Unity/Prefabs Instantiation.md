@@ -1,8 +1,8 @@
 # Prefabs
 
-Prefabs are a blueprint for GameObcets and any change made to the prefab is inherited by all it's instances.
+Prefabs are a blueprint for GameObjects and any change made to the prefab is inherited by all it's instances.
 
-## Script Instantation
+## Script Instantiation
 
 ```cs
 

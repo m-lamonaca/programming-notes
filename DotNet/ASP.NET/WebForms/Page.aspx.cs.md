@@ -17,7 +17,7 @@ namespace Project
 
         }
 
-        protected void Control_Event(object sender, EventAtgs e)
+        protected void Control_Event(object sender, EventArgs e)
         {
             // actions on event trigger
         }

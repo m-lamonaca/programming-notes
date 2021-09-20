@@ -11,7 +11,7 @@ LINQ to Objects will be used when any `IEnumerable<T>` is specified as the sourc
 ### Query Expressions
 
 All query expressions are required to begin with a `from` clause, which specifies the source of the query.  
-The final part of the query is a `select` (or `group`) clause. This determines the final output of the query and its sytem type.
+The final part of the query is a `select` (or `group`) clause. This determines the final output of the query and its system type.
 
 ```cs
 // query expression
@@ -21,10 +21,10 @@ var result = from item in enumerable select item;
 var result = from item in enumerable where condition select item;
 
 // ordering
-var result = from item in enumerable orderby item.property select item;  // ordered IEnumerble
+var result = from item in enumerable orderby item.property select item;  // ordered IEnumerable
 
-// let clause, assign expression to variable to avoid re-evaluetion on each cycle
-var result = from item in enumerable let tmp = <sub-expr> ...  // BEWARE: compiled code has a lot of overhead to satisfy let caluse
+// let clause, assign expression to variable to avoid re-evaluation on each cycle
+var result = from item in enumerable let tmp = <sub-expr> ...  // BEWARE: compiled code has a lot of overhead to satisfy let clause
 
 // grouping (difficult to re-implement to obtain better performance)
 var result = from item in enumerable group item by item.property;  // returns IEnumerable<IGrouping<TKey,TElement>>
@@ -63,7 +63,7 @@ IEnumerable<T>.Any(Func<T, bool> predicate);  // check if condition is true for 
 IEnumerable<T>.Concat(IEnumerable<T> enumerable);
 
 // Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results.
-IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable, Func<TFirst, TSecoind, TResult> func);
+IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable, Func<TFirst, TSecond, TResult> func);
 IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable); // Produces a sequence of tuples with elements from the two specified sequences.
 ```
 

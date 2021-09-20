@@ -11,7 +11,7 @@
 ```swift
 #if DEBUG
 
-// contents compilde only if in DEBUG build
+// contents compiled only if in DEBUG build
 
 #endif
 ```
@@ -64,7 +64,7 @@ to make a string span multiple lines"""
 var array = ["firstItem", "secondItem", ...]
 var array = [Type()]  // init empty homogeneous array
 
-array[index]  // value acces
+array[index]  // value access
 array[index] = value  // value update
 
 array.append(item)  // add item to the end
@@ -106,7 +106,7 @@ var (var1, var2) = tuple  // var1 = value1, var2 = value2
 ## Type Identifier
 
 ```swift
-typealis Point = (Int, Int)
+typealias Point = (Int, Int)
 var origin: (0, 0)
 ```
 
@@ -130,9 +130,9 @@ dict[key] = value // value update
 
 | Syntax              | Operation                                                           |
 |---------------------|---------------------------------------------------------------------|
-| x`.`m               | accest to member `m` of object `x` ("." --> member access operator) |
+| x`.`m               | access to member `m` of object `x` ("." --> member access operator) |
 | x`(...)`            | method invocation ("()" --> method invocation operator)             |
-| x`[...]`            | array access and indicizarion                                       |
+| x`[...]`            | array access and indicization                                       |
 | `new` T(...)        | object instantiation                                                |
 | `x!`                | declare x as not nil                                                |
 
@@ -148,9 +148,9 @@ dict[key] = value // value update
 | `--`x     | pre-decrement   |
 | x`++`     | post-increment  |
 | x`--`     | post decrement  |
-| `(type)`x | explict casting |
+| `(type)`x | explicit casting |
 
-### Methematical Operators
+### Mathematical Operators
 
 | Operator | Operation                                             |
 | -------- | ----------------------------------------------------- |
@@ -160,7 +160,7 @@ dict[key] = value // value update
 | x `/` y  | integer division, **always** returns an `int`         |
 | x `%` y  | modulo, remainder                                     |
 | x `<<` y | left bit shift                                        |
-| x `>>` y | rigth bit shift                                       |
+| x `>>` y | right bit shift                                       |
 
 ### Relational Operators
 
@@ -186,7 +186,7 @@ dict[key] = value // value update
 | x `??` y     | evaluates to `y` only if `x` is `nil`, `x` otherwise  | nil coalescing  |
 | x`?.`y       | stop if `x == nil`, evaluate `x.y` otherwise          | nil conditional |
 
-### Assignement
+### Assignment
 
 | Operator  | Operation              |
 |-----------|------------------------|
@@ -289,7 +289,7 @@ func funcName(param: Type, ...) {
     // code here
 }
 
-func funcName(param: Type = dafaultValue, ...) -> Type {
+func funcName(param: Type = defaultValue, ...) -> Type {
     //code here
     return <expression>
 }
@@ -309,7 +309,7 @@ func funcMultipleParameters(param: Type) -> (retVal1: Type, retVal2: Type) {
 }
 
 var result = funcMultipleReturns(param: value)
-result.retVal1  // acces to tuple components
+result.retVal1  // access to tuple components
 
 // argument labels (only first label can be omitted)
 func funcWithLabels(_ param: Type, label param: Type, ...) -> Type { }
@@ -323,7 +323,7 @@ func f(param: Type) -> Type {}
 func g(f: (Type) -> Type) {}  // (Type) -> Type are the passed func input and output types
 ```
 
-### Functions Returniing Functions
+### Functions Returning Functions
 
 ```swift
 func f() -> ((Type) -> Type) {
@@ -384,7 +384,7 @@ enum IntegerEnum: Int {
 
 ```swift
 enum Rank: Int {
-    case ace = 1, two, three, four, five, six, seven, eigth, nine, ten
+    case ace = 1, two, three, four, five, six, seven, eight, nine, ten
     case jack, queen, king
 
     func getValue() -> String {
@@ -429,9 +429,9 @@ struct StructName {
         self.attribute = param  // attribute valorization
     }
 
-    // deinitializer (free memory containing obj?)
+    // de-initializer (free memory containing obj?)
     deinit {
-        // empty the arrtibutes
+        // empty the attributes
     }
 
     // overloading
@@ -464,9 +464,9 @@ class ClassName {
         self.attribute = param  // attribute valorization
     }
 
-    // deinitializer (free memory containing obj?)
+    // de-initializer (free memory containing obj?)
     deinit {
-        // empty the arrtibutes
+        // empty the attributes
     }
 
     // overloading
@@ -479,7 +479,7 @@ var obj = ClassName()  // obj instantiation
 
 ### Property Observers `willSet` & `didSet`
 
-Do actions before/after modifing a property value.
+Do actions before/after modifying a property value.
 
 **NOTE**: `willSet` and `didSet` do not *set* the value of the property.
 
@@ -497,7 +497,7 @@ class ClassName {
         }
 
         didSet {
-            // act after setting the propery value
+            // act after setting the property value
         }
     }
 }
