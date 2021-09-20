@@ -67,7 +67,7 @@ namespace <Project>.Model
 
 Create & Update DB Schema if necessary.
 
-In Packge Manager Shell:
+In Package Manager Shell:
 
 ```ps1
 PM> Add-Migration <migration_name>

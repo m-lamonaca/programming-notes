@@ -31,17 +31,17 @@ class DatabaseHelper(
 Make data persistent.
 
 ```kotlin
-class AppSingleton consturctor(context: Context) {
+class AppSingleton constructor(context: Context) {
 
-    var dataabse: SQLiteDatabase? = null  // point to database file in memory
+    var database: SQLiteDatabase? = null  // point to database file in memory
 
     companion object {
 
         @Volatile
         private var INSTANCE: AppSingleton? = null
 
-        // syncronized makes sure that all instances of the singleton are actually the only existing one
-        fun getInstance(context: Contecxt) = INSTANCE ?: syncronized(this) {
+        // synchronized makes sure that all instances of the singleton are actually the only existing one
+        fun getInstance(context: Context) = INSTANCE ?: synchronized(this) {
             INSTANCE ?: Singleton(context).also {
                 INSTANCE = it
             }
@@ -75,10 +75,10 @@ override fun onCreate() {
 Controller to handle data from the objects and interact with the Database
 
 ```kotlin
-sqLiteDatabse = AppISngleton.getInstance().database  // reference to the database from the singleton
+sqLiteDatabase = AppISingleton.getInstance().database  // reference to the database from the singleton
 
 contentValues = ContentValues()  // dict like structure to insert data in DB
-contentValuest.put("DB_Column", value)  // put data in the structure
+contentValues.put("DB_Column", value)  // put data in the structure
 
 // insertion query V1
 sqLiteDatabase?.insert("table", null, contentValue)

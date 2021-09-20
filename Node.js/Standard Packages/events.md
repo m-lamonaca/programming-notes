@@ -14,12 +14,12 @@ class CustomEmitter extends EventEmitter {} ;
 const customEmitterObj = new CustomEmitter();
 
 // add event listener
-cusomEmitterObj.on("event", (e) => {
+customEmitterObj.on("event", (e) => {
     // e contains event object
 })
 
 // single-use event listener (execute and remove listener)
-cusomEmitterObj.once("event", (e) => {
+customEmitterObj.once("event", (e) => {
     // e contains event object
 })
 

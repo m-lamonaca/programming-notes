@@ -3,7 +3,7 @@
 The **Reactive Extensions** for .NET, or **Rx**, are designed for working with asynchronous and event-based sources of information.
 Rx provides services that help orchestrate and synchronize the way code reacts to data from these kinds of sources.
 
-Rx’s fundamental abstraction, `IObservable<T>`, represents a sequence of items, and its operators are defined as extension methods for this interface.
+Rx's fundamental abstraction, `IObservable<T>`, represents a sequence of items, and its operators are defined as extension methods for this interface.
 
 This might sound a lot like LINQ to Objects, and there are similarities, not only does `IObservable<T>` have a lot in common with `IEnumerable<T>`, but Rx also supports almost all of the standard LINQ operators.
 
@@ -12,7 +12,7 @@ of an Rx source demand to be given the next item. Instead, Rx uses a *push* mode
 
 Because Rx implements standard LINQ operators, it's possible to write queries against a live source. Rx goes beyond standard LINQ, adding its own operators that take into account the temporal nature of a live event source.
 
-## Foundamental Interfaces
+## Fundamental Interfaces
 
 The two most important types in Rx are the `IObservable<T>` and `IObserver<T>` interfaces.  
 They are important enough to be in the System namespace. The other parts of Rx are in the `System.Reactive` NuGet package.

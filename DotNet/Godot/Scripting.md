@@ -30,6 +30,8 @@ public class NodeName : NodeType
     {
         
     }
+
+    public void _OnEmitterSignal() { }
 }
 ```
 
@@ -92,7 +94,7 @@ public override void _Ready()
 
 The safest way to delete a node is by using `Node.QueueFree()`. This erases the node safely during idle.
 
-### Instantiting Scenes
+### Instantiating Scenes
 
 ```cs
 // STEP 1: load the scene

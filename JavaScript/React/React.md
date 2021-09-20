@@ -2,7 +2,7 @@
 
 ## Components
 
-Thera are two types of react components:
+There are two types of react components:
 
 - Function Components
 - Class Components
@@ -29,7 +29,7 @@ class Component extends React.Component {
 
 Every components has two inputs: *props* and *state*. The props input is explicit while the state is implicit. State is used to determine the chages. Within the component state can be changed while the props object represent fixed values.
 
-JSX syntax can resable HTML bat gets converted to pure JavaScript before being sent to the browser:
+JSX syntax can reusable HTML bat gets converted to pure JavaScript before being sent to the browser:
 
 ```js
 // JSX
@@ -45,7 +45,7 @@ const element = React.createElement(
 );
 ```
 
-### App Entrypoint
+### App Entry-point
 
 ```js
 ReactDOM.render(
@@ -60,7 +60,7 @@ ReactDOM.render(
 ### Dynamic Expressions
 
 ```js
-<tag>{expression}</tag>  // expression is evalueted an it's result is displayed
+<tag>{expression}</tag>  // expression is evaluated an it's result is displayed
 <tag onEvent={funcReference}>{expression}</tag>
 <tag onEvent={() => func(args)}>{expression}</tag>
 ```
@@ -69,7 +69,7 @@ ReactDOM.render(
 
 ```js
 <Component propName={value} />  // pass a value the component
-<Component propName={funcreference} />  // pass a function to the component
+<Component propName={funcReference} />  // pass a function to the component
 
 function Component(props) {
     // use props with {props.propName}
@@ -135,7 +135,7 @@ class Button extends React.Component {
 }
 ```
 
-### Nesting Compnents
+### Nesting Components
 
 ```js
 import { useState } from "react";
@@ -225,7 +225,7 @@ const [state, setState] = useState(default);
 
 ### `useEffect`
 
-Hook used to trigger an action on each reder of the component or when one of the watched items changes.
+Hook used to trigger an action on each render of the component or when one of the watched items changes.
 
 ```js
 
@@ -240,7 +240,7 @@ useEffect(() => {
 
 ```js
 // hook definitions
-const useCutomHook = () => {
+const useCustomHook = () => {
     // eventual state definitions
 
     // eventual function definitions

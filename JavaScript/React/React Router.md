@@ -1,10 +1,10 @@
 # React Router
 
-Popular routing library. Allows to specify a route through React components, declating which component is to be loaded for a given URL.
+Popular routing library. Allows to specify a route through React components, declaring which component is to be loaded for a given URL.
 
 Key Components:
 
-- **Router**: wrap the app entrypoint, usually `BrowserRouter`
+- **Router**: wrap the app entry-point, usually `BrowserRouter`
 - **Route**: "Load this component for this URL"
 - **Link**: react-managed anchors that won't post back to the browser
 
@@ -74,7 +74,7 @@ import { Redirect } from "react-router-dom";
 <Redirect from="/old-route" to="/new-route" />
 { condition &&  <Redirect to="/route" /> }  // redirect if condition is true
 
-// or redirect manipolating the history (always in props)
+// or redirect manipulating the history (always in props)
 props.history.push("/new-route");  
 ```
 
@@ -83,13 +83,13 @@ props.history.push("/new-route");
 ```js
 import { Prompt } from "react-router-dom";
 
-// displayes a prompt when the condition is true
+// displays a prompt when the condition is true
 <Prompt when={condition} message="prompt message" />
 ```
 
 ## Link
 
-Clicks on a link created with React-Router will be captured by ract an all the routing will happen client side.
+Clicks on a link created with React-Router will be captured by react an all the routing will happen client side.
 
 ```js
 import { Link } from "react-router-dom";

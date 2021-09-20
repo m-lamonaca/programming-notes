@@ -4,7 +4,7 @@
 
 To separate HTML code and PHP code it's possible to use **templates** with markers for variable substitution.
 Variables are created in the PHP code and are passed to the template in the **rendering** phase.
-The server transmitts only the `index.php` file to the user. The php file renders the templates as needed.
+The server transmits only the `index.php` file to the user. The php file renders the templates as needed.
 
 ```html
 <html>
@@ -20,7 +20,7 @@ The server transmitts only the `index.php` file to the user. The php file render
 
 ## [Plates](https://platesphp.com/)
 
-Plates is a templete engine for PHP. A templete engine permits to separate the PHP code (businnes logic) from the HTML pages.
+Plates is a template engine for PHP. A template engine permits to separate the PHP code (business logic) from the HTML pages.
 
 Installation through composer: `composer require league/plates`.
 
@@ -51,14 +51,14 @@ echo $templates->render("template_name", [
 </html>
 ```
 
-Variables in the template are created through an associtve array `key => value`. The key (`"key"`) becomes a variable (`$key`) in the template.
+Variables in the template are created through an associative array `key => value`. The key (`"key"`) becomes a variable (`$key`) in the template.
 
 ### Layout
 
 It's possible to create a layout (a model) for a group of pages to make that identical save for the contents.
 In a layout it's possible to create a section called **content** that identifies content that can be specified at runtime.
 
-**NOTE**: Sinsce only the template has the data passed eventual loops have to be done there.
+**NOTE**: Since only the template has the data passed eventual loops have to be done there.
 
 ```php
 # index.php
@@ -94,7 +94,7 @@ echo $template->render('template_name', [ "marker" => value, ... ]);
 
 It's necessary to verify that the output is in the necessary format.
 
-Plates offerts `$this->escape()` or `$this->e()` to validate the output.
+Plates offers `$this->escape()` or `$this->e()` to validate the output.
 In general the output validation allows to prevent [Cross-Site Scripting][owasp-xss] (XSS).
 
 [owasp-xss]: https://owasp.org/www-community/attacks/xss/

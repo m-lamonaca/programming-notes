@@ -90,9 +90,9 @@ $('a').css({'color': 'purple'});
 ### Create, Store, Manipulate and inject
 
 ```js
-let paragraph = $('<p class="intro">Welcome<p>');  // creat and store element
+let paragraph = $('<p class="intro">Welcome<p>');  // create and store element
 
-paragraph.css('propery', 'value');  // manipulate element
+paragraph.css('property', 'value');  // manipulate element
 
 $("body").append(paragraph);  // inject in DOM
 ```
@@ -148,7 +148,7 @@ In the HTML, add a `<script>` ag that hotlinks to the CDN or source file:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"><script>
 ```
 
-In the JavaScript call the jQuery puging on the DOM:
+In the JavaScript call the jQuery plugin on the DOM:
 
 ```js
 $("form").validate();
@@ -195,7 +195,7 @@ banner.css('color', 'red')
 
 ### DOM Readiness
 
-DOM manipulation and event binding doesn’t work if the `<script>` is in the `<head>`
+DOM manipulation and event binding doesn't work if the `<script>` is in the `<head>`
 
 ```js
 $(document).ready(function() {

@@ -2,7 +2,7 @@
 
 [Coroutines - Unity manual](https://docs.unity3d.com/Manual/Coroutines.html)
 
-When you call a function, it runs to completion before returning. This effectively means that any action taking place in a function must happen *within a single frame update*; a function call can’t be used to contain a procedural animation or a sequence of events over time.
+When you call a function, it runs to completion before returning. This effectively means that any action taking place in a function must happen *within a single frame update*; a function call can't be used to contain a procedural animation or a sequence of events over time.
 
 A coroutine is like a function that has the ability to pause execution and return control to Unity but then to continue where it left off on the following frame.
 
@@ -22,7 +22,7 @@ IEnumerator coroutine()
 
     // or
 
-    yeld return StartCoroutine(coroutine());  // wait for anothe coroitine to finish before starting
+    yeld return StartCoroutine(coroutine());  // wait for another coroutine to finish before starting
 }
 
 StartCoroutine(coroutine());  // start the coroutine

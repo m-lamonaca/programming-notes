@@ -1,6 +1,6 @@
 # fs (FIle System) Module
 
-Async versions can acces file at the same time which can lead to conflicts in operations, erros can be handled in callback.
+Async versions can access file at the same time which can lead to conflicts in operations, errors can be handled in callback.
 Sync versions cannot interfere with each other, errors cause exceptions, handle in try-catch.
 
 ## Files
@@ -71,7 +71,7 @@ fs.rmdirSync(path, recursive=false;
 ### Reading Directory Contents
 
 ```js
-// read directrory contents
+// read directory contents
 fs.readdir(path, (err, files) => {});  // files is string[]
 fs.readdir(path, { withFileTypes: true }, (err, files) => {});  // files is Dirent[]
 fs.readdirSync(path);  // returns string[] of files/directories

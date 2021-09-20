@@ -1,6 +1,6 @@
 # Kotlin Cheat Sheet
 
-## Pakage & Imports
+## Package & Imports
 
 ```kotlin
 package com.app.uniqueID
@@ -21,13 +21,13 @@ val CONSTANT_NAME: Type = value    //constant declaration
 ### Nullable Variables
 
 For a variable to hold a null value, it must be of a nullable type.  
-Nulalble types are specified suffixing `?` to the variable type.
+Nullable types are specified suffixing `?` to the variable type.
 
 ```kotlin
 var nullableVariable: Type? = null
 
 nullableVariable?.method()    //correct way to use
-//if var is null dont execute method() and return null
+//if var is null don't execute method() and return null
 
 nullablevariavle!!.method()    //unsafe way
 //!! -> ignore that var can be null
@@ -81,7 +81,7 @@ when (variable){
 //instead of chain of if-else
 when {
     condition -> value
-    condirion -> value
+    condition -> value
     else -> value
 }
 ```
@@ -158,7 +158,7 @@ fun functionName(parameter: Type, function: (Type) -> Type): Type {
 
 ```kotlin
 //primary constructor
-class ClassName(private var attrivute: Type) {
+class ClassName(private var attribute: Type) {
 
 }
 

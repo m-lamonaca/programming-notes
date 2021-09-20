@@ -26,7 +26,7 @@ var node = document.querySelector('css-selector');
 var nodes = document.querySelectorAll('css-selector');
 ```
 
-## Manupulating the DOM
+## Manipulating the DOM
 
 ### Manipulating a node's attributes
 
@@ -43,7 +43,7 @@ var node = document.getElementById('id');
 node.className = 'new-class';
 ```
 
-### Manipulating a node’s style
+### Manipulating a node's style
 
 It's possible to access and change the styles of a DOM nodes via the **style** property.
 CSS property names with a `-` must be **camelCased** and number properties must have a unit.
@@ -63,7 +63,7 @@ pageNode.style.backgroundColor = 'pink';
 pageNode.style.paddingTop = '10px';
 ```
 
-### Manipulating a node’s contents
+### Manipulating a node's contents
 
 Each DOM node has an `innerHTML` attribute. It contains the HTML of all its children.
 
@@ -103,7 +103,7 @@ In `page.html`:
 In `script.js`:
 
 ```js
-var formNode = document.getEleementById("Identifier");
+var formNode = document.getElementById("Identifier");
 var value = formNode.value;
 ```
 
@@ -123,7 +123,7 @@ domNode.insertBefore(childToInsert, domnode);
 domNode.parentNode.insertBefore(childToInsert, nodeAfterChild);
 
 // remove a node
-domnNod.removeChild(childToRemove);
+domNode.removeChild(childToRemove);
 node.parentNode.removeChild(node);
 ```
 
@@ -152,7 +152,7 @@ body.appendChild(newParagraph);
 function Node(params) {
     this.node = document.createElement("tag");
 
-    this.node.attrubute = value;
+    this.node.attribute = value;
 
     // operations on the node
 

@@ -19,7 +19,7 @@ fn main() {  //program entry point
 
 ### Result types
 
-The `Result` types are **enumerations**, often referred to as *enums*. An enumeration is a type that can have a *fixed set of values*, and those values are called the enum’s **variants**.
+The `Result` types are **enumerations**, often referred to as *enums*. An enumeration is a type that can have a *fixed set of values*, and those values are called the enum's **variants**.
 
 For `Result`, the variants are `Ok` or `Err`.  
 The `Ok` variant indicates the operation was *successful*, and inside `Ok` is the successfully generated value.  
@@ -75,7 +75,7 @@ const CONSTANT_NAME: type = value;  // constant must have the type annotation
 It's possible declare a new variable with the *same name* as a previous variable, and the new variable *shadows* the previous variable.  
 By using let, it's possible to perform a few transformations on a value but have the variable be immutable after those transformations have been completed.
 
-The other difference between *mut* and *shadowing* is that because we’re effectively creating a new variable when we use the let keyword again,  
+The other difference between *mut* and *shadowing* is that because we're effectively creating a new variable when we use the let keyword again,  
 we can change the type of the value but reuse the same name.
 
 ```rs
@@ -99,8 +99,8 @@ let x: i32 = 11;  // shadowing
 ### Floating-Point Types
 
 Rust also has two primitive types for floating-point numbers, which are numbers with decimal points.  
-Rust’s floating-point types are `f32` and `f64`, which are 32 bits and 64 bits in size, respectively.  
-The default type is `f64` because on modern CPUs it’s roughly the same speed as `f32` but is capable of more precision.
+Rust's floating-point types are `f32` and `f64`, which are 32 bits and 64 bits in size, respectively.  
+The default type is `f64` because on modern CPUs it's roughly the same speed as `f32` but is capable of more precision.
 
 ### Numeric Operation
 
@@ -119,9 +119,9 @@ Booleans are one byte in size. The Boolean type in Rust is specified using `bool
 
 ### Character Types
 
-Rust’s `char` type is the language’s most primitive alphabetic type.
+Rust's `char` type is the language's most primitive alphabetic type.
 
-Rust’s `char` type is four bytes in size and represents a Unicode Scalar Value: range from `U+0000` to `U+D7FF` and `U+E000` to `U+10FFFF` inclusive.
+Rust's `char` type is four bytes in size and represents a Unicode Scalar Value: range from `U+0000` to `U+D7FF` and `U+E000` to `U+10FFFF` inclusive.
 
 ```rs
 let c: char = 'C';  // SINGLE QUOTES
@@ -144,7 +144,7 @@ Tuples have a *fixed length*: once declared, they cannot grow or shrink in size.
 ```rs
 let tup: (i32, f64, u8) = (500, 6.4, 1);
 
-let (x, y, z) = tup;  // tuple deconstructionj (unpacking)
+let (x, y, z) = tup;  // tuple deconstruction (unpacking)
 
 tup.0;  // member access
 ```
@@ -152,19 +152,19 @@ tup.0;  // member access
 ### Array Types
 
 Every element of an array must have the *same type*. Arrays in Rust have a fixed length, like tuples.  
-An array isn’t as flexible as the `vector` type, though. A vector is a similar collection type provided by the standard library that *is allowed to grow or shrink in size*.
+An array isn't as flexible as the `vector` type, though. A vector is a similar collection type provided by the standard library that *is allowed to grow or shrink in size*.
 
 ```rs
 let array = [0, 1, 2, 3, 4];
 let array: [Type; length] = [...];
 let array: [value; length];  // same as python's [value] * length
 
-array[index] = value;  // member acces and update
+array[index] = value;  // member access and update
 ```
 
 ### Slice Types
 
-Slices allows to reference a contiguos sequence of elements in a collection rather than the whole collection. **Slices don't take ownership**.
+Slices allows to reference a contiguous sequence of elements in a collection rather than the whole collection. **Slices don't take ownership**.
 
 ```rs
 let s = String::from("string literal");
@@ -183,7 +183,7 @@ Rust code uses *snake_case* as the conventional style for function and variable 
 Function definitions in Rust start with `fn` and have a set of parentheses after the function name.  
 The curly brackets tell the compiler where the function body begins and ends.
 
-Rust doesn’t care where the functions are defined, only that they’re defined somewhere.
+Rust doesn't care where the functions are defined, only that they're defined somewhere.
 
 ```rs
 fn func(param: Type) {  // parameters MUST have the Type annotation
@@ -261,12 +261,12 @@ for i in (start..end) {  // (start..stop) is like python's range(start, stop)
 
 ## Ownership
 
-Ownership is Rust’s most unique feature, and it enables Rust to make memory safety guarantees without needing a garbage collector.
+Ownership is Rust's most unique feature, and it enables Rust to make memory safety guarantees without needing a garbage collector.
 
-All programs have to manage the way they use a computer’s memory while running.  
+All programs have to manage the way they use a computer's memory while running.  
 Some languages have garbage collection that constantly looks for no longer used memory as the program runs; in other languages, the programmer must explicitly allocate and free the memory.  
 Rust uses a third approach: memory is managed through a system of ownership with a set of rules that the compiler checks at compile time.  
-None of the ownership features slow down your program while it’s running.
+None of the ownership features slow down your program while it's running.
 
 ### Stack & Heap
 
@@ -284,11 +284,11 @@ Comparatively, allocating space on the heap requires more work, because the allo
 
 Accessing data in the heap is slower than accessing data on the stack because you have to follow a pointer to get there. Contemporary processors are faster if they jump around less in memory.
 
-Keeping track of what parts of code are using what data on the heap, minimizing the amount of duplicate data on the heap, and cleaning up unused data on the heap so you don’t run out of space are all problems that ownership addresses.
+Keeping track of what parts of code are using what data on the heap, minimizing the amount of duplicate data on the heap, and cleaning up unused data on the heap so you don't run out of space are all problems that ownership addresses.
 
 ### Ownership Rules
 
-- Each *value* in Rust has a variable that’s called its *owner*.
+- Each *value* in Rust has a variable that's called its *owner*.
 - There can only be one owner at a time.
 - When the owner goes out of scope, the value will be dropped.
 
@@ -297,13 +297,13 @@ Keeping track of what parts of code are using what data on the heap, minimizing 
 A "shallow copy" of a variable allocated on the heap (C#'s reference value) the original variable goes out of scope and only the "copy" remains.  
 A "deep copy" (`var.clone()`) makes a copy of the data in the new variable without make the original fall out of scope.
 
-When a variable goes out of scope, Rust calls a special function for us. This function is called `drop`, and it’s where the code to return the memory is located.
+When a variable goes out of scope, Rust calls a special function for us. This function is called `drop`, and it's where the code to return the memory is located.
 
 Rust has a special annotation called the `Copy` trait that we can place on types that are stored on the stack.  
 If a type has the `Copy` trait, an older variable is still usable after assignment.
 
-Rust won’t let us annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.  
-If the type needs something special to happen when the value goes out of scope and we add the `Copy` annotation to that type, we’ll get a compile-time error.
+Rust won't let us annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.  
+If the type needs something special to happen when the value goes out of scope and we add the `Copy` annotation to that type, we'll get a compile-time error.
 
 ```rs
 let s = String::new()
@@ -323,7 +323,7 @@ fn main() {
 
     let x = 5;                      // x comes into scope
 
-    makes_copy(x);                  // x would move into the function, but i32 is Copy, so it’s okay to still use x afterward
+    makes_copy(x);                  // x would move into the function, but i32 is Copy, so it's okay to still use x afterward
 
 } // Here, x goes out of scope, then s. But because s's value was moved, nothing special happens.
 
@@ -372,7 +372,7 @@ A data race is similar to a race condition and happens when these three behavior
 
 - Two or more pointers access the same data at the same time.  
 - At least one of the pointers is being used to write to the data.  
-- There’s no mechanism being used to synchronize access to the data.
+- There's no mechanism being used to synchronize access to the data.
 
 ```rs
 fn borrow(var: &Type) {  // &Type indicates that the var is a reference
@@ -391,7 +391,7 @@ fn borrow2(var: &mut Type) {
 A **struct**, or structure, is a custom data type that allows to name and package together multiple related values that make up a meaningful group.
 
 To define a struct enter the keyword struct and name the entire struct.  
-A struct’s name should describe the significance of the pieces of data being grouped together.  
+A struct's name should describe the significance of the pieces of data being grouped together.  
 Then, inside curly brackets, define the names and types of the pieces of data, which we call *fields*.
 
 ```rs
@@ -412,7 +412,7 @@ let mut var = Struct {
 };
 
 fn build_struct(param: Type, ...) -> Struct {
-    // the constructed struct is returned siince it's the last expression
+    // the constructed struct is returned since it's the last expression
     Struct {
         field: param,
         ...
@@ -424,7 +424,7 @@ fn build_struct(param: Type, ...) -> Struct {
 
 ```rs
 fn build_struct(field: Type, ...) -> Struct {
-    // the constructed struct is returned siince it's the last expression
+    // the constructed struct is returned since it's the last expression
     Struct {
         field,  // shortened form since func param is named as the struct's field
         ...
@@ -434,7 +434,7 @@ fn build_struct(field: Type, ...) -> Struct {
 var.field = value;  // member access
 ```
 
-**Note**: the entire instance must be mutable; Rust doesn’t allow to mark only certain fields as mutable.
+**Note**: the entire instance must be mutable; Rust doesn't allow to mark only certain fields as mutable.
 
 ### Struct Update Syntax
 
@@ -462,7 +462,7 @@ struct Point(i32, i32, i32);
 let origin = Point(0, 0, 0);
 ```
 
-### Stuct Printing
+### Struct Printing
 
 ```rs
 #[derive(Debug)]  // inherit the debug traits
@@ -472,7 +472,7 @@ struct StructName
     ...
 }
 
-let s: Struct = { /* valorzation */};
+let s: Struct = { /* valorization */};
 printl!("{:?}", s)  // debug output: { field: value, ... }
 ```
 
@@ -490,8 +490,8 @@ impl Struct
     fn method(&self, arg: Type) -> Type { }
 }
 
-let s: Struct = { /* valorzation */};
-s.method(arg);  // use struct mathod
+let s: Struct = { /* valorization */};
+s.method(arg);  // use struct method
 ```
 
 ## Enums
@@ -505,7 +505,7 @@ enum Enum
     ...
 }
 
-// value assigenement
+// value assignment
 let e: Enum = Enum::Variant2;
 let e: Enum = Enum::Variant1(arg, ...);  // variant w/ data
 
@@ -518,9 +518,9 @@ impl Enum
 
 ### [Option enum](https://doc.rust-lang.org/std/option/enum.Option.htmls)
 
-The `Option` type is used in many places because it encodes the very common scenario in which a value could be something or it could be nothing. Expressing this concept in terms of the type system means the compiler can check whether you’ve handled all the cases you should be handling; this functionality can prevent bugs that are extremely common in other programming languages.
+The `Option` type is used in many places because it encodes the very common scenario in which a value could be something or it could be nothing. Expressing this concept in terms of the type system means the compiler can check whether you've handled all the cases you should be handling; this functionality can prevent bugs that are extremely common in other programming languages.
 
-he `Option<T>` enum is so useful that it’s even included in the prelude; you don’t need to bring it into scope explicitly.  
+he `Option<T>` enum is so useful that it's even included in the prelude; you don't need to bring it into scope explicitly.  
 In addition, so are its variants: you can use `Some` and `None` directly without the `Option::` prefix.
 
 ```rs
@@ -531,15 +531,15 @@ enum Option<T> {
 }
 ```
 
-*NOTE*: When `None` is used the type of `Option<T>` must be specified, because the compiler can’t infer the type that the `Some` variant will hold by looking only at a `None` value.
+*NOTE*: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
 
 ### Match Expression + Comparing
 
 A **match expression** is made up of *arms*.  
-An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm’s pattern.  
-Rust takes the value given to match and looks through each arm’s pattern in turn.
+An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern.  
+Rust takes the value given to match and looks through each arm's pattern in turn.
 
-**NOTE**: `match` arms must be exaustive for compilation.
+**NOTE**: `match` arms must be exhaustive for compilation.
 
 ```rs
 enum Enum {
@@ -575,7 +575,7 @@ v.push(item);  // add elements to vector
 
 // element access
 v.get(index);  // get method (returns Option<&T>)
-&v[index];  // index synatx  (returns reference, panic on index out of bounds)
+&v[index];  // index syntax  (returns reference, panic on index out of bounds)
 
 // iterate over mutable references to each element in a mutable vector in order to make changes to all the elements
 for i in mut &v {

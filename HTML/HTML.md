@@ -85,7 +85,7 @@ The body contains the actual content of the page. Everything that is contained i
 ## JavaScript
 
 XHTML and older: `<script src="js/scripts.js" type="text/javascript"></script>`  
-HTML5: `<script src="js/scripts.js"></script>`  (HTML5 spect states that `type` attribute is redundant and shoul be omitted)  
+HTML5: `<script src="js/scripts.js"></script>`  (HTML5 spec states that `type` attribute is redundant and should be omitted)  
 The `<script>` tag is used to define a client-side script (JavaScript).  
 The `<script>` element either contains scripting statements, or it points to an external script file through the src attribute.
 
@@ -124,18 +124,18 @@ Uses of Validation:
 
 The application should validate all information to make sure that it is complete, free of errors and conforms to the specifications required by the back-end.  
 It should contain mechanisms to warn users if input is not complete or correct.  
-It should avoid to send ‘bad’ data to the back-end.  
+It should avoid to send "bad" data to the back-end.  
 
 ### Back-End Validation
 
 It should never trust that the front-end has done validation since some clever users can bypass the front-end mechanisms easily.  
-Back-end services can receive data from other services, not necessarily front-end, that don’t perform validation.  
+Back-end services can receive data from other services, not necessarily front-end, that don't perform validation.  
 
 #### Built-In Validation
 
-Not all browsers validate in the same way and some follow the specs partially. Some browsers don’t have validation at all (older desktop browsers, some mobile browsers).  
-Apart from declaring validation intention with HTML5 developers don’t have much control over what the browser actually does.  
-Before using build-in validation make sure that it’s supported by the target browsers.
+Not all browsers validate in the same way and some follow the specs partially. Some browsers don't have validation at all (older desktop browsers, some mobile browsers).  
+Apart from declaring validation intention with HTML5 developers don't have much control over what the browser actually does.  
+Before using build-in validation make sure that it's supported by the target browsers.
 
 #### Validation with JavaScript
 
@@ -203,7 +203,7 @@ Heading numbers indicates hierarchy, not size.
 <h2> Heading 2 </h2>
 ```
 
-### Fromatted Text
+### Formatted Text
 
 With semantic value:
 
@@ -217,7 +217,7 @@ Without semantic value, used as last resort:
 
 ## Elements
 
-`<br/>`: Line break (carriage return). It's not good practice to put line breacks inside paragraphs.  
+`<br/>`: Line break (carriage return). It's not good practice to put line breaks inside paragraphs.  
 
 `<hr>`: horizontal rule (line). Used to define a thematic change in the content.
 
@@ -227,7 +227,7 @@ Surround content to turn into links.
 
 ```html
 <!-- Link to absolute URL -->
-<a href="uri/url" title="content-title" taget="_self"> text/image </a>
+<a href="uri/url" title="content-title" target="_self"> text/image </a>
 
 <!-- links to relative URL -->
 <a href="//example.com">Scheme-relative URL</a>
@@ -282,7 +282,7 @@ Surround content to turn into links.
 </ul>
 ```
 
-### Ordered list (numebred list)
+### Ordered list (numbered list)
 
 ```html
 <ol>
@@ -306,8 +306,8 @@ Surround content to turn into links.
 
 ```html
 <table>
-    <thead>    <!-- table intestation (head) row -->
-        <th></th> <!-- table intestation, one for each column-->
+    <thead>    <!-- table head row -->
+        <th></th> <!-- table head, one for each column-->
         <th></th>
     </thead>
     <tbody>    <!-- table content (body) -->
@@ -323,7 +323,7 @@ Surround content to turn into links.
 
 Code     | Character
 ---------|-----------------
-`&copy;` | Copyrigth
+`&copy;` | Copyright
 `&lt;`   | less than (`<`)
 `&gt;`   | greater than (`>`)
 `&amp;`  | ampersand (`&`)
@@ -361,7 +361,7 @@ Used to apply a specific style inline.
 ## HTML Forms
 
 ```html
-<form action="data-reciever" target="" method="http-method">
+<form action="data-receiver" target="" method="http-method">
     <!-- ALL form elements go here -->
 </form>
 ```
@@ -404,7 +404,7 @@ Input Attributes:
 * `name`: assigns a name to the form control (used by JavaScript and queries)
 * `value`: value to be sent to the server when the option is selected
 * `id`: identifier for CSS and linking tags
-* `checked`: intially selected or not (radiobutton, checkboxes, ...)
+* `checked`: initially selected or not (radiobutton, checkboxes, ...)
 * `selected`: default selection of a dropdown
 
 ### Text Field
@@ -434,7 +434,7 @@ Text inputs can display a placeholder text that will disappear as soon as some t
 ```html
 <form>
     <label for="identifier">Password:</label>
-    <input type="passwrod" name="user-password" id="identifier">
+    <input type="password" name="user-password" id="identifier">
 </form>
 ```
 
@@ -519,7 +519,7 @@ Multi line text input.
 </form>
 ```
 
-`sumbit`: sends the form data to the location specified in the action attribute.  
+`submit`: sends the form data to the location specified in the action attribute.  
 `reset`: resets all forms controls to the default values.
 
 ### Button
@@ -563,7 +563,7 @@ Downsides:
 ### Email Field
 
 Used to receive a valid e-mail address from the user. Most browsers can validate this without needing javascript.
-Older browsers don’t support this input type.
+Older browsers don't support this input type.
 
 ```html
 <form>

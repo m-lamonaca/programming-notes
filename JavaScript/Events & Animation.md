@@ -20,8 +20,8 @@ var onEvent = function(event) {  // parameter contains info on the triggered eve
     // logic here
 }
 
-domNode.addEventListener(eventType, calledback);
-domNode.renoveEventListener(eventType, callback);
+domNode.addEventListener(eventType, callback);
+domNode.removeEventListener(eventType, callback);
 ```
 
 ### Bubbling & Capturing
@@ -44,7 +44,7 @@ let event = new CustomEvent(type, { detail: /* custom data */ });  // create eve
 domNode.dispatchEvent(event);  // launch the event
 ```
 
-![Event Inheritace](../.images/javascript_event-inheritance.png)
+![Event Inheritance](../.images/javascript_event-inheritance.png)
 
 ## Animation
 

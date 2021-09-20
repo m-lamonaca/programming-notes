@@ -10,7 +10,7 @@
 Interactive mode --> shell waits for user's commands
 Non-interactive mode --> shell runs scripts
 
-## File & Directories Permissons
+## File & Directories Permissions
 
 File:
 
@@ -35,12 +35,12 @@ Bash gets commands by reading lines.
 As soon as it's read enough lines to compose a complete command, bash begins running that command.  
 Usually, commands are just a single line long. An interactive bash session reads lines from you at the prompt.  
 Non-interactive bash processes read their commands from a file or stream.  
-Files with a hashbang as their first line (and the executable permission) can be started by your system's kernel like any other program.
+Files with a shebang as their first line (and the executable permission) can be started by your system's kernel like any other program.
 
 ### First Line Of Bash
 
 `#!/bin/env bash`  
-Hashbang indicating whitch interpreter to use
+shebang indicating which interpreter to use
 
 ### Simple Command
 
@@ -73,7 +73,7 @@ command_1 || command_2 || ...  # execute successive commands only if preceding o
 {command_1; command_2; ...}  # sequence of commands executed as one
 ```
 
-### Functions (blocks of easely reusable code)
+### Functions (blocks of easily reusable code)
 
 `function_name () {compound_command}`  
 Bash does not accept func arguments, parentheses must be empty
@@ -125,7 +125,7 @@ x>&-, x<&-  # close FD x (stream disconnected from FD x)
 
 `*` matches any kind of text (even no text).  
 `?` matches any single character.  
-`[characters]` mathces any single character in the given set.  
+`[characters]` matches any single character in the given set.  
 `[[:classname:]]` specify class of characters to match.
 `{}` expand list of arguments (applies command to each one)
 
@@ -137,7 +137,7 @@ x>&-, x<&-  # close FD x (stream disconnected from FD x)
 `@(pattern [| pattern ...])` matches when any of the patterns in the list appears just once. ("one of ...").  
 `!(pattern [| pattern ...])` matches only when none of the patterns in the list appear. ("none of ...").
 
-## Command Substituition
+## Command Substitution
 
 With Command Substitution, we effectively write a command within a command, and we ask bash to expand the inner command into its output and use that output as argument data for the main command.  
 
@@ -148,9 +148,9 @@ $(inner_command)  # $ --> value-expansion prefix
 ## Shell Variables
 
 ```bash
-varname=value  # variable assignement
-varname="$(command)"  # command sobstituition, MUST be double-quoted
-"$varname", "${varname}"  # variable expansion, MUST be double-quoted (name substituited w/ varaible content)
+varname=value  # variable assignment
+varname="$(command)"  # command substitution, MUST be double-quoted
+"$varname", "${varname}"  # variable expansion, MUST be double-quoted (name substituted w/ variable content)
 
 $$  # pid
 $#  # number of arguments passed
@@ -158,7 +158,7 @@ $@  # all arguments passed
 ${n}  # n-th argument passed to the command
 $0  # name of the script
 $_  # last argument passed to the command
-$?  # error message of the last (previous) comman
+$?  # error message of the last (previous) command
 !!  # executes last command used (echo !! prints the last command)
 ```
 
@@ -173,7 +173,7 @@ $?  # error message of the last (previous) comman
 `${parameter/#pattern/replacement}` replaces the string that matches the pattern at the beginning of the value with the replacement.  
 `${parameter/%pattern/replacement}` replaces the string that matches the pattern at the end of the value with the replacement.  
 `${#parameter}` expands the length of the value (in bytes).  
-`${parametr:start[:length]}` expands a part of the value, starting at start, length bytes long.  
+`${parameter:start[:length]}` expands a part of the value, starting at start, length bytes long.  
 Counts from the end rather than the beginning by using a (space followed by a) negative value.  
 `${parameter[^|^^|,|,,][pattern]}` expands the transformed value, either upper-casing or lower-casing the first or all characters that match the pattern.
 Omit the pattern to match any character.
@@ -195,7 +195,7 @@ fi
 
 ### Test Command
 
-`[[ arggument_1 <operator> argument_2 ]]`
+`[[ argument_1 <operator> argument_2 ]]`
 
 ### Arithmetic expansion and evaluation
 
@@ -212,7 +212,7 @@ fi
 [[ "$a" -le "$b" ]]  # less than or equal to
 ```
 
-### Arithmetic Comperison Operators
+### Arithmetic Comparison Operators
 
 ```bash
 (("$a" > "$b"))  # greater than
@@ -221,10 +221,10 @@ fi
 (("$a" <= "$b"))   # less than or equal to
 ```
 
-### String Compatison Operators
+### String Comparison Operators
 
 ```bash
-[ "$a" = "$b" ]    # is equal to (whitespace atoun operator)
+[ "$a" = "$b" ]    # is equal to (whitespace around operator)
 
 [[ $a == z* ]]     # True if $a starts with an "z" (pattern matching)
 [[ $a == "z*" ]]   # True if $a is equal to z* (literal matching)
@@ -244,7 +244,7 @@ fi
 
 ```bash
 command_1 || command_2  # if command_1 fails executes command_2
-command_1 && command_2  # executes command_2 only if command_1 succedes
+command_1 && command_2  # executes command_2 only if command_1 succeeds
 ```
 
 ## Loops

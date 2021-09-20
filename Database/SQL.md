@@ -6,7 +6,7 @@
 
 ```sql
 show databases;    -- mostra database
-CREATE DATABASE <database>;    -- dataabse creation
+CREATE DATABASE <database>;    -- database creation
 use <database_name>;    -- usa un database particolare
 exit;    -- exit mysql
 
@@ -67,7 +67,7 @@ ALTER TABLE <table>
 
 ```sql
 INSERT INTO <table> (field_1, ...) VALUES (value_1, ...), (value_1, ...);
-INSERT INTO <table> VALUES (value_1, ...), (value_1, ...);    -- field order MUST respest tables's columns order
+INSERT INTO <table> VALUES (value_1, ...), (value_1, ...);    -- field order MUST respect tables's columns order
 ```
 
 ### Data Update
@@ -93,36 +93,36 @@ SHOW columns FROM <table>;    -- show table columns
 DESCRIBE <table>;    -- shows table
 ```
 
-### Alias Tabelle
+### Alias
 
 ```sql
-SELECT <field/funzione> as <alias>; -- mostra <field/funzione> con nome <alias>
+SELECT <field> as <alias>; -- shows <field/funzione> with name <alias>
 ```
 
-### Selezione Condizionale
+### Conditional Selection
 
 ```sql
-SELECT * FROM <table> WHERE <condition>;    -- mostra elementi che rispettano la condizione
-AND, OR, NOT    -- connettivi logici
+SELECT * FROM <table> WHERE <condition>;    -- shows elements that satisfy the condition
+AND, OR, NOT    -- logic connectors
 
 SELECT * FROM <table> WHERE <field> Between <value_1> AND <value_2>;
 ```
 
-### Ordinamento
+### Ordering
 
 ```sql
-SELECT * FROM <table> ORDER BY <field>, ...;    -- mostra tabella ordinata in base a colonna <field>
-SELECT * FROM <table> ORDER BY <field>, ... DESC;    -- mostra tabella ordinata decrescente in base a colonna <field>
-SELECT * FROM <table> ORDER BY <field>, ... LIMIT n;    -- mostra tabella ordinata in base a colonna <field>, mostra n elementi
+SELECT * FROM <table> ORDER BY <field>, ...;    -- shows the table ordered by <field>
+SELECT * FROM <table> ORDER BY <field>, ... DESC;    -- shows the table ordered by <field>, decreasing order
+SELECT * FROM <table> ORDER BY <field>, ... LIMIT n;    -- shows the table ordered by <field>, shows n items
 SELECT TOP(n) * FROM <table> ORDER BY <field>, ...;    -- T-SQL
 ```
 
-## Raggruppamento
+## Grouping
 
 ```sql
 SELECT * FROM <table> GROUP BY <field>;
 SELECT * FROM <table> GROUP BY <field> HAVING <condition>;
-SELECT DISTINCT <field> FROM <table>;    -- mostra elementi senza riperizioni
+SELECT DISTINCT <field> FROM <table>;    -- shows elements without repetitions
 ```
 
 ### Ricerca caratteri in valori
@@ -130,10 +130,10 @@ SELECT DISTINCT <field> FROM <table>;    -- mostra elementi senza riperizioni
 `%` 0+ caratteri
 
 ```sql
-SELECT * FROM <table> WHERE <field> LIKE '<char>%';    -- seleziona elemnti in <field> inizianti per <char>
-SELECT * FROM <table> WHERE <field> LIKE '%<char>';    -- seleziona elemnti in <field> terminanti per <char>
-SELECT * FROM <table> WHERE <field> LIKE '%<char>%';    -- seleziona elemnti in <field> contenenti <char>
-SELECT * FROM <table> WHERE <field> NOT LIKE '%<char>%';    -- seleziona elemnti in <field> non contenenti <char>
+SELECT * FROM <table> WHERE <field> LIKE '<char>%';    -- selects items in <field> that start with <char>
+SELECT * FROM <table> WHERE <field> LIKE '%<char>';    -- selects items in <field> that end with <char>
+SELECT * FROM <table> WHERE <field> LIKE '%<char>%';    -- selects items in <field> that contain <char>
+SELECT * FROM <table> WHERE <field> NOT LIKE '%<char>%';    -- selects items in <field> that do not contain <char>
 ```
 
 ### Selection from multiple tables
@@ -143,18 +143,18 @@ SELECT a.<field>, b.<field> FROM <table> AS a, <table> AS b
     WHERE a.<field> ...;
 ```
 
-## Funzioni
+## Functions
 
 ```sql
-SELECT COUNT(*) FROM <field>;    -- conta numero elemneti nel campo
-SELECT MIN(*) FROM <table>;    -- restituisce il valore minimo
-SELECT MAX(*) FROM <table>;    -- restituisce valore massimo
-SELECT AVG(*) FROM <table>;    -- media valori del campo
+SELECT COUNT(*) FROM <field>;    -- count of items in <field>
+SELECT MIN(*) FROM <table>;    -- min value
+SELECT MAX(*) FROM <table>;    -- max value
+SELECT AVG(*) FROM <table>;    -- mean of values
 ALL (SELECT ...)
 ANY (SELECT ...)
 ```
 
-## Query Annidate
+## Nested Queries
 
 ```sql
 SELECT * FROM <table> WHERE EXISTS (SELECT * FROM <table>)  -- selected field existing in subquery
@@ -181,13 +181,10 @@ INSERT INTO <table>
 
 ## Join
 
-Permette di legare due tabelle correlando i dati, le tabelle devono avere almeno un campo in comune.  
-Primary key deve comparire in altra tabella come foreign key.
-
 ```sql
-SELECT * FROM <table1> JOIN <table2> ON <table1>.<field> = <table2>.<field>;    -- seleziono tutti gli elementi che hanno una relarione tra le due tabelle
-SELECT * FROM <table1> LEFT JOIN <table2> ON <condition>;    -- seleziona tutti gli elementi di table1 e i eventuali elementi richiamati dal join
-SELECT * FROM <table1> RIGHT JOIN <tabl2> ON <condition>    -- -- seleziona tutti gli elementi di table2 e i eventuali elementi richiamati dal join
+SELECT * FROM <table1> JOIN <table2> ON <table1>.<field> = <table2>.<field>;
+SELECT * FROM <table1> LEFT JOIN <table2> ON <condition>;
+SELECT * FROM <table1> RIGHT JOIN <table2> ON <condition>
 ```
 
 [Inner Join, Left Join, Right Join, Full Outer Join](https://www.diffen.com/difference/Inner_Join_vs_Outer_Join)
@@ -202,7 +199,7 @@ JOIN <table3> ON <table2>.<field> = <table3>.<field>;
 
 [char, nchar, varchar, nvarchar](https://stackoverflow.com/questions/176514/what-is-the-difference-between-char-nchar-varchar-and-nvarchar-in-sql-server)
 
-***
+---
 
 ## T-SQL (MSSQL Server)
 
@@ -230,7 +227,7 @@ DECLARE @var_name <type>
 SET @var_name = <value>
 
 -- use in query (memorize data)
-SELECT @var_name = COUNT(*)  -- query won't show results in the "table view" sice param is used in SELECT
+SELECT @var_name = COUNT(*)  -- query won't show results in the "table view" since param is used in SELECT
 FROM <table> ...
 
 -- display message (query won't show results in the "table view")
@@ -263,7 +260,7 @@ CREATE PROCEDURE <Procedure_Name>
 AS
 BEGIN
     -- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
-    SET NOCOUNT ON;  -- dont return number of selected rows
+    SET NOCOUNT ON;  -- don't return number of selected rows
 
     -- Insert statements for procedure here
     SELECT ...

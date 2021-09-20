@@ -16,7 +16,7 @@ The component class is usually written in the form of a Razor markup page with a
 
 ## Project Structure & Important Files
 
-### Blazor Server Project Stucture
+### Blazor Server Project Structure
 
 ```txt
 Project
@@ -45,7 +45,7 @@ Project
 |- App.razor --> component root of the app
 |
 |- appsettings.json --> application settings
-|- Program.cs --> App entrypoint
+|- Program.cs --> App entry-point
 |- Startup.cs --> services and middleware configs
 ```
 
@@ -78,7 +78,7 @@ Project
 |- App.razor --> component root of the app
 |
 |- appsettings.json --> application settings
-|- Program.cs --> App entrypoint
+|- Program.cs --> App entry-point
 ```
 
 ### Blazor PWA Project Structure
@@ -148,7 +148,7 @@ Project
 
 ```cs
 <Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true">
-    <Found Context="routeData">  // for component routing
+    <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
     <NotFound>

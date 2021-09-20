@@ -23,7 +23,7 @@ composer create-project ezimuel/simple-mvc
 |  |- route.php --> routing
 |- public
 |  |- img
-|  |- index.php  --> app entrypoint
+|  |- index.php  --> app entry-point
 |- src
 |  |- Model
 |  |- View  --> Plates views
@@ -33,7 +33,7 @@ composer create-project ezimuel/simple-mvc
 |  |- Controller
 ```
 
-### `indedx.php`
+### `index.php`
 
 ```php
 <?php

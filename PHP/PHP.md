@@ -26,7 +26,7 @@ In `config.php`:
 ```php
 //config.php
 
-//store configuration options in associtive array
+//store configuration options in associative array
 return [
     setting => value,
     setting = value,
@@ -34,7 +34,7 @@ return [
 ```
 
 ```php
-$config = include "config.php";  // retireve config and store into variable
+$config = include "config.php";  // retrieve config and store into variable
 ```
 
 ## Namespace
@@ -42,7 +42,7 @@ $config = include "config.php";  // retireve config and store into variable
 [PSR-4 Spec](https://www.php-fig.org/psr/psr-4/)
 
 ```php
-namespace Foo\Bar\Baz;   # set nemespace for all file contents, \ for nested namespaces
+namespace Foo\Bar\Baz;   # set namespace for all file contents, \ for nested namespaces
 
 use <PHP_Class>  # using a namespace hides standard php classes (WHY?!?)
 
@@ -54,7 +54,7 @@ namespace Foo\Bar\Baz {
 };
 
 
-Foo\Bar\Baz\func();  # use function from Foo\Bar\Baz withous USE instruction
+Foo\Bar\Baz\func();  # use function from Foo\Bar\Baz without USE instruction
 
 use Foo\Bar\Baz\func; # import namespace
 func(); # use function from Foo\Bar\Baz
@@ -106,7 +106,7 @@ if (!function_exists('readline')) {
 ## Variables
 
 ```php
-$varibleName = value;  # weakly typed
+$variableName = value;  # weakly typed
 echo gettype(&variable);  # output type of variable
 
 var_dump($var);  # prints info of variable (bit dimension, type & value)
@@ -159,7 +159,7 @@ $c = 7E-10; // 0.0000000007
 
 ## Strings
 
-A string is a sequrnce of ASCII characters. In PHP a string is an array of charachters.
+A string is a sequence of ASCII characters. In PHP a string is an array of characters.
 
 ### String Concatenation
 
@@ -172,10 +172,10 @@ $string1 .= $string2;  # method 2
 
 ```php
 strlen($string);  # returns the string length
-strpos($string, 'substring');  # position of dubstring in string
-substr($string, start, len);  # ectract substring of len from position start
-strtoupper($string);  # transfrorm to uppercase
-strtolower($string);  # transform to lowerchase
+strpos($string, 'substring');  # position of substring in string
+substr($string, start, len);  # extract substring of len from position start
+strtoupper($string);  # transform to uppercase
+strtolower($string);  # transform to lowercase
 
 explode(delimiter, string);  # return array of substrings
 
@@ -205,8 +205,8 @@ Heterogeneous sequence of values.
 $array = (sequence_of_items);  # array declaration and valorization
 $array = [sequence_of_items];  # array declaration and valorization
 
-# index < 0 selecst items starting from the last
-$array[index];  # accest to the items
+# index < 0 selects items starting from the last
+$array[index];  # access to the items
 $array[index] = value;   # array valorization (can add items)
 
 $array[] = value;  # value appending
@@ -279,7 +279,7 @@ $italianDay["Mon"];  # evaluates to Lunedì
 
 ## Conditional Instructions
 
-### Conditional Opeartors
+### Conditional Operators
 
 | Operator    | Operation                |
 | ----------- | ------------------------ |
@@ -299,13 +299,13 @@ With `==` a string evaluates to `0`.
 ### Logical Operators
 
 | Operator | Example     | Result                                               |
-| -------- | ----------- | ---------------------------------------------------- | --- | ------------------------------------ |
+| -------- | ----------- | ---------------------------------------------------- |
 | `and`    | `$a and $b` | TRUE if both `$a` and `$b` are TRUE.                 |
 | `or`     | `$a or $b`  | TRUE if either `$a` or `$b` is TRUE.                 |
 | `xor`    | `$a xor $b` | TRUE if either `$a` or `$b` is TRUE, but _not both_. |
 | `not`    | `!$a`       | TRUE if `$a` is _not_ TRUE.                          |
 | `and`    | `$a && $b`  | TRUE if both `$a` and `$b` are TRUE.                 |
-| `or`     | `$a         |                                                      | $b` | TRUE if either `$a` or `$b` is TRUE. |
+| `or`     | `$a || $b`  | TRUE if either `$a` or `$b` is TRUE.                 |
 
 ### Ternary Operator
 
@@ -317,7 +317,7 @@ condition ?: result_if_false;
 ### NULL Coalesce
 
 ```php
-$var1 = $var2 ?? value;  # if variable == NULL assign value, othervise return value of $var2
+$var1 = $var2 ?? value;  # if variable == NULL assign value, otherwise return value of $var2
 
 # equivalent to
 $var1 = isset($var2) ? $var2 : value
@@ -328,7 +328,7 @@ $var1 = isset($var2) ? $var2 : value
 ```php
 $a <=> $b;
 
-# equivalen to
+# equivalent to
 if $a > $b
     return 1;
 if $a == $b
@@ -445,7 +445,7 @@ do {
 
 [Function Docstring](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/)
 
-Parameters with default values are optional in the function call and must be the last ones in the function declaration. Return type is optional if type checking is diasbled.
+Parameters with default values are optional in the function call and must be the last ones in the function declaration. Return type is optional if type checking is disabled.
 
 ```php
 declare(strict_types=1);  # activates type checking
@@ -516,7 +516,7 @@ function functionName (?type $parameter): ?Type
 ## Anonymous Functions (Closure)
 
 ```php
-# declaration and assignement to variable
+# declaration and assignment to variable
 $var = function (type $parameter) {
     # code here
 };
@@ -576,12 +576,12 @@ class ClassName
     const CONSTANT = value;  # public by default
 
     public $attribute;  # null by default if not assigned
-    public Type $attribute;  # specifing the type is optional, it will be enforced if present
+    public Type $attribute;  # specifying the type is optional, it will be enforced if present
 
     # class constructor
     public function __construct(value)
     {
-        $this->attrivute =  value
+        $this->attribute =  value
     }
 
     public getAttribute(): Type
@@ -650,7 +650,7 @@ class ClassName
 
 ### Inheritance
 
-If a class is defind `final` it can't be extended.
+If a class is defined `final` it can't be extended.
 If a function is declared `final` it can't be overridden.
 
 ```php
@@ -664,7 +664,7 @@ class Child extends Parent
 
 ### Abstract Class
 
-Abstract calsses cannot be instantiated;
+Abstract classes cannot be instantiated;
 
 ```php
 abstract class ClassName
@@ -701,7 +701,7 @@ class ClassName implements InterfaceName {
 `Traits` allows the reutilization of code inside different classes without links of inheritance.
 It can be used to mitigate the problem of _multiple inheritance_, which is absent in PHP.
 
-In case of functions name conflic it's possible to use `insteadof` to specify which function to use. It's also possible to use an _alias_ to resolve the conflicts.
+In case of functions name conflict it's possible to use `insteadof` to specify which function to use. It's also possible to use an _alias_ to resolve the conflicts.
 
 ```php
 trait TraitName {
@@ -729,7 +729,7 @@ $obj->method(new class implements Interface {
 ## Serialization & JSON
 
 ```php
-$serialized = serialize($obj);  # serailization
+$serialized = serialize($obj);  # serialization
 $obj = unserialize($serialized);  # de-serialization
 
 $var = json_decode(string $json, bool $associative);  # Takes a JSON encoded string and converts it into a PHP variable.ù
@@ -752,7 +752,7 @@ file_get_contents(filename);  // read whole file
 
 ```php
 preg_match('/PATTERN/', string $subject, array $matches);  # returns 1 if the pattern matches given subject, 0 if it does not, or FALSE if an error occurred
-# $mathces[0] = whole matched string
+# $matches[0] = whole matched string
 # $matches[i] = i-th group of the regex
 ```
 
@@ -805,7 +805,7 @@ Algorithms currently supported:
 - **threads** (integer) - Number of threads to use for computing the Argon2 hash. Defaults to PASSWORD_ARGON2_DEFAULT_THREADS.
 
 ```php
-password_hash($passwrd, $algorithm);  # create a new password hash using a strong one-way hashing algorithm.
+password_hash($password, $algorithm);  # create a new password hash using a strong one-way hashing algorithm.
 password_verify($password, $hash);  # Verifies that a password matches a hash
 ```
 
@@ -814,7 +814,7 @@ password_verify($password, $hash);  # Verifies that a password matches a hash
 Types of PHP errors:
 
 - **Fatal Error**: stop the execution of the program.
-- **Warning**: generataed at runtime, does not stop the execution (non-blocking).
+- **Warning**: generated at runtime, does not stop the execution (non-blocking).
 - **Notice**: informative errors or messages, non-blocking.
 
 ```php
@@ -849,7 +849,7 @@ ini_set("error_log", "path\\error.log");  // set log file
 
 ```php
 // generate E_USER_ errors
-trigger_error("message");  // defaul type: E_USER_NOTICE
+trigger_error("message");  // default type: E_USER_NOTICE
 trigger_error("message", E_USER_<Type>);
 
 trigger_error("Deprecated Function", E_USER_DEPRECATED);
@@ -873,9 +873,9 @@ PHP offers the possibility to handle errors with the _exception model_.
 ```php
 try {
     // dangerous code
-} catch(ExcpetionType1 | ExceptionType2 $e) {
+} catch(ExceptionType1 | ExceptionType2 $e) {
     printf("Errore: %s", $e->getMessage());
-} catch(Excpetion $e) {
+} catch(Exception $e) {
     // handle or report exception
 }
 

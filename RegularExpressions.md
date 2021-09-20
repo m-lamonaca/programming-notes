@@ -5,14 +5,14 @@
 `\d` any digit (0-9)  
 `\D` any non digit character  
 `\s` whitespace (space, tab, new line)  
-`\S` any non whitespace charaters  
-`\w` any alphanumeric charater (a-z, A-Z)  
+`\S` any non whitespace characters  
+`\w` any alphanumeric character (a-z, A-Z)  
 `\W` any non alphanumeric character  
 `\b` whitespace surrounding words (only at row start or end)  
 `\B` whitespace surrounding words (not at row start or end)  
 `\A` search only at string start  
 `\Z` search only at string end  
-`.` any charaters but newline (CRLF, CR, LF)  
+`.` any characters but newline (CRLF, CR, LF)  
 
 ## Quantifiers
 
@@ -38,15 +38,15 @@ Adding `?` *after* the qualifier makes it perform the match in non-greedy or min
 
 ## Character classes
 
-`[__]` one of the charaters in the class (`[ab]` --> a or b)  
+`[__]` one of the characters in the class (`[ab]` --> a or b)  
 `[__]{m , n}` consecutive characters in the class (`[aeiou]{2}` --> ae, ao, ...)  
 `[a-z]` sequence of lowercase characters  
 `[A-Z]` sequence of uppercase characters  
 `[a-zA-Z]` sequence of lowercase or uppercase characters  
-`[a-z][A-Z]` sequence of lowercase characters followed by sequence of uppercase charaters  
+`[a-z][A-Z]` sequence of lowercase characters followed by sequence of uppercase characters  
 `[^__]` anything but the elements of the class (include `\n` to avoid matching line endings)
 
-`^`, `\`, `-` and `]` must be escaped to be used in clases: `[ \]\[\^\- ]`
+`^`, `\`, `-` and `]` must be escaped to be used in classes: `[ \]\[\^\- ]`
 
 ## Groups
 

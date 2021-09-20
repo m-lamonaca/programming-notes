@@ -23,7 +23,7 @@ try {
 
 ### Queries
 
-To execute a query it's necessaty to "prepare it" with *parameters*.
+To execute a query it's necessary to "prepare it" with *parameters*.
 
 ```php
 # literal string with markers
@@ -34,9 +34,9 @@ WHERE field <operator> :marker'
 $stmt = $pdo->prepare($sql, $options_array);  # returns PDOStatement, used to execute the query
 $stmt->execute([ ':marker' => value ]);  # substitute marker with actual value
 
-# fetchAll returns all mathces
-$result = $stmt->fetchAll();  # result as associtive array AND numeric array (PDO::FETCH_BOTH)
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);  # result as associtive array
+# fetchAll returns all matches
+$result = $stmt->fetchAll();  # result as associative array AND numeric array (PDO::FETCH_BOTH)
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);  # result as associative array
 $result = $stmt->fetchAll(PDO::FETCH_NUM);  # result as array
 $result = $stmt->fetchAll(PDO::FETCH_OBJ);  # result as object of stdClass
 $result = $stmt->fetchAll(PDO::FETCH_CLASS, ClassName::class);  # result as object of a specific class
@@ -90,13 +90,13 @@ $stmt->debugDumpParams();  # print the SQL query that has been sent to the datab
 ```php
 $db = SQLite3("db_file.sqlite3");  // connection
 
-$stmt = $db->prepare("SELECT fields FROM tables WHERE field <operator> :marker");  // preapre query
+$stmt = $db->prepare("SELECT fields FROM tables WHERE field <operator> :marker");  // prepare query
 $stmt->bindParam(":marker", $variable);  // param binding
 
-$result = $stmt->execute();  // retireve records
+$result = $stmt->execute();  // retrieve records
 $result->finalize();  // close result set, recommended calling before another execute()
 
-$records = $results->fetchArray(SQLITE3_ASSOC);  // extract records as array (flase if no results)
+$records = $results->fetchArray(SQLITE3_ASSOC);  // extract records as array (false if no results)
 ```
 
 **NOTE**: Result set objects retrieved by calling `SQLite3Stmt::execute()` on the same statement object are not independent, but rather share the same underlying structure. Therefore it is recommended to call `SQLite3Result::finalize()`, before calling `SQLite3Stmt::execute()` on the same statement object again.

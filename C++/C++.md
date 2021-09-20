@@ -34,12 +34,12 @@ const type constant_name = value;
 ```cpp
 #include <cstdlib>
 system("pause");
-getchar();    // waits imput from keyboard, if is last instruction will prevent closing console until satisfied
+getchar();    // waits input from keyboard, if is last instruction will prevent closing console until satisfied
 ```
 
 ### Namespace definition
 
-Can be omitted and replaced by namespce`::`  
+Can be omitted and replaced by namespace`::`  
 `using namespace <namespace>;`
 
 ### Main Function
@@ -72,7 +72,7 @@ Type                     | Value Range                       | Byte
 `short`                  | -32768 to 32765                   | 1
 `unsigned short`         | 0 to 65535                        | 1
 `int`                    | -2147483648 to 2147483647         | 4
-`unisgned int`           | 0 to 4294967295                   | 4
+`unsigned int`           | 0 to 4294967295                   | 4
 `long`                   | -2147483648 to 2147483647         | 4
 `unsigned long`          | 0 to 4294967295                   | 4
 `long long`              |                                   | 8
@@ -105,7 +105,7 @@ Example  | Type
 Example     | Type
 ------------|-------------
 `3.14159L`  | long double
-`60.22e23f` | flaot
+`60.22e23f` | float
 
 Code      | Value
 ----------|---------------
@@ -123,7 +123,7 @@ Code      | Value
 
 Escape Character   | Character
 -------------------|-----------------------------
-`\n`               | neweline
+`\n`               | newline
 `\r`               | carriage return
 `\t`               | tab
 `\v`               | vertical tab
@@ -140,7 +140,7 @@ Escape Character   | Character
 
 ```cpp
 cout << expression;    // print line on screen (no automatic newline)
-cout << expressin_1 << expreeeion_2;    // concatenation of outputs
+cout << expression_1 << expression_2;    // concatenation of outputs
 cout << expression << "\n";    // print line on screen
 cout << expression << endl;    // print line on screen
 
@@ -153,19 +153,19 @@ printf_s("text %<fmt_spec>", variable);
 ### Input
 
 ```cpp
-#iclude <iostream>
+#include <iostream>
 cin >> var;    //space terminates value
 cin >> var_1 >> var_2;
 
 //if used after cin >> MUST clear buffer with cin.ignore(), cin.sync() or std::ws
-getline(stream, string, delimiter)     //read input from stream (usially CIN) and store in in string, a different delimiter character can be set.
+getline(stream, string, delimiter)     //read input from stream (usually CIN) and store in in string, a different delimiter character can be set.
 
 #include <stdio.h>
 scanf("%<fmt_spec>", &variable);    // has problems, use SCANF_S
-scanf_s("%<fmt_spec>", &variable);    //return number of succescully accepted inputs
+scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted inputs
 ```
 
-### Fromat Specifiers %[width].[lenght][specifier]
+### Format Specifiers %[width].[length][specifier]
 
 Specifier   | Specified Format
 ------------|-----------------------------------------
@@ -210,9 +210,9 @@ if (!(cin >> var)) // if cin fails to get an input
 #include <iomanip>
 cout << stew(print_size) << setprecision(num_digits) << var;    //usage
 
-setbase(base)    //set numberica base [dec, hex, oct]
+setbase(base)    //set numeric base [dec, hex, oct]
 setw(print_size)    //set the total number of characters to display
-setprecision(num_digits)    //sets the number of decimal digits to siaplay
+setprecision(num_digits)    //sets the number of decimal digits to display
 setfill(character)    //use character to fill space between words
 ```
 
@@ -263,7 +263,7 @@ a `^` b, a `xor` b,    | bitwise **XOR**
 a `<<` b               | bitwise left shift
 a `>>` b               | bitwise right shift
 
-### Compound Assignement O
+### Compound Assignment O
 
 Operator    | Operation
 ------------|------------
@@ -297,7 +297,7 @@ abs(x);    // absolute value
 labs(x);    //absolute value if x is long, result is long
 fabs(x);    //absolute value if x i float, result is float
 sqrt(x);    // square root
-ceil(x);    // ceil function (next initeger)
+ceil(x);    // ceil function (next integer)
 floor(x);    // floor function (integer part of x)
 log(x);    // natural log of x
 log10(x);    // log base 10 of x
@@ -337,7 +337,7 @@ isxdigit(c);    //true if c is HEX DIGIT
 ```cpp
 #include <ctype.n>
 
-tolower(c);    //transfromas charatcer in lowercase
+tolower(c);    //transforms character in lowercase
 toupper(c);    //transform character in uppercase
 ```
 
@@ -346,7 +346,7 @@ toupper(c);    //transform character in uppercase
 ```cpp
 #include <time>
 #include <stdlib.h>
-srand(time(NULL));    //initzialize seed
+srand(time(NULL));    //initialize seed
 var = rand()   //random number
 var = (rand() % max + 1)    //random numbers between 0 & max
 var = (rand() % (max - min + 1)) + min    //random numbers between min &  max
@@ -367,7 +367,7 @@ fflush(FILE);    // empty output buffer end write its content on argument passed
 #include <string>
 
 string string_name = "string_content";    //string declaration
-string string_name = string("strintg_content");    // string creation w/ constructor
+string string_name = string("string_content");    // string creation w/ constructor
 
 string.length    //returns the length of the string
 
@@ -383,9 +383,9 @@ string[pos]    //returns char at index pos
 ### String Functions
 
 ```cpp
-string.c_str()    //transfroms the string in pointer to char[] (char array aka C string) ter,iomated by '\0'
+string.c_str()    //transforms the string in pointer to char[] (char array aka C string) terminated by '\0'
 
-strlen(string);    //return lenght (num of chars) of the string
+strlen(string);    //return length (num of chars) of the string
 strcat(destination, source);    //appends chars of string2 to string1
 strncat(string1, string2, nchar);    //appends the first n chars of string 2 to string1
 strcpy(string1, string2.c_str());    //copies string2 into string1 char by char
@@ -394,7 +394,7 @@ strcmp(string1, string2);    //compares string1 w/ string2
 strncmp(string1, string2, n);    //compares first n chars
 //returns < 0 if string1 precedes string2
 //returns 0 if string1 == string2
-// returns > 0 if string1 succedes string2
+// returns > 0 if string1 succeeds string2
 strchr(string, c);    //returns index of c in string if it exists, NULL otherwise
 strstr(string1, string2);    //returns pointer to starting index of string1 in string2
 strpbrk(string, charSet);    //Returns a pointer to the first occurrence of any character from strCharSet in str, or a NULL pointer if the two string arguments have no characters in common.
@@ -430,7 +430,7 @@ vector<type> vector_name = {values};    //variable length array
 
 ```cpp
 if (condition)
-    //single istruction
+    //single instruction
 
 
 if (condition) {
@@ -448,7 +448,7 @@ if (condition) {
 }
 ```
 
-## IF-ELSE mutli-branch
+## IF-ELSE multi-branch
 
 ```cpp
 if (condition) {
@@ -532,7 +532,7 @@ To return multiple variables those variables can be passed by reference so that 
 ### Standard Function
 
 ```cpp
-type functionName (parameters) {    //parametri formali aka arguents
+type functionName (parameters) {    //parametri formali aka arguments
     //code here
     return <expression>;
 }
@@ -548,7 +548,7 @@ void functionName (parameters) {
 
 ### Arguments passed by reference without pointers
 
-Passing arguments by reference causes modifications made inside the funtion to be propagated to the values outside.  
+Passing arguments by reference causes modifications made inside the function to be propagated to the values outside.  
 Passing arguments by values copies the values to the arguments: changes remain inside the function.  
 
 ```cpp
@@ -562,7 +562,7 @@ type functionName (type &argument1, ...) {
 
 ### Arguments passed by reference with pointers
 
-Passing arguments by reference causes modifications made inside the funtion to be propagated to the values outside.  
+Passing arguments by reference causes modifications made inside the function to be propagated to the values outside.  
 Passing arguments by values copies the values to the arguments: changes remain inside the function.
 
 ```cpp
@@ -578,22 +578,22 @@ type function_name (type *argument_1, ...) {
 
 ```cpp
 type arrayName[dimension];    //array declaration
-type arrayName[dimension] = {value1, value2, ...};    //array declaration & inizialization, values number must match dimension
+type arrayName[dimension] = {value1, value2, ...};    //array declaration & initialization, values number must match dimension
 
 array[index]    //item access, index starts at 0 (zero)
-array[index] = value;    //value assignement at position index
+array[index] = value;    //value assignment at position index
 ```
 
 ## String as array of Chars
 
 ```cpp
-char string[] = "text";    //converts string in char array, string length determines dimesion of the array
+char string[] = "text";    //converts string in char array, string length determines dimension of the array
 string str = string[]    //a array of chars is automatically converted to a string
 ```
 
 ## Array as function parameter
 
-The dimesion is not specified because it is determined by the passed array.  
+The dimension is not specified because it is determined by the passed array.  
 The array is passed by reference.
 
 ```cpp
@@ -601,7 +601,7 @@ type function(type array[]){
     //code here
 }
 
-//array is not modificable inside the function (READ ONLY)
+//array is not modifiable inside the function (READ ONLY)
 type function(const type array[]){
     //code here
 }
@@ -624,8 +624,8 @@ type function(type matrix[][columns]){
     //code here
 };
 
-//martix values READ ONLY
-type function(const type matric[][columns]){
+//matrix values READ ONLY
+type function(const type matrix[][columns]){
     //code here
 }
 
@@ -636,7 +636,7 @@ type function(type matrix[][dim2]...[dimN]){
 
 ## Record (struct)
 
-List of non omogeneous items
+List of non homogeneous items
 
 ### Struct Definition (before functions, outside main)
 
@@ -654,10 +654,10 @@ variable.field    //field access
 
 ## Pointers
 
-Pointers hold memory adresses of declared variables, they should be initialized to NULL.
+Pointers hold memory addresses of declared variables, they should be initialized to NULL.
 
 ```cpp
-type *pointer = &variable;     //pointer init and assignement
+type *pointer = &variable;     //pointer init and assignment
 type *pointer = NULL;
 type *pointer = otherPointer;
 type **pointerToPointer = &pointer;    // pointerToPointer -> pointer -> variable
@@ -668,7 +668,7 @@ pointer type and variable type **must** match.
 (*) --> "value pointed to by"
 
 ```cpp
-pointer    //addres of pointed value (value of variable)
+pointer    //address of pointed value (value of variable)
 *pointer    //value of pointed variable
 **pointer //value pointed by *pointer (pointer to pointer)
 ```
@@ -690,15 +690,15 @@ pointer++;    //change pointed value to successive "cell" of array
 func(array)    //pass entire array to function (no need to use (&) to extract address)
 
 type func(type* array){
-    array[index]    //acces to item of array at index
+    array[index]    //access to item of array at index
 }
 ```
 
 ### Pointer to Struct
 
 ```cpp
-(*structPointer).field    //acces to field value
-structPointer->structField    //acces to field value
+(*structPointer).field    //access to field value
+structPointer->structField    //access to field value
 ```
 
 ## Dynamic Structures
@@ -711,7 +711,7 @@ Every node is composed by two parts:
 * the value (item)
 * pointer to successive node
 
-**Lists** are *linear* dinamyc structures in which is only defined the preceding and succeding item. A List is a group of homogeneous items (all of the same type).  
+**Lists** are *linear* dynamic structures in which is only defined the preceding and succeeding item. A List is a group of homogeneous items (all of the same type).  
 
 **Trees**, **Graphs** are non *linear* dynamic structures in which an item cha have multiple successors.  
 
@@ -728,7 +728,7 @@ struct Node {
 }
 ```
 
-#### Node Instertion
+#### Node Insertion
 
 ```cpp
 Node *stackNode;    //current node
@@ -740,7 +740,7 @@ int nodeValue;
 stackNode = new Node;    //create new node
 
 stackNode->value = nodevalue;    //valorize node
-stackNode->next = head;    //update node poiter to old head adding it to the stack
+stackNode->next = head;    //update node pointer to old head adding it to the stack
 
 head = stackNode;    //update head to point to new first node
 ```
@@ -783,12 +783,12 @@ Thus the first and last node will have a component empty since they only point t
 
 ### Dynamic Memory Allocation
 
-C/C++ does not automatically free allocated memory when nodes are deleted. It must be done manuallty.  
+C/C++ does not automatically free allocated memory when nodes are deleted. It must be done manually.  
 
 In **C++**:
 
 * `new` is used to allocate memory dynamically.  
-* `delete` is use to free the dinamically allocated memory.
+* `delete` is use to free the dynamically allocated memory.
 
 In **C**:
 
@@ -807,7 +807,7 @@ free(pointer)    //freeing of memory
 The object oriented approach is based on the use of *streams*.  
 A **Stream** can be considered a stream of data that passes sequentially from a source to a destination.
 
-The avaiable classes in C++ to operate on files are:
+The available classes in C++ to operate on files are:
 
 * `ifstream` for the input (reading)
 * `ofstream` for the output (writing)
@@ -822,7 +822,7 @@ ifstream file;
 file.open("filename");    //read from file
 
 ofstream file;
-file.open("filename");    //writo to file
+file.open("filename");    //write to file
 
 
 fstream file;
@@ -836,7 +836,7 @@ file.open("filename", ios::binary);    //opens file in binary format
 ```
 
 If file opening fails the stream has value 0, otherwise the value is the assigned memory address.  
-Opening modes can be conbined with the OR operator: `ios::mode | ios::mode`.
+Opening modes can be combined with the OR operator: `ios::mode | ios::mode`.
 
 ### File Reading & Writing
 
@@ -858,5 +858,5 @@ do {
 
 Once a stream is in a **state of error** it will remain so until the status flags are *explicitly resetted*. The input operations on such a stream are *void* until the reset happens.  
 To clear the status of a stream the `clear()` method is used.  
-Furthermore, when an error on the stream happens **the stream is not cleared** of it's charaters contents.  
+Furthermore, when an error on the stream happens **the stream is not cleared** of it's characters contents.  
 To clear the stream contents the `ignore()` method is used.

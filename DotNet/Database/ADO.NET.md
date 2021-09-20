@@ -22,7 +22,7 @@ The `ADO.NET` classes are found in `System.Data.dll`, and are integrated with th
 ### [SQLite](https://www.connectionstrings.com/sqlite/)
 
 - Basic: `Data Source: path\to\db.sqlite3; Version=3;`
-- In-Memory Dataabse: `Data Source=:memory:; Version=3; New=True`
+- In-Memory Database: `Data Source=:memory:; Version=3; New=True`
 - With Password: `Data Source: path\to\db.sqlite3; Version=3; Password=<password>`
 
 ## Connection to DB
@@ -59,7 +59,7 @@ namespace <namespace>
 using (SqlConnection connection = new SqlConnection())
 {
     connection.ConnectionString = connectionString.ConnectionString;
-    connection.Open();  // start comunication w/ sql server
+    connection.Open();  // start communication w/ sql server
 }
 
 // more compact
@@ -106,7 +106,7 @@ using (SqlDataReader cursor = command.ExecuteReader())  // object to get data fr
         // check for null before retrieving the value
         if(!cursor.IsDBNull(n))
         {
-            sqlreader.Get<SystemType>(index);  // retrieve data form the n-th column
+            cursor.Get<SystemType>(index);  // retrieve data form the n-th column
         }
     }
 }

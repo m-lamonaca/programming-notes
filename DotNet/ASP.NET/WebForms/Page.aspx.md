@@ -1,6 +1,4 @@
-# WebForms
-
-## `Page.aspx`
+# Page.aspx
 
 The fist loaded page is `Default.aspx` and its underlying code.
 
@@ -24,6 +22,8 @@ The fist loaded page is `Default.aspx` and its underlying code.
 </html>
 ```
 
+## ASP.NET Directives
+
 ### Page Directive
 
 ```cs
@@ -33,12 +33,12 @@ The fist loaded page is `Default.aspx` and its underlying code.
     Inherits="EmptyWebForm.Default" %>
 ```
 
-### Web Controls
+## Web Controls
 
 ```xml
 <asp:Control ID="" runat="server" ...></asp:Control>
 
-<!-- Label: empty text will diplay ID, use empty space as text for empty label -->
+<!-- Label: empty text will display ID, use empty space as text for empty label -->
 <asp:Label ID="lbl_" runat="server" Text=" "></asp:Label>
 <!-- TextBox -->
 <asp:TextBox ID="txt_" runat="server"></asp:TextBox>
@@ -55,31 +55,4 @@ The fist loaded page is `Default.aspx` and its underlying code.
 
 <!-- SqlSataSource; connection string specified in Web.config -->
 <asp:SqlDataSource ID="sds_" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SQL Query"></asp:SqlDataSource>
-```
-
-## `Page.aspx.cs`
-
-```cs
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-namespace Project
-{
-    public partial class Default : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Control_Event(object sender, EventArgs e)
-        {
-            // actions on event trigger
-        }
-    }
-}
 ```
