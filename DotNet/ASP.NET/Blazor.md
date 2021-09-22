@@ -335,3 +335,36 @@ public class StateContainer
 
 [Call Javascript from .NET](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet)  
 [Call .NET from Javascript](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-dotnet-from-javascript)
+
+### Render Blazor components from JavaScript [C# 10]
+
+To render a Blazor component from JavaScript, first register it as a root component for JavaScript rendering and assign it an identifier:
+
+```cs
+// Blazor Server
+builder.Services.AddServerSideBlazor(options =>
+{
+    options.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
+});
+
+// Blazor WebAssembly
+builder.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
+```
+
+Load Blazor into the JavaScript app (`blazor.server.js` or `blazor.webassembly.js`) and then render the component from JavaScript into a container element using the registered identifier, passing component parameters as needed:
+
+```js
+let containerElement = document.getElementById('my-counter');
+await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
+```
+
+### Blazor custom elements [C# 10]
+
+Experimental support is also now available for building custom elements with Blazor using the Microsoft.AspNetCore.Components.CustomElements NuGet package.  
+Custom elements use standard HTML interfaces to implement custom HTML elements.
+
+To create a custom element using Blazor, register a Blazor root component as custom elements like this:
+
+```cs
+options.RootComponents.RegisterAsCustomElement<Counter>("my-counter");
+```
