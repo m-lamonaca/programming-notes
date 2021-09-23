@@ -1,4 +1,4 @@
-# Shutil Module Cheat Sheet
+# Shutil Module
 
 High-level file operations
 
@@ -18,7 +18,7 @@ shutil.copytree(src, dst, dirs_exist_ok=False)
 # or any missing parent directory already exists
 
 # delete an entire directory tree
-shutil.rmtree(apth, ignore_errors=False, onerror=None)
+shutil.rmtree(path, ignore_errors=False, onerror=None)
 # IGNORE_ERROR: {bool} -- if true errors (failed removals) will be ignored
 # ON_ERROR: handler for removal errors (if ignore_errors=False or omitted)
 
@@ -37,15 +37,15 @@ shutil.chown(path, user=None, group=None)
 # create archive file and return its name
 shutil.make_archive(base_name, format, [root_dir, base_dir])
 # BASE_NAME: {string} -- name of the archive, including path, excluding extension
-# FROMAT: {zip, tar, gztar, bztar, xztar} -- archive fromat
+# FROMAT: {zip, tar, gztar, bztar, xztar} -- archive format
 # ROOT_DIR: {path} -- root directory of archive (location of archive)
-# BASE_DIR: {path} -- directory where the archivation starts
+# BASE_DIR: {path} -- directory where the archiviation starts
 
 # unpack an archive
-shutil.unpack_archive(filename, [extarct_dir, format])
+shutil.unpack_archive(filename, [extract_dir, format])
 # FILENAME: full path of archive
 # EXTRACT_DIR: {path} -- directory to unpack into
-# FROMAT: {zip, tar, gztar, bztar, xztar} -- archive fromat
+# FORMAT: {zip, tar, gztar, bztar, xztar} -- archive format
 
 # return disk usage statistics as Namedtuple w/ attributes total, used, free
 shutil.disk_usage(path)

@@ -27,7 +27,7 @@ In `login.html`:
 
 ```html
 <html>
-    <!-- action="#" goes to page itsef but with # at the end of the URL -->
+    <!-- action="#" goes to page itself but with # at the end of the URL -->
     <form action="#" method="post">
     <input type="text" name="field name">
 </html>

@@ -12,7 +12,7 @@ In this context, sockets are assumed to be associated with a specific socket add
 ```python
 import socket
 
-# socket ovet the intenet, socket is a stream of data
+# socket over the internet, socket is a stream of data
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 socket.connect = (("URL", port: int))  # connect to socket
@@ -23,9 +23,9 @@ socket.close()  # close connection
 
 ```python
 import socket
-HTTP_Method = "GET hhtp://url/resource HTTP/version\n\n".encode()  # set HTTP request (encoded string from UTF-8 to bytes)
+HTTP_Method = "GET http://url/resource HTTP/version\n\n".encode()  # set HTTP request (encoded string from UTF-8 to bytes)
 socket.send(HTTP_Method)   # make HTTP request
 
-data = socket.recv(buffer_size)  # recieve data from socket
+data = socket.recv(buffer_size)  # receive data from socket
 decoded = data.decode()  # decode data (from bytes to UTF-8)
 ```

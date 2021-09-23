@@ -17,18 +17,18 @@ sns.set(style='darkgrid')
 
 ```python
 sns.replot(x='name_in_data', y='name_in_data', hue='point_color', size='point_size', style='point_shape', data=data)
-# HUE, SIZE and STYLE: {name in data} -- used to differenciate points, a sort-of 3rd dimention
+# HUE, SIZE and STYLE: {name in data} -- used to differentiate points, a sort-of 3rd dimension
 # hue behaves differently if the data is categorical or numerical, numerical uses a color gradient
 # SORT: {False, True} -- avoid sorting data in function of x
-# CI: {None, sd} -- avoid comuting confidence intervals or plot standard deviation
+# CI: {None, sd} -- avoid computing confidence intervals or plot standard deviation
 # (aggregate multiple measurements at each x value by plotting the mean and the 95% confidence interval around the mean)
 # ESTIMATOR: {None} -- turn off aggregation of multiple observations
-# MARKERS: {True, False} -- evidetiate observations with dots
-# DASHES: {True, False} -- evidetiate observations with dashes
+# MARKERS: {True, False} -- evidenziate observations with dots
+# DASHES: {True, False} -- evidenziate observations with dashes
 # COL, ROW: {name in data}  -- categorical variables that will determine the grid of plots
-# COL_WRAP: {int} -- “Wrap” the column variable at this width, so that the column facets span multiple rows. Incompatible with a row facet.
+# COL_WRAP: {int} -- "Wrap" the column variable at this width, so that the column facets span multiple rows. Incompatible with a row facet.
 # SCATTERPLOT
-# depicts the joint distibution of two variables usinga a cloud of points
+# depicts the joint distribution of two variables using a cloud of points
 # kind can be omitted since scatterplot is the default for replot
 sns.replot(kind='scatter')  # calls scatterplot()
 sns.scatterplot()  # underlying axis-level function of replot()
@@ -45,16 +45,16 @@ sns.lineplot()  # underlying axis-level function of replot()
 
 ## CATPLOT (categorical)
 
-Categorical: dicided into discrete groups.
+Categorical: divided into discrete groups.
 
 ```python
 sns.catplot(x='name_in_data', y='name_in_data', data=data)
-# HUE: {name in data} -- used to differenciate points, a sort-of 3rd dimention
+# HUE: {name in data} -- used to differenziate points, a sort-of 3rd dimension
 # COL, ROW: {name in data}  -- categorical variables that will determine the grid of plots
-# COL_WRAP: {int} -- “Wrap” the column variable at this width, so that the column facets span multiple rows. Incompatible with a row facet.
-# ORDER, HUE_ORDER: {list of strings} -- oreder of categorical levels of the plot
+# COL_WRAP: {int} -- "Wrap" the column variable at this width, so that the column facets span multiple rows. Incompatible with a row facet.
+# ORDER, HUE_ORDER: {list of strings} -- order of categorical levels of the plot
 # ROW_ORDER, COL_ORDER: {list of strings} -- order to organize the rows and/or columns of the grid in
-# ORIENT: {'v', 'h'} -- Orientation of the plot (can also swap x&y assignement)
+# ORIENT: {'v', 'h'} -- Orientation of the plot (can also swap x&y assignment)
 # COLOR: {matplotlib color} -- Color for all of the elements, or seed for a gradient palette
 # CATEGORICAL SCATTERPLOT - STRIPPLOT
 # adjust the positions of points on the categorical axis with a small amount of random “jitter”
@@ -85,7 +85,7 @@ sns.boxplot()
 Combines a boxplot with the kernel density estimation procedure.
 
 ```py
-sns.catplot(kind='violon')
+sns.catplot(kind='violin')
 sns.violonplot()
 ```
 
@@ -113,7 +113,7 @@ sns.pointplot()
 # JOIN: {bool} -- if True, lines will be drawn between point estimates at the same hue level
 # SCALE: {float} -- scale factor for the plot elements
 # ERRWIDTH: {float} -- thickness of error bar lines (and caps)
-# CAPSIZE: {float} -- width of the “caps” on error bars
+# CAPSIZE: {float} -- width of the "caps" on error bars
 ```
 
 ### CATEGORICAL ESTIMATE - BARPLOT
@@ -126,7 +126,7 @@ sns.barplot()
 # CI: {float, sd} -- size of confidence intervals to draw around estimated values, sd -> standard deviation
 # ERRCOLOR: {matplotlib color} -- color for the lines that represent the confidence interval
 # ERRWIDTH: {float} -- thickness of error bar lines (and caps)
-# CAPSIZE: {float} -- width of the “caps” on error bars
+# CAPSIZE: {float} -- width of the "caps" on error bars
 # DODGE: {bool} -- whether elements should be shifted along the categorical axis if hue is used
 ```
 
@@ -173,7 +173,7 @@ sns.rugplot(a=data) # -> axes obj with plot on it
 Fit and plot a univariate or bivariate kernel density estimate.
 
 ```py
-# DATA: {1D array-like} -- inpoy data
+# DATA: {1D array-like} -- input data
 sns.kdeplot(data=data)
 # DATA2 {1D array-like} -- second input data. if present, a bivariate KDE will be estimated.
 # SHADE: {bool} -- if True, shade-in the area under KDE curve (or draw with filled contours is bivariate)

@@ -1,16 +1,12 @@
 # Unittest Module
 
-Permette di testare il propio codice e controllare se l'output corrisponde a quello desiderato.
-
 ```py
 import unittest
-import modulo_da_testare
+import module_under_test
 
-class Test(unittest.TestCase):  # eredita da unittest.TestCase
+class Test(unittest.TestCase):
 
-    # testa se l'output è corretto con un asserzione
     def test_1(self):
-        # code here
         self.assert*(output, expected_output)
 
 if __name__ == '__main__':

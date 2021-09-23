@@ -1,4 +1,4 @@
-# PyCarto Cheat Sheet
+# PyCairo
 
 ## Definitions
 
@@ -11,7 +11,7 @@ A `Path` is a collection of points used to create primitive shapes such as lines
 In a closed path, starting and ending points meet. In an open path, starting and ending point do not meet. In PyCairo, we start with an empty path.  
 First, we define a path and then we make them visible by stroking and/or filling them. After each `stroke()` or `fill()` method call, the path is emptied.  
 We have to define a new path. If we want to keep the existing path for later drawing, we can use the `stroke_preserve()` and `fill_preserve()` methods.  
-A path is made of subpaths.
+A path is made of sub-paths.
 
 A `Source` is the paint we use in drawing. We can compare the source to a pen or ink that we use to draw the outlines and fill the shapes.  
 There are four kinds of basic sources: colors, gradients, patterns, and images.
@@ -83,7 +83,7 @@ context.set_source_rgb(red, green, blue)
 `context.new_sub_path()` begins a new sub-path. Note that the existing path is not affected. After this call there will be no current point.  
 In many cases, this call is not needed since new sub-paths are frequently started with `Context.move_to()`.  
 A call to `new_sub_path()` is particularly useful when beginning a new sub-path with one of the `Context.arc()` calls.  
-This makes things easier as it is no longer necessary to manually compute the arc’s initial coordinates for a call to `Context.move_to()`.
+This makes things easier as it is no longer necessary to manually compute the arc's initial coordinates for a call to `Context.move_to()`.
 
 ### Stroke
 
@@ -99,7 +99,7 @@ After `fill()`, the current path will be cleared from the Context.
 `context.set_fill_rule(fill_rule)` set a FILL RULE to the cairo context.
 
 For both fill rules, whether or not a point is included in the fill is determined by taking a ray from that point to infinity and looking at intersections with the path.  
-The ray can be in any direction, as long as it doesn’t pass through the end point of a segment or have a tricky intersection such as intersecting tangent to the path.  
+The ray can be in any direction, as long as it doesn't pass through the end point of a segment or have a tricky intersection such as intersecting tangent to the path.  
 (Note that filling is not actually implemented in this way. This is just a description of the rule that is applied.)
 
 * `cairo.FILL_RULE_WINDING` (default):  
@@ -138,9 +138,9 @@ Font Weights:
 ## Creating the image
 
 ```py
-surface.show_page()    # Emits and clears the current page for backends that support multiple pages. Use copy_page() if you don’t want to clear the page.
+surface.show_page()    # Emits and clears the current page for backends that support multiple pages. Use copy_page() if you don't want to clear the page.
 
-surface.copy_page()   # Emits the current page for backends that support multiple pages, but doesn’t clear it, so that the contents of the current page will be retained for the next page. Use show_page() if you want to get an empty page after the emission.
+surface.copy_page()   # Emits the current page for backends that support multiple pages, but doesn't clear it, so that the contents of the current page will be retained for the next page. Use show_page() if you want to get an empty page after the emission.
 
 surface.write_to_png("filename")    # Writes the contents of Surface to filename as a PNG image
 ```

@@ -21,7 +21,7 @@ The response message consists of:
 ```text
 1xx -> INFORMATIONAL RESPONSE
 2xx -> SUCCESS
-    200 OK -> request succesful
+    200 OK -> request successful
 3xx -> REDIRECTION
 4xx -> CLIENT ERRORS
     404 NOT FOUND -> resource not found
@@ -85,7 +85,7 @@ requests.post('URL', json={'key': 'value'})
 ### INSPECTING THE REQUEST
 
 ```py
-# requests lib prepares the requests nefore sending it
+# requests lib prepares the requests before sending it
 response = requests.post('URL', data={'key':'value'})
 response.request.something    # inspect request field
 ```
@@ -93,7 +93,7 @@ response.request.something    # inspect request field
 ## AUTHENTICATION
 
 ```py
-requests.get('URL', auth=('uesrname', 'password'))    # use implicit HTTP Basic Authorization
+requests.get('URL', auth=('username', 'password'))    # use implicit HTTP Basic Authorization
 
 # explicit HTTP Basic Authorization and other
 from requests.auth import HTTPBasicAuth, HTTPDigestAuth, HTTPProxyAuth
@@ -101,7 +101,7 @@ from getpass import getpass
 requests.get('URL', auth=HTTPBasicAuth('username', getpass()))
 ```
 
-### PERSOANLIZED AUTH
+### PERSONALIZED AUTH
 
 ```py
 from requests.auth import AuthBase

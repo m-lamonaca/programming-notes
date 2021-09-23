@@ -21,8 +21,8 @@ SMTP.verify(address)  # Check the validity of an address on this server using SM
 
 SMTP.login(user="full_user_mail", password="user_password")  # Log-in on an SMTP server that requires authentication
 
-SMTP.SMTPHeloError  # The server didn’t reply properly to the HELO greeting
-SMTP.SMTPAuthenticationError  # The server didn’t accept the username/password combination.
+SMTP.SMTPHeloError  # The server didn't reply properly to the HELO greeting
+SMTP.SMTPAuthenticationError  # The server didn't accept the username/password combination.
 SMTP.SMTPNotSupportedError  # The AUTH command is not supported by the server.
 SMTP.SMTPException  # No suitable authentication method was found.
 
@@ -41,6 +41,3 @@ SMTP.send_message(msg, from_addr=None, to_addrs=None, **kwargs)
 # msg: {email.message.Message object} -- message string
 SMTP.quit()  # Terminate the SMTP session and close the connection. Return the result of the SMTP QUIT command
 ```
-
-In general,  use the email package’s features to construct an {email.message.EmailMEssage} message to send via send_message()
-EMAIL EXAMPLES --> {https:\\docs.python.org\3\library\email.examples.html#email-examples}

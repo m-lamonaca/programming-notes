@@ -45,7 +45,7 @@ ArgumentParser.add_argument("name_or_flags", nargs="...", action="...")
 
 ### Actions
 
-`store`: This just stores the argument’s value. This is the default action.
+`store`: This just stores the argument's value. This is the default action.
 
 ```py
 >>> parser = argparse.ArgumentParser()
@@ -159,7 +159,7 @@ Namespace(bar='XX', foo='c')
 Namespace(bar='d', foo='d')
 ```
 
-`*`: All command-line arguments present are gathered into a list. Note that it generally doesn’t make much sense to have more than one positional argument with `nargs='*'`, but multiple optional arguments with `nargs='*'` is possible.
+`*`: All command-line arguments present are gathered into a list. Note that it generally doesn't make much sense to have more than one positional argument with `nargs='*'`, but multiple optional arguments with `nargs='*'` is possible.
 
 ```py
 >>> parser = argparse.ArgumentParser()
@@ -170,7 +170,7 @@ Namespace(bar='d', foo='d')
 Namespace(bar=['1', '2'], baz=['a', 'b'], foo=['x', 'y'])
 ```
 
-`+`: All command-line args present are gathered into a list. Additionally, an error message will be generated if there wasn’t at least one command-line argument present.
+`+`: All command-line args present are gathered into a list. Additionally, an error message will be generated if there wasn't at least one command-line argument present.
 
 ```py
 >>> parser = argparse.ArgumentParser(prog='PROG')

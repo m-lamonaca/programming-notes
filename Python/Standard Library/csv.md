@@ -29,10 +29,10 @@ fieldnames
 # elimina il dialect associato a name
 .unregister_dialect()
 
-# restituisce il dialet associato a name
+# restituisce il dialetto associato a name
 .get_dialect(name)
 
-# elenco dialec associati a name
+# elenco dialetti associati a name
 .list_dialect(name)
 
 # restituisce (se vuoto) o setta il limite del campo del csv
@@ -75,8 +75,8 @@ class csv.Sniffer
 .has_header(campione) --> bool  # True se prima riga è una serie di intestazioni di colonna
 
 #COSTANTI
-csv.QUOTE_ALL  # indica a writer di citere (" ") tutti i campi
-csv.QUOTE_MINIMAL  # indica a write di citare solo i campi contenenti caratteri speciali come delimiter, quotechar ...
-csv.QUOTE_NONNUMERIC  # indica al vriter di citare tutti i campi non numerici
+csv.QUOTE_ALL  # indica a writer di citare (" ") tutti i campi
+csv.QUOTE_MINIMAL  # indica a write di citare solo i campi contenenti caratteri speciali come delimiter, quote char ...
+csv.QUOTE_NONNUMERIC  # indica al writer di citare tutti i campi non numerici
 csv.QUOTE_NONE  # indica a write di non citare mai i campi
 ```

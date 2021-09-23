@@ -26,9 +26,10 @@ The data saved is persistent and is available in subsequent sessions.
 ### Query Construction
 
 Usually your SQL operations will need to use values from Python variables.
-You shouldn’t assemble your query using Python’s string operations because doing so is insecure: it makes your program vulnerable to an [SQL injection attack](https://en.wikipedia.org/wiki/SQL_injection)
+You shouldn't assemble your query using Python's string operations because doing so is insecure:  
+it makes your program vulnerable to an [SQL injection attack](https://en.wikipedia.org/wiki/SQL_injection)
 
-Put `?` as a placeholder wherever you want to use a value, and then provide a _tuple of values_ as the second argument to the cursor’s `execute()` method.
+Put `?` as a placeholder wherever you want to use a value, and then provide a _tuple of values_ as the second argument to the cursor's `execute()` method.
 
 ```python
 # Never do this -- insecure!
@@ -58,7 +59,7 @@ connection.commit()
 ### Multiple SQL Instructions
 
 ```python
-conection = sqlite3.connect("file.db")
+connection = sqlite3.connect("file.db")
 cur = con.cursor()
 cur.executescript("""
     QUERY_1;
@@ -74,7 +75,7 @@ con.close()
 
 ```python
 # Fetches the next row of a query result set, returning a single sequence.
-# Reruens None when no more data is available.
+# Returns None when no more data is available.
 cursor.fetchone()  
 
 # Fetches all (remaining) rows of a query result, returning a list.
@@ -86,7 +87,7 @@ cursor.fetchall()
 fetchmany(size=cursor.arraysize)
 ```
 
-The number of rows to fetch per call is specified by the `size` parameter. If it is not given, the cursor’s `arraysize` determines the number of rows to be fetched.  
+The number of rows to fetch per call is specified by the `size` parameter. If it is not given, the cursor's `arraysize` determines the number of rows to be fetched.  
 The method should try to fetch as many rows as indicated by the size parameter.  
 If this is not possible due to the specified number of rows not being available, fewer rows may be returned.
 

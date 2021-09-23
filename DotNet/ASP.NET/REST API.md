@@ -27,7 +27,7 @@ namespace <Namespace>
         {
             services.AddControllers();  // controllers w/o views
             //or
-            sevices.AddControllersWithViews();  // MVC Controllers
+            services.AddControllersWithViews();  // MVC Controllers
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -117,7 +117,7 @@ public void ConfigureServices(IServiceCollection services)
 - Mirroring of model in the DB.
 - Will create & update DB Schema if necessary
 
-In Packge Manager Shell:
+In Package Manager Shell:
 
 ```ps1
 add-migrations <migration_name>
@@ -294,7 +294,7 @@ namespace <App>.Controllers
 
             if(result != null)
             {
-                return Ok(_mapper.Map<EntityCrudOp>(result));  // transfrom entity to it's DTO
+                return Ok(_mapper.Map<EntityCrudOp>(result));  // transform entity to it's DTO
             }
 
             return NotFound();  // ActionResult NOT FOUND  (404)

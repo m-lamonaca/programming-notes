@@ -1,4 +1,4 @@
-# Pandas Lib
+# Pandas
 
 ## Basic Pandas Imports
 
@@ -25,8 +25,8 @@ s = Series(dict)  # Series created from python dict, dict keys become index valu
 ```py
 s['index']  # selection by index label
 s[condition]  # return slice selected by condition
-s[ : ]  # slice endpoin included
-s[ : ] = *value  # modifi value of entire slice
+s[ : ]  # slice endpoint included
+s[ : ] = *value  # modify value of entire slice
 s[condition] = *value  # modify slice by condition
 ```
 
@@ -35,8 +35,8 @@ s[condition] = *value  # modify slice by condition
 Missing data appears as NaN (Not a Number).
 
 ```py
-pd.isnull(array)  # retunn a Series index-bool indicating wich indexes dont have data
-pd.notnull(array)  # retunn a Series index-bool indicating wich indexes have data
+pd.isnull(array)  # return a Series index-bool indicating which indexes don't have data
+pd.notnull(array)  # return a Series index-bool indicating which indexes have data
 array.isnull()
 array.notnull()
 ```
@@ -53,18 +53,18 @@ s.index.name = "index name"  # renames index
 ### SERIES METHODS
 
 ```py
-pd.Series.isin(self, values)  #  boolean Series showing whether elements in Series matcheselements in values exactly
+pd.Series.isin(self, values)  #  boolean Series showing whether elements in Series matches elements in values exactly
 
 # Conform Series to new index, new object produced unless the new index is equivalent to current one and copy=False
-pd.Series.reindex(delf, index=None, **kwargs)
+pd.Series.reindex(self, index=None, **kwargs)
 # INDEX: {array} -- new labels / index
-# METHOD: {none (dont fill gaps), pad (fill or carry values forward), backfill (fill or carry values backward)}-- hole filling method
+# METHOD: {none (don't fill gaps), pad (fill or carry values forward), backfill (fill or carry values backward)}-- hole filling method
 # COPY: {bool} -- return new object even if index is same -- DEFAULT True
 # FILLVALUE: {scalar} --value to use for missing values. DEFAULT NaN
 
 pd.Series.drop(self, index=None, **kwargs)  # return Series with specified index labels removed
 # INPLACE: {bool} -- if true do operation in place and return None -- DEFAULT False
-# ERRORS: {ignore, raise} -- If ‘ignore’, suppress error and existing labels are dropped
+# ERRORS: {ignore, raise} -- If "ignore", suppress error and existing labels are dropped
 # KeyError raised if not all of the labels are found in the selected axis
 
 pd.Series.value_counts(self, normalize=False, sort=True, ascending=False, bins=None, dropna=True)
@@ -72,7 +72,7 @@ pd.Series.value_counts(self, normalize=False, sort=True, ascending=False, bins=N
 # SORT: {bool} -- sort by frequency -- DEFAULT True
 # ASCENDING: {bool} -- sort in ascending order -- DEFAULT False
 # BINS: {int} -- group values into half-open bins, only works with numeric data
-# DROPNA: {bool} -- dont include counts of NaN
+# DROPNA: {bool} -- don't include counts of NaN
 ```
 
 ## DATAFRAME
@@ -124,19 +124,19 @@ df.T # transpose
 ### DATAFRAME METHODS
 
 ```py
-pd.DataFrame.isin(self , values)  # boolean DataFrame showing whether elements in DataFrame matcheselements in values exactly
+pd.DataFrame.isin(self , values)  # boolean DataFrame showing whether elements in DataFrame matches elements in values exactly
 
 # Conform DataFrame to new index, new object produced unless the new index is equivalent to current one and copy=False
 pd.DataFrame.reindex(self, index=None, columns=None, **kwargs)
 # INDEX: {array} -- new labels / index
 # COLUMNS: {array} -- new labels / columns
-# METHOD: {none (dont fill gaps), pad (fill or carry values forward), backfill (fill or carry values backward)}-- hole filling method
+# METHOD: {none (don't fill gaps), pad (fill or carry values forward), backfill (fill or carry values backward)}-- hole filling method
 # COPY: {bool} -- return new object even if index is same -- DEFAULT True
 # FILLVALUE: {scalar} --value to use for missing values. DEFAULT NaN
 
 pd.DataFrame.drop(self, index=None, columns=None, **kwargs)  # Remove rows or columns by specifying label names
 # INPLACE: {bool} -- if true do operation in place and return None -- DEFAULT False
-# ERRORS: {ignore, raise} -- If ‘ignore’, suppress error and existing labels are dropped
+# ERRORS: {ignore, raise} -- If "ignore", suppress error and existing labels are dropped
 # KeyError raised if not all of the labels are found in the selected axis
 ```
 
@@ -147,7 +147,7 @@ Holds axis labels and metadata, immutable.
 ### INDEX TYPES
 
 ```py
-pd.Index  # immutable ordered ndarray, sliceable. stortes axis labels
+pd.Index  # immutable ordered ndarray, sliceable. stores axis labels
 pd.Int64Index  # special case of Index with purely integer labels
 pd.MultiIndex  # multi-level (hierarchical) index object for pandas objects
 pd.PeriodINdex  # immutable ndarray holding ordinal values indicating regular periods in time
@@ -169,27 +169,27 @@ pd.Index.hasnans  # Return True if the index has NaNs
 pd.Index.append(self, other)  # append a collection of Index options together
 
 pd.Index.difference(self, other, sort=None)  # set difference of two Index objects
-# SORT: {None (attempt sorting), False (dont sort)}
+# SORT: {None (attempt sorting), False (don't sort)}
 
 pd.Index.intersection(self, other, sort=None)  # set intersection of two Index objects
-# SORT: {None (attempt sorting), False (dont sort)}
+# SORT: {None (attempt sorting), False (don't sort)}
 
 pd.Index.union(self, other, sort=None)  # set union of two Index objects
-# SORT: {None (attempt sorting), False (dont sort)}
+# SORT: {None (attempt sorting), False (don't sort)}
 
 pd.Index.isin(self, values, level=None)  # boolean array indicating where the index values are in values
 pd.Index.insert(self, loc, item)  # make new Index inserting new item at location
 pd.Index.delete(self, loc)  # make new Index with passed location(-s) deleted
 
 pd.Index.drop(self, labels, errors='raise')  # Make new Index with passed list of labels deleted
-# ERRORS: {ignore, raise} -- If ‘ignore’, suppress error and existing labels are dropped
+# ERRORS: {ignore, raise} -- If 'ignore', suppress error and existing labels are dropped
 # KeyError raised if not all of the labels are found in the selected axis
 
-pd.Index.reindex(self, target, **kwargs)  # create index with target’s values (move/add/delete values as necessary)
-# METHOD: {none (dont fill gaps), pad (fill or carry values forward), backfill (fill or carry values backward)}-- hole filling method
+pd.Index.reindex(self, target, **kwargs)  # create index with target's values (move/add/delete values as necessary)
+# METHOD: {none (don't fill gaps), pad (fill or carry values forward), backfill (fill or carry values backward)}-- hole filling method
 ```
 
-## ARITMETHIC OPERATIONS
+## ARITHMETIC OPERATIONS
 
 NumPy arrays operations preserve labels-value link.  
 Arithmetic operations automatically align differently indexed data.  
@@ -199,10 +199,10 @@ Missing values propagate in arithmetic computations (NaN `<operator>` value = Na
 
 ```py
 self + other
-pd.Series.add(self, other, fill_value=None)  # add(), supports substituion of NaNs
-pd,Series.radd(self, other, fill_value=None)  # radd(), supports substituion of NaNs
-pd.DataFrame.add(self, other, axis=columns, fill_value=None)  # add(), supports substituion of NaNs
-pd.DataFrame.radd(self, other, axis=columns, fill_value=None)  # radd(), supports substituion of NaNs
+pd.Series.add(self, other, fill_value=None)  # add(), supports substitution of NaNs
+pd,Series.radd(self, other, fill_value=None)  # radd(), supports substitution of NaNs
+pd.DataFrame.add(self, other, axis=columns, fill_value=None)  # add(), supports substitution of NaNs
+pd.DataFrame.radd(self, other, axis=columns, fill_value=None)  # radd(), supports substitution of NaNs
 # OTHER: {scalar, sequence, Series, DataFrame}
 # AXIS: {0, 1, index, columns} -- whether to compare by the index or columns
 # FILLVALUE: {None, float} -- fill missing value
@@ -212,10 +212,10 @@ pd.DataFrame.radd(self, other, axis=columns, fill_value=None)  # radd(), support
 
 ```py
 self - other
-pd.Series.sub(self, other, fill_value=None)  # sub(), supports substituion of NaNs
-pd.Series.radd(self, other, fill_value=None)  # radd(), supports substituion of NaNs
-ps.DataFrame.sub(self, other, axis=columns, fill_value=None)  # sub(), supports substituion of NaNs
-pd.DataFrame.rsub(self, other, axis=columns, fill_value=None)  # rsub(), supports substituion of NaNs
+pd.Series.sub(self, other, fill_value=None)  # sub(), supports substitution of NaNs
+pd.Series.radd(self, other, fill_value=None)  # radd(), supports substitution of NaNs
+ps.DataFrame.sub(self, other, axis=columns, fill_value=None)  # sub(), supports substitution of NaNs
+pd.DataFrame.rsub(self, other, axis=columns, fill_value=None)  # rsub(), supports substitution of NaNs
 # OTHER: {scalar, sequence, Series, DataFrame}
 # AXIS: {0, 1, index, columns} -- whether to compare by the index or columns
 # FILLVALUE: {None, float} -- fill missing value
@@ -225,10 +225,10 @@ pd.DataFrame.rsub(self, other, axis=columns, fill_value=None)  # rsub(), support
 
 ```py
 self * other
-pd.Series.mul(self, other, fill_value=None)  # mul(), supports substituion of NaNs
-pd.Series.rmul(self, other, fill_value=None)  # rmul(), supports substituion of NaNs
-ps.DataFrame.mul(self, other, axis=columns, fill_value=None)  # mul(), supports substituion of NaNs
-pd.DataFrame.rmul(self, other, axis=columns, fill_value=None)  # rmul(), supports substituion of NaNs
+pd.Series.mul(self, other, fill_value=None)  # mul(), supports substitution of NaNs
+pd.Series.rmul(self, other, fill_value=None)  # rmul(), supports substitution of NaNs
+ps.DataFrame.mul(self, other, axis=columns, fill_value=None)  # mul(), supports substitution of NaNs
+pd.DataFrame.rmul(self, other, axis=columns, fill_value=None)  # rmul(), supports substitution of NaNs
 # OTHER: {scalar, sequence, Series, DataFrame}
 # AXIS: {0, 1, index, columns} -- whether to compare by the index or columns
 # FILLVALUE: {None, float} -- fill missing value
@@ -238,14 +238,14 @@ pd.DataFrame.rmul(self, other, axis=columns, fill_value=None)  # rmul(), support
 
 ```py
 self / other
-pd.Series.div(self, other, fill_value=None)  # div(), supports substituion of NaNs
-pd.Series.rdiv(self, other, fill_value=None)  # rdiv(), supports substituion of NaNs
-pd.Series.truediv(self, other, fill_value=None)  # truediv(), supports substituion of NaNs
-pd.Series.rtruediv(self, other, fill_value=None)  # rtruediv(), supports substituion of NaNs
-ps.DataFrame.div(self, other, axis=columns, fill_value=None)  # div(), supports substituion of NaNs
-pd.DataFrame.rdiv(self, other, axis=columns, fill_value=None)  # rdiv(), supports substituion of NaNs
-ps.DataFrame.truediv(self, other, axis=columns, fill_value=None)  # truediv(), supports substituion of NaNs
-pd.DataFrame.rtruediv(self, other, axis=columns, fill_value=None)  # rtruediv(), supports substituion of NaNs
+pd.Series.div(self, other, fill_value=None)  # div(), supports substitution of NaNs
+pd.Series.rdiv(self, other, fill_value=None)  # rdiv(), supports substitution of NaNs
+pd.Series.truediv(self, other, fill_value=None)  # truediv(), supports substitution of NaNs
+pd.Series.rtruediv(self, other, fill_value=None)  # rtruediv(), supports substitution of NaNs
+ps.DataFrame.div(self, other, axis=columns, fill_value=None)  # div(), supports substitution of NaNs
+pd.DataFrame.rdiv(self, other, axis=columns, fill_value=None)  # rdiv(), supports substitution of NaNs
+ps.DataFrame.truediv(self, other, axis=columns, fill_value=None)  # truediv(), supports substitution of NaNs
+pd.DataFrame.rtruediv(self, other, axis=columns, fill_value=None)  # rtruediv(), supports substitution of NaNs
 # OTHER: {scalar, sequence, Series, DataFrame}
 # AXIS: {0, 1, index, columns} -- whether to compare by the index or columns
 # FILLVALUE: {None, float} -- fill missing value
@@ -255,10 +255,10 @@ pd.DataFrame.rtruediv(self, other, axis=columns, fill_value=None)  # rtruediv(),
 
 ```py
 self // other
-pd.Series.floordiv(self, other, fill_value=None)  # floordiv(), supports substituion of NaNs
-pd.Series.rfloordiv(self, other, fill_value=None)  # rfloordiv(), supports substituion of NaNs
-ps.DataFrame.floordiv(self, other, axis=columns, fill_value=None)  # floordiv(), supports substituion of NaNs
-pd.DataFrame.rfloordiv(self, other, axis=columns, fill_value=None)  # rfloordiv(), supports substituion of NaNs
+pd.Series.floordiv(self, other, fill_value=None)  # floordiv(), supports substitution of NaNs
+pd.Series.rfloordiv(self, other, fill_value=None)  # rfloordiv(), supports substitution of NaNs
+ps.DataFrame.floordiv(self, other, axis=columns, fill_value=None)  # floordiv(), supports substitution of NaNs
+pd.DataFrame.rfloordiv(self, other, axis=columns, fill_value=None)  # rfloordiv(), supports substitution of NaNs
 # OTHER: {scalar, sequence, Series, DataFrame}
 # AXIS: {0, 1, index, columns} -- whether to compare by the index or columns
 # FILLVALUE: {None, float} -- fill missing value
@@ -268,10 +268,10 @@ pd.DataFrame.rfloordiv(self, other, axis=columns, fill_value=None)  # rfloordiv(
 
 ```py
 self % other
-pd.Series.mod(self, other, fill_value=None)  # mod(), supports substituion of NaNs
-pd.Series.rmod(self, other, fill_value=None)  # rmod(), supports substituion of NaNs
-ps.DataFrame.mod(self, other, axis=columns, fill_value=None)  # mod(), supports substituion of NaNs
-pd.DataFrame.rmod(self, other, axis=columns, fill_value=None)  # rmod(), supports substituion of NaNs
+pd.Series.mod(self, other, fill_value=None)  # mod(), supports substitution of NaNs
+pd.Series.rmod(self, other, fill_value=None)  # rmod(), supports substitution of NaNs
+ps.DataFrame.mod(self, other, axis=columns, fill_value=None)  # mod(), supports substitution of NaNs
+pd.DataFrame.rmod(self, other, axis=columns, fill_value=None)  # rmod(), supports substitution of NaNs
 # OTHER: {scalar, sequence, Series, DataFrame}
 # AXIS: {0, 1, index, columns} -- whether to compare by the index or columns
 # FILLVALUE: {None, float} -- fill missing value
@@ -281,10 +281,10 @@ pd.DataFrame.rmod(self, other, axis=columns, fill_value=None)  # rmod(), support
 
 ```py
 other ** self
-pd.Series.pow(self, other, fill_value=None)  # pow(), supports substituion of NaNs
-pd.Series.rpow(self, other, fill_value=None)  # rpow(), supports substituion of NaNs
-ps.DataFrame.pow(self, other, axis=columns, fill_value=None)  # pow(), supports substituion of NaNs
-pd.DataFrame.rpow(self, other, axis=columns, fill_value=None)  # rpow(), supports substituion of NaNs
+pd.Series.pow(self, other, fill_value=None)  # pow(), supports substitution of NaNs
+pd.Series.rpow(self, other, fill_value=None)  # rpow(), supports substitution of NaNs
+ps.DataFrame.pow(self, other, axis=columns, fill_value=None)  # pow(), supports substitution of NaNs
+pd.DataFrame.rpow(self, other, axis=columns, fill_value=None)  # rpow(), supports substitution of NaNs
 # OTHER: {scalar, sequence, Series, DataFrame}
 # AXIS: {0, 1, index, columns} -- whether to compare by the index or columns
 # FILLVALUE: {None, float} -- fill missing value
@@ -299,7 +299,7 @@ NumPy ufuncs work fine with pandas objects.
 ```py
 pd.DataFrame.applymap(self, func)  # apply function element-wise
 
-pd.DataFrame.apply(self, func, axis=0, args=())  # apllay a function along an axis of a DataFrame
+pd.DataFrame.apply(self, func, axis=0, args=())  # apply a function along an axis of a DataFrame
 # FUNC: {function} -- function to apply
 # AXIS: {O, 1, index, columns} -- axis along which the function is applied
 # ARGS: {tuple} -- positional arguments to pass to func in addition to the array/series
@@ -309,7 +309,7 @@ pd.Series.sort_values(self, ascending=True, **kwargs)  # sort series by the valu
 # ASCENDING: {bool} -- if True, sort values in ascending order, otherwise descending -- DEFAULT True
 # INPALCE: {bool} -- if True, perform operation in-place
 # KIND: {quicksort, mergesort, heapsort} -- sorting algorithm
-# NA_POSITION {first, last} -- ‘first’ puts NaNs at the beginning, ‘last’ puts NaNs at the end
+# NA_POSITION {first, last} -- 'first' puts NaNs at the beginning, 'last' puts NaNs at the end
 
 pd.DataFrame.sort_index(self, axis=0, ascending=True, **kwargs)  # sort object by labels along an axis
 pd.DataFrame.sort_values(self, axis=0, ascending=True, **kwargs)  # sort object by values along an axis
@@ -317,7 +317,7 @@ pd.DataFrame.sort_values(self, axis=0, ascending=True, **kwargs)  # sort object 
 # ASCENDING: {bool} -- if True, sort values in ascending order, otherwise descending -- DEFAULT True
 # INPALCE: {bool} -- if True, perform operation in-place
 # KIND: {quicksort, mergesort, heapsort} -- sorting algorithm
-# NA_POSITION {first, last} -- ‘first’ puts NaNs at the beginning, ‘last’ puts NaNs at the end
+# NA_POSITION {first, last} -- 'first' puts NaNs at the beginning, 'last' puts NaNs at the end
 ```
 
 ## DESCRIPTIVE AND SUMMARY STATISTICS
@@ -332,7 +332,7 @@ pd.DataFrame.count(self, numeric_only=False)  # count non-NA cells for each colu
 
 ### DESCRIBE
 
-Generate descriptive statistics summarizing central tendency, dispersion and shape of dataset’s distribution (exclude NaN).
+Generate descriptive statistics summarizing central tendency, dispersion and shape of dataset's distribution (exclude NaN).
 
 ```py
 pd.Series.describe(self, percentiles=None, include=None, exclude=None)
@@ -350,7 +350,7 @@ pd.Series.min(self, skipna=None, numeric_only=None)  # minimum of the values for
 pd.DataFrame.max(self, axis=None, skipna=None, numeric_only=None)  # maximum of the values for the requested axis
 pd.DataFrame.min(self, axis=None, skipna=None, numeric_only=None)  # minimum of the values for the requested axis
 # SKIPNA: {bool} -- exclude NA/null values when computing the result
-# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not immplemented for Series
+# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ```
 
 ### IDXMAX - IDXMIN
@@ -381,7 +381,7 @@ pd.Series.sum(self, skipna=None, numeric_only=None, min_count=0)  # sum of the v
 pd.DataFrame.sum(self, axis=None, skipna=None, numeric_only=None, min_count=0)  # sum of the values for the requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
 # SKIPNA: {bool} -- exclude NA/null values when computing the result
-# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not immplemented for Series
+# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 # MIN_COUNT: {int} -- required number of valid values to perform the operation. if fewer than min_count non-NA values are present the result will be NA
 ```
 
@@ -392,7 +392,7 @@ pd.Series.mean(self, skipna=None, numeric_only=None)   # mean of the values
 pd.DataFrame.mean(self, axis=None, skipna=None, numeric_only=None)  # mean of the values for the requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
 # SKIPNA: {bool} -- exclude NA/null values when computing the result
-# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not immplemented for Series
+# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ```
 
 ### MEDIAN
@@ -402,7 +402,7 @@ pd.Series.median(self, skipna=None, numeric_only=None)  # median of the values
 pd.DataFrame.median(self, axis=None, skipna=None, numeric_only=None)  # median of the values for the requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
 # SKIPNA: {bool} -- exclude NA/null values when computing the result
-# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not immplemented for Series
+# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ```
 
 ### MAD (mean absolute deviation)
@@ -422,7 +422,7 @@ pd.DataFrame.var(self, axis=None, skipna=None, ddof=1, numeric_only=None)  #  un
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
 # SKIPNA: {bool} -- exclude NA/null values. if an entire row/column is NA, the result will be NA
 # DDOF: {int} -- Delta Degrees of Freedom. divisor used in calculations is N - ddof (N represents the number of elements) -- DEFAULT 1
-# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not immplemented for Series
+# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ```
 
 ### STD (standard deviation)
@@ -433,7 +433,7 @@ pd.Dataframe.std(self, axis=None, skipna=None, ddof=1, numeric_only=None)  # sam
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
 # SKIPNA: {bool} -- exclude NA/null values. if an entire row/column is NA, the result will be NA
 # DDOF: {int} -- Delta Degrees of Freedom. divisor used in calculations is N - ddof (N represents the number of elements) -- DEFAULT 1
-# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not immplemented for Series
+# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ```
 
 ### SKEW
@@ -443,19 +443,19 @@ pd.Series.skew(self, skipna=None, numeric_only=None)  # unbiased skew Normalized
 pd.DataFrame.skew(self, axis=None, skipna=None, numeric_only=None)  #  unbiased skew over requested axis Normalized by N-1
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
 # SKIPNA: {bool} -- exclude NA/null values when computing the result
-# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not immplemented for Series
+# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ```
 
 ### KURT
 
-Unbiased kurtosis over requested axis using Fisher’s definition of kurtosis (kurtosis of normal == 0.0). Normalized by N-1.
+Unbiased kurtosis over requested axis using Fisher's definition of kurtosis (kurtosis of normal == 0.0). Normalized by N-1.
 
 ```py
 pd.Series.kurt(self, skipna=None, numeric_only=None)
 pd.Dataframe.kurt(self, axis=None, skipna=None, numeric_only=None)
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
 # SKIPNA: {bool} -- exclude NA/null values when computing the result
-# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not immplemented for Series
+# NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ```
 
 ### CUMSUM (cumulative sum)
@@ -471,7 +471,7 @@ pd.Dataframe.cumsum(self, axis=None, skipna=True)  # cumulative sum over request
 
 ```py
 pd.Series.cummax(self, skipna=True)  # cumulative maximum
-pd.Series.cummin(self, skipna=True)  # cumulative minimumm
+pd.Series.cummin(self, skipna=True)  # cumulative minimum
 pd.Dataframe.cummax(self, axis=None, skipna=True)  # cumulative maximum over requested axis
 pd.Dataframe.cummin(self, axis=None, skipna=True)  # cumulative minimum over requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -499,7 +499,7 @@ pd.DataFrame.diff(self, periods=1, axis=0)
 # AXIS: {0, 1, index, columns} -- Take difference over rows or columns
 ```
 
-### PCT_CAHNGE
+### PCT_CHANGE
 
 Percentage change between the current and a prior element.
 
@@ -541,7 +541,7 @@ pd.DataFrame.fillna(self, value=None, method=None, axis=None, inplace=False, lim
 
 ## HIERARCHICAL INDEXING (MultiIndex)
 
-Enables storing and manupulation of data with an arbitrary number of dimensions.  
+Enables storing and manipulation of data with an arbitrary number of dimensions.  
 In lower dimensional data structures like Series (1d) and DataFrame (2d).
 
 ### MULTIIINDEX CREATION
@@ -565,7 +565,7 @@ pd.MultiIndex.get_level_values(self, level)
 
 ### PARTIAL AND CROSS-SECTION SELECTION
 
-Partial selection “drops” levels of the hierarchical index in the result  in a completely analogous way to selecting a column in a regular DataFrame.
+Partial selection "drops" levels of the hierarchical index in the result  in a completely analogous way to selecting a column in a regular DataFrame.
 
 ```py
 pd.Series.xs(self, key, axis=0, level=None, drop_level=True)  # cross-section from Series
@@ -608,7 +608,7 @@ pd.MultiIndex.sortlevel(self, level=0, ascending=True, sort_remaining=True)  # s
 pd.read_fwf(filepath, colspecs='infer', widths=None, infer_nrows=100)  # read a table of fixed-width formatted lines into DataFrame
 # FILEPATH: {str, path object} -- any valid string path is acceptable, could be a URL. Valid URLs: http, ftp, s3, and file
 # COLSPECS: {list of tuple (int, int), 'infer'} -- list of tuples giving extents of fixed-width fields of each line as half-open intervals { [from, to) }
-# WIDTHS: {list of int} -- list of field widths which can be used instead of ‘colspecs’ if intervals are contiguous
+# WIDTHS: {list of int} -- list of field widths which can be used instead of "colspecs" if intervals are contiguous
 # INFER_ROWS: {int} -- number of rows to consider when letting parser determine colspecs -- DEFAULT 100
 
 pd.read_excel()  # read an Excel file into a pandas DataFrame
@@ -635,7 +635,7 @@ pd.DataFrame.to_csv(self, path_or_buf, sep=',', na_rep='', columns=None, header=
 # COLUMNS: {sequence} -- colums to write
 # HEADER: {bool, list of str} -- write out column names. if list of strings is given its assumed to be aliases for column names
 # INDEX: {bool, list of str} -- write out row names (index)
-# ENCODING: {str} -- string representing encoding to use -- DEFAULT ‘utf-8’
+# ENCODING: {str} -- string representing encoding to use -- DEFAULT "utf-8"
 # LINE_TERMINATOR: {str} -- newline character or character sequence to use in the output file -- DEFAULT os.linesep
 # DECIMAL: {str} -- character recognized as decimal separator (in EU ,)
 
