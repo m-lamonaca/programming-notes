@@ -564,7 +564,6 @@ variable is null
 variable is not null
 
 // null parameter checking [C# 10]
-Method(Type arg!!) {}  // will throwArgumentNullException if arg is null
 ArgumentNullException.ThrowIfNull(obj);
 ```
 
