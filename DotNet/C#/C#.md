@@ -706,16 +706,16 @@ Both of these are designed primarily for code generation scenarios, although the
 
 ### Unary Operators
 
-| Operator  | Operation       |
-| --------- | --------------- |
-| `+`x      | identity        |
-| `-`x      | negation        |
-| `!`x      | logic negation  |
-| `~`x      | binary negation |
-| `++`x     | pre-increment   |
-| `--`x     | pre-decrement   |
-| x`++`     | post-increment  |
-| x`--`     | post decrement  |
+| Operator  | Operation        |
+| --------- | ---------------- |
+| `+`x      | identity         |
+| `-`x      | negation         |
+| `!`x      | logic negation   |
+| `~`x      | binary negation  |
+| `++`x     | pre-increment    |
+| `--`x     | pre-decrement    |
+| x`++`     | post-increment   |
+| x`--`     | post decrement   |
 | `(type)`x | explicit casting |
 
 ### Mathematical Operators
@@ -745,20 +745,20 @@ Both of these are designed primarily for code generation scenarios, although the
 ### Logical Operators
 
 | Operator | Operation                                             | Name             |
-| -------- | ----------------------------------------------------- | ---------------- | ----------------------------------- |
-| `~`x     | bitwise NOT                                           |
-| x `&` y  | bitwise AND                                           |
-| x `^` y  | bitwise XOR                                           |
-| x `      | ` y                                                   | bitwise OR       |
-| x `&&` y | evaluate `y` only if `x` is `true`                    |
-| x `      |                                                       | ` y              | evaluate `y` only if `x` is `false` |
+| -------- | ----------------------------------------------------- | ---------------- |
+| `~`x     | bitwise NOT                                           |                  |
+| x `&` y  | bitwise AND                                           |                  |
+| x `^` y  | bitwise XOR                                           |                  |
+| x `|` y  | bitwise OR                                            |                  |
+| x `&&` y | evaluate `y` only if `x` is `true`                    |                  |
+| x `||` y | evaluate `y` only if `x` is `false`                   |                  |
 | x `??` y | evaluates to `y` only if `x` is `null`, `x` otherwise | Null coalescing  |
 | x`?.`y   | stop if `x == null`, evaluate `x.y` otherwise         | Null conditional |
 
 ### Assignment
 
 | Operator  | Operation              |
-| --------- | ---------------------- | ----- | --- |
+| --------- | ---------------------- |
 | x `+=` y  | x = x + y              |
 | x `-=` y  | x = x - y              |
 | x `*=` y  | x = x \* y             |
@@ -767,7 +767,7 @@ Both of these are designed primarily for code generation scenarios, although the
 | x `<<=` y | x = x << y             |
 | x `>>=` y | x = x >> y             |
 | x `&=` y  | x = x & y              |
-| x `       | =` y                   | x = x | y   |
+| x `|=` y  | x = x | y              |
 | x `^=` y  | x = x ^ y              |
 | x `??=` y | if (x == null) {x = y} |
 
