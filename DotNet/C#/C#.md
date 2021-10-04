@@ -796,6 +796,35 @@ else
 }
 ```
 
+### Pattern Matching
+
+[Pattern Matching](https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching)
+
+A pattern describes one or more criteria that a value can be tested against. It's usable in switch statements, switch expressions and if statements.
+
+```cs
+<expr> is Type t  // type pattern
+<expr> is (Type X, Type Y):  // positional pattern
+<expr> is (Type X, _):  // positional pattern + discard pattern
+<expr> is Type {Property: value}:  // property patten (check Type and that the property has a certain value)
+<expr> is Type {Property: value} p:  // property patten with output (variable p is usable in the block)
+
+// constant pattern
+<expr> is literalValue  // e.g. 1, 'c', "literal"
+<expr> is CONSTANT
+<expr> is Enum.Value
+
+// C# 9+
+<expr> is pattern and pattern
+<expr> is pattern or pattern
+<expr> is not pattern
+<expr> is { Property: > value }  // works with all comparison operators
+<expr> is > value  // works with all comparison operators
+
+// C# 10+
+<expr> is { Property.InnerProperty: value }  // match in nested properties
+```
+
 ### Switch
 
 The `when` keyword can be used to specify a filter condition that causes its associated case label to be true only if the filter condition is also true.
@@ -819,25 +848,7 @@ switch (expr)
         // code here
         break;
 
-    case Type t:  // if expr matches Type result is stored in t local variable to be used in the block
-        // code here
-        break;
-
-    case value when(condition):
-        // code here
-        break;
-
-    case < value:
-        // code here
-        break;
-
-    case <= value and >= value:
-        // code here
-        break;
-
-    case > value:
-        // code here
-        break;
+    // cases using pattern matching
 
     default:
         // code here
@@ -849,43 +860,10 @@ variable switch
 {
     key_1 => value,
     key_2 => value,
+    // cases using pattern matching
     ...
     _ => default_value  // underscore (_) discard pattern as default case
 };
-
-Type func(Type input){
-    return input switch
-    {
-        key_1 => value,
-        key_2 => value,
-        ...,
-        _ => default_value  // underscore (_) discard pattern as default case
-    };
-}
-```
-
-### Pattern Matching
-
-[Pattern Matching](https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching)
-
-A pattern describes one or more criteria that a value can be tested against.
-
-```cs
-<expr> is Type t  // type pattern
-<expr> is (Type X, Type Y):  // positional pattern
-<expr> is (Type X, _):  // positional pattern + discard pattern
-<expr> is Type {Property : value}:  // property patten (check Type and that the property has a certain value)
-<expr> is Type {Property : value} p:  // property patten with output (variable p is usable in the block)
-
-// constant pattern
-<expr> is literalValue  // e.g. 1, 'c', "literal"
-<expr> is CONSTANT
-<expr> is Enum.Value
-
-// C# 9+
-<expr> is pattern and pattern
-<expr> is pattern or pattern
-<expr> is not pattern
 ```
 
 ## Loop Statements
