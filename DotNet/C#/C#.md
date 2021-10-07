@@ -2411,15 +2411,11 @@ To be used as an attribute, a type must derive from the `System.Attribute` class
 
 It's possible to pass arguments to the attribute _constructor_ in the annotation.
 
-Some attributes can be controlled only through _properties_ or _fields_, and not constructor arguments.  
-The syntax for this is to write one or more `PropertyOrFieldName = Value` entries after the constructor arguments.
-
 ```cs
 [AttName]  // simple attribute
 
-[AttName(argument)]  // args passed to the constructor
-
-[AttrName(argument), Property = value]  // optional args used as properties
+[AttName(value)]  // valorize private fields (through the constructor)
+[AttrName(Name = value)]  // valorize public properties or fields (no constructor needed)
 ```
 
 **NOTE**: The real name of an attribute ends with "Attribute" (`[AttrName]` refers to the `AttrNameAttribute` class)
@@ -2433,50 +2429,16 @@ The syntax for this is to write one or more `PropertyOrFieldName = Value` entrie
 [Attribute1, Attribute2]
 ```
 
-### Attribute Targets
-
-Attributes can be applied to numerous different kinds of targets.  
-Specifically, it's possible to apply attributes to _assemblies_, _modules_, _types_, _methods_, _method parameters_, _constructors_, _fields_, _properties_, _events_, and _generic type parameters_.  
-In addition, it's possible to supply attributes that target a _method's return value_.
-
-Since assemblies or modules don't have a single feature that represents them, attributes are applied by stating explicitly he target at the start the attribute.  
-It's possible to put assembly-level attributes in any file. The sole restriction is that they must appear before any namespace or type definitions.  
-The only things that should come before assembly-level attributes are whichever using directives are needed, comments, and whitespace (all of which are optional).
+### Defining Custom Attribute Types
 
 ```cs
-[assembly : AttrName]
-[module : AttrName]
-```
-
-Methods' return values can be annotated, and this also requires qualification, because return value attributes go in front of the method, the same place as attributes that apply to the method itself.
-
-```cs
-[AttrName]
-[return : AttrName]
-Type Method() { /* statements */ }
-```
-
-Another kind of target that needs qualification is a _compiler-generated field_.  
-Examples are properties in which code for the getter or setter is not supplied, and event members without explicit add and remove implementations.  
-Without the `field:` qualifiers these attributes would apply to the property or event itself.
-
-```cs
-[field: AtrName]
-public Type Property { get; set; }
-
-[field: AtrName]
-public event EventHandler EventName;
-```
-
-### Defining Attribute Types
-
-```cs
-[AttributeUsage(AttributeTargets.<TargetType>)]  // specify what the attribute can be applied to (enforced by c# compiler)
+// specify what the attribute can be applied to (enforced by c# compiler)
+[AttributeUsage(AttributeTargets.<TargetType>)]
 public class CustomAttribute : Attribute
 {
     // properties to hold information
 
-    // constructor
+    // constructor (used to valorize private fields)
 }
 ```
 
