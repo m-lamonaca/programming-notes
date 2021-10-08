@@ -108,7 +108,18 @@ Rust also has two primitive types for floating-point numbers, which are numbers 
 Rust's floating-point types are `f32` and `f64`, which are 32 bits and 64 bits in size, respectively.  
 The default type is `f64` because on modern CPUs it's roughly the same speed as `f32` but is capable of more precision.
 
-### Numeric Operation
+### Numeric OPerators
+
+| Operator | Operation           |
+|----------|---------------------|
+| `>`      | Greater than        |
+| `>=`     | Greater or Equal to |
+| `<`      | Less than           |
+| `<=`     | Less or Equal to    |
+| `==`     | Equals              |
+| `!=`     | Not Equals          |
+
+### Comparison Operators
 
 | Operator | Operation      |
 |----------|----------------|
@@ -122,6 +133,19 @@ The default type is `f64` because on modern CPUs it's roughly the same speed as 
 
 Boolean types in Rust have two possible values: `true` and `false`.  
 Booleans are one byte in size. The Boolean type in Rust is specified using `bool`.
+
+### Bitwise Operators
+
+| Operator | Operation         |
+|----------|-------------------|
+| `&`      | AND               |
+| `|`      | OR                |
+| `&&`     | SHORT-CIRCUIT AND |
+| `||`     | SHORT-CIRCUIT OR  |
+| `^`      | XOR               |
+| `!`      | NOT               |
+| `<<`     | LEFT SHIFT        |
+| `>>`     | RIGHT SHIFT       |
 
 ### Character Types
 
