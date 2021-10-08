@@ -34,6 +34,12 @@ Rust has a number of types named `Result` in its standard library: a generic `Re
 ```rs
 // macro (funcs have no "!")
 println!("Value: {}", value);  // {} is a placeholder for a value or variable
+println!("Values: {1}, {0}", value1, value2);  // use index to print values
+println!("Num: {:<total_digits>.<decimal_digits>}", 10);
+println!("Num: {:0<total>.<decimal>}", 10);  // prefix num with zeroes
+
+println!("{:b}", 0b11011);  // print as bits
+
 print!();
 ```
 
