@@ -155,6 +155,7 @@ Rust's `char` type is four bytes in size and represents a Unicode Scalar Value: 
 
 ```rs
 let c: char = 'C';  // SINGLE QUOTES
+let c: char = '\u{261D}';  // Unicode Code Point U+261D
 ```
 
 ### String Types
