@@ -60,8 +60,6 @@ io::stdin()  // read line from stdin
 The `::` syntax in the `::new` line indicates that `new` is an **associated function** of the `String` type.  
 An associated function is implemented on a type rather than on a particular instance of the type. Some languages call this a `static method`.
 
-The `&` indicates that this argument is a reference, which gives a way to let multiple parts of the code access one piece of data without needing to copy that data into memory multiple times.
-
 ## Variables & Mutability
 
 By default variables are *immutable*.
@@ -108,7 +106,7 @@ Rust also has two primitive types for floating-point numbers, which are numbers 
 Rust's floating-point types are `f32` and `f64`, which are 32 bits and 64 bits in size, respectively.  
 The default type is `f64` because on modern CPUs it's roughly the same speed as `f32` but is capable of more precision.
 
-### Numeric OPerators
+### Numeric Operators
 
 | Operator | Operation           |
 |----------|---------------------|
@@ -292,9 +290,10 @@ while condition {  // runs while condition is true
 ### for
 
 ```rs
-for item in sequence.iter() {
-    // code here
-}
+for item in sequence.iter() { }
+for item in sequence.iter_mut() { }  // iterate over mutable items
+
+// item is a reference to the value in the sequence, use & and * to access the value or address
 
 for i in (start..end) {  // (start..stop) is like python's range(start, stop)
     // code here
@@ -334,23 +333,25 @@ Keeping track of what parts of code are using what data on the heap, minimizing 
 - There can only be one owner at a time.
 - When the owner goes out of scope, the value will be dropped.
 
-### Ways Variables and Data Interact
+### Moving, Cloning & Copying data
 
-A "shallow copy" of a variable allocated on the heap (C#'s reference value) the original variable goes out of scope and only the "copy" remains.  
-A "deep copy" (`var.clone()`) makes a copy of the data in the new variable without make the original fall out of scope.
+A "shallow copy" of a variable allocated on the *heap* causes the original variable goes out of scope and only the "copy" remains (**MOVING**).  
+A "deep copy" (`var.clone()`) makes a copy of the data in the new variable without make the original fall out of scope (**CLONING**).
 
-When a variable goes out of scope, Rust calls a special function for us. This function is called `drop`, and it's where the code to return the memory is located.
+When a variable goes out of scope, Rust calls the special function `drop`, where the code to return/free the memory is located.
 
-Rust has a special annotation called the `Copy` trait that we can place on types that are stored on the stack.  
+Rust has a special annotation called the `Copy` trait that it's placeable on types that are stored on the stack.  
 If a type has the `Copy` trait, an older variable is still usable after assignment.
 
-Rust won't let us annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.  
-If the type needs something special to happen when the value goes out of scope and we add the `Copy` annotation to that type, we'll get a compile-time error.
+Rust won't allow to annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.  
 
 ```rs
 let s = String::new()
 let t = s;  // shallow copy, s is now out of scope
 let u = t.clone();  // deep copy, t is still valid
+
+let n: i32 = 1;
+let x = n;  // x holds a COPY of the VALUE of n
 ```
 
 ### Ownership & Functions
@@ -426,6 +427,9 @@ borrow(&variable);  // &variable creates a reference to variable but does not ta
 fn borrow2(var: &mut Type) {
     // here var can be modified
 }
+
+&variable;  // borrow a value from a variable (returns reference)
+*variable;  // dereference value (access value pointed by the reference)
 ```
 
 ## Structs
