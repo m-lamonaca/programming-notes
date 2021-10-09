@@ -654,3 +654,33 @@ let v = vec![
     Enum::Text("TEST")
 ];
 ```
+
+## Files
+
+### Reading Files
+
+```rs
+use std::fs;
+
+let contents: Vec<u8> = fs::read("path/to/file").unwrap_or_default();
+let contents: String = fs::read_to_string("path/to/file").unwrap_or_default();
+
+contents.lines(); // iterator over text lines
+```
+
+### Writing Files
+
+```rs
+use std::fs;
+use std::io::Write;  // write trait
+// or
+use std::io::prelude::*;
+
+let contents: [u8] = /* */;
+let contents = String::from(/* */);
+
+fs::write("path/to/file", contents);
+
+let mut file = fs::OpenOptions::new().append(true).open("path/to/file").unwrap();
+file.write(b"appended text");  // write wants an [u8]
+```
