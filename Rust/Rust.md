@@ -206,14 +206,23 @@ matrix[row][column];
 
 Slices allows to reference a contiguous sequence of elements in a collection rather than the whole collection. **Slices don't take ownership**.
 
+A string slice (`&str`) length is in bytes, can cause panic if it happens inside a character.
+This can happen because Unicode characters can take up to 4 bytes.
+
+`&String` can be used in place of a `&str` trough *String Coercion*. The `&String` gets converted to a `&str` that borrows the entire string.
+The reverse is not possible since the slice lacks some information about the String.
+
+**NOTE**: When working with functions is easier to always expect a `&str` instead of a `&String`.
+
 ```rs
 let s = String::from("string literal");
-
-let slice = &s[start..end];
+let slice: &str = &s[start..end];
 
 let a = [0, 1, 2, 3, 4, 5];
+let slice: &[i32] =  &a[start..end];
 
-let slice =  &a[start..end];
+sequence[start..]  // slice to end of sequence
+sequence[..end]  // slice from start to end (excluded)
 ```
 
 ## Functions
