@@ -29,7 +29,7 @@ The purpose of the `Result` types is to encode error-handling information.
 
 Rust has a number of types named `Result` in its standard library: a generic `Result` as well as specific versions for submodules.
 
-### Screen Output
+### Standard Output
 
 ```rs
 // macro (funcs have no "!")
@@ -43,18 +43,19 @@ println!("{:b}", 0b11011);  // print as bits
 print!();
 ```
 
-### User Input
+### Standard Input
 
 ```rs
 use io;
 
-let mut string = String::new();  // create empty string var
-
-let mut var: i32 = io:stdin().readline().trim().parse().expect("input must be a number");
+let mut buffer = String::new();
 
 io::stdin()  // read line from stdin
-    .readline(&mut string)  // put in into a var (since var i mutable it has to be specified with &mut)
-    .expect("Error Message");  // in case of errors return an error message (io::Result) -- NEEDED
+    .readline(&mut buffer)  // put in into the string variable
+    .expect("Error Message");  // in case of errors return an error message
+
+let var: i32 = buffer.trim().parse()  // returns a Result enum
+let var = buffer.trim().parse::<i32>()  // returns a Result enum
 ```
 
 The `::` syntax in the `::new` line indicates that `new` is an **associated function** of the `String` type.  
