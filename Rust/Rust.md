@@ -174,10 +174,11 @@ Tuples have a *fixed length*: once declared, they cannot grow or shrink in size.
 
 ```rs
 let tup: (i32, f64, u8) = (500, 6.4, 1);
+let tup = (500, 6.4, 1);
 
 let (x, y, z) = tup;  // tuple deconstruction (unpacking)
 
-tup.0;  // member access
+tup.0 = value;  // member access & update (mut be mutable)
 ```
 
 ### Array Types
@@ -188,9 +189,19 @@ An array isn't as flexible as the `vector` type, though. A vector is a similar c
 ```rs
 let array = [0, 1, 2, 3, 4];
 let array: [Type; length] = [...];
-let array: [value; length];  // same as python's [value] * length
+let array: [value; length];  // repeat expression (same as python's [value] * length)
 
-array[index] = value;  // member access and update
+let index: usize = <index_value>;  // indexes and ranges must be of type usize
+array[index] = value;  // member access and update (must be mutable)
+
+let matrix = [
+    [0 ,1, 2],
+    [3, 4, 5]
+]
+
+let matrix: [[Type, length]; length]; = [[...], [...], ...]
+
+matrix[row][column];
 ```
 
 ### Slice Types
