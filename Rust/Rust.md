@@ -508,12 +508,14 @@ let struct2 = Struct {
 }
 ```
 
-### Using Tuple Structs without Named Fields to Create Different Types
+### Tuple Structs
 
+Use Tuple Structs to create different types easily.  
 To define a **tuple struct**, start with the `struct` keyword and the struct name followed by the types in the tuple.
 
 ```rs
 struct Point(i32, i32, i32);
+struct Color(i32, i32, i32);
 
 let origin = Point(0, 0, 0);
 ```
@@ -521,7 +523,7 @@ let origin = Point(0, 0, 0);
 ### Struct Printing
 
 ```rs
-#[derive(Debug)]  // inherit the debug traits
+#[derive(Debug)]  // inherit the debug trait
 struct StructName
 {
     field: value,
@@ -529,10 +531,10 @@ struct StructName
 }
 
 let s: Struct = { /* valorization */};
-printl!("{:?}", s)  // debug output: { field: value, ... }
+println!("{:?}", s)  // debug output: { field: value, ... }
 ```
 
-### Method Syntax
+### Methods & Associated Functions
 
 ```rs
 struct Struct
@@ -544,10 +546,42 @@ struct Struct
 impl Struct
 {
     fn method(&self, arg: Type) -> Type { }
+    fn method(&mut self, arg: Type) -> Type { }  // able to modify instance
+    fn associated_func(arg: Type) -> Type { }  // "static" method
 }
 
 let s: Struct = { /* valorization */};
 s.method(arg);  // use struct method
+
+Struct::associated_func(arg);
+```
+
+### Generic Structs & Methods
+
+Generic Data Types are abstract stand-ind for concrete data types or other properties.  
+They can be used with structs, functions, methods, etc.
+
+```rs
+struct GenericStruct<T, U> {
+    T generic_field,
+    U generic_field,
+    ...
+}
+
+impl<T, U> GenericStruct<T, U> {
+    fn generic_method<T>() -> Type { }
+    fn generic_method<U>() -> Type { }
+}
+
+// implementation for specific types
+impl GenericStruct<Type, Type> {
+    fn method() -> Type { }
+}
+
+fn generic_func<T>() -> Type { }
+fn generic_func<T>() -> &T { }  // T could be heap-based type, returning reference is always valid
+
+fn generic<T: Trait>() -> Type { }  // use generic constraint
 ```
 
 ## Enums
