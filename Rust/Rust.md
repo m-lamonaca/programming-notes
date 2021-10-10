@@ -817,10 +817,11 @@ let v: Vec<Type> = Vec<Type>::new();  // empty vec init
 let mut v: vec![item1, item2, ...];  // vec init (type inferred)
 
 v.push(item);  // add elements to vector
+v.pop();  // last item as Option<T> (vector must be mutable)
 
 // element access
-v.get(index);  // get method (returns Option<&T>)
-&v[index];  // index syntax  (returns reference, panic on index out of bounds)
+let value = v.get(index);  // get method (returns Option<&T>)
+let value = &v[index];  // index syntax  (returns reference, panic on index out of bounds)
 
 // iterate over mutable references to each element in a mutable vector in order to make changes to all the elements
 for i in mut &v {
@@ -840,8 +841,23 @@ enum Enum {
 let v = vec![
     Enum::Int(2),
     Enum::Float(3.14),
-    Enum::Text("TEST")
+    Enum::Text(String::from("text"))
 ];
+```
+
+### HashMap
+
+Stores data in key-value pairs.
+
+```rs
+use std::collections::HashMap;
+
+let map: HashMap<K, V> = HashMap::new();
+
+let value = map.get(key); // returns Option<&V>
+map.inset(key, value);  // insert or override value
+map.entry(key).or_insert(value); // insert if not existing
+map.entry(key).and_modify(|value| { *value = <expr> });  // modify item based on current value
 ```
 
 ## Files
