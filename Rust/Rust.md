@@ -647,6 +647,44 @@ fn generic_method<T, U>()
 fn generic_return() -> impl RequiredTrait { }
 ```
 
+## Lifetimes
+
+Lifetime annotation indicates to the *borrow checker* that the lifetime of the returned value is as long as the lifetime of the referenced value.  
+The annotation does not affect how long the references live.
+
+In case of different lifetimes the complier will use the most restrictive.
+
+```rs
+// lifetime annotation syntax
+fn func<'a>(x: &'a Type, y: &'a Type) -> &'a Type { }
+
+// multiple lifetimes annotations
+fn func<'a, 'b>(x: &'a Type, y: &'b Type) -> &'a Type { }
+
+// struct lifetime annotation
+struct Struct<'a> {
+    name: &'a str  // is borrowed, needs lifetime
+}
+
+impl<'a> Struct<'a> { }
+impl<'a, 'b> Struct<'a> { 
+    fn method(&'a self, param: &'b Type) -> &'b Type {}
+}
+
+// static lifetime, same duration as entire program
+// can be coerced to more restrictive lifetime
+let string: &'static str = "...";
+```
+
+### Lifetime Elision Rules
+
+The *Lifetime Elision Rules* are a set of rules for the compiler to analyze references lifetimes.  
+They describe situations that do not require explicit lifetime annotations.  
+
+- **Rule 1**: Each input parameter that is a reference is assigned it's own lifetime
+- **Rule 2**: If there is exactly one input lifetime, assign it to all output lifetimes
+- **Rule 3**: If there is a `&self` or `&mut self` input parameter, it's lifetime will be assigned to all output lifetimes
+
 ## Enums
 
 ```rs
