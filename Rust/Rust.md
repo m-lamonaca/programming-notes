@@ -727,12 +727,11 @@ impl Enum
 }
 ```
 
-### [Option enum](https://doc.rust-lang.org/std/option/enum.Option.htmls)
+### Option & Result
 
 The `Option` type is used in many places because it encodes the very common scenario in which a value could be something or it could be nothing. Expressing this concept in terms of the type system means the compiler can check whether you've handled all the cases you should be handling; this functionality can prevent bugs that are extremely common in other programming languages.
 
-he `Option<T>` enum is so useful that it's even included in the prelude; you don't need to bring it into scope explicitly.  
-In addition, so are its variants: you can use `Some` and `None` directly without the `Option::` prefix.
+`Result<T, E>` is the type used for returning and propagating errors. It is an enum with the variants, `Ok(T)`, representing success and containing a value, and `Err(E)`, representing error and containing an error value.
 
 ```rs
 // std implementation
@@ -758,7 +757,26 @@ result.unwrap();  // get value of Ok or panic if Err
 result.unwrap_or(value);  // get value of OK or return a specified value
 result.unwrap_or_default();  // get value of Ok or return the default value of T
 result.unwrap_err();  // get value of Err or panic if Ok
+
+
+fn returns_result() -> Result<T, E> { 
+    let result = match may_return_err() {
+        Ok(value) => value,
+        Err(error) => return Err(error)  // return Err early
+    };
+
+    Ok(result)
+}
+// same as
+fn returns_result() -> Result<T, E> { 
+    let result = may_return_err()?;  // error propagation
+
+    Ok(result)
+}
 ```
+
+Ending an expression with `?` will result in the unwrapped success (`Ok`) value, unless the result is `Err`, in which case `Err` is returned early from the enclosing function.  
+`?` can only be used in functions that return `Result` because of the early return of `Err` that it provides.
 
 *NOTE*: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
 
