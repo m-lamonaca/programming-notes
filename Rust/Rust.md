@@ -32,7 +32,7 @@ Rust has a number of types named `Result` in its standard library: a generic `Re
 ### Standard Output
 
 ```rs
-// macro (funcs have no "!")
+// macro (func have no "!")
 println!("Value: {}", value);  // {} is a placeholder for a value or variable
 println!("Values: {1}, {0}", value1, value2);  // use index to print values
 println!("Num: {:<total_digits>.<decimal_digits>}", 10);
@@ -51,7 +51,7 @@ use io;
 let mut buffer = String::new();
 
 io::stdin()  // read line from stdin
-    .readline(&mut buffer)  // put in into the string variable
+    .read_line(&mut buffer)  // put in into the string variable
     .expect("Error Message");  // in case of errors return an error message
 
 let var: i32 = buffer.trim().parse()  // returns a Result enum
@@ -275,6 +275,21 @@ if condition {
 
 ```rs
 let var = if condition { value } else { value };  // returned types must be the same
+```
+
+### [if-let](https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html)
+
+```rs
+if let <pattern> = <value> {
+  /* do something */
+}
+
+// same as
+let optional = Some(value);
+match optional {
+    Some(param) => { /* do something */ },
+    _ => {},
+};
 ```
 
 ### loop
@@ -697,13 +712,18 @@ enum Enum
 }
 
 // value assignment
-let e: Enum = Enum::Variant2;
-let e: Enum = Enum::Variant1(arg, ...);  // variant w/ data
+let e: Enum = Enum::Variant1;
+let e: Enum = Enum::Variant2(arg, ...);  // variant w/ data
 
 // methods on enum
 impl Enum
 {
-    fn method(&self, arg: Type) -> Type {}
+    fn method(&self) -> Type {
+        match self {
+            Enum::Variant1 => <expr>
+            Enum::Variant2(arg) => <expr>,
+        }
+    }
 }
 ```
 
@@ -720,15 +740,31 @@ enum Option<T> {
     Some(T),
     None
 }
+
+enum Result<T, E> {
+    Ok(T),
+    Err(E)
+}
+
+let option: Option<T> = /* */;
+
+option.unwrap();  // get value of Some or panic
+option.unwrap_or(value);  // get value of Some or return a specified value
+option.unwrap_or_default();  // get value of Some or return the default value of T
+
+let result: Result<T, E> = /* */;
+
+result.unwrap();  // get value of Ok or panic if Err
+result.unwrap_or(value);  // get value of OK or return a specified value
+result.unwrap_or_default();  // get value of Ok or return the default value of T
+result.unwrap_err();  // get value of Err or panic if Ok
 ```
 
 *NOTE*: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
 
-### Match Expression + Comparing
+### Match Expressions
 
-A **match expression** is made up of *arms*.  
-An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern.  
-Rust takes the value given to match and looks through each arm's pattern in turn.
+A *match expression* is made up of *arms*. An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern. Rust takes the value given to match and looks through each arm's pattern in turn.
 
 **NOTE**: `match` arms must be exhaustive for compilation.
 
@@ -736,7 +772,7 @@ Rust takes the value given to match and looks through each arm's pattern in turn
 enum Enum {
     Variant1,
     Variant2,
-    Variant3(value),
+    Variant3(Type),
     ...
 }
 
@@ -745,7 +781,7 @@ fn match_variant(e: Enum) {
     match e {
         Enum::Variant1 => <expr>,
         Enum::Variant2 => { /* code block */ },
-        Enum::Variant3(value) => state,
+        Enum::Variant3(parm_name) => <expr>,
         _ => ()  // () is unit value
     }
 }
