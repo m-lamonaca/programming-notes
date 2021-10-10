@@ -584,6 +584,69 @@ fn generic_func<T>() -> &T { }  // T could be heap-based type, returning referen
 fn generic<T: Trait>() -> Type { }  // use generic constraint
 ```
 
+## Traits
+
+A Trait is a collection of methods representing a set of behaviours necessary to accomplish some task.  
+Traits can be used as generic types constraints and can be implemented by data types.
+
+```rs
+trait Trait {
+    fn method_signature(&self, param: Type) -> Type;
+    fn method_signature(&self, param: Type) -> Type {
+        // default implementation
+    }
+}
+
+impl Trait for Struct {
+    fn method_signature(&self, param: Type) -> Type {
+        // specific implementation
+    }
+}
+```
+
+### Derive Traits
+
+The Rust compiler is able to provide a basic implementation of a trait with the `derive` attribute.  
+
+Derivable Traits:
+
+- `Eq`
+- `PartialEq`
+- `Ord`
+- `PartialOrd`
+- `Clone`
+- `Copy`
+- `Hash`
+- `Default`
+- `Debug`
+
+```rs
+#[derive(Trait)]  // derive a trait for the struct
+#[derive(Trait, Trait, ...)]  // derive multiple traits
+struct Struct {
+    /* ... */
+}
+```
+
+### Trait Bounds
+
+Trait Bound are used to require a generic to implement specific traits and guarantee that a type will have the necessary behaviours.
+
+```rs
+fn generic_method<T: RequiredTrait>() {}
+fn generic_method<T: RequiredTrait + RequiredTrait>() {}  // multiple bounds
+// or
+fn generic_method<T, U>() 
+    where T: RequiredTrait + RequiredTrait,
+          U: RequiredTrait + RequiredTrait
+{
+
+}
+
+// returned must implement specified trait
+fn generic_return() -> impl RequiredTrait { }
+```
+
 ## Enums
 
 ```rs
