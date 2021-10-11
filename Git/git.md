@@ -205,7 +205,9 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git rebase`: rebase set of patches onto a new base  
 `git rebase -i`: interactive rebasing
 
-`gitk`: show graph of history (git for windows only)
+`git cherry-pick <commit>`: bring in a commit from another branch
+`git cherry-pick <commit>^..<commit>`: bring in a  range of commits from another branch (first included)
+`git cherry-pick <commit>..<commit>`: bring in a  range of commits from another branch (first excluded)
 
 ### Undo & [Rewriting History](https://www.themoderncoder.com/rewriting-git-history/)
 
