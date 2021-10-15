@@ -331,6 +331,50 @@ public class StateContainer
 }
 ```
 
+## Data Binding & Events
+
+```cs
+<p>
+    <button @on{DOM EVENT}="{DELEGATE}" />
+    <button @on{DOM EVENT}="{DELEGATE}" @on{DOM EVENT}:preventDefault />  // prevent default action
+    <button @on{DOM EVENT}="{DELEGATE}" @on{DOM EVENT}:preventDefault="{CONDITION}" />  // prevent default action if CONDITION is true
+
+    <button @on{DOM EVENT}="{DELEGATE}" @on{DOM EVENT}:stopPropagation />
+    <button @on{DOM EVENT}="{DELEGATE}" @on{DOM EVENT}:stopPropagation="{CONDITION}" />  // stop event propagation if CONDITION is true
+
+    <button @on{DOM EVENT}="@(e => Property = value)" />  // change internal state w/ lambda
+    <button @on{DOM EVENT}="@(e => DelegateAsync(e, value))" />  // invoke delegate w/ lambda
+
+    <input @ref="elementReference" />
+
+    <input @bind="{PROPERTY}" /> // updates variable on ONCHANGE event (focus loss)
+    <input @bind="{PROPERTY}" @bind:event="{DOM EVENT}" />  // updates value on DOM EVENT
+    <input @bind="{PROPERTY}" @bind:format="{FORMAT STRING}" />  // use FORMAT STRING to display value
+
+    <ChildComponent @bind-{PROPERTY}="{PROPERTY}" @bind-{PROPERTY}:event="{EVENT}" />  // bind to child component {PROPERTY}
+    <ChildComponent @bind-{PROPERTY}="{PROPERTY}" @bind-{PROPERTY}:event="{PROPERTY}Changed" />  // bind to child component {PROPERTY}, listen for custom event
+</p>
+
+@code {
+    private ElementReference elementReference;
+
+    public string Property { get; set; }
+
+    public EventCallback<Type> PropertyChanged { get; set; }  // custom event {PROPERTY}Changed
+
+    // invoke custom event
+    public async Task DelegateAsync(EventArgs e, Type argument)
+    {   
+        /* ... */
+
+        await PropertyChanged.InvokeAsync(e, argument);  // notify parent bound prop has changed
+        await elementReference.FocusAsync();  // focus an element in code
+    }
+}
+```
+
+**NOTE**: When a user provides an unparsable value to a data-bound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
+
 ## Javascript/.NET Interop
 
 [Call Javascript from .NET](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet)  
