@@ -1324,7 +1324,7 @@ public struct Point
 }
 ```
 
-**NOTE**: it's not possible to make a zero argument constructor for a struct. Moreover the default constructor (provided by C#) it's always available.
+**NOTE**: From C# 10 is possible to have a parameterless constructor and make a new struct using a `with` statement.
 
 The only way to affect a struct variable both inside a method and outside is to use the `ref` keyword;
 
@@ -1680,14 +1680,12 @@ public readonly struct Size
 }
 
 // deconstruction
-static double DiagonalLength(Size s)
-{
-    (double w, double h) = s;  // w = 1, h = 2
-    return Math.Sqrt(w * w + h * h);
-}
+var s = new Size(1 , 2);
+(double w, double h) = s;  // w = 1, h = 2
+
 
 // positional patter matching
-static string DescribeSize(Size s) => s switch
+s switch
 {
     (0, 0) => "Empty",
     (0, _) => "Extremely narrow",
@@ -1695,6 +1693,10 @@ static string DescribeSize(Size s) => s switch
     Size _ => "Normal",
     _ => "Not a shape"
 };
+
+// Assignment & Declaration
+int height = 0;
+(int width, height) = size;
 ```
 
 ---
@@ -2142,14 +2144,14 @@ Delegate<Type> lambda = (Type input) => { return <expr>; };
 
 Type variable = delegate { <expression>; };  // ignore arguments of the method passed to the delegate
 
-// lambda type inference
+// lambda type inference [C# 10]
 var f = Console.WriteLine;
 var f = x => x;  // inferring the return type
 var f = (string x) => x;  // inferring the signature
 var f = [Required] x => x;  // adding attributes on parameters
 var f = [Required] (int x) => x;
 var f = [return: Required] static x => x;  // adding attribute for a return type
-var f = T () => default;  // explicit return type
+var f = Type () => default;  // explicit return type
 var f = ref int (ref int x) => ref x;  // using ref on structs
 var f = int (x) => x;  // explicitly specifying the return type of an implicit input
 var f = static void (_) => Console.Write("Help");
