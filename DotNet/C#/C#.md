@@ -1439,10 +1439,10 @@ class Class
         set => _backingField = value;
     }
 
-    // access backing field with the field keyword [C# 10]
+    // access backing field with the field keyword [C# 11?]
     public Type Property { get => field; set => field = value; }
 
-    // required property [C# 10], prop myst be set at obj init (in constructor or initializer)
+    // required property [C# 11?], prop must be set at obj init (in constructor or initializer)
     public required Type Property { get; set; }
 
     // EXPRESSION-BODIED READ-ONLY PROPERTY
