@@ -127,8 +127,9 @@ find [start-position] -type f -name FILENAME  # search for a file named "filenam
 find [start-position] -type d -name DIRNAME  # search for a directory named "dirname"
 find [path] -exec <command> {} \;  # execute command on found items (identified by {})
 
-[ -f "path" ]  # test if a file exists
-[ -d "path" ]  # test if a folder exists
+[[ -f "path" ]]  # test if a file exists
+[[ -d "path" ]]  # test if a folder exists
+[[ -L "path" ]]  # test if is symlink
 ```
 
 ### Other
