@@ -1,5 +1,17 @@
 # ASP.NET Configuration
 
+## `.csproj`
+
+```xml
+<PropertyGroup>
+  <!-- enable documentation comments (can be used for swagger) -->
+  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+  <!-- do not warn public classes w/o documentation comments -->
+  <NoWarn>$(NoWarn);1591</NoWarn>
+</PropertyGroup>
+```
+
 ## `Program.cs`
 
 ```cs
@@ -78,12 +90,20 @@ namespace App
             services.AddServerSideBlazor();  // needs Razor Pages
 
             services.AddSignalR();
-            
+
             // set dependency injection lifetimes
             services.AddSingleton<ITransientService, ServiceImplementation>();
             services.AddScoped<ITransientService, ServiceImplementation>();
             services.AddTransient<ITransientService, ServiceImplementation>();
-            
+
+            // add swagger
+            services.AddSwaggerGen(options => {
+
+                // OPTIONAL: use xml comments for swagger documentation
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,12 +119,16 @@ namespace App
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseEndpoints(endpoints =>
             {
