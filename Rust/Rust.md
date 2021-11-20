@@ -960,6 +960,65 @@ let closure = move |param| <expr>;
 
 ## Iterators
 
+The *iterator pattern* allows to perform some task on a sequence of items in turn. An iterator is responsible for the logic of iterating over each item and determining when the sequence has finished.
+
+In Rust, iterators are *lazy*, meaning they have no effect until a call to methods that consume the iterator to use it up.
+
+```rs
+// iterator trait
+pub trait Iterator {
+    type Item;
+
+    fn next(&mut self) -> Option<Self::Item>;
+
+    // methods with default implementations elided
+}
+```
+
+Calling the `next` method on an iterator changes internal state that the iterator uses to keep track of where it is in the sequence.  
+In other words, this code consumes, or uses up, the iterator. Each call to next eats up an item from the iterator.
+
+Methods that call next are called `consuming adaptors`, because calling them uses up the iterator.
+
+Other methods defined on the `Iterator` trait, known as *iterator adaptors*, allow to change iterators into different kinds of iterators.  
+It's possible to chain multiple calls to iterator adaptors to perform complex actions in a readable way.  
+But because all iterators are lazy, a call one of the consuming adaptor methods is needed to get the results.
+
+```rs
+let iterator: = vec![1, 2, 3];
+iterator
+    .map(|x| x + 1)  // iterator adapter
+    .filter(|x| x % 2 == 0)  // iterator adapter
+    .collect();  // consuming adapter
+```
+
+### Custom Iterators
+
+```rs
+struct Counter {
+    count: u32,
+}
+
+impl Counter {
+    fn new() -> Counter {
+        Counter { count: 0 }
+    }
+}
+
+impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.count < 5 {
+            self.count += 1;
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+```
+
 ## Files
 
 ### Reading Files
