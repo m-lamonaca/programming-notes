@@ -777,6 +777,7 @@ result.unwrap_or(value);  // get value of OK or return a specified value
 result.unwrap_or_default();  // get value of Ok or return the default value of T
 result.unwrap_err();  // get value of Err or panic if Ok
 
+result_or_option.expect("Error Message");  // if Err or None panics with a custom error message
 
 fn returns_result() -> Result<T, E> { 
     let result = match may_return_err() {
@@ -789,6 +790,7 @@ fn returns_result() -> Result<T, E> {
 // same as
 fn returns_result() -> Result<T, E> { 
     let result = may_return_err()?;  // error propagation
+    // result contains Err ot value of Ok
 
     Ok(result)
 }
@@ -797,7 +799,8 @@ fn returns_result() -> Result<T, E> {
 Ending an expression with `?` will result in the unwrapped success (`Ok`) value, unless the result is `Err`, in which case `Err` is returned early from the enclosing function.  
 `?` can only be used in functions that return `Result` because of the early return of `Err` that it provides.
 
-*NOTE*: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
+**NOTE**: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
+**NOTE**: error values that have the `?` operator called on them go through the `from` function, defined in the `From` trait in the standard library, which is used to convert errors from one type into another
 
 ### Match Expressions
 
