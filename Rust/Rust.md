@@ -896,6 +896,70 @@ map.entry(key).or_insert(value); // insert if not existing
 map.entry(key).and_modify(|value| { *value = <expr> });  // modify item based on current value
 ```
 
+## Closures
+
+Rust's closures are anonymous functions that can be saved in a variable or passed as arguments to other functions.  
+Unlike functions, closures can capture values from the scope in which they're defined.
+
+Closures are usually short and relevant only within a narrow context rather than in any arbitrary scenario.  
+Within these limited contexts, the compiler is reliably able to infer the types of the parameters and the return type, similar to how it's able to infer the types of most variables.
+
+The first time a closure is called with an argument, the compiler infers the type of the parameter and the return type of the closure.  
+Those types are then locked into the closure and a type error is returned if a different type is used with the same closure.
+
+```rs
+// closure definition
+let closure = |param1, param2| <expr>;
+let closure = |param1, param2| {/* multiple lines of code */};
+let closure = |num: i32| = <expr>;
+
+// closure usage
+let result = closure(arg1, arg2);
+```
+
+### Storing Closures Using Generic Parameters and the Fn Traits
+
+To make a struct that holds a closure, the type of the closure must be specified, because a struct definition needs to know the types of each of its fields.  
+Each closure instance has its own unique anonymous type: that is, even if two closures have the same signature, their types are still considered different.  
+To define structs, enums, or function parameters that use closures generics and trait bounds are used.
+
+The `Fn` traits are provided by the standard library. All closures implement at least one of the traits: `Fn`, `FnMut`, or `FnOnce`.
+
+```rs
+struct ClosureStruct<T> where T: Fn(u32) -> u32 {
+    closure: T,
+}
+```
+
+### Capturing the Environment with Closures
+
+When a closure captures a value from its environment, it uses memory to store the values for use in the closure body.  
+Because functions are never allowed to capture their environment, defining and using functions will never incur this overhead.
+
+Closures can capture values from their environment in three ways, which directly map to the three ways a function can take a parameter:
+
+- taking ownership
+- borrowing mutably
+- and borrowing immutably.
+
+These are encoded in the three `Fn` traits as follows:
+
+- `FnOnce` consumes the variables it captures from its enclosing scope. The closure takes ownership of these variables and move them into the closure when it is defined.
+- `FnMut` can change the environment because it mutably borrows values.
+- `Fn` borrows values from the environment immutably.
+
+When a closure is created, Rust infers which trait to use based on how the closure uses the values from the environment.  
+All closures implement `FnOnce` because they can all be called at least once. Closures that don't move the captured variables also implement `FnMut`, and closures that don't need mutable access to the captured variables also implement `Fn`.
+
+To force the closure to take ownership of the values it uses in the environment, use the `move` keyword before the parameter list.  
+This technique is mostly useful when passing a closure to a new thread to move the data so it's owned by the new thread.
+
+```rs
+let closure = move |param| <expr>;
+```
+
+## Iterators
+
 ## Files
 
 ### Reading Files
