@@ -571,34 +571,6 @@ s.method(arg);  // use struct method
 Struct::associated_func(arg);
 ```
 
-### Generic Structs & Methods
-
-Generic Data Types are abstract stand-ind for concrete data types or other properties.  
-They can be used with structs, functions, methods, etc.
-
-```rs
-struct GenericStruct<T, U> {
-    T generic_field,
-    U generic_field,
-    ...
-}
-
-impl<T, U> GenericStruct<T, U> {
-    fn generic_method<T>() -> Type { }
-    fn generic_method<U>() -> Type { }
-}
-
-// implementation for specific types
-impl GenericStruct<Type, Type> {
-    fn method() -> Type { }
-}
-
-fn generic_func<T>() -> Type { }
-fn generic_func<T>() -> &T { }  // T could be heap-based type, returning reference is always valid
-
-fn generic<T: Trait>() -> Type { }  // use generic constraint
-```
-
 ## Traits
 
 A Trait is a collection of methods representing a set of behaviours necessary to accomplish some task.  
@@ -617,6 +589,14 @@ impl Trait for Struct {
         // specific implementation
     }
 }
+
+// trait as parameter or return
+fn method_signature(param: &impl Trait) -> Type {}
+fn method_signature(param: &(impl TraitOne + TraitTwo) -> Type {}
+
+// method can only return a single type and that type must implement the trait,
+// useful for closures or iterators
+fn method_signature(param: Type) -> impl Trait {}
 ```
 
 ### Derive Traits
@@ -655,7 +635,7 @@ fn generic_method<T, U>()
     where T: RequiredTrait + RequiredTrait,
           U: RequiredTrait + RequiredTrait
 {
-
+    // implementation
 }
 
 // returned must implement specified trait
@@ -677,6 +657,40 @@ trait FooExt {
 impl FooExt for Foo {
     fn bar(&self) { .. }
 }
+```
+
+### Generic Structs & Methods
+
+Generic Data Types are abstract stand-ind for concrete data types or other properties.  
+They can be used with structs, functions, methods, etc.
+
+```rs
+struct GenericStruct<T, U> {
+    T generic_field,
+    U generic_field,
+    ...
+}
+
+impl<T, U> GenericStruct<T, U> {
+    fn generic_method<T>() -> Type { }
+    fn generic_method<U>() -> Type { }
+}
+
+// implementation for specific types
+impl GenericStruct<Type, Type> {
+    fn method() -> Type { }
+}
+
+// implementation for specific traits 
+impl<T: Trait, U> GenericStruct<T, U> {/* ...*/}
+
+// implement a trait for all types with a specific trait (AKA blanket implementation)
+impl<T: WantedTrait> ImplementedTrait for T {/* ...*/}
+
+fn generic_func<T>() -> Type { }
+fn generic_func<T>() -> &T { }  // T could be heap-based type, returning reference is always valid
+
+fn generic<T: Trait>() -> Type { }  // use generic constraint
 ```
 
 **NOTE**: the calling code needs to import your new trait in addition to the external type
