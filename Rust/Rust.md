@@ -1181,6 +1181,11 @@ Just like the compile-time borrowing rules, `RefCell<T>` allows to have many imm
 A common way to use `RefCell<T>` is in combination with `Rc<T>`. `Rc<T>` allows to have multiple owners of some data, but it only gives immutable access to that data.  
 By having a `Rc<T>` that holds a `RefCell<T>`, its' possible to get a value that can have multiple owners and that can mutate.
 
+The standard library has other types that provide interior mutability:
+
+- `Cell<T>` which is similar except that instead of giving references to the inner value, the value is copied in and out of the `Cell<T>`.
+- `Mutex<T>` which offers interior mutability that's safe to use across threads;
+
 ### Reference Cycles Can Leak Memory
 
 Rust's memory safety guarantees make it difficult, but not impossible, to accidentally create memory that is never cleaned up (known as a memory leak).  
