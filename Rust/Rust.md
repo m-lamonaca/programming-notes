@@ -664,6 +664,10 @@ impl FooExt for Foo {
 Generic Data Types are abstract stand-ind for concrete data types or other properties.  
 They can be used with structs, functions, methods, etc.
 
+Rust accomplishes this by performing *monomorphization* of the code that is using generics at compile time.  
+Monomorphization is the process of turning generic code into specific code by filling in the concrete types that are used when compiled.
+For this reason if a function as a trait as return type (trait bound), only a single type that implements the trait can be returned.
+
 ```rs
 struct GenericStruct<T, U> {
     T generic_field,
@@ -694,6 +698,31 @@ fn generic<T: Trait>() -> Type { }  // use generic constraint
 ```
 
 **NOTE**: the calling code needs to import your new trait in addition to the external type
+
+### Trait Objects
+
+A trait object is created by specifying some sort of pointer, such as a `&` reference or a `Box<T>` smart pointer, then the `dyn` keyword, and then specifying the relevant trait.
+
+This works differently from defining a struct or function that uses a generic type parameter with trait bounds.  
+A generic type parameter can only be substituted with one concrete type at a time, whereas trait objects allow for multiple concrete types to fill in for the trait object at runtime.  
+If homogeneous collections are needed, using generics and trait bounds is preferable because the definitions will be monomorphized at compile time to use the concrete types.
+
+```rs
+fn func() -> Box<dyn Trait> { }  // return something that implements the specified trait
+```
+
+The code that results from *monomorphization* is doing *static dispatch*, which is when the compiler knows what method will be called at compile time.  
+This is opposed to *dynamic dispatch*, which is when the compiler can't tell at compile time which method will be called.  
+In dynamic dispatch cases, the compiler emits code that at runtime will figure out which method to call.
+
+When using trait objects, Rust must use dynamic dispatch. Instead, at runtime, Rust uses the pointers inside the trait object to know which method to call.  
+There is a runtime cost when this lookup happens that doesn't occur with static dispatch.  
+Dynamic dispatch also prevents the compiler from choosing to inline a method's code, which in turn prevents some optimizations.
+
+It's only possible to make *object-safe* traits into trait objects. A trait is object safe if all the methods defined in the trait have the following properties:
+
+- The return type isn't `Self`.
+- There are no generic type parameters.
 
 ## Lifetimes
 
