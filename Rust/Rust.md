@@ -1131,6 +1131,67 @@ fn main() {
 
 Rust automatically calls `drop` when the instances went go of scope. Variables are dropped in the reverse order of their creation.
 
+### `Rc<T>` & Multiple Ownership
+
+To enable multiple ownership, Rust has a type called `Rc<T>`, which is an abbreviation for *reference counting*.  
+The `Rc<T>` type keeps track of the number of references to a value to determine whether or not the value is still in use.  
+If there are zero references to a value, the value can be cleaned up without any references becoming invalid.
+
+**NOTE**: `Rc<T>` is only for use in single-threaded scenarios.
+
+```rs
+use std::rc::Rc;
+
+let a = Rc::new(/* ... */);
+
+// bot b & c hold a reference to &a
+let b = Rc::clone(&a);
+let c = Rc::clone(&a);
+
+Rc::strong_count(&a); // 3 references to the value of a
+```
+
+### `RefCell<T>` & Interior Mutability Pattern
+
+*Interior mutability* is a design pattern in Rust that allows to mutate data even when there are immutable references to that data;  
+normally, this action is disallowed by the borrowing rules.  
+To mutate data, the pattern uses unsafe code inside a data structure to bend Rust's usual rules that govern mutation and borrowing.
+
+With references and `Box<T>`, the borrowing rules' invariants are enforced at compile time. With `RefCell<T>`, these invariants are enforced at runtime.  
+With references, if these rules are broken, a compiler error is thrown. With `RefCell<T>` the program will panic and exit.
+
+The advantages of checking the borrowing rules at compile time are that errors will be caught sooner in the development process, and there is no impact on runtime performance because all the analysis is completed beforehand.  
+For those reasons, checking the borrowing rules at compile time is the best choice in the majority of cases, which is why this is Rust's default.
+
+The advantage of checking the borrowing rules at runtime instead is that certain memory-safe scenarios are then allowed, whereas they are disallowed by the compile-time checks.  
+Static analysis, like the Rust compiler, is inherently conservative.
+
+**NOTE**: `RefCell<T>` is only for use in single-threaded scenarios and will cause a compile-time error if used it in a multithreaded context.
+
+When creating immutable and mutable references, the `&` and `&mut` syntax is used, respectively.  
+With `RefCell<T>`, the `borrow` and `borrow_mut` methods are ued, which are part of the safe API that belongs to `RefCell<T>`.  
+The `borrow` method returns the smart pointer type `Ref<T>`, and `borrow_mut` returns the smart pointer type `RefMut<T>`.  
+Both types implement `Deref`, so can be treated like regular references.
+
+The `RefCell<T>` keeps track of how many `Ref<T>` and `RefMut<T>` smart pointers are currently active.  
+Every time `borrow` is called, the `RefCell<T>` increases its count of how many immutable borrows are active.  
+When a `Ref<T>` value goes out of scope, the count of immutable borrows goes down by one.  
+Just like the compile-time borrowing rules, `RefCell<T>` allows to have many immutable borrows or one mutable borrow at any point in time.
+
+A common way to use `RefCell<T>` is in combination with `Rc<T>`. `Rc<T>` allows to have multiple owners of some data, but it only gives immutable access to that data.  
+By having a `Rc<T>` that holds a `RefCell<T>`, its' possible to get a value that can have multiple owners and that can mutate.
+
+The standard library has other types that provide interior mutability:
+
+- `Cell<T>` which is similar except that instead of giving references to the inner value, the value is copied in and out of the `Cell<T>`.
+- `Mutex<T>` which offers interior mutability that's safe to use across threads;
+
+### Reference Cycles Can Leak Memory
+
+Rust's memory safety guarantees make it difficult, but not impossible, to accidentally create memory that is never cleaned up (known as a memory leak).  
+Rust allows memory leaks by using `Rc<T>` and `RefCell<T>`: it's possible to create references where items refer to each other in a cycle.  
+This creates memory leaks because the reference count of each item in the cycle will never reach 0, and the values will never be dropped.
+
 ## Files
 
 ### Reading Files
