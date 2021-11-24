@@ -368,6 +368,9 @@ When a variable goes out of scope, Rust calls the special function `drop`, where
 Rust has a special annotation called the `Copy` trait that it's placeable on types that are stored on the stack.  
 If a type has the `Copy` trait, an older variable is still usable after assignment.
 
+Copies happen implicitly, for example as part of an assignment `y = x`. The behavior of `Copy` is not overloadable; it is always a simple bit-wise copy.  
+Cloning is an explicit action, `x.clone()`. The implementation of Clone can provide any type-specific behavior necessary to duplicate values safely. 
+
 Rust won't allow to annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.  
 
 ```rs
