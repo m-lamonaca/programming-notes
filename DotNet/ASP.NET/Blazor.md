@@ -225,7 +225,9 @@ Project
 [Blazor Components](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/)
 
 ```cs
-@page "/route/{RouteParameter?}"  // make component accessible from a URL (optional)
+@page "/route/{RouteParameter}"  // make component accessible from a URL
+@page "/route/{RouteParameter?}"  // specify route parameter as optional
+@page "/route/{RouteParameter:<type>}"  // specify route parameter type
 
 @namespace <Namespace>  // set the component namespace
 @using <Namespace>  // using statement
