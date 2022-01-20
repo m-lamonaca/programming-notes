@@ -1,17 +1,5 @@
 # `C#`
 
-<!-- TODO: Chapters in "Ian Griffiths - Programming C# 8.0 - Build Cloud, Web, and Desktop Applications.pdf"
-7. Object Lifetime
-10. LINQ
-11. Reactive Extensions
-12. Reflection
-13. Multithreading
-14. Asynchronous Language Features
-16. Memory Efficiency
-
-Current Page: 423/761
--->
-
 **.NET** Core is a development platform that includes a **Common Language Runtime** (**CoreCLR**), which manages the execution of code, and a **Base Class Library** (**BCL**), which provides a rich library of classes to build applications from.
 
 The C# compiler (named **Roslyn**) used by the dotnet CLI tool converts C# source code into **intermediate language** (**IL**) code and stores the IL in an _assembly_ (a DLL or EXE file).  
@@ -2403,8 +2391,6 @@ The `GetExecutingAssembly` method returns the assembly that contains the method 
 
 To inspect an assembly info use the `ReflectionOnlyLoadFrom` (or `ReflectionOnlyLoad`) method of the `Assembly` class.  
 This loads the assembly in such a way that it's possible to inspect its type information, but no code in the assembly will execute, nor will any assemblies it depends on be loaded automatically.
-
-<!-- TODO: Page 570 of "Ian Griffiths - Programming C# 8.0 - Build Cloud, Web, and Desktop Applications.pdf" MethodInfo, Type, TypeInfo, MethodBase, ConstructorInfo, ParameterInfo, FiledInfo, PropertyInfo, EventInfo -->
 
 ---
 
