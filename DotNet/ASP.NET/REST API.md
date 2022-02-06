@@ -1,121 +1,53 @@
-# ASP .NET REST API
-
-## Data Transfer Objects (DTOs)
-
-A **DTO** is an object that defines how the data will be sent and received over the network (usually as JSON).
-Without a DTO the JSON response (or request) could contain irrelevant, wrong or unformatted data.
-Moreover, by decoupling the JSON response from the actual data model, it's possible to change the latter without breaking the API.
-DTOs must be mapped to the internal methods.
-
-Required NuGet Packages:
-
-- AutoMapper.Extensions.Microsoft.DependencyInjection
-
-In `StartUp.cs`:
-
-```cs
-using AutoMapper;
-
-// ...
-
-public void ConfigureServices(IServiceCollection services)
-{
-    // other services
-
-    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());  // set automapper service
-}
-```
-
-In `EntityDTO.cs`:
-
-```cs
-namespace <Namespace>.DTOs
-{
-    // define the data to be serialized in JSON (can differ from model)
-    public class EntityDTO
-    {
-        // only properties to be serialized
-    }
-}
-```
-
-In `EntitiesProfile.cs`:
-
-```cs
-using AutoMapper;
-using <Namespace>.DTOs;
-using <Namespace>.Model;
-
-namespace <Namespace>.Profiles
-{
-    public class EntitiesProfile : Profile
-    {
-        public EntitiesProfile()
-        {
-            CreateMap<Entity, EntityDTO>();  // map entity to it's DTO
-        }
-    }
-}
-```
-
-## Controller (No View)
+# ASP.NET REST API
 
 ```cs
 [Route("api/endpoint")]
 [ApiController]
-public class EntitiesController : ControllerBase  // MVC controller w/o view
+public class EntitiesController : ControllerBase  // API controller
 {
-    private readonly ICommandRepo _repo;
-    private readonly IMapper _mapper;  // AutoMapper class
+    private readonly IEntityService _service;
 
-    public EntitiesController(IEntityRepo repository, IMapper mapper)  
+    public EntitiesController(IEntityService service, IMapper mapper)  
     {
-        _repo = repository;
+        _service = service;
         _mapper = mapper
     }
 
     [HttpGet]  // GET api/endpoint
-    public ActionResult<IEnumerable<EntityDTO>> SelectAllEntities()
+    public ActionResult<IEnumerable<EntityDTO>> GetEntities()
     {
-        var results = _repo.SelectAll();
-
-        return Ok(_mapper.Map<EntityDTO>(results));
+        IEnumerable<EntityDTO> results = /* ...  */
+        return Ok(results);
     }
 
     [HttpGet("{id}")]  // GET api/endpoint/{id}
-    public ActionResult<EntityDTO> SelectOneEntityById(int id)
+    public ActionResult<EntityDTO> GetEntityById(int id)
     {
-        var result = _repo.SelectOneById(id);
+        var result = /* .. */;
 
         if(result != null)
         {
-            // transform entity to it's DTO
-            return Ok(_mapper.Map<EntityDTO>(result));
+            return Ok(result);
         }
 
         return NotFound();
     }
-}
-```
 
-## Controller (With View)
-
-```cs
-[Route("api/endpoint")]
-[ApiController]
-public class EntitiesController : Controller
-{
-    private readonly AppDbContext _db;
-
-    public EntitiesController(AppDbContext db)
+    [HttpPost]  // POST api/endpoint
+    public ActionResult<EntityDTO> CreateEntity([FromBody] EntityDTO entity)
     {
-        _db = db;
+        // persist the entity
+
+        var id = /* ID of the created entity */
+        return Created(id, entity);
     }
 
-    [HttpGet]
-    public IActionResult SelectAll()
+    [HttpPut]  // PUT api/endpoint
+    public ActionResult<EntityDTO> UpdateEntity([FromBody] EntityDTO entity)
     {
-        return Json(new { data = _db.Entities.ToList() });  // json view
+        // persist the updated entity
+
+        return Created(uri, entity);
     }
 }
 ```
