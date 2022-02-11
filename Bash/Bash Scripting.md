@@ -60,6 +60,7 @@ command |& file.ext  # link the first process' standard output & standard error 
 ```bash
 command_1; command_2; ...  # execute command in sequence, one after the other
 command_1 || command_2 || ...  # execute successive commands only if preceding ones fail
+command_1 && command_2 && ..  # execute successive commands only if preceding ones succeeds
 ```
 
 ### COMPOUND COMMANDs (multiple commands as one)
@@ -143,6 +144,9 @@ With Command Substitution, we effectively write a command within a command, and 
 
 ```bash
 $(inner_command)  # $ --> value-expansion prefix
+command !*  # !* expands to everything except the first argument in the previous line
+command !$  # refers to the last argument of the previous command
+sudo !! # !! expands to the entire previous command
 ```
 
 ## Shell Variables
