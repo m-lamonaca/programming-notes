@@ -50,7 +50,8 @@ Adding `?` *after* the qualifier makes it perform the match in non-greedy or min
 
 ## Groups
 
-`(__)` REGEX subgroup  
+`(__)` capturing group  
+`(?:__)` non-capturing group  
 `(REGEX_1 | REGEX_2)` match in multiple regex (R1 OR R2)  
 `(?=__)` match only if `__` is next substring  
 `(?!__)` match only if `__` is not next substring  
