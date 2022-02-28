@@ -305,33 +305,53 @@ Since the names of the attributes of a tuple do not matter (a tuple is an instan
 (int a, int b) = point;  // extract data based on position into two variables
 ```
 
-## Records (C# 9)
+## Records
+
+I'ts possible to create record types with immutable properties by using standard property syntax or positional parameters:
 
 ```cs
-public record Record
+public record Person
 {
-    public Type Property1 { get; init; }
-    public Type Property2 { get; init; }
+    public string FirstName { get; init; } = default!;
+    public string LastName { get; init; } = default!;
+};
+// same as
+public record Person(string FirstName, string LastName);
 
-    // Constructor, Deconstructor, Equals(), Equality Operators, GetHashCode(), ToString() generated
+public record struct Point
+{
+    public double X {  get; init; }
+    public double Y {  get; init; }
+    public double Z {  get; init; }
 }
 // same as
-public record Record(Type Property1, Type Property2, ...);
-public record struct RecordStruct(Type Property1, Type Property2, ...);
-
-Record recObj = new Record(value1, ...);  // instantiation
-//or
-Record record = new Record { Property1 = value1, ...};  // instantiation
+public readonly record struct Point(double X, double Y, double Z);
 ```
 
-### Custom Behaviour
+it's also possible to create record types with mutable properties and fields:
 
 ```cs
-public record Record(Type Property1, Type Property2, ...)
+// mutable record
+public record Person
 {
-    // provide custom implementation for default maethod
-}
+    public string FirstName { get; set; } = default!;
+    public string LastName { get; set; } = default!;
+};
+
+// mutable record struct
+public readonly record struct Point(double X, double Y, double Z);
 ```
+
+While records can be mutable, they're primarily intended for supporting immutable data models. The record type offers the following features:
+
+- Concise syntax for creating a reference type with immutable properties
+- Built-in behavior useful for a data-centric reference type:
+  - Value equality
+  - Concise syntax for nondestructive mutation
+  - Built-in formatting for display
+- Support for inheritance hierarchies
+
+Note: A _positional record_ and a _positional readonly record struct_ declare init-only properties. A _positional record struct_ declares read-write properties.
 
 ### `with`-expressions
 
@@ -351,12 +371,6 @@ protected Record(Record original) { /* copy all the fields */ } // generated
 ```
 
 **NOTE**: it's possible to define a custom copy constructor tha will be picked up by the `with` expression.
-
-### Value-based Equality
-
-All objects inherit a virtual `Equals(object)` method from the object class. This is used as the basis for the `Object.Equals(object, object)` static method when both parameters are non-null.  
-Structs override this to have "value-based equality", comparing each field of the struct by calling `Equals` on them recursively. Records do the same.  
-This means that in accordance with their "value-ness" two record objects can be equal to one another without being the same object.
 
 ### `with`-expressions & Inheritance
 
