@@ -632,13 +632,14 @@ The developer is supposed to add additional styling where required.
 
 ## Specificity
 
-A weight is applied to a CSS declaration, determined by the number of each selector type.
-1-0-0: ID selector
-0-1-0: Class selector, Attribute selector, Pseudo-class
-0-0-1: Element Selector, Pseudo-element
-0-0-0: Universal selector (*), combinators (+, >, ~, ' ', ||) and negation pseudo-class :not()
+A weight is applied to a CSS declaration, determined by the number of each selector type:
 
-**Note**: The selectors declared inside :not() contribute to the weight.  
+- `1-0-0`: ID selector  
+- `0-1-0`: Class selector, Attribute selector, Pseudo-class  
+- `0-0-1`: Element Selector, Pseudo-element  
+- `0-0-0`: Universal selector (`*`), combinators (`+`, `>`, `~`, `||`) and negation pseudo-class `:not()`  
+
+**Note**: The selectors declared inside `:not()` contribute to the weight.  
 Specificity is usually the reason why CSS-rules don't apply to some elements when think you they should
 
 ## Box Model
