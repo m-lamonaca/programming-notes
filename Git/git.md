@@ -221,6 +221,7 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git reset --soft <commit>`: revert to specific commit but keep changes and staged files  
 `git reset --hard <commit>`: discard all history and changes back to specified commit  
 `git rebase -i HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits
+`git rm --cached <file>`: remove a file from being tracked
 
 **WARNING**: Changing history can have nasty side effects
 
