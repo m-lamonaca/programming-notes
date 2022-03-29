@@ -218,15 +218,6 @@ public interface IList<T> : ICollection<T>, IEnumerable<T>
 }
 ```
 
-## `Span<T>`
-
-```cs
-t[] array = {...}
-Span<T> wholeArraySpan = array;
-Span<T> slice = array[start..end];
-ReadOnlySpan<T> slice = array[start..end];
-```
-
 ## [Dictionaries](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2)
 
 [ValueCollection](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.valuecollection)

@@ -351,7 +351,7 @@ While records can be mutable, they're primarily intended for supporting immutabl
   - Built-in formatting for display
 - Support for inheritance hierarchies
 
-Note: A _positional record_ and a _positional readonly record struct_ declare init-only properties. A _positional record struct_ declares read-write properties.
+**NOTE**: A _positional record_ and a _positional readonly record struct_ declare init-only properties. A _positional record struct_ declares read-write properties.
 
 ### `with`-expressions
 
@@ -2782,6 +2782,58 @@ TimeSpan interval = TimeSpan.FromDays(days);
 
 ---
 
+## Memory Efficiency
+
+The CLR is able to perform automatic memory management thanks to its garbage collector (GC). This comes at a price: when a CPU spends time on garbage collection, that stops it from getting on with more productive work.  
+In many cases, this time will be small enough not to cause visible problems. However, when certain kinds of programs experience heavy load, GC costs can come to dominate the overall execution time.
+
+C# 7.2 introduced various features that can enable dramatic reductions in the number of allocations. Fewer allocations means fewer blocks of memory for the GC to recover, so this translates directly to lower GC overhead. There is a price to pay, of course: these GC-efficient techniques add significant complication to the code.
+
+### `Span<T>`
+
+The `System.Span<T>` (a `ref struct`) value type represents a sequence of elements of type `T` stored contiguously in memory. Those elements can live inside an array, a string, a managed block of memory allocated in a stack frame, or unmanaged memory.
+
+A `Span<T>` encapsulates three things: a pointer or reference to the containing memory (e.g., the string or array), the position of the data within that memory, and its
+length.  
+
+Access to a span contents is done like an and since a `Span<T>` knows its own length, its indexer checks that the index is in range, just as the built-in array type does.
+
+```cs
+Span<int> numbers = stackalloc int[] { 1, 2, 3 };
+var first = numbers[0];
+```
+
+**NOTE**: Normally, C# won’t allow to use `stackalloc` outside of code marked as unsafe, since it allocates memory on the stack producing a pointer. However, the compiler makes an exception to this rule when assigning the pointer produced by a `stackalloc` expression directly into a span.
+
+The fact that `Span<T>` and `ReadOnlySpan<T>` are both `ref struct` types ensures that a span cannot outlive its containing stack frame, guaranteeing that the stack frame on which the stack-allocated memory lives will not vanish while there are still outstanding references to it.
+
+In addition to the array-like indexer and `Length` properties, `Span<T>` offers a few useful methods.  
+The `Clear` and `Fill` methods provide convenient ways to initialize all the elements in a span either to the default value or a specific value.  
+Obviously, these are not available on `ReadOnlySpan<T>`.
+
+The `Span<T>` and `ReadOnlySpan<T>` types are both declared as `ref struct`. This means that not only are they value types, they are value types that can live only on the
+stack. So it's not possible to have fields with span types in a class, or any struct that is not also a `ref struct`.
+
+This also imposes some potentially more surprising restrictions:
+
+- it's  not possible to use a span in a variable in an async method.
+- there are restrictions on using spans in anonymous functions and in iterator methods
+
+This restriction is necessary for .NET to be able to offer the combination of array-like performance, type safety, and the flexibility to work with multiple different containers.
+
+**NOTE**: it's possible to use spans in local methods, and even declare a ref struct variable in the outer method and use it from the nested one, but with one restriction: it's not possible a delegate that refers to that local method, because this would cause the compiler to move shared variables into an object that lives on the heap.
+
+## `Memory<T>`
+
+The `Memory<T>` type and its counterpart, `ReadOnlyMemory<T>`, represent the same basic concept as `Span<T>` and `ReadOnlySpan<T>`: these types provide a uniform view
+over a contiguous sequence of elements of type `T` that could reside in an array, unmanaged memory, or, if the element type is char, a string.  
+But unlike spans, these are not `ref struct` types, so they can be used anywhere. The downside is that this means they cannot offer the same high performance as spans.
+
+It's possible to convert a `Memory<T>` to a `Span<T>`, and likewise a `ReadOnlyMemory<T>` to a `ReadOnlySpan<T>`.  
+This makes these memory types useful when you want something span-like, but in a context where spans are not allowed.
+
+---
+
 ## Regular Expressions
 
 [regex reference](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
@@ -2803,7 +2855,7 @@ match.Groups[index].Index;  // position in the input string of the matched group
 
 ## Unsafe Code & Pointers
 
-The `unsafe` keyword denotes an *unsafe context*, which is required for any operation involving pointers.
+The `unsafe` keyword denotes an _unsafe context_, which is required for any operation involving pointers.
 
 In an unsafe context, several constructs are available for operating on pointers:
 
@@ -2864,7 +2916,7 @@ unsafe
 ### DllImport & Extern
 
 The `extern` modifier is used to declare a method that is implemented externally.  
-A common use of the extern modifier is with the `DllImport` attribute when using Interop services to call into *unmanaged* code.  
+A common use of the extern modifier is with the `DllImport` attribute when using Interop services to call into _unmanaged_ code.  
 In this case, the method must also be declared as `static`.
 
 ```cs
