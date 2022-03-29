@@ -145,3 +145,51 @@ This is because continuing via the synchronization context can be expensive, and
 The only exceptions are when are doing something that positively requires the synchronization context to be preserved, or it's know for certain that the library will only ever be used in
 application frameworks that do not set up a synchronization context.  
 (ASP.NET Core applications do not use synchronization contexts, so it generally doesn’t matter whether or not `ConfigureAwait(false)` is called in those)
+
+## Error Handling
+
+### Argument Validation
+
+Inside an `async` method, the compiler treats all exceptions in the same way: none are allowed to pass up the stack as in a normal method, and they will always be reported by faulting the returned task.  
+This is true even of exceptions thrown before the first `await`.
+
+If the calling method immediately calls `await` on the return task, this won’t matter much—it will see the exception in any case.  
+But some code may choose not to wait immediately, in which case it won’t see the argument exception until later.
+
+```cs
+async Task<string> MethodWithValidationAsync(string argument)
+{
+  if(sting.IsNullOrEmpty(argument))
+  {
+     throw new ArgumentNullException(nameof(argument));  // will be thrown on await of MethodWithValidationAsync
+  }
+
+  // [...]
+
+  return await LongOperationAsync();
+}
+```
+
+In cases where you want to throw this kind of exception straightaway, the usual technique is to write a normal method that validates the arguments before calling an async method that does the
+work, and to make that second method either private or local.
+
+```cs
+// not marked with async, exception propagate directly to caller
+public static Task<string> MethodWithValidationAsync(string argument)
+{
+  if(sting.IsNullOrEmpty(argument))
+  {
+     throw new ArgumentNullException(nameof(argument));  // thrown immediately
+  }
+
+  return ActualMethodAsync(argument);  // pass up task of inner method
+}
+
+private static async Task<string> ActualMethodAsync(string argument)
+{
+  // [...]
+  return await LongOperationAsync();
+}
+```
+
+**NOTE**: `await` extracts only the first exception of an `AggregateException`, this can cause the loss of information if a task (or group of tasks) has more than one error.
