@@ -4,15 +4,15 @@
 
 [tap_docs]: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/task-asynchronous-programming-model
 
-It's possible to avoid performance bottlenecks and enhance the overall responsiveness of an application by using asynchronous programming. However, traditional techniques for writing asynchronous applications can be complicated, making them difficult to write, debug, and maintain.
+It's possible to avoid performance bottlenecks and enhance the overall responsiveness of an application by using asynchronous programming.  
+However, traditional techniques for writing asynchronous applications can be complicated, making them difficult to write, debug, and maintain.
 
-C# 5 introduced a simplified approach, **async programming**, that leverages asynchronous support in the .NET Framework 4.5 and higher, .NET Core, and the Windows Runtime. The compiler does the difficult work that the developer used to do, and the application retains a logical structure that resembles synchronous code.
+C# 5 introduced a simplified approach, **async programming**, that leverages asynchronous support in the .NET Runtime.  
+The compiler does the difficult work that the developer used to do, and the application retains a logical structure that resembles synchronous code.
 
-Asynchrony is essential for activities that are *potentially blocking*, such as web access. Access to a web resource sometimes is slow or delayed. If such an activity is blocked in a synchronous process, the entire application must wait. In an asynchronous process, the application can continue with other work that doesn't depend on the web resource until the potentially blocking task finishes.
+In performance-sensitive code, asynchronous APIs are useful, because instead of wasting resources by forcing a thread to sit and wait for I/O to complete, a thread can kick off the work and then do something else productive in the meantime.
 
 The `async` and `await` keywords in C# are the heart of async programming.
-
-By using those two keywords, it's possible to use resources in .NET Framework, .NET Core, or the Windows Runtime to create an asynchronous method almost as easily as a synchronous method. Asynchronous methods defined by using the `async` keyword are referred to as **async methods**.
 
 ```cs
 public async Task<TResult> MethodAsync
@@ -41,7 +41,8 @@ Characteristics of Async Methods:
   - Any other type that has a `GetAwaiter` method (starting with C# 7.0).
   - Starting with C# 8.0, `IAsyncEnumerable<T>`, for an async method that returns an async stream.
 
-The method usually includes at least one `await` expression, which marks a point where the method can't continue until the awaited asynchronous operation is complete. In the meantime, the method is suspended, and control returns to the method's caller.
+The method usually includes at least one `await` expression, which marks a point where the method can't continue until the awaited asynchronous operation is complete.  
+In the meantime, the method is suspended, and control returns to the method's caller.
 
 ### Threads
 
@@ -67,13 +68,17 @@ If a `Task` return type is used for an async method, a calling method can use an
 
 The `Task<TResult>` return type is used for an async method that contains a return statement in which the operand is `TResult`.
 
-The `Task<TResult>.Result` property is a **blocking property**. If it's accessed it before its task is finished, the thread that's currently active is blocked until the task completes and the value is available. In most cases, access the value by using `await` instead of accessing the property directly.
+The `Task<TResult>.Result` property is a **blocking property**. If it's accessed it before its task is finished, the thread that's currently active is blocked until the task completes and the value is available.  
+In most cases, access the value by using `await` instead of accessing the property directly.
 
 ### `void` return type
 
-The `void` return type is used in asynchronous event handlers, which require a `void` return type. For methods other than event handlers that don't return a value, it's best to return a `Task` instead, because an async method that returns `void` can't be awaited. Any caller of such a method must continue to completion without waiting for the called async method to finish. The caller must be independent of any values or exceptions that the async method generates.
+The `void` return type is used in asynchronous event handlers, which require a `void` return type. For methods other than event handlers that don't return a value, it's best to return a `Task` instead, because an async method that returns `void` can't be awaited.  
+Any caller of such a method must continue to completion without waiting for the called async method to finish. The caller must be independent of any values or exceptions that the async method generates.
 
-The caller of a void-returning async method *can't catch exceptions thrown from the method*, and such unhandled exceptions are likely to cause the application to fail. If a method that returns a `Task` or `Task<TResult>` throws an exception, the exception is stored in the returned task. The exception is re-thrown when the task is awaited. Therefore, make sure that any async method that can produce an exception has a return type of `Task` or `Task<TResult>` and that calls to the method are awaited.
+The caller of a void-returning async method *can't catch exceptions thrown from the method*, and such unhandled exceptions are likely to cause the application to fail.  
+If a method that returns a `Task` or `Task<TResult>` throws an exception, the exception is stored in the returned task. The exception is re-thrown when the task is awaited.  
+Therefore, make sure that any async method that can produce an exception has a return type of `Task` or `Task<TResult>` and that calls to the method are awaited.
 
 ### Generalized async return types and `ValueTask<TResult>`
 
@@ -82,10 +87,6 @@ Starting with C# 7.0, an async method can return any type that has an accessible
 Because `Task` and `Task<TResult>` are **reference types**, memory allocation in performance-critical paths, particularly when allocations occur in tight loops, can adversely affect performance. Support for generalized return types means that it's possible to return a lightweight **value type** instead of a reference type to avoid additional memory allocations.
 
 .NET provides the `System.Threading.Tasks.ValueTask<TResult>` structure as a lightweight implementation of a generalized task-returning value. To use the `System.Threading.Tasks.ValueTask<TResult>` type, add the **System.Threading.Tasks.Extensions** NuGet package to the project.
-
-### Async streams with `IAsyncEnumerable<T>`
-
-Starting with C# 8.0, an async method may return an async stream, represented by `IAsyncEnumerable<T>`. An async stream provides a way to enumerate items read from a stream when elements are generated in chunks with repeated asynchronous calls.
 
 ### Async Composition
 
@@ -116,48 +117,31 @@ public async Task<int> GetFirstToRespondAsync()
 }
 ```
 
-### Context & Avoiding Context
+### Execution & Synchronization Context
 
-What exactly is the "context"?
+When the program’s execution reaches an `await` expression for an operation that doesn’t complete immediately, the code generated for that `await` will ensure that the
+current execution context has been captured.  
+When the asynchronous operation completes, the remainder of the method will be executed through the execution context.
+The execution context handles certain contextual information that needs to flow when one method invokes another (even when it does so indirectly)
 
-- on a UI thread it's a UI context.
-- when responding to an ASP.NET request, then it's an ASP.NET request context.
-- Otherwise, it's usually a thread pool context.
+While all `await` expressions capture the *execution context*, the decision of whether to flow *synchronization context* as well is controlled by the type being awaited.
+
+Sometimes, it's better to avoid getting the synchronization context involved.  
+If work starting from a UI thread is performed, but there is no particular need to remain on that thread, scheduling every continuation through the synchronization context is unnecessary overhead.
+
+If the asynchronous operation is a `Task`, `Task<T>`, `ValueTask` or `ValueTask<T>`, it's possible to discard the *synchronization context* by calling the `ConfigureAwait(false)`.  
+This returns a different representation of the asynchronous operation, and if this iss awaited that instead of the original task, it will ignore the current `SynchronizationContext` if there is one.
 
 ```cs
 private async Task DownloadFileAsync(string fileName)
 {
-  // Use HttpClient or whatever to download the file contents.
-  var fileContents = await DownloadFileContentsAsync(fileName).ConfigureAwait(false);
-
-  // Note that because of the ConfigureAwait(false), we are not on the original context here.
-  // Instead, we're running on the thread pool.
-
-  // Write the file contents out to a disk file.
-  await WriteToDiskAsync(fileName, fileContents).ConfigureAwait(false);
-
-  // The second call to ConfigureAwait(false) is not *required*, but it is Good Practice.
-}
-
-// UI Example
-private async void DownloadFileButton_Click(object sender, EventArgs e)
-{
-  // Since we asynchronously wait, the UI thread is not blocked by the file download.
-  await DownloadFileAsync(fileNameTextBox.Text);
-
-  // Since we resume on the UI context, we can directly access UI elements.
-  resultTextBox.Text = "File downloaded!";
-}
-
-// ASP.NET example
-protected async void MyButton_Click(object sender, EventArgs e)
-{
-  // Since we asynchronously wait, the ASP.NET thread is not blocked by the file download.
-  // This allows the thread to handle other requests while we're waiting.
-  await DownloadFileAsync(...);
-
-  // Since we resume on the ASP.NET context, we can access the current request.
-  // We may actually be on another *thread*, but we have the same ASP.NET request context.
-  Response.Write("File downloaded!");
+  await OperationAsync(fileName).ConfigureAwait(false);  // discarding original context
 }
 ```
+
+When writing libraries in most cases you it'ss best to call `ConfigureAwait(false)` anywhere `await` is used.  
+This is because continuing via the synchronization context can be expensive, and in some cases it can introduce the possibility of deadlock occurring.
+
+The only exceptions are when are doing something that positively requires the synchronization context to be preserved, or it's know for certain that the library will only ever be used in
+application frameworks that do not set up a synchronization context.  
+(ASP.NET Core applications do not use synchronization contexts, so it generally doesn’t matter whether or not `ConfigureAwait(false)` is called in those)
