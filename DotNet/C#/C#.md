@@ -634,17 +634,6 @@ The `Convert` type has a pair of methods, `ToBase64String` and `FromBase64String
 The second most common conversion is from strings to numbers or date and time values.  
 The opposite of `ToString` is `Parse`. Only a few types have a `Parse` method, including all the number types and `DateTime`.
 
-## Random Numbers
-
-```cs
-using System.Random;
-Random rand = new Random();
-randomNumber = rand.Next(min, max_not_included);
-randomNumber = rand.Next(max_not_included);  // o to max_not_included
-randomNumber = rand.Next();  // positive random number
-randomNumber = rand.NextDouble();  // random number between 0.0 and 1.0
-```
-
 ---
 
 ## Preprocessor Directives
@@ -2811,24 +2800,6 @@ match.Groups[index].Index;  // position in the input string of the matched group
 ```
 
 ---
-
-## Performance Tips
-
-### Bit Tricks
-
-```cs
-(n & 1) == 0  // faster since modulo is "expensive"
-//same as
-n % 2 == 0
-
-n >> m
-// same as
-n / 2^m
-
-n << m
-// same as
-n * 2^m
-```
 
 ## Unsafe Code & Pointers
 
