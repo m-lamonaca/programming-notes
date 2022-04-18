@@ -152,54 +152,93 @@ namespace App
 }
 ```
 
-## `appsettings.json`
+## Application Settings
 
-Connection Strings & Secrets.
+App settings are loaded (in order) from:
+
+1. `appsettings.json`
+2. `appsettings.<Environment>.json`
+3. User Secrets
+
+The environment is controlled by the env var `ASPNETCORE_ENVIRONMENT`. If a setting is present in multiple locations, the last one is used and overrides the previous ones.
+
+### User Secrets
+
+User secrets are specific to each machine and can be initialized with `dotnet user-secrets init`. Each application is linked with it's settings by a guid.
+
+The settings are stored in:
+
+- `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json` (Windows)
+- `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json` (Linux/macOS)
+
+Setting a value is done with `dotnet user-secrets set <key> <value>`, keys can be nested by separating each level with `:` or `__`.
+
+## Options Pattern
+
+The *options pattern* uses classes to provide strongly-typed access to groups of related settings.
 
 ```json
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft": "Warning",
-      "Microsoft.Hosting.Lifetime": "Information"
-    }
-  },
-  "AllowedHosts": "*"
-}
-```
-
-## `launchsettings.json`
-
-Launch Settings & Deployment Settings.
-
-```json
-{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:51144",
-      "sslPort": 44335
-    }
-  },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+    "SecretKey": "Secret key value",
+    "TransientFaultHandlingOptions": {
+        "Enabled": true,
+        "AutoRetryDelay": "00:00:07"
     },
-    "<project>": {
-      "commandName": "Project",
-      "dotnetRunMessages": "true",
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information",
+            "Microsoft": "Warning",
+            "Microsoft.Hosting.Lifetime": "Information"
+        }
     }
-  }
 }
 ```
+
+```cs
+// options model for binding
+public class TransientFaultHandlingOptions
+{
+    public bool Enabled { get; set; }
+    public TimeSpan AutoRetryDelay { get; set; }
+}
+```
+
+```cs
+// setup the options
+builder.Services.Configure<TransientFaultHandlingOptions>(builder.Configuration.GetSection<TransientFaultHandlingOptions>(nameof(Options)));
+builder.Services.Configure<TransientFaultHandlingOptions>(builder.Configuration.GetSection<TransientFaultHandlingOptions>(key));
+```
+
+```cs
+class DependsOnOptions
+{
+  private readonly IOptions<TransientFaultHandlingOptions> _options;
+
+  public DependsOnOptions(IOptions<TransientFaultHandlingOptions> options) => _options = options;
+}
+```
+
+### [Options interfaces](https://docs.microsoft.com/en-us/dotnet/core/extensions/options#options-interfaces)
+
+`IOptions<TOptions>`:
+
+- Does not support:
+  - Reading of configuration data after the app has started.
+  - Named options
+- Is registered as a Singleton and can be injected into any service lifetime.
+
+`IOptionsSnapshot<TOptions>`:
+
+- Is useful in scenarios where options should be recomputed on every injection resolution, in scoped or transient lifetimes.
+- Is registered as Scoped and therefore cannot be injected into a Singleton service.
+- Supports named options
+
+`IOptionsMonitor<TOptions>`:
+
+- Is used to retrieve options and manage options notifications for `TOptions` instances.
+- Is registered as a Singleton and can be injected into any service lifetime.
+- Supports:
+  - Change notifications
+  - Named options
+  - Reloadable configuration
+  - Selective options invalidation (`IOptionsMonitorCache<TOptions>`)
