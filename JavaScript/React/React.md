@@ -27,9 +27,11 @@ class Component extends React.Component {
 
 *NOTE*: a component name *must* start with an uppercase letter.
 
-Every components has two inputs: *props* and *state*. The props input is explicit while the state is implicit. State is used to determine the chages. Within the component state can be changed while the props object represent fixed values.
+Every components has two inputs: *props* and *state*. The props input is explicit while the state is implicit.  
+State is used to determine the changes and when to re-render.  
+Within the component state can be changed while the props object represent fixed input values.
 
-JSX syntax can reusable HTML bat gets converted to pure JavaScript before being sent to the browser:
+JSX syntax can represent HTML but gets converted to pure JavaScript before being sent to the browser:
 
 ```js
 // JSX
@@ -48,13 +50,11 @@ const element = React.createElement(
 ### App Entry-point
 
 ```js
-ReactDOM.render(
-    <RootComponent />,
-    // same as
-    React.createElement(RootComponent, null);
+const container = document.getElementById('root')!;
+const root = createRoot(container);
 
-    document.getElementById("RootNode_parentId")  // add to DOM
-);
+const element = <h1s>Hello World</h1>
+root.render(element)
 ```
 
 ### Dynamic Expressions

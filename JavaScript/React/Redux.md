@@ -9,7 +9,7 @@ Redux is a pattern and library for managing and updating application state, usin
 An **Action** is a plain JavaScript object that has a `type` field. An action object can have other fields with additional information about what happened.  
 By convention, that information is stored in a field called `payload`.
 
-**Action Creators** are functions that creates and return an action object.
+**Action Creators** are functions that create and return action objects.
 
 ```js
 function actionCreator(data)
@@ -68,7 +68,7 @@ Reducers must **always** follow some specific rules:
 
 - They should only calculate the new state value based on the `state` and `action` arguments
 - They are not allowed to modify the existing `state`.
-Instead, they must make *immutable updates*, by copying the existing `state` and making changes to the copied values.
+  Instead, they must make *immutable updates*, by copying the existing `state` and making changes to the copied values.
 - They must not do any asynchronous logic, calculate random values, or cause other "side effects"
 
 ```js
@@ -89,7 +89,8 @@ function reducer(state = initialState, action) {
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-    entity: entityReducer
+    entity: entityReducer.
+    ...
 });
 ```
 
@@ -227,3 +228,73 @@ export async function thunk() {
     }
 }
 ```
+
+## [Redux-Toolkit](https://redux-toolkit.js.org/)
+
+The Redux Toolkit package is intended to be the standard way to write Redux logic. It was originally created to help address three common concerns about Redux.
+
+Redux Toolkit also includes a powerful data fetching and caching capability dubbed "RTK Query". It's included in the package as a separate set of entry points. It's optional, but can eliminate the need to hand-write data fetching logic yourself.
+
+These tools should be beneficial to all Redux users. Whether you're a brand new Redux user setting up your first project, or an experienced user who wants to simplify an existing application, Redux Toolkit can help you make your Redux code better.
+Installation​
+Using Create React App​
+
+The recommended way to start new apps with React and Redux is by using the official Redux+JS template or Redux+TS template for Create React App, which takes advantage of Redux Toolkit and React Redux's integration with React components.
+
+```sh
+# Redux + Plain JS template
+npx create-react-app my-app --template redux
+
+# Redux + TypeScript template
+npx create-react-app my-app --template redux-typescript
+```
+
+Redux Toolkit includes these APIs:
+
+- [`configureStore()`][cfg_store]: wraps `createStore` to provide simplified configuration options and good defaults.  
+  It can automatically combines slice reducers, adds whatever Redux middleware supplied, includes redux-thunk by default, and enables use of the Redux DevTools Extension.
+
+- [`createReducer()`][new_reducer]: that lets you supply a lookup table of action types to case reducer functions, rather than writing switch statements.
+  In addition, it automatically uses the `immer` library to let you write simpler immutable updates with normal mutative code, like `state.todos[3].completed = true`.
+
+- [`createAction()`][new_action]: generates an action creator function for the given action type string.
+  The function itself has `toString()` defined, so that it can be used in place of the type constant.
+- [`createSlice()`][new_slice]: accepts an object of reducer functions, a slice name, and an initial state value, and automatically generates a slice reducer with corresponding action creators and action types.
+- [`createAsyncThunk`][new_async_thunk]: accepts an action type string and a function that returns a promise, and generates a thunk that dispatches pending/fulfilled/rejected action types based on that promise
+- [`createEntityAdapter`][entity_adapt]: generates a set of reusable reducers and selectors to manage normalized data in the store
+- The `createSelector` utility from the Reselect library, re-exported for ease of use.
+
+[cfg_store]: https://redux-toolkit.js.org/api/configureStore
+[new_reducer]: https://redux-toolkit.js.org/api/createReducer
+[new_action]: https://redux-toolkit.js.org/api/createAction
+[new_slice]: https://redux-toolkit.js.org/api/createSlice
+[new_async_thunk]: https://redux-toolkit.js.org/api/createAsyncThunk
+[entity_adapt]: https://redux-toolkit.js.org/api/createEntityAdapter
+
+### RTK Query​
+
+RTK Query is provided as an optional addon within the `@reduxjs/toolkit` package.  
+It is purpose-built to solve the use case of data fetching and caching, supplying a compact, but powerful toolset to define an API interface layer got the app.  
+It is intended to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
+
+RTK Query is included within the installation of the core Redux Toolkit package. It is available via either of the two entry points below:
+
+```cs
+import { createApi } from '@reduxjs/toolkit/query'
+
+/* React-specific entry point that automatically generates hooks corresponding to the defined endpoints */
+import { createApi } from '@reduxjs/toolkit/query/react'
+```
+
+RTK Query includes these APIs:
+
+- [`createApi()`][new_api]: The core of RTK Query's functionality. It allows to define a set of endpoints describe how to retrieve data from a series of endpoints,
+  including configuration of how to fetch and transform that data.
+- [`fetchBaseQuery()`][fetch_query]: A small wrapper around fetch that aims to simplify requests. Intended as the recommended baseQuery to be used in createApi for the majority of users.
+- [`<ApiProvider />`][api_provider]: Can be used as a Provider if you do not already have a Redux store.
+- [`setupListeners()`][setup_listener]: A utility used to enable refetchOnMount and refetchOnReconnect behaviors.
+
+[new_api]: https://redux-toolkit.js.org/rtk-query/api/createApi
+[fetch_query]: https://redux-toolkit.js.org/rtk-query/api/fetchBaseQuery
+[api_provider]: https://redux-toolkit.js.org/rtk-query/api/ApiProvider
+[setup_listener]: https://redux-toolkit.js.org/rtk-query/api/setupListeners

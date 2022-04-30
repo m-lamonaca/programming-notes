@@ -1,4 +1,4 @@
-# React Router
+# [React Router](https://reactrouter.com)
 
 Popular routing library. Allows to specify a route through React components, declaring which component is to be loaded for a given URL.
 
@@ -27,40 +27,40 @@ React.render(
     <Router>
         <App />
     </Router>,
-    document.getElemendById("DomID");
+    document.getElementById("DomID");
 )
 ```
 
 ```js
 // Component.js
-import { Route, Switch } from "react-router-dom";
+import { Route, Route } from "react-router-dom";
 
 <div>
-    {/* match route pattern exactly, all subroutes will be matched otherwise */}
-    <Route path="/" exact component={Component} /> 
-    <Route path="/route" component={Component} />
+    {/* match route pattern exactly, all sub-routes will be matched otherwise */}
+    <Route path="/" exact element={<Component props={props} />} /> 
+    <Route path="/route" element={<Component props={props} />} />
     ...
 </div>
 
-// only one child can match, similar to switch-case
-<Switch>
-    <Route path="/" exact component={Component} />
-    <Route path="/route" component={Component} />
+// only one child can match, similar to Route-case
+<Routes>
+    <Route path="/" exact element={<Component props={props} />} />
+    <Route path="/route" element={<Component props={props} />} />
     <Route component={PageNotFound} /> {/* matches all non-existent URLs */}
-</Switch>
+</Route>
 ```
 
 ### URL Parameters & Query String
 
 ```js
 // Given
-<Route path="/route/:placeholder" component={Component} />
-// URL: app.com/route/subroute?param=value
+<Route path="/route/:placeholder" element={<Component props={props} />} />
+// URL: app.com/route/sub-route?param=value
 
 function Component(props) {
-    props.match.params.placeholder;  // subroute
+    props.match.params.placeholder;  // sub-route
     props.location.query;  // { param: value }
-    props.location.pathname; // /route/subroute?param=value
+    props.location.pathname; // /route/sub-route?param=value
 }
 ```
 
@@ -75,7 +75,7 @@ import { Redirect } from "react-router-dom";
 { condition &&  <Redirect to="/route" /> }  // redirect if condition is true
 
 // or redirect manipulating the history (always in props)
-props.history.push("/new-route");  
+props.history.push("/new-route");
 ```
 
 ### Prompts
