@@ -1,72 +1,72 @@
 # Itertools Module
 
-```py
-# accumulate([1,2,3,4,5]) -> 1, 3(1+2), 6(1+2+3), 10(1+2+3+6), 15(1+2+3+4+5)
-# accumulate(iter, func( , )) -> iter[0], func(iter[0] + iter[1]) + func(prev + iter[2]), ...
-accumulate(iterable, func(_, _))
+``` py
+# accumulate ([1,2,3,4,5]) -> 1, 3 (1 + 2), 6 (1 + 2 + 3), 10 (1 + 2 + 3 + 6), 15 (1+ 2 + 3 + 4 + 5)
+# accumulate (iter, func (,)) -> iter [0], func (iter [0] + iter [1]) + func (prev + iter [2]), ...
+accumulate (iterable, func (_, _))
 
-# iteratore restituisce elementi dal primo iterable,
-# poi procede al successivo fino alla fine degli iterabili
-# non funziona se l'iterable è uno solo
-chain(*iterabili)
+# iterator returns elements from the first iterable,
+# then proceeds to the next until the end of the iterables
+# does not work if there is only one iterable
+chain (* iterable)
 
-# concatena elementi del singolo iterable anche se contiene sequenze
-chain.from_iterable(iterable)
+# concatenates elements of the single iterable even if it contains sequences
+chain.from_iterable (iterable)
 
-# restituisce sequenze di lunghezza r a partire dall'iterable
-# elementi trattati come unici in base al loro valore
-combinations(iterable, r)
+# returns sequences of length r starting from the iterable
+# items treated as unique based on their value
+combinations (iterable, r)
 
-# # restituisce sequenze di lunghezza r a partire dall'iterable permettendo la ripetizione degli elementi
-combinations_with_replacement(iterable, r)
+# # returns sequences of length r starting from the iterable allowing the repetition of the elements
+combinations_with_replacement (iterable, r)
 
-# iteratore filtra elementi di data restituendo solo quelli che hanno
-#  un corrispondente elemento in selectors che ha valore vero
-compress(data, selectors)
+# iterator filters date elements returning only those that have
+# a corresponding element in selectors that is true
+compress (data, selectors)
 
-count(start, step)
+count (start, step)
 
-# iteratore restituente valori in sequenza infinita
-cycle(iterable)
+# iterator returning values ​​in infinite sequence
+cycle (iterable)
 
-# iteratore scarta elementi dell'iterable finché il predicato è vero
-dropwhile(predicato, iterable)
+# iterator discards elements of the iterable as long as the predicate is true
+dropwhile (predicate, iterable)
 
-# iteratore restituente valori se il predicato è falso
-filterfalse(predicato, iterable)
+# iterator returning values ​​if predicate is false
+filterfalse (predicate, iterable)
 
-# iteratore restituisce tuple (key, group)
-# key è il criterio di raggruppamento
-# group è un generatore restituente i membri del gruppo
-groupby(iterable, key=None)
+# iterator returns tuple (key, group)
+# key is the grouping criterion
+# group is a generator returning group members
+groupby (iterable, key = None)
 
-# iteratore restituisce slice dell'iterable
-isslice(iterable, stop)
-isslice(iterable, start, stop, step)
+# iterator returns slices of the iterable
+isslice (iterable, stop)
+isslice (iterable, start, stop, step)
 
-# restituisce tutte le permutazioni di lunghezza r dell'iterable
-permutations(iterable, r=None)
+# returns all permutations of length r of the iterable
+permutations (iterable, r = None)
 
-# prodotto cartesiano degli iterabili
-# cicla iterabili in ordine di input
-# [product('ABCD', 'xy') -> Ax Ay Bx By Cx Cy Dx Dy]
-# [product('ABCD', repeat=2) -> AA AB AC AD BA BB BC BD CA CB CC CD DA DB DC DD]
-product(*iterabili, ripetizioni=1)
+# Cartesian product of iterables
+# loops iterables in order of input
+# [product ('ABCD', 'xy') -> Ax Ay Bx By Cx Cy Dx Dy]
+# [product ('ABCD', repeat = 2) -> AA AB AC AD BA BB BC BD CA CB CC CD DA DB DC DD]
+product (* iterable, repetitions = 1)
 
-# restituisce un oggetto infinite volte se ripetizioni non viene specificato
-repeat(oggetto, ripetizioni)
+# returns an object infinite times if repetition is not specified
+repeat (object, repetitions)
 
-# iteratore computa func(iterable)
-# usato se iterable è sequenza pre-zipped (seq di tuple raggruppanti elementi)
-starmap(func, iterable)
+# iterator compute func (iterable)
+# used if iterable is pre-zipped sequence (seq of tuples grouping elements)
+starmap (func, iterable)
 
-# iteratore restituente valori da iterable finché predicato è vero
-takewhile(predicato, iterable)
+# iterator returning values ​​from iterable as long as predicate is true
+takewhile (predicate, iterable)
 
-# restituisce n iteratori indipendenti dal singolo iterable
-tee(iterable, n=2)
+# returns n independent iterators from the single iterable
+tee (iterable, n = 2)
 
-# produce un iteratore che aggrega elementi da ogni iterable
-# se gli iterabili hanno lunghezze differenti i valori mancanti sono riempiti secondo fillervalue
-zip_longest(*iterable, fillvalue=None)
+# produces an iterator that aggregates elements from each iterable
+# if the iterables have different lengths the missing values ​​are filled according to fillervalue
+zip_longest (* iterable, fillvalue = None)
 ```

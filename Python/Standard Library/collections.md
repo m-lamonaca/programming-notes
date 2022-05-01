@@ -1,78 +1,78 @@
 
 # Collections Module
 
-```py
-# COUNTER()
-# sottoclasse dizionario per contare oggetti hash-abili
+``` py
+# COUNTER ()
+# subclass dictionary for counting hash-capable objects
 from collections import Counter
-Counter(sequenza)  # -> oggetto Counter
-# {item: num comprese in sequenza, ...}
+Counter (sequence) # -> Counter object
+# {item: num included in sequence, ...}
 
-var = Counter(sequenza)
-var.most_common(n)  # produce lista degli elementi più comuni (n più comuni)
-sum(var.values())  # totale di tutti i conteggi
-var.clear()  #reset tutti i conteggi
-list(var)  # elenca elementi unici
-set(var)  # converte in un set
-dict(var)   # converte in un dizionario regolare
-var.items()  # converte in una lista di coppie (elemento, conteggio)
-Counter(dict(list_of_pairs))  # converte da una lista di coppie
-var.most_common[:-n-1:-1]  # n elementi meno comuni
-var += Counter()  # rimuove zero e conteggi negativi
+var = Counter (sequence)
+var.most_common (n) # produce list of most common elements (most common n)
+sum (var.values ​​()) # total of all counts
+var.clear () #reset all counts
+list (var) # list unique items
+set (var) # convert to a set
+dict (var) # convert to regular dictionary
+var.items () # convert to a list of pairs (element, count)
+Counter (dict (list_of_pairs)) # convert from a list of pairs
+var.most_common [: - n-1: -1] # n less common elements
+var + = Counter () # remove zero and negative counts
 
 
-# DEFAULTDICT()
-# oggetto simil-dizionario che come primo argomento prende un tipo di default
-# defaultdict non solleverà mai un eccezione KeyError.
-# le chiavi non esistenti ritornano un valore di default (default_factory)
+# DEFAULTDICT ()
+# dictionary-like object that takes a default type as its first argument
+# defaultdict will never raise a KeyError exception.
+# non-existent keys return a default value (default_factory)
 from collections import defaultdict
-var = defaultdict(default_factory)
-var.popitem()  # rimuove e restituisce primo elemento
-var.popitem(last=True) # rimuove e restituisce ultimo elemento
+var = defaultdict (default_factory)
+var.popitem () # remove and return first element
+var.popitem (last = True) # remove and return last item
 
 
-# OREDERDDICT()
-# sottoclasse dizionario che "ricorda" l'ordine in cui vengono inseriti i contenuti
-# dizionari normali hanno ordinamento casuale
-nome_dict = OrderedDict()
-# OrderedDict con stessi elementi ma ordine diverso sono considerati diversi
+# OREDERDDICT ()
+# subclass dictionary that "remembers" the order in which the contents are entered
+# Normal dictionaries have random order
+name_dict = OrderedDict ()
+# OrderedDict with same elements but different order are considered different
 
 
-# USERDICT()
-# implementazione pura in pythondi una mappa che funziona come un normale dizionario.
-# Designata per creare sottoclassi
-UserDict.data  # recipiente del contenuto di UserDict
+# USERDICT ()
+# pure implementation in pythondi a map that works like a normal dictionary.
+# Designated to create subclasses
+UserDict.data # recipient of UserDict content
 
 
-# NAMEDTUPLE()
-# ogni namedtuple è rappresentata dalla propria classe
+# NAMEDTUPLE ()
+# each namedtuple is represented by its own class
 from collections import namedtuple
-NomeClasse = namedtuple(NomeClasse, parametri_separati_da_spazio)
-var = NomeClasse(parametri)
-var.attributo  # accesso agli attributi
-var[index]  # accesso agli attributi
-var._fields  # accesso ad elenco attributi
-var = classe._make(iterabile)  # trasformain namedtuple
-var._asdict()  # restituisce oggetto OrderedDict a partire dalla namedtuple
+NomeClasse = namedtuple (NomeClasse, parameters_separated_from_space)
+var = ClassName (parameters)
+var.attribute # access to attributes
+var [index] # access to attributes
+var._fields # access to attribute list
+var = class._make (iterable) # transformain namedtuple
+var._asdict () # Return OrderedDict object starting from namedtuple
 
 
-# DEQUE()
-# double ended queue (pronunciato "deck")
-# lista modificabuile da entrambi i "lati"
+# DEQUE ()
+# double ended queue (pronounced "deck")
+# list editable on both "sides"
 from collections import deque
-var = deque(iterabile, maxlen=num)  # -> oggetto deque
-var.append(item)  # aggiunge item al fondo
-var.appendleft(item)  # aggiunge item all'inizio
-var.clear()  # rimuove tutti gli elementi
-var.extend(iterabile)  # aggiunge iterabile al fondo
-var.extendleft(iterabile)  # aggiunge iterabile all'inizio'
-var.insert(index, item)  # inserisce  in posizione index
-var.index(item, start, stop)  # restituisce posizione di item
-var.count(item)
-var.pop()
-var.popleft()
-var.remove(valore)
-var.reverse()  # inverte ordine elementi
-var.rotate(n)  # sposta gli elementi di n step (dx se n > 0, sx se n < 0)
-var.sort()
+var = deque (iterable, maxlen = num) # -> deque object
+var.append (item) # add item to the bottom
+var.appendleft (item) # add item to the beginning
+var.clear () # remove all elements
+var.extend (iterable) # add iterable to the bottom
+var.extendleft (iterable) # add iterable to the beginning '
+var.insert (index, item) # insert index position
+var.index (item, start, stop) # returns position of item
+var.count (item)
+var.pop ()
+var.popleft ()
+var.remove (value)
+var.reverse () # reverse element order
+var.rotate (n) # move the elements of n steps (dx if n> 0, sx if n <0)
+var.sort ()
 ```

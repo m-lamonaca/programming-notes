@@ -3,13 +3,13 @@
 ## Time
 
 ```py
-# epoch: tempo in secondi trascorso (in UNIX parte da 01-010-1970)
-import time  # UNIX time
-variabile = time.time()  # restituisce il tempo (In secondi) trascorso da 01-01-1970
-variabile = time.ctime(epochseconds)  # trasforma l'epoca in data
+# epoch: elapsed time in seconds (in UNIX starts from 01-010-1970)
+import time # UNIX time
+variable = time.time () # returns the time (in seconds) elapsed since 01-01-1970
+variable = time.ctime (epochseconds) # transform epoch into date
 
-var = time.perf_counter()  # ritorna il tempo di esecuzione attuale
-# tempo di esecuzione = tempo inizio - tempo fine
+var = time.perf_counter () # returns the current running time
+# execution time = start time - end time
 ```
 
 ### time.srtfrime() format
@@ -44,21 +44,21 @@ var = time.perf_counter()  # ritorna il tempo di esecuzione attuale
 
 ```py
 import datetime
-today = datetime.date.today()   # restituisce data corrente
-today = datetime.datetime.today()  # restituisce la data e l'ora corrente
+today = datetime.date.today () # returns current date
+today = datetime.datetime.today () # returns the current date and time
 
-# esempio di formattazione
-print('Current Date: {}-{}-{}' .format(today.day, today.month, today.year))
-print('Current Time: {}:{}.{}' .format(today.hour, today.minute, today.second))
+# formatting example
+print ('Current Date: {} - {} - {}' .format (today.day, today.month, today.year))
+print ('Current Time: {}: {}. {}' .format (today.hour, today.minute, today.second))
 
-var_1 = datetime.date(anno, mese, giorno)  # crea oggetto data
-var_2 = datetime.time(ora, minuti, secondi, micro-secondi)  # crea oggetto tempo
-dt = datetime.combine(var_1, var_2)  # combina gli oggetti data e tempo in un unico oggetto
+var_1 = datetime.date (year, month, day) # create date object
+var_2 = datetime.time (hour, minute, second, micro-second) # create time object
+dt = datetime.combine (var_1, var_2) # combine date and time objects into one object
 
-date_1 = datetime.date('year', 'month', 'day')
-date_2 = date_1.replace(year = 'new_year')
+date_1 = datetime.date ('year', 'month', 'day')
+date_2 = date_1.replace (year = 'new_year')
 
 #DATETIME ARITHMETIC
-date_1 - date_2  # -> datetime.timedelta(num_of_days)
-datetime.timedelta  # durata esprimente differenza tra due oggetti date, time o datetime
+date_1 - date_2 # -> datetime.timedelta (num_of_days)
+datetime.timedelta # duration expressing the difference between two date, time or datetime objects
 ```

@@ -1,82 +1,83 @@
+
 # CSV Module Cheat Sheet
 
-```python
-# itera linee di csvfile
-.reader(csvfile, dialect, **fmtparams) --> oggetto reader
+``` python
+# iterate lines of csvfile
+.reader (csvfile, dialect, ** fmtparams) -> reader object
 
-# METODI READER
-.__next__()  # restituisce prossima riga dell'oggetto iterabile come una lista o un dizionario
+# READER METHODS
+.__ next __ () # returns next iterable object line as a list or dictionary
 
-# ATTRIBUTI READER
-dialect  # descrizione read-only del dialec usato
-line_num  # numero di linee dall'inizio dell'iteratore
+# READER ATTRIBUTES
+dialect # read-only description of the dialec used
+line_num # number of lines from the beginning of the iterator
 fieldnames
 
-# converte data in stringhe delimitate
-# csvfile deve supportare .write()
-#tipo None convertito a stringa vuota (semplifica dump di SQL NULL)
-.writer(csvfile, dialect, **fmtparams) --> oggetto writer
+# convert data to delimited strings
+# csvfile must support .write ()
+#type None converted to empty string (simplify SQL NULL dump)
+.writer (csvfile, dialect, ** fmtparams) -> writer object
 
-# METODI WRITER
-# row deve essere iterabile di stringhe o numeri oppure dei dizionari
-.writerow(row)  # scrive row formattata secondo il dialect corrente
-.writerows(rows)  # scrive tutti gli elementi in rows formattati secondo il dialect corrente. rows è iterdabile di row
+# WRITER METHODS
+# row must be iterable of strings or numbers or of dictionaries
+.writerow (row) # write row formatted according to the current dialect
+.writerows (rows) # write all elements in rows formatted according to the current dialect. rows is iterable of row
 
-# METODI CSV
-# associa dialect a name (name deve essere stringa)
-.register_dialect(name, dialect, **fmtparams)
+# CSV METHODS
+# associate dialect to name (name must be string)
+.register_dialect (name, dialect, ** fmtparams)
 
-# elimina il dialect associato a name
-.unregister_dialect()
+# delete the dialect associated with name
+.unregister_dialect ()
 
-# restituisce il dialetto associato a name
-.get_dialect(name)
+# returns the dialect associated with name
+.get_dialect (name)
 
-# elenco dialetti associati a name
-.list_dialect(name)
+# list of dialects associated with name
+.list_dialect (name)
 
-# restituisce (se vuoto) o setta il limite del campo del csv
-.field_size_limit(new_limit)
+# returns (if empty) or sets the limit of the csv field
+.field_size_limit (new_limit)
 
 '''
-csvfile    --oggetto iterabile restituente una string ad ogni chiamata di __next__()
-          se csv è un file deve essere aperto con newline='' (newline universale)
-dialect    --specifica il dialetto del csv (Excel, ...) (OPZIONALE)
+csvfile - iterable object returning a string on each __next __ () call
+          if csv is a file it must be opened with newline = '' (universal newline)
+dialect - specify the dialect of csv (Excel, ...) (OPTIONAL)
 
-fmtparams    --override parametri di formattazione (OPZIONALE)   https://docs.python.org/3/library/csv.html#csv-fmt-params
+fmtparams --override formatting parameters (OPTIONAL) https://docs.python.org/3/library/csv.html#csv-fmt-params
 '''
 
-# oggetto operante come reader ma mappa le info in ogni riga in un OrderedDict le cui chiavi sono opzionali e passate tramite fieldnames
-class csv.Dictreader(f, fieldnames=None, restket=none, restval=None, dialect, *args, **kwargs)
+# object operating as a reader but maps the info in each row into an OrderedDict whose keys are optional and passed through fieldnames
+class csv.Dictreader (f, fieldnames = None, restket = none, restval = None, dialect, * args, ** kwargs)
 '''
-f    --file da leggere
-fieldnames    --sequenza, definisce i nomi dei campi del csv. se omesso usa la prima linea di f
-restval, restkey    --se len(row) > fieldnames dati in eccesso memorizzati in restval e restkey
+f - files to read
+fieldnames --sequence, defines the names of the csv fields. if omitted use the first line of f
+restval, restkey --se len (row)> fieldnames excess data stored in restval and restkey
 
-parametri aggiuntivi passati a istanza reader sottostante
-'''
-
-class csv.DictWriter(f, fieldnames, restval='', extrasaction, dialect, *args, **kwargs)
-'''
-f    --file da leggere
-fieldnames    --sequenza, definisce i nomi dei campi del csv. (NECESSARIO)
-restval    --se len(row) > fieldnames dati in eccesso memorizzati in restval e restkey
-extrasaction    --se il dizionario passato a writerow() contiene key non presente in fieldnames extrasaction decide azione da intraprendere (raise causa valueError, ignore ignora le key aggiuntive)
-
-parametri aggiuntivi passati a istanza writer sottostante
+additional parameters passed to the underlying reader instance
 '''
 
-# METODI DICTREADER
-.writeheader()  # scrive una riga di intestazione di campi come specificato da fieldnames
+class csv.DictWriter (f, fieldnames, restval = '', extrasaction, dialect, * args, ** kwargs)
+'''
+f - files to read
+fieldnames --sequence, defines the names of the csv fields. (NECESSARY)
+restval --se len (row)> fieldnames excess data stored in restval and restkey
+extrasaction - if the dictionary passed to writerow () contains key not present in fieldnames extrasaction decides action to be taken (raise cause valueError, ignore ignores additional keys)
 
-# classe usata per dedurre il formato del CSV
+additional parameters passed to the underlying writer instance
+'''
+
+# DICTREADER METHODS
+.writeheader () # write a header line of fields as specified by fieldnames
+
+# class used to infer the format of the CSV
 class csv.Sniffer
-.sniff(campione, delimiters=None)  #analizza il campione e restituisce una classe Dialect. delimiter è sequenza di possibili delimitatori di caselle
-.has_header(campione) --> bool  # True se prima riga è una serie di intestazioni di colonna
+.sniff (sample, delimiters = None) #parse the sample and return a Dialect class. delimiter is a sequence of possible box delimiters
+.has_header (sample) -> bool # True if first row is a series of column headings
 
-#COSTANTI
-csv.QUOTE_ALL  # indica a writer di citare (" ") tutti i campi
-csv.QUOTE_MINIMAL  # indica a write di citare solo i campi contenenti caratteri speciali come delimiter, quote char ...
-csv.QUOTE_NONNUMERIC  # indica al writer di citare tutti i campi non numerici
-csv.QUOTE_NONE  # indica a write di non citare mai i campi
+#CONSTANTS
+csv.QUOTE_ALL # instructs writer to quote ("") all fields
+csv.QUOTE_MINIMAL # instructs write to quote only fields containing special characters such as delimiter, quote char ...
+csv.QUOTE_NONNUMERIC # instructs the writer to quote all non-numeric fields
+csv.QUOTE_NONE # instructs write to never quote fields
 ```
