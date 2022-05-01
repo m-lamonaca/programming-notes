@@ -2,29 +2,26 @@
 
 ## Basics
 
-```py
-#!/usr/bin/env python
+### Naming Convention
 
-# commento standard
-'''commento multilinea'''
+Class -> PascalCase  
+Method, Function -> snake_case  
+Variable -> snake_case
+
+```py
+# standard comment
+'''multiline comment'''
 """DOCSTRING"""
 
-'''
-NAMING CONVENTION
-Class --> PascalCase
-Method, Function --> snake_case
-Variable --> snake_case
-'''
+help(object.method) # return method explanation
+dir(object) # return an alphabetized list of names comprising (some of) the attributes of the given object
 
-help(oggetto.metodo)  # restituisce spiegazione metodo
-dir(object)  # return an alphabetized list of names comprising (some of) the attributes of the given object
+import sys # import module
+from sys import argv # import single item from a module
+from sys import * # import all elements of a module (no module syntax.method needed)
+import sys as alias # import the module with an alias, I use alias.method
 
-import sys # importa modulo
-from sys import argv # importa singolo elemento da un modulo
-from sys import * # importa tutti gli elementi di un modulo (non necessaria sintassi modulo.metodo)
-import sys as alias # importa il modulo con un alias, utilizzo alias.metodo
-
-# SET CARATTERI
+# CHARACTER SET
 import string
 string.ascii_lowercase = 'abcdefghijklmnopqrstuvwxyz'
 string.asci_uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -35,130 +32,121 @@ string.octdigits = '01234567'
 string.punctuation
 string.whitespace
 
-# CARATTERI SPECIALI
+# SPECIAL CHARACTERS
 # (\a, \b, \f, \n, \r, \t, \u, \U, \v, \x, \\)
 ```
 
-### Operazione Assegnamento
+### Assignment Operation
 
 ```py
-"""istruzioni a dx di = eseguite prima di istruzioni a sx di ="""
-variabile = espressione # il tipo della variabile viene deciso dinamicamente da python in base al contenuto
-var_1, var_2 = valore1, valore2  # assegnamento parallelo
-var_1, var_2 = var_2, var_1  # swap valori
+"""instructions to the right of = executed before instructions to the left of ="""
+variable = expression # the type of the variable is dynamically decided by python based on the content
+var_1, var_2 = value1, value2 # parallel assignment
+var_1, var_2 = var_2, var_1 # swap values
 
 # conditional assignment
 x = a if condition else b
-x = a or b  # If bool(a) returns False, then x is assigned the value of b
+x = a or b # If bool (a) returns False, then x is assigned the value of b
 # a series of OR expressions has the effect of returning the first item that evaluates True, or the last item (last item should be a literal).
 ```
 
-### Conversione Tipo Variabile
+### Variable Type Conversion
 
-`tipo(espressione)`
+`type(expression)`
 
-### Assegnamento Espressioni
+### Expression Assignment
 
 ```py
-(var := expression)  # assegna ad una variabile un espressione per evitare di ripetere l'espressione
+(var: = expression) # assign an expression to a variable to avoid repeating the expression
 ```
 
-### Confronto Variabili (`==` vs `is`)
+### Variable Comparison (`==` vs `is`)
 
-`==` confronta i valori degli oggetti
-`is` compara le identità degli oggetti
+`==` compares the values ​​of objects
+`is` compares the identities of objects
 
-### Output Su Schermo
+### On Screen Output
 
 ```py
-print() # stampa linea vuota e va a capo
-print('stringa'*n) # stampa stringa n volte
-print('stringa1 \n stringa2') # va a capo con \n
-print(variabile) # stampa contenuto variabile
-print('stringa', end='') # stampa senza andare a capo
+print() # print blank line and wrap
+print('string' * n) # print string n times
+print('string1 \ n string2') # wrap with \ n
+print(variable) # print variable content
+print('string', end = '') # print without wrapping
 
-# FORMATTAZIONE
+# FORMATTING
 name = 'Alex'
 marks = 94.5
 print(name, marks)
-print('Name is', name, '\nMarks are', marks)
-# espande il resto dell'espressione e scrive teso prima di = in output
-print(f'{name=}, {marks=}')  # OUTPUT: name=Alex, marks=94.5
+print('Name is', name, '\ nMarks are', marks)
+# expand the rest of the expression and write tense before = in output
+print(f '{name =}, {marks =}') # OUTPUT: name = Alex, marks = 94.5
 
-# USO DEI PLACEHOLDER
-print('Name is %s,  Marks are %3.2f' % (name, marks))  # metodo ereditato da C. La variabile viene sostituita al posto di %..
-print("Name is {}, Marks are {}".format(name, marks))
-print("Name is {1}, Marks are {2}".format(marks, name))  # indici in parentesi ordinano elementi in .format
-print("Name is {n}, Marks are {m}".format(m = '94.5', n = 'Alex'))  # indici in parentesi ordinano elementi in .format
-print(f'Name is {name}, Marks are {marks}')   # formattazione con f-strings
+# USE OF PLACEHOLDERS
+print('Name is% s, Marks are% 3.2f'%(name, marks)) # method inherited from C. Variable is substituted for% ..
+print("Name is {}, Marks are {}". format(name, marks))
+print("Name is {1}, Marks are {2}". format(marks, name)) # indices in brackets sort elements in .format
+print("Name is {n}, Marks are {m}". format(m = '94 .5 ', n =' Alex ')) # indices in brackets sort elements in .format
+print(f'Name is {name}, Marks are {marks} ') # formatting with f-strings
 ```
 
 ### Format Specification Mini-Language
 
 `{value:width.precision symbol}`
-`width.precision` => numeroCifreTotali.numeroCifreDecimali
 
 Format: `[[fill]align] [sign] [#] [width] [grouping] [.precision] [type]`
 
-OVERRIDE __format__()
-{!a} | chiama ascii() sulla variabile
-{!r} | chiama repr() sulla variabile
-{!s} | chiama str() sulla variabile
-
-RIEMPIMENTO [fill]
-{<qualsiasi_carattere>}
-
-| `[align]` | Allineamento           |
+| `[align]` | Alignment              |
 | --------- | ---------------------- |
-| `:<`      | allineamento sinistra  |
-| `:>`      | allineamento destra    |
-| `:=`      | padding dopo il segno  |
-| `:^`      | centrato               |
+| `:<`      | left alignment         |
+| `:>`      | right alignment        |
+| `:=`      | padding after the mark |
+| `:^`      | centered               |
 
-| `[sign]` | SEGNI NUMERI                                                                                                   |
-| -------- | -------------------------------------------------------------------------------------------------------------- |
-| `:+`     | segno sia per numeri positivi che negativi                                                                     |
-| `:-`     | segno solo per numeri negativi                                                                                 |
-| `:`      | spazio per num > 0, '-' per num < 0                                                                            |
-| `:#`     | forma alternativa: interi prefisso tipo (0x, 0b, 0o), float e complessi hanno sempre almeno una cifra decimale |
+| `[sign]` | NUMBER SIGNS                                                                                                    |
+| -------- | --------------------------------------------------------------------------------------------------------------- |
+| `:+`     | sign for both positive and negative numbers                                                                     |
+| `:-`     | sign only for negative numbers                                                                                  |
+| `:`      | space for num > 0, '-' for num < 0                                                                              |
+| `:#`     | alternative form:prefix integers type (0x, 0b, 0o), floats and complexes always have at least one decimal place |
 
-| `[grouping]` | RAGGRUPPAMENTO                       |
+| `[grouping]` | GROUPING                             |
 | ------------ | ------------------------------------ |
-| `:,`         | usa virgola per separare migliaia    |
-| `:_`         | usa underscore per separare migliaia |
+| `:,`         | use comma to separate thousands      |
+| `:_`         | use underscore to separate thousands |
 
-| `[type]` | TIPO OUTPUT                                                                    |
-| -------- | ------------------------------------------------------------------------------ |
-| `:s`     | output è stringa                                                               |
-| `:b`     | output è binario                                                               |
-| `:c`     | output è carattere                                                             |
-| `:d`     | output è intero decimale (base 10)                                             |
-| `:o`     | output è intero ottale (base 8)                                                |
-| `:x`     | output è intero esadecimale (base 16)                                          |
-| `:X`     | output è intero esadecimale (base 16) con lettere maiuscole                    |
-| `:e`     | output è notazione esponenziale (precisione base 6 cifre)                      |
-| `:E`     | output è notazione esponenziale (precisione base 6 cifre) separatore maiuscolo |
-| `:f`     | output è float (precisione base 6 cifre)                                       |
-| `:%`     | output è percentuale (moltiplica * 100, display come :f)                       |
+| `[type]` | OUTPUT TYPE                                                                 |
+| -------- | --------------------------------------------------------------------------- |
+| `:s`     | output is string                                                            |
+| `:b`     | output is binary                                                            |
+| `:c`     | output is character                                                         |
+| `:d`     | output is a decimal integer (base 10)                                       |
+| `:or`    | output is octal integer (base 8)                                            |
+| `:x`     | output is hexadecimal integer (base 16)                                     |
+| `:X`     | output is hexadecimal integer (base 16) with uppercase                      |
+| `:e`     | output is exponential notation (6-digit base precision)                     |
+| `:E`     | output is exponential notation (6-digit base precision) uppercase separator |
+| `:f`     | output is float (6-digit base precision)                                    |
+| `:%`     | output is percentage (multiplies * 100, displays as:f)                      |
 
-### Input Da Tastiera
+### Keyboard Input
 
 ```py
-# input ritorna sempre una STRINGA
-s = input() # richiesta input senza messaggio
-s = input('Prompt') # richiesta input
-i = int(input('prompt')) # richiesta input con conversione di tipo
+# input always returns a STRING
+s = input() # input request without message
+s = input('Prompt') # request input
+i = int(input('prompt')) # request input with type conversion
 
-# INPUT MULTIPLI
-lista = [int(x) for x in input('prompt').split('separatore')]
-# salva input multipli in una lista (.split separa i valori e definisce il separatore
+# MULTIPLE INPUTS
+list = [int(x) for x in input('prompt'). split('separator')]
+# save multiple inputs in a list(.split separates values ​​and defines separator
 ```
 
-## Tipi Numerici
+## Numeric Types
 
 ```py
 a = 77
-b = 1_000_000  # underscore può essere usato per separare gruppi di cifre
+b = 1_000_000 # underscore can be used to separate groups of digits
 c = -69
 
 # float numbers
@@ -166,204 +154,204 @@ x = 3.15
 y = 2.71
 z = 25.0
 
-d = 6 + 9j  # complex number
-# restituisce un numero complesso a partire da due reali
-complex(real, imag)  # -> complex  # (real + imag * 1j)
+d = 6 + 9j # complex number
+# returns a complex number starting with two reals
+complex(real, imag) # -> complex #(real + imag * 1j)
 
-e = 0B1101  # BINARY TYPE (0B...)
-f = 0xFF  # EXADECIMAL TYPE(0X...)
-o = 0o77  # OCTAL TYPE
-g = True  # BOOLEAN TYPE
+e = 0B1101 # BINARY TYPE(0B ...)
+f = 0xFF # EXADECIMAL TYPE(0X ...)
+o = 0o77 # OCTAL TYPE
+g = True # BOOLEAN TYPE
 
-# CONVERSIONE TIPO VARIABILE
+# VARIABLE TYPE CONVERSION
 h = int(y)
-i = float('22.5')
+i = float('22 .5 ')
 
-# CONVERSIONE BASE NUMERICA
+# NUMERIC BASIC CONVERSION
 bin(3616544)
 hex(589)
 oct(265846)
 
-# CONVERSIONE UNICODE
-ord(c)  # Given a string representing one Unicode character, return an integer representing the Unicode code point of that character
-chr(i)  # Return the string representing a character whose Unicode code point is the integer i
+# UNICODE CONVERSION
+ord(c) # Given a string representing one Unicode character, return an integer representing the Unicode code point of that character
+chr(i) # Return the string representing a character whose Unicode code point is the integer i
 
 
-pow(x, y)  # x^y
-abs(num)  # ritorna valore assoluto di num (|num|)
-round(num, precisione)  # arrotonda il numero alla data precisione, non converte float to int
+pow(x, y) # x ^ y
+abs(num) # returns absolute value of num(| num |)
+round(num, precision) # rounds number to given precision, does not convert float to int
 ```
 
-### Confronto Numeri Decimali
+### Comparison of Decimal Numbers
 
-Non usare `==` o `!=` per confrontare numeri in virgola mobile. Essi sono approssimazioni o hanno parecchie cifre.  
-Conviene verificare se la differenza tra i numeri è sufficientemente piccola.
+Do not use `==` or `! =` To compare floating point numbers. They are approximations or have several digits.
+It is worth checking if the difference between the numbers is small enough.
 
-## Stringhe
+## Strings
 
 ```py
 
-stringa = 'contenuto stringa' # assegnazione e creazione variabile stringa
-stringa = '''multi
+string = 'string content' # assignment and creation of string variable
+string = '''multi
 line
 string'''
 
-stringa3 = stringa1 + stringa2 # concatenazione stringhe (polimorfismo operatore +)
+string3 = string1 + string2 # string concatenation(operator polymorphism +)
 
-# INDEXING (selezione di un carattere nella stringa)
-stringa[0]
-stringa[2]
-stringa[-3]  # selezione partendo dal fondo (indice negativo)
+# INDEXING(selection of a character in the string)
+string[0]
+string[2]
+string[-3] # selection starting from the bottom(negative index)
 
-# REPETITION (ripetizione output stringa)
-print(stringa  * n)
+# REPETITION (repeat string output)
+print(string * n)
 
-len(stringa) # mostra la lunghezza di una stringa
+len(string) # show the length of a string
 
-# SLICING (estrazione di sotto-stringhe, non include la posizione dell'ultimo indice)
-stringa[0:5]
-stringa[:6]
-stringa[-3:-1]
+# SLICING (extraction of sub-strings, does not include the position of the last index)
+string[0: 5]
+string[: 6]
+string[-3: -1]
 
-# SLICING CON STEP
-stringa[0:12:3]
-stringa[15::-1]
-stringa[::-1] # selezione in ordine inverso (step negativo)
+# SLICING WITH STEP
+string[0: 12: 3]
+string[15 :: - 1]
+string[:: - 1] # selection in reverse order (negative step)
 
-# STRIPPING (eliminazione spazzi prima e dopo stringa)
-stringa='   stripping test   '
-stringa.strip()
-stringa.lstrip() # solo spazi a sinistra rimossi
-stringa.rstrip() # solo spazi a destra rimossi
-stringa.removeprefix(prefix)  # If the string starts with the prefix string, return string[len(prefix):]
-stringa.removesuffix(suffix)  # If the string ends with the suffix string and that suffix is not empty, return string[:-len(suffix)]
+# STRIPPING (elimination of spaces before and after string)
+string = 'stripping test'
+string.strip()
+string.lstrip() # only left spaces removed
+string.rstrip() # only right spaces removed
+string.removeprefix(prefix) # If the string starts with the prefix string, return string [len (prefix):]
+string.removesuffix(suffix) # If the string ends with the suffix string and that suffix is ​​not empty, return string [: - len (suffix)]
 
-# INDIVIDUAZIONE SOTTOSTRINGA
-#ritorna indice di partenza della sottostringa o -1 se essa non è  presente
-stringa.find('sottostringa', 0, len(stringa)) # si può specificare l'indice di partenza e fine della ricerca
+# SUBSTRING IDENTIFICATION
+#returns starting index of the substring or -1 if it is not present
+string.find('substring', 0, len (string)) # you can specify the start and end index of the search
 
-# CONTEGGIO APPARIZIONI
-stringa.count('t')
+# COUNT OF APPARITIONS
+string.count('t')
 
-# RIMPIAZZO
-stringa.replace('multi', 'multiple')
+# REPLACEMENT
+string.replace('multi', 'multiple')
 
-# CONVERSIONE MAIUSCOLO-MINUSCOLO
-stringa.upper()
-stringa.lower()
-stringa.title()
-stringa.capitalize()
+# UPPER CASE CONVERSION
+string.upper()
+string.lower()
+string.title()
+string.capitalize()
 
-# SEPARAZIONE IN ELEMENTI LISTA
-stringa.split()
-stringa.split('separatore')  # separa usando il separatore (separatore omesso nella lista)
-stringa.partition('char')  # -> tuple   # separa la stringa i 3 parti alla prima occorrenza di separatore
+# SEPARATION IN LIST ELEMENTS
+string.split()
+string.split('separator') # separate using separator (separator omitted in list)
+string.partition('char') # -> tuple # separates the string from the 3 parts at the first occurrence of separator
 
-# METODI IS_CHECK --> bool
-stringa.isalnum()
-stringa.isalpha()
-stringa.islower()
-stringa.isspace()
-stringa.istitle()
-stringa.isupper()
-stringa.endswith('char')
+# IS_CHECK METHODS -> bool
+string.isalnum()
+string.isalpha()
+string.islower()
+string.isspace()
+string.istitle()
+string.isupper()
+string.endswith('char')
 
-# ISTRUZIONE JOIN()
-''.join(iterabile)  # unisce tutti gli elementi dell'iterabile nella nuova stringa
+# JOIN INSTRUCTION()
+''.join(iterable) # merges all elements of the iterable into the new string
 
 # FORMATTING
-string.center(larghezza, 'char')  # allarga la stringa con char fino a raggiungere larghezza
-'...\t...'.expandtabs()  # trasforma tabs in spaces
+string.center(width, 'char') # stretch the string with char to width
+'...\t...'.expandtabs() # transform tabs into spaces
 ```
 
-## Liste
+## Lists
 
 ```py
-lista = [9, 11, 'WTC', -5.6, True] # le liste possono contenere dati di tipo diverso
+list = [9, 11, 'WTC', -5.6, True] # lists can contain data of different types
 
-lista[3] # indexing
-lista[3:5] # slicing
-lista * 3 # repetition
-len(lista) # length
-lista3 = lista1 + lista2 # concatenazione liste (polimorfismo operatore +)
-lista[indice] = valore  # modifica elemento lista
-del(lista[1]) # rimozione per indice (INBUILT IN PYTHON)
-# modifica la lista tra gli indici start e stop riassegnando gli elementi dell'iterabile
-lista[start:stop] = iterabile
+list[3] # indexing
+list[3: 5] # slicing
+list * 3 # repetition
+len(list) # length
+list3 = list1 + list2 # list concatenation (operator + polymorphism)
+list[index] = value # modify list element
+del (list [1]) # remove by index (INBUILT IN PYTHON)
+# modify the list between the start and stop indices by reassigning the elements of the iterable
+list[start: stop] = iterable
 
-# METODI LISTE
-lista.append(oggetto)  # aggiunge oggetto al fondo
-lista.count(item)  # conta il numero di occorrenze di item
-lista.extend(sequenza)  # aggiunge gli elementi di sequenza alla lista
-lista.insert(posizione, oggetto)  # inserisce oggetto in lista[posizione]
-lista.index(item)  # restituisce l'indice di item
-lista.remove(item)  # rimuove item
-lista.pop(item)  # elimina item e lo restituisce
-lista.clear()  # rimozione di tutti gli elementi
+# LIST METHODS
+list.append(object) # add object to background
+list.count(item) # counts the number of occurrences of item
+list.extend(sequence) # add sequence elements to the list
+list.insert(position, object) # insert object in list [position]
+list.index(item) # returns the index of item
+list.remove(item) # remove item
+poplist(item) # delete item and return it
+list.clear() # remove all elements
 
-lista.sort()  # sorts in ascending order (in place)
-lista.sort(reverse = True) # sorts in descending order  (in place)
-lista.reverse()  # inverte la stringa (in place)
+list.sort() # sorts in ascending order (in place)
+list.sort(reverse = True) # sorts in descending order (in place)
+list.reverse() # invert the string (in place)
 
 # CLONING
 list1 = [...]
-list2 = list1  # list2 points to the same object of list 1 (changes are shared)
-list3 = list1[:]  # list3 is a clone of list1 (no shared changes)
+list2 = list1 # list2 points to the same object of list 1 (changes are shared)
+list3 = list1 [:] # list3 is a clone of list1 (no shared changes)
 
-# LISTE ANNIDATE (MATRICI)
-lista_1 = [1, 2, 3]
-lista_2 = [4, 5, 6]
-lista_3 = [7, 8, 9]
+# NESTED LISTS (MATRICES)
+list_1 = [1, 2, 3]
+list_2 = [4, 5, 6]
+list_3 = [7, 8, 9]
 
-matrice = [lista_1, lista_2, lista_3]
-matrice[i][j]  # identifica elemento di lista_i indice j
+matrix = [list_1, list_2, list_3]
+matrix [i][j] # identify element of list_i index j
 
-# MASSIMO E MINIMO
-max(lista)
-min(lista)
+# MAXIMUM AND MINIMUM
+max(list)
+min(list)
 
-# ALL() & ANY()
-all(sequenza)   # ritorna TRUE se tutti gli elementi della sequenza hanno valore True
-any(sequenza)   # ritorna TRUE se almeno un elemento della sequenza ha valore True
+# ALL () & ANY ()
+all(sequence) # returns TRUE if all elements of the sequence are true
+any(sequence) # returns TRUE if at least one element of the sequence has the value True
 
-# ISTRUZIONE MAP
-# applica la funzione all'iterabile e crea una nuova lista (oggetto map)  
-# funzione può essere lambda
-map(funzione, iterabile)  # -> oggetto map
+# MAP INSTRUCTION
+# apply function to iterable and create new list (map object)
+# function can be lambda
+map(function, iterable) # -> map object
 
-# ISTRUZIONE FILTER()
-# crea una nuova lista composta dagli elementi di iterabile per cui la funzione ritorna TRUE
-filter(funzione, iterabile)  # -> oggetto filter
+# FILTER INSTRUCTION ()
+# create a new list composed of the iterable elements for which the function returns TRUE
+filter(function, iterable) # -> filter object
 
-# ISTRUZIONE ZIP()
-# crea una generatore di tuple unendo due o più iterabili
-# [(seq_1[0], seq_2[0], ...), (seq_1[1], seq_2[1], ...), ...]
-# tronca la sequenza alla lunghezza della sequenza input più corta
-zip(seq_1, seq_2, ...)  # -> oggetto zip (generatore di tuple)
+# ZIP INSTRUCTION ()
+# create a tuple generator by joining two or more iterables
+# [(seq_1 [0], seq_2 [0], ...), (seq_1 [1], seq_2 [1], ...), ...]
+# truncate the sequence to the length of the shortest input sequence
+zip(seq_1, seq_2, ...) # -> zip object (tuple generator)
 
 # LIST COMPREHENSIONS
-var = [espressione for elemento in sequenza if condizione] # crea lista da lista pre-esistente (al posto di map, filter, reduce) applicando eventuali manipolazioni
-# l'espressione può essere una lambda, l'if è opzionale
-var = [espresione if condizione else istruzione for elemento in sequenza]  # list comprehension con  IF-ELSE
-var = [espressione_1 for elemento in [espressione_2 for elemento in sequenza]]  # list comprehension annidata
-var = [(exp_1, exp_2) for item_1 in seq_1 for item_2 in seq_2]  # --> [(..., ...), (..., ...), ...]
+var = [expression for element in sequence if condition] # create list from pre-existing list (instead of map, filter, reduce) applying any manipulations
+# expression can be lambda, if is optional
+var = [expression if condition else statement for element in sequence] # list comprehension with IF-ELSE
+var = [expression_1 for element in [expression_2 for element in sequence]] # nested list comprehension
+var = [(exp_1, exp_2) for item_1 in seq_1 for item_2 in seq_2] # -> [(..., ...), (..., ...), ...]
 ```
 
 ## Tuple
 
 ```py
-# LE TUPLE NON POSSONO ESSERE MODIFICATE
-tuple = (69, 420, 69, 'abc') # assegnazione tuple
-tuple = (44, ) # tuple di singolo elemento necessitano di una virgola
+# TUPLES CANNOT BE MODIFIED
+tuple = (69, 420, 69, 'abc') # tuple assignment
+tuple = (44,) # single element tuples need a comma
 
 tuple[3] # indexing
 tuple * 3 # repetition
 tuple.count(69) # counting
-tuple.index(420) # individuazione indice
-len(tuple) # lunghezza tuple
+tuple.index(420) # find index
+len(tuple) # length tuple
 
-# CONVERSIONE DA TUPLE A LISTA
-tuple = tuple(lista)
+# CONVERSION FROM TUPLE TO LIST
+tuple = tuple(list)
 
 # TUPLE UNPACKING
 tup = (item_1, item_2, etc)
@@ -374,94 +362,90 @@ tup = (item_1, (item_2, item_3))
 var_1, (var_2, var_3) = tup
 # var_1 = item_1, var_2 = item_2, var_3 = item_3
 
-#OPERATORE *VAR (tuple unpacking)
-var_1, var_2, *rest = sequenza  #  var_1 = seq[0], var_2 = seq[1], rest = seq[2:]
-var_1, *body, var_2, var_3 = sequenza  # var_1 = seq[0], body = seq[1:-2], var_2 = sequenza[-2], var_3 = seq[-1]
-# *var recupera gli item in eccesso, se in assegnamento parallelo usabile max una volta ma in posizione qualsiasi
+#OPERATOR * VAR (tuple unpacking)
+var_1, var_2, * rest = sequence # var_1 = seq [0], var_2 = seq [1], rest = seq [2:]
+var_1, * body, var_2, var_3 = sequence # var_1 = seq [0], body = seq [1: -2], var_2 = sequence [-2], var_3 = seq [-1]
+# * var retrieves the excess items, if in parallel assignment usable max once but in any position
 ```
 
 ## Set
 
 ```py
-# I SET NON POSSONO CONTENERE ELEMENTI RIPETUTI (VENGONO OMESSI)
-# L'ORDINE NON IMPORTA (NO SLICING, INDEXING, REPETITION, ...)
+# SETS MAY NOT CONTAIN REPEATED ELEMENTS (THEY ARE OMITTED)
+# THE ORDER DOES NOT MATTER (NO SLICING, INDEXING, REPETITION, ...)
 set = {10, 20, 30, 'abc', 20}
-len(set)  # lunghezza set
-set()  # crea set vuoto ({} cre dizionario vuoto)
-# FREEZING SETS (non più modificabili)
+len(set) # length set
+set() # create empty set ({} create empty dictionary)
+# FREEZING SETS (no longer editable)
 fset = frozenset(set)
 
-# OPERATORI
-set_1 - set_2  # elementi in set_1 ma non in set_2
-set_1 | set_2  # elementi in set_1 o set_2
-set_1 & set_2  # elementi in set_1 e set_2
-set_1 ^ set_1  # elementi in  o set_1 o set_2
-set_1 <= set_2  # elementi set_1 anche in set_2
-set_1 < set_2  # set_1 <= set_2 and set_1 != set_2
-set_1 >= set_2  # elementi set_2 anche in set_1
-set_1 > set_2  # set_1 >= set_2 and set_1 != set_2
+# OPERATORS
+set_1 - set_2 # elements in set_1 but not in set_2
+set_1 | set_2 # elements in set_1 or set_2
+set_1 & set_2 # elements in set_1 and set_2
+set_1 ^ set_1 # elements in either set_1 or set_2
+set_1 <= set_2 # elements set_1 also in set_2
+set_1 < set_2 # set_1 <= set_2 and set_1! = set_2
+set_1 >= set_2 # elements set_2 also in set_1
+set_1 > set_2 # set_1> = set_2 and set_1! = set_2
 
-# METODI SET
-set.pop(item)  # rimuove e restituisce item
-set.add(item)  # aggiunge item al set
+# METHODS SET
+set.pop(item) # remove and return item
+set.add(item) # add item to set
 
-set.copy()  # -> set  # restituisce una copia del set
-set.clear()  # rimuove tutti gli elementi dal set
-set.remove(item)  # rimuove item dal set se presente, altrimenti solleva KeyError
-set.discard(item)  #rimuove item dal set se presente, altrimenti fa nulla
-set.difference(*sets)  # -> set  # restituisce elementi in set che sono assenti in *sets
-set.difference_update(*sets)  # rimuove le differenze dal set_2
-set.union(*sets)  # -> set  # restituisce tutti gli elementi dei set
-set.update(*sets)   # aggiunge elementi *sets a set
-set.intersection(*sets)  # -> set  # restituisce gli elementi comuni ai set
-set.intersection_update(*sets)  # rimuove tutti gli elementi tranne quelli comuni ai set
-set.symmetric_difference(*sets)  # -> set  # restituisce gli elementi non comuni ai set
-set.symmetric_difference_update(*sets)  # rimuove tutti gli elementi comuni ai set (lasci solo gli elementi non comuni)
+set.copy() # -> set # returns a copy of the set
+set.clear() # remove all elements from the set
+set.remove(item) # remove item from set if present, otherwise raise KeyError
+set.discard(item) # remove item from set if present, otherwise do nothing
+set.difference(* sets) # -> set # returns elements in set that are absent in * sets
+set.difference_update(* sets) # remove differences from set_2
+set.union(* sets) # -> set # returns all elements of sets
+set.update(* sets) # add * sets elements to set
+set.intersection(* sets) # -> set # returns the elements common to sets
+set.intersection_update(* sets) # remove all elements except those common to sets
+set.symmetric_difference(* sets) # -> set # returns elements not common to sets
+set.symmetric_difference_update(* sets) # remove all elements common to sets (leave only uncommon elements)
 
-set_1.isdisjoint(set_2)  # -> bool  # True se non ci sono elementi comuni (intersezione è vuota)
-set_1.issubset(set_2)  # -> bool  # True se ogni elemento di set_1 è anche in set_2
-set_1.issuperset(set_2)  # -> bool  # True se ogni elemento di set_2 è anche in set_1
+set_1.isdisjoint(set_2) # -> bool # True if there are no common elements (intersection is empty)
+set_1.issubset(set_2) # -> bool # True if every element of set_1 is also in set_2
+set_1.issuperset(set_2) # -> bool # True if every element of set_2 is also in set_1
 
 # SET COMPREHENSIONS
-var = {espressione for elemento in sequenza if condizione}
+var = {expression for element in sequence if condition}
 
-# OGGETTO SLICE
-# [start:stop:step] --> oggetto slice(start, stop, step)
-var_1 = slice(start, stop, step)  # assegnamento a variabile
-var_2[var_1]  # uguale a var_2[start:stop:step]
+# SLICE OBJECT
+# [start: stop: step] -> slice object (start, stop, step)
+var_1 = slice(start, stop, step) # assignment to variable
+var_2[var_1] # same as var_2 [start: stop: step]
 
-# OGGETTO ELLIPSIS
-var[i, ...]  # --> shortcut per var[i , :, : ,:,]
-# usato per slice multidimensionale (NumPy, ...)
+# ELLIPSIS OBJECT
+var[i, ...] # -> shortcut for var [i,:,:,:,]
+# used for multidimensional slices (NumPy, ...)
+
 ```
 
 ## Bytes e Bytearray
 
 ```py
-# I  BYTE NON SI POSSONO MODIFICARE NE INDICIZZARE
-# I BYTEARRAY SI POSSONO MODIFICARE E INDICIZZARE
-# NON SI PUO' FARE REPETITION E SLICING SU BYTE O BYTEARRAY
+# THE BYTES CANNOT BE MODIFIED OR INDEXED
+# THE BYTEARRAYS CAN BE MODIFIED AND INDEXED
+# YOU CANNOT DO REPETITION AND SLICING ON BYTE OR BYTEARRAY
 
-b = bytes(lista)
-ba = bytearray(lista)
+b = bytes(list)
+ba = bytearray(list)
 
-# item di bytes e bytearray è sempre intero tra 0 e 255
-# slice di bytes e bytearray è sequenza binaria (anche se len = 1)
+# item of bytes and bytearray is always integer between 0 and 255
+# slice of bytes and bytearray is binary sequence (even if len = 1)
 
-# METODI BYTES E BYTEARRAY
-bytes.fromhex(pair_hex_digits)  # -> byte literal
-b'bite_literal'.hex()  # -> str  # restituisce una stringa contenente coppie di cifre hex
-bytearray.fromhex(pair_hex_digits)  # -> byte literal
-bytes.count(subseq, start, end)  # restituisce conteggio apparizioni subseq tra posizioni start e end
-bytearray.count(subseq, start, end)  # restituisce conteggio apparizioni subseq tra posizioni start e end
+# BYTES AND BYTEARRAY METHODS
+bytes.fromhex(pair_hex_digits) # -> byte literal
+b'bite_literal'.hex() # -> str # returns a string containing hex digit pairs
+bytearray.fromhex(pair_hex_digits) # -> byte literal
+bytes.count(subseq, start, end) # returns subseq appearance count between start and end positions
+bytearray.count(subseq, start, end) # returns subseq appearance count between start and end positions
 ```
 
 ## Encoding-Decoding & Unicode
-
-BYTE LITERALS
-ASCII --> stesso carattere
-tab, newline, carriage return, escape sequence --> \t, \n, \r, \\
-altro --> escape sequence esadecimale (null byte --> \x00)
 
 Unicode Literals:
 
@@ -471,39 +455,39 @@ Unicode Literals:
 
 ```py
 # ENCODING
-# trasforma stringa in byte literal
-# errors= |> UnicodeEncodeError in caso di errore
-# errors=ignore --> salta caratteri causanti errore
-# errors=replace --> sostituisce ? a caratteri causanti errore
-# errors=xmlcharrefreplace --> sostituisce entità XML a caratteri causanti errore
-stringa.encode('utf-8', errors='replace')  # -> b'byte literals'
+# transform string into literal byte
+# UnicodeEncodeError on error
+# errors = ignore -> skip error-causing characters
+# errors = replace -> replace? to characters causing error
+# errors = xmlcharrefreplace -> substitutes XML entities for error-causing characters
+string.encode('utf-8', errors = 'replace') # -> b'byte literals'
 
 # BOM (BYTE ORDER MARK)
-# byte literal premesso per indicare l'ordinamento dei byte (little-endian vs big-endian)
-# in little-endian i byte meno significativi vengono prima (e.g. U+0045 --> DEC 069 --> encoded as 69 and 0)
-# U+FEFF (ZERO WIDTH NO-BREAK SPACE) --> b'\xff\xfe' indica little-endian
+# byte literal given to indicate byte ordering (little-endian vs big-endian)
+# in little-endian the least significant bytes come first (e.g. U + 0045 -> DEC 069 -> encoded as 69 and 0)
+# U + FEFF (ZERO WIDTH NO-BREAK SPACE) -> b '\ xff \ xfe' indicates little-endian
 
 # DECODING
-# trasforma byte literal in stringa
-# error='replace' sostituisce gli errori (byte literal non appartenenti a formato di decodifica) con U+FFFD "REPLACEMENT CHARACTER"
-bytes.decode('utf-8', errors='replace')  # -> str
+# transform byte literal to string
+# error = 'replace' replaces errors (byte literals not belonging to decoding format) with U + FFFD "REPLACEMENT CHARACTER"
+bytes.decode ('utf-8', errors = 'replace') # -> str
 
-# NORMALIZZAZIONE UNICODE
-# gestione equivalenti canonici unicode (e.g. é, e\u0301 sono equivalenti per unicode)
-import unicodedata
-unicodedata.normalize(form, unicode_string)  # FORM: NFC,NFD, NFCK, NFDK
-# NFC --> "Normalization Form C" --> produce la stringa equivalente più corta
-# NFD --> "Normalization Form D" --> produce la stringa equivalente più lunga
+# UNICODE NORMALIZATION
+# handling canonical unicode equivalents (e.g. é, and \ u0301 are equivalent for unicode)
+unicodedata.normalize(form, unicode_string) # FORM: NFC, NFD, NFCK, NFDK
+# NFC -> "Normalization Form C" -> produces the shortest equivalent string
+# NFD -> "Normalization Form D" -> produces the longest equivalent string
 
 # CASE FOLDING UNICODE
-# trasforma in minuscolo con alcune differenze (116 differenze, 0.11% di Unicode 6.3)
-stringa.casefold()
+# transform to lowercase with some differences (116 differences, 0.11% of Unicode 6.3)
+string.casefold()
 
-# FUNZIONI UTILI PER EQUIVALENZA NORMALIZZATA (Source: Fluent Python p. 121, Luciano Ramalho)
+# USEFUL FUNCTIONS FOR NORMALIZED EQUIVALENCE (Source: Fluent Python p. 121, Luciano Ramalho)
 from unicodedata import normalize
+
 def nfc_eual(str_1, str_2):
     return (normalize('NFC', str1) == normalize('NFC', str2))
-def fold_equal(str_1, str_2):
+def fold_equal (str_1, str_2):
     return (normalize('NFC', str_1).casefold() ==
             normalize('NFC', st_2).casefold())
 ```
@@ -511,23 +495,23 @@ def fold_equal(str_1, str_2):
 ## Memoryview
 
 ```py
-# oggetti memoryview consentono a python l'accesso ai dati all'interno dell'oggetto
-#  senza copia se esso supporta il buffer protocol
-v = memoryview(oggetto)  # crea un memoryview con riferimento ad oggetto
-# slice di memoryview produce nuovo memoryview
+# memoryview objects allow python to access the data inside the object
+# without copy if it supports the buffer protocol
+v = memoryview(object) # create a memoryview with reference to object
+# slice of memoryview produces new memoryview
 
-# METODI MEMORYVIEW
-v.tobytes()  # restituisce i dati come bytestring, equivale a bytes(v)
-v.hex()  # restituisce stringa contenete du cifre hex per ogni byte nel buffer
-v.tolist()  # restituisce i dati nel buffer come un lista di elementi
+# MEMORYVIEW METHODS
+v.tobytes() # return data as bytestring, equivalent to bytes (v)
+v.hex() # returns string containing two hex digits for each byte in the buffer
+v.tolist() # returns the data in the buffer as a list of elements
 v.toreadonly()
-v.release()  # rilascia il buffer sottostante
-v.cast(format, shape)  # cambia il formato o la forma del memoryview
-v.oggetto  # oggetto del memoryview
-v.format  # formato del memoryview
-v.itemsize  # dimensione in byte di ogni elemento del memoryview
-v.ndim  # intero indicante le dimensioni dell'array multidimensionale rappresentato
-v.shape  # tuple di interi indicanti la forma del memoryview
+v.release() # release the buffer below
+v.cast(format, shape) # change the format or shape of the memoryview
+see object # object of the memoryview
+v.format # format of the memoryview
+v.itemsize # size in bytes of each element of the memoryview
+v.ndim # integer indicating the size of the multidimensional array represented
+v.shape # tuple of integers indicating the shape of the memoryview
 ```
 
 | Format String | C Type               | Python Type | Standard Size |
@@ -552,48 +536,48 @@ v.shape  # tuple di interi indicanti la forma del memoryview
 | `s`           | `char[]`             | `bytes`     |
 | `P`           | `char[]`             | `bytes`     |
 
-## Dizionari
+## Dictionaries
 
 ```py
 # SET OF KEY-VALUE PAIRS
-d = {1:'Alex', 2:'Bob', 3:'Carl'}
-d = dict(one = 'Alex', two = 'Bob', three = 'Carl')
-d = dict(zip([1,2,3],['Alex', 'Bob', 'Carl']))
-d = dict([(1,'Alex'), (2,'Bob'), (3,'Carl')])
+d = {1: 'Alex', 2: 'Bob', 3: 'Carl'}
+d = dict (one = 'Alex', two = 'Bob', three = 'Carl')
+d = dict (zip ([1,2,3], ['Alex', 'Bob', 'Carl']))
+d = dict ([(1, 'Alex'), (2, 'Bob'), (3, 'Carl')])
 
-d[key]  # restituisce valore associato a key
-d[4] = 'Dan'  # aggiunge o modifica elemento
-list(d)  # restituisce una lista di tutti gli elementi
-len(d)  # restituisce il numero di elementi
-del(d[2])  # elimina elemento
+d[key] # returns value associated with key
+d[4] = 'Dan' # add or change element
+list(d) # returns a list of all elements
+len(d) # returns the number of elements
+del(d[2]) # delete element
 
-# METODI DIZIONARI
-d.clear()  # rimuove tutti gli elementi
-d.copy()  # copia superficiale del dizionario
-d.get(key)  # restituisce il valore associato a key
-d.items()  # restituisce coppie key-value (oggetto view)
-d.keys()  # restituisce le chiavi del dizionario (oggetto view)
-d.values()   # restituisce i valori del dizionario (oggetto view)
-d.pop(key)  # rimuove e restituisce il valore associato a key
-d.popitem()  # rimuove e restituisce l'ultima coppia key-value
-d.setdefault(key, default)  # se la key è presente nel dizionario la restituisce, altrimenti la inserisce con valore default e restituisce default
+# DICTIONARY METHODS
+d.clear() # remove all elements
+d.copy() # shallow copy of the dictionary
+d.get(key) # returns the value associated with key
+d.items() # return key-value pairs (view object)
+d.keys() # return dictionary keys (view object)
+d.values​​() # returns dictionary values ​​(view object)
+d.pop(key) # remove and return the value associated with key
+d.popitem() # remove and return the last key-value pair
+d.setdefault(key, default) # if the key is present in the dictionary it returns it, otherwise it inserts it with the default value and returns default
 
-d.update(iterabile)  # aggiunge o modifica elementi dizionario, argomento deve essere coppia key-value
+d.update(iterable) # add or modify dictionary elements, argument must be key-value pair
 
 # DICT UNION
 d = {'spam': 1, 'eggs': 2, 'cheese': 3}
 e = {'cheese': 'cheddar', 'aardvark': 'Ethel'}
 
-d | e  # {'spam': 1, 'eggs': 2, 'cheese': 'cheddar', 'aardvark': 'Ethel'}
-e | d  # {'aardvark': 'Ethel', 'spam': 1, 'eggs': 2, 'cheese': 3}
+d | e # {'spam': 1, 'eggs': 2, 'cheese': 'cheddar', 'aardvark': 'Ethel'}
+e | d # {'aardvark': 'Ethel', 'spam': 1, 'eggs': 2, 'cheese': 3}
 d |= e # {'spam': 1, 'eggs': 2, 'cheese': 'cheddar', 'aardvark': 'Ethel'}
 
-# DIZIONARI ANNIDATI (possibile annidare dizionari all'interno di dizionari)
-my_dict = {'key_1':123, 'key_2':[12, 23, 33], 'key_3':['item_0', 'item_1', 'item_2']}
-my_dict['key'][0]  # restituisce elemento annidato
+# NESTED DICTIONARIES (it is possible to nest dictionaries within dictionaries)
+my_dict = {'key_1': 123, 'key_2': [12, 23, 33], 'key_3': ['item_0', 'item_1', 'item_2']}
+my_dict ['key'][0] # returns nested element
 
 # DICT COMPREHENSIONS
-var = {key : value for elemento in sequenza}
+var = {key: value for element in sequence}
 ```
 
 ## Operators
@@ -634,7 +618,7 @@ var = {key : value for elemento in sequenza}
 | x `<<=` y | x = x << y |
 | x `>>=` y | x = x >> y |
 | x `&=` y  | x = x & y  |
-| x `|=` y  | x = x | y  |
+| x `       | =` y       | x = x | y |
 | x `^=` y  | x = x ^ y  |
 
 ### Bitwise Operators
@@ -667,19 +651,19 @@ var = {key : value for elemento in sequenza}
 
 | Operator | Operation              |
 | -------- | ---------------------- |
-| `in`     | item in collection      |
+| `in`     | item in collection     |
 | `not in` | item not in collection |
 
-### Precedenza Operatori
+### OPerator Precedence
 
-1. operatori assegnamento `+=`, `-=`, `*=`, `/=`, `%=`, `**=`, `//=`
-2. operatori aritmetici binari `*`, `/`, `%`, `//` (floor division)
-3. operatori aritmetici binari `+`, `-`
-4. operatori booleani `<`, `>` , `<=`, `>=`
-5. operatori booleani `==`, `!=`
-6. operatore booleano `and`
-7. operatore booleano `or`
-8. operatore booleano `not`
+1. assignment operators `+=`, `-=`, `*=`, `/=`, `%=`, `**=`, `//=`
+2. binary arithmetic operators `*`, `/`, `%`, `//` (floor division)
+3. binary arithmetic operators `+`, `-`
+4. boolean operators `<`, `>`, `<=`, `>=`
+5. boolean operators `==`, `!=`
+6. boolean operator `and`
+7. boolean operator `or`
+8. boolean operator `not`
 
 ## Conditional Statements
 
@@ -694,9 +678,9 @@ built-in objects considered *false*:
 ### `if-else`
 
 ```py
-if (condizione):
+if (condition):
     # code here
-elif (condizione):
+elif (condition):
     # code here
 else:
     # code here
@@ -704,171 +688,166 @@ else:
 
 ### Context Manager
 
-Oggetto che definisce il contesto di runtime stabilito all'uso del `with` statement. Il manager gestisce l'entrate e l'uscita dal contesto di runtime per l'esecuzione del blocco di codice.
-
 ```py
-with risorsa as target:
-    # code here
+with resource as target:
+     # code here
 
-# avvia context manager e lega risorsa restituita dal metodo al target usando operatore as
+# start context manager and bind resource returned by method to target using as operator
 contextmanager.__enter__(self)
 
 # exit runtime context
-# restituisce exc_type, exc_value, traceback
+# returns exc_type, exc_value, traceback
 contextmanager.__exit__(self, exc_type, exc_value, traceback)
 # exc_type: exception class
 # exc_value: exception instance
 # traceback: traceback object
-# NO EXCEPTION -> restituisce None, None, None
-# SOPPRESSIONE ECCEZIONE: necessario restituire valore True
+# NO EXCEPTION -> returns None, None, None
+# SUPPRESSION EXCEPTION: Must return True value
 ```
 
 ## Loops
 
-### Ciclo `while`
+### `while`
 
 ```py
-while (condizione):
-    # code here
+while(condition):
+     # code here
 else:
-    # eseguito solo se condizione diventa False
-    # break, continue, return in blocco while non eseguono blocco else
-    # code here
+     # executed only if condition becomes False
+     # break, continue, return in block while do not perform else block
+     # code here
 ```
 
-### Ciclo `for`
+### `for`
 
 ```py
-for indice in sequenza: # sequenza può essere una lista, set, tuple, etc..
-    # code here
+for index in sequence: # sequence can be a list, set, tuple, etc ..
+     # code here
 else:
-    # eseguito solo se for arriva a fondo ciclo
-    # break, continue, return in blocco for non eseguono blocco else
-    # code here
+     # executed only if for reaches the end of the loop
+     # break, continue, return in block for do not perform else block
+     # code here
 
-for indice in range(inizio, fine, step):
-    # code here
+for index in range (start, end, step):
+     # code here
 
-for key, value in dict.items():
-    # code here
+for key, value in dict.items ():
+     # code here
 ```
 
-### Istruzioni `break` & `continue`
+### `break` & `continue`
 
-`break`: causa l'uscita immediata dal ciclo senza l'esecuzione delle successive iterazioni
-`continue`: salta le restanti istruzioni del'iterazione e prosegue il ciclo
+`break`: causes the loop to exit immediately without executing subsequent iterations
+`continue`: skip the remaining iteration statements and continue the loop
 
-### Istruzione `range`
+### `range`
 
 ```py
-range(inizio, fine, step)  # genera sequenza num interi (non include num stop) con eventuale passo
-list(range(inizio, fine, passo))  # restituire sequenza num interi in una lista
+range(start, end, step) # generate sequence num integers (does not include num stops) with possible step
+list(range(start, end, step)) # return sequence of integers in a list
 ```
 
-### Istruzione `enumerate`
+### `enumerate`
 
 ```py
-enumerate(iterabile)  # restituisce oggetto enumerate
-list(enumerate(iterabile))  # restituisce lista di tuple [(1, iterabile[0]), (2, iterabile[1]), (3, iterabile[2])]
+enumerate(iterable) # iterable of item & index pairs
+list(enumerate(iterable)) # returns list of tuples [(1, iterable [0]), (2, iterable [1]), (3, iterable [2])]
 ```
 
-### Istruzione `zip`
+### `zip`
 
 ```py
-list_1 = [1, 2, 3, 4,  5]
+list_1 = [1, 2, 3, 4, 5]
 list_2 = ['a', 'b', 'c', 'd', 'e']
 
-zip(list_1, list_2)  # restituisce oggetto zip
-list(zip(list_1, list_2))  # restituisce lista di tuple fondendo la lista [(list_1[0], list_2[0]), (list_1[1], list_2[1]), ...]
+zip(list_1, list_2) # return zip object
+list(zip(list_1, list_2)) # returns list of tuples by merging list [(list_1 [0], list_2 [0]), (list_1 [1], list_2 [1]), ...]
 ```
 
-### Istruzione `shuffle` e `randint`
+### `shuffle` & `randint`
 
 ```py
 from random import shuffle, randint
-shuffle(iterabile)  # mischia la lista
-randint(inizio, fine)  # restituisce un intero random compreso tra inizio e fine
+shuffle(iterable) # shuffle the list
+randint(start, end) # returns a random integer between start and end
 ```
 
-### Istruzione `in`
+### `in`
 
 ```py
-item in iterabile  # controlla presenza di item in iterabile (restituisce True o False)
+item in iterable # check for the presence of item in iterable (returns True or False)
 ```
 
-## Funzioni
+## Functions
 
-### Definizione Funzione
+### Function Definition
 
 ```py
-def nome_funzione (parametri):
-    """DOCSTRING"""
-    # code here
-    return espressione  # if return id missing the function returns None
+def function_name (parameters):
+     "" "DOCSTRING" ""
+     # code here
+     return expression # if return id missing the function returns None
 ```
 
-### Invocazione Funzione
+### Specify Type Parameters In Functions
 
-`nome_funzione(parametri)`
-
-### Specificare Tipo Parametri In Funzioni
-
-- parametri prima di `/` possono essere solo *posizionali*
-- parametri tra `/` e `*`  possono essere *posizionali* o *keyworded*
-- parametri dopo `*` possono essere solo *keyworded*
+- parameters before `/` can only be *positional*
+- parameters between `/` and `*` can be *positional* or *keyworded*
+- parameters after `*` can only be *keyworded*
   
 ```py
-def func(a, b, /, c, d, *, e, f):
-    # code here
+def func (a, b, /, c, d, *, e, f):
+     # code here
 ```
 
 ### Docstring Style
 
 ```py
-""" descrizione funzione
+"""function description
 
 Args:
-    argomento: Type - descrizione del parametro
+     argument: Type - description of the parameter
 
 Returns:
-    Type - descrizione di <expr>
+     Type - description of <expr>
 
 Raises:
-    Eccezione: Causa dell'eccezione
+     Exception: Cause of the exception
 """
 ```
 
 ### *args **kwargs
 
-`*args` permette alla funzione di accettare un numero variabile di parametri (parametri memorizzati in una tuple)
-`**kwargs` permetta alla funzione di accettare un numero variabile di parametri key-value (parametri memorizzati in un dizionario)
-Se usati in combinazione `*args` va sempre prima di `**kwargs` (in def funzione e in chiamata funzione)
+`*args` allows the function to accept a variable number of parameters (parameters stored in a tuple)
+`**kwargs` allows the function to accept a variable number of key-value parameters (parameters stored in a dictionary)
+
+When used in combination `*args` always goes before`**kwargs` (in def function and in function call)
 
 ```py
-def funzione(*args, **kwargs):
+def func(*args, **kwargs):
     # code here
 ```
 
-### Funzione con Parametri di default
+### Function with default parameters
 
 ```py
-def funzione (parametro1 = valore1, parametro2 = valore3): # valori di default in caso di omesso uso di argomenti nella chiamata
-    # code here
-    return espressione
+def function(parameter1 = value1, parameter2 = value3): # default values in case of omitted use of arguments in the call
+     # code here
+     return expression
 
-funzione(parametro2 = valore2, parametro1 = valore1) # argomenti passati con keyword per imporre l'ordine di riferimento
+function(parameter2 = value2, parameter1 = value1) # arguments passed with keyword to enforce the order of reference
 ```
 
-### VARIABILI GLOBALI E LOCALI
+### Global And Local Variables
 
 ```py
 # global scope
-def func_esterna():
-    # enclosing local scope
-    # code here
-    def func_interna():
-        # local scope
-        # code here
+
+def external_func():
+     # enclosing local scope
+
+     def internal_func():
+         # local scope
 ```
 
 **LEGB Rule**:
@@ -878,114 +857,113 @@ def func_esterna():
 - **G** - **Global** (module): Names assigned at the top-level of a module file, or declared global in a def within the file.
 - **B** - **Built-in** (Python): Names preassigned in the built-in names module : `open`, `range`, `SyntaxError`,...
 
-`Note`: variabili dichiarate all'interno di una funzione non sono utilizzabili all'esterno
+`Note`: variables declared inside a function are not usable outside
 
 ```py
-def funzione():
-    # istruzione global rende variabile globale.
-    # azioni su variabile globale all'interno della funzione hanno effetto anche fuori
-    # NORMALMENTE: valori locali rimangono locali
-    global variabile
-    # code here
+def function():
+     # global statement makes a variable global
+     # actions on global variable within the function also have an effect outside
+
+     global variable
 ```
 
-### Iterabili, Iteratori E Generatori
+### Iterables, Iterators & Generators
 
-**Iterabile**: oggetto implementante `__iter__()`, sequenze e oggetti supportanti `__getitem__` con index `0`
+**Iterable**: object implementing `__iter __()`, sequences and objects supporting `__getitem__` with index `0`
 
-**Iteratore**: oggetto implementante `__next__` e `__iter__` (**protocollo iteratore**), quando interamente consumato da next() diventa inutilizzabili.
-Gli iteratori sono iterabili, viceversa non vero. Restituisce `StopIteration` quando `next()` ha restituito tutti gli elementi.
+**Iterator**: object implementing `__next__` and `__iter__` (**iterator protocol**), when entirely consumed by `next()` it becomes unusable. Returns `StopIteration` when `next()` has returned all elements.
 
-**Funzione Generatore**: funzione con keyword `yield` (se presente anche `return` causa `StopIteration`), restituisce un generatore che produce i valori uno alla volta.
+**Generator Function**: function with keyword `yield` (if present also `return` causes `StopIteration`), returns a generator that produces the values ​​one at a time.
 
-**Generator Factory**: funzione restituente generatore (può non contenere `yield`).
+**Generator Factory**: generator returning function (may not contain `yield`).
 
-Funzionamento `iter()`:
+Operation `iter()`:
 
-- chiama __iter__()
-- in assenza di esso python sfrutta __getitem__() (se presente) per creare un iteratore che tenta di recuperare gli item in ordine, partendo dall'indice `0`
-- in caso di fallimento restituisce `TypeError "obj_cls is not iterable"`
+- calls `__iter__()`
+- in the absence of it python uses `__getitem__()` (if present) to create an iterator that tries to retrieve the items in order, starting from the index `0`
+- on failure it returns `TypeError`
   
-**Note**: `abc.Iterable` non controlla la presenza di `__getitem__` per decidere se un sotto-oggetto è membro conseguentemente il miglior test per l'iterabilità è usare `iter()` e gestirne le eccezioni.
+**Note**: `abc.Iterable` does not check for the presence of `__getitem__` to decide if a sub-object is a member therefore the best test for iterability is to use `iter()` and handle exceptions.
 
-### Istruzioni `next()` & `iter()`
+### `next()` & `iter()`
 
 ```py
-next(iterabile)  # prossimo item dell'iterabile o errore StopIteration
+next(iterable) # next item of the iterable or error StopIteration
 
-iter(oggetto)  # ottiene un iteratore a partire da un oggetto
-# chiama callable_onj.next() senza argomenti finché esso restituisce valori diversi da sentinella
+iter(object) # get an iterator from an object
+# call callable_onj.next () with no arguments as long as it returns non-sentinel values
 
-iter(callable_obj, sentinella)
+iter(callable_obj, sentinel)
 ```
 
-### Generatori Personalizzati
+### Customs Generators
 
-Utilizzati per generare una sequenza di valori da utilizzare una sola volta (non vengono memorizzati)
+Used to generate a sequence of values to be used once (they are not stored)
 
 ```py
-def custom_generator (parametri):
-    while condizione:  # oppure for loop
-        yield variabile # restituisce il valore senza terminare la funzione, valori passati al chiamante senza memorizzazione in una variabile
+def custom_generator(parameters):
+     while condition: # or for loop
+         yield variable # returns the value without terminating the function, values passed to the caller without storing in a variable
 
-# implementazione generatore
-for item in custom_generator(parametri):
-    # code here
+# generator implementation
+for item in custom_generator(parameters):
+     # code here
 ```
 
-### Terminazione Generatore E Exception Handling
+### Termination Generator And Exception Handling
 
 ```py
-# solleva eccezione al punto di sospensione e restituisce valore del generatore
-# se il generatore termina senza restituire valori solleva StopIteration
-# se un eccezione non viene gestita viene propagata al chiamante
+# raise exception at the suspension point and return generator value
+# if the generator terminates without returning values it raises StopIteration
+# if an exception is not handled it is propagated to the caller
 generator.throw(ExceptionType, exception_value, traceback)
 
-# solleva GeneratorExit al punto si sospensione
-# se generatore restituisce un valore -> RuntimeError
-# se viene sollevata unn eccezione essa si propaga al chiamante
+# raises GeneratorExit to the point of suspension
+# if generator returns a value -> RuntimeError
+# if an exception is raised it propagates to the caller
 generator.close()
 ```
 
 ### Generator Comprehensions
 
 ```py
-# sequenza di lunghezza zero (valori generati sul momento)
-var = (espressione for iterabile in sequenza if condizione)
-# ISTRUZIONE ENUMERATE()
-# restituisce una lista di tuple associando ad ogni elemento della sequenza un indice di posizione
-# [(0, sequenza[0]), (1, sequenza[1]), (2, sequenza[2]), ...)
-enumerate(sequenza)  # -> oggetto enumerate
+# zero-length sequence (instantaneously generated values)
+var = (for expression iterable in sequence if condition)
+# EDUCATION ENUMERATE ()
+# returns a list of tuples associating a position index to each element of the sequence
+# [(0, sequence [0]), (1, sequence [1]), (2, sequence [2]), ...)
+enumerate(sequence) # -> enumerate object
 ```
 
-## Coroutine
+## Coroutines
 
 ```py
 def simple_coroutine():
-    """coroutine definita come un generatore: yield nel blocco"""
-    # code here
-    # yield in espressione per ricevere dati
-    # restituisce None (no variabili a dx di yield)
-    var = yield value  # restituisce value e poi sospende coroutine in attesa di input
-    # istruzioni a dx di = eseguite prima di istruzioni a sx di =
-    # code here
+    """coroutine defined as a generator: yield in block"""
 
-gen_obj = simple_coroutine()  # restituisce oggetto generatore
-next(gen_obj)  # avvia coroutine (PRIMING)
-gen_obj.send(None)   # avvia coroutine (PRIMING)
-gen_obj.send(value)  # invia value alla coroutine (possibile solo in stato suspended)
+    # yield in expression to receive data
+    # returns None (no variables on the right of yield)
+    var = yield value # returns value and then suspends coroutine waiting for input
+    # instructions to the right of = executed before instructions to the left of =
 
-# STATI DELLA COROUTINE
-inspect.generatorstate()  # restituisce lo stato della coroutine
-# GEN_CREATED: in attesa di avvio esecuzione
-# GEN_RUNNING: attualmente eseguito dall'interprete (visibile se multithreading)
-# GEN_SUSPENDED: attualmente sospesa da yield statement
-# GEN_CLOSED: l'esecuzione è stata completata
+gen_obj = simple_coroutine() # returns generator object
+next(gen_obj) # start coroutine (PRIMING)
+gen_obj.send(None) # start coroutine (PRIMING)
+gen_obj.send(value) # send value to the coroutine (only possible in suspended state)
+
+# STATES OF COROUTINE
+inspect.generatorstate() # returns the status of the coroutine
+# GEN_CREATED: waiting to start execution
+# GEN_RUNNING: currently run by the interpreter (visible if multithreaded)
+# GEN_SUSPENDED: currently suspended by yield statement
+# GEN_CLOSED: execution completed successfully
 
 # COROUTINE PRIMING
 from functools import wraps
+
 def coroutine(func):
     "Decorator: primes 'func' by advancing to first 'yield'"
+
     @wraps(func)
     def primer(*args, **kwargs):
         gen = func(*args, **kwargs)
@@ -993,34 +971,34 @@ def coroutine(func):
         return gen
     return primer
 
-# TERMINAZIONE COROUTINE E EXCEPTION HANDLING
-# eccezioni in coroutine non gestite si propagano alle iterazioni successive
-# un eccezione causa la terminazione della coroutine che non puo riprendere
+# COROUTINE TERMINATION AND EXCEPTION HANDLING
+# exceptions in unhandled coroutines propagate to subsequent iterations
+# an exception causes the coroutine to terminate which it cannot resume
 
-# yield solleva eccezione, se gestita ciclo continua
-# throw() restituisce valore del generatore
+# yield raises exception, if handled loop continues
+# throw() returns value of the generator
 coroutine.throw(exc_type, exc_value, traceback)
 
-# yield solleva GeneratorExit al punto di sospensione
-# se il generatore restituisce (yield) un valore -> RuntimeError
-# se ci sono altre eccezioni esse vengono propagate al chiamante
+# yield raises GeneratorExit to the suspension point
+# if the generator yields a value -> RuntimeError
+# if there are other exceptions they are propagated to the caller
 coroutine.close()
-# stato coroutine diventa GEN_CLOSED
+# coroutine state becomes GEN_CLOSED
 ```
 
 ### `yield from <iterabile>`
 
 **Note**: auto-priming generators incompatible with `yield from`
 
-**DELEGATING GENERATOR**: funzione generatore contenente yield from
-**SUBGENERATOR**: generatore ottenuto da `yield from <iterabile>`
-**CALLER-CLIENT**: codice chiamante *delegating generator*
+**DELEGATING GENERATOR**: generator function containing `yield from`
+**SUBGENERATOR**: generator obtained from `yield from`
+**CALLER-CLIENT**: code calling *delegating generator*
 
-La funzione principale di `yield from` è aprire una canale bidirezionale tra il chiamante esterno (*client*) e il *subgenerator* interno in modo che valori ed eccezioni possono passare tra i due.
+The main function of `yield from` is to open a bidirectional channel between the external caller (* client *) and the internal * subgenerator * so that values and exceptions can pass between the two.
 
-1. client chiama delegating generator, delegating generator chiama subgenerator
-2. subgenerator esaurito restituisce valore a `yield from <expr>` (istruzione `return <result>`)
-3. delegating generator restituisce `<expr>` a client
+1. client calls delegating generator, delegating generator calls subgenerator
+2. exhausted subgenerator returns value to `yield from <expr>` (`return <result>` statement)
+3. delegating generator returns `<expr>` to client
 
 - Any values that the subgenerator yields are passed directly to the caller of the delegating generator (i.e., the client code).
 
@@ -1044,301 +1022,138 @@ La funzione principale di `yield from` è aprire una canale bidirezionale tra il
 
 ```py
 def sub_gen():
-    # code here
-    sent_input = yield
-    # code here
-    # risultato di sub_gen() restituito a delegating_gen()
-    # risultato di yield from <expr>
-    return result
+     sent_input = yield
+     # result of sub_gen() returned to delegating_gen()
+     # result of yield from <expr>
+
+     return result
 
 def delegating_gen(var):
-    # code here
-    var = yield from sub_gen()  # get values from sub_gen
+     var = yield from sub_gen() # get values from sub_gen
 
 def client():
-    # code here
-    result = delegating_gen()  # use delegating_gen
-    result.send(None)  # termina istanza sub_gen (IMPORTANTE)
-```
-
-## Ricorsione
-
-Il nucleo della ricorsione deve essere costituito da un'istruzione condizionale che permette di gestire casi diversi in base al parametro del metodo.
-Almeno una delle alternative deve contenere una chiamata ricorsiva del metodo, questa deve risolvere versioni ridotte del compito realizzato dal metodo.
-Almeno una delle alternative non deve contenere alcona chiamata ricorsiva o deve produrre il valore da restituire, tali alternative costituiscono i casi base o di arresto
-
-Example:
-
-```py
-def factorial(n):
-    if (n == 0):
-        result = 1 # escape event, necessary to avoid infinite recursion
-    else:
-        result = (n*factorial(n-1))
-    return result
-```
-
-## Funzioni Avanzate
-
-### Assegnazione Di Funzioni A Variabili
-
-```py
-def funzione(parametri):
-    # code here
-
-    return espressione
-
-# chiamata funzione senza parentesi
-funzione   # restituisce oggetto funzione
-var = funzione  # assegna (per riferimento) la funzione ad una variabile.
-# la chiamata funziona anche se la func originale viene eliminata (del funzione)
-var()  # chiama la funzione tramite la variabile (usando le parentesi tonde)
-```
-
-### Funzioni Annidate
-
-```py
-# func_interna locale viene ritornata per riferimento
-def func_esterna(args):
-
-    def func_interna():  # func_interna ha accesso a scope funzione esterna (aka Closure)
-        # code here
-    return func_interna  # restituisce func_interna
-
-func_esterna()  # chiamata func_esterna che chiama func_interna (risultato func_esterna è riferimento func_interna)
-```
-
-### Funzioni Passate Per Argomento
-
-```py
-# funzione passata come argomento viene eseguita (chiamata) all'esecuzione della funzione a cui viene passata
-def func_esterna(funzione):
-    funzione()  # chiama funzione passata come argomento
-
-func_esterna() # esecuzione func_esterna chiama func_interna
-```
-
-### Funzioni Incapsulanti Funzioni (Argomenti Wrapper = Argomenti Wrapped)
-
-```py
-def wrapped(*args):
-    pass
-
-def wrapper(*args):
-    # instructions
-    wrapped(*args)  # wrapped chiamata con gli argomenti passati a wrapper AS-IS (args = tuple) senza incapsulamento in una tuple
+     result = delegating_gen() # use delegating_gen
+     result.send(None) # terminate sub_gen instance (IMPORTANT)
 ```
 
 ## LAMBDA Functions
 
-Possibile uso all'interno delle funzioni. Utile per sostituire funzioni se la logica è semplice.
+Possible use within functions. Useful for replacing functions if the logic is simple.
 
 ```py
-var = lambda argument_list: expression
-var = lambda argument_list: caso-vero if (condizione) else cado-falso
-
-var(args) # invocazione lambda
+var = lambda argument_list: <expression>
 ```
 
-## Decoratori
+## Object Oriented Programming
 
-Entità' chiamabile che prende in input una funzione (come argomento).
-Eventualmente effettua operazioni con la funzione decorata e la restituisce o sostituisce.
-vengono eseguiti all'importazione, prima di ogni altra istruzione.
+### Class Definition
 
 ```py
-# STRUTTURA DECORATORE PARZIALE (SOSTITUISCE FUNZIONE INPUT)
-def decorator(funzione):  # prende in input una funzione
-    def wrapper():  # funzione decoratrice
-        # code here
+class Class:
 
-    return wrapper  # restituisce wrapper (chiamata a func_decorata chiama wrapper)
+    static_var = expression
 
-# STRUTTURA DECORATORE COMPLETA (MODIFICA FUNZIONE INPUT)
-def decorator(funzione):  # prende in input una funzione da decorare
-    @functools.wraps(funzione)  # keep code inspection available
-    def wrapper(*args, **kwargs):  # funzione decoratrice (args, kwargs sono argomenti della funzione decorata)
-        # do something before
-        var_func = funzione(*args, **kwargs)
-        # do something after
-        return var_func  # restituisce il risultato della decorazione della funzione
+    def __init__(self, value_1, value_2): # parameterized default constructor
+        self.variable = value_1 # create instance variables
+        self.__private = value_2 # private, accessed via NAME MANGLING
 
-    return wrapper  # restituisce wrapper (chiamata a func_decorata chiama wrapper)
+    def method(self, parameters):
+        ...
 
-@decorator # applicazione del decoratore alla funzione
-def funzione():  # funzione da decorare
-    # code here
-    return espressione
+    @staticmethod
+    def static_method(parameters): # static methods do not affect instance variables (SELF not needed)
+        ...
 
+    @classmethod # method acting on the class and not on the object (useful for alternative constructors)
+    def class_method(cls, parameters):
+        ...
 
-#STRUTTURA DECORATORE COMPLETA PARAMETRIZZATA
-def decorator(*dec_args, **dec_kwargs):  # prende in input argomenti del decoratore
-
-    def outer_wrapper(func):
-
-        def inner_wrapper(*args, **kwargs):  
-            # do something before
-            var_func = funzione(*args, **kwargs)
-            # do something after
-            return var_func  
-
-        return inner_wrapper
-
-    return outer_wrapper
-
-
-@decorator(*dec_args, **dec_kwargs)  # decoratore parametrizzato invocato come funzione
-def funzione(): # funzione da decorare
-    # code here
-    return espressione
+    object = Class(parameters) # creation of an object
+    object.variable = expression # edit public variable
+    object.method(parameters) # invocation method of instance
+    object._Class__private # access to variable specifying the membership class (NAME MANGLING)
+    Class.method(parameters) # static method invocation
 ```
 
-## Programmazione Ad Oggetti
-
-### Creazione Classe
+### Setter & Getter with `@Property`
 
 ```py
-class NomeClasse:
+class Class:
+     def __init__(self, parameter):
+         self.__parameter = parameter
 
-     # creazione variabile statica (o di classe; condivisa da tutte le istanze)
-     # override possibile tramite subclassing o assegnazione diretta (oggetto.static_var =)
-     # NomeClasse.static_var = cambia l'attributo di classe in tutte le istanze
-    static_var = espressione
+     @property # getter
+     def parameter(self):
+         return self.__parameter
 
-    def __init__(self, valore_1, valore_2): # costruttore di default parametrizzato
-        # attributi sono alias degli argomenti (modifiche in-place cambiano argomenti)
-        self.variabile = valore_1   # creazione variabili di istanza
-        self.__variabile = valore_2 # variabile appartenente ad oggetti della classe e non ai figli, accesso tramite NAME MANGLING
-
-
-    @classmethod  # metodo agente sulla classe e non sull'oggetto (utile x costruttori alternativi)
-    def metodo_classe(cls, parametri):
-        instruction
-        return cls(parametri)  # crea istanza classe (cls accetta anche sottoclassi)
-
-    # i parametri possono essere variabili statiche (Classe.variabile), variabili di istanza (self.variabile) o valori esterni alla classe
-    def metodo_istanza(self, parametri):
-        # code here
-        return espressione
-
-    @staticmethod # indica un metodo statico (NECESSARIO)
-    def metodo_statico(parametri):  # metodi statici non influenzano variabili di istanza (SELF non necessario)
-        instruction
-        return espressione
-
-    oggetto = NomeClasse(parametri)  # creazione di un oggetto
-    oggetto.variabile = espressione  # modifica variabile pubblica
-    oggetto.metodo(parametri)  # invocazione metodo di istanza
-    NomeClasse.metodo(parametri)  # invocazione metodo statico
-    oggetto._NomeClasse__var_privata   # accesso a variabile specificando la classe di appartenenza  (NAME MANGLING)
-```
-
-### Metodi Setter e Getter con `@Property`
-
-I nomi delle funzioni devono essere diversi dalla variabile (3 nomi diversi). Almeno `@property` & `@parametro.setter` devone essere usati.
-
-```py
-class NomeClasse:
-    def __init__(self, parametro):
-        self.__parametro = parametro
-
-    @property  # metodo getter
-    def parametro(self):
-        """docstring"""
-        return self.__parametro
-
-    @parametro.setter
-    def parametro(self, valore):
-        self.__parametro = valore
-
-    @parametro.deleter  # metodo deleter
-    def __parametro(self):
-        del self.__parametro
+     @<parameter>.setter
+     def parameter(self, value):
+         self.__parameter = value
 ```
 
 ### `__slots__`
 
-L'attributo `__slots__` implementa **Flyweight Design Pattern**:
-salva gli attributi d'istanza in una tuple e può essere usato per diminuire il costo in memoria inserendovi solo le variabili di istanza (sopprime il dizionario dell'istanza).
+The `__slots__` attribute implements the **Flyweight Design Pattern**: it saves the instance attributes in a tuple and can be used to decrease the cost in memory by inserting only the instance variables into it (suppress the instance dictionary).
 
-**Default**: attributi salvati in un dizionario (`oggetto.__dict__`)
-**Uso**: `__slots_ = [attributi]`
+**Default**: attributes saved in a dictionary (`object .__ dict__`)
+**Usage**: `__slots_ = [attributes]`
 
-`__slots__` non viene ereditato dalle sottoclassi, impedisce l'aggiunta dinamica degli attributi.
+`__slots__` is not inherited by subclasses, it prevents dynamically adding attributes.
 
-### Fluent Interface
-
-```py
-class NomeClasse():
-
-    def __init__(self, parametri):
-        instruction
-
-    def metodo_1(self):
-    instruction
-        return self  # permette il concatenamento di metodi
-
-    def metodo_2(self):
-        instruction
-        return self
-
-oggetto.metodo_1().metodo_2()
-```
-
-### Classi Incapsulate
+### Inner Classes
 
 ```py
 class Class:
-    def __init__(self, parameters):
-        instruction
+     def __init__(self, parameters):
+         ...
 
-    class InnerClass:
-        def __init__(self, parameters):
-            instruction
+     class InnerClass:
+         def __init__(self, parameters):
+             ...
 
-        def metodo(self):
-            instruction
+         def method(self):
+             ...
 
-oggetto_1 = Class(argomenti) # crea classe 'esterna'
-oggetto_2 = Class.InnerClass(argomenti) # inner class creata come oggetto della classe 'esterna'
-oggetto.metodo()
+object_1 = Class(arguments) # create 'external' class
+object_2 = Class.InnerClass(arguments) # inner class created as object of the 'external' class
 ```
 
-### Metodi Speciali
+### Special Methods
 
-I metodi speciali sono definiti dall'uso di doppi underscore; essi permettono l'uso di specifiche funzioni (eventualmente adattate) sugli oggetti definiti dalla classe.
+Special methods are defined by the use of double underscores; they allow the use of specific functions (possibly adapted) on the objects defined by the class.
 
 ```py
-class NomeClasse():
+class Class():
 
-    def __init__(self, parametri):
-        istruzioni
+     def __init__(self, parameters):
+         instructions
 
-    # usato da metodo str() e print()
-    # gestisce le richieste di rappresentazione come stringa
-    def __str__(self):
-        return espressione  # return necessario
+     # used by str() and print() method
+     # handle requests for impersonation as a string
+     def __str__ (self):
+         return expression # return required
 
-    def __len__(self):
-        return espressione  # necessario return in quanto len richiede una lunghezza/dimensione
+     def __len__ (self):
+         return expression # must return as len requires a length / size
 
-    def __del__(self):  # elimina l'istanza della classe
-        instruction  # eventuali istruzioni che avvengono all'eliminazione
+     def __del__ (self): # delete the class instance
+         instruction # any instructions that occur on deletion
 
-oggetto = NomeClasse()
-len(oggetto)  # funzione speciale applicata ad un oggetto
-del oggetto  # elimina oggetto
+object = Class()
+len(object) # special function applied to an object
+del object # delete object
 ```
 
 #### Special Methods List
 
+**Note**: if the operator cannot be applied, returns `NotImplemented`
+
 ```py
-# se l'operatore no può essere applicato restituire NotImplemented
-# operatori aritmetici
+# arithmetic operators
 __add__(self, other)         # +
 __sub__(self, other)         # -
 __mul__(self, other)         # *
-__matmul__(self, other)      # (@) moltiplicazione matrici
+__matmul__(self, other)      # (@) matrix multiplication
 __truediv__(self, other)     # /
 __floordiv__(self, other)  # //
 __mod__(self, other)         # %
@@ -1350,14 +1165,14 @@ __and__(self, other)         # &
 __xor__(self, other)         # ^
 __or__(self, other)          # |
 
-# operatori aritmetici riflessi
-# [se self.__dunder__(other) fallisce viene chiamato other.__dunder__(self)]
+# reflex arithmetic operators
+# if self.__ dunder __(other) fails, other.__ dunder__(self) is called
 __radd__(self, other)         # reverse +
 __rsub__(self, other)         # reverse -
 __rmul__(self, other)         # reverse *
 __rmatmul__(self, other)      # reverse @
 __rtruediv__(self, other)     # reverse /
-__rfloordiv__(self, other)  # reverse //
+__rfloordiv__(self, other)    # reverse //
 __rmod__(self, other)         # reverse %
 __rdivmod__(self, other)      # reverse divmod()
 __rpow__(self, other)         # reverse **, pow()
@@ -1367,16 +1182,16 @@ __rand__(self, other)         # reverse &
 __rxor__(self, other)         # reverse ^
 __ror__(self, other)          # reverse |
 
-# operatori aritmetici in-place (<operator>=)
-# implementazione di base (built-in) come self = self <operator> other
-# ! da non implementare per oggetti immutabili !
-# ! operatori in-place restituiscono self !
+# in-place arithmetic operators
+# base implementation (built-in) like self = self <operator> other
+#! not to be implemented for immutable objects!
+#! in-place operators return self!
 __iadd__(self, other)         # +=
 __isub__(self, other)         # -=
 __imul__(self, other)         # *=
 __imatmul__(self, other)      # @=
 __itruediv__(self, other)     # /=
-__ifloordiv__(self, other)  # //=
+__ifloordiv__(self, other)    # //=
 __imod__(self, other)         # %=
 __ipow__(self, other)         # **=
 __ilshift__(self, other)      # <<=
@@ -1385,25 +1200,25 @@ __iand__(self, other)         # &=
 __ixor__(self, other)         # ^=
 __ior__(self, other)          # |=
 
-# operatori matematici unari (-, +, abs(), ~)
+# unary mathematical operators (-, +, abs (), ~)
 __neg__(self)  # (-) negazione matematica unaria [if x = 2 then -x = 2]
 __pos__(self)  # (+) addizione unaria [x = +x]
 __abs__(self)  # [abs()] valore assoluto [|-x| = x]
 __invert__(self)  # (~) inversione binaria di un intero [~x == -(x + 1)]
 
-# conversione tipo numerico
+# numeric type conversion
 __complex__(self)
-__int__(self)  # se non definta fall-back a __trunc__()
+__int__(self)  # if not defined fall-back on __trunc__()
 __float__(self)
-__index__(self)  # conversione bin(), hex(), oct() e slicing
+__index__(self)  # conversion in bin(), hex(), oct() e slicing
 
-# operazioni round() e math.trunc(), math.floor(), math.ceil()
+# operations round() math.trunc(), math.floor(), math.ceil()
 __round__(self)
 __trunc__(self)
 __floor__(self)
 __ceil__(self)
 
-# operatori uguaglianza
+# equality operators
 self.__eq__(other)  # self == other
 self.__ne__(other) # self != other
 self.__gt__(other) # self > other
@@ -1411,75 +1226,75 @@ self.__ge__(other) # self >= other
 self.__lt__(other) # self < other
 self.__le__(other) # self <= other
 
-# operatori uguaglianza riflessi
+# reflected equality operators
 other.__eq__(self)  # other == self,   fall-back id(self) == id(other)
 other.__ne__(self)  # other != self,   fall-back not (self == other)
 other.__gt__(self)  # reverse self < other,   fall-back TypeError
 other.__ge__(self)  # reverse self <= other,   fall-back TypeError
 other.__lt__(self)  # reverse self > other,   fall-back TypeError
 other.__le__(self)  # reverse self >= other,   fall-back TypeError
-# chiamato quando l'istanza è "chiamata" come funzione
-# x(arg1, arg2, arg3) è abbreviazione di x.__call__(arg1, arg2, arg3)
+
+# called when the instance is "called" as a function
+# x (arg1, arg2, arg3) is short for x .__ call __ (arg1, arg2, arg3)
 __call__(self, args)
 
-#  stringa rappresentazione oggetto per lo sviluppatore
+# string object representation for the developer
 __repr__(self)
 
-#  stringa rappresentazione oggetto per l'utente (usata da print)
+# string object representation for user (used by print)
 __str__(self)
 
-# specifica formattazione per format(), str.format() [format_spec = format-mini-language]
+# specify formatting for format ), str.format() [format_spec = format-mini-language]
 __format__(format_spec)
 
-# restituisce valore (num intero) univoco per oggetti che hanno valore eguale
-# DEVE ESISTERE __EQ__ NELLA CLASSE
-# METODO GENERALE: hash((self.param_1, self.param_2, ...))    hash tuple componenti oggetto
+# returns unique (integer) value for objects that have equal value
+# __EQ__ MUST EXIST IN THE CLASS, usually hash((self.param_1, self.param_2, ...))
 __hash__(self)
 
-# rende oggetto iterabile:
-# - restituendo self (nell'iteratore)
-# - restituendo un iteratore (nell'iterabile)
-# - usando yield (nel generatore __iter__)
+# makes object iterable:
+# - returning self (in the iterator)
+# - returning an iterator (in the iterable)
+# - using yield (in the __iter__ generator)
 __iter__(self)
 
-# restituisce prosimo elemento disponibile, StopIteration altrimenti (scorre iteratore)
+# returns next available element, StopIteration otherwise (iterator scrolls)
 __next__()
 
-# restituisce valore id verità
-__bool__
+# returns truth value
+__bool__()
 
-# restituisce item associato a key di una sequenza (self[key])
-# IndexError se key non appropriata
+# returns item associated with key of a sequence (self [key])
+# IndexError if key is not appropriate
 __getitem__(self, key)
 
-# operazione assegamento item in sequenza ( self[key] = value)
-# IndexError se key non appropriata
+# item assignment operation in sequence (self [key] = value)
+# IndexError if key is not appropriate
 __setitem__(self, key, value)
 
-# operazione eliminazione item in sequenza ( del self[key])
-# IndexError se key non appropriata
+# operation deleting item in sequence (del self [key])
+# IndexError if key is not appropriate
 __delitem__(self, key)
 
-# chiamato da dict.__getitem__() per implementare self[key] se key non è nel dizionario
+# called by dict.__getitem__() to implement self [key] if key is not in the dictionary
 __missing__(self, key)
 
-# implementa iterazione del contenitore
+# implement container iteration
 __iter__(self)
 
-# implementa membership test
+# implement membership test
 __contains__(self, item)
 
-# implementazione issublass(instance, class)
+# implementation issublass (instance, class)
 __instancecheck__(self, instance)
 
-# implementazione issubclass(subclass, class)
+# implementation issubclass (subclass, class)
 __subclasscheck__(self, subclass)
 
-# implementa accesso ad attributi (obj.name)
-# chiamato se accade AttributeError o se chiamato da __getattribute__()
+# implement attribute access (obj.name)
+# called if AttributeError happens or if called by __getattribute __()
 __getattr__(self, name)
 
-# implementa asseganzione valore ad attributo (obj.name = value)
+# implement value assignment to attribute (obj.name = value)
 __setattr__(self, name, value)
 ```
 
@@ -1492,336 +1307,225 @@ Some of the mixin methods, such as `__iter__()`, `__reversed__()` and `index()`,
 Consequently, if `__getitem__()` is implemented with constant access speed, the mixin methods will have linear performance;
 however, if the underlying method is linear (as it would be with a linked list), the mixins will have quadratic performance and will likely need to be overridden.
 
-### Ereditarieta`
+### Inheritance
 
 ```py
-class ClasseGenitore():
-    def __init__(self, parametri):
-        instruction
+class Parent ():
+    def __init __ (self, parameters):
+        ...
 
-    def metodo_genitore_1(self):
-        instruction
-        return espressione
+    def method_1(self):
+        ...
 
-    def metodo_genitore_2(self):
-        instruction
-        return espressione
+    def method_2(self):
+        ...
 
-class ClasseFiglia1(classe_genitore): # classe genitore in parentesi per ereditare variabili e metodi
+class Child(Parent): # parent class in parentheses to inherit variables and methods
 
-    def __init__(self, parametri, parametri_genitore):
-        ClasseGenitore.__init__(self, parametri_genitore) # eredita variabili genitore
+    def __init__(self, parameters, parent_parameters):
+        Parent.__init__(self, parent_parameters) # inherit parent variables
+        ...
 
-    def metodo(self):
-        instruction
-        return espressione
+    def method (self):
+        ...
 
-    def metodo_genitore_1(self): # override metodo (classe figli con metodo omonimo a classe genitore)
-        instruction
-        return espressione
+    def method_parent_1 (self): # override method (child class with homonymous method to parent class)
+        ...
 
-class ClasseFiglia2(classe_genitore): # parent class in brackets to inherit properties
+class Child(Parent): # parent class in brackets to inherit properties
 
-    def __init__(self, parametri, parametri_genitore):
-        super().__init__(parametri_genitore) # metodo differente per ereditare variabili genitore (SELF non necessario) usando SUPER()
-        super(ClasseGenitore, self).__init__(parametri_genitore) # costruttore genitore invocato separatmente
+    def __init__(self, parameters, parent_parameters):
+        super().__init__(parent_parameters) # different method to inherit parent variables (SELF not needed) using SUPER()
+        super(Parent, self).__init__(parent_parameters) # parent constructor invoked separately
 
-    def metodo(self):
-        instruction
-        return espressione
+    def method(self):
+        ...
 
-    def metodo_genitore_2(self): # metodo genitore aggiornato
-        super().metodo_genitore_1() # invoca metodo genitore così com'è
-        instruction
-        return espressione
-
-classeFiglia1.metodo_genitore_1() # metodo disponibile a classi genitore e figlia
-classeFiglia1.metodo() # method disponibile solo a classe figlia
+    def method_2(self): # parent method updated
+        super().method_2() # invoke parent method as is
+        ...
 ```
 
-**MRO (Method Resolution Order) for Multiple Inheritance**: se una sottoclasse ha un metodo ereditato da più classi che condividono lo stesso nome del metodo il MRO è definito dall'ordine di ereditarietà.
+### Polymorphism
 
-**Multiple Inheritance Best Practices**:
-
-- ereditare un'interfaccia crea un sottotipo (implica relazione is-a)
-- ereditare un implementazione evita duplicazione del codice tramite riuso
-- se la classe deve definire un interfaccia dovrebbe essere un ABC esplicita
-- se la classe deve fornire vari metodi a sottoclassi scorrelate è il caso che sia una classe "minin" le classi mininx non creano nuovi sottotipi ma raggruppano metodi per il riuso.
-le classi mixin non devono essere instanziate e le loro sottoclassi non devono ereditare solo da esse
-- le classi mixin dovrebbero avere un suffisso mixin nel nome
-- classi ABC possono essere mixin, non viceversa
-
-- combinazioni di ABC o minxin utili per codice cliente dovrebbero fornire una "classe aggregato" che le riunisce in modo sensato
-
-### Polimorfismo
-
-**Note**: python non supporta method overloading
+**Note**: python does not support method overloading
 
 ```py
 # DUCKTYPING
-Operare con oggetti senza riguardo per il loro tipo, finchè implementano certi protocolli
-class Classe1:
-    def metodo_1(self):
-        instruction
-        return espressione
+# Working with objects regardless of their type, as long as they implement certain protocols
 
-class Classe2:
-    def metodo_1(self):
-        instruction
-        return espressione
+class Class1:
+    def method_1(self):
+        ...
 
-# dato che python è un linguaggio dinamico non importa di che tipo (classe) è l'oggetto passato
-# la funzione invoca il metodo dell'oggetto passato indipendentemente dalla classe dell'oggetto
-def metodo_polimorfo(oggetto):
-    oggetto.metodo_1()
-# DEPENDENCY INJECTION CON DUCKTYPING
-class Classe:
-    def __init__(self, oggetto):
-        self.attributo = oggetto
+class Class2:
+    def method_1(self):
+        ...
 
-    def metodo_polimorfo(self): # la funzione invoca il metodo dell'oggetto passato
-        self.attributo.metodo_1()
+# since python is a dynamic language it doesn't matter what type (class) the object passed is
+# the function invokes the object method passed regardless of the object class
+def polymorph_method(object):
+    object.method_1()
 
-class ClasseSupporto1:
-    def metodo_1(self):
-        instruction
-        return espressione
+# DEPENDENCY INJECTION WITH DUCKTYPING
+class Class:
+    def __init__(self, object):
+        self.dependency = object
 
-class ClasseSupporto2:
-    def metodo_1(self):
-        instruction
-        return espressione
-
-oggetto_1 = ClasseSupporto1()
-# oggetto polimorfo creato passando alla classe l'oggetto di supporto come argomento
-oggetto_0 = Classe(oggetto_1)
-# invoca il metodo dell'oggetto passato (metodo1)
-oggetto_0.metodo_polimorfo()
-
-oggetto_2 = ClasseSupporto2()
-# oggetto polimorfo creato passando alla classe l'oggetto di supporto come argomento
-oggetto_0 = Classe(oggetto_2)
-oggetto_0.metodo_polimorfo() # invoca il metodo dell'oggetto passato
+    def method_1(self): # the function invokes the method of the object passed
+        self.dependency.method_1()
 ```
 
 ### Operator Overloading
 
-**Regola fondamentale operatori**: restisuire *sempre* un oggetto, se operazione fallisce restituire `NotImplemented`
+**Operators fundamental rule**: *always* return an object, if operation fails return `NotImplemented`
 
 Limitations of operator overloading:
 
-- no overloading di tipi built-in
-- no creazione nuovi operatori
-- no overloading operatori is, and, or, not'''
+- no overloading of built-in types
+- no creation of new operators
+- no overloading operators `is`, `and`, `or`, `not`
 
 ### Astrazione
 
-Le **interfacce** sono classi astratte con *tutti* metodi astratti, sono usate per indicare quali metodi come le classi figlie *devono* avere.
-Le interfaccie hanno *solo* una lista di metodi astratti.
+The **interfaces** are abstract classes with *all* abstract methods, they are used to indicate which methods such as child classes *must* have. Interfaces have *only* a list of abstract methods.
 
-Le **classi astratte** hanno *almeno* un metodo astratto; classi figlie che ereditano da una classe astratta *devono* implementare i metodi astratti.
-Le classi astartte *non possono* essere instanziate (non possono generare oggetti).
+**abstract classes** have *at least* one abstract method; child classes that inherit from an abstract class *must* implement abstract methods. Abstract classes *cannot* be instantiated.
 
-Le sottoclassi virtuali vengono usate per includere classi di terze parti come sottoclassi di una classe propria.
-Esse vengono riconosciute come appartenenti a classe genitore senza però doverne implementare i metodi.
+Virtual subclasses are used to include third-party classes as subclasses of a class of their own. They are recognized as belonging to the parent class without however having to implement their methods.
 
-I decoratori `@Classe.register` o `Classe.register(sottoclasse)` servono per marcare sottoclassi.
+The `@Class.register` or `Class.register(subclass)` decorators are used to mark subclasses.
 
 ```py
 from abc import abstractmethod, ABC
 
-class ClasseAstratta(ABC):  # classe astratta DEVE EREDITARE da classe parente ABC
-    def __init__(self, parametri):
-        instruction
+class Abstract(ABC): # abstract class MUST INHERIT from parent class ABC
+    def __init__(self, parameters):
+        ...
 
-    def metodo_genitore(self):
-        instruction
-        return espressione
+    def parent_method (self):
+        ...
 
-    @abstractmethod  # metodo astratto DEVE essere machiato con decoratore @abstractmethod
-    def metodo_astratto(self):
+    @abstractmethod # abstract method MUST be marked with @abstractmethod decorator
+    def abstract_method (self):
         pass
-        # metodo astratto DEVE essere sovrascritto (può essere non vuoto)
-        #(.super() per invocarlo nella classe concreta)
+        # abstract method MUST be overridden (can be non-empty)
+        # super() to invoke it in the concrete class
 
-class ClasseFiglia(classe_genitore): # classe genitore in parentesi per ereditare variabili e metodi
+class Child(Abstract):
 
-    def __init__(self, parametri, parametri_genitore):
-        classe_genitore.__init__(self, parametri_genitore) # necessario per ereditare variabili genitore
+    def __init__(self, parameters, parent_parameters):
+        parent_class.__init__(self, parent_parameters)
 
-    def metodo(self):
-        instruction
-        return espressione
+    def method (self):
+        ...
 
-    def metodo_genitore(self): # override metodo (classe figli con metodo omonimo a classe genitore)
-        instruction
-        return espressione
+    def parent_method (self): # override method (child class with homonymous method to parent class)
+        ...
 
-    def metodo_astratto(self):  # implementazione metodo astratto ereditato da classe astratta (NECESSARIA) mediante override
-        instruction
-        return espressione
+    def abstract_method (self): # implementation of abstract method inherited from abstract class (NECESSARY) by override
+        ...
 ```
 
 ## Exception Handling
 
 ```py
-# CONTROLLO ASERZIONI
-assert condizione, 'mesaaggio di errore' # se l'asserzione risulta falsa mostra un messaggio d'errore
+# CHECK ASERATIONS
+assert condition, 'error message' # if the assertion is false show an error message
 
-# i tipi di eccezioni sono delle classi. ve ne sono alcune predefinite e se ne possonoi creare di personalizzate
-# errori particolari sono oggetti di una particolare classe di eccezioni che a sua volta è figlia della classe di eccezioni base (exception)
+# particular errors are objects of a particular class of exceptions which in turn is a child of the base exception class (exception)
+class CustomExceptionError(Exception): # MUST somehow inherit from class exception (even in later inheritance steps)
+    pass # or instructions
 
-class CustomExceptionError(Exception):  # DEVE in qualche modo ereditare dalla classe exception (anche in passaggi successivi di eredità)
-    pass # o istruzioni
-
-# blocco try contiene il codice che potrebbe causare un eccezione
-# codice dentro try e dopo l'errore non viene eseguito
+# try block contains code that might cause an exception
+# code inside try and after the error it is not executed
 try:
-    instruzioni
-    raise CustomExceptionError("message")  # attiva l'eccezione
+    ...
+    raise CustomExceptionError ("message") # raise the exception
 
-# except prende il controllo dell'error handling senza passsare per l'interprete
-# clocco eseguito se avviene un errore in try
+# except takes control of error handling without passing through the interpreter
+# block executed if an error occurs in try
 
-# except errore specificato dalla classe
+# except error specified by class
 except ExceptionClass:
-    # code here
-    # messaggio d'errore di default non viene mostrato
-    # il programma non si ferma
+    # Default error message is not shown
+    # the program does not stop
 
-# except su errori vari
+# except on generic errors
 except:
      # code here
 
-# blocco eseguito se non avviene l'eccezione
+# block executed if exception does not occur
 else:
-    # code here  
+    # code here
 
-# blocco eseguito in tutti i casi, codice di pulizia va qui
+# block executed in all cases, cleanup code goes here
 finally:
     # code here
 ```
 
 ## File
 
-### Apertura Di Un File
+### Opening A File
 
-Modalità apertura file testo:
+Text file opening mode:
 
-- `w`: write, sovrarscrive contenuto del file
-- `r`: read, legge contenuto file
-- `a`: append, aggiunge contenuto al file
-- `w+`: write & read
-- `r+`: write & read & append
-- `a+`: append & read
-- `x`: exclusive creation, se il file esiste già -> `FileExistError` (modalità estesa di write)
+- `w`: write, overwrite the contents of the file
+- `r`: read, read file contents
+- `a`: append, add content to the file
+- `w +`: write & read
+- `r +`: write & read & append
+- `a +`: append & read
+- `x`: exclusive creation, if the file already exists -> `FileExistError` (extended write mode)
 
-Modalità apertura file binario:
+Open binary file mode:
 
-- `wb`: write, sovrarscrive contenuto del file
-- `rb`: read, legge contenuto file
-- `ab`: append, aggiunge contenuto al file
-- `w+b`: write & read
-- `r+b`: write & read & append
-- `a+b`: append & read
-- `xb`: exclusive creation, se il file esiste già -> `FileExistError` (modalità estesa di write)
+- `wb`: write, overwrites the contents of the file
+- `rb`: read, read file contents
+- `ab`: append, add content to the file
+- `w + b`: write & read
+- `r + b`: write & read & append
+- `a + b`: append & read
+- `xb`: exclusive creation, if the file already exists -> `FileExistError` (extended write mode)
 
-**Note**: GNU/Linux e MacOSX usano `UTF-8` ovunque mentre windows usa `cp1252`, `cp850`, `mbcs`, `UTF-8`. Non fare affidamento a encoding di default ed usare **esplicitamente** `UTF-8`.
+**Note**: Linux and MacOSX use `UTF-8` everywhere while windows uses `cp1252`, `cp850`,`mbcs`, `UTF-8`. Don't rely on default encoding and use **explicitly** `UTF-8`.
 
 ```py
-oggetto = open('filename', mode='r', encoding='utf-8')  # encoding MUST BE utf-8 for compatibility
-# filename può essere il percorso assoluto della posizione del file (default: file creato nella cartella del codice sorgente)
-# doppio slash per evitare escape di \
+object = open('filename', mode = 'r', encoding = 'utf-8') # encoding MUST BE utf-8 for compatibility
+# filename can be the absolute path to the file location (default: file created in the source code folder)
+# double slash to avoid \ escaping
 
 with open('filename') as file:
-    istruzioni_su_file   # blocco usa nome_file per indicare il file
+    instructions_to_file # block use filename to indicate file
 
-# CHIUSURA DI UN FILE
-oggetto.close()
+# CLOSE A FILE
+object.close()
 
-# SCRITTURA IN UN FILE
-oggetto.write(stringa)  # scrive singola stinga nel file
-oggetto.writelines(*stringhe)  # scrive stringhe multiple sul file
+# WRITE TO A FILE
+object.write(string) # write single string to file
+object.writelines(* strings) # write multiple strings to file
 
-# LETTURA DA UN FILE
-oggetto.read()  # restituisce TUTTO il contenuto del file (anche escape sequence) e posuzione il "cursore" a fondo file
-oggetto.seek(0)  # restituisce 0 (zero) e posiziona il cursore a inizio file
-oggetto.readlines()  # restituisce lista linee file (ATTENZIONE: tiene tutto in memoria, cautela con file grandi)
-oggetto.readline()     # restituisce singola linea file
+# READING FROM A FILE
+object.read() # return ALL the contents of the file (including escape sequence) and place the "cursor" at the end of the file
+object.seek(0) # returns 0 (zero) and places the cursor at the beginning of the file
+object.readlines() # return list of file lines (ATTENTION: keep everything in memory, be careful with large files)
+object.readline() # returns single line file
 
-# CONTROLLO ESISTENZA FILE
+# CHECK FILE EXISTENCE
 import os, sys
-if os.path.isfile('filepath'):  # controlla esistenza file (TRUE se esiste)
+if os.path.isfile('filepath'): # check file existence (TRUE if it exists)
     # code here
 else:
     # code here
-    sys.exit()  # esce dal programma non eseguendo il cosice successivo
-
-# PICKLE-ING
-import pickle, classe  # importa modulo pickle e classe da trasformare in byte stream
-
-fileObj = open('file.dat', 'wb')  # apre file
-obj = classFile.classe(parameters)   # crea oggetto
-pickle.dump(obj, fileObj)  # traduce la gerarchia dell'oggetto in un byte stream (.dat contiene byte)
-fileObj.close()
-
-import pickle   # importa modulo pickle per tradurre byte stream, classe oggetto non necessaria (oggetto codificato nel file)
-
-fileObj = open('file.dat', 'rb')
-obj = pickle.load(fileObj)  # traduce oggetto da fileObj
-obj.method()  # utilizza metodo dell'oggetto
-fileObj.close()
-```
-
-## TIMEIT
-
-```py
-timeit.timeit(' statement ', setup, timer=default_timer, number=num_of_trials)
-# statement: codice da testare (passato come stringa)
-# setup: codice di setup
-# timer: funzione timer (default_timer = time.perf_counter())
-# number: numero di test eseguiti (num esecuzioni statement)
-```
-
-## CONTEXTLIB
-
-Utility per operazioni coinvolgenti with statement.
-
-In un generatore decorato con @contextmanager lo statement yield divide il codice in 2 parti:
-
-- **PRE-YIELD**: eseguito alla chiamata __enter__
-- **POST-YIELD**: eseguito alla chiamata __exit__
-
-`yield` restituisce il valore da associare al "with-target"
-
-```py
-# restituisce context manager che chiude thing alla conclusione del blocco
-contextlib.closing(thing)
-
-# costruisce context manager partendo da funzione restituente generatore-iteratore
-# senza implementare classe e protocollo
-@contextlib.contextmanager
-def generator():
-    # code here
-    yield variabile
-    # code here
-
-# classe bese per definire context manager basati su classi
-# che possono essere anche usati come decoratori
-class contextlib.ContextDecorator
-
-# context manager che permette l'inserimento di indefiniti context manager
-# alla finde del blocco with ExitStack chiama __exit__ in ordine LIFO
-class contextlib.ExitStack
+    sys.exit() # exits the program and does not execute the next cosice
 ```
 
 ## COPY
 
-Opererazioni di copia (*shallow copy*) e copia profonda (*deep copy*)  
-**SHALLOW COPY**: copia il "contenitore" e i riferimenti al contenuto  
-**DEEP COPY**: copia il "contenitore" e i contenuti (no riferimento)
+**SHALLOW COPY**: copies the "container" and references to the content
+**DEEP COPY**: copies the "container" and contents (no reference)
 
 ```py
-copy(x)  # restituisce shallow copy di xor
-deepcopy(x)  # restituisce shallow copy di x
+copy (x) # returns shallow copy of xor
+deepcopy (x) # returns shallow copy of x
 ```
