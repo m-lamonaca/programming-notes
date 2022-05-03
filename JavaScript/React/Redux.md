@@ -298,3 +298,129 @@ RTK Query includes these APIs:
 [fetch_query]: https://redux-toolkit.js.org/rtk-query/api/fetchBaseQuery
 [api_provider]: https://redux-toolkit.js.org/rtk-query/api/ApiProvider
 [setup_listener]: https://redux-toolkit.js.org/rtk-query/api/setupListeners
+
+### [`configureStore`](https://redux-toolkit.js.org/api/configureStore)
+
+Included Default Middleware​:
+
+- Immutability check middleware: deeply compares state values for mutations. It can detect mutations in reducers during a dispatch, and also mutations that occur between dispatches.
+  When a mutation is detected, it will throw an error and indicate the key path for where the mutated value was detected in the state tree. (Forked from `redux-immutable-state-invariant`.)
+
+- Serializability check middleware: a custom middleware created specifically for use in Redux Toolkit
+  Similar in concept to `immutable-state-invariant`, but deeply checks the state tree and the actions for non-serializable values such as functions, Promises, Symbols, and other non-plain-JS-data values
+  When a non-serializable value is detected, a console error will be printed with the key path for where the non-serializable value was detected.
+
+- In addition to these development tool middleware, it also adds `redux-thunk` by default, since thunks are the basic recommended side effects middleware for Redux.
+
+Currently, the return value of `getDefaultMiddleware()` is:
+
+```js
+// development
+const middleware = [thunk, immutableStateInvariant, serializableStateInvariant]
+
+// production​
+const middleware = [thunk]
+```
+
+```js
+
+import { combineReducers } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
+import monitorReducersEnhancer from './enhancers/monitorReducers'
+import loggerMiddleware from './middleware/logger'
+import usersReducer from './usersReducer'
+import postsReducer from './postsReducer'
+
+const rootReducer = combineReducers({
+  users: usersReducer,
+  posts: postsReducer,
+})
+
+const store = configureStore({
+  // reducers combined automatically
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware),
+  enhancers: [monitorReducersEnhancer]
+})
+
+export default store
+```
+
+### [`createAction`](https://redux-toolkit.js.org/api/createAction)
+
+```js
+import { createAction } from '@reduxjs/toolkit';
+
+const increment = createAction<number | undefined>('counter/increment');
+
+const action = increment();  // { type: 'counter/increment' }
+const action = increment(3);  // { type: 'counter/increment', payload: 3 }
+
+increment.toString();  // 'counter/increment'
+```
+
+### [`createReducer`](https://redux-toolkit.js.org/api/createReducer)
+
+```js
+import { createAction, createReducer } from '@reduxjs/toolkit'
+
+interface CounterState {
+  value: number
+}
+
+const increment = createAction('counter/increment')
+const decrement = createAction('counter/decrement')
+const incrementByAmount = createAction<number>('counter/incrementByAmount')
+
+const initialState = { value: 0 } as CounterState
+
+const counterReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(increment, (state, action) => {
+      state.value++
+    })
+    .addCase(decrement, (state, action) => {
+      state.value--
+    })
+    .addCase(incrementByAmount, (state, action) => {
+      state.value += action.payload
+    })
+})
+```
+
+### [`createSlice`](https://redux-toolkit.js.org/api/createSlice)
+
+A function that accepts an initial state, an object of reducer functions, and a "slice name", and automatically generates action creators and action types that correspond to the reducers and state.
+
+Internally, it uses `createAction` and `createReducer`, so it's possible to use Immer to write "mutating" immutable updates.
+
+**Note**: action types will have the `<slice-name>/<reducer-name>` shape.
+
+```js
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+interface CounterState {
+  value: number
+}
+
+const initialState = { value: 0 } as CounterState
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState,
+  reducers: {
+    increment(state) {
+      state.value++
+    },
+    decrement(state) {
+      state.value--
+    },
+    incrementByAmount(state, action: PayloadAction<number>) {
+      state.value += action.payload
+    },
+  },
+})
+
+export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export default counterSlice.reducer
+```
