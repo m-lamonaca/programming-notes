@@ -271,34 +271,6 @@ Redux Toolkit includes these APIs:
 [new_async_thunk]: https://redux-toolkit.js.org/api/createAsyncThunk
 [entity_adapt]: https://redux-toolkit.js.org/api/createEntityAdapter
 
-### RTK Query​
-
-RTK Query is provided as an optional addon within the `@reduxjs/toolkit` package.  
-It is purpose-built to solve the use case of data fetching and caching, supplying a compact, but powerful toolset to define an API interface layer got the app.  
-It is intended to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
-
-RTK Query is included within the installation of the core Redux Toolkit package. It is available via either of the two entry points below:
-
-```cs
-import { createApi } from '@reduxjs/toolkit/query'
-
-/* React-specific entry point that automatically generates hooks corresponding to the defined endpoints */
-import { createApi } from '@reduxjs/toolkit/query/react'
-```
-
-RTK Query includes these APIs:
-
-- [`createApi()`][new_api]: The core of RTK Query's functionality. It allows to define a set of endpoints describe how to retrieve data from a series of endpoints,
-  including configuration of how to fetch and transform that data.
-- [`fetchBaseQuery()`][fetch_query]: A small wrapper around fetch that aims to simplify requests. Intended as the recommended baseQuery to be used in createApi for the majority of users.
-- [`<ApiProvider />`][api_provider]: Can be used as a Provider if you do not already have a Redux store.
-- [`setupListeners()`][setup_listener]: A utility used to enable refetchOnMount and refetchOnReconnect behaviors.
-
-[new_api]: https://redux-toolkit.js.org/rtk-query/api/createApi
-[fetch_query]: https://redux-toolkit.js.org/rtk-query/api/fetchBaseQuery
-[api_provider]: https://redux-toolkit.js.org/rtk-query/api/ApiProvider
-[setup_listener]: https://redux-toolkit.js.org/rtk-query/api/setupListeners
-
 ### [`configureStore`](https://redux-toolkit.js.org/api/configureStore)
 
 Included Default Middleware​:
@@ -424,3 +396,70 @@ const counterSlice = createSlice({
 export const { increment, decrement, incrementByAmount } = counterSlice.actions
 export default counterSlice.reducer
 ```
+
+### [`createAsyncThunk`](https://redux-toolkit.js.org/api/createAsyncThunk)
+
+The function `createAsyncThunk` returns a standard Redux thunk action creator.
+The thunk action creator function will have plain action creators for the pending, fulfilled, and rejected cases attached as nested fields.
+
+The `payloadCreator` function will be called with two arguments:
+
+- `arg`: a single value, containing the first parameter that was passed to the thunk action creator when it was dispatched.
+- `thunkAPI`: an object containing all of the parameters that are normally passed to a Redux thunk function, as well as additional options:
+  - `dispatch`: the Redux store dispatch method
+  - `getState`: the Redux store getState method
+  - `extra`: the "extra argument" given to the thunk middleware on setup, if available
+  - `requestId`: a unique string ID value that was automatically generated to identify this request sequence
+  - `signal`: an `AbortController.signal` object that may be used to see if another part of the app logic has marked this request as needing cancellation.
+  - [...]
+
+The logic in the `payloadCreator` function may use any of these values as needed to calculate the result.
+
+```js
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
+const payloadCreator = async (arg, ThunkAPI): Promise<T> => { /* ... */ };
+const thunk = createAsyncThunk("<action-type>", payloadCreator);
+
+thunk.pending; // action creator that dispatches an '<action-type>/pending'
+thunk.fulfilled; // action creator that dispatches an '<action-type>/fulfilled'
+thunk.rejected; // action creator that dispatches an '<action-type>/rejected'
+
+const slice = createSlice({
+  name: '<action-name>',
+  initialState,
+  reducers: { /* standard reducer logic, with auto-generated action types per reducer */ },
+  extraReducers: (builder) => {
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(thunk.fulfilled, (state, action) => { /* body of the reducer */ })
+  },
+})
+```
+
+## RTK Query​
+
+RTK Query is provided as an optional addon within the `@reduxjs/toolkit` package.  
+It is purpose-built to solve the use case of data fetching and caching, supplying a compact, but powerful toolset to define an API interface layer got the app.  
+It is intended to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
+
+RTK Query is included within the installation of the core Redux Toolkit package. It is available via either of the two entry points below:
+
+```cs
+import { createApi } from '@reduxjs/toolkit/query'
+
+/* React-specific entry point that automatically generates hooks corresponding to the defined endpoints */
+import { createApi } from '@reduxjs/toolkit/query/react'
+```
+
+RTK Query includes these APIs:
+
+- [`createApi()`][new_api]: The core of RTK Query's functionality. It allows to define a set of endpoints describe how to retrieve data from a series of endpoints,
+  including configuration of how to fetch and transform that data.
+- [`fetchBaseQuery()`][fetch_query]: A small wrapper around fetch that aims to simplify requests. Intended as the recommended baseQuery to be used in createApi for the majority of users.
+- [`<ApiProvider />`][api_provider]: Can be used as a Provider if you do not already have a Redux store.
+- [`setupListeners()`][setup_listener]: A utility used to enable refetchOnMount and refetchOnReconnect behaviors.
+
+[new_api]: https://redux-toolkit.js.org/rtk-query/api/createApi
+[fetch_query]: https://redux-toolkit.js.org/rtk-query/api/fetchBaseQuery
+[api_provider]: https://redux-toolkit.js.org/rtk-query/api/ApiProvider
+[setup_listener]: https://redux-toolkit.js.org/rtk-query/api/setupListeners
