@@ -4,40 +4,14 @@
 
 ### Jest Configuration
 
-In `package.json`:
-
-```json
-{
-    // ...
-    "scripts": {
-        "test": "jest --watch"  // watch re-runs test on save
-    },
-    "jest": {
-        // calls additional setups for enzyme, react testing library, ...
-        "setupFiles": [
-            "path/to/testSetup.js"  
-        ],
-        "moduleNameMapper": {
-            // file imports to ignore 
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "path/to/fileMock.js",
-            "\\.(css|less)$": "path/to/styleMock.js"
-        }
-  },
+```js
+// jest.config.js
+module.exports = {
+  testEnvironment: 'jsdom',
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],  // add testing-library methods to expect()
+  transform: { '^.+\\.tsx?$': 'ts-jest'}  // use ts-jest fo ts files
 }
-```
-
-In `fileMock.js`:
-
-```js
-// Mocks file imports for Jest. As suggested by https://jestjs.io/docs/en/webpack
-module.exports = "test-file-stub";
-```
-
-In  `styleMock.js`:
-
-```js
-// Mocks CSS imports for Jest. As suggested by https://jestjs.io/docs/en/webpack
-module.exports = {};
 ```
 
 ### Jest Tests
