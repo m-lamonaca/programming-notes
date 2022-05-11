@@ -84,6 +84,61 @@ app.MapGet("/search/{id}", Search);
 IResult Search(int id, int? page = 1, int? pageSize = 10) { /* ... */ }
 ```
 
+### Route Groups
+
+The `MapGroup()` extension method, which helps organize groups of endpoints with a common prefix.  
+It allows for customizing entire groups of endpoints with a singe call to methods like `RequireAuthorization()` and `WithMetadata()`.
+
+```cs
+var group = app.MapGroup("<route-prefix>");
+
+group.MapGet("/", GetAllTodos);  // route: /<route-prefix>
+group.MapGet("/{id}", GetTodo);  // route: /<route-prefix>/{id}
+
+// [...]
+```
+
+### `TypedResults`
+
+The `Microsoft.AspNetCore.Http.TypedResults` static class is the “typed” equivalent of the existing `Microsoft.AspNetCore.Http.Results` class.  
+It's possible to use `TypedResults` in minimal APIs to create instances of the in-framework `IResult`-implementing types and preserve the concrete type information.
+
+```cs
+public static async Task<IResult> GetAllTodos(TodoDb db)
+{
+    return TypedResults.Ok(await db.Todos.ToArrayAsync());
+}
+```
+
+```cs
+[Fact]
+public async Task GetAllTodos_ReturnsOkOfObjectResult()
+{
+    // Arrange
+    var db = CreateDbContext();
+
+    // Act
+    var result = await TodosApi.GetAllTodos(db);
+
+    // Assert: Check the returned result type is correct
+    Assert.IsType<Ok<Todo[]>>(result);
+}
+```
+
+### Multiple Result Types
+
+The `Results<TResult1, TResult2, TResultN>` generic union types, along with the `TypesResults` class, can be used to declare that a route handler returns multiple `IResult`-implementing concrete types.
+
+```cs
+// Declare that the lambda returns multiple IResult types
+app.MapGet("/todos/{id}", async Results<Ok<Todo>, NotFound> (int id, TodoDb db)
+{
+    return await db.Todos.FindAsync(id) is Todo todo
+        ? TypedResults.Ok(todo)
+        : TypedResults.NotFound();
+});
+```
+
 ## Context
 
 With Minimal APIs it's possible to access the contextual information by passing one of the following types as a parameter to your handler delegate:
@@ -98,6 +153,21 @@ With Minimal APIs it's possible to access the contextual information by passing 
 app.MapGet("/hello", (ClaimsPrincipal user) => {
     return "Hello " + user.FindFirstValue("sub");
 });
+```
+
+## OpenAPI
+
+The `Microsoft.AspNetCore.OpenApi` package exposes a `WithOpenApi` extension method that generates an `OpenApiOperation` derived from a given endpoint’s route handler and metadata.
+
+```cs
+app.MapGet("/todos/{id}", (int id) => ...)
+    .WithOpenApi();
+
+app.MapGet("/todos/{id}", (int id) => ...)
+    .WithOpenApi(operation => {
+        operation.Summary = "Retrieve a Todo given its ID";
+        operation.Parameters[0].AllowEmptyValue = false;
+    });
 ```
 
 ## Validation
