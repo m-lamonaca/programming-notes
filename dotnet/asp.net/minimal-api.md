@@ -139,6 +139,25 @@ app.MapGet("/todos/{id}", async Results<Ok<Todo>, NotFound> (int id, TodoDb db)
 });
 ```
 
+## Filters
+
+```cs
+public class ExampleFilter : IRouteHandlerFilter
+{
+    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context, RouteHandlerFilterDelegate next)
+    {
+        // before endpoint call
+        var result = next(context);
+        /// after endpoint call
+        return result;
+    }
+}
+```
+
+```cs
+app.MapPost("/route", Handler).AddFilter<ExampleFilter>();
+```
+
 ## Context
 
 With Minimal APIs it's possible to access the contextual information by passing one of the following types as a parameter to your handler delegate:
