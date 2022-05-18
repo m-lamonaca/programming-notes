@@ -67,12 +67,12 @@ function Component(props) {
 ### Redirecting
 
 ```js
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-// redirects to another URL, should'nt be rendered on component mount but after an action
-<Redirect to="/route" />
-<Redirect from="/old-route" to="/new-route" />
-{ condition &&  <Redirect to="/route" /> }  // redirect if condition is true
+// redirects to another URL on render, shouldn't be rendered on component mount but after an action
+<Navigate to="/route" />
+<Navigate from="/old-route" to="/new-route" />
+{ condition &&  <Navigate to="/route" /> }  // redirect if condition is true
 
 // or redirect manipulating the history (always in props)
 props.history.push("/new-route");
