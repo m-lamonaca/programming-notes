@@ -1,0 +1,125 @@
+site_name: Programming Notes
+repo_url: https://github.com/m-lamonaca/programming-notes
+repo_name: GitHub
+edit_uri: /blob/main/docs
+remote_branch: gh-pages
+remote_name: origin
+site_url: http://m-lamonaca.github.io/programming-notes
+site_author: Marcello Lamonaca
+copyright: MIT
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: readthedocs
+  locale: en
+  include_sidebar: true
+
+nav:
+  - Home: index.md
+  - Git: git/git.md
+  - HTML: html/html.md
+  - CSS: css/css.md
+  - Markdown: markdown.md
+  - GraphQL: graph-ql.md
+  - RegEx: regular-expressions.md
+  - C++: C++/cpp.md
+  - Kotlin: kotlin/kotlin.md
+  - Swift: swift/swift.md
+  - Database:
+    - Redis: database/redis.md
+    - SQL: database/sql.md
+    - MongoDB: database/mongo-db.md
+  - Python:
+      - Python: python/python.md
+      - argparse: python/argparse.md
+      - collection: python/collections.md
+      - csv: python/csv.md
+      - ftplib: python/ftplib.md
+      - itertools: python/itertools.md
+      - json: python/json.md
+      - logging: python/logging.md
+      - shutil: python/shutil.md
+      - smtplib: python/smtplib.md
+      - socket: python/socket.md
+      - sqlite: python/sqlite.md
+      - time & datetime: python/time-datetime.md
+      - unittest: python/unittest.md
+      - Libraries:
+        - TKinter: python/libs/tkinter.md
+        - Numpy: python/libs/numpy.md
+        - Pandas: python/libs/pandas.md
+        - Seaborn: python/libs/seaborn.md
+        - Requests: python/libs/requests.md
+        - Beatiful Soup: python/libs/beautiful-soup.md
+  - .NET:
+      - C#:
+          - C#: dotnet/C#/C#.md
+          - Linq: dotnet/C#/linq.md
+          - Collections: dotnet/C#/collections.md
+          - Reactive Extensions: dotnet/C#/reactive-extensions.md
+          - Async Programming: dotnet/C#/async-programming.md
+          - Unit Tests: dotnet/C#/unit-tests.md
+      - ASP.NET:
+          - App Configuration: dotnet/asp.net/app-configuration.md
+          - Minimal API: dotnet/asp.net/minimal-api.md
+          - MVC: dotnet/asp.net/mvc.md
+          - FIlters: dotnet/asp.net/filters.md
+          - Middleware: dotnet/asp.net/middleware.md
+          - Razor Pages: dotnet/asp.net/razor-syntax.md
+          - Blazor: dotnet/asp.net/blazor.md
+          - Razor Pages: dotnet/asp.net/razor-pages.md
+          - Razor Syntax: dotnet/asp.net/razor-syntax.md
+          - REST API: dotnet/asp.net/rest-api.md
+          - SignalR: dotnet/asp.net/signalr.md
+          - Web Forms: dotnet/asp.net/web-forms.md
+      - Database:
+          - ADO.NET: dotnet/database/ado.net.md
+          - Entity Framework: dotnet/database/entity-framework.md
+  - Java:
+      - Java: java/java.md
+      - Java Collection Framework: java/java-collection-framework.md
+      - DAO: java/dao.md
+      - Web:
+          - Serverlet: java/web/servlet.md
+          - Spring:
+              - POM: java/spring/pom.xml.md
+              - Project Structure: java/spring/spring-project.md
+  - PHP:
+      - PHP: php/php.md
+      - Database: php/database.md
+      - Web: php/web.md
+      - Dependency Injection: php/dependency-injection.md
+      - Unit Tests: php/unit-tests.md
+      - Composer: php/composer.md
+      - PSR 7: php/psr-7.md
+      - Plates: php/plates-templating.md
+      - Simple MVC:
+          - Simple MVC: php/simple-mvc/simple-mvc.md
+          - REST API: php/simple-mvc/rest-api.md
+  - Rust:
+      - Rust: rust/rust.md
+      - Cargo: rust/cargo.md
+      - Unit Tests: rust/unit-tests.md
+  - Javascript:
+      - Javascript: javascript/javascript.md
+      - DOM: javascript/dom.md
+      - Events & Animation: javascript/events-animation.md
+      - AJAX: javascript/ajax.md
+      - jQuery: javascript/jquery.md
+      - React:
+          - React: javascript/react/react.md
+          - React Router: javascript/react/react-router.md
+          - React Tests: javascript/react/react-tests.md
+          - Redux: javascript/react/redux.md
+          - Redux Tests: javascript/react/redux-tests.md
+      - Svelte: javascript/svelte/svelte.md
+  - iOS:
+      - ContentView: ios/content-view.md
+  - PowerShell:
+      - Scripting: powershell/scripting.md
+      - Commands: powershell/commands.md
+  - Bash:
+      - Scripting: bash/scripting.md
+      - Commands: bash/commands.md
