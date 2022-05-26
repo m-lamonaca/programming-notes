@@ -1,5 +1,12 @@
 site_name: Programming Notes
-# site_url: https://example.com/
+repo_urL: https://github.com/m-lamonaca/programming-notes
+repo_name: GitHub
+edit_uri: /blob/main/docs
+remote_branch: gh-pages
+remote_name: origin
+site_url: http://m-lamonaca.github.io/programming-notes
+site_author: Marcello Lamonaca
+copyright: MIT
 
 docs_dir: docs
 site_dir: site
