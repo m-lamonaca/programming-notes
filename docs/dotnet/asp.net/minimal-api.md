@@ -239,6 +239,8 @@ builder.Services.AddAuthorization(options =>
       .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
       .RequireAuthenticatedUser();
 })
+// or
+builder.Authentication.AddJwtBearer();  // will automatically add required middlewares
 
 // [...]
 
@@ -249,4 +251,15 @@ app.UseAuthorization(); // must come before routes
 
 app.MapGet("/alcohol", () => Results.Ok()).RequireAuthorization("<policy>");  // on specific endpoints
 app.MapGet("/free-for-all", () => Results.Ok()).AllowAnonymous();
+app.MapGet("/special-secret", () => "This is a special secret!")
+    .RequireAuthorization(p => p.RequireClaim("scope", "myapi:secrets"));
+```
+
+### Local JWT Tokens
+
+The `user-jwts` tool is similar in concept to the existing `user-secrets` tools, in that it can be used to manage values for the app that are only valid for the current user (the developer) on the current machine.  
+In fact, the `user-jwts` tool utilizes the `user-secrets` infrastructure to manage the key that the JWTs will be signed with, ensuring it’s stored safely in the user profile.
+
+```sh
+dotnet user-jwts create  # configure a dev JWT fot the current user
 ```
