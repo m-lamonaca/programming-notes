@@ -12,9 +12,49 @@ docs_dir: docs
 site_dir: site
 
 theme:
-  name: readthedocs
-  locale: en
-  include_sidebar: true
+  name: material
+  language: en
+  icon:
+    logo: octicons/telescope-16
+
+  palette: 
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: teal
+      accent: cyan
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: teal
+      accent: cyan
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      auto_title: true
+      linenums: true
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.keys
+  - pymdownx.smartsymbols
+
 
 nav:
   - Home: index.md
