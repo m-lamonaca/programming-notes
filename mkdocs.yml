@@ -74,19 +74,20 @@ nav:
     - MongoDB: database/mongo-db.md
   - Python:
       - Python: python/python.md
-      - argparse: python/argparse.md
-      - collection: python/collections.md
-      - csv: python/csv.md
-      - ftplib: python/ftplib.md
-      - itertools: python/itertools.md
-      - json: python/json.md
-      - logging: python/logging.md
-      - shutil: python/shutil.md
-      - smtplib: python/smtplib.md
-      - socket: python/socket.md
-      - sqlite: python/sqlite.md
-      - time & datetime: python/time-datetime.md
-      - unittest: python/unittest.md
+      - Modules:  
+        - argparse: python/modules/argparse.md
+        - collection: python/modules/collections.md
+        - csv: python/modules/csv.md
+        - ftplib: python/modules/ftplib.md
+        - itertools: python/modules/itertools.md
+        - json: python/modules/json.md
+        - logging: python/modules/logging.md
+        - shutil: python/modules/shutil.md
+        - smtplib: python/modules/smtplib.md
+        - socket: python/modules/socket.md
+        - sqlite: python/modules/sqlite.md
+        - time & datetime: python/modules/time-datetime.md
+        - unittest: python/modules/unittest.md
       - Libraries:
         - TKinter: python/libs/tkinter.md
         - Numpy: python/libs/numpy.md
