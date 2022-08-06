@@ -17,7 +17,7 @@ The `ADO.NET` classes are found in `System.Data.dll`, and are integrated with th
 - Trusted Connection (WinAuth): `Server=<server_name>; Database=<database>; Trusted_Connection=True;`
 - MARS: `Server=<server_name>; Database=<database>; Trusted_Connection=True; MultipleActiveResultSets=True;`
 
-**NOTE**: *Multiple Active Result Sets* (MARS) is a feature that works with SQL Server to allow the execution of multiple batches on a single connection.
+> **Note**: *Multiple Active Result Sets* (MARS) is a feature that works with SQL Server to allow the execution of multiple batches on a single connection.
 
 ### [SQLite](https://www.connectionstrings.com/sqlite/)
 

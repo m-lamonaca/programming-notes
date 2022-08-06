@@ -391,7 +391,7 @@ public class StateContainer
 }
 ```
 
-**NOTE**: When a user provides an unparsable value to a data-bound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
+> **Note**: When a user provides an unparsable value to a data-bound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
 
 > **Note**: The `@bind:get` and `@bind:set` modifiers are always used together.  
 > `The @bind:get` modifier specifies the value to bind to and the `@bind:set` modifier specifies a callback that is called when the value changes

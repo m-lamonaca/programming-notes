@@ -351,7 +351,7 @@ While records can be mutable, they're primarily intended for supporting immutabl
   - Built-in formatting for display
 - Support for inheritance hierarchies
 
-**NOTE**: A _positional record_ and a _positional readonly record struct_ declare init-only properties. A _positional record struct_ declares read-write properties.
+> **Note**: A _positional record_ and a _positional readonly record struct_ declare init-only properties. A _positional record struct_ declares read-write properties.
 
 ### `with`-expressions
 
@@ -370,7 +370,7 @@ The `with` expression causes the copy constructor to get called, and then applie
 protected Record(Record original) { /* copy all the fields */ } // generated
 ```
 
-**NOTE**: it's possible to define a custom copy constructor tha will be picked up by the `with` expression.
+> **Note**: it's possible to define a custom copy constructor tha will be picked up by the `with` expression.
 
 ### `with`-expressions & Inheritance
 
@@ -913,8 +913,8 @@ foreach (type item in iterabile)
 }
 ```
 
-**NOTE**: Due to the use of an _iterator_, the variable declared in a foreach statement cannot be used to modify the value of the current item.  
-**NOTE**: From C# 9 it's possible to implement `GetEnumerator()` as an _extension method_ making enumerable an class that normally isn't.
+> **Note**: Due to the use of an _iterator_, the variable declared in a foreach statement cannot be used to modify the value of the current item.  
+> **Note**: From C# 9 it's possible to implement `GetEnumerator()` as an _extension method_ making enumerable an class that normally isn't.
 
 Example:
 
@@ -965,7 +965,7 @@ In unchecked code block the mathematic overflow is _ignored_ end the result is _
 It's possible configure the C# compiler to put everything into a checked context by default, so that only explicitly unchecked expressions and statements will be able to overflow silently.  
 It is done by editing the `.csproj` file, adding `<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>` inside a `<PropertyGroup>`.
 
-**NOTE**: checking can make individual integer operations several times slower.
+> **Note**: checking can make individual integer operations several times slower.
 
 ```cs
 checked
@@ -1158,7 +1158,7 @@ MethodName(value1);  // use defaults for optional arguments
 MethodName(required: value, secondOptional: value);  // use default for first optional but pass second optional
 ```
 
-**NOTE**: If the caller provides an argument for any one of a succession of optional parameters, it must provide arguments for all preceding optional parameters. Comma-separated gaps in the argument list are not supported.
+> **Note**: If the caller provides an argument for any one of a succession of optional parameters, it must provide arguments for all preceding optional parameters. Comma-separated gaps in the argument list are not supported.
 
 ### Passing Values By Reference (`ref`, `out`, `in`)
 
@@ -1180,7 +1180,7 @@ Use cases:
 - `ref`: move data bidirectionally between method and call scope
 - `in`: pass large value type (e,g, struct) as a reference avoiding copying large amounts of data (must be readonly, copied regardless otherwise)
 
-**NOTE**: use `in` only with readonly value types, because mutable value types can undo the performance benefits. (Mutable value types are typically a bad idea in any case.)
+> **Note**: use `in` only with readonly value types, because mutable value types can undo the performance benefits. (Mutable value types are typically a bad idea in any case.)
 
 While the method can use members of the passed reference type, it can't normally replace it with a different object.  
 But if a reference type argument is marked with ref, the method has access to the variable, so it could replace it with a reference to a completely different object.
@@ -1244,7 +1244,7 @@ Extension methods allow their usage applied to the extended type as if their dec
 Extension methods are not really members of the class for which they are defined.  
 It's just an illusion maintained by the C# compiler, one that it keeps up even in situations where method invocation happens implicitly.
 
-**NOTE**: Extension Method can be declared only inside static classes. Extension methods are available only if their namespace is imported with the `using` keyword.
+> **Note**: Extension Method can be declared only inside static classes. Extension methods are available only if their namespace is imported with the `using` keyword.
 
 ```cs
 public static class ExtensionMethods
@@ -1270,7 +1270,7 @@ When a `yield return` statement is reached, the current location in code is reme
 
 It's possible to use a `yield break` statement or exception to end the iteration.
 
-**NOTE**: Since an iterator returns an `IEnumerable<T>` is can be used to implement a `GetEnumerator()`.
+> **Note**: Since an iterator returns an `IEnumerable<T>` is can be used to implement a `GetEnumerator()`.
 
 ```cs
 // simple iterator
@@ -1322,7 +1322,7 @@ public struct Point
 }
 ```
 
-**NOTE**: From C# 10 is possible to have a parameterless constructor and make a new struct using a `with` statement.
+> **Note**: From C# 10 is possible to have a parameterless constructor and make a new struct using a `with` statement.
 
 The only way to affect a struct variable both inside a method and outside is to use the `ref` keyword;
 
@@ -1462,10 +1462,10 @@ class Class
 }
 ```
 
-**NOTE**: The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.  
+> **Note**: The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.  
 Because `init` accessors can only be called during initialization, they are allowed to _mutate_ `readonly` fields of the enclosing class, just like in a constructor.
 
-**NOTE**: creating at least one constructor hides the one provided by default (w/ zero parameters).
+> **Note**: creating at least one constructor hides the one provided by default (w/ zero parameters).
 
 ### [Object and Collection Initializers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers)
 
@@ -1602,7 +1602,7 @@ Members marked as `abstract` must be implemented by non-abstract classes that de
   The `sealed` modifier prevents a class from being inherited and the `abstract` modifier requires a class to be inherited.
 - A _non-abstract_ class derived from an `abstract` class must include actual implementations of all inherited `abstract` methods and accessors.
 
-**NOTE**: Use the `abstract` modifier in a method or property declaration to indicate that the method or property does not contain implementation.
+> **Note**: Use the `abstract` modifier in a method or property declaration to indicate that the method or property does not contain implementation.
 
 `abstract` methods have the following features:
 
@@ -1654,7 +1654,7 @@ IClonable.Clone();  //  Creates a new object that is a copy of the current insta
 
 Deconstruction is not limited to tuples. By providing a `Deconstruct(...)` method(s) C# allows to use the same syntax with the users types.
 
-**NOTE**: Types with a deconstructor can also use _positional pattern matching_.
+> **Note**: Types with a deconstructor can also use _positional pattern matching_.
 
 ```cs
 public readonly struct Size
@@ -1788,7 +1788,7 @@ A type defined at _global scope_ can be only `public`or `internal`.
 private wouldn't make sense since that makes something accessible only from within its containing type, and there is no containing type at global scope.  
 But a nested type does have a containing type, so if a nested type is `private`, that type can be used only from inside the type within which it is nested.
 
-**NOTE**: Code in a nested type is allowed to use nonpublic members of its containing type. However, an instance of a nested type does not automatically get a reference to an instance of its containing type.
+> **Note**: Code in a nested type is allowed to use nonpublic members of its containing type. However, an instance of a nested type does not automatically get a reference to an instance of its containing type.
 
 ---
 
@@ -1825,7 +1825,7 @@ public interface IContract
 public interface IContract<T> {}  // interfaces can be generic
 ```
 
-**NOTE**: Interfaces are reference types. Despite this, it's possible tp implement interfaces on both classes and structs.  
+> **Note**: Interfaces are reference types. Despite this, it's possible tp implement interfaces on both classes and structs.  
 However, be careful when doing so with a struct, because when getting hold of an interface-typed reference to a struct, it will be a reference to a _box_,  
 which is effectively an object that holds a copy of a struct in a way that can be referred to via a reference.
 
@@ -1926,7 +1926,7 @@ One reason for this is that value types are not normally used by reference, whic
 Since a derived class inherits everything the base class has—all its fields, methods, and other members,  
 both public and private—an instance of the derived class can do anything an instance of the base could do.
 
-**NOTE**: When deriving from a class, it's not possible to make the derived class more visible than its base. This restriction does not apply to interfaces.  
+> **Note**: When deriving from a class, it's not possible to make the derived class more visible than its base. This restriction does not apply to interfaces.  
 A `public` class is free to implement `internal` or `private` interfaces. However, it does apply to an interface's bases: a `public` interface cannot derive from an `internal` interface.
 
 ```cs
@@ -2030,7 +2030,7 @@ Generic type parameters support covariance and contravariance to provide greater
 
 ![covariance-vs-contravariance](../../img/dotnet_covariant_contravariant.png)
 
-**NOTE**: annotate generic type parameters with `out` and `in` annotations to specify whether they should behave covariantly or contravariantly.
+> **Note**: annotate generic type parameters with `out` and `in` annotations to specify whether they should behave covariantly or contravariantly.
 
 ```cs
 public class Base {};
@@ -2094,7 +2094,7 @@ multicastDelegate += Method;  // add method to delegate
 multicastDelegate -= Method;  // remove method from delegate
 ```
 
-**NOTE**: Delegate removal behaves in a potentially surprising way if the delegate removed refers to multiple methods.  
+> **Note**: Delegate removal behaves in a potentially surprising way if the delegate removed refers to multiple methods.  
 Subtraction of a multicast delegate succeeds only if the delegate from which subtract contains all of the methods in the delegate being subtracted _sequentially and in the same order_.
 
 ### Delegate Invocation
@@ -2113,7 +2113,7 @@ multicastDelegate.GetInvocationList();  // list of methods called by the delegat
 
 ### Common Delegate Types
 
-**NOTE**: Each delegate has an overload taking from zero to 16 arguments;
+> **Note**: Each delegate has an overload taking from zero to 16 arguments;
 
 ```cs
 public delegate void Action<in T1, ...>(T1 arg1, ...);
@@ -2279,7 +2279,7 @@ With .NET Core 3.0 or later, .NET assemblies won't be built with an extension of
 Even project types that produce directly runnable outputs (such as console or WPF applications) produce a `.dll` as their primary output.  
 They also generate an executable file too, but it's not a .NET assembly. It's just a bootstrapper that starts the runtime and then loads and executes your application's main assembly.
 
-**NOTE**: C# compiles to a binary intermediate language (IL), which is not directly executable.  
+> **Note**: C# compiles to a binary intermediate language (IL), which is not directly executable.  
 The normal Windows mechanisms for loading and running the code in an executable or DLL won't work with IL, because that can run only with the help of the CLR.
 
 ### .NET MEtadata
@@ -2361,7 +2361,7 @@ As far as the CLR is concerned, there's really only one interesting thing you ca
 
 The build system tells the compiler which version number to use for the assembly name via an assembly-level attribute.
 
-**NOTE**: NuGet packages also have version numbers, and these do not need to be connected in any way to assembly versions. NuGet does treat the components of a package version number as having particular significance: it has adopted the widely used _semantic versioning_ rules.
+> **Note**: NuGet packages also have version numbers, and these do not need to be connected in any way to assembly versions. NuGet does treat the components of a package version number as having particular significance: it has adopted the widely used _semantic versioning_ rules.
 
 #### Culture
 
@@ -2416,7 +2416,7 @@ It's possible to pass arguments to the attribute _constructor_ in the annotation
 [AttrName(Name = value)]  // valorize public properties or fields (no constructor needed)
 ```
 
-**NOTE**: The real name of an attribute ends with "Attribute" (`[AttrName]` refers to the `AttrNameAttribute` class)
+> **Note**: The real name of an attribute ends with "Attribute" (`[AttrName]` refers to the `AttrNameAttribute` class)
 
 ### Multiple Attributes
 
@@ -2483,7 +2483,7 @@ This starts at zero, but at each read or write, the position advances by the num
 The `Read` method returns an `int`. This tells how many bytes were read from the stream, the method _does not guarantee_ to provide the amount of data requested.  
 The reason `Read` is slightly tricky is that some streams are live, representing a source of information that produces data gradually as the program runs.
 
-**NOTE**: If asked for more than one byte at a time, a `Stream` is always free to return less data than requested from Read for any reason. Never presume that a call to `Read` returned as much data as it could.
+> **Note**: If asked for more than one byte at a time, a `Stream` is always free to return less data than requested from Read for any reason. Never presume that a call to `Read` returned as much data as it could.
 
 ### Position & Seeking
 
@@ -2507,7 +2507,7 @@ The Stream class therefore offers a `Flush` method. This tells the stream that i
 A stream automatically flushes its contents when calling `Dispose`. Flush only when it's needed to keep a stream open after writing out buffered data.  
 It is particularly important if there will be extended periods during which the stream is open but inactive.
 
-**NOTE**: When using a `FileStream`, the `Flush` method does not necessarily guarantee that the data being flushed has made it to disk yet. It merely makes the stream pass the data to the OS.  
+> **Note**: When using a `FileStream`, the `Flush` method does not necessarily guarantee that the data being flushed has made it to disk yet. It merely makes the stream pass the data to the OS.  
 Before calling `Flush`, the OS hasn't even seen the data, so if the process terminates suddenly, the data would be lost.  
 After `Flush` has returned, the OS has everything the code has written, so the process could be terminated without loss of data.  
 However, the OS may perform additional buffering of its own, so if the power fails before the OS gets around to writing everything to disk, the data will still be lost.
@@ -2613,7 +2613,7 @@ public FileStream(string path, FileMode mode, FileAccess access, FileShare share
 - `DeleteOnCloseTells`: `FileStream` to delete the file when you call `Dispose`.
 - `EncryptedEncrypts`: the file so that its contents cannot be read by other users.
 
-**NOTE**: The `WriteThrough` flag will ensure that when the stream is disposed or flushed, all the data written will have been delivered to the drive, but the drive will not necessarily have written that data persistently (drives can defer writing for performance), so data loss id still possible if the power fails.
+> **Note**: The `WriteThrough` flag will ensure that when the stream is disposed or flushed, all the data written will have been delivered to the drive, but the drive will not necessarily have written that data persistently (drives can defer writing for performance), so data loss id still possible if the power fails.
 
 ```cs
 // object to read or write to a file (file can be binary)
@@ -2753,7 +2753,7 @@ class ClassName{
 
 Serialization works directly with an object's fields. It uses reflection, which enables it to access all members, whether public or private.
 
-**NOTE**: CLR Serialization produces binary streams in a .NET specific format
+> **Note**: CLR Serialization produces binary streams in a .NET specific format
 
 ---
 
@@ -2801,7 +2801,7 @@ Span<int> numbers = stackalloc int[] { 1, 2, 3 };
 var first = numbers[0];
 ```
 
-**NOTE**: Normally, C# won’t allow to use `stackalloc` outside of code marked as unsafe, since it allocates memory on the stack producing a pointer. However, the compiler makes an exception to this rule when assigning the pointer produced by a `stackalloc` expression directly into a span.
+> **Note**: Normally, C# won’t allow to use `stackalloc` outside of code marked as unsafe, since it allocates memory on the stack producing a pointer. However, the compiler makes an exception to this rule when assigning the pointer produced by a `stackalloc` expression directly into a span.
 
 The fact that `Span<T>` and `ReadOnlySpan<T>` are both `ref struct` types ensures that a span cannot outlive its containing stack frame, guaranteeing that the stack frame on which the stack-allocated memory lives will not vanish while there are still outstanding references to it.
 
@@ -2819,7 +2819,7 @@ This also imposes some potentially more surprising restrictions:
 
 This restriction is necessary for .NET to be able to offer the combination of array-like performance, type safety, and the flexibility to work with multiple different containers.
 
-**NOTE**: it's possible to use spans in local methods, and even declare a ref struct variable in the outer method and use it from the nested one, but with one restriction: it's not possible a delegate that refers to that local method, because this would cause the compiler to move shared variables into an object that lives on the heap.
+> **Note**: it's possible to use spans in local methods, and even declare a ref struct variable in the outer method and use it from the nested one, but with one restriction: it's not possible a delegate that refers to that local method, because this would cause the compiler to move shared variables into an object that lives on the heap.
 
 ## `Memory<T>`
 

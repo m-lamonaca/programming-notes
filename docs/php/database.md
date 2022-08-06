@@ -62,7 +62,7 @@ $stmt->execute();
 By default PDO converts all results into strings since it is a generic driver for multiple databases.
 Its possible to disable this behaviour setting `PDO::ATTR_STRINGIFY_FETCHES` and `PDO::ATTR_EMULATE_PREPARES` as `false`.
 
-**NOTE**: `FETCH_OBJ` abd `FETCH_CLASS` return classes and don't have this behaviour.
+> **Note**: `FETCH_OBJ` abd `FETCH_CLASS` return classes and don't have this behaviour.
 
 ```php
 pdo->setAttribute()
@@ -99,4 +99,4 @@ $result->finalize();  // close result set, recommended calling before another ex
 $records = $results->fetchArray(SQLITE3_ASSOC);  // extract records as array (false if no results)
 ```
 
-**NOTE**: Result set objects retrieved by calling `SQLite3Stmt::execute()` on the same statement object are not independent, but rather share the same underlying structure. Therefore it is recommended to call `SQLite3Result::finalize()`, before calling `SQLite3Stmt::execute()` on the same statement object again.
+> **Note**: Result set objects retrieved by calling `SQLite3Stmt::execute()` on the same statement object are not independent, but rather share the same underlying structure. Therefore it is recommended to call `SQLite3Result::finalize()`, before calling `SQLite3Stmt::execute()` on the same statement object again.

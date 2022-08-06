@@ -75,7 +75,7 @@ IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable, Func<TFirst, TSecond, T
 IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable); // Produces a sequence of tuples with elements from the two specified sequences.
 ```
 
-**NOTE**: `Enumerable` provides a set of `static` methods for querying objects that implement `IEnumerable<T>`. Most methods are extensions of `IEnumerable<T>`
+> **Note**: `Enumerable` provides a set of `static` methods for querying objects that implement `IEnumerable<T>`. Most methods are extensions of `IEnumerable<T>`
 
 ```cs
 Enumerable.Method(IEnumerable<T> source, args);

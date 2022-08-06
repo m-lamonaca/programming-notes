@@ -94,7 +94,7 @@ const rootReducer = combineReducers({
 });
 ```
 
-**NOTE**: multiple reducers can be triggered by the same action since each one operates on a different portion of the state.
+> **Note**: multiple reducers can be triggered by the same action since each one operates on a different portion of the state.
 
 ## [React-Redux](https://react-redux.js.org/)
 
