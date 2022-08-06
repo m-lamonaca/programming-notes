@@ -192,4 +192,4 @@ private static async Task<string> ActualMethodAsync(string argument)
 }
 ```
 
-**NOTE**: `await` extracts only the first exception of an `AggregateException`, this can cause the loss of information if a task (or group of tasks) has more than one error.
+> **Note**: `await` extracts only the first exception of an `AggregateException`, this can cause the loss of information if a task (or group of tasks) has more than one error.

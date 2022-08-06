@@ -114,7 +114,7 @@ db.<collection>.insertMany([ { document }, { document }, ... ], options)  # inse
 db.<collection>.insertMany([ { document }, { document } ] , { "ordered": false })  # allow the unordered insertion, only documents that cause errors wont be inserted
 ```
 
-**NOTE**: If `insertMany()` fails the already inserted documents are not rolled back but all the successive ones (even the correct ones) will not be inserted.
+> **Note**: If `insertMany()` fails the already inserted documents are not rolled back but all the successive ones (even the correct ones) will not be inserted.
 
 ### Read
 

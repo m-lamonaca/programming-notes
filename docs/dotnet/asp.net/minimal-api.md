@@ -1,6 +1,6 @@
 # Minimal API
 
-**NOTE**: Requires .NET 6+
+> **Note**: Requires .NET 6+
 
 ```cs
 var builder = WebApplication.CreateBuilder(args);

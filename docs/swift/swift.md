@@ -481,7 +481,7 @@ var obj = ClassName()  // obj instantiation
 
 Do actions before/after modifying a property value.
 
-**NOTE**: `willSet` and `didSet` do not *set* the value of the property.
+> **Note**: `willSet` and `didSet` do not *set* the value of the property.
 
 ```swift
 class ClassName {

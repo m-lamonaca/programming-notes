@@ -58,7 +58,7 @@ Variables in the template are created through an associative array `key => value
 It's possible to create a layout (a model) for a group of pages to make that identical save for the contents.
 In a layout it's possible to create a section called **content** that identifies content that can be specified at runtime.
 
-**NOTE**: Since only the template has the data passed eventual loops have to be done there.
+> **Note**: Since only the template has the data passed eventual loops have to be done there.
 
 ```php
 # index.php

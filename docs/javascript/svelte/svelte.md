@@ -115,7 +115,7 @@ The full list of modifiers:
 <button on:event|modifier={eventHandler}>
 ```
 
-**NOTE**: It's possible to chain modifiers together, e.g. `on:click|once|capture={...}`.
+> **Note**: It's possible to chain modifiers together, e.g. `on:click|once|capture={...}`.
 
 ## Binding
 

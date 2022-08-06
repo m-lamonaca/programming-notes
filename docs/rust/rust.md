@@ -213,7 +213,7 @@ This can happen because Unicode characters can take up to 4 bytes.
 `&String` can be used in place of a `&str` trough *String Coercion*. The `&String` gets converted to a `&str` that borrows the entire string.
 The reverse is not possible since the slice lacks some information about the String.
 
-**NOTE**: When working with functions is easier to always expect a `&str` instead of a `&String`.
+> **Note**: When working with functions is easier to always expect a `&str` instead of a `&String`.
 
 ```rs
 let s = String::from("string literal");
@@ -700,7 +700,7 @@ fn generic_func<T>() -> &T { }  // T could be heap-based type, returning referen
 fn generic<T: Trait>() -> Type { }  // use generic constraint
 ```
 
-**NOTE**: the calling code needs to import your new trait in addition to the external type
+> **Note**: the calling code needs to import your new trait in addition to the external type
 
 ### Trait Objects
 
@@ -845,14 +845,14 @@ fn returns_result() -> Result<T, E> {
 Ending an expression with `?` will result in the unwrapped success (`Ok`) value, unless the result is `Err`, in which case `Err` is returned early from the enclosing function.  
 `?` can only be used in functions that return `Result` because of the early return of `Err` that it provides.
 
-**NOTE**: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
-**NOTE**: error values that have the `?` operator called on them go through the `from` function, defined in the `From` trait in the standard library, which is used to convert errors from one type into another
+> **Note**: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
+> **Note**: error values that have the `?` operator called on them go through the `from` function, defined in the `From` trait in the standard library, which is used to convert errors from one type into another
 
 ### Match Expressions
 
 A *match expression* is made up of *arms*. An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern. Rust takes the value given to match and looks through each arm's pattern in turn.
 
-**NOTE**: `match` arms must be exhaustive for compilation.
+> **Note**: `match` arms must be exhaustive for compilation.
 
 ```rs
 enum Enum {
@@ -1169,7 +1169,7 @@ To enable multiple ownership, Rust has a type called `Rc<T>`, which is an abbrev
 The `Rc<T>` type keeps track of the number of references to a value to determine whether or not the value is still in use.  
 If there are zero references to a value, the value can be cleaned up without any references becoming invalid.
 
-**NOTE**: `Rc<T>` is only for use in single-threaded scenarios.
+> **Note**: `Rc<T>` is only for use in single-threaded scenarios.
 
 ```rs
 use std::rc::Rc;
@@ -1198,7 +1198,7 @@ For those reasons, checking the borrowing rules at compile time is the best choi
 The advantage of checking the borrowing rules at runtime instead is that certain memory-safe scenarios are then allowed, whereas they are disallowed by the compile-time checks.  
 Static analysis, like the Rust compiler, is inherently conservative.
 
-**NOTE**: `RefCell<T>` is only for use in single-threaded scenarios and will cause a compile-time error if used it in a multithreaded context.
+> **Note**: `RefCell<T>` is only for use in single-threaded scenarios and will cause a compile-time error if used it in a multithreaded context.
 
 When creating immutable and mutable references, the `&` and `&mut` syntax is used, respectively.  
 With `RefCell<T>`, the `borrow` and `borrow_mut` methods are ued, which are part of the safe API that belongs to `RefCell<T>`.  

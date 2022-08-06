@@ -1,6 +1,6 @@
 # Bash Commands
 
-**NOTE**: Square brackets (`[]`) denotes optional commands/flags/arguments. Uppercase denotes placeholders for arguments.
+> **Note**: Square brackets (`[]`) denotes optional commands/flags/arguments. Uppercase denotes placeholders for arguments.
 
 ## Basic Commands
 

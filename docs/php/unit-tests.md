@@ -153,7 +153,7 @@ class ClassTest extends TestCase
 }
 ```
 
-**NOTE**: `setUp()` and `tearDown()` are called *before* and *after* each test method.
+> **Note**: `setUp()` and `tearDown()` are called *before* and *after* each test method.
 
 ### Data Provider
 

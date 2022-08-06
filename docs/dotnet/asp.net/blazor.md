@@ -375,7 +375,7 @@ public class StateContainer
 }
 ```
 
-**NOTE**: When a user provides an unparsable value to a data-bound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
+> **Note**: When a user provides an unparsable value to a data-bound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
 
 ## Javascript/.NET Interop
 

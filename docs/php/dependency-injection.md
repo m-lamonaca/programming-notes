@@ -75,4 +75,4 @@ $container = $builder->build();  // construct container
 $cart = $container->get(Foo::class);  // Instantiate & Inject
 ```
 
-**NOTE**: `get("className")` requires the explicit definition of `className` in the config file. `get(ClassName::class)` does not.
+> **Note**: `get("className")` requires the explicit definition of `className` in the config file. `get(ClassName::class)` does not.

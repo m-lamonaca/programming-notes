@@ -37,7 +37,7 @@ require "autoload.php";
 # other code
 ```
 
-**NOTE**: will fuck up if namespaces exists.
+> **Note**: will fuck up if namespaces exists.
 
 ### Multiple Autoloading
 
@@ -81,7 +81,7 @@ Composer will create:
 
 In alternative `composer require <lib>` will add the library to the project and create a `composer.json` if missing.
 
-**NOTE**: to ignore the php version use `composer <command> --ignore-platform-reqs`
+> **Note**: to ignore the php version use `composer <command> --ignore-platform-reqs`
 
 ### Updating Dependencies
 

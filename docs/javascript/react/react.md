@@ -206,7 +206,7 @@ function Form() {
 // ...
 ```
 
-**NOTE**: The `key` attribute of the component is needed to identify a particular item. It's most useful if the list has to be sorted.
+> **Note**: The `key` attribute of the component is needed to identify a particular item. It's most useful if the list has to be sorted.
 
 ## Hooks
 

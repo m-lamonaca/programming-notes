@@ -149,7 +149,7 @@ ENTRYPOINT [“executable”]
 CMD [“arg1”, “arg2”]
 ```
 
-**NOTE**: Anything defined in CMD can be overridden by passing arguments in `docker run` command.
+> **Note**: Anything defined in CMD can be overridden by passing arguments in `docker run` command.
 
 ### `ENTRYPOINT`
 

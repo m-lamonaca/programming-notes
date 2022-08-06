@@ -907,7 +907,7 @@ if(date1 > date2){
 
 [Firefox CORS not HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSRequestNotHttp)
 
-**NOTE**: Firefox 68 and later define the origin of a page opened using a `file:///` URI as unique. Therefore, other resources in the same directory or its subdirectories no longer satisfy the CORS same-origin rule. This new behavior is enabled by default using the `privacy.file_unique_origin` preference.
+> **Note**: Firefox 68 and later define the origin of a page opened using a `file:///` URI as unique. Therefore, other resources in the same directory or its subdirectories no longer satisfy the CORS same-origin rule. This new behavior is enabled by default using the `privacy.file_unique_origin` preference.
 
 ```json
 "privacy.file_unique_origin": "false"
