@@ -2142,6 +2142,9 @@ Delegate<Type> lambda = input => { return <expr>; };
 Delegate<Type> lambda = (input) => { return <expr>; };
 Delegate<Type> lambda = (Type input) => { return <expr>; };
 
+// static modifier prevents unintentional capture of local variables or instance state by the lambda
+Delegate<Type> lambda = (static Type input) => <expr>;
+
 Type variable = delegate { <expression>; };  // ignore arguments of the method passed to the delegate
 
 // lambda type inference [C# 10]
