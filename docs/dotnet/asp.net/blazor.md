@@ -261,6 +261,16 @@ Project
 
 ## State Management
 
+## Passing state with `NavigationManager`
+
+It's now possible to pass state when navigating in Blazor apps using the `NavigationManager`.
+
+```cs
+navigationManager.NavigateTo("/<route>", new NavigationOptions { HistoryEntryState = value });
+```
+
+This mechanism allows for simple communication between different pages. The specified state is pushed onto the browser’s history stack so that it can be accessed later using either the `NavigationManager.HistoryEntryState` property or the `LocationChangedEventArgs.HistoryEntryState` property when listening for location changed events.
+
 ### Blazor WASM
 
 ```cs
@@ -355,6 +365,9 @@ public class StateContainer
 
     <ChildComponent @bind-{PROPERTY}="{PROPERTY}" @bind-{PROPERTY}:event="{EVENT}" />  // bind to child component {PROPERTY}
     <ChildComponent @bind-{PROPERTY}="{PROPERTY}" @bind-{PROPERTY}:event="{PROPERTY}Changed" />  // bind to child component {PROPERTY}, listen for custom event
+
+    <input @bind="{PROPERTY}" @bind:after="{DELEGATE}" />  // run async logic after bind event completion
+    <input @bind:get="{PROPERTY}" @bind:set="PropertyChanged" />  // two-way data binding
 </p>
 
 @code {
@@ -372,10 +385,16 @@ public class StateContainer
         await PropertyChanged.InvokeAsync(e, argument);  // notify parent bound prop has changed
         await elementReference.FocusAsync();  // focus an element in code
     }
+
+    [Parameter] public TValue Value { get; set; }
+    [Parameter] public EventCallback<TValue> ValueChanged { get; set; }
 }
 ```
 
 **NOTE**: When a user provides an unparsable value to a data-bound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
+
+> **Note**: The `@bind:get` and `@bind:set` modifiers are always used together.  
+> `The @bind:get` modifier specifies the value to bind to and the `@bind:set` modifier specifies a callback that is called when the value changes
 
 ## Javascript/.NET Interop
 
