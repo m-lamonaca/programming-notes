@@ -2913,7 +2913,7 @@ unsafe
 }
 ```
 
-### DllImport & Extern
+### External Code
 
 The `extern` modifier is used to declare a method that is implemented externally.  
 A common use of the extern modifier is with the `DllImport` attribute when using Interop services to call into _unmanaged_ code.  
@@ -2922,4 +2922,24 @@ In this case, the method must also be declared as `static`.
 ```cs
 [DllImport("avifil32.dll")]
 private static extern void AVIFileInit();
+```
+
+The `LibraryImport` attribute can be used to import external code and have the source generator handle the marshalling for the annotated function.
+
+> **Note**: The source generator will still use the `DllImport` attribute in the generated code.
+
+```cs
+// before
+public static class Native
+{
+    [DllImport(nameof(Native), CharSet = CharSet.Unicode)]
+    public extern static string ToLower(string str);
+}
+
+// after
+public static class Native
+{
+    [LibraryImport(nameof(Native), StringMarshalling = StringMarshalling.Utf16)]
+    public static partial string ToLower(string str);
+}
 ```
