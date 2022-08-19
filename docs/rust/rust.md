@@ -474,6 +474,8 @@ struct Struct {
     ...
 }
 
+struct UnitStruct;  // no field, useful in generics
+
 { x: Type, y: Type }  // anonymous struct
 ```
 
@@ -484,26 +486,15 @@ let mut var = Struct {
     field: value,
     ...
 };
-
-fn build_struct(param: Type, ...) -> Struct {
-    // the constructed struct is returned since it's the last expression
-    Struct {
-        field: param,
-        ...
-    }
-}
 ```
 
 ### Field Init Shorthand
 
 ```rs
-fn build_struct(field: Type, ...) -> Struct {
-    // the constructed struct is returned since it's the last expression
-    Struct {
-        field,  // shortened form since func param is named as the struct's field
-        ...
-    }
-}
+let mut var = Struct {
+    field,  // shortened form since func param is named as the struct's field
+    ...
+};
 
 var.field = value;  // member access
 ```
@@ -513,7 +504,6 @@ var.field = value;  // member access
 ### Struct Update Syntax
 
 ```rs
-
 let struct1 = Struct {
     field1: value,
     field2: value,
@@ -771,14 +761,16 @@ They describe situations that do not require explicit lifetime annotations.
 // enum definition
 enum Enum
 {
-    Variant1(Type, ...),  // each variant can have different types (even structs and enums) and amounts of associated data
-    Variant2,
+    Variant1,
+    Variant2(Type, ...),  // each variant can have different types (even structs and enums) and amounts of associated data
+    Variant3 { x: u8, y: u8 }  // c-like struct
     ...
 }
 
 // value assignment
 let e: Enum = Enum::Variant1;
 let e: Enum = Enum::Variant2(arg, ...);  // variant w/ data
+let e: Enum = Enum::Variant3 { x = 1, y = 0};
 
 // methods on enum
 impl Enum
@@ -787,6 +779,7 @@ impl Enum
         match self {
             Enum::Variant1 => <expr>
             Enum::Variant2(arg) => <expr>,
+            Enum::Variant3 { x = 1, y = 0} => <expr>;
         }
     }
 }
