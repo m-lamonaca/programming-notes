@@ -288,6 +288,7 @@ if let <pattern> = <value> {
 let optional = Some(value);
 match optional {
     Some(param) => { /* do something */ },
+    Some(ref param) => { /* borrow value instead of moving */ }
     _ => {},
 };
 ```
