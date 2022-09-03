@@ -253,12 +253,12 @@ mongoexport --collection=<collection> <options> <connection-string>
 
 ```json
 {
-    "_id": Objectid()
-    "<key>": "value"
-    "<key>": "value"
+    "_id": "ObjectId()",
+    "<key>": "value",
+    "<key>": "value",
 
     "innerDocument": {
-        "<key>": "value"
+        "<key>": "value",
         "<key>": "value"
     }
 }
@@ -274,13 +274,13 @@ NoSQL databases do not have relations and references. It's the app that has to h
 
 ```json
 {
-    "<key>": "value"
+    "<key>": "value",
     "references": ["id1", "id2"]
 }
 
 // referenced
 {
-    "_id": "id1"
+    "_id": "id1",
     "<key>": "value"
 }
 ```
@@ -428,35 +428,42 @@ Shard components are:
 
 A **replica set** in MongoDB is a group of `mongod` processes that maintain the `same dataset`. Replica sets provide redundancy and high availability, and are the basis for all production deployments.
 
-## Aggregations
+## [Aggregation Framework](https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/)
 
-Sequence of operations applied to a collection as a _pipeline_ to get a result: `db.collection.aggregate(pipeline, options)`.
-
-[Aggregations Stages][aggeregation_stages_docs]:
-
-- `$lookup`: Right Join
-- `$match`: Where
-- `$sort`: Order By
-- `$project`: Select \*
-- ...
-
-[aggeregation_stages_docs]: https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/
-
-Example:
+Sequence of operations applied to a collection as a _pipeline_ to get a result: `db.collection.aggregate(pipeline, options)`.  
+Each step of the pipeline acts on its inputs and not on the original data in the collection.
 
 ```sh
-db.collection.aggregate([
+
+db.<collection>.aggregate([ 
+    { "$project": { "_id": 0, "<key>": 1, ...} },
+
+    { "$match": { "<query>" } },
+
+    { "$group": {
+            "_id": "<expression>",  # Group By Expression (Required)
+            "<key-1>": { "<accumulator-1>": "<expression-1>" },
+            ...
+        } 
+    },
+
     {
-        $lookup: {
-            from: <collection to join>,
-            localField: <field from the input documents>,
-            foreignField: <field from the documents of the "from" collection>,
-            as: <output array field>
+        "$lookup": {
+            "from": "<collection to join>",
+            "localField": "<field from the input documents>",
+            "foreignField": "<field from the documents of the 'from' collection>",
+            "as": "<output array field>"
         }
     },
-    { $match: { <query> } },
-    { $sort: { ... } },
-    { $project: { ... } },
-    { ... }
+
+    { "$sort": { "<key-1>": "<sort order>", "<key-2>": "<sort order>", ... } },
+
+    { "$count": "<count-key>" },
+
+    { "$skip": "<positive 64-bit integer>" }
+
+    { "$limit": "<positive 64-bit integer>" }
+    
+    { ... } 
 ])
 ```
