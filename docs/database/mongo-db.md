@@ -173,12 +173,10 @@ db.<collection>.find().hint( { $natural : -1 } )  # force the query to perform a
 [Update Operators](https://docs.mongodb.com/manual/reference/operator/update/ "Update Operators Documentation")
 
 ```sh
-db.<collection>.updateOne(filter, $set: {"<key>": value})  # add or modify values
-db.<collection>.updateOne(filter, $set: {"<key>": value}, {upsert: true})  # add or modify values, if attribute doesn't exists create it
+db.<collection>.replaceOne(filter, update, options)
+db.<collection>.updateOne(filter, update, {upsert: true})  # modify document if existing, insert otherwise
 
-db.<collection>.updateMany(filter, update)
-
-db.<collection>.replaceOne(filter, { document }, options)
+db.<collection>.updateOne(filter, { "$push": { ... }, "$set": { ... }, { "$inc": { ... }, ... } })
 ```
 
 ### Delete
