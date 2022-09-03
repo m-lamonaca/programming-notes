@@ -36,13 +36,13 @@ db.createCollection(name, {options})  # explicit collection creation
 db.<collection>.insertOne({document})  # implicit collection creation
 ```
 
-## Operators
+## Operators (MQL Syntax)
 
 ```json
 /* --- Update operators --- */
-{ "$inc":  { "<key>": <increment>, ... } }  // Increment value
+{ "$inc":  { "<key>": "<increment>", ... } }  // Increment value
 { "$set":  { "<key>": "<value>", ... } }  // Set value
-{ "$push": { "<key>": "<value>", ... } }  // add a value to an array field
+{ "$push": { "<key>": "<value>", ... } }  // add a value to an array field or turn field into array
 
 /* --- Query Operators --- */
 { "<key>": { "$in": [ "<value_1>", "<value_2>", ...] } } // Membership
@@ -58,20 +58,30 @@ db.<collection>.insertOne({document})  # implicit collection creation
 { "<key>": { "$ne":  "<value>" }}  // !=
 
 /* --- Logic Operators (DEFAULT $and) --- */
-{ "$and": [ { <statement> }, ...] }
-{ "$or":  [ { <statement> }, ...] }
-{ "$nor": [ { <statement> }, ...] }
-{ "$not": { <statement> } }
+{ "$and": [ { "<expression>" }, ...] }
+{ "$or":  [ { "<expression>" }, ...] }
+{ "$nor": [ { "<expression>" }, ...] }
+{ "$not": { "<expression>" } }
+
+/* --- Array Operators --- */
+{ "<key>": { "$all": ["value>", "<value>", ...] } } // field contains all values
+{ "<key>": { "$size": "<value>" } }
+{ "<array-key>": { "$elemMatch": { "<item-key>": "<expression>" } } }  // elements in array must match an expression
+
+/* --- REGEX Operator --- */
+{ "<key>": { "$regex": "/pattern/", "$options": "<options>" } }
+{ "<key>": { "$regex": "pattern", "$options": "<options>" } }
+{ "<key>": { "$regex": "/pattern/<options>" } }
+{ "<key>": "/pattern/<options>" }
 ```
 
 ### Expressive Query Operator
 
-`$<key>` is used to access the value of the field dynamically
+> **Note**:  `$<key>` is used to access the value of the field dynamically
 
 ```json
-{ "$expr": { <expression> } }  // aggregation expression, variables, conditional expressions
-
-{ "$expr":  { "$comparison_operator": [ "$<key>", "$<key>" ] } }  // compare field values
+{ "$expr": { "<expression>" } }  // aggregation expression, variables, conditional expressions
+{ "$expr":  { "$<comparison_operator>": [ "$<key>", "$<key>" ] } }  // compare field values (operators use aggregation syntax)
 ```
 
 ## CRUD Operations
@@ -121,13 +131,20 @@ db.<collection>.insertMany([ { document }, { document } ] , { "ordered": false }
 ```sh
 db.<collection>.findOne()  # find only one document
 db.<collection>.find(filter)  # show selected documents
-db.<collection>.find(filter, {"<key>": 1})  # show selected values form documents (1 or true => show, 0 or false => don't show, cant mix 0 and 1)
-db.<collection>.find(filter, {_id: 0, "<key>": 1})  # only _id can be set to 0 with other keys at 1
 db.<collection>.find().pretty()  # show documents formatted
 db.<collection>.find().limit(n)  # show n documents
 db.<collection>.find().limit(n).skip(k)  # show n documents skipping k docs
 db.<collection>.find().count()  # number of found docs
-db.<collection>.find().sort({key1: 1, ... , key_n: -1})  # show documents sorted by specified keys in ascending (1) or descending (-1) order
+db.<collection>.find().sort({ "<key-1>": 1, ... , "<key-n>": -1 })  # show documents sorted by specified keys in ascending (1) or descending (-1) order
+
+# projection
+db.<collection>.find(filter, { "<key>": 1 })  # show selected values form documents (1 or true => show, 0 or false => don't show, cant mix 0 and 1)
+db.<collection>.find(filter, { _id: 0, "<key>": 1 })  # only _id can be set to 0 with other keys at 1
+db.<collection>.find(filter, { "<array-key>": { "$elemMatch": { "<item-key>": "<expression>" } } })  # project only elements matching the expression
+
+# sub documents & arrays
+db.<collection>.find({ "<key>.<sub-key>.<sub-key>": "<expression>" })
+db.<collection>.find({ "<array-key>.<index>.<sub-key>": "<expression>" })
 
 # GeoJSON - https://docs.mongodb.com/manual/reference/operator/query/near/index.html
 db.<collection>.find(
@@ -148,6 +165,8 @@ db.<collection>.find().hint( "index-name" )  # specify the index using the index
 db.<collection>.find().hint( { $natural : 1 } )  # force the query to perform a forwards collection scan
 db.<collection>.find().hint( { $natural : -1 } )  # force the query to perform a reverse collection scan
 ```
+
+> **Note**: `{ <key>: <value> }` in case of a field array will match if the array _contains_ the value
 
 ### Update
 
