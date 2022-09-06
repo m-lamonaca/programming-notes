@@ -17,26 +17,18 @@ fn main() {  //program entry point
 }
 ```
 
-### Result types
-
-The `Result` types are **enumerations**, often referred to as *enums*. An enumeration is a type that can have a *fixed set of values*, and those values are called the enum's **variants**.
-
-For `Result`, the variants are `Ok` or `Err`.  
-The `Ok` variant indicates the operation was *successful*, and inside `Ok` is the successfully generated value.  
-The `Err` variant means the operation failed, and `Err` contains information about how or why the operation failed.
-
-The purpose of the `Result` types is to encode error-handling information.
-
-Rust has a number of types named `Result` in its standard library: a generic `Result` as well as specific versions for submodules.
-
 ### Standard Output
 
 ```rs
 // macro (func have no "!")
 println!("Value: {}", value);  // {} is a placeholder for a value or variable
 println!("Values: {1}, {0}", value1, value2);  // use index to print values
-println!("Num: {:<total_digits>.<decimal_digits>}", 10);
-println!("Num: {:0<total>.<decimal>}", 10);  // prefix num with zeroes
+
+println!("Value {a}, {b}", a = value1, b = value2);  // named parameters
+println!("Value {scoped_variable}");  // reference a variable in scope (must not have any parameters)
+
+println!("Num: {:<total_digits>.<decimal_digits>}", number);
+println!("Num: {:0<total>.<decimal>}", number);  // prefix number with zeroes
 
 println!("{:b}", 0b11011);  // print as bits
 
