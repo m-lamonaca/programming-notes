@@ -84,9 +84,9 @@ db.<collection>.insertOne({document})  # implicit collection creation
 { "$expr":  { "$<comparison_operator>": [ "$<key>", "$<key>" ] } }  // compare field values (operators use aggregation syntax)
 ```
 
-## CRUD Operations
+## Mongo Query Language (MQL)
 
-### Create
+### Insertion
 
 It's possible to insert a single document with the command `insertOne()` or multiple documents with `insertMany()`.
 
@@ -126,7 +126,7 @@ db.<collection>.insertMany([ { document }, { document } ] , { "ordered": false }
 
 > **Note**: If `insertMany()` fails the already inserted documents are not rolled back but all the successive ones (even the correct ones) will not be inserted.
 
-### Read
+### Querying
 
 ```sh
 db.<collection>.findOne()  # find only one document
@@ -168,7 +168,7 @@ db.<collection>.find().hint( { $natural : -1 } )  # force the query to perform a
 
 > **Note**: `{ <key>: <value> }` in case of a field array will match if the array _contains_ the value
 
-### Update
+### Updating
 
 [Update Operators](https://docs.mongodb.com/manual/reference/operator/update/ "Update Operators Documentation")
 
@@ -179,7 +179,7 @@ db.<collection>.updateOne(filter, update, {upsert: true})  # modify document if 
 db.<collection>.updateOne(filter, { "$push": { ... }, "$set": { ... }, { "$inc": { ... }, ... } })
 ```
 
-### Delete
+### Deletion
 
 ```sh
 db.<collection>.deleteOne(filter, options)
@@ -189,7 +189,11 @@ db.<collection>.drop()  # delete whole collection
 db.dropDatabase()  # delete entire database
 ```
 
-## [Mongoimport](https://docs.mongodb.com/database-tools/mongoimport/)
+---
+
+## MongoDB Database Tools
+
+### [Mongoimport](https://docs.mongodb.com/database-tools/mongoimport/)
 
 Utility to import all docs into a specified collection.  
 If the collection already exists `--drop` deletes it before reuploading it.
@@ -210,7 +214,7 @@ mongoimport <options> <connection-string> <file>
 --jsonarray  # Accepts the import of data expressed with multiple MongoDB documents within a single json array. MAX 16 MB
 ```
 
-## [Mongoexport](https://docs.mongodb.com/database-tools/mongoexport/)
+### [Mongoexport](https://docs.mongodb.com/database-tools/mongoexport/)
 
 Utility to export documents into a specified file.
 
@@ -232,7 +236,7 @@ mongoexport --collection=<collection> <options> <connection-string>
 --sort=<JSON>  # Specifies an ordering for exported results
 ```
 
-## [Mongodump][mongodump_docs] & [Mongorestore][mongorestore_docs]
+### [Mongodump][mongodump_docs] & [Mongorestore][mongorestore_docs]
 
 `mongodump` exports the content of a running server into `.bson` files.
 
@@ -241,47 +245,7 @@ mongoexport --collection=<collection> <options> <connection-string>
 [mongodump_docs]: https://docs.mongodb.com/database-tools/mongodump/
 [mongorestore_docs]: https://docs.mongodb.com/database-tools/mongorestore/
 
-## Relations
-
-**Nested / Embedded Documents**:
-
-- Group data logically
-- Optimal for data belonging together that do not overlap
-- Should avoid nesting too deep or making too long arrays (max doc size 16 mb)
-
-```json
-{
-    "_id": "ObjectId()",
-    "<key>": "value",
-    "<key>": "value",
-
-    "innerDocument": {
-        "<key>": "value",
-        "<key>": "value"
-    }
-}
-```
-
-**References**:
-
-- Divide data between collections
-- Optimal for related but shared data used in relations or stand-alone
-- Allows to overtake nesting and size limits
-
-NoSQL databases do not have relations and references. It's the app that has to handle them.
-
-```json
-{
-    "<key>": "value",
-    "references": ["id1", "id2"]
-}
-
-// referenced
-{
-    "_id": "id1",
-    "<key>": "value"
-}
-```
+---
 
 ## [Indexes](https://docs.mongodb.com/manual/indexes/ "Index Documentation")
 
@@ -351,24 +315,7 @@ db.<collection>.dropIndexes()  # drop all indexes
 db.<collection>.dropIndex( { "index-name": 1 } )  # drop a specific index
 ```
 
-## Database Profiling
-
-Profiling Levels:
-
-- `0`: no profiling
-- `1`: data on operations slower than `slowms`
-- `2`: data on all operations
-
-Logs are saved in the `system.profile` _capped_ collection.
-
-```sh
-db.setProfilingLevel(n)  # set profiler level
-db.setProfilingLevel(1, { slowms: <ms> })
-db.getProfilingStatus()  # check profiler status
-
-db.system.profile.find().limit(n).sort( {} ).pretty()  # see logs
-db.system.profile.find().limit(n).sort( { ts : -1 } ).pretty()  # sort by decreasing timestamp
-```
+---
 
 ## Roles and permissions
 
@@ -406,7 +353,109 @@ db.createUser(
 )
 ```
 
-## Sharding
+---
+
+## Cluster Administration
+
+### `mongod`
+
+`mongod` is the main deamon process for MongoDB. It's the core process of the database,
+handling connections, requests and persisting the data.
+
+`mongod` default configuration:
+
+- port: `27017`
+- dbpath: `/data/db`
+- bind_ip: `localhost`
+- auth: disabled
+
+[`mongod` config file][mongod_config_file]  
+[`mongod` command line options][mongod_cli_options]
+
+[mongod_config_file]: https://www.mongodb.com/docs/manual/reference/configuration-options "`mongod` config file docs"
+[mongod_cli_options]: https://www.mongodb.com/docs/manual/reference/program/mongod/#options "`mongod` command line options docs"
+
+### Basic Shell Helpers
+
+```sh
+db.<method>()  # database interaction
+db.<collection>.<method>()  # collection interaction
+rs.<method>();  # replica set deployment and management
+sh.<method>();  # sharded cluster deployment and management
+
+# user management
+db.createUser()
+db.dropUser()
+
+# collection management
+db.renameCollection()
+db.<collection>.createIndex()
+db.<collection>.drop()
+
+# database management
+db.dropDatabase()
+db.createCollection()
+
+# database status
+db.serverStatus()
+
+# database command (underlying to shell helpers and drivers)
+db.runCommand({ "<COMMAND>" })
+
+# help
+db.commandHelp("<command>)
+```
+
+### Logging
+
+The **process log** displays activity on the MongoDB instance and collects activities of various components:
+
+Log Verbosity Level:
+
+- `-1`: Inherit from parent
+- `0`: Default Verbosity (Information)
+- `1 - 5`: Increases the verbosity up to Debug messages
+
+```sh
+db.getLogComponents()  # get components and their verbosity
+db.adminCommand({"getLog": "<scope>"})  # retrieve logs (getLog must be run on admin db -> adminCommand)
+db.setLogLevel(<level>, "<component>");  # set log level (output is OLD verbosity levels)
+
+tail -f /path/to/mongod.log  # read end og log file
+```
+
+> **Note**: Log Message Structure: `<timestamp> <severity-level> <component> <connection> <event> ...`
+
+### Database Profiling
+
+Profiling Levels:
+
+- `0`: no profiling
+- `1`: data on operations slower than `slowms` (default 100ms)
+- `2`: data on all operations
+
+Events captured by the profiler:
+
+- CRUD operations
+- Administrative operations
+- Configuration operations
+
+> **Note**: Logs are saved in the `system.profile` _capped_ collection.
+
+```sh
+db.setProfilingLevel(n)  # set profiler level
+db.setProfilingLevel(1, { slowms: <ms> })
+db.getProfilingStatus()  # check profiler status
+
+db.system.profile.find().limit(n).sort( {} ).pretty()  # see logs
+db.system.profile.find().limit(n).sort( { ts : -1 } ).pretty()  # sort by decreasing timestamp
+```
+
+### [Replica set](https://docs.mongodb.com/manual/replication/)
+
+A **replica set** in MongoDB is a group of `mongod` processes that maintain the `same dataset`. Replica sets provide redundancy and high availability, and are the basis for all production deployments.
+
+### Sharding
 
 **Sharding** is a MongoDB concept through which big datasets are subdivided in smaller sets and distributed towards multiple instances of MongoDB.  
 It's a technique used to improve the performances of large queries towards large quantities of data that require al lot of resources from the server.
@@ -422,14 +471,22 @@ Shard components are:
 
 ![Shared Cluster](../img/mongodb_shared-cluster.png "Components of a shared cluster")
 
-### [Replica set](https://docs.mongodb.com/manual/replication/)
-
-A **replica set** in MongoDB is a group of `mongod` processes that maintain the `same dataset`. Replica sets provide redundancy and high availability, and are the basis for all production deployments.
+---
 
 ## [Aggregation Framework](https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/)
 
 Sequence of operations applied to a collection as a _pipeline_ to get a result: `db.collection.aggregate(pipeline, options)`.  
 Each step of the pipeline acts on its inputs and not on the original data in the collection.
+
+### Variables
+
+Variable syntax in aggregations:
+
+- `$key`: field path
+- `$$UPPERCASE`: system variable (e.g.: `$$CURRENT`)
+- `$$foo`: user defined variable
+
+### Aggregation Syntax
 
 ```sh
 
