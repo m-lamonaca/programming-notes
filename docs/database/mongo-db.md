@@ -317,44 +317,6 @@ db.<collection>.dropIndex( { "index-name": 1 } )  # drop a specific index
 
 ---
 
-## Roles and permissions
-
-**Authentication**: identifies valid users
-**Authorization**: identifies what a user can do
-
-- **userAdminAnyDatabase**: can admin every db in the instance (role must be created on admin db)
-- **userAdmin**: can admin the specific db in which is created
-- **readWrite**: can read and write in the specific db in which is created
-- **read**: can read the specific db in which is created
-
-```sh
-# create users in the current MongoDB instance
-db.createUser(
-    {
-        user: "dbAdmin",
-        pwd: "password",
-        roles:[
-            {
-                role: "userAdminAnyDatabase",
-                db:"admin"
-            }
-        ]
-    },
-    {
-        user: "username",
-        pwd: "password",
-        roles:[
-            {
-                role: "role",
-                db: "database"
-            }
-        ]
-    }
-)
-```
-
----
-
 ## Cluster Administration
 
 ### `mongod`
@@ -449,6 +411,63 @@ db.getProfilingStatus()  # check profiler status
 
 db.system.profile.find().limit(n).sort( {} ).pretty()  # see logs
 db.system.profile.find().limit(n).sort( { ts : -1 } ).pretty()  # sort by decreasing timestamp
+```
+
+### Authentication
+
+Client Authentication Mechanisms:
+
+- **SCRAM** (Default): Salted Challenge Response Authentication Mechanism
+- **X.509**: `X.509` Certificate
+- **LADP**: Lightweight Directory Access Protocol (Enterprise Only)
+- **KERBEROS** (Enterprise Only)
+
+Cluster Authentication Mechanism:
+
+### Authorization: Role Based Access Control (RBAC)
+
+Each user has one or more **Roles**. Each role has one or more **Privileges**.  
+A privilege represents a group of _actions_ and the _resources_ those actions apply to.
+
+By default no user exists so the ONLY way to act is to connect locally to the server.  
+This is the "localhost exception" and it closes after the _first_ user is created.
+
+> **WARN**: Always create an admin user first (ideally with the `userAdmin` role)
+
+Role's Resources:
+
+- specific database and collection: `{ "db": "<database>", "collection": "<collection>" }`
+- all databases and collections: `{ "db": "", "collection": "" }`
+- any databases and specific collection: `{ "db": "", "collection": "<collections>" }`
+- specific database and any collection: `{ "db": "<database>", "collection": "" }`
+- cluster resource: `{ "cluster": true }`
+
+Role's Privileges: `{ resource: { <resource> }, actions: [ "<action>" ] }`
+
+A role can _inherit_ from multiple others and can define **network restrictions** such as _Server Address_ and _Client Source_.
+
+Built-in Roles Groups and Names:
+
+- Database User: `read`, `readWrite`, `readAnyDatabase`, `readWriteAnyDatabase`
+- Database Administration: `dbAdmin`, `userAdmin`, `dbOwner`, `dbAdminAnyDatabase`, `userAdminAnyDatabase`
+- Cluster Administration: `clusterAdmin`, `clusterManager`, `clusterMonitor`, `hostManager`
+- Backup/Restore: `backup`, `restore`
+- Super User: `root`
+
+```sh
+db.createUser(
+    {
+        user: "<username>",
+        pwd: "<password>",
+        roles: [ { role: "<role>", db: "<database>" } ]
+    }
+)
+
+# add role to existing user
+db.grantRolesToUser( "<user>", [ { db: "<database>", role: "<role>" } ] )
+
+# show role privilege
+db.runCommand( { rolesInfo: { db: "<database>", role: "<role>" }, showPrivileges: true } )
 ```
 
 ### [Replica set](https://docs.mongodb.com/manual/replication/)
