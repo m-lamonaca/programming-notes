@@ -93,11 +93,38 @@ let x: i32 = 11;  // shadowing
 | 128-bit      | `i128`  | `u128`   |
 | architecture | `isize` | `usize`  |
 
+#### Explicit Mathematical Operations (Integers)
+
+```rs
+i32::MAX.checked_add(value);  // Option<i32> => None if overflow
+i32::MAX.wrapping_add(value);  // i32 => Wrap around
+i32::MAX.saturating_add(value);  //  i32 => MIN <= x <= MAX (Clamp)
+i32::MAX.overflowing_add(value); // (i32, bool) => overflowed result and if overflowed
+```
+
+> **Note**: analogous method exist for other mathematical operation
+
 ### Floating-Point Types
 
 Rust also has two primitive types for floating-point numbers, which are numbers with decimal points.  
 Rust's floating-point types are `f32` and `f64`, which are 32 bits and 64 bits in size, respectively.  
 The default type is `f64` because on modern CPUs it's roughly the same speed as `f32` but is capable of more precision.
+
+### Numeric & Byte Literals
+
+Numeric Base Prefix:
+
+- `0x`: Hexadecimal Number
+- `0o`: Octal Number
+- `0b`: Binary Number
+
+> **Note**: Number can have `_` interposed for legibility (E.g: `1_000_u64`)
+
+Binary Literals:
+
+- `b'\''`, `b'\1'`, `b'\n'`, `b'\r'`, `b'\t'`: Escaped characters
+- `b'<C>'`: Byte whose value is the ASCII character `<C>`
+- `b'\x<HH>'`: Byte whose value is the hexadecimal `<HH>`
 
 ### Numeric Operators
 
@@ -147,6 +174,14 @@ Rust's `char` type is four bytes in size and represents a Unicode Scalar Value: 
 ```rs
 let c: char = 'C';  // SINGLE QUOTES
 let c: char = '\u{261D}';  // Unicode Code Point U+261D
+let c: char = '\x2A';  // ASCII for *
+
+
+'*'.is_alphabetic();  // false
+'β'.is_alphabetic(); // true
+'8'.to_digit(10);  // Some(8)
+'\u{CA0}'.len_utf8();  // 3
+std::char::from:digit(2, 10);  // Some(2)
 ```
 
 ### String Types
@@ -362,7 +397,7 @@ Rust has a special annotation called the `Copy` trait that it's placeable on typ
 If a type has the `Copy` trait, an older variable is still usable after assignment.
 
 Copies happen implicitly, for example as part of an assignment `y = x`. The behavior of `Copy` is not overloadable; it is always a simple bit-wise copy.  
-Cloning is an explicit action, `x.clone()`. The implementation of Clone can provide any type-specific behavior necessary to duplicate values safely. 
+Cloning is an explicit action, `x.clone()`. The implementation of Clone can provide any type-specific behavior necessary to duplicate values safely.
 
 Rust won't allow to annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.  
 
