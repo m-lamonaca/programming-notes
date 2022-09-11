@@ -184,11 +184,39 @@ let c: char = '\x2A';  // ASCII for *
 std::char::from:digit(2, 10);  // Some(2)
 ```
 
+### References & Raw Pointers
+
+Reference types:
+
+- `&T`: *immutable* reference, admit multiple such references at the same time
+- `&mut T`: *mutable* reference, there can be only one
+
+Raw Pointers types:
+
+- `*mut T`
+- `* const T`
+
+> **Note**: raw pointers can be used only in `unsafe` block. Rust doesn't track the pointed value
+
 ### String Types
 
 ```rs
 let s = String::new();  // create empty string
 let s = String::from("string literal");  // construct string from literal
+
+// string literals
+let s = "a multiline
+    string literal"; // includes whitespace and new lines
+
+let s = "single line \
+    string literal";  // the trailing \ avoids the new line & trailing/leading whitespace
+
+// raw strings
+let raw = r"\d+(\.\d+)*"  // backslash and whitespace included verbatim
+let raw = r#"raw literal with explicit delimiters, allows double quotes (") inside"#;
+
+// byte strings
+let byte_string = b"some bite string"  // &[u8] => slice og u8, equal to &[b'E', b'q', ...]
 
 s.push_str(""); // appending string literals
 ```
@@ -230,14 +258,14 @@ let matrix: [[Type, length]; length]; = [[...], [...], ...]
 matrix[row][column];
 ```
 
-### Slice Types
+### Slice Types (`&[T]`, `&mut [T]`)
 
 Slices allows to reference a contiguous sequence of elements in a collection rather than the whole collection. **Slices don't take ownership**.
 
-A string slice (`&str`) length is in bytes, can cause panic if it happens inside a character.
-This can happen because Unicode characters can take up to 4 bytes.
+A *mutable* slice `&mut [T]` allows to read and modify elements, but can’t be shared;
+a *shared* slice `&[T]` allows to share access among several readers, but doesn’t allow to modify elements.
 
-`&String` can be used in place of a `&str` trough *String Coercion*. The `&String` gets converted to a `&str` that borrows the entire string.
+`&String` can be used in place of a `&str` (string slice)  trough *String Coercion*. The `&String` gets converted to a `&str` that borrows the entire string.
 The reverse is not possible since the slice lacks some information about the String.
 
 > **Note**: When working with functions is easier to always expect a `&str` instead of a `&String`.
@@ -251,6 +279,12 @@ let slice: &[i32] =  &a[start..end];
 
 sequence[start..]  // slice to end of sequence
 sequence[..end]  // slice from start to end (excluded)
+```
+
+### Type Aliases
+
+```rs
+type Alias = T;
 ```
 
 ## Functions
