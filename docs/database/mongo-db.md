@@ -6,7 +6,7 @@ The documents are _schema-less_ that is they have a dynamic structure that can c
 
 ## Data Types
 
-| Tipo              | Documento                                        | Funzione                |
+| Type              | Example Value                                    | Function                |
 | ----------------- | ------------------------------------------------ | ----------------------- |
 | Text              | `"Text"`                                         |
 | Boolean           | `true`                                           |
@@ -432,7 +432,7 @@ A privilege represents a group of _actions_ and the _resources_ those actions ap
 By default no user exists so the ONLY way to act is to connect locally to the server.  
 This is the "localhost exception" and it closes after the _first_ user is created.
 
-> **WARN**: Always create an admin user first (ideally with the `userAdmin` role)
+> **Warn**: Always create an admin user first (ideally with the `userAdmin` role)
 
 Role's Resources:
 
@@ -505,39 +505,259 @@ Variable syntax in aggregations:
 - `$$UPPERCASE`: system variable (e.g.: `$$CURRENT`)
 - `$$foo`: user defined variable
 
-### Aggregation Syntax
+### [`$match` Aggregation Stage][$match_docs]
+
+Filters the documents to pass only the documents that match the specified condition(s) to the next pipeline stage.
 
 ```sh
-
 db.<collection>.aggregate([ 
-    { "$project": { "_id": 0, "<key>": 1, ...} },
-
     { "$match": { "<query>" } },
 
-    { "$group": {
+    # key exists and is an array
+    { $match: { "<array-key>": { $elemMatch: { $exists: true } } } }
+})
+```
+
+> **Note**: `$match` can contain the `$text` query operation but it **must** ber the _first_ in a pipeline  
+> **Note**: `$match` cannot contain use `$where`  
+> **Note**: `$match` uses the same syntax as `find()`
+
+[$match_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/ "$match operator docs"
+
+### [`$project` Aggregation Stage][$project_docs]
+
+Passes along the documents with the requested fields to the next stage in the pipeline. The specified fields can be existing fields from the input documents or newly computed fields.
+
+`$project` Array Expression Operators:
+
+- [`$filter`][$filter_docs]
+- [`$map`][$map_docs]
+- [`$reduce`][$reduce_docs]
+
+`$project` Arithmetic Expression Operators:
+
+- [`$max`][$max_docs]
+- [`$min`][$min_docs]
+- [`$sum`][$sum_docs]
+- [`$avg`][$avg_docs]
+
+```sh
+db.<collection>.aggregate([ 
+     { 
+        "$project": { 
+            "_id": 0,  # discard value
+            "<key>": 1,  # keep value
+            "<key>": "$<other-key>"  # reassign or create field,
+            "<key>": { "<expression>" } # calculate field value.
+
+            # filter elements in an array
+            "<key>": {
+                "$filter": {
+                    "input": "$<array-key>",
+                    "as": "<name-of-item>",
+                    "cond": { "<bool-expression>" }
+                }
+            },
+
+            # transform array items
+            "<key>": {
+                "$map": {
+                    "input": "$<array-key>",
+                    "as": "<item>",
+                    "in": { "<expression>" }
+                    # $$<item> is the current item's value
+                }
+            }
+
+            # apply expression to each element in an array and combine them
+            "<key>": {
+                "$reduce": {
+                    "input": "<array-key>",
+                    "initialValue": "<value>",
+                    "in": { "<expression>" }
+                    # $$this is current document, $$value is current accumulated value
+                }
+            }
+        }
+    } 
+])
+```
+
+[$project_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/ "$project operator docs"
+[$filter_docs]: https://www.mongodb.com/docs/v4.4/reference/operator/aggregation/filter/ "$filter operator docs"
+[$map_docs]: https://www.mongodb.com/docs/v4.4/reference/operator/aggregation/map/ "$map operator docs"
+[$reduce_docs]: https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/reduce/ "$reduce operator docs"
+
+[$sum_docs]: https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/sum/ "$sum operator docs"
+[$max_docs]: https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/max/ "$max operator docs"
+[$min_docs]: https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/min/ "$min operator docs"
+[$avg_docs]: https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/avg/ "$avg operator docs"
+
+### [`$addFields` Aggregation Stage][$addFields_docs]
+
+Adds new fields to documents (can be result of computation).  
+`$addFields` outputs documents that contain _all existing fields_ from the input documents and newly added fields.
+
+```sh
+db.<collection>.aggregate({
+    { $addFields: { <newField>: <expression>, ... } }
+})
+```
+
+[$addFields_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/addFields/ "$addFields operator docs"
+
+### [`$group` Aggregation Stage][$group_docs]
+
+The $`group` stage separates documents into groups according to a "group key". The output is one document for each unique group key.
+
+```sh
+db.<collection>.aggregate([ 
+     { 
+        "$group": {
             "_id": "<expression>",  # Group By Expression (Required)
             "<key-1>": { "<accumulator-1>": "<expression-1>" },
             ...
         } 
-    },
-
-    {
-        "$lookup": {
-            "from": "<collection to join>",
-            "localField": "<field from the input documents>",
-            "foreignField": "<field from the documents of the 'from' collection>",
-            "as": "<output array field>"
-        }
-    },
-
-    { "$sort": { "<key-1>": "<sort order>", "<key-2>": "<sort order>", ... } },
-
-    { "$count": "<count-key>" },
-
-    { "$skip": "<positive 64-bit integer>" }
-
-    { "$limit": "<positive 64-bit integer>" }
-    
-    { ... } 
+    }
 ])
 ```
+
+[$group_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/ "$group operator docs"
+
+### [`$unwind` Aggregation Stage][$unwind_docs]
+
+Deconstructs an array field from the input documents to output a document for each element.  
+Each output document is the input document with the value of the array field replaced by the element
+
+```sh
+db.<collection>.aggregate([ 
+     { "$unwind": "<array-key>" }
+
+     { 
+        "$unwind": {
+            "path": "<array-key>",  # array to unwind
+            "includeArrayIndex": "<string>",  # name of index field
+            "preserveNullAndEmptyArrays": <bool>
+        } 
+     }
+], { "allowDiskUse": <bool> })
+```
+
+[$unwind_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/unwind/ "$unwind operator docs"
+
+### [`$count` Aggregation Stage][$count_docs]
+
+```sh
+db.<collection>.aggregate([ 
+     { "$count": "<count-key>" }
+])
+```
+
+[$count_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/count/ "$count operator docs"
+
+### [`$sort` Aggregation Stage][$sort_docs]
+
+```sh
+db.<collection>.aggregate([ 
+     { 
+        "$sort": { 
+            "<key-1>": "<sort order>", 
+            "<key-2>": "<sort order>", 
+            ... 
+        } 
+    }
+], { "allowDiskUse": <bool> })
+```
+
+> **Note**: can take advantage of indexes if early int the pipeline and before any `%project`, `$group` and `$unwind`  
+> **Note**: By default `$sort` will use up to 10 MB of RAM. Setting `allowDiskUse: true` will allow for larger sorts
+
+[$sort_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/sort/ "$sort operator docs"
+
+### [`$skip` Aggregation Stage][$skip_docs]
+
+```sh
+db.<collection>.aggregate([ 
+     { "$skip": "<positive 64-bit integer>" }
+])
+```
+
+[$skip_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/skip/ "$skip operator docs"
+
+### [`$limit` Aggregation Stage][$limit_docs]
+
+```sh
+db.<collection>.aggregate([ 
+     { "$limit": "<positive 64-bit integer>" }
+])
+```
+
+[$limit_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/limit/ "$limit operator docs"
+
+### [`$lookup` Aggregation Stage][$lookup_docs]
+
+Performs a left outer join to a collection _in the same database_ to filter in documents from the "joined" collection for processing.  
+The `$lookup` stage adds a new array field to each input document. The new array field contains the matching documents from the "joined" collection.
+
+> **Note**: To combine elements from two different collections, use the [`$unionWith`][$unionWith_docs] pipeline stage.
+
+```sh
+db.<collection>.aggregate([ 
+    {
+        "$lookup": {
+            "from": "<foreign-collection>",
+            "localField": "<key>",
+            "foreignField": "<foreign-collection>.<key>",
+            "as": "<output array field>"
+        }
+    }
+])
+```
+
+[$lookup_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/ "$look operator docs"
+
+[$unionWith_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/unionWith/ "$unionWith operator docs"
+
+### [`$graphLookup` Aggregation Stage][$graph_lookup_docs]
+
+Performs a recursive search on a collection, with options for restricting the search by recursion depth and query filter.
+
+The connection between documents follows `<from-collection>.<connectFromField>` => `<aggregated-collection>.<connectToField>`. The collection on which the aggregation is performed and the `from` collection can be the same (in-collection search) or different (cross-collection search)  
+
+```sh
+db.<collection>.aggregate([
+    {
+        $graphLookup: {
+            from: <collection>,  # starting collection of the search
+            startWith: <expression>,  # initial value(s) of search
+            connectFromField: <string>,  # source of the connection
+            connectToField: <string>,  # destination of the connection
+            as: <string>,  # array of found documents
+            maxDepth: <number>,  # recursive search depth limit (steps inside from collection)
+            depthField: <string>,  # field containing distance from start
+            restrictSearchWithMatch: <document>  # filter on found documents
+        }
+    }
+], { allowDiskUse: true })
+```
+
+> **Note**: Having the `connectToField` indexed will improve search performance  
+> **Warn**: Can exceed the `100 Mb` memory limit even with `{ allowDiskUse: true }`
+
+[$graph_lookup_docs]: https://www.mongodb.com/docs/upcoming/reference/operator/aggregation/graphLookup/ "$graphLookup operator docs"
+
+### [`$sortByCount` Aggregation Stage][$sort_by_count_docs]
+
+Groups incoming documents based on the value of a specified expression, then computes the count of documents in each distinct group.
+
+Each output document contains two fields: an `_id` field containing the distinct grouping value, and a `count` field containing the number of documents belonging to that grouping or category.
+
+The documents are sorted by count in descending order.
+
+```sh
+db.<collection>.aggregate([
+    { $sortByCount:  <expression> }
+])
+```
+
+[$sort_by_count_docs]: https://www.mongodb.com/docs/upcoming/reference/operator/aggregation/sortByCount/ "$sortByCount operator docs"
