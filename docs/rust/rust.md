@@ -437,7 +437,7 @@ Rust won't allow to annotate a type with the `Copy` trait if the type, or any of
 
 ```rs
 let s = String::new()
-let t = s;  // shallow copy, s is now out of scope
+let t = s;  // MOVE, s is now uninitialized
 let u = t.clone();  // deep copy, t is still valid
 
 let n: i32 = 1;
@@ -1218,25 +1218,24 @@ fn main() {
 
 Rust automatically calls `drop` when the instances went go of scope. Variables are dropped in the reverse order of their creation.
 
-### `Rc<T>` & Multiple Ownership
+### `Rc<T>`, `Arc<T>` & Multiple Ownership
 
-To enable multiple ownership, Rust has a type called `Rc<T>`, which is an abbreviation for *reference counting*.  
-The `Rc<T>` type keeps track of the number of references to a value to determine whether or not the value is still in use.  
-If there are zero references to a value, the value can be cleaned up without any references becoming invalid.
-
-> **Note**: `Rc<T>` is only for use in single-threaded scenarios.
+Rust provides the *reference-counted* pointer types `Rc<T>` and `Arc<T>`.  
+The `Rc<T>` and `Arc<T>` types are very similar; the only difference between them is that an `Arc<T>` is safe to share between
+threads directly (the name Arc is short for *atomic* reference count) whereas a plain `Rc<T>` uses faster non-thread-safe code to update its reference count.
 
 ```rs
 use std::rc::Rc;
 
-let a = Rc::new(/* ... */);
-
-// bot b & c hold a reference to &a
-let b = Rc::clone(&a);
-let c = Rc::clone(&a);
-
-Rc::strong_count(&a); // 3 references to the value of a
+let s: Rc<String> = Rc::new("some string".to_string());
+let t: Rc<String> = s.clone();  // contains a new pointer to the value held by s
+let u: Rc<String> = s.clone();  // contains a new pointer to the value held by s
 ```
+
+Each of the `Rc<T>` pointers is referring to the same block of memory, which holds a reference count and space for the value.  
+The usual ownership rules apply to the `Rc<T>` pointers themselves, and when the last extant `Rc<T>` is dropped, Rust drops the value as well.
+
+> **Note**: A value owned by an `Rc<T>` pointer is immutable.
 
 ### `RefCell<T>` & Interior Mutability Pattern
 
