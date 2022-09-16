@@ -184,20 +184,6 @@ let c: char = '\x2A';  // ASCII for *
 std::char::from:digit(2, 10);  // Some(2)
 ```
 
-### References & Raw Pointers
-
-Reference types:
-
-- `&T`: *immutable* reference, admit multiple such references at the same time
-- `&mut T`: *mutable* reference, there can be only one
-
-Raw Pointers types:
-
-- `*mut T`
-- `* const T`
-
-> **Note**: raw pointers can be used only in `unsafe` block. Rust doesn't track the pointed value
-
 ### String Types
 
 ```rs
@@ -496,7 +482,23 @@ fn takes_and_gives_back(a_string: String) -> String { // a_string comes into sco
 }
 ```
 
-### References & Borrowing
+### References, Raw Pointers & Borrowing
+
+Reference types:
+
+- `&T`: *immutable* (aka *shared*) reference, admits multiple references at the same time, (Read-Only, implements `Copy`)
+- `&mut T`: *mutable* reference, there can be only one
+
+Raw Pointers types:
+
+- `*mut T`
+- `* const T`
+
+As long as there are *shared references* to a value, not even its owner can modify it, the value is locked down.  
+Similarly, if there is a *mutable reference* to a value, it has exclusive access to the value;
+it's not possible to use the owner at all, until the mutable reference goes away.
+
+> **Note**: raw pointers can be used only in `unsafe` block. Rust doesn't track the pointed value
 
 *Mutable references* have one big restriction: you can have *only one* mutable reference to a particular piece of data in a particular scope.
 
@@ -521,6 +523,24 @@ fn borrow2(var: &mut Type) {
 &variable;  // borrow a value from a variable (returns reference)
 *variable;  // dereference value (access value pointed by the reference)
 ```
+
+The `.` operator can **implicitly borrow or dereference** a reference
+
+```rs
+let struct = Struct { field: /* ... */ }
+let ref = &struct;
+
+ref.field  // implicit deref
+(*ref).field  // explicit deref
+
+let mut vec = vec![/* */];
+
+v.sort()  // implicit mutable borrow
+(&mut vec).sort()  // explicit mutable borrow
+```
+
+> **Note**: arithmetic expressions can "see through" one level of references.  
+> **Note**: comparison affect the final value of a reference chain. To compare references directly use `std::ptr::eq`
 
 ## Structs
 
