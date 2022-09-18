@@ -1,12 +1,5 @@
 # Rust
 
-## Compiling and running
-
-```ps1
-rustc file.rs  # compilation
-file.exe  # running
-```
-
 ## Basics
 
 ```rs
@@ -310,11 +303,11 @@ fn func() {
 
 ```rs
 if condition {
-    // code here
+    // [...]
 } else if condition {
-    // code here
+    // [...]
 } else {
-    // code here
+    // [...]
 }
 ```
 
@@ -327,37 +320,30 @@ let var = if condition { value } else { value };  // returned types must be the 
 ### [if-let](https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html)
 
 ```rs
-if let <pattern> = <value> {
-  /* do something */
+if let <pattern> = <expr> {
+    <block1>
+} else {
+    <block2>
 }
 
 // same as
-let optional = Some(value);
-match optional {
-    Some(param) => { /* do something */ },
-    Some(ref param) => { /* borrow value instead of moving */ }
-    _ => {},
-};
+match <expr> {
+    <pattern> => { block1 }
+    _ => { block2 }
+}
 ```
 
 ### loop
 
 ```rs
-loop {  // loop's forever if not explicitly stopped
-    // code here
-
-    if condition {
-        break returned_value
-    }
-}
+// loop's forever if not explicitly stopped (return or break)
+loop { }
 ```
 
 ### while
 
 ```rs
-while condition {  // runs while condition is true
-    // code here
-}
+while condition { }
 ```
 
 ### for
@@ -366,10 +352,52 @@ while condition {  // runs while condition is true
 for item in sequence.iter() { }
 for item in sequence.iter_mut() { }  // iterate over mutable items
 
-// item is a reference to the value in the sequence, use & and * to access the value or address
+for item in sequence { }  // consumes the values (moved into item)
+for item in &sequence { }  // doesn't consumes the values (item is a reference)
+for item in &mut sequence { }
 
-for i in (start..end) {  // (start..stop) is like python's range(start, stop)
-    // code here
+// for (i = start; i < end; i += 1)
+for i in (start..end) { }
+```
+
+### Range
+
+```rs
+..  // RangeFull
+a ..  // RangeFrom { start: a }
+.. b  // RangeTo { end: b }
+a .. b  // Range { start: a, end: b }
+..= b  // RangeToInclusive { end: b }
+a ..= b  // RangeInclusive::new(a, b)
+```
+
+### `break` & `continue`
+
+```rs
+while <condition> {
+    // [...]
+
+    continue;  // jump to condition evaluation
+}
+
+let loop_result = loop {
+    // [...]
+
+    break <loop-value>;
+}
+
+'outer: loop {
+    // [...]
+    loop {}
+
+    break 'outer;  // break labeled loop
+}
+
+let loop_result = 'outer: loop {
+    // [...]
+    loop {}
+
+    break 'outer <loop-value>; // break labeled loop and return value
 }
 ```
 
@@ -527,7 +555,7 @@ fn borrow2(var: &mut Type) {
 The `.` operator can **implicitly borrow or dereference** a reference
 
 ```rs
-let struct = Struct { field: /* ... */ }
+let struct = Struct { field: /* [...] */ }
 let ref = &struct;
 
 ref.field  // implicit deref
@@ -694,7 +722,7 @@ Derivable Traits:
 #[derive(Trait)]  // derive a trait for the struct
 #[derive(Trait, Trait, ...)]  // derive multiple traits
 struct Struct {
-    /* ... */
+    // [...]
 }
 ```
 
