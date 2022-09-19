@@ -895,6 +895,33 @@ impl Enum
 }
 ```
 
+### Match Expressions
+
+A *match expression* is made up of *arms*. An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern. Rust takes the value given to match and looks through each arm's pattern in turn.
+
+> **Note**: `match` arms must be exhaustive for compilation.
+
+```rs
+enum Enum {
+    Variant1,
+    Variant2,
+    Variant3(Type),
+    ...
+}
+
+// match expression on enum
+fn match_variant(e: Enum) {
+    match e {
+        Enum::Variant1 => <expr>,
+        Enum::Variant2 => { /* code block */ },
+        Enum::Variant3(parm_name) => <expr>,
+        _ => ()  // () is unit value
+    }
+}
+```
+
+## Error Handling
+
 ### Option & Result
 
 The `Option` type is used in many places because it encodes the very common scenario in which a value could be something or it could be nothing. Expressing this concept in terms of the type system means the compiler can check whether you've handled all the cases you should be handling; this functionality can prevent bugs that are extremely common in other programming languages.
@@ -915,16 +942,29 @@ enum Result<T, E> {
 
 let option: Option<T> = /* */;
 
+option.is_some();
+option.is_none();
+
 option.unwrap();  // get value of Some or panic
 option.unwrap_or(value);  // get value of Some or return a specified value
-option.unwrap_or_default();  // get value of Some or return the default value of T
+option.unwrap_or_default(fallback);  // get value of Some or return the default value of T
 
 let result: Result<T, E> = /* */;
 
+result.is_ok();
+result.is_err();
+result.as_ref();  // returns Result<&T, &E>
+result.as_mut();  // returns Result<&mut T, &mut E>
+
+// methods consuming the result
+result.ok();  // returns Option<T>, discarding the error
+result.err();  // returns Option<T>, discarding the error
 result.unwrap();  // get value of Ok or panic if Err
 result.unwrap_or(value);  // get value of OK or return a specified value
-result.unwrap_or_default();  // get value of Ok or return the default value of T
+result.unwrap_or_default(fallback);  // get value of Ok or return the default value of T
+result.unwrap_or_else(fallback_fn)
 result.unwrap_err();  // get value of Err or panic if Ok
+result.expect(message);  // write message to stderr if Err
 
 result_or_option.expect("Error Message");  // if Err or None panics with a custom error message
 
@@ -951,30 +991,33 @@ Ending an expression with `?` will result in the unwrapped success (`Ok`) value,
 > **Note**: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
 > **Note**: error values that have the `?` operator called on them go through the `from` function, defined in the `From` trait in the standard library, which is used to convert errors from one type into another
 
-### Match Expressions
+### Multiple Error Types
 
-A *match expression* is made up of *arms*. An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern. Rust takes the value given to match and looks through each arm's pattern in turn.
-
-> **Note**: `match` arms must be exhaustive for compilation.
+When working with multiple error types is useful to return a "generic error" type. All the standard library error types can be represented by `Box<dyn std::Error + Send + Sync + 'static>`.
 
 ```rs
-enum Enum {
-    Variant1,
-    Variant2,
-    Variant3(Type),
-    ...
-}
+// convenience type aliases for the generic error
+type GenericError = Box<dyn std::Error + Send + Sync + 'static>;
+type GenericResult<T> = Result<T; GenericError>;
+```
 
-// match expression on enum
-fn match_variant(e: Enum) {
-    match e {
-        Enum::Variant1 => <expr>,
-        Enum::Variant2 => { /* code block */ },
-        Enum::Variant3(parm_name) => <expr>,
-        _ => ()  // () is unit value
-    }
+> **Note**; the [`anyhow`](https://crates.io/crates/anyhow) crate provides error and result types like `GenericError` with additional features
+
+### Custom Error Types
+
+```rs
+use thiserror::Error;  // utility crate for custom errors
+
+#[derive(Error, Debug)]
+#[error("{message:} ({line:}, {column})")]
+pub struct JsonError {
+    message: String,
+    line: usize,
+    column: usize,
 }
 ```
+
+> **Note**: the [`thiserror`](https://crates.io/crates/thiserror) crate provides utilities to create custom error types
 
 ## Collections
 
