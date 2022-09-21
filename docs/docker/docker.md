@@ -247,7 +247,7 @@ None: Containers are not attached to a network and cannot access other container
 ```bash
 docker network create \
 --driver <network_type> \
---subnet <gateway_ip>/<subnet_mask_size>
+--subnet <gateway_ip>/<subnet_mask_size> \
 <network_name>
 ```
 
@@ -284,13 +284,13 @@ bind mounting: link docker to an exiting folder to be used as a volume.
 
 ## Layer Architecture
 
-![All containers created from the same image share the same image layers.](https://docs.docker.com/storage/storagedriver/images/container-layers.jpg)
+![container-layers](https://docs.docker.com/storage/storagedriver/images/container-layers.jpg)
 
 All containers created from the same image share the same image layers.
 
 ```sh
 docker run -v <existing_dir>:<container_dir> <image>:<tag>  # older command for bind mounting
-docker run --mount type=bind, source=:<existing_dir>, target=<container_dir> <image>:<tag>  # moder command for bind mounting
+docker run --mount type=bind, source=:<existing_dir>, target=<container_dir> <image>:<tag>  # modern command for bind mounting
 ```
 
 ---
@@ -301,39 +301,43 @@ Compose is a tool for defining and running multi-container Docker applications. 
 
 Using Compose is basically a three-step process:
 
-1. Define your app’s environment with a `Dockerfile` so it can be reproduced anywhere.
+1. Define the app’s environment with a `Dockerfile` so it can be reproduced anywhere.
 2. Define the services that make up your app in `docker-compose.yml` so they can be run together in an isolated environment.
-3. Run `docker-compose up` and Compose starts and runs your entire app.
+3. Run `docker-compose up` and Compose starts and runs the entire app.
 
 ```yaml
-# dedicated bridge network for the app (no liks needed, names suffice)
-# support for docker swarm
 version: 3.x
 services:
-  <container_name>:
+  <service_name>:
+    image: <image_name>
+    image: <image_url>
     build: <path>  # path to folder containing a Dockerfile to build the image
+    build:
+      context: <path>
+      dockerfile: <*.Dockerfile>
+      args:  # pass args to dockerfile
+        ARG: <value>
+       - ARG=<value>
     ports: 
       - <host_port>:<container_port>
     networks:  # attach container to one or more networks
       - <network_name>
-      - ...
     depends_on:  # make sure dependencies are running before this container
       - <container_name>
-    envoroment:
-      - ENV_VAR=<value> # declare a env var for this service
+    environment:  # declare a env vars for this service
+      ENV_VAR: <value>
+      - ENV_VAR=<value>
     env_file:
-         - <path/to/env/file>  # resuable env file
+         - <path/to/env/file>  # reusable env file
     volumes:
       - "./<rel/path/to/volume>:<in/container/path/to/data>"  # service-dedicated volume
-      - "<volume_name>:<in/container/path/to/data>"  # reuse volume
-  ...
+      - "<volume_name>:<in/container/path/to/data>"  # reuseable volume
 
 # reusable volume definitions
 volumes:
-  - <volume_name>:  # ?
+  - <volume_name>:
 
 # create networks
 networks:
-  <network_name>: 
-  ...
+  <network_name>:
 ```
