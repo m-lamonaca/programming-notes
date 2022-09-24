@@ -642,36 +642,27 @@ let origin = Point(0, 0, 0);
 
 ```rs
 #[derive(Debug)]  // inherit the debug trait
-struct StructName
-{
-    field: value,
-    ...
-}
+struct Struct { }
 
 let s: Struct = { /* valorization */};
 println!("{:?}", s)  // debug output: { field: value, ... }
 ```
 
-### Methods & Associated Functions
+### Associated Functions & Type-Associated Functions (aka Methods)
 
 ```rs
-struct Struct
-{
-    field: value,
-    ...
-}
-
+struct Struct { };
 impl Struct
 {
-    fn method(&self, arg: Type) -> Type { }
-    fn method(&mut self, arg: Type) -> Type { }  // able to modify instance
-    fn associated_func(arg: Type) -> Type { }  // "static" method
+    fn associated_function(&self, arg: Type) -> Type { }
+    fn associated_function(&mut self, arg: Type) -> Type { }  // able to modify instance
+    fn type_associated_function(arg: Type) -> Type { }  // does not have self parameter
 }
 
 let s: Struct = { /* valorization */};
-s.method(arg);  // use struct method
+s.associated_function(arg);  // use struct method
 
-Struct::associated_func(arg);
+Struct::type_associated_function(arg);
 ```
 
 ## Traits
