@@ -665,6 +665,16 @@ s.associated_function(arg);  // use struct method
 Struct::type_associated_function(arg);
 ```
 
+### Associated Consts
+
+```rs
+struct Struct {
+    const ASSOCIATED_CONST: Type = <value>;
+}
+
+Struct::ASSOCIATED_CONST;
+```
+
 ## Traits
 
 A Trait is a collection of methods representing a set of behaviours necessary to accomplish some task.  
