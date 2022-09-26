@@ -1341,6 +1341,7 @@ protected    // visible only to the same class and extending classes
 internal  // available for use only within the assembly (default for classes)
 protected internal  // can be accessed by any code in the assembly in which it's declared, or from within a derived class in another assembly
 private protected  // can be accessed only within its declaring assembly, by code in the same class or in a type that is derived from that class
+file  // can be accessed only in the same file in which is declared. Will not clash with other classes/method/interface with the same name
 
 readonly  // value can be read but not modified
 static  // not of the instance of a class
