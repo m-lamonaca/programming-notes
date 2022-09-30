@@ -921,6 +921,63 @@ fn match_variant(e: Enum) {
 }
 ```
 
+### Pattern Matching
+
+Pattern | Example | Notes
+:--------------------:|:--------------------------:|:---------------------------------------:
+Literal               | `100`                      | Match exact value or `const` name
+Range                 | `x..=y`                    | Match any value in range, including end
+Wildcard              | `_`                        | Match any value and ignore it
+`ref` Variable        | `ref field`                | Borrow reference of matched variable
+Variable              | `count`                    | Match any value and copy it to variable
+Bind with syb-pattern | `variable @ <pattern>`     | Match pattern and copy to variable
+Enum                  | `Some(value)`              |
+Tuple                 | `(key, value)`             |
+Array                 | `[first, second, third]`   |
+Slice                 | `[first, .., last]`        |
+Struct                | `Point { x, y, .. }`       |
+Reference             | `&value`                   |
+Multiple Patterns     | `'a' \| 'A'`               | `match, if let, while let` only
+Guard Expression      | `<pattern> if <condition>` | `match` only
+
+> **Note**: `..` in slices matches *any number* of elements. `..` in structs *ignores* all remaining fields
+
+```rs
+// unpack a struct into local variables
+let Struct { local_1, local_2, local_3, .. } = source;
+
+// ...unpack a function argument that's a tuple
+fn distance_to((x, y): (f64, f64)) -> f64 { }
+
+// iterate over keys and values of a HashMap
+for (key, value) in &hash_map { }
+
+// automatically dereference an argument to a closure
+// (handy because sometimes other code passes you a reference
+// when you'd rather have a copy)
+let sum = numbers.fold(0, |a, &num| a + num);
+```
+
+Patterns that always match are special in Rust. They’re called **irrefutable patterns**, and they’re the only patterns allowed in `let`, in function arguments, after `for`, and in closure arguments.
+
+A **refutable pattern** is one that might not match, like `Ok(x)`. Refutable patterns can be used in `match` arms, because match is designed for them: if one pattern fails to match, it’s clear what happens next.
+
+Refutable patterns are also allowed in `if let` and `while let` expressions:
+
+```rs
+// handle just one enum variant specially
+if let Enum::VariantX(_, _) = source { }
+
+// run some code only if a table lookup succeeds
+if let Some(value) = hash_map.get(&key) { }
+
+// repeatedly try something until it succeeds
+while let Err(err) = fallible_func() { }
+
+// manually loop over an iterator
+while let Some(_) = lines.peek() { }
+```
+
 ## Error Handling
 
 ### Option & Result
@@ -1002,7 +1059,7 @@ type GenericError = Box<dyn std::Error + Send + Sync + 'static>;
 type GenericResult<T> = Result<T; GenericError>;
 ```
 
-> **Note**; the [`anyhow`](https://crates.io/crates/anyhow) crate provides error and result types like `GenericError` with additional features
+> **Note**: the [`anyhow`](https://crates.io/crates/anyhow) crate provides error and result types like `GenericError` with additional features
 
 ### Custom Error Types
 
