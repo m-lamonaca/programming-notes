@@ -358,7 +358,7 @@ Used to apply a specific style inline.
 <footer></footer>
 ```
 
-## HTML Forms
+## HTML Forms & Inputs
 
 ```html
 <form action="data-receiver" target="" method="http-method">
@@ -397,7 +397,17 @@ PROs & CONs of `POST` method:
     <label for="target-identifier">label-here</label>
     <input type="input-type" name="input-name" value="value-sent" id="target-identifier">
 </form>
+
+<!-- SAME AS -->
+
+<form>
+    <label>Label:
+        <input type="input-type" name="input-name" value="value-sent" id="target-identifier">
+    </label>
+</form>
 ```
+
+> **Note**: The `<label>` tag is used to define the labels for `<input>` elements.
 
 Input Attributes:
 
@@ -410,73 +420,41 @@ Input Attributes:
 ### Text Field
 
 One line areas that allow the user to input text.  
-The `<label>` tag is used to define the labels for `<input>` elements.
 
 ```html
-<form>
-    <label for="identifier">Label:</label>
-    <input type="text" name="label-name" id="identifier" placeholder="placeholder-text">
-</form>
-
-<!-- SAME AS -->
-
-<form>
-    <label>Label:
-        <input type="text" name="label-name" id="identifier" placeholder="placeholder-text">
-    </label>
-</form>
+<input type="text" placeholder="placeholder-text" spellcheck="true" pattern="\regex\">
 ```
 
-Text inputs can display a placeholder text that will disappear as soon as some text is entered
+> **Note**: Text inputs can display a placeholder text that will disappear as soon as some text is entered
 
 ### Password Field
 
 ```html
-<form>
-    <label for="identifier">Password:</label>
-    <input type="password" name="user-password" id="identifier">
-</form>
+<input type="password">
 ```
 
 ### Radio Buttons
 
 ```html
-<form action="..." method="post" target="_blank">
-    <label for="identifier">Radiobutton-Text</label>
-    <input type="radio" name="option-name" id="identifier" value="option-value">
-    <label for="identifier">Radiobutton-Text</label>
-    <input type="radio" name="option-name" id="identifier" value="option-value" checked="checked">
-
-    <button type="submit">Button-Action</button>
-</form>
+<input type="radio" value="value">
+<input type="radio" value="value" checked>
 ```
 
 ### Checkboxes
 
 ```html
-<form>
-    <label for="identifier">Option-Name</label>
-    <input type="checkbox" name="" id="identifier">
-
-    <label for="identifier">Option-Name</label>
-    <input type="checkbox" name="" id="identifier">
-
-    <label for="identifier">Option-Name</label>
-    <input type="checkbox" name="" id="identifier" checked="checked">
-</form>
+<input type="checkbox">
+<input type="checkbox" checked>
 ```
 
 ### Dropdown Menus
 
 ```html
-<form>
-    <label for="identifier">Label:</label>
-    <select name="" id="identifier" multiple>
-        <option value="value">Value</option>
-        <option value="value">Value</option>
-        <option value="value" selected>Value</option>
-    </select>
-</form>
+<select multiple>
+    <option value="value">Value</option>
+    <option value="value">Value</option>
+    <option value="value" selected>Value</option>
+</select>
 ```
 
 Use `<select>` rather than radio buttons when the number of options to choose from is large
@@ -484,39 +462,33 @@ Use `<select>` rather than radio buttons when the number of options to choose fr
 Provides the ability to select multiple options.  
 Conceptually, `<select>` becomes more similar to checkboxes.
 
-### FILE Select
+### File Select
 
-Upload a local file as an attachment
+Upload a local file as an attachment. The `accept` attribute value is a string that defines the file types the file input should accept.  
+This string is a comma-separated list of [unique file type specifiers][file_type_specifiers_docs].
 
 ```html
-<form>
-    <label for="file-select">Upload:</label>
-    <input type="file" name="upload" value="file-select">
-</form>
+<input type="file" value="filename" accept=".txt,application/json,audio/*">
 ```
+
+[file_type_specifiers_docs]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers
 
 ### Text Area
 
 Multi line text input.
 
 ```html
-<form>
-    <label for="identifier">Label:</label>
-    <textarea name="label" rows="row-number" cols="column-number" id="identifier">pre-existing editable test</textarea>
-    <!-- rows and columns should be defined in a CSS -->
-</form>
+<textarea rows="row-number" cols="column-number" >pre-existing editable test</textarea>
 ```
 
 ### Submit & Reset
 
 ```html
-<form action="" method="POST">
-    <input type="submit" value="">
-    <input type="reset" value="">
-    <!-- OR -->
-    <button type="submit" value="">
-    <button type="reset" value="">
-</form>
+<input type="submit" value="label">
+<input type="reset" value="label">
+<!-- OR -->
+<button type="submit" value="label">
+<button type="reset" value="label">
 ```
 
 `submit`: sends the form data to the location specified in the action attribute.  
@@ -525,10 +497,10 @@ Multi line text input.
 ### Button
 
 ```html
-<button type="button/reset/submit" value=""/>
+<button type="button/reset/submit" value="label"/>
 
 <!-- can contain HTML -->
-<button type="button/reset/submit" value=""></button>
+<button type="button/reset/submit" value="lebel"></button>
 ```
 
 ### Fieldset
@@ -547,19 +519,6 @@ Group controls into categories. Particularly important for screen readers.
 </fieldset>
 ```
 
-## HTML5 Input Types
-
-Newer input types are useful for:
-
-* validation
-* restricting user input
-* Using custom dialogs
-
-Downsides:
-
-* most are not supported by older browsers, especially Internet Explorer.
-* each browser has a different implementation so the user experience is not consistent.
-
 ### Email Field
 
 Used to receive a valid e-mail address from the user. Most browsers can validate this without needing javascript.
@@ -573,6 +532,26 @@ Older browsers don't support this input type.
 </form>
 ```
 
+### Progress Bar
+
+```html
+<progress max="100" value="70"> 70% </progress>
+```
+
+### Slider
+
+```html
+<input type="range" min="0" max="20">
+```
+
+### Meter
+
+The `<meter>` HTML element represents either a scalar value within a known range or a fractional value.
+
+```html
+<meter min="0" max="100" low="33" high="66" optimum="80" value="50" />
+```
+
 ### More Input Types
 
 ```html
@@ -580,6 +559,14 @@ Older browsers don't support this input type.
 <input type="url" id="url" name="url">
 <input type="number" name="" id="identifier" min="min-value" max="max-value" step="">
 <input type="search" id="identifier" name="">
+
+<!-- Native Search with autocomplete -->
+<input list="items">
+<datalist id="items">
+    <option value="value-1">
+    <option value="value-2">
+    <option value="value-3">
+</datalist>
 ```
 
 ### [Using Built-In Form Validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
