@@ -688,20 +688,27 @@ trait Trait {
     }
 }
 
+trait SubTrait: Trait { }  // must have impl blocks for all super traits
+//same as
+trait SubTrait where Self: Trait
+
 impl Trait for Struct {
     fn method_signature(&self, param: Type) -> Type {
         // specific implementation
     }
 }
-
-// trait as parameter or return
-fn method_signature(param: &impl Trait) -> Type {}
-fn method_signature(param: &(impl TraitOne + TraitTwo) -> Type {}
-
-// method can only return a single type and that type must implement the trait,
-// useful for closures or iterators
-fn method_signature(param: Type) -> impl Trait {}
 ```
+
+### Fully Qualified Method Calls
+
+```rs
+value.method();
+Type::method(value);
+Trait::method(value);
+<Type as Trait>::method(value);
+```
+
+> **Note**: fully qualified method calls also works with associated functions
 
 ### Derive Traits
 
@@ -742,8 +749,13 @@ fn generic_method<T, U>()
     // implementation
 }
 
-// returned must implement specified trait
+// returned must implement specified trait, retuned type can be only one
+// useful for closures or iterators
 fn generic_return() -> impl RequiredTrait { }
+
+// trait as parameter or return (syntactic sugar for trait bounds)
+fn method_signature(param: &impl Trait) -> Type {}
+fn method_signature(param: &(impl TraitOne + TraitTwo)) -> Type {}
 ```
 
 ### Trait Extensions
@@ -805,22 +817,33 @@ fn generic<T: Trait>() -> Type { }  // use generic constraint
 
 ### Trait Objects
 
-A trait object is created by specifying some sort of pointer, such as a `&` reference or a `Box<T>` smart pointer, then the `dyn` keyword, and then specifying the relevant trait.
+A *reference* to a trait is called a **Trait Object**. Like any other reference, a trait object points to some value, it has a lifetime, and it can be either mut or shared.  
+What makes a trait object different is that Rust usually doesn’t know the type of the referent at compile time.  
+So a trait object includes a little extra information about the referent’s type.
+
+In memory, a trait object is a fat pointer consisting of a pointer to the value, plus a pointer to a table representing that value’s type.  
+
+> **Note**: Rust automatically converts ordinary references into trait objects when needed
+
+```rs
+let trait_object = &mut dyn Trait = &mut source;
+let trait_object: Box<dyn Trait> = Box::new(source);  // same for Rc<T>, Arc<T>, ...
+```
 
 This works differently from defining a struct or function that uses a generic type parameter with trait bounds.  
-A generic type parameter can only be substituted with one concrete type at a time, whereas trait objects allow for multiple concrete types to fill in for the trait object at runtime.  
-If homogeneous collections are needed, using generics and trait bounds is preferable because the definitions will be monomorphized at compile time to use the concrete types.
+A generic type parameter can only be substituted with *one concrete type* at a time, whereas trait objects allow for *multiple* concrete types to fill in for the trait object at runtime.
 
 ```rs
 fn func() -> Box<dyn Trait> { }  // return something that implements the specified trait
 ```
 
-The code that results from *monomorphization* is doing *static dispatch*, which is when the compiler knows what method will be called at compile time.  
-This is opposed to *dynamic dispatch*, which is when the compiler can't tell at compile time which method will be called.  
-In dynamic dispatch cases, the compiler emits code that at runtime will figure out which method to call.
+If homogeneous collections are needed, using generics and trait bounds is preferable because the definitions will be monomorphized at compile time to use the concrete types.
 
-When using trait objects, Rust must use dynamic dispatch. Instead, at runtime, Rust uses the pointers inside the trait object to know which method to call.  
-There is a runtime cost when this lookup happens that doesn't occur with static dispatch.  
+The code that results from *monomorphization* uses **static dispatch**, which is when the compiler knows what method will be called at compile time.
+
+This is opposed to **dynamic dispatch**, which is when the compiler can't tell at compile time which method will be called.  At runtime Rust uses the pointers inside the trait object to know which method to call.
+There is a runtime cost when this lookup happens that doesn't occur with static dispatch.
+
 Dynamic dispatch also prevents the compiler from choosing to inline a method's code, which in turn prevents some optimizations.
 
 It's only possible to make *object-safe* traits into trait objects. A trait is object safe if all the methods defined in the trait have the following properties:
