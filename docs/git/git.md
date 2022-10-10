@@ -133,8 +133,12 @@ def load_reference(name_or_id):
 `git remote add <remote> <url | path>`: add a remote  
 `git branch --set-upstream-to=<remote>/<remote branch>`: set up correspondence between local and remote branch
 
+`git push`: send objects to default remote on current branch
 `git push <remote> <branch>`: send objects to remote  
 `git push <remote> <local branch>:<remote branch>`: send objects to remote, and update remote reference
+
+`git push --force`: overwrite remote with local version
+`git push --force-with-lease`: overwrite remote with local version if remote has not been modified
 
 `git fetch [<remote>]`: retrieve objects/references from a remote  
 `git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`  
@@ -211,17 +215,25 @@ It's generally recommended creating annotated tags so it's possible to have all 
 
 ### Undo & [Rewriting History](https://www.themoderncoder.com/rewriting-git-history/)
 
+`git rm -r --cached <file>`: remove a file from being tracked
 `git commit --amend`: replace last commit by creating a new one (can add files or rewrite commit message)  
 `git commit --amend -m "amended message"`: replace last commit by creating a new one (can add files or rewrite commit message)  
-`git commit --amend  --no-edit`: replace last commit by creating a new one (can add files or rewrite commit message)  
+`git commit --amend  --no-edit`: replace last commit by creating a new one (can add files or rewrite commit message)
+
 `git reset HEAD <file>`: unstage a file  
-`git reset <commit>`: undo all commits after specified commit, preserving changes locally  
-`git checkout <file>`: discard changes  
-`git checkout -- <file>`: discard changes, no output to screen  
+`git reset <commit>`: undo all commits after specified commit, preserving changes locally
 `git reset --soft <commit>`: revert to specific commit but keep changes and staged files  
 `git reset --hard <commit>`: discard all history and changes back to specified commit  
+
+`git checkout <file>`: discard changes  
+`git checkout -- <file>`: discard changes, no output to screen  
+`git restore .`: discard uncommitted changes
+`git restore <file>`: discard uncommitted changes to file
+`git restore --source <commit> <file>`: revert file to commit version
+`git restore <deleted-file>`: recover deleted file if previously committed
+
 `git rebase -i HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits
-`git rm --cached <file>`: remove a file from being tracked
+`git rebase -i <commit>`: modify (reword, edit, drop, squash, merge, ...) *from* commit to latest
 
 **WARNING**: Changing history can have nasty side effects
 
