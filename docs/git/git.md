@@ -194,7 +194,8 @@ It's generally recommended creating annotated tags so it's possible to have all 
 ### Branching And Merging
 
 `git branch`: shows branches  
-`git branch -v`: show branch + last commit
+`git branch -vv`: show branch + last commit + remote status
+`git branch --merged [--remote]`: show branches (remote) that have been merged into current one (needs same history, merge squash/rebase break history)
 
 `git branch <branch-name>`: create new branch  
 `git checkout -b <branch-name>`: create a branch and switches to it, same as `git branch <name>; git checkout <name>`  
