@@ -81,17 +81,20 @@ def load_reference(name_or_id):
 
 ## Commands
 
-`git help <command>`: get help for a git command
+`git <command> -h`: get help for a git command  
+`git <command> --help`: get man page for a git command  
+`git -C <path> <command>`: execute a git commend in the specified path  
+`git <command> <commit>^`: operate on commit *before* the provided commit hash  
 
 ### Create Repository
 
 `git init [<project_name>]`: initialize a brand new Git repository and begins tracking  
-`.gitignore`: specify intentionally untracked files to ignore
+`.gitignore`: specify intentionally untracked files to ignore  
 
 ### Config
 
 `git config --global user.name "<name>"`: set name attached to commits  
-`git config --global user.email "<email address>"`: set email attached to commits  
+`git config --global user.email "<email address>"`: set email attached to commits    
 `git config --global color.ui auto`: enable colorization of command line output  
 
 ### Making Changes
@@ -100,18 +103,19 @@ def load_reference(name_or_id):
 `git add <filename1 filename2 ...>`: add files to the staging area  
 `git add -p <files>`: interactively stage chunks of a file  
 
-`git blame <file>`: show who last edited which line
+`git blame <file>`: show who last edited which line  
 
 `git commit`: save the snapshot to the project history  
 `git commit -m "message"`: commit and provide a message  
 `git commit -a`: automatically notice any modified (but not new) files and commit  
-`git commit -v|--verbose`: show unified diff between the HEAD commit and what would be committed
+`git commit -v|--verbose`: show unified diff between the HEAD commit and what would be committed  
 
 `git diff <filename>`: show difference since the last commit  
 `git diff <commit> <filename>`: show differences in a file since a particular snapshot  
 `git diff <reference_1> <reference_2> <filename>`: show differences in a file between two snapshots  
 `git diff  --cached`: show what is about to be committed  
 `git diff <first-branch>...<second-branch>`: show content diff between two branches  
+`git diff -w`: show diff ignoring whitespace differences  
 
 `git bisect`: binary search history (e.g. for regressions)  
 
@@ -128,29 +132,29 @@ def load_reference(name_or_id):
 
 `git remote`: list remotes  
 `git remote -v`: list remotes names and URLs  
-`git remote show <remote>`: inspect the remote
+`git remote show <remote>`: inspect the remote  
 
 `git remote add <remote> <url | path>`: add a remote  
-`git branch --set-upstream-to=<remote>/<remote branch>`: set up correspondence between local and remote branch
+`git branch --set-upstream-to=<remote>/<remote branch>`: set up correspondence between local and remote branch  
 
-`git push`: send objects to default remote on current branch
+`git push`: send objects to default remote on current branch  
 `git push <remote> <branch>`: send objects to remote  
-`git push <remote> <local branch>:<remote branch>`: send objects to remote, and update remote reference
+`git push <remote> <local branch>:<remote branch>`: send objects to remote, and update remote reference  
 
-`git push --force`: overwrite remote with local version
-`git push --force-with-lease`: overwrite remote with local version if remote has not been modified
+`git push --force`: overwrite remote with local version  
+`git push --force-with-lease`: overwrite remote with local version if remote has not been modified  
 
 `git fetch [<remote>]`: retrieve objects/references from a remote  
 `git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`  
 `git pull -ff`: when possible resolve the merge as a fast-forward (only update branch pointer, don't create merge commit). Otherwise create a merge commit.  
 
-`git fetch && git show <remote>/<branch>`: show incoming changes
+`git fetch && git show <remote>/<branch>`: show incoming changes  
 
 `git clone <url> [<folder_name>]`: download repository and repo history from remote  
-`git clone --shallow`: clone only repo files, not history of commits
+`git clone --shallow`: clone only repo files, not history of commits  
 
 `git remote remove <remote>`: remove the specified remote  
-`git remote rename <old_name> <new_name>`: rename a remote
+`git remote rename <old_name> <new_name>`: rename a remote  
 
 ### Viewing Project History
 
@@ -161,7 +165,8 @@ def load_reference(name_or_id):
 `git log --all --graph --decorate`: visualizes history as a DAG  
 `git log  --oneline`: compact log  
 
-`git shortlog`: list commits by author
+`git shortlog`: list commits by author  
+`git reflog`: show record of when the tips of branches and other references were updated in the local repository  
 
 `git show <commit>`: output metadata and content changes of commit  
 `git cat-file -p <commit>`: output commit metadata  
@@ -193,8 +198,10 @@ It's generally recommended creating annotated tags so it's possible to have all 
 
 ### Branching And Merging
 
+![branch](../img/git_branches.png "how branches work")
+
 `git branch`: shows branches  
-`git branch -vv`: show branch + last commit + remote status
+`git branch -vv`: show branch + last commit + remote status  
 `git branch --merged [--remote]`: show branches (remote) that have been merged into current one (needs same history, merge squash/rebase break history)
 
 `git branch <branch-name>`: create new branch  
@@ -202,79 +209,37 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git branch`: show list of all existing branches  (* indicates current)  
 `git checkout <branch-name>`: change current branch (update HEAD) and update working directory  
 `git branch -d <branch-name>`: delete specified branch  
-`git branch -m <old_name> <new_name>`: rename a branch without affecting the branch's history
+`git branch -m <old_name> <new_name>`: rename a branch without affecting the branch's history  
 
 `git merge <branch-name>`: merges into current branch  
 `git merge --continue`: continue previous merge after solving a merge conflict  
 `git mergetool`: use a fancy tool to help resolve merge conflicts  
-`git rebase`: rebase set of patches onto a new base  
-`git rebase -i`: interactive rebasing
+`git rebase <branch>`: rebase current branch commits onto another branch  
 
-`git cherry-pick <commit>`: bring in a commit from another branch
-`git cherry-pick <commit>^..<commit>`: bring in a  range of commits from another branch (first included)
-`git cherry-pick <commit>..<commit>`: bring in a  range of commits from another branch (first excluded)
+`git cherry-pick <commit>`: bring in a commit from another branch  
+`git cherry-pick <commit>^..<commit>`: bring in a  range of commits from another branch (first included)  
+`git cherry-pick <commit>..<commit>`: bring in a  range of commits from another branch (first excluded)  
 
 ### Undo & [Rewriting History](https://www.themoderncoder.com/rewriting-git-history/)
 
-`git rm -r --cached <file>`: remove a file from being tracked
+`git rm -r --cached <file>`: remove a file from being tracked  
 `git commit --amend`: replace last commit by creating a new one (can add files or rewrite commit message)  
 `git commit --amend -m "amended message"`: replace last commit by creating a new one (can add files or rewrite commit message)  
-`git commit --amend  --no-edit`: replace last commit by creating a new one (can add files or rewrite commit message)
+`git commit --amend  --no-edit`: replace last commit by creating a new one (can add files or rewrite commit message)  
 
 `git reset HEAD <file>`: unstage a file  
-`git reset <commit>`: undo all commits after specified commit, preserving changes locally
+`git reset <commit>`: undo all commits after specified commit, preserving changes locally  
 `git reset --soft <commit>`: revert to specific commit but keep changes and staged files  
 `git reset --hard <commit>`: discard all history and changes back to specified commit  
 
 `git checkout <file>`: discard changes  
 `git checkout -- <file>`: discard changes, no output to screen  
-`git restore .`: discard uncommitted changes
-`git restore <file>`: discard uncommitted changes to file
-`git restore --source <commit> <file>`: revert file to commit version
-`git restore <deleted-file>`: recover deleted file if previously committed
+`git restore .`: discard uncommitted changes  
+`git restore <file>`: discard uncommitted changes to file  
+`git restore --source <commit> <file>`: revert file to commit version  
+`git restore <deleted-file>`: recover deleted file if previously committed  
 
-`git rebase -i HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits
-`git rebase -i <commit>`: modify (reword, edit, drop, squash, merge, ...) *from* commit to latest
+`git rebase -i HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits  
+`git rebase -i <commit>`: modify (reword, edit, drop, squash, merge, ...) *from* commit to latest  
 
-**WARNING**: Changing history can have nasty side effects
-
----
-
-## How To
-
-### Rebase Branches
-
-```ps1
-git checkout <primary_branch>
-git pull  # get up to date
-
-git checkout <feature_branch>
-git rebase <primary_branch>  # rebase commits on master (moves branch start point on last master commit)
-
-git checkout <primary_branch>
-git rebase <feature_branch>  # moves commits from the branch on top of master
-```
-
-![branch](../img/git_branches.png "how branches work")
-
-### Clone Branches
-
-```ps1
-git clone <repo>  # clone the repo
-
-git branch -r  # show remote branches
-git checkout <branch>  # checkout remote branch (omit <remote>/)
-
-git pull  # clone branch
-```
-
-### [Sync Forks](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
-
-```ps1
-git fetch upstream  # Fetch the branches and their respective commits from the upstream repository
-git checkout main  # checkout fork's main primary branch
-
-git merge upstream/main  # Merge the changes from the upstream default branch into the local default branch
-
-git push  #  update fork on GitHub
-```
+> **WARN**: Changing history can have nasty side effects
