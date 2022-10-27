@@ -251,8 +251,8 @@ var y = x with { Key = value };  // with expression [C# 10]
 
 ### Index & Range Types (Structs)
 
-[System.Index][index_type]: Represents a type that can be used to index a collection either from the start or the end.  
-[System.Range][range_type]: Represents a range that has start and end indexes.
+A [System.Index][index_type] represents a type that can be used to index a collection either from the start or the end.  
+A [System.Range][range_type] represents a range that has start and end indexes.
 
 [index_type]: https://docs.microsoft.com/en-us/dotnet/api/system.index
 [range_type]: https://docs.microsoft.com/en-us/dotnet/api/system.range
@@ -1466,7 +1466,6 @@ class Class
 
 > **Note**: The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.  
 Because `init` accessors can only be called during initialization, they are allowed to _mutate_ `readonly` fields of the enclosing class, just like in a constructor.
-
 > **Note**: creating at least one constructor hides the one provided by default (w/ zero parameters).
 
 ### [Object and Collection Initializers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers)
@@ -2747,13 +2746,11 @@ Classes to hold multiple info about a file or directory. If some property change
 
 ### CLR Serialization
 
-Types are required to opt into CLR serialization. .NET defines a [Serializable] attribute that must be present before the CLR will serialize the type (class).
+Types are required to opt into CLR serialization. .NET defines a `[Serializable]` attribute that must be present before the CLR will serialize the type (class).
 
 ```cs
 [Serializable]
-class ClassName{
-    // class contents
-}
+class Class { }
 ```
 
 Serialization works directly with an object's fields. It uses reflection, which enables it to access all members, whether public or private.
@@ -2893,15 +2890,15 @@ unsafe
 }
 ```
 
-[ptr_indirection]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-indirection)
-[ptr_member_acces]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-member-access)
-[ptr_elem_access]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-element-access)
-[ptr_addr_of]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#the-address-of-operator)
-[ptr_incr_decr]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-increment-and-decrement)
-[ptr_math]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-arithmetic)
-[ptr_comparison]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-comparison)
-[stack_alloc]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#stack-allocation)
-[fixed_buffers]: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#fixed-size-buffers)
+[ptr_indirection]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-indirection
+[ptr_member_acces]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-member-access
+[ptr_elem_access]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-element-access
+[ptr_addr_of]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#the-address-of-operator
+[ptr_incr_decr]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-increment-and-decrement
+[ptr_math]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-arithmetic
+[ptr_comparison]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-comparison
+[stack_alloc]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#stack-allocation
+[fixed_buffers]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#fixed-size-buffers
 
 ### Native Memory
 
