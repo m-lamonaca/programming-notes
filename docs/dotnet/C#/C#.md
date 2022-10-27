@@ -2922,22 +2922,19 @@ In this case, the method must also be declared as `static`.
 private static extern void AVIFileInit();
 ```
 
-The `LibraryImport` attribute can be used to import external code and have the source generator handle the marshalling for the annotated function.
+## Magic Methods
 
-> **Note**: The source generator will still use the `DllImport` attribute in the generated code.
+Methods needed to implement a behaviour which do not need an interface to work. The methods **must** be named _appropriately_ and have the  correct _return type_.
+
+### Enumerable
 
 ```cs
-// before
-public static class Native
-{
-    [DllImport(nameof(Native), CharSet = CharSet.Unicode)]
-    public extern static string ToLower(string str);
-}
+public bool MoveNext(/* ... */);
+public T Current { get; }
+```
 
-// after
-public static class Native
-{
-    [LibraryImport(nameof(Native), StringMarshalling = StringMarshalling.Utf16)]
-    public static partial string ToLower(string str);
-}
+### Awaitable
+
+```cs
+public TaskAwaiter GetAwaiter(/* ... */);
 ```
