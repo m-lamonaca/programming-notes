@@ -2923,3 +2923,20 @@ In this case, the method must also be declared as `static`.
 [DllImport("avifil32.dll")]
 private static extern void AVIFileInit();
 ```
+
+## Magic Methods
+
+Methods needed to implement a behaviour which do not need an interface to work. The methods **must** be named _appropriately_ and have the  correct _return type_.
+
+### Enumerable
+
+```cs
+public bool MoveNext(/* ... */);
+public T Current { get; }
+```
+
+### Awaitable
+
+```cs
+public TaskAwaiter GetAwaiter(/* ... */);
+```
