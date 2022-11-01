@@ -258,3 +258,16 @@ for var in iterable ; do
     # command here
 done
 ```
+
+## Script Hardening
+
+```sh
+set -o errexit  # exit on error
+set -o nounset  # fail on unset variable (bypass with ${VAR:-})
+set -o pipefail  # file entire pipeline if one step fails
+
+# hook to enable tracing
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+```
