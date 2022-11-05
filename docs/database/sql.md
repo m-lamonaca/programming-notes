@@ -1,7 +1,5 @@
 # SQL
 
-`mysql -u root`: avvio mysql come utente root
-
 ## DDL
 
 ```sql
@@ -85,7 +83,7 @@ DELETE FROM <table> -- empty the table
 
 ## Data Selection
 
-`*` Indica tutti i campi
+`*`: denotes all table fields
 
 ```sql
 SELECT * FROM <table>;    -- show table contents
@@ -127,7 +125,7 @@ SELECT DISTINCT <field> FROM <table>;    -- shows elements without repetitions
 
 ### Ricerca caratteri in valori
 
-`%` 0+ caratteri
+`%`: any number of characters
 
 ```sql
 SELECT * FROM <table> WHERE <field> LIKE '<char>%';    -- selects items in <field> that start with <char>
