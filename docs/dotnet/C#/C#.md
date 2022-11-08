@@ -1341,6 +1341,7 @@ protected    // visible only to the same class and extending classes
 internal  // available for use only within the assembly (default for classes)
 protected internal  // can be accessed by any code in the assembly in which it's declared, or from within a derived class in another assembly
 private protected  // can be accessed only within its declaring assembly, by code in the same class or in a type that is derived from that class
+file  // can be accessed only in the same file in which is declared. Will not clash with other classes/method/interface with the same name
 
 readonly  // value can be read but not modified
 static  // not of the instance of a class
@@ -1437,10 +1438,7 @@ class Class
         set => _backingField = value;
     }
 
-    // access backing field with the field keyword [C# 11?]
-    public Type Property { get => field; set => field = value; }
-
-    // required property [C# 11?], prop must be set at obj init (in constructor or initializer)
+    // REQUIRED PROPERTY prop must be set at obj init (in constructor or initializer)
     public required Type Property { get; set; }
 
     // EXPRESSION-BODIED READ-ONLY PROPERTY
@@ -2913,7 +2911,7 @@ unsafe
 }
 ```
 
-### DllImport & Extern
+### External Code
 
 The `extern` modifier is used to declare a method that is implemented externally.  
 A common use of the extern modifier is with the `DllImport` attribute when using Interop services to call into _unmanaged_ code.  
