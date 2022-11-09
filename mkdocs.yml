@@ -15,7 +15,7 @@ theme:
   name: material
   language: en
   icon:
-    logo: octicons/telescope-16
+    logo: fontawesome/solid/code
 
   palette: 
     # Palette toggle for light mode
