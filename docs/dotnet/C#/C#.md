@@ -825,31 +825,55 @@ else
 
 ### Pattern Matching
 
-[Pattern Matching](https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching)
+[Pattern Matching](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns)
 
 A pattern describes one or more criteria that a value can be tested against. It's usable in switch statements, switch expressions and if statements.
 
 ```cs
+// type pattern
 <expr> is Type t  // type pattern
+
+// positional pattern
 <expr> is (Type X, Type Y):  // positional pattern
-<expr> is (Type X, _):  // positional pattern + discard pattern
-<expr> is Type {Property: value}:  // property patten (check Type and that the property has a certain value)
-<expr> is Type {Property: value} p:  // property patten with output (variable p is usable in the block)
+<expr> is (Type X, _):  // discard pattern
+
+// property pattern
+<expr> is Type { Property: value }:  // is type and property has a certain value
+<expr> is Type { Property: value } out:  // output variable is usable in the block
+<expr> is { Property.InnerProperty: value }  // match nested properties
 
 // constant pattern
 <expr> is literalValue  // e.g. 1, 'c', "literal"
 <expr> is CONSTANT
 <expr> is Enum.Value
 
-// C# 9+
+// logical patterns
+<expr> is not pattern
 <expr> is pattern and pattern
 <expr> is pattern or pattern
-<expr> is not pattern
-<expr> is { Property: > value }  // works with all comparison operators
-<expr> is > value  // works with all comparison operators
 
-// C# 10+
+// relational pattern
+<expr> is > value
+<expr> is < value
+<expr> is <= value
+<expr> is >= value
+
+// multiple value & nested value patterns
 <expr> is { Property.InnerProperty: value }  // match in nested properties
+<expr> is { Property1 : value1, Property2: value2 }  // multiple inputs
+<expr> is (value1, value2)  // multiple inputs (with deconstruction)
+
+// multiple values and relations
+<expr> is ( > value1, > value2),
+<expr> is { Property1: > value1, Property2: > value2 }
+
+// list patterns
+<expr> is [value1, value2, value1]  // positional match
+<expr> is [value1 or value2, <= value3, >= value4]  // relational comparison
+<expr> is [< 0, .. { Length: 2 or 4 }, > 0]  // item property match
+<expr> is [_, var middle, _] // discarding & capturing
+<expr> is [value1, .., valueN]  // match any number of items
+<expr> is [value1, .. var rest]  // capture any number of items
 ```
 
 ### Switch
@@ -1352,6 +1376,7 @@ public struct Point
 ```
 
 > **Note**: From C# 10 is possible to have a parameterless constructor and make a new struct using a `with` statement.
+> **Note**: From C# 11 uninitialized values will be filed with their defaults
 
 The only way to affect a struct variable both inside a method and outside is to use the `ref` keyword;
 
