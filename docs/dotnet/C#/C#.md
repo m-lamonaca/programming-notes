@@ -1856,26 +1856,46 @@ C# 8.0 adds the ability to define default implementations for some or all method
 // can only be public or internal if not nested, any accessibility otherwise
 public interface IContract
 {
-    // properties and fields
+    // properties
     Type Property { get; set; }
 
-    // un-implemented methods (only signature)
+    // methods (only signature)
     Type Method(Type param, ...);
 
-    // DEFAULT INTERFACE IMPLEMENTATIONS
+    // default interface implementations
     // (method has body), if not implemented in inheriting class the implementation will be this
     Type Method(Type param, ...) => <expr>;
 
-    public const Type CONSTANT = value;  // accessibility needed
+    // constants
+    const Type CONSTANT = value;
 
-    static Type Static Property { get; set; }  // [C#]
-    static Type StaticMethod(Type param, ...);  // [C# 10]
-    static operator +(Type param, ...);  // [C# 10]
+    // static properties
+    static Type StaticProperty { get; set; }
+    static Type StaticMethod();
+
+    // static abstract members
+    static abstract Type AbstractProperty { get; set; }
+    static abstract Type AbstractMethod();
+
+    static abstract IContract operator +(IContract source);
 
     // nested types are valid, accessibility is needed
 }
 
 public interface IContract<T> {}  // interfaces can be generic
+
+public class Contract : IContract { /* ... */ }
+
+var contract = new Contract();
+contract.Property;
+contract.Method();
+
+contract.AbstractProperty;
+contract.AbstractMethod();
+
+IContract.CONSTANT;
+IContract.StaticProperty;
+IContract.StaticMethod();
 ```
 
 > **Note**: Interfaces are reference types. Despite this, it's possible tp implement interfaces on both classes and structs.  
