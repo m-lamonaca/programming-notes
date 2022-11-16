@@ -447,6 +447,35 @@ String.Format($"{variable}"); // string interpolation outside of a Write/WriteLi
 String.Empty;  // value of an empty string, used for string init
 ```
 
+### Raw string literals
+
+Raw string literals can contain arbitrary text, including whitespace, new lines, embedded quotes, and other special characters without requiring escape sequences.  
+A raw string literal starts with at least three double-quote (`"""`) characters. It ends with the same number of double-quote characters.  
+Typically, a raw string literal uses three double quotes on a single line to start the string, and three double quotes on a separate line to end the string.
+The newlines following the opening quote and preceding the closing quote aren't included in the final content:
+
+```cs
+
+string longMessage = """
+    This is a long message.
+    It has several lines.
+        Some are indented
+                more than others.
+    Some should start at the first column.
+    Some have "quoted text" in them.
+    """;
+```
+
+> **Note**: Any whitespace to the left of the closing double quotes will be removed from the string literal.
+
+Raw string literals can be combined with _string interpolation_ to include braces in the output text. Multiple `$` characters denote how many consecutive braces start and end the interpolation
+
+```cs
+var location = $$"""
+    You are at {{{Longitude}}, {{Latitude}}}
+    """;
+```
+
 ---
 
 ## Nullable Types
@@ -2441,6 +2470,8 @@ public class CustomAttribute : Attribute
     // constructor (used to valorize private fields)
 }
 ```
+
+> **NOTE**: From C# 11 attributes can be generic and have type constraints
 
 ### Retrieving Attributes
 
