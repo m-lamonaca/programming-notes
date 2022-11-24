@@ -15,14 +15,15 @@ In short, containers offer the benefits of isolation, portability, agility, scal
 A container runs *natively* on Linux and shares the kernel of the host machine with other containers. It runs a discrete process, taking no more memory
 than any other executable, making it lightweight.
 
-By contrast, a **virtual machine** (VM) runs a full-blown “guest” operating system with *virtual* access to host resources through a hypervisor. In general,
+By contrast, a **virtual machine** (VM) runs a full-blown "guest" operating system with *virtual* access to host resources through a hypervisor. In general,
 VMs incur a lot of overhead beyond what is being consumed by your application logic.
 
-![Docker Container](https://docs.docker.com/images/Container%402x.png "Docker Container")
-
-![Virtual Machine](https://docs.docker.com/images/VM%402x.png "Virtual Machine")
+![container-architecture](../img/docker_container-architecture.svg "Container Architecture")
+![vm-architecture](../img/docker_virtual-machine-architecture.svg "Virtual Machine Architecture")
 
 ## [Docker Terminology](https://docs.docker.com/glossary/)
+
+![docker-architecture](../img/docker_architecture.svg "Docker Architecture")
 
 **Container image**: A package with all the dependencies and information needed to create a container. An image includes all the dependencies (such as frameworks) plus deployment and execution configuration to be used by a container runtime. Usually, an image derives from multiple base images that are layers stacked on top of each other to form the container’s filesystem. An image is immutable once it has been created.
 
@@ -58,37 +59,61 @@ VMs incur a lot of overhead beyond what is being consumed by your application lo
 
 ---
 
-## Docker Containers & Images
+### Docker CLI
 
-### CLI Commands
+### [`docker run`](https://docs.docker.com/engine/reference/commandline/run/)
 
 ```sh
-# WARNING: <image>:<tag> must be last argument
-docker run <image>:<tag>  # run selected app inside a container (downloaded from Docker Hub if missing from image)
-docker run -d <image>:<tag>  # run docker contanier in the background (does not occupy stdout & strerr)
-docker run -i <image>:<tag>  # run docker contanier in interactive mode (read stdin)
-docker run -t <image>:<tag>  # run docker contanier allocating a pseudo-TTY (show prompts)
-docker run -p <host:port>:<container_port> <image>:<tag>  # run docker mapping the ports
-docker run -v <existing_host_dir>:<container_dir> <image>:<tag>  # run docker mapping a container directory to a host directory (external volumes)
-docker run -v <volume_name>:<container_dir> <image>:<tag>  # run docker mapping a container directory to a host directory under the docker main folder (external volumes)
-docker run -e <ENV_VAR>=<value> <image>:<tag>  # run docker mapping a container directory to a host directory (external volumes)
-docker run --entrypoint <executable> <args> <image>:<tag>  # run the app with a non-default entrypoint
-docker run --name=<container_name> <image>  # run a container and set it's name
+docker run <image>  # run selected app inside a container (downloaded from Docker Hub if missing from image)
+docker run -d|--detach <image>  # run docker container in the background (does not occupy stdout & stderr)
+docker run -i|--interactive <image>  # run docker container in interactive mode (read stdin)
+docker run -t|--tty <image>  # run docker container allocating a pseudo-TTY (show prompts)
+docker run -p|--publish <host_port>:<container_port> <image>  # map container ports
+docker run -v|--volume <existing_host_dir>:<container_dir> <image>  # map container directory to a host directory (external volumes)
+docker run -v|--volume <volume_name>:<container_dir> <image>  # map container directory to a host directory under the docker main folder (external volumes)
+docker run -e|--env NAME=value <image>  # set container env vars
+docker run --entrypoint <executable> <args> <image>  # run with a non-default entrypoint
+docker run --name=<container_name> <image>  # set container name
+```
 
-docker attach <container_id>  # attach shell to selected contanier
+> **Warn**: `<image>` must be last argument
 
-docker ps  # list of currently running containers
-docker ps --all\-a  # list of all containers, running and exited
+### [`docker container`](https://docs.docker.com/engine/reference/commandline/container/)
 
-docker inspect <container_id>  # full details about a container
-docker logs <container_id>  # see the logs of a container
+```sh
+docker container ls  # list of currently running containers
+docker container ls -a|--all  # list of all containers, running and exited
+docker container rm <container>  # remove one or more containers
+docker container prune  # remove stopped containers
 
-docker stop <container_id>\<contaner_name>  # stop the selected container, returns the name of the stopped container
-docker rm <container_name>  # permanently delete a container (image conserved)
 
-docker images  # list of existing images
-docker rmi <image_name>  # remove an existing image (dependent container must be stopped before)
-docker pull <image_name>  # download an image w/o starting the container
+docker container inspect <container>  # full details about a container
+docker container logs <container>  # see container logs
+
+docker container stop <container>  # stop a running container
+docker container start <container>  # start a stopped container
+```
+
+### [`docker image`](https://docs.docker.com/engine/reference/commandline/image/)
+
+```sh
+docker image ls  # list of existing images
+docker image rm <image>  # remove one or more images
+docker image prune <image>  # remove unused images
+docker image pull <image>  # download an image w/o starting the container
+```
+
+### [`docker build`](https://docs.docker.com/engine/reference/commandline/build/)
+
+```sh
+docker build -t <tag> -f <dockerfile> <context>  # build image with specific tag (usually user/app:version)
+docker build -t <tag> -f <dockerfile> --build-arg ARG=value <context>  # pass args to ARG steps
+```
+
+### [`docker push`](https://docs.docker.com/engine/reference/commandline/push/)
+
+```sh
+docker push <image>  # publish image to registry (defaults to Docker Hub)
 ```
 
 ## [Dockerfile](https://docs.docker.com/engine/reference/builder/)
@@ -110,15 +135,15 @@ COPY <src> <dir_in_container>
 ARG <arg_name>
 
 # set env values inside the container
-ENV <ENV_VARIABLE_NAME> <value>
+ENV <ENV_VAR> <value>
 
 # Exec form (Preferred form)
-CMD [“executable”, “arg1”, “arg2”]
-ENTRYPOINT [“executable”, “arg1”, “arg2”]
+CMD ["<executable>", "<arg1>", "<arg2>"]
+ENTRYPOINT ["<executable>", "<arg1>", "<arg2>"]
 
 # Shell form
-CMD executable arg1 arg2
-ENTRYPOINT executable arg1 arg2
+CMD <executable> <arg1> <arg2>
+ENTRYPOINT <executable> <arg1> <arg2>
 ```
 
 ### `CMD`
@@ -134,7 +159,7 @@ If you want to create a generic docker image, where users can pass any supported
 Entrypoint instruction should not be defined in Dockerfile for this use case.
 
 ```docker
-CMD [“executable”, “arg1”, “arg2”]
+CMD ["executable", "arg1", "arg2"]
 ```
 
 #### Default arguments
@@ -145,8 +170,8 @@ arguments for executable defined in the entrypoint instruction.
 Thus, entrypoint instruction is required in dockerfile for this use case to define an executable.
 
 ```docker
-ENTRYPOINT [“executable”]
-CMD [“arg1”, “arg2”]
+ENTRYPOINT ["executable"]
+CMD ["arg1", "arg2"]
 ```
 
 > **Note**: Anything defined in CMD can be overridden by passing arguments in `docker run` command.
@@ -156,14 +181,6 @@ CMD [“arg1”, “arg2”]
 Used to define specific executable and arguments to be executed during container invocation which cannot be overridden.
 
 This is used to constraint the user to execute anything else. User can however define arguments to be passed in the executable by adding them in the `docker run` command.
-
-## Building & Publishing the Image
-
-```sh
-docker build <dockerfile_folder> -t <tag> -f Dockerfile .  # build the image and assign it a name (user/app:version or user/app:tag)
-docker build <dockerfile_folder> -t <tag> -f Dockerfile . --build-arg arg_name=value  # build with build args
-docker push <image_name>  # publish the image to the registry (defaults to Docker Hub)
-```
 
 ## [Docker Multi-Stage Build](https://docs.docker.com/develop/develop-images/multistage-build/)
 
@@ -244,11 +261,11 @@ None: Containers are not attached to a network and cannot access other container
 
 ## User-defined Networks
 
-```bash
+```sh
 docker network create \
---driver <network_type> \
---subnet <gateway_ip>/<subnet_mask_size> \
-<network_name>
+  --driver NETWORK_TYPE \
+  --subnet GATEWAY_TP/SUBNET_MASK_SIZE 
+  NETWORK_NAME
 ```
 
 ## Embedded DNS
@@ -261,7 +278,7 @@ Docker has an internal DNS that allows finding other container by their name ins
 
 ## File System
 
-```bash
+```sh
 /var/lib/docker
 |_<storage_driver>
 |_containers
@@ -278,15 +295,8 @@ To modify a file during while the container runs docker creates a local copy in 
 
 ### Volumes
 
-volume mounting: create a volume under the docker installation folder (`/var/lib/docker/volumes/`).
-
-bind mounting: link docker to an exiting folder to be used as a volume.
-
-## Layer Architecture
-
-![container-layers](https://docs.docker.com/storage/storagedriver/images/container-layers.jpg)
-
-All containers created from the same image share the same image layers.
+**volume mounting**: create a volume under the docker installation folder (`/var/lib/docker/volumes/`).
+**bind mounting**: link docker to an exiting folder to be used as a volume.
 
 ```sh
 docker run -v <existing_dir>:<container_dir> <image>:<tag>  # older command for bind mounting
