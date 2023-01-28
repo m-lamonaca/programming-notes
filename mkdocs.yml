@@ -65,7 +65,7 @@ nav:
   - GraphQL: graph-ql.md
   - RegEx: regular-expressions.md
   - Docker: docker/docker.md
-  - C++: C++/cpp.md
+  - C: c/c.md
   - Kotlin: kotlin/kotlin.md
   - Swift: swift/swift.md
   - Database:

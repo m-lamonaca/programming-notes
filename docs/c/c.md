@@ -1,20 +1,13 @@
 # C/C++
 
-## Naming convention
-
-C++ element  | Case
--------------|------------
-class        | PascalCase
-variable     | camelCase
-method       | camelCase
-
 ## Library Import
 
-`#include <iostream>`  
-C++ libs encapsulate C libs.  
-A C library can be used with the traditional name `<lib.h>` or with the prefix _**c**_ and without `.h` as `<clib>`.
+```c
+#include <stdio.h>  // search in current + system directories
+#include "lib.h" // search in current directory
+```
 
-### Special Operators
+## Special Operators
 
 Operator   | Operator Name
 -----------|----------------------------------------------------
@@ -22,38 +15,29 @@ Operator   | Operator Name
 `&`        | address operator (returns a memory address)
 `*`        | deferentiation operator (returns the pointed value)
 
-### Constant Declaration
-
-```cpp
-#define constant_name value
-const type constant_name = value;
-```
-
-### Console pausing before exit
-
-```cpp
-#include <cstdlib>
-system("pause");
-getchar();    // waits input from keyboard, if is last instruction will prevent closing console until satisfied
-```
-
-### Namespace definition
+## Namespace definition
 
 Can be omitted and replaced by namespace`::`  
 `using namespace <namespace>;`
 
-### Main Function
+## Main Function
 
-```cpp
-int main() {
-    //code here
-    return 0;
-}
+```c
+int main(int argc, char *argv[]) { }
+```
+
+## Variables & Types
+
+### Constant Declaration
+
+```c
+#define constant_name value
+const type constant_name = value;
 ```
 
 ### Variable Declaration
 
-```cpp
+```c
 type var_name = value;    //c-like initialization
 type var_name (value);    //constructor initialization
 type var_name {value};    //uniform initialization
@@ -100,7 +84,7 @@ Example  | Type
 `75ul`   | unsigned long
 `75lu`   | unsigned long
 
-### FLOATING POINT NUMERALS
+### Floating Point Numerals
 
 Example     | Type
 ------------|-------------
@@ -136,32 +120,21 @@ Escape Character   | Character
 `\\`               | backslash  (\)
 `\0`               | string termination character
 
-### Screen Output
+## Standard Input/Output
 
-```cpp
-cout << expression;    // print line on screen (no automatic newline)
-cout << expression_1 << expression_2;    // concatenation of outputs
-cout << expression << "\n";    // print line on screen
-cout << expression << endl;    // print line on screen
+### Standard Output
 
-//Substitutes variable to format specifier
+```c
 #include <stdio.h>
-printf("text %<fmt_spec>", variable);    // has problems, use PRINTF_S
+
 printf_s("text %<fmt_spec>", variable);
 ```
 
-### Input
+### Standard Input
 
-```cpp
-#include <iostream>
-cin >> var;    //space terminates value
-cin >> var_1 >> var_2;
-
-//if used after cin >> MUST clear buffer with cin.ignore(), cin.sync() or std::ws
-getline(stream, string, delimiter)     //read input from stream (usually CIN) and store in in string, a different delimiter character can be set.
-
+```c
 #include <stdio.h>
-scanf("%<fmt_spec>", &variable);    // has problems, use SCANF_S
+
 scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted inputs
 ```
 
@@ -184,37 +157,7 @@ Specifier   | Specified Format
 `%s`        | string
 `%p`        | pointer address
 
-### CIN input validation
-
-```cpp
-if (cin.fail()) // if cin fails to get an input
-{
-    cin.clear();    // reset  cin status (modified by cin.fail() ?)
-    cin.ignore(n, '\n');    //remove n characters from budder or until \n
-
-    //error message here
-}
-
-if (!(cin >> var)) // if cin fails to get an input
-{
-    cin.clear();    // reset  cin status (modified by cin.fail() ?)
-    cin.ignore(n, '\n');    //remove n characters from budder or until \n
-
-    //error message here
-}
-```
-
-### Cout Format Specifier
-
-```cpp
-#include <iomanip>
-cout << stew(print_size) << setprecision(num_digits) << var;    //usage
-
-setbase(base)    //set numeric base [dec, hex, oct]
-setw(print_size)    //set the total number of characters to display
-setprecision(num_digits)    //sets the number of decimal digits to display
-setfill(character)    //use character to fill space between words
-```
+## Operators
 
 ### Arithmetic Operators
 
@@ -263,7 +206,7 @@ a `^` b, a `xor` b,    | bitwise **XOR**
 a `<<` b               | bitwise left shift
 a `>>` b               | bitwise right shift
 
-### Compound Assignment O
+### Compound Assignment Operators
 
 Operator    | Operation
 ------------|------------
@@ -289,10 +232,13 @@ a `>>=` b   | a = a >> b
 7. `||`
 8. `=`
 
+## Common Functions
+
 ### Mathematical Functions
 
-```cpp
+```c
 #include <cmath>
+
 abs(x);    // absolute value
 labs(x);    //absolute value if x is long, result is long
 fabs(x);    //absolute value if x i float, result is float
@@ -315,9 +261,9 @@ cosh(x);    //hyperbolic cos(x)
 tanh(x);    //hyperbolic tan(X)
 ```
 
-### Character Classification
+### Character Functions
 
-```cpp
+```c
 isalnum(c);    //true if c is alphanumeric
 isalpha(c);    //true if c is a letter
 isdigit(c);    //true if char is 0 1 2 3 4 5 6 7 8 9
@@ -330,61 +276,14 @@ isupper(c);    //true if c is uppercase
 ispunct(c);    //true if c is punctuation
 isspace(c);    //true if c is SPACE
 isxdigit(c);    //true if c is HEX DIGIT
-```
-
-### Character Functions
-
-```cpp
-#include <ctype.n>
 
 tolower(c);    //transforms character in lowercase
 toupper(c);    //transform character in uppercase
 ```
 
-### Random Numbers Between max-min (int)
-
-```cpp
-#include <time>
-#include <stdlib.h>
-srand(time(NULL));    //initialize seed
-var = rand()   //random number
-var = (rand() % max + 1)    //random numbers between 0 & max
-var = (rand() % (max - min + 1)) + min    //random numbers between min &  max
-```
-
-### Flush Output Buffer
-
-```cpp
-#include <stdio.h>
-fflush(FILE);    // empty output buffer end write its content on argument passed
-```
-
-**Do not use stdin** to empty INPUT buffers. It's undefined C behaviour.  
-
-## STRINGS (objects)
-
-```cpp
-#include <string>
-
-string string_name = "string_content";    //string declaration
-string string_name = string("string_content");    // string creation w/ constructor
-
-string.length    //returns the length of the string
-
-//if used after cin >> MUST clear buffer with cin.ignore(), cin.sync() or std::ws
-getline(source, string, delimiter);    //string input, source can be input stream (usually cin)
-
-printf_s("%s", string.c_str());    //print the string as a char array, %s --> char*
-
-string_1 + string_2;    // string concatenation
-string[pos]    //returns char at index pos
-```
-
 ### String Functions
 
-```cpp
-string.c_str()    //transforms the string in pointer to char[] (char array aka C string) terminated by '\0'
-
+```c
 strlen(string);    //return length (num of chars) of the string
 strcat(destination, source);    //appends chars of string2 to string1
 strncat(string1, string2, nchar);    //appends the first n chars of string 2 to string1
@@ -402,7 +301,7 @@ strpbrk(string, charSet);    //Returns a pointer to the first occurrence of any 
 
 ### String Conversion
 
-```cpp
+```c
 atof(string);    //converts string in double if possible
 atoi(string);    //converts string in integer if possible
 atol(string);    //converts string in long if possible
@@ -417,52 +316,37 @@ string.c_str();    //reads string char by char
 string.find(substring);    // The zero-based index of the first character in string object that matches the requested substring or characters
 ```
 
-## VECTORS
+## Vectors
 
-```cpp
+```c
 #include <vector>
 vector<type> vector_name = {values};    //variable length array
 ```
 
-## Selection Statements
+## Decision Statements
 
-### Simple IF
+### If Statements
 
-```cpp
-if (condition)
-    //single instruction
+```c
+if (condition) { }
 
+if (condition) 
+{
 
-if (condition) {
-    //code here
 }
-```
+else if (condition) 
+{
 
-### Simple IF-ELSE
-
-```cpp
-if (condition) {
-    //code here
-} else {
-    //code here
 }
-```
+else
+{
 
-## IF-ELSE multi-branch
-
-```cpp
-if (condition) {
-    //code here
-} else if (condition) {
-    //code here
-} else {
-    //code here
 }
 ```
 
 ### Switch
 
-```cpp
+```c
 switch (expression) {
     case constant_1:
         //code here
@@ -481,7 +365,7 @@ switch (expression) {
 
 ### While Loop
 
-```cpp
+```c
 while (condition) {
     //code here
 }
@@ -489,7 +373,7 @@ while (condition) {
 
 ### Do While
 
-```cpp
+```c
 do {
     //code here
 } while (condition);
@@ -497,16 +381,8 @@ do {
 
 ### For Loop
 
-```cpp
+```c
 for (initialization; condition; increase) {
-    //code here
-}
-```
-
-### Range-Based For Loop
-
-```cpp
-for (declaration : range) {
     //code here
 }
 ```
@@ -525,25 +401,14 @@ Functions **must** be declared **before** the main function.
 It is possible to declare functions **after** the main only if the *prototype* is declared **before** the main.  
 To return multiple variables those variables can be passed by reference so that their values is adjourned in the main.
 
-### Function Prototype (before main)
+```c
+type function_name(type argument1, ...); // function prototype
 
-`type function_name(type argument1, ...);`
-
-### Standard Function
-
-```cpp
-type functionName (parameters) {    //parametri formali aka arguments
-    //code here
+type functionName (parameters) {
     return <expression>;
 }
-```
 
-### Void Function (aka procedure)
-
-```cpp
-void functionName (parameters) {
-    //code here
-}
+void functionName (parameters) { }
 ```
 
 ### Arguments passed by reference without pointers
@@ -551,7 +416,7 @@ void functionName (parameters) {
 Passing arguments by reference causes modifications made inside the function to be propagated to the values outside.  
 Passing arguments by values copies the values to the arguments: changes remain inside the function.  
 
-```cpp
+```c
 type functionName (type &argument1, ...) {
     //code here
     return <expression>;
@@ -565,7 +430,7 @@ type functionName (type &argument1, ...) {
 Passing arguments by reference causes modifications made inside the function to be propagated to the values outside.  
 Passing arguments by values copies the values to the arguments: changes remain inside the function.
 
-```cpp
+```c
 type function_name (type *argument_1, ...) {
     instructions;
     return <expression>;
@@ -576,7 +441,7 @@ type function_name (type *argument_1, ...) {
 
 ## Arrays
 
-```cpp
+```c
 type arrayName[dimension];    //array declaration
 type arrayName[dimension] = {value1, value2, ...};    //array declaration & initialization, values number must match dimension
 
@@ -584,19 +449,12 @@ array[index]    //item access, index starts at 0 (zero)
 array[index] = value;    //value assignment at position index
 ```
 
-## String as array of Chars
-
-```cpp
-char string[] = "text";    //converts string in char array, string length determines dimension of the array
-string str = string[]    //a array of chars is automatically converted to a string
-```
-
 ## Array as function parameter
 
 The dimension is not specified because it is determined by the passed array.  
 The array is passed by reference.
 
-```cpp
+```c
 type function(type array[]){
     //code here
 }
@@ -611,14 +469,14 @@ function(array);    //array passed w/out square brackets []
 
 ### Multi-Dimensional Array (Matrix)
 
-```cpp
+```c
 type matrix[rows][columns];
 matrix[i][j]    //element A_ij of the matrix
 ```
 
 ### Matrix as function parameter
 
-```cpp
+```c
 //matrix passed by reference, second dimension is mandatory
 type function(type matrix[][columns]){
     //code here
@@ -634,29 +492,27 @@ type function(type matrix[][dim2]...[dimN]){
 }
 ```
 
-## Record (struct)
+## Structs
 
-List of non homogeneous items
+### Struct Definition
 
-### Struct Definition (before functions, outside main)
-
-```cpp
-struct structName {
+```c
+struct Struct {
     type field1;
     type field2;
     type field3;
     type field4;
 };
 
-structName variable;    //STRUCT variable
-variable.field    //field access
+Struct variable;    // struct-type variable
+variable.field    // field access
 ```
 
 ## Pointers
 
 Pointers hold memory addresses of declared variables, they should be initialized to NULL.
 
-```cpp
+```c
 type *pointer = &variable;     //pointer init and assignment
 type *pointer = NULL;
 type *pointer = otherPointer;
@@ -667,7 +523,7 @@ type **pointerToPointer = &pointer;    // pointerToPointer -> pointer -> variabl
 pointer type and variable type **must** match.  
 (*) --> "value pointed to by"
 
-```cpp
+```c
 pointer    //address of pointed value (value of variable)
 *pointer    //value of pointed variable
 **pointer //value pointed by *pointer (pointer to pointer)
@@ -675,7 +531,7 @@ pointer    //address of pointed value (value of variable)
 
 ### Pointer to array
 
-```cpp
+```c
 type *pointer;
 type array[dim] = {};
 
@@ -686,7 +542,7 @@ pointer++;    //change pointed value to successive "cell" of array
 
 ### Pointers, Arrays & Functions
 
-```cpp
+```c
 func(array)    //pass entire array to function (no need to use (&) to extract address)
 
 type func(type* array){
@@ -696,7 +552,7 @@ type func(type* array){
 
 ### Pointer to Struct
 
-```cpp
+```c
 (*structPointer).field    //access to field value
 structPointer->structField    //access to field value
 ```
@@ -720,7 +576,7 @@ Every node is composed by two parts:
 A **Stack** is a list in with nodes can be extracted from one *side* only (*LIFO*).
 The extraction of an item from the *top* is called **pop**
 
-```cpp
+```c
 // node structure
 struct Node {
     type value;
@@ -730,14 +586,14 @@ struct Node {
 
 #### Node Insertion
 
-```cpp
+```c
 Node *stackNode;    //current node
 Node* head = NULL;    //pointer to head of stack
 
 int nodeValue;
 //assign value to nodeValue
 
-stackNode = new Node;    //create new node
+stackNode = (*Node)malloc(sizeof(Node));    //create new node
 
 stackNode->value = nodevalue;    //valorize node
 stackNode->next = head;    //update node pointer to old head adding it to the stack
@@ -747,15 +603,15 @@ head = stackNode;    //update head to point to new first node
 
 #### Node Deletion
 
-```cpp
+```c
 stackNode = head->next;    //memorize location of second node
-delete head;    //delete first node
+free(head);    //delete first node
 head = stackNode;    //update head to point to new first node
 ```
 
 #### Passing Head To Functions
 
-```cpp
+```c
 type function(Node** head)    //value of head passed by address (head is Node*)
 {
     *head = ...    //update value of head (pointed variable/object/Node)
@@ -783,14 +639,7 @@ Thus the first and last node will have a component empty since they only point t
 
 ### Dynamic Memory Allocation
 
-C/C++ does not automatically free allocated memory when nodes are deleted. It must be done manually.  
-
-In **C++**:
-
-* `new` is used to allocate memory dynamically.  
-* `delete` is use to free the dynamically allocated memory.
-
-In **C**:
+C does not automatically free allocated memory when nodes are deleted. It must be done manually.  
 
 * `malloc()` returns a void pointer if the allocation is successful.
 * `free()` frees the memory
@@ -817,7 +666,7 @@ The available classes in C++ to operate on files are:
 
 Filename can be string literal or CharArray (use `c_str()`).
 
-```cpp
+```c
 ifstream file;
 file.open("filename");    //read from file
 
@@ -837,22 +686,6 @@ file.open("filename", ios::binary);    //opens file in binary format
 
 If file opening fails the stream has value 0, otherwise the value is the assigned memory address.  
 Opening modes can be combined with the OR operator: `ios::mode | ios::mode`.
-
-### File Reading & Writing
-
-To write to and read from a file the `>>` and `<<` operators are used.
-
-```cpp
-file.open("filename", ios::in | ios::out);
-
-file << value << endl;    //write to file
-
-string line;
-do {
-    getline(file, line);    //read file line by line
-    //code here
-} while (!file.eof());    // or !EOF
-```
 
 ### Stream state & Input errors
 
