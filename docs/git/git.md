@@ -135,6 +135,8 @@ def load_reference(name_or_id):
 `git remote show <remote>`: inspect the remote  
 
 `git remote add <remote> <url | path>`: add a remote  
+`git remote remove <remote>`: remove the specified remote  
+`git remote rename <old_name> <new_name>`: rename a remote  
 `git branch --set-upstream-to=<remote>/<remote branch>`: set up correspondence between local and remote branch  
 
 `git push`: send objects to default remote on current branch  
@@ -143,18 +145,19 @@ def load_reference(name_or_id):
 
 `git push --force`: overwrite remote with local version  
 `git push --force-with-lease`: overwrite remote with local version if remote has not been modified  
+`git push --force-with-lease --force-if--includes`: will verify if updates from the remote that may have been implicitly updated in the background are integrated locally before allowing a forced update  
 
 `git fetch [<remote>]`: retrieve objects/references from a remote  
 `git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`  
-`git pull -ff`: when possible resolve the merge as a fast-forward (only update branch pointer, don't create merge commit). Otherwise create a merge commit.  
+`git pull --ff`: when possible resolve the merge as a fast-forward (only update branch pointer, don't create merge commit). Otherwise create a merge commit.  
 
-`git fetch && git show <remote>/<branch>`: show incoming changes  
+`git fetch|pull --prune`: remove any remote-tracking references that no longer exist on the remote  
+`git fetch|pull --tags`: fetch all tags from the remote
 
 `git clone <url> [<folder_name>]`: download repository and repo history from remote  
 `git clone --shallow`: clone only repo files, not history of commits  
 
-`git remote remove <remote>`: remove the specified remote  
-`git remote rename <old_name> <new_name>`: rename a remote  
+> **Note**: for a in depth explanation of `--force-if-includes` see [this][force-if-includes]
 
 ### Viewing Project History
 
@@ -243,3 +246,6 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git rebase -i <commit>`: modify (reword, edit, drop, squash, merge, ...) *from* commit to latest  
 
 > **WARN**: Changing history can have nasty side effects
+
+<!-- links -->
+[force-if-includes]: https://stackoverflow.com/a/65839129 "git --force-if-includes explanation"
