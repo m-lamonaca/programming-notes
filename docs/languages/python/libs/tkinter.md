@@ -87,7 +87,7 @@ label['compound'] = value
 
 Compound value:
 
-- none (img if present, text otherwise)
+- none ../img if present, text otherwise)
 - text (text only)
 - image (image only)
 - center (text in center of image)

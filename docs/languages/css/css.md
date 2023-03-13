@@ -644,7 +644,7 @@ Specificity is usually the reason why CSS-rules don't apply to some elements whe
 
 ## Box Model
 
-![Box Model](../img/css_box-model.png)
+![Box Model](../../img/css_box-model.png)
 
 ### Padding
 
