@@ -9,8 +9,8 @@ Components are .NET C# classes built into .NET assemblies that:
 - Can be nested and reused.
 - Can be shared and distributed as Razor class libraries or NuGet packages.
 
-![Blazor Server Architecture](../../img/dotnet_blazor-server.png)
-![Blazor WASM Architecture](../../img/dotnet_blazor-webassembly.png)
+![Blazor Server Architecture](../../../img/dotnet_blazor-server.png)
+![Blazor WASM Architecture](../../../img/dotnet_blazor-webassembly.png)
 
 The component class is usually written in the form of a Razor markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*.
 

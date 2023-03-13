@@ -1339,7 +1339,7 @@ public static System.Collections.IEnumerable<int> IterateRange(int start = 0, in
 
 ## Structs (Custom Value Types) & Classes (Custom Reference Types)
 
-![reference-vs-value](../../img/dotnet_pass-by-reference-vs-pass-by-value-animation.gif)
+![reference-vs-value](../../../img/dotnet_pass-by-reference-vs-pass-by-value-animation.gif)
 
 **Structure** types have _value semantics_. That is, a variable of a structure type contains an _instance_ of the type.
 
@@ -2101,7 +2101,7 @@ Generic type parameters support covariance and contravariance to provide greater
 - **Contravariance**: Enables to use a more generic (less derived) type than originally specified.
 - **Invariance**: it's possible to use _only_ the type originally specified; so an invariant generic type parameter is neither covariant nor contravariant.
 
-![covariance-vs-contravariance](../../img/dotnet_covariant_contravariant.png)
+![covariance-vs-contravariance](../../../img/dotnet_covariant_contravariant.png)
 
 > **Note**: annotate generic type parameters with `out` and `in` annotations to specify whether they should behave covariantly or contravariantly.
 

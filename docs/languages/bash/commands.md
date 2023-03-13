@@ -82,7 +82,7 @@ cp SOURCE DESTINATION  # copy SOURCE to DESTINATION
 
 ### Files Permissions & Ownership
 
-![Linux Permissions](../img/bash_files-permissions-and-ownership-basics-in-linux.png "files info and permissions")
+![Linux Permissions](../../img/bash_files-permissions-and-ownership-basics-in-linux.png "files info and permissions")
 
 ```sh
 chmod MODE FILE  # change file (or directory) permissions
