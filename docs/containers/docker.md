@@ -59,7 +59,7 @@ VMs incur a lot of overhead beyond what is being consumed by your application lo
 
 ---
 
-### Docker CLI
+## Docker CLI
 
 ### [`docker run`](https://docs.docker.com/engine/reference/commandline/run/)
 
