@@ -10,7 +10,7 @@ python = "^3.10"
 mkdocs = "^1.4.2"
 mkdocs-material = "^9.1.2"
 pillow = "^9.5.0"
-cairosvg = "^2.6.0"
+cairosvg = "^2.7.0"
 
 [tool.poetry.dev-dependencies]
 
