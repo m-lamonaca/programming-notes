@@ -40,23 +40,26 @@ to native code later.
 | Event, Enum, Enum Value, | PascalCase |
 | Variables, Parameters    | camelCase  |
 
-### Namespaces & Imports
+### Namespaces, Imports & Aliases
 
 Hierarchic organization of programs an libraries.
 
 ```cs
 using System;  // import the System Namespace
-using Alias = Namespace;  // set an alias for a specific namespace
 using static System.Console;  // statically import a class to use its static methods w/o qualification
+
+// type aliases
+using Alias = Namespace.SubNamespace.Type;
+using LookupTable = Dictionary<string, string>;
+using Points = (int, int, int)[];
 
 // global using [C# 10], should be in dedicated file
 global using <namespace>;
 
 namespace Namespace;  // [C# 10]
 //or
-namespace Namespace  // namespace declaration
+namespace Namespace 
 {
-    // class here
 }
 ```
 
