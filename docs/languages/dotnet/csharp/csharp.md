@@ -1422,63 +1422,66 @@ If any part is declared abstract, then the whole type is considered abstract.
 If any part is declared sealed, then the whole type is considered sealed.  
 If any part declares a base type, then the whole type inherits that class.
 
-### Class Declaration
+### Methods
+
+```cs
+class Class
+{
+    static Type Method(Type Argument, ...) {}  // static method, can operate ONLY on STATIC VARIABLES
+
+    Type Method(Type Argument, ...) {}  // instance method, can operate on INSTANCE VARIABLES
+
+    // override inherited method
+    public override Type Method()
+    {
+    }
+
+    // visrual methods CAN be overridden
+    public virtual Type Method()
+    {
+    }
+}```
+
+### Constructors
+
+```cs
+class Class(Type Parameter, ...)  // primary constructor (like records)
+{
+
+    public Class() { }  // parameterless constructor
+
+    // standard constructor
+    public Class(type parameter)
+    {
+        _field = field;
+    }
+
+    // extends an existing constructor adding parameters to the existing ones
+    public Class(type parameter, type other) : this(parameter)
+    {
+        _other = other;
+    }
+}
+```
+
+> **Note**: if a _primary constructor_ is used all other constructors must use `this(...)` to invoke it
+
+### Properties & Fields
+
+[Properties Docs](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)
 
 A _field_ is a variable of any type that is declared directly in a class or struct. Fields are members of their containing type.  
 A _property_ is a member that provides a flexible mechanism to read, write, or compute the value of a private field.
 
-The `static` keyword declares that a member is not associated with any particular instance of the class.
-
 ```cs
 class Class
 {
-    // if static contractor exists the initializer is runned immediately before the static constructor,
-    // otherwise is will run no later than the first access to one on the type's fields or methods
-    public static type Field = value;    // static (non-instance) public field  w/ initializer
 
-    // runs before instance's constructor
-    private type _field = value;    // private instance field w/ initializer
+    public static Type Field = value;    // static (non-instance) public field  w/ initializer
 
-    private type _field;  // private instance field, initialized by constructor
+    private Type _field = value;    // private instance field w/ initializer
+    private Type _field;  // private instance field, initialized by constructor
 
-    // static constructor, not called explicitly, has no arguments
-    // triggered by one of two events, whichever occurs first: creating an instance, or accessing any static member of the class.
-    // since it's static and takes no arguments there can be at most one for each class
-    static Class() {
-        // place to init static fields
-    }
-
-    public Class() { /* ... */}  // parameterless constructor
-
-    // class constructor
-    public Class(type parameter) {
-        _field = parameter;
-    }
-
-    // extends an existing constructor adding parameters to the existing ones
-    public Class(type anotherParameter, type parameter) : this(parameter)
-    {
-        this._anotherField = anotherParameter;
-    }
-
-    // called by Console.WriteLine(obj)
-    public override string ToString(){
-        return <string>
-    }
-
-    static type Method(arguments) {}    // static method, can operate on STATIC VARIABLES
-
-    type Method(arguments) {}    // instance method, can ONLY operate on INSTANCE VARIABLES
-}
-```
-
-### Properties
-
-[Properties Docs](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)
-
-```cs
-class Class
-{
     private type _backingField;
 
     // PROPERTY
@@ -1594,14 +1597,24 @@ List<int> digits = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 ### `Static` Class
 
+The `static` keyword declares that a member is not associated with any particular instance of the class.  
 Static classes **can't** instantiate objects and all their methods **must** be static.
 
 ```cs
 static class Class
 {
-    static type variable = value;
+    // static constructor, not called explicitly, has no arguments
+    // triggered by one of two events, whichever occurs first: creating an instance, or accessing any static member of the class.
+    // since it's static and takes no arguments there can be at most one for each class
+    static Class()
+    {
+    }
 
-    static type method (type parameter, ...)
+    static Type _field = value;
+    
+    static Type Property { get; set; } = value;
+
+    static Type Method (Type parameter, ...)
     {
     }
 }
