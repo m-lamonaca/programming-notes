@@ -2215,13 +2215,14 @@ Delegate<Type> lambda = (Type input) => <expr>;
 Delegate<Type> lambda = input => { return <expr>; };
 Delegate<Type> lambda = (input) => { return <expr>; };
 Delegate<Type> lambda = (Type input) => { return <expr>; };
+Delegate<Type> lambda = (Type input = default) => { return <expr>; };  // lambda default parameter
 
 // static modifier prevents unintentional capture of local variables or instance state by the lambda
 Delegate<Type> lambda = (static Type input) => <expr>;
 
 Type variable = delegate { <expression>; };  // ignore arguments of the method passed to the delegate
 
-// lambda type inference [C# 10]
+// lambda type inference
 var f = Console.WriteLine;
 var f = x => x;  // inferring the return type
 var f = (string x) => x;  // inferring the signature
@@ -2975,7 +2976,6 @@ unsafe
 [ptr_math]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-arithmetic
 [ptr_comparison]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-comparison
 [stack_alloc]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#stack-allocation
-[fixed_buffers]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#fixed-size-buffers
 
 ### Native Memory
 
