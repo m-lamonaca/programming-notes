@@ -791,7 +791,7 @@ Both of these are designed primarily for code generation scenarios, although the
 | --------- | ---------------------- |
 | x `+=` y  | x = x + y              |
 | x `-=` y  | x = x - y              |
-| x `*=` y  | x = x \* y             |
+| x `*=` y  | x = x * y              |
 | x `/=` y  | x = x / y              |
 | x `%=` y  | x = x % y              |
 | x `<<=` y | x = x << y             |
