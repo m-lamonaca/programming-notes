@@ -19,8 +19,9 @@ extra:
       link: https://github.com/m-lamonaca
 
 plugins:
+  - search
   - social:
-      cards_font: JetBrains Mono
+     cards_font: JetBrains Mono
 
 
 theme:
