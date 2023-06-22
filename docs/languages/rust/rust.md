@@ -1382,8 +1382,8 @@ impl<T> Drop for CustomSmartPointer<T> {
 }
 
 fn main() {
-    let var1 = CCustomSmartPointer(value);  // dropped when var1 goes out of scope
-    let var2 = CCustomSmartPointer(value);
+    let var1 = CustomSmartPointer(value);  // dropped when var1 goes out of scope
+    let var2 = CustomSmartPointer(value);
     drop(var2);  // dropped early by using std::mem::drop
 }
 ```
@@ -1449,6 +1449,56 @@ The standard library has other types that provide interior mutability:
 Rust's memory safety guarantees make it difficult, but not impossible, to accidentally create memory that is never cleaned up (known as a memory leak).  
 Rust allows memory leaks by using `Rc<T>` and `RefCell<T>`: it's possible to create references where items refer to each other in a cycle.  
 This creates memory leaks because the reference count of each item in the cycle will never reach 0, and the values will never be dropped.
+
+## Concurrency
+
+### Creating Threads
+
+The `thread::spawn` function creates a new tread that will execute the passed closure. Any data captured by the closure is _moved_ to the capturing thread.  
+The thread's **handle** can be used to wait for completion and retieve the computation result or errors if any.
+
+```rs
+// if no data is captured the move keyword can be removed
+let handle = std::thread::spawn(move || { /* ... */ });
+
+handle.join().unwrap();
+```
+
+> **Note**: a thread's execution can be termiated early if it's not joined and the main process terminates before the thread had completed it's work.  
+> **Note**: if a thread panics the handle will return the panic message so that it can be handled.
+
+### Channnels
+
+To accomplish message-sending concurrently Rust's standard library provides an implementation of _channels_.  
+A **channel** is a general programming concept by which data is sent from one thread to another.
+
+```rs
+let (sender, receiver) = std::sync::mpsc::channel();  // the sender can be cloned to create multiple transmitters
+
+let sender_1 = sender.clone();
+std::thread::spawn(move || {
+    // send takes ownership of the message (moved to receiver scope)
+    sender_1.send("hello".to_owned()).unwrap();
+});
+
+let sender_2 = sender.clone();
+std::thread::spawn(move || {
+    sender_2.send("hello".to_owned()).unwrap();
+    sender_2.send("world".to_owned()).unwrap();
+    sender_2.send("from".to_owned()).unwrap();
+    sender_2.send("thread".to_owned()).unwrap();
+});
+
+let message = receiver.recv().unwrap();  // receive a single value
+// or
+for message in receiver { } // receive multiple values (iteration stops when channel closes)
+```
+
+### `Send` & `Sync`
+
+The `Send` marker trait indicates that ownership of values of the type implementing `Send` can be transferred between threads. Any type composed entirely of `Send` types is automatically marked as `Send`.  Almost all primitive types are `Send`, aside from raw pointers.
+
+The `Sync` marker trait indicates that it is safe for the type implementing `Sync` to be referenced from multiple threads. In other words, any type `T` is `Sync` if `&T` (an immutable reference to `T`) is `Send`, meaning the reference can be sent safely to another thread. Similar to `Send`, primitive types are `Sync`, and types composed entirely of types that are `Sync `are also `Sync`.
 
 ## Files
 
