@@ -815,6 +815,29 @@ fn generic<T: Trait>() -> Type { }  // use generic constraint
 
 > **Note**: the calling code needs to import your new trait in addition to the external type
 
+### Associated Types
+
+_Associated types_ connect a type placeholder with a trait such that the trait method definitions can use these placeholder types in their signatures.  
+The implementor of a trait will specify the concrete type to be used instead of the placeholder type for the particular implementation.
+
+```rs
+trait Iterator {
+    type Item;
+
+    fn next(&mut self) -> Option<Self::Item>;
+}
+```
+
+The type `Item` is a placeholder, and the next method’s definition shows that it will return values of type `Option<Self::Item>`. Implementors of the `Iterator` trait will specify the concrete type for `Item`, and the next method will return an `Option` containing a value of that concrete type.
+
+### Generic Traits vs Associted Types
+
+The difference is that when a trait has a generic parameter, it can be implemented for a type multiple times, changing the concrete types of the generic type parameters each time.  
+With associated types, it's not possible to implement the trait multiple times so annotations are not needed.
+
+Associated types also become part of the trait’s contract: implementors of the trait must provide a type to stand in for the associated type placeholder.  
+Associated types often have a name that describes how the type will be used, and documenting the associated type in the API documentation is good practice.
+
 ### Trait Objects
 
 A *reference* to a trait is called a **Trait Object**. Like any other reference, a trait object points to some value, it has a lifetime, and it can be either mut or shared.  
