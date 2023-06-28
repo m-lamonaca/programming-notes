@@ -122,16 +122,11 @@ nav:
           - Async Programming: languages/dotnet/csharp/async-programming.md
           - Unit Tests: languages/dotnet/csharp/unit-tests.md
       - ASP.NET:
-          - App Configuration: languages/dotnet/asp.net/app-configuration.md
           - Minimal API: languages/dotnet/asp.net/minimal-api.md
-          - MVC: languages/dotnet/asp.net/mvc.md
           - FIlters: languages/dotnet/asp.net/filters.md
           - Middleware: languages/dotnet/asp.net/middleware.md
-          - Razor Pages: languages/dotnet/asp.net/razor-syntax.md
-          - Blazor: languages/dotnet/asp.net/blazor.md
-          - Razor Pages: languages/dotnet/asp.net/razor-pages.md
           - Razor Syntax: languages/dotnet/asp.net/razor-syntax.md
-          - REST API: languages/dotnet/asp.net/rest-api.md
+          - Blazor: languages/dotnet/asp.net/blazor.md
           - SignalR: languages/dotnet/asp.net/signalr.md
           - Web Forms: languages/dotnet/asp.net/web-forms.md
       - Database:
