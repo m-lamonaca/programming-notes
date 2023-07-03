@@ -9,7 +9,7 @@ license = "MIT"
 python = "^3.10"
 mkdocs = "^1.4.3"
 mkdocs-material = "^9.1.16"
-pillow = "^9.5.0"
+pillow = "^10.0.0"
 cairosvg = "^2.7.0"
 
 [tool.poetry.dev-dependencies]
