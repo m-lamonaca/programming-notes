@@ -20,8 +20,7 @@ extra:
 
 plugins:
   - search
-  - social:
-     cards_font: JetBrains Mono
+  - social
 
 
 theme:
