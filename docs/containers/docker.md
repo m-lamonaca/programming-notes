@@ -299,7 +299,7 @@ services:
       dockerfile: <*.Dockerfile>
       args:  # pass args to dockerfile
         ARG: <value>
-       - ARG=<value>
+        - ARG=<value>
     ports: 
       - <host_port>:<container_port>
     networks:  # attach container to one or more networks
@@ -310,10 +310,18 @@ services:
       ENV_VAR: <value>
       - ENV_VAR=<value>
     env_file:
-         - <path/to/env/file>  # reusable env file
+      - <path/to/env/file>  # reusable env file
     volumes:
       - "./<rel/path/to/volume>:<in/container/path/to/data>"  # service-dedicated volume
       - "<volume_name>:<in/container/path/to/data>"  # reuseable volume
+    healthcheck:
+      disable: <bool>  # set to true to disable
+      test: curl -f http://localhost  # set to ["NONE"] to disable
+      interval:  # interval between checks (default 30s)
+      timeout:  # check fail timeout (default 30s)
+      retries:  # num of retries before unhealty (default 3)
+      start_period:  # container init grace pediod (default 5s)
+      start_interval:  # check interval in start period
 
 # reusable volume definitions
 volumes:
