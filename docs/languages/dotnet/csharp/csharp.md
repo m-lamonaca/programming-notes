@@ -1593,6 +1593,37 @@ var identity = new Matrix
 };
 
 List<int> digits = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+List<int> digits = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+
+int[] digits = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+int[] digits = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+int[] digits = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+
+Dictionary<int, string> digits = new Dictionary<int, string> {
+    { 0, "zero" },
+    { 1, "one" },
+    { 2, "two" },
+    { 3, "three" },
+    { 4, "four" },
+    { 5, "five" },
+    { 6, "six" },
+    { 7, "seven" },
+    { 8, "eight" },
+    { 9, "nine" }
+};
+
+Dictionary<int, string> digits = [
+    0: "zero",
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine"
+];
 ```
 
 ### `Static` Class
