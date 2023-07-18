@@ -9,33 +9,14 @@ The SignalR Hubs API enables to call methods on connected clients from the serve
 In `Startup.cs`:
 
 ```cs
-namespace App
+builder.Services.AddSignalR();
+
+var app = builder.Build();
+
+app.UseEndpoints(endpoints =>
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the DI container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddSignalR();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHub("/hub/endpoint");
-            });
-        }
-    }
-}
+    endpoints.MapHub("/hub/endpoint");
+});
 ```
 
 ### Creating Hubs

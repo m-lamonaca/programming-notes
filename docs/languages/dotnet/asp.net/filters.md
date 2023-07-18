@@ -42,6 +42,33 @@ Asynchronous filters define an `On-Stage-ExecutionAsync` method, for example `On
 
 Interfaces for multiple filter stages can be implemented in a single class.
 
+```cs
+public class SampleActionFilter : IActionFilter
+{
+    public void OnActionExecuting(ActionExecutingContext context)
+    {
+        // Do something before the action executes.
+    }
+
+    public void OnActionExecuted(ActionExecutedContext context)
+    {
+        // Do something after the action executes.
+    }
+}
+
+
+public class SampleAsyncActionFilter : IAsyncActionFilter
+{
+    public async Task OnActionExecutionAsync(
+        ActionExecutingContext context, ActionExecutionDelegate next)
+    {
+        // Do something before the action executes.
+        await next();
+        // Do something after the action executes.
+    }
+}
+```
+
 ## **Built-in filter attributes**
 
 ASP.NET Core includes built-in _attribute-based_ filters that can be subclassed and customized.
@@ -63,38 +90,34 @@ A filter can be added to the pipeline at one of three *scopes*:
 - Using an attribute on a controller action. Filter attributes cannot be applied to Razor Pages handler methods.
 
 ```cs
-// services.AddScoped<CustomActionFilterAttribute>();
+services.AddScoped<CustomActionFilterAttribute>();
+
 [ServiceFilter(typeof(CustomActionFilterAttribute))]
-public IActionResult Index()
+public IActionResult Action()
 {
-    return Content("Header values by configuration.");
+    return Ok();
 }
 ```
 
 - Using an attribute on a controller or Razor Page.
 
 ```cs
-// services.AddControllersWithViews(options => { options.Filters.Add(new CustomResponseFilterAttribute(args)); });
+services.AddControllersWithViews(options => { 
+    options.Filters.Add(new CustomResponseFilterAttribute(args)); 
+});
+
+
 [CustomResponseFilterAttribute(args)]
 public class SampleController : Controller
-
-// or
-
-[CustomResponseFilterAttribute(args)]
-[ServiceFilter(typeof(CustomActionFilterAttribute))]
-public class IndexModel : PageModel
 ```
 
 - Globally for all controllers, actions, and Razor Pages.
 
 ```cs
-public void ConfigureServices(IServiceCollection services)
+builder.Services.AddControllersWithViews(options =>
 {
-    services.AddControllersWithViews(options =>
-   {
-        options.Filters.Add(typeof(CustomActionFilter));
-    });
-}
+    options.Filters.Add(typeof(CustomActionFilter));
+});
 ```
 
 ## Filter Order of Execution
@@ -130,3 +153,47 @@ public class ShortCircuitingResourceFilterAttribute : Attribute, IResourceFilter
     }
 }
 ```
+
+## Dependency Injection
+
+Filters can be added _by type_ or _by instance_. If an instance is added, that instance is used for every request. If a type is added, it's type-activated. 
+
+A type-activated filter means:
+
+- An instance is created for each request.
+- Any constructor dependencies are populated by dependency injection (DI).
+
+Filters that are implemented as attributes and added directly to controller classes or action methods cannot have constructor dependencies provided by dependency injection (DI). Constructor dependencies cannot be provided by DI because attributes must have their constructor parameters supplied where they're applied.
+
+The following filters support constructor dependencies provided from DI:
+
+- ServiceFilterAttribute
+- TypeFilterAttribute
+- IFilterFactory implemented on the attribute.
+
+### [`ServiceFilterAttribute`][service-filter-attribute]
+
+```cs
+builder.Services.AddScoped<CustomFilterFromDI>();
+
+public class CustomFilterFromDI : IResultFilter
+{
+    private readonly ILogger _logger;
+
+    public CustomFilterFromDI(ILogger logger) =>  _logger = logger;
+
+    public void OnResultExecuting(ResultExecutingContext context)
+    {
+    }
+
+    public void OnResultExecuted(ResultExecutedContext context)
+    {
+    }
+}
+
+[ServiceFilter(typeof(CustomFilterFromDI))]
+public IActionResult Action() => OK();
+```
+
+<!--links -->
+[service-filter-attribute]: https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-7.0#servicefilterattribute "ServiceFilterAttribute Docs"

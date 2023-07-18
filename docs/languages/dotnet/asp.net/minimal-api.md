@@ -18,6 +18,28 @@ app.Run();
 app.RunAsync();
 ```
 
+
+## Application Settings
+
+App settings are loaded (in order) from:
+
+1. `appsettings.json`
+2. `appsettings.<Environment>.json`
+3. User Secrets
+
+The environment is controlled by the env var `ASPNETCORE_ENVIRONMENT`. If a setting is present in multiple locations, the last one is used and overrides the previous ones.
+
+### User Secrets
+
+User secrets are specific to each machine and can be initialized with `dotnet user-secrets init`. Each application is linked with it's settings by a guid.
+
+The settings are stored in:
+
+- `%APPDATA%\Microsoft\UserSecrets\<user_secrets_id>\secrets.json` (Windows)
+- `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json` (Linux/macOS)
+
+Setting a value is done with `dotnet user-secrets set <key> <value>`, keys can be nested by separating each level with `:` or `__`.
+
 ## Swagger
 
 ```cs
@@ -63,6 +85,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapControllers();
+// or
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -325,63 +349,72 @@ class CustomCachePolicy : IOutputCachePolicy
 }
 ```
 
-## Output Caching
+## Options Pattern
 
-```cs
-builder.Services.AddOutputCaching();  // no special options
-builder.Services.AddOutputCaching(options => 
+The *options pattern* uses classes to provide strongly-typed access to groups of related settings.
+
+```json
 {
-    options => options.AddBasePolicy(x => x.NoCache())  // no cache policy
-
-    Func<OutputCacheContext, bool> predicate = /* discriminate requests */
-    options.AddBasePolicy(x => x.With(predicate).CachePolicy());
-    options.AddBasePolicy("<policy-name>", x => x.CachePolicy());  // named policy
-});
-
-// [...]
-
-app.UseOutputCaching();  // following middlewares can use output cache
-
-// [...]
-
-app.MapGet("/<route>", RouteHandler).CacheOutput();  // cache forever
-app.MapGet("/<route>", RouteHandler).CacheOutput().Expire(timespan);
-
-app.MapGet("/<route>", RouteHandler).CacheOutput(x => x.CachePolicy());
-app.MapGet("/<route>", RouteHandler).CacheOutput("<policy-name>");
-
-app.MapGet("/<route>", RouteHandler).CacheOutput(x => x.VaryByHeader(/* headers list */));
-app.MapGet("/<route>", RouteHandler).CacheOutput(x => x.VaryByQuery(/* query key */));
-app.MapGet("/<route>", RouteHandler).CacheOutput(x => x.VaryByValue());
-
-app.MapGet("/<route>", [OutputCache(/* options */)]RouteHandler);
-```
-
-### Cache Eviction
-
-```cs
-
-app.MapGet("/<route-one>", RouteHandler).CacheOutput(x => x.Tag("<tag>"));  // tag cache portion
-
-app.MapGet("/<route-two>", (IOutputCacheStore cache, CancellationToken token) => 
-{
-    await cache.EvictByTag("<tag>", token);  // invalidate a portion of the cache
-});
-```
-
-### Custom Cache Policy
-
-```cs
-app.MapGet("/<route-one>", RouteHandler).CacheOutput(x => x.AddCachePolicy<CustomCachePolicy>());
-```
-
-```cs
-class CustomCachePolicy : IOutputCachePolicy
-{
-    public ValueTask CacheRequestAsync(OutputCacheContext context, CancellationToken cancellationToken) { }
-
-    public ValueTask ServeFromCacheAsync(OutputCacheContext context, CancellationToken cancellationToken) { }
-
-    public ValueTask ServeResponseAsync(OutputCacheContext context, CancellationToken cancellationToken) { }
+    "SecretKey": "Secret key value",
+    "TransientFaultHandlingOptions": {
+        "Enabled": true,
+        "AutoRetryDelay": "00:00:07"
+    },
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information",
+            "Microsoft": "Warning",
+            "Microsoft.Hosting.Lifetime": "Information"
+        }
+    }
 }
 ```
+
+```cs
+// options model for binding
+public class TransientFaultHandlingOptions
+{
+    public bool Enabled { get; set; }
+    public TimeSpan AutoRetryDelay { get; set; }
+}
+```
+
+```cs
+// setup the options
+builder.Services.Configure<TransientFaultHandlingOptions>(builder.Configuration.GetSection<TransientFaultHandlingOptions>(nameof(Options)));
+builder.Services.Configure<TransientFaultHandlingOptions>(builder.Configuration.GetSection<TransientFaultHandlingOptions>(key));
+```
+
+```cs
+class DependsOnOptions
+{
+  private readonly IOptions<TransientFaultHandlingOptions> _options;
+
+  public DependsOnOptions(IOptions<TransientFaultHandlingOptions> options) => _options = options;
+}
+```
+
+### [Options interfaces](https://docs.microsoft.com/en-us/dotnet/core/extensions/options#options-interfaces)
+
+`IOptions<TOptions>`:
+
+- Does not support:
+  - Reading of configuration data after the app has started.
+  - Named options
+- Is registered as a Singleton and can be injected into any service lifetime.
+
+`IOptionsSnapshot<TOptions>`:
+
+- Is useful in scenarios where options should be recomputed on every injection resolution, in scoped or transient lifetimes.
+- Is registered as Scoped and therefore cannot be injected into a Singleton service.
+- Supports named options
+
+`IOptionsMonitor<TOptions>`:
+
+- Is used to retrieve options and manage options notifications for `TOptions` instances.
+- Is registered as a Singleton and can be injected into any service lifetime.
+- Supports:
+  - Change notifications
+  - Named options
+  - Reloadable configuration
+  - Selective options invalidation (`IOptionsMonitorCache<TOptions>`)

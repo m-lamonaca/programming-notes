@@ -86,12 +86,13 @@ docker container ls -a|--all  # list of all containers, running and exited
 docker container rm <container>  # remove one or more containers
 docker container prune  # remove stopped containers
 
-
 docker container inspect <container>  # full details about a container
 docker container logs <container>  # see container logs
 
 docker container stop <container>  # stop a running container
 docker container start <container>  # start a stopped container
+
+docker container exec <container> <command>  # exec a command inside a container
 ```
 
 ### [`docker image`](https://docs.docker.com/engine/reference/commandline/image/)
@@ -146,41 +147,12 @@ CMD <executable> <arg1> <arg2>
 ENTRYPOINT <executable> <arg1> <arg2>
 ```
 
-### `CMD`
+### `CMD` vs `ENTRYPOINT`
 
-Used to provide all the default scenarios which can be overridden.
+`CMD` is used to provide all the default scenarios which can be overridden. _Anything_ defined in CMD can be overridden by passing arguments in `docker run` command.
 
-#### Default executable
-
-This instructions is used to define a default executable for a container to execute.
-
-If you want to create a generic docker image, where users can pass any supported command to be executed on container invocation, then this instruction is the one to use.
-
-Entrypoint instruction should not be defined in Dockerfile for this use case.
-
-```docker
-CMD ["executable", "arg1", "arg2"]
-```
-
-#### Default arguments
-
-For this use case, we don’t specify executable in this instruction at all, but simply define some arguments which are used as default/additional
-arguments for executable defined in the entrypoint instruction.
-
-Thus, entrypoint instruction is required in dockerfile for this use case to define an executable.
-
-```docker
-ENTRYPOINT ["executable"]
-CMD ["arg1", "arg2"]
-```
-
-> **Note**: Anything defined in CMD can be overridden by passing arguments in `docker run` command.
-
-### `ENTRYPOINT`
-
-Used to define specific executable and arguments to be executed during container invocation which cannot be overridden.
-
-This is used to constraint the user to execute anything else. User can however define arguments to be passed in the executable by adding them in the `docker run` command.
+`ENTRYPOINT` is used to define a specific executable (and it's arguments) to be executed during container invocation which cannot be overridden.  
+The user can however define arguments to be passed in the executable by adding them in the `docker run` command.
 
 ## [Docker Multi-Stage Build](https://docs.docker.com/develop/develop-images/multistage-build/)
 
@@ -327,7 +299,7 @@ services:
       dockerfile: <*.Dockerfile>
       args:  # pass args to dockerfile
         ARG: <value>
-       - ARG=<value>
+        - ARG=<value>
     ports: 
       - <host_port>:<container_port>
     networks:  # attach container to one or more networks
@@ -338,10 +310,18 @@ services:
       ENV_VAR: <value>
       - ENV_VAR=<value>
     env_file:
-         - <path/to/env/file>  # reusable env file
+      - <path/to/env/file>  # reusable env file
     volumes:
       - "./<rel/path/to/volume>:<in/container/path/to/data>"  # service-dedicated volume
       - "<volume_name>:<in/container/path/to/data>"  # reuseable volume
+    healthcheck:
+      disable: <bool>  # set to true to disable
+      test: curl -f http://localhost  # set to ["NONE"] to disable
+      interval:  # interval between checks (default 30s)
+      timeout:  # check fail timeout (default 30s)
+      retries:  # num of retries before unhealty (default 3)
+      start_period:  # container init grace pediod (default 5s)
+      start_interval:  # check interval in start period
 
 # reusable volume definitions
 volumes:
