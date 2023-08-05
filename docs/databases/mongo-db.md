@@ -722,7 +722,7 @@ db.<collection>.aggregate([
 
 Performs a recursive search on a collection, with options for restricting the search by recursion depth and query filter.
 
-The connection between documents follows `<from-collection>.<connectFromField>` => `<aggregated-collection>.<connectToField>`. The collection on which the aggregation is performed and the `from` collection can be the same (in-collection search) or different (cross-collection search)  
+The collection on which the aggregation is performed and the `from` collection can be the same (in-collection search) or different (cross-collection search)
 
 ```sh
 db.<collection>.aggregate([
