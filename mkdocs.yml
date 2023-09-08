@@ -176,11 +176,10 @@ nav:
     - Bash:
         - Scripting: languages/bash/scripting.md
         - Commands: languages/bash/commands.md
-  - Tools:
-    - Git: tools/git/git.md
   - Devices:
     - iOS:
       - ContentView: devices/ios/content-view.md
   - Misc:
+    - Git: git.md
     - GraphQL: graph-ql.md
     - RegEx: regular-expressions.md
