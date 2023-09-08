@@ -167,6 +167,13 @@ def load_reference(name_or_id):
 `git log --follow <file>`: list version history fo file, including renames  
 `git log --all --graph --decorate`: visualizes history as a DAG  
 `git log  --oneline`: compact log  
+`git log <rev>`: Include commits that are reachable from `<rev>`  
+`git log ^<rev>`: Exclude commits that are reachable from `<rev>`  
+`git log <rev1>..<rev2>`: Include commits that are reachable from `<rev2>` but exclude those that are reachable from `<rev1>`. 
+When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.  
+`git log <rev1>...<rev2>`: Include commits that are reachable from either `<rev1>` or `<rev2>` but exclude those that are reachable from both. When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.  
+`git log <rev>^@`: Include anything reachable from `<rev>` parents but not the commit itself
+
 
 `git shortlog`: list commits by author  
 `git reflog`: show record of when the tips of branches and other references were updated in the local repository  
