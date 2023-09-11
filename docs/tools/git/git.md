@@ -233,7 +233,7 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git cherry-pick <commit>^..<commit>`: bring in a  range of commits from another branch (first included)  
 `git cherry-pick <commit>..<commit>`: bring in a  range of commits from another branch (first excluded)  
 
-### Undo & [Rewriting History](https://www.themoderncoder.com/rewriting-git-history/)
+### Undo & Rewriting History
 
 `git rm -r --cached <file>`: remove a file from being tracked  
 `git commit --amend`: replace last commit by creating a new one (can add files or rewrite commit message)  
@@ -252,8 +252,11 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git restore --source <commit> <file>`: revert file to commit version  
 `git restore <deleted-file>`: recover deleted file if previously committed  
 
+`git rebase -i`: modify (reword, edit, drop, squash, merge, ...) current branch commits  
 `git rebase -i HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits  
 `git rebase -i <commit>`: modify (reword, edit, drop, squash, merge, ...) *from* commit to latest  
+`git rebase --autostash`: automatically create a temporary stash entry before rebasing  
+`git rebase --autosquash`: automatically apply "squash!" or "fixup!" or "amend!" commits  
 
 > **WARN**: Changing history can have nasty side effects
 
