@@ -109,6 +109,9 @@ def load_reference(name_or_id):
 `git commit -m "message"`: commit and provide a message  
 `git commit -a`: automatically notice any modified (but not new) files and commit  
 `git commit -v|--verbose`: show unified diff between the HEAD commit and what would be committed  
+`git commit --amend`: modify latest commit with the new changes  
+`git commit --no-verify`: commit without executing hooks  
+`git commit --fixup <commit>`: mark commit as correction to another  
 
 `git diff <filename>`: show difference since the last commit  
 `git diff <commit> <filename>`: show differences in a file since a particular snapshot  
