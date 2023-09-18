@@ -183,3 +183,4 @@ nav:
     - Git: misc/git.md
     - GraphQL: misc/graph-ql.md
     - RegEx: misc/regular-expressions.md
+    - SSH: misc/ssh.md
