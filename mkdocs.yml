@@ -180,6 +180,6 @@ nav:
     - iOS:
       - ContentView: devices/ios/content-view.md
   - Misc:
-    - Git: git.md
-    - GraphQL: graph-ql.md
-    - RegEx: regular-expressions.md
+    - Git: misc/git.md
+    - GraphQL: misc/graph-ql.md
+    - RegEx: misc/regular-expressions.md
