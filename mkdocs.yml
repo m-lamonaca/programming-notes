@@ -85,6 +85,14 @@ nav:
     - Redis: databases/redis.md
     - SQL: databases/sql.md
     - MongoDB: databases/mongo-db.md
+    - Database Systems:
+      - Databases: databases/database-systems/databases.md
+      - Advanced SQL: databases/database-systems/advanced-sql.md
+      - Storage: databases/database-systems/database-storage.md
+      - Buffer Pools: databases/database-systems/buffer-pools.md
+      - Hash Tables: databases/database-systems/hash-tables.md
+      - B+ Trees: databases/database-systems/b+trees.md
+      - Table Indexes: databases/database-systems/table-indexes.md
   - Languages:
     - HTML: languages/html/html.md
     - Markdown: languages/markdown.md
