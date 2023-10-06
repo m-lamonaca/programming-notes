@@ -81,8 +81,7 @@ def load_reference(name_or_id):
 
 ## Commands
 
-`git <command> -h`: get help for a git command  
-`git <command> --help`: get man page for a git command  
+`git <command> -h|--help`: get help for a git command  
 `git -C <path> <command>`: execute a git commend in the specified path  
 `git <command> <commit>^`: operate on commit *before* the provided commit hash  
 
@@ -100,31 +99,31 @@ def load_reference(name_or_id):
 
 `git status`: shows the status of changes as untracked, modified, or staged  
 `git add <filename1 filename2 ...>`: add files to the staging area  
-`git add -p <files>`: interactively stage chunks of a file  
+`git add -p|--patch <files>`: interactively stage chunks of a file  
 
 `git blame <file>`: show who last edited which line  
 
 `git commit`: save the snapshot to the project history  
-`git commit -m "message"`: commit and provide a message  
-`git commit -a`: automatically notice any modified (but not new) files and commit  
+`git commit -m|--message "message"`: commit and provide a message  
+`git commit -a|--all`: automatically notice any modified (but not new) files and commit  
 `git commit -v|--verbose`: show unified diff between the HEAD commit and what would be committed  
 `git commit --amend`: modify latest commit with the new changes  
 `git commit --no-verify`: commit without executing hooks  
 `git commit --fixup <commit>`: mark commit as correction to another  
-`git commit --signoff`: Add a `Signed-off-by` trailer by the committer at the end of the commit log message  
+`git commit -s|--signoff`: Add a `Signed-off-by` trailer by the committer at the end of the commit log message  
 
 `git diff <filename>`: show difference since the last commit  
 `git diff <commit> <filename>`: show differences in a file since a particular snapshot  
 `git diff <reference_1> <reference_2> <filename>`: show differences in a file between two snapshots  
 `git diff  --cached`: show what is about to be committed  
 `git diff <first-branch>...<second-branch>`: show content diff between two branches  
-`git diff -w`: show diff ignoring whitespace differences  
+`git diff -w|--ignore-all-space`: show diff ignoring whitespace differences  
 
 `git bisect`: binary search history (e.g. for regressions)  
 
 ### Stashes
 
-`git stash [push -m|--message]`: add all changes to the stash (and provide message)  
+`git stash [push] [-m|--message]`: add all changes to the stash (and provide message)  
 `git stash list` list all stashes  
 `git stash show [<stash>]`: show changes in the stash  
 `git stash pop`: restore last stash  
@@ -134,19 +133,19 @@ def load_reference(name_or_id):
 ### Remotes
 
 `git remote`: list remotes  
-`git remote -v`: list remotes names and URLs  
+`git remote -v|--verbose`: list remotes names and URLs  
 `git remote show <remote>`: inspect the remote  
 
 `git remote add <remote> <url | path>`: add a remote  
 `git remote remove <remote>`: remove the specified remote  
 `git remote rename <old_name> <new_name>`: rename a remote  
-`git branch --set-upstream-to=<remote>/<remote branch>`: set up correspondence between local and remote branch  
+`git branch -u|--set-upstream-to=<remote>/<remote branch>`: set up correspondence between local and remote branch  
 
 `git push`: send objects to default remote on current branch  
 `git push <remote> <branch>`: send objects to remote  
 `git push <remote> <local branch>:<remote branch>`: send objects to remote, and update remote reference  
 
-`git push --force`: overwrite remote with local version  
+`git push -f|--force`: overwrite remote with local version  
 `git push --force-with-lease`: overwrite remote with local version if remote has not been modified  
 `git push --force-with-lease --force-if--includes`: will verify if updates from the remote that may have been implicitly updated in the background are integrated locally before allowing a forced update  
 
@@ -154,8 +153,8 @@ def load_reference(name_or_id):
 `git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`  
 `git pull --ff`: when possible resolve the merge as a fast-forward (only update branch pointer, don't create merge commit). Otherwise create a merge commit.  
 
-`git fetch|pull --prune`: remove any remote-tracking references that no longer exist on the remote  
-`git fetch|pull --tags`: fetch all tags from the remote
+`git fetch|pull -p|--prune`: remove any remote-tracking references that no longer exist on the remote  
+`git fetch|pull -t|--tags`: fetch all tags from the remote
 
 `git clone <url> [<folder_name>]`: download repository and repo history from remote  
 `git clone --shallow`: clone only repo files, not history of commits  
@@ -165,7 +164,7 @@ def load_reference(name_or_id):
 ### Viewing Project History
 
 `git log`: show history of changes  
-`git log -p`: show history of changes and complete differences  
+`git log -p|--patch`: show history of changes and complete differences  
 `git log --stat --summary`: show overview of the change  
 `git log --follow <file>`: list version history fo file, including renames  
 `git log --all --graph --decorate`: visualizes history as a DAG  
@@ -196,12 +195,12 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git tag -l|--list <pattern>`: list existing tags matching a wildcard or pattern  
 
 `git tag <tag> [<commit_hash>]`: create a *lightweight* tag on the commit  
-`git tag -a <tag> [<commit_hash> -m <message>]`: create am *annotated* tag on the commit  
+`git tag -a|--annotate <tag> [<commit_hash> -m <message>]`: create am *annotated* tag on the commit  
 
 `git push <remote> <tagname>`: push a tag to the remote  
 `git push <remote> --tags`: push commits and their tags (both types) to the remote  
 
-`git tag -d <tagname>`: delete a tag  
+`git tag -d|--delete <tagname>`: delete a tag  
 `git push <remote> :refs/tags<tagname>:`: remove a tag from the remote  
 `git push <remote> --delete <tagname>`: remove a tag from the remote  
 
@@ -214,13 +213,12 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git branch`: shows branches  
 `git branch -vv`: show branch + last commit + remote status  
 `git branch --merged [--remote]`: show branches (remote) that have been merged into current one (needs same history, merge squash/rebase break history)
-
-`git branch <branch-name>`: create new branch  
-`git checkout -b <branch-name>`: create a branch and switches to it, same as `git branch <name>; git checkout <name>`  
 `git branch`: show list of all existing branches  (* indicates current)  
+`git branch <branch-name>`: create new branch  
+`git branch -d|--delete <branch-name>`: delete specified branch  
+`git branch -m|--move <old_name> <new_name>`: rename a branch without affecting the branch's history  
+`git checkout -b <branch-name>`: create a branch and switches to it, same as `git branch <name>; git checkout <name>`  
 `git checkout <branch-name>`: change current branch (update HEAD) and update working directory  
-`git branch -d <branch-name>`: delete specified branch  
-`git branch -m <old_name> <new_name>`: rename a branch without affecting the branch's history  
 
 `git merge <branch-name>`: merges into current branch  
 `git merge --continue`: continue previous merge after solving a merge conflict  
@@ -254,9 +252,9 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git restore --source <commit> <file>`: revert file to commit version  
 `git restore <deleted-file>`: recover deleted file if previously committed  
 
-`git rebase -i`: modify (reword, edit, drop, squash, merge, ...) current branch commits  
-`git rebase -i HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits  
-`git rebase -i <commit>`: modify (reword, edit, drop, squash, merge, ...) *from* commit to latest  
+`git rebase -i|--interactive`: modify (reword, edit, drop, squash, merge, ...) current branch commits  
+`git rebase -i|--interactive HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits  
+`git rebase -i|--interactive <commit>`: modify (reword, edit, drop, squash, merge, ...) *from* commit to latest  
 `git rebase --autostash`: automatically create a temporary stash entry before rebasing  
 `git rebase --autosquash`: automatically apply "squash!" or "fixup!" or "amend!" commits  
 
