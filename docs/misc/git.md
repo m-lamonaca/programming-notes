@@ -111,6 +111,7 @@ def load_reference(name_or_id):
 `git commit --amend`: modify latest commit with the new changes  
 `git commit --no-verify`: commit without executing hooks  
 `git commit --fixup <commit>`: mark commit as correction to another  
+`git commit --signoff`: Add a `Signed-off-by` trailer by the committer at the end of the commit log message  
 
 `git diff <filename>`: show difference since the last commit  
 `git diff <commit> <filename>`: show differences in a file since a particular snapshot  
@@ -171,8 +172,7 @@ def load_reference(name_or_id):
 `git log  --oneline`: compact log  
 `git log <rev>`: Include commits that are reachable from `<rev>`  
 `git log ^<rev>`: Exclude commits that are reachable from `<rev>`  
-`git log <rev1>..<rev2>`: Include commits that are reachable from `<rev2>` but exclude those that are reachable from `<rev1>`. 
-When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.  
+`git log <rev1>..<rev2>`: Include commits that are reachable from `<rev2>` but exclude those that are reachable from `<rev1>`. When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.  
 `git log <rev1>...<rev2>`: Include commits that are reachable from either `<rev1>` or `<rev2>` but exclude those that are reachable from both. When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.  
 `git log <rev>^@`: Include anything reachable from `<rev>` parents but not the commit itself
 
@@ -245,7 +245,7 @@ It's generally recommended creating annotated tags so it's possible to have all 
 
 `git clean`: remove untracked files form the working tree  
 `git clean -d`: recurse into untracked directories while cleaning  
-`git clean --interactive`: clean files interactively
+`git clean --interactive`: clean files interactively  
 
 `git checkout <file>`: discard changes  
 `git checkout -- <file>`: discard changes, no output to screen  
