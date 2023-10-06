@@ -94,8 +94,7 @@ def load_reference(name_or_id):
 ### Config
 
 `git config --global user.name "<name>"`: set name attached to commits  
-`git config --global user.email "<email address>"`: set email attached to commits    
-`git config --global color.ui auto`: enable colorization of command line output  
+`git config --global user.email "<email address>"`: set email attached to commits
 
 ### Making Changes
 
@@ -177,7 +176,6 @@ When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.
 `git log <rev1>...<rev2>`: Include commits that are reachable from either `<rev1>` or `<rev2>` but exclude those that are reachable from both. When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.  
 `git log <rev>^@`: Include anything reachable from `<rev>` parents but not the commit itself
 
-
 `git shortlog`: list commits by author  
 `git reflog`: show record of when the tips of branches and other references were updated in the local repository  
 
@@ -211,7 +209,7 @@ It's generally recommended creating annotated tags so it's possible to have all 
 
 ### Branching And Merging
 
-![branch](img/git_branches.png "how branches work")
+![branch](../img/git_branches.png "how branches work")
 
 `git branch`: shows branches  
 `git branch -vv`: show branch + last commit + remote status  
@@ -244,6 +242,10 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git reset <commit>`: undo all commits after specified commit, preserving changes locally  
 `git reset --soft <commit>`: revert to specific commit but keep changes and staged files  
 `git reset --hard <commit>`: discard all history and changes back to specified commit  
+
+`git clean`: remove untracked files form the working tree  
+`git clean -d`: recurse into untracked directories while cleaning  
+`git clean --interactive`: clean files interactively
 
 `git checkout <file>`: discard changes  
 `git checkout -- <file>`: discard changes, no output to screen  
