@@ -84,6 +84,7 @@ nav:
     - SQL: databases/sql.md
     - MongoDB: databases/mongo-db.md
   - Languages:
+    - Assembly: languages/assembly/assembly.md
     - HTML: languages/html/html.md
     - Markdown: languages/markdown.md
     - CSS: languages/css/css.md
