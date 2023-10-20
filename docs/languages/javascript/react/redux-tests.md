@@ -9,7 +9,7 @@ Connected components are wrapped in a call to `connect`. Way of solving the prob
 
 In `Component.js`:
 
-```js
+```js linenums="1"
 export function Component(props) { /* ... */ }  // export unconnected component
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)  // default export of connected component
@@ -17,7 +17,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Component)  // defau
 
 In `Component.test.js`:
 
-```js
+```js linenums="1"
 import React from "react";
 // import enzyme or react testing library
 
@@ -48,7 +48,7 @@ it("test description", () => {
 
 ## Tests for Action Creators
 
-```js
+```js linenums="1"
 import * as actions from "path/to/actionCreators";
 // import eventual action types constants
 // import mock data
@@ -65,7 +65,7 @@ it("test description", () => {
 
 ## Tests for Reducers
 
-```js
+```js linenums="1"
 import reducer from "path/to/reducer";
 import * as actions from "path/to/actionCreators";
 
@@ -83,7 +83,7 @@ it("test description", () => {
 
 ## Tests for the Store
 
-```js
+```js linenums="1"
 import { createStore } from "redux";
 
 import rootReducer from "path/to/rootReducer";
@@ -111,7 +111,7 @@ Thunk testing requires the mocking of:
 - store (using `redux-mock-store`)
 - HTTP calls (using `fetch-mock`)
 
-```js
+```js linenums="1"
 import thunk from "redux-thunk";
 import fetchMock from "fetch-mock";
 import configureMockStore from "redux-mock-store";

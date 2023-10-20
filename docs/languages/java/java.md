@@ -1,6 +1,6 @@
 # Java
 
-```java
+```java linenums="1"
 //single line comment
 /* multi line comment */
 /** javaDoc docstring */
@@ -19,7 +19,7 @@ Package definition: `package <package_location>;`
 
 ### Main Method (entry point of algorithm)
 
-```java
+```java linenums="1"
 public static void main (String[] args) {
     //code here
 }
@@ -31,21 +31,21 @@ public static void main (String[] args) {
 
 ### Constant Definition (outside of main method/function)
 
-```java
+```java linenums="1"
 public static final Type CONSTANT_NAME = value;
 public static final double PI = 3.14159;   //example
 ```
 
 ### Constant Definition (inside main method/function)
 
-```java
+```java linenums="1"
 final Type CONSTANT_NAME = value;
 final double PI = 3.14159;   //example
 ```
 
 ### Screen Output
 
-```java
+```java linenums="1"
 System.out.println(output_1 + _ + output_n);   //newline at every invocation
 System.out.print(output_1 + _ + output_n);
 ```
@@ -54,7 +54,7 @@ System.out.print(output_1 + _ + output_n);
 
 [String.format() Examples](https://dzone.com/articles/java-string-format-examples)
 
-```java
+```java linenums="1"
 System.out.printf("string %..", variable);
 System.out.println(String.format(format, args));
 ```
@@ -65,7 +65,7 @@ Methods inherited from C. The value pf the variable substitutes %.
 
 `NumberFormat` class is used to format a number output.
 
-```java
+```java linenums="1"
 Locale locale = new Locale("language", "country");  // as defined by IETF lang tag, RCF 5646, RCF 4647
 NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);  // format a number as a currency based on a Locale
 fmt.format(number);  // apply format to a number, returns a String
@@ -73,7 +73,7 @@ fmt.format(number);  // apply format to a number, returns a String
 
 ## Keyboard Input
 
-```java
+```java linenums="1"
 import java.util.Scanner;   //package import
 Scanner scanner = new Scanner(System.in);  //Scanner obj init
 scanner.useDelimiter("delimitatore");   //delimiter setting
@@ -92,7 +92,7 @@ Thus when switching to a different input method is necessary to call `nextLine()
 
 ### Primitive Types
 
-```java
+```java linenums="1"
 TYPE        WRAPPER     SIZE        MIN_VALUE               MAX_VALUE
 int         Integer                 -2147483648             2147483647
 byte        Byte        8 bit       -128                    127
@@ -115,7 +115,7 @@ For high precision calcs is best to use `BigDecimal`.
 
 ### Type Conversion (casting) & Type checking
 
-```java
+```java linenums="1"
 Type variable = (Type) <expression>;  // convert to other Type
 var instanceof Type;  // true if var is an instance of Type
 ```
@@ -125,7 +125,7 @@ var instanceof Type;  // true if var is an instance of Type
 Every primitive type has a corresponding wrapper class.  
 Wrapper classes permits the creation of an object with the same type of a primitive type but with added methods and constants.
 
-```java
+```java linenums="1"
 WrapperClass objectName = new WrapperClass(primitiveValue);  //declaration
 WrapperClass objectName = primitiveValue;  //shortened declaration
 
@@ -143,7 +143,7 @@ WrapperClass.toString(primitive);  // converts the wrapper class value to a stri
 
 ### String & Char
 
-```java
+```java linenums="1"
 String string = "text";  //strings always in double quotes
 char character = 'C';  //chars always in single quotes
 ```
@@ -172,7 +172,7 @@ String are immutable. Concatenation creates a new string.
 
 ### String Conversion to Number
 
-```java
+```java linenums="1"
 double d  = Double.parseDouble(string);
 float f = Float.parseFloat(string);
 int i = integer.parseInt(string);
@@ -180,7 +180,7 @@ int i = integer.parseInt(string);
 
 ### String Class Methods
 
-```java
+```java linenums="1"
 string.equals(otherString);   // returns TRUE if the strings are equal
 string.equalsIgnoreCase(otherString);   // returns TRUE if the strings are equals ignoring the case
 string.charAt(index);  // returns the character at position INDEX
@@ -211,7 +211,7 @@ To compare in alphabetical order both strings must have the same case.
 
 ### Mathematical Operations
 
-```java
+```java linenums="1"
 Math.PI  // value of pi
 Math.E  // value of e
 
@@ -317,7 +317,7 @@ Full evaluation can be forced using `&` and `|`.
 
 ### `If Else`
 
-```java
+```java linenums="1"
 if (condition) {
     //code here
 } else {
@@ -327,7 +327,7 @@ if (condition) {
 
 ### `If, Else If, Else`
 
-```java
+```java linenums="1"
 if (condition) {
     //code here
 } else if (condition) {
@@ -346,7 +346,7 @@ if condition is `true` executes instruction1 otherwise executes instruction2.
 
 ### `Switch`
 
-```java
+```java linenums="1"
 switch (matchExpression) {
     case matchingPattern:
         //code here
@@ -366,7 +366,7 @@ Omitting the `break` keyword causes multiple branches to execute the same code.
 
 ### `While` Loop
 
-```java
+```java linenums="1"
 while (condition) {
    //code here
 }
@@ -374,7 +374,7 @@ while (condition) {
 
 ### `Do While` Loop
 
-```java
+```java linenums="1"
 do {
     //code here
 } while (espressione_booleana);
@@ -384,7 +384,7 @@ Loop body executed *at least* one time
 
 ### `For` Loop
 
-```java
+```java linenums="1"
 for (initializer; condition; iterator) {
     //code here
 }
@@ -392,7 +392,7 @@ for (initializer; condition; iterator) {
 
 ### `Foreach` Loop
 
-```java
+```java linenums="1"
 for (Type variable : iterable){
     //code here
 }
@@ -400,7 +400,7 @@ for (Type variable : iterable){
 
 ### Multiple iterators in `For` Loop
 
-```java
+```java linenums="1"
 for (initializer1, initializer2; condition; iterator1, iterator2) {
     //code here
 }
@@ -417,7 +417,7 @@ The iterator declared in the for is a local variable and can be used only in the
 If the assertion check is enabled (`java -ebableassetrions programName`) the execution of the algorithm is terminated if an assertion fails.  
 Assertions can be used to check if a variable has a wanted value in a precise point in the code (Sanity Check).
 
-```java
+```java linenums="1"
 assert <booleanExpression>;
 ```
 
@@ -427,7 +427,7 @@ Static methods are not bound to an *instance* of a class but they act on the cla
 
 ### Static Void Method Definition
 
-```java
+```java linenums="1"
 static void methodName (parameters) {
     //code here
 }
@@ -435,7 +435,7 @@ static void methodName (parameters) {
 
 ### Static Method Definition
 
-```java
+```java linenums="1"
 static tipo_metodo methodName (parameters) {
     //code here
     return <espressione>;   //returned type MUST match method type
@@ -444,7 +444,7 @@ static tipo_metodo methodName (parameters) {
 
 ### Static Method Invocation
 
-```java
+```java linenums="1"
 methodName(arguments);
 ClassName.methodName(arguments);    //if method is used outside its class
 ```
@@ -453,7 +453,7 @@ ClassName.methodName(arguments);    //if method is used outside its class
 
 ## Array Declaration
 
-```java
+```java linenums="1"
 Type[] arrayName = new Type[dimension];
 
 Type arrayName[] = new Type[dimension];
@@ -463,7 +463,7 @@ arrayName.length  //length of the array
 
 Its possible to break the declaration in two lines  
 
-```java
+```java linenums="1"
 Type[] arrayName;
 arrayType = new Type[dimension];
 ```
@@ -475,7 +475,7 @@ Array dimension is determined by the number of values.
 
 ### Arrays as method parameters
 
-```java
+```java linenums="1"
 static Type methodName (Type[] arrayName) {
     //code here
 }
@@ -492,7 +492,7 @@ Array contents must be confronted by looping through the array.
 
 ### Methods returning Arrays
 
-```java
+```java linenums="1"
 static Type[] methodName (parameters) {
     Type[] arrayName = new Type[dimension];  //array declaration
     //array valorization
@@ -502,7 +502,7 @@ static Type[] methodName (parameters) {
 
 ## Variable numbers of parameters in a method
 
-```java
+```java linenums="1"
 static Type methodName (parameters, tipo[] ArrayName) {
     //code here
 }
@@ -512,14 +512,14 @@ It's not necessary to specify a dimension of the array, it's determined by Java
 
 ### Multi-Dimensional Arrays
 
-```java
+```java linenums="1"
 Type[]...[] arrayName = new Type[dimension1]...[dimensionN];
 Type arrayName[]...[] = new Type[dimension1]...[dimensionN];
 ```
 
 ### Multi-Dimensional Arrays as parameters
 
-```java
+```java linenums="1"
 static Type methodName (Type[]...[] ArrayName) {
     //code here
 }
@@ -527,7 +527,7 @@ static Type methodName (Type[]...[] ArrayName) {
 
 ### Methods returning multi-dimensional arrays
 
-```java
+```java linenums="1"
 static Type[]...[] methodName (parameters) {
     Type[]...[] array = new Type[dimension1]...[dimensionN];
     //array valorization
@@ -537,14 +537,14 @@ static Type[]...[] methodName (parameters) {
 
 ### Array Length of multi-dimensional arrays
 
-```java
+```java linenums="1"
 array.length  //row length
 array[rowIndex].length  //column length
 ```
 
 ### Irregular Table Visualization
 
-```java
+```java linenums="1"
 static void viewTable (Type[][] matrix){
     for (int row = 0; row < matrix.length; row++){   //run through the rows
         for (int column = 0; column < arrayName[row].length; column++){   //run through the columns
@@ -571,7 +571,7 @@ Unchecked exceptions usually mean that there is an error in the logic of the pro
 
 This construct permits to monitor what happens in a block of code and to specify what to do in case of errors (*exceptions*).
 
-```java
+```java linenums="1"
 try {
     //monitored code
 } catch (SpecificException e) {
@@ -590,7 +590,7 @@ A `try-catch` construct can handle multiple exceptions at once.  Every `catch` i
 
 ### Try with Resources
 
-```java
+```java linenums="1"
 try (
     //resource definition
 ){
@@ -607,7 +607,7 @@ try (
 The `throw` keyword is used to generate a custom exception in a point of the code.  
 `throw` is used together with an exception type.
 
-```java
+```java linenums="1"
 Type methodName(parameters) {
     if (condition) {
       throw new Exception("error message");
@@ -618,7 +618,7 @@ Type methodName(parameters) {
 The `throws` keyword is used to indicate what exception Type may be thrown by a method.  
 `throws` is used together with a exception class. It's used to send the exception to the method caller.
 
-```java
+```java linenums="1"
 Type methodName(parameters) throws ExceptionClass {
     if (condition) {
       throw new SpecificException("error message");
@@ -630,7 +630,7 @@ Type methodName(parameters) throws ExceptionClass {
 
 A user-defined exception has to inherit from `Exception` or one of it's descendants.
 
-```java
+```java linenums="1"
 public class CustomException extends Exception {
 
     public CustomException(){
@@ -659,7 +659,7 @@ If not specified variables, methods and classes are *only* accessible from the s
 
 ### Instance Method Definition
 
-```java
+```java linenums="1"
 Type methodName (parameters) {
     //code here
 }
@@ -667,7 +667,7 @@ Type methodName (parameters) {
 
 ### `Void` Instance Method
 
-```java
+```java linenums="1"
 void methodName (parameters) {
     //code here
 }
@@ -675,7 +675,7 @@ void methodName (parameters) {
 
 ### Class Definition
 
-```java
+```java linenums="1"
 public class ClassName {
     //instance variables declaration
 
@@ -711,7 +711,7 @@ Constructors are special methods that are invoked with the `new` operator when a
 Constructors assign the starting values of the object attributes.  
 If a constructor id defined Java doesn't create the default constructor.
 
-```java
+```java linenums="1"
 class ClassName (){
 
     //attributes declaration (aka instance variables)
@@ -736,7 +736,7 @@ Static variable do not belong to the class objects.
 
 ### Getters & Setter Methods
 
-```java
+```java linenums="1"
 public void setAttribute(Type attribute){
     this.attribute = attribute;
 }
@@ -750,7 +750,7 @@ public Type getAttribute(){
 
 Automatically returns a string if the object is directly called in a print method.
 
-```java
+```java linenums="1"
 @Override
 Public String toString(){
     return "string-representation-of-object"
@@ -777,7 +777,7 @@ A child class can inherit from *only* one parent class.
 Child class **must** implement a constructor that instantiates the parent (super) class.  
 `super()` instantiates the superclass of the child class.
 
-```java
+```java linenums="1"
 class ChildClass extends ParentClass{
 
     public ChildClass(parentParameters, childParameters){
@@ -800,7 +800,7 @@ An overridden method can change the access modifier as long as the new modifier 
 
 A `ParentClass` type can contain a `ChildClass` object. This is useful for using collections and arrays of objects.
 
-```java
+```java linenums="1"
 ParentClass objectName = ChildClass();  // upcast
 (ChildClass)ParentClassObject;  // downcast
 ```
@@ -814,7 +814,7 @@ Abstract classes are marked by the `abstract` keyword.
 An abstract method is a method without implementation.  
 The methods **must** be `public` and marked with the `abstract` keyword.
 
-```java
+```java linenums="1"
 //abstract class
 abstract class className{
     //attributes here
@@ -838,7 +838,7 @@ Interfaces' attributes are always `public static final`, no need for the keyword
 
 A class can implement *more than one* Interface.
 
-```java
+```java linenums="1"
 public interface InterfaceName{
     //attributes here
 
@@ -869,7 +869,7 @@ Enums are used to restrict the type of data to a set of the possible constant va
 Enums are classes which constructor is private by default.
 It's still possible to create a custom constructor to add values.
 
-```java
+```java linenums="1"
 enum enumName {
     value1,
     value2,
@@ -904,7 +904,7 @@ enumName variable;  //creation of a variable of type enumName
 
 *Anonymous classes* make the code more concise. They enable to declare and instantiate a class at the same time. They are like local classes except that they do not have a name. Useful if is needed a local class that is used once.
 
-```java
+```java linenums="1"
 AnonymousClass objectName = new AnonymousClass(Type parameter, ...) {
 
     // attributes
@@ -915,7 +915,7 @@ AnonymousClass objectName = new AnonymousClass(Type parameter, ...) {
 
 ### Cloning
 
-```java
+```java linenums="1"
 class ClassName implements Clonable {
 
 }
@@ -923,7 +923,7 @@ class ClassName implements Clonable {
 
 ## Generics
 
-```java
+```java linenums="1"
 // WARNING: T is not instantiable, new t(), new t[] are INVALID
 public class GenericClass<T> {
     private T generic;
@@ -949,7 +949,7 @@ GenericClass<Type>[] obj = new GenericClass<>[];  // invalid
 
 ### Multiple Generics
 
-```java
+```java linenums="1"
 public class GenericClass<T1, T2, ...> { }  // number of generic types is not limited
 ```
 
@@ -957,7 +957,7 @@ public class GenericClass<T1, T2, ...> { }  // number of generic types is not li
 
 Specify an interface or class that the generic type must implement/inherit.
 
-```java
+```java linenums="1"
 public class GenericClass<T extends Interface1 & Interface2> { }
 public class GenericClass<T1 extends Interface1 & Interface2, T2 extends Class1> { }
 public class GenericClass<T extends Class1> { }
@@ -965,7 +965,7 @@ public class GenericClass<T extends Class1> { }
 
 ### Generic Methods
 
-```java
+```java linenums="1"
 public class ClassName{
 
     public <T> methodName() {
@@ -1001,7 +1001,7 @@ obj.<Type>methodName();  // generic method call
 
 #### Writing on a file
 
-```java
+```java linenums="1"
 // opening/creating the file for writing
 PrintWriter outStream = null;  // output stream creation
 try{
@@ -1022,7 +1022,7 @@ outStream.close()  // close stream and write buffer contents.
 
 #### Reading from a file
 
-```java
+```java linenums="1"
 Filereader filereader = new Filereader("filename");  //open the file
 Scanner scanner = new Scanner(filereader);  //scanner for the file
 
@@ -1058,7 +1058,7 @@ public void close() throws IOException  // closes the stream
 
 The File class is an abstraction of the file and it's path. The abstraction is independent from the OS.
 
-```java
+```java linenums="1"
 File("path/to/file")  // UNIX like path
 File("path\\to\\file")  // Windows path
 
@@ -1075,7 +1075,7 @@ file.length()  // file length in bytes
 
 #### Writing to a binary file
 
-```java
+```java linenums="1"
 ObjectOutputStream outStream;
 try {
     outStream = new ObjectOutputStream(new FileOutputSteam(filename));
@@ -1104,7 +1104,7 @@ public void close()
 
 #### Reading from a binary file
 
-```java
+```java linenums="1"
 ObjectInputStream inStream;
 try {
     inStream = new ObjectInputStream(new FileinputSteam(filename));
@@ -1148,7 +1148,7 @@ Needed for a class to be *serializable*:
 
 An array is serializable if it's base type is a serializable object.
 
-```java
+```java linenums="1"
 SerializableObject[] array = (SerializableObject[])inStream.readObject();  // read returns Object, cast needed
 ```
 
@@ -1160,7 +1160,7 @@ Functional interfaces provide target types for *lambda expressions*.
 
 General purpose `@functionalInterfaces`:
 
-```java
+```java linenums="1"
 // takes input, performs actions, return boolean
 public interface Predicate<T> {
     boolean test(T t);
@@ -1215,7 +1215,7 @@ The features of Java stream are:
 
 Usable only by a `@FunctionalInterface`'s method or a method of a *stream*.
 
-```java
+```java linenums="1"
 lambda operator -> body;
 
 //zero parameter

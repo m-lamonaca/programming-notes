@@ -24,7 +24,7 @@
 
 Data Model Structure:
 
-```txt
+```txt linenums="1"
 <root> (tree)
 |
 |_ foo (tree)
@@ -35,7 +35,7 @@ Data Model Structure:
 
 Data Model as pseudocode:
 
-```py
+```py linenums="1"
 # a file is a bunch of bytes
 blob = array<byte>
 

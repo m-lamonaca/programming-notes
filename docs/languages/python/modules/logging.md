@@ -2,7 +2,7 @@
 
 ## Configuration
 
-```python
+```python linenums="1"
 # basic configuration for the logging system
 logging.basicConfig(filename="relpath", level=logging.LOG_LEVEL, format=f"message format", **kwargs)  
 # DATEFMT: Use the specified date/time format, as accepted by time.strftime().
@@ -76,7 +76,7 @@ Log Levels (Low To High):
 - error: `40`
 - critical: `50`
 
-```python
+```python linenums="1"
 logging.debug(msg)  # Logs a message with level DEBUG on the root logger
 logging.info(msg)  # Logs a message with level INFO on the root logger
 logging.warning(msg)  # Logs a message with level WARNING on the root logger

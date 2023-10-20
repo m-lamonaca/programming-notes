@@ -4,7 +4,7 @@
 
 ### Download and link the file
 
-```html
+```html linenums="1"
 <head>
     <script src="jquery-x.x.x.min.js"></script>
 </head>
@@ -12,7 +12,7 @@
 
 ### Use a CDN
 
-```html
+```html linenums="1"
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/x.x.x/jquery.min.js"></script>
 </head>
@@ -34,7 +34,7 @@ CDNs serve a large fraction of the Internet content today, including web objects
 
 ### [Finding DOM elements](https://api.jquery.com/category/selectors/)
 
-```js
+```js linenums="1"
 $('tag');
 $("#id");
 $(".class");
@@ -42,11 +42,11 @@ $(".class");
 
 ### Manipulating DOM elements
 
-```js
+```js linenums="1"
 $("p").addClass("special");
 ```
 
-```html
+```html linenums="1"
 <!-- before -->
 <p>Welcome to jQuery<p>
 
@@ -56,11 +56,11 @@ $("p").addClass("special");
 
 ### Reading Elements
 
-```html
+```html linenums="1"
 <a id="yahoo" href="http://www.yahoo.com" style="font-size:20px;">Yahoo!</a>
 ```
 
-```js
+```js linenums="1"
 // find it & store it
 var link = $('a#yahoo');
 
@@ -72,14 +72,14 @@ link.css('font-size'); // '20px
 
 ### Modifying Elements
 
-```js
+```js linenums="1"
 // jQuery
 $('a').html('Yahoo!');
 $('a').attr('href', 'http://www.yahoo.com');
 $('a').css({'color': 'purple'});
 ```
 
-```html
+```html linenums="1"
 <!-- before -->
 <a href="http://www.google.com">Google</a>
 
@@ -89,7 +89,7 @@ $('a').css({'color': 'purple'});
 
 ### Create, Store, Manipulate and inject
 
-```js
+```js linenums="1"
 let paragraph = $('<p class="intro">Welcome<p>');  // create and store element
 
 paragraph.css('property', 'value');  // manipulate element
@@ -99,7 +99,7 @@ $("body").append(paragraph);  // inject in DOM
 
 ### Regular DOM Nodes to jQuery Objects
 
-```js
+```js linenums="1"
 var paragraphs = $('p'); // an array
 var aParagraph = paragraphs[0]; // a regular DOM node
 var $aParagraph = $(paragraphs[0]); // a jQuery Object
@@ -114,7 +114,7 @@ for(var i = 0; i < paragraphs.length; i++) {
 
 ## [Events](https://api.jquery.com/category/events/)
 
-```js
+```js linenums="1"
 var onButtonClick = function() {  
     console.log('clicked!');
 }
@@ -133,7 +133,7 @@ $('button').click(onButtonClick);
 
 ### Preventing Default Event
 
-```js
+```js linenums="1"
 $('selector').on('event', function(event) {
     event.preventDefault();
     // custom logic
@@ -144,13 +144,13 @@ $('selector').on('event', function(event) {
 
 In the HTML, add a `<script>` ag that hotlinks to the CDN or source file:
 
-```html
+```html linenums="1"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"><script>
 ```
 
 In the JavaScript call the jQuery plugin on the DOM:
 
-```js
+```js linenums="1"
 $("form").validate();
 ```
 
@@ -160,7 +160,7 @@ $("form").validate();
 
 ### Patters & Anti-Patterns
 
-```js
+```js linenums="1"
 // Pattern: name variables with $var
 $myVar =$('#myNode');
 
@@ -179,7 +179,7 @@ $(document).on('click', 'p', function(argument){
 
 ### Chaining
 
-```js
+```js linenums="1"
 banner.css('color', 'red');
 banner.html('Welcome!');
 banner.show();
@@ -197,7 +197,7 @@ banner.css('color', 'red')
 
 DOM manipulation and event binding doesn't work if the `<script>` is in the `<head>`
 
-```js
+```js linenums="1"
 $(document).ready(function() {
     // the DOM is fully loaded
 });
@@ -209,7 +209,7 @@ $(window).on('load', function(){
 
 ## AJAX (jQuery `1.5`+)
 
-```js
+```js linenums="1"
 $.ajax({
     method: 'POST',
     url: 'some.php',

@@ -1,6 +1,6 @@
 # SMTPlib Module
 
-```python
+```python linenums="1"
 import smtplib
 
 # SMTP instance that encapsulates a SMTP connection

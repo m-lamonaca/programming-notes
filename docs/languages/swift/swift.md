@@ -8,7 +8,7 @@
 
 ### Macro
 
-```swift
+```swift linenums="1"
 #if DEBUG
 
 // contents compiled only if in DEBUG build
@@ -18,7 +18,7 @@
 
 ### Comments
 
-```swift
+```swift linenums="1"
 // single line comment
 
 /*  
@@ -28,7 +28,7 @@ multi line comment
 
 ### Variables
 
-```swift
+```swift linenums="1"
 var variable = value  // implicit variable init (auto-determine type)
 var variable: Type = value  // explicit variable init
 var variable: Type? = value  // explicit nullable variable init
@@ -36,13 +36,13 @@ var variable: Type? = value  // explicit nullable variable init
 
 ### Constants
 
-```swift
+```swift linenums="1"
 let CONSTANT = value  // constant init (value can be assigned at runtime)
 ```
 
 ### Console Output
 
-```swift
+```swift linenums="1"
 print()  // empty line
 print(variable)
 print("string")
@@ -50,7 +50,7 @@ print("string")
 
 ## Strings
 
-```swift
+```swift linenums="1"
 var string "Text: \(<expr>)"  // string interpolation
 var string = "Hello" + "There"  // string concatenation
 
@@ -60,7 +60,7 @@ to make a string span multiple lines"""
 
 ## Array
 
-```swift
+```swift linenums="1"
 var array = ["firstItem", "secondItem", ...]
 var array = [Type()]  // init empty homogeneous array
 
@@ -85,7 +85,7 @@ It's possible to use a tuple type as the return type of a function to enable the
 It's possible to name the elements of a tuple type and use those names to refer to the values of the individual elements.
 An element name consists of an identifier followed immediately by a colon (:).
 
-```swift
+```swift linenums="1"
 var tuple: (Type, Type) = (value, value)  // explicit type
 var tuple = (value, value)  // implicit type
 tuple.0  // item access
@@ -98,21 +98,21 @@ tuple.name1  // item access
 
 ### Tuple Decomposition
 
-```swift
+```swift linenums="1"
 var tuple = (value1, value2)
 var (var1, var2) = tuple  // var1 = value1, var2 = value2
 ```
 
 ## Type Identifier
 
-```swift
+```swift linenums="1"
 typealias Point = (Int, Int)
 var origin: (0, 0)
 ```
 
 ## Dictionary
 
-```swift
+```swift linenums="1"
 var dict = [
     "key": "value",
     ...
@@ -208,7 +208,7 @@ dict[key] = value // value update
 
 ### Nil Checks
 
-```swift
+```swift linenums="1"
 variable ?? value
 // same as
 if(variable == nil) { variable = value }
@@ -216,7 +216,7 @@ if(variable == nil) { variable = value }
 
 ## If-Else
 
-```swift
+```swift linenums="1"
 if condition {
     // code here
 } else if condition {
@@ -233,7 +233,7 @@ if var0 != nil { /* statements */ }
 
 ### Switch
 
-```swift
+```swift linenums="1"
 switch <value> {
     case <pattern/key>:
         // code here
@@ -253,7 +253,7 @@ switch <value> {
 
 ### For Loop
 
-```swift
+```swift linenums="1"
 // range based for
 for i in start...end { /* statements */ }  // end included
 for i in start..<end { /* statements */ }  // end excluded
@@ -270,7 +270,7 @@ for (key, value) in dict {
 
 ### While Loop
 
-```swift
+```swift linenums="1"
 while condition {
     // code here
 }
@@ -283,7 +283,7 @@ repeat {
 
 ## Functions
 
-```swift
+```swift linenums="1"
 // "void function"
 func funcName(param: Type, ...) {
     // code here
@@ -318,14 +318,14 @@ funcWithLabels(value, label: value, ...)
 
 ### Passing Functions as Parameters
 
-```swift
+```swift linenums="1"
 func f(param: Type) -> Type {}
 func g(f: (Type) -> Type) {}  // (Type) -> Type are the passed func input and output types
 ```
 
 ### Functions Returning Functions
 
-```swift
+```swift linenums="1"
 func f() -> ((Type) -> Type) {
     func g(param: Type) -> type {}
 
@@ -338,7 +338,7 @@ func f() -> ((Type) -> Type) {
 **Closures** are self-contained blocks of functionality that can be passed around and used in code.
 Closures in Swift are similar to blocks in C and Objective-C and to lambdas in other programming languages.
 
-```swift
+```swift linenums="1"
 { (parameters: Type) -> Type in
     // statements
 }
@@ -351,7 +351,7 @@ Closures in Swift are similar to blocks in C and Objective-C and to lambdas in o
 
 ### Enum Definition
 
-```swift
+```swift linenums="1"
 enum EnumName {
     case key1
     case key2
@@ -363,7 +363,7 @@ EnumName.key1 // key1
 
 ### Enum with Raw Values
 
-```swift
+```swift linenums="1"
 enum EnumName: Type {
     case key1 = value
     case key2 = value
@@ -382,7 +382,7 @@ enum IntegerEnum: Int {
 
 ### Matching Enumeration Values with a Switch Statement
 
-```swift
+```swift linenums="1"
 enum Rank: Int {
     case ace = 1, two, three, four, five, six, seven, eight, nine, ten
     case jack, queen, king
@@ -411,7 +411,7 @@ Rank.jack.rawValue // 11
 
 ## Struct (Value Type)
 
-```swift
+```swift linenums="1"
 struct StructName {
     var attribute = value  // instance variable
     private var _attribute: Type  // backing field for property
@@ -446,7 +446,7 @@ var structure = StructName()  // struct instantiation
 
 ### Class Definition & Instantiation
 
-```swift
+```swift linenums="1"
 class ClassName {
     var attribute = value  // instance variable
     private var _attribute: Type  // backing field for property
@@ -483,7 +483,7 @@ Do actions before/after modifying a property value.
 
 > **Note**: `willSet` and `didSet` do not *set* the value of the property.
 
-```swift
+```swift linenums="1"
 class ClassName {
 
     var _attribute: Type
@@ -505,7 +505,7 @@ class ClassName {
 
 ### Inheritance
 
-```swift
+```swift linenums="1"
 class Derived: SuperClass {
 
     var attribute: Type
@@ -522,7 +522,7 @@ class Derived: SuperClass {
 
 ### Exception Handling
 
-```swift
+```swift linenums="1"
 guard let variable = <expression>
 else {
     /* statements */

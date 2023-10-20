@@ -4,7 +4,7 @@
 
 Command Line Web Server in PHP, useful in testing phase. Limited since handles only one request at a time. **Do not use in production**.
 
-```ps1
+```ps1 linenums="1"
 PHP -S <ip:post>  # start web server
 PHP -S <ip:post> -t /path/to/folder  # execute in specified folder at specified address
 PHP -S <ip:post> file.php  # redirect requests to single file
@@ -22,7 +22,7 @@ Handling of HTTP requests happens using the following global variables:
 
 ### `$_FILES`
 
-```html
+```html linenums="1"
 <!-- method MUST BE post -->
 <!-- must have enctype="multipart/form-data" attribute -->
 <form name="<name>" action="file.php" method="POST" enctype="multipart/form-data">
@@ -33,7 +33,7 @@ Handling of HTTP requests happens using the following global variables:
 
 Files in `$_FILES` are memorized in a system temp folder. They can be moved with `move_uploaded_file()`
 
-```php
+```php linenums="1"
 if (! isset($_FILES['photo']['error'])) {
     http_response_code(400);  # send a response code
     echo'<h1>No file has been sent</h1>';
@@ -61,7 +61,7 @@ echo'<h1>File successfully sent</h1>';
 
 Request Header Access:
 
-```php
+```php linenums="1"
 $_SERVER["REQUEST_METHOD"];
 $_SERVER["REQUEST_URI"];
 $_SERVER["SERVER_PROTOCOL"];  // HTTP Versions
@@ -83,7 +83,7 @@ All sites **must** have a page for the consensus about using cookies.
 **Cookies** are HTTP headers used to memorize key-value info *on the client*. They are sent from the server to the client to keep track of info on the user that is visiting the website.  
 When a client receives a HTTP response that contains `Set-Cookie` headers it has to memorize that info and reuse them in future requests.
 
-```http
+```http linenums="1"
 Set-Cookie: <cookie-name>=<cookie-value>
 Set-Cookie: <cookie-name>=<cookie-value>; Expires=<date>
 Set-Cookie: <cookie-name>=<cookie-value>; Max-Age=<seconds>
@@ -97,13 +97,13 @@ Anyone can modify the contents of a cookie; for this reason cookies **must not c
 
 When a client has memorized a cookie, it is sent in successive HTTP requests through the `Cookie` header.
 
-```http
+```http linenums="1"
 Cookie: <cookie-name>=<cookie-value>
 ```
 
 [PHP setcookie docs](https://www.php.net/manual/en/function.setcookie.php)
 
-```php
+```php linenums="1"
 setcookie (
 string $name,
 [ string $value = "" ],
@@ -130,7 +130,7 @@ PHP generates a cookie named `PHPSESSID` containing a *session identifier* and a
 To use the session it's necessary to recall the function `session_start()` at the beginning of a PHP script that deals with sessions.  
 After starting the session information in be saved in the `$_SESSION` array.
 
-```php
+```php linenums="1"
 $_SESSION["key"] = value;  // save data in session file (serialized data)
 
 unset($_SESSION["key"]);  // delete data from the session

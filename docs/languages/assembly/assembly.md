@@ -4,7 +4,7 @@
 
 ## Compiling & Linking
 
-```sh
+```sh linenums="1"
 # compiling
 nasm -g -f elf64 src.asm  # -g adds debug info, -f specifies the 64bit ELF format
 
@@ -25,7 +25,7 @@ Every program in ELF has several sections:
 - `bss`: space reserved at program startup
 - `text`: CPU instructions
 
-```asm
+```asm linenums="1"
 ; export the '_start' symbol for linking
 global _start
 
@@ -49,7 +49,7 @@ Declaration instructions:
 > **Note**: See the NASM manual, section 3.2.1 for the full list.
 > **Note**: all byte declaarations are [Little Endian](https://en.wikipedia.org/wiki/Endianness "Endiannes")
 
-```asm
+```asm linenums="1"
 arr: db 0x12,0x34,0x56,0x78,0x90
 ```
 
@@ -85,14 +85,14 @@ For registers `rax` through `rdx`, it's possible to access:
 Instructions are operations that the CPU knowns how to execute directly.  
 They are separated from their operands by whitespace, and the operands are separated from other with commas.
 
-```asm
+```asm linenums="1"
 <instr> <operand1>, <operand2>, ..., <operand_n>
 
 ; Intel syntax dictates the first operand is the destination, and the second is the source
 <instr> DEST, SOURCE
 ```
 
-```asm
+```asm linenums="1"
 mov eax, 0x12345678  ; copies 4 bytes to eax
 inc rdi  ; INC: increment
 dec rsi  ; DEC: decrement
@@ -102,7 +102,7 @@ dec rsi  ; DEC: decrement
 
 Adds the two operands and stores the result in the _destination_.
 
-```asm
+```asm linenums="1"
 add rdi, rbx  ; Equivalent to rdi += rbx
 ```
 
@@ -110,7 +110,7 @@ add rdi, rbx  ; Equivalent to rdi += rbx
 
 Subtract the two operands and stores the result in the _destination_.
 
-```asm
+```asm linenums="1"
 sub rsi, rbx  ; Equivalent to rsi -= rbx
 ```
 
@@ -130,7 +130,7 @@ The **quotient** is a _64-bit_ value stored in `rax`, and the **remainder** is a
 
 ### `and`, `or`, `xor`
 
-```asm
+```asm linenums="1"
 and rdi, rsi  ; bitwise AND
 or rdi, rsi  ; bitwise OR
 xor rdi, rsi  ; bitwise XOR
@@ -138,7 +138,7 @@ xor rdi, rsi  ; bitwise XOR
 
 ### `shr`, `shl`
 
-```asm
+```asm linenums="1"
 shr rsi, 2  ; right (logical) bitshift: equivalent to rsi >> 2
 shl rsi, 3  ; left (logical) bitshift: equivalent to rsi << 3
 ```

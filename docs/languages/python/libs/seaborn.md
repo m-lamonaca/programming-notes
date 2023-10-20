@@ -2,7 +2,7 @@
 
 ## Basic Imports For Seaborn
 
-```python
+```python linenums="1"
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,7 +15,7 @@ sns.set(style='darkgrid')
 
 ## REPLOT (relationship)
 
-```python
+```python linenums="1"
 sns.replot(x='name_in_data', y='name_in_data', hue='point_color', size='point_size', style='point_shape', data=data)
 # HUE, SIZE and STYLE: {name in data} -- used to differentiate points, a sort-of 3rd dimension
 # hue behaves differently if the data is categorical or numerical, numerical uses a color gradient
@@ -38,7 +38,7 @@ sns.scatterplot()  # underlying axis-level function of replot()
 
 Using semantics in lineplot will determine the aggregation of data.
 
-```python
+```python linenums="1"
 sns.replot(ci=None, sort=bool, kind='line')
 sns.lineplot()  # underlying axis-level function of replot()
 ```
@@ -47,7 +47,7 @@ sns.lineplot()  # underlying axis-level function of replot()
 
 Categorical: divided into discrete groups.
 
-```python
+```python linenums="1"
 sns.catplot(x='name_in_data', y='name_in_data', data=data)
 # HUE: {name in data} -- used to differenziate points, a sort-of 3rd dimension
 # COL, ROW: {name in data}  -- categorical variables that will determine the grid of plots
@@ -68,7 +68,7 @@ sns.stripplot()
 
 Adjusts the points along the categorical axis preventing overlap.
 
-```py
+```py linenums="1"
 sns.catplot(kind='swarm')
 sns.swarmplot()
 # SIZE: {float}  -- Diameter of the markers, in points
@@ -84,7 +84,7 @@ sns.boxplot()
 
 Combines a boxplot with the kernel density estimation procedure.
 
-```py
+```py linenums="1"
 sns.catplot(kind='violin')
 sns.violonplot()
 ```
@@ -94,7 +94,7 @@ sns.violonplot()
 Plot similar to boxplot but optimized for showing more information about the shape of the distribution.  
 It is best suited for larger datasets.
 
-```py
+```py linenums="1"
 sns.catplot(kind='boxen')
 sns.boxenplot()
 ```
@@ -103,7 +103,7 @@ sns.boxenplot()
 
 Show point estimates and confidence intervals using scatter plot glyphs.
 
-```py
+```py linenums="1"
 sns.catplot(kind='point')
 sns.pointplot()
 # CI: {float, sd} -- size of confidence intervals to draw around estimated values, sd -> standard deviation
@@ -120,7 +120,7 @@ sns.pointplot()
 
 Show point estimates and confidence intervals as rectangular bars.
 
-```py
+```py linenums="1"
 sns.catplot(kind='bar')
 sns.barplot()
 # CI: {float, sd} -- size of confidence intervals to draw around estimated values, sd -> standard deviation
@@ -134,7 +134,7 @@ sns.barplot()
 
 Show the counts of observations in each categorical bin using bars.
 
-```py
+```py linenums="1"
 sns.catplot(kind='count')
 sns.countplot()
 # DODGE: {bool} -- whether elements should be shifted along the categorical axis if hue is used
@@ -146,7 +146,7 @@ sns.countplot()
 
 Flexibly plot a univariate distribution of observations
 
-```py
+```py linenums="1"
 # A: {series, 1d-array, list}
 sns.distplot(a=data)
 # BINS: {None, arg for matplotlib hist()} -- specification of hist bins, or None to use Freedman-Diaconis rule
@@ -160,7 +160,7 @@ sns.distplot(a=data)
 
 Plot datapoints in an array as sticks on an axis.
 
-```py
+```py linenums="1"
 # A: {vector} -- 1D array of observations
 sns.rugplot(a=data) # -> axes obj with plot on it
 # HEIGHT: {scalar} --  height of ticks as proportion of the axis
@@ -172,7 +172,7 @@ sns.rugplot(a=data) # -> axes obj with plot on it
 
 Fit and plot a univariate or bivariate kernel density estimate.
 
-```py
+```py linenums="1"
 # DATA: {1D array-like} -- input data
 sns.kdeplot(data=data)
 # DATA2 {1D array-like} -- second input data. if present, a bivariate KDE will be estimated.
@@ -185,7 +185,7 @@ sns.kdeplot(data=data)
 
 Draw a plot of two variables with bivariate and univariate graphs.
 
-```py
+```py linenums="1"
 # X, Y: {string, vector} -- data or names of variables in data
 sns.jointplot(x=data, y=data)
 # DATA:{pandas DataFrame} -- DataFrame when x and y are variable names
@@ -203,7 +203,7 @@ sns.jointplot(x=data, y=data)
 
 Plot pairwise relationships in a dataset.
 
-```py
+```py linenums="1"
 # DATA: {pandas DataFrame} -- tidy (long-form) dataframe where each column is a variable and each row is an observation
 sns.pairplot(data=pd.DataFrame)
 # HUE: {string (variable name)} -- variable in data to map plot aspects to different colors

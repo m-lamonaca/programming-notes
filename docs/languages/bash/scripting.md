@@ -44,20 +44,20 @@ shebang indicating which interpreter to use
 
 ### Simple Command
 
-```bash
+```bash linenums="1"
 [ var=value ... ] command [ arg ... ] [ redirection ... ]  # [.] is optional component
 ```
 
 ### Pipelines (commands concatenation)
 
-```bash
+```bash linenums="1"
 command | file.ext  # link the first process' standard output to the second process' standard input
 command |& file.ext  # link the first process' standard output & standard error to the second process' standard input
 ```
 
 ### Lists (sequence of commands)
 
-```bash
+```bash linenums="1"
 command_1; command_2; ...  # execute command in sequence, one after the other
 command_1 || command_2 || ...  # execute successive commands only if preceding ones fail
 command_1 && command_2 && ..  # execute successive commands only if preceding ones succeeds
@@ -65,7 +65,7 @@ command_1 && command_2 && ..  # execute successive commands only if preceding on
 
 ### COMPOUND COMMANDs (multiple commands as one)
 
-```bash
+```bash linenums="1"
 # block of commands executed as one
 <keyword>
     command_1; command_2; ...
@@ -108,7 +108,7 @@ We can copy file descriptors to make them share a stream. There are also many ot
 
 ### Redirections
 
-```bash
+```bash linenums="1"
 [x]>file  # make FD x write to file
 [x]<file  # make FD x read from file
 
@@ -142,7 +142,7 @@ x>&-, x<&-  # close FD x (stream disconnected from FD x)
 
 With Command Substitution, we effectively write a command within a command, and we ask bash to expand the inner command into its output and use that output as argument data for the main command.  
 
-```bash
+```bash linenums="1"
 $(inner_command)  # $ --> value-expansion prefix
 command !*  # !* expands to everything except the first argument in the previous line
 command !$  # refers to the last argument of the previous command
@@ -151,7 +151,7 @@ sudo !! # !! expands to the entire previous command
 
 ## Shell Variables
 
-```bash
+```bash linenums="1"
 varname=value  # variable assignment
 varname="$(command)"  # command substitution, MUST be double-quoted
 "$varname", "${varname}"  # variable expansion, MUST be double-quoted (name substituted w/ variable content)
@@ -188,7 +188,7 @@ Omit the pattern to match any character.
 
 Only the final exit code after executing the entire list is relevant for the branch's evaluation.
 
-```bash
+```bash linenums="1"
 if command_list; then
     command_list;
 elif command_list; then
@@ -207,7 +207,7 @@ fi
 
 ### Comparison Operators
 
-```bash
+```bash linenums="1"
 [[ "$a" -eq "$b" ]]  # is equal to
 [[ "$a" -ne "$b" ]]  # in not equal to
 [[ "$a" -gt "$b" ]]  # greater than
@@ -218,7 +218,7 @@ fi
 
 ### Arithmetic Comparison Operators
 
-```bash
+```bash linenums="1"
 (("$a" > "$b"))  # greater than
 (("$a" >= "$b"))   # greater than or equal to
 (("$a" < "$b"))  # less than
@@ -227,7 +227,7 @@ fi
 
 ### String Comparison Operators
 
-```bash
+```bash linenums="1"
 [ "$a" = "$b" ]    # is equal to (whitespace around operator)
 
 [[ $a == z* ]]     # True if $a starts with an "z" (pattern matching)
@@ -246,14 +246,14 @@ fi
 
 ## Commands short circuit evaluation
 
-```bash
+```bash linenums="1"
 command_1 || command_2  # if command_1 fails executes command_2
 command_1 && command_2  # executes command_2 only if command_1 succeeds
 ```
 
 ## Loops
 
-```bash
+```bash linenums="1"
 for var in iterable ; do
     # command here
 done
@@ -261,7 +261,7 @@ done
 
 ## Script Hardening
 
-```sh
+```sh linenums="1"
 set -o errexit  # exit on error
 set -o nounset  # fail on unset variable (bypass with ${VAR:-})
 set -o pipefail  # file entire pipeline if one step fails
