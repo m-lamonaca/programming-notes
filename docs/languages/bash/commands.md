@@ -8,7 +8,7 @@
 
 [sudo vs su](https://unix.stackexchange.com/questions/35338/su-vs-sudo-s-vs-sudo-i-vs-sudo-bash/35342)
 
-```bash
+```bash linenums="1"
 sudo su  # login as root (user must be sudoers, root password not required) DANGEROUS
 sudo -s  # act as root and inherit current user environment (env as is now, along current dir and env vars) SAFE (can modify user environment)
 sudo -i  # act as root and and use a clean environment (goes to user's home, runs .bashrc) SAFEST
@@ -22,7 +22,7 @@ su USER  # change user but don't load it's home folder
 
 ### Getting Info
 
-```sh
+```sh linenums="1"
 man COMMAND  # show command manual
 help COMMAND  # show command info
 whatis COMMAND  # one-line command explanation
@@ -35,7 +35,7 @@ id  # Print user and group information for the specified USER, or (when USER omi
 
 ### Moving & Showing Directory Contents
 
-```sh
+```sh linenums="1"
 pwd  # print working (current) directory
 ls [option]... [FILE]...   # list directory contents ("list storage")
 cd rel_path  # change directory to path (rel_path must be inside current directory)
@@ -49,7 +49,7 @@ popd  # return to previous directory (before pushd)
 
 ### Creating, Reading, Copying, Moving, Modifying Files And Directories
 
-```sh
+```sh linenums="1"
 touch FILE  # change FILE timestamp fi exists, create file otherwise
 cat [FILE]  # concatenate files and print on standard output (FD 1)
 cat >> FILE  # append following content ot file (Ctrl+D to stop)
@@ -84,7 +84,7 @@ cp SOURCE DESTINATION  # copy SOURCE to DESTINATION
 
 ![Linux Permissions](../../img/bash_files-permissions-and-ownership-basics-in-linux.png "files info and permissions")
 
-```sh
+```sh linenums="1"
 chmod MODE FILE  # change file (or directory) permissions
 chmod OCTAL-MODE FILE  # change file (or directory) permissions
 
@@ -121,7 +121,7 @@ chgrp [OPTION]... GROUP FILE...  # change group ownership
 
 ### Finding Files And Directories
 
-```sh
+```sh linenums="1"
 find [path] [expression]   # search file in directory hierarchy
 find [start-position] -type f -name FILENAME  # search for a file named "filename"
 find [start-position] -type d -name DIRNAME  # search for a directory named "dirname"
@@ -134,7 +134,7 @@ find [path] -exec <command> {} \;  # execute command on found items (identified 
 
 ### Other
 
-```sh
+```sh linenums="1"
 tee  # copy standard input and write to standard output AND files simultaneously
 tee [FILE]
 command | sudo tee FILE  # operate on file w/o using shell as su
@@ -171,7 +171,7 @@ watch -n SECONDS COMMAND  # execute command every SECONDS seconds (no less than 
 
 **Data wrangling** is the process of transforming and mapping data from one "raw" data form into another format with the intent of making it more appropriate and valuable for a variety of downstream purposes such as analytics.
 
-```bash
+```bash linenums="1"
 sed  # stream editor for filtering and transforming text
 sed -E "s/REGEX/replacement/"  # substitute text ONCE (-E uses modern REGEX)
 sed -E "s/REGEX/replacement/g"  # substitute text multiple times (every match)

@@ -85,7 +85,7 @@ Filter attributes:
 
 ## **Filter scopes**
 
-A filter can be added to the pipeline at one of three *scopes*:
+A filter can be added to the pipeline at one of three _scopes_:
 
 - Using an attribute on a controller action. Filter attributes cannot be applied to Razor Pages handler methods.
 
@@ -124,14 +124,14 @@ builder.Services.AddControllersWithViews(options =>
 
 When there are multiple filters for a particular stage of the pipeline, scope determines the default order of filter execution. Global filters surround class filters, which in turn surround method filters.
 
-As a result of filter nesting, the *after* code of filters runs in the reverse order of the *before* code. The filter sequence:
+As a result of filter nesting, the _after_ code of filters runs in the reverse order of the _before_ code. The filter sequence:
 
-- The *before* code of global filters.
-  - The *before* code of controller and Razor Page filters.
-    - The *before* code of action method filters.
-    - The *after* code of action method filters.
-  - The *after* code of controller and Razor Page filters.
-- The *after* code of global filters.
+- The _before_ code of global filters.
+  - The _before_ code of controller and Razor Page filters.
+    - The _before_ code of action method filters.
+    - The _after_ code of action method filters.
+  - The _after_ code of controller and Razor Page filters.
+- The _after_ code of global filters.
 
 ### Cancellation and Short-Circuiting
 
@@ -156,7 +156,7 @@ public class ShortCircuitingResourceFilterAttribute : Attribute, IResourceFilter
 
 ## Dependency Injection
 
-Filters can be added _by type_ or _by instance_. If an instance is added, that instance is used for every request. If a type is added, it's type-activated. 
+Filters can be added _by type_ or _by instance_. If an instance is added, that instance is used for every request. If a type is added, it's type-activated.
 
 A type-activated filter means:
 

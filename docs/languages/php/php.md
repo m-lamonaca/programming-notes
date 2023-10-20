@@ -2,7 +2,7 @@
 
 [PHP Docs](https://www.php.net/docs.php)
 
-```php
+```php linenums="1"
 declare(strict_types=1);  # activates variable type checking on function arguments
 # single line comment
 //single line comment
@@ -11,7 +11,7 @@ declare(strict_types=1);  # activates variable type checking on function argumen
 
 ## Include, Require
 
-```php
+```php linenums="1"
 include "path\\file.php";  # import an external php file, E_WARNING if fails
 include_once "path\\file.php";  # imports only if not already loaded
 
@@ -23,7 +23,7 @@ require_once "path\\file.php";  # imports only if not already loaded
 
 In `config.php`:
 
-```php
+```php linenums="1"
 //config.php
 
 //store configuration options in associative array
@@ -33,7 +33,7 @@ return [
 ]
 ```
 
-```php
+```php linenums="1"
 $config = include "config.php";  // retrieve config and store into variable
 ```
 
@@ -41,7 +41,7 @@ $config = include "config.php";  // retrieve config and store into variable
 
 [PSR-4 Spec](https://www.php-fig.org/psr/psr-4/)
 
-```php
+```php linenums="1"
 namespace Foo\Bar\Baz;   # set namespace for all file contents, \ for nested namespaces
 
 use <PHP_Class>  # using a namespace hides standard php classes (WHY?!?)
@@ -68,7 +68,7 @@ fnn\func();  # use function from Foo\Bar\Baz
 
 ## Basics
 
-```php
+```php linenums="1"
 declare(strict_types=1);  # activates type checking
 # single line comment
 //single line comment
@@ -77,7 +77,7 @@ declare(strict_types=1);  # activates type checking
 
 ### Screen Output
 
-```php
+```php linenums="1"
 echo "string";  # string output
 echo 'string\n';  # raw string output
 printf("format", $variables);  # formatted output of strings and variables
@@ -86,7 +86,7 @@ sprintf("format", $variables);  # return formatted string
 
 ### User Input
 
-```php
+```php linenums="1"
 $var = readline("prompt");
 
 # if readline is not installed
@@ -105,7 +105,7 @@ if (!function_exists('readline')) {
 
 ## Variables
 
-```php
+```php linenums="1"
 $variableName = value;  # weakly typed
 echo gettype(&variable);  # output type of variable
 
@@ -114,7 +114,7 @@ var_dump($var);  # prints info of variable (bit dimension, type & value)
 
 ### Integers
 
-```php
+```php linenums="1"
 &max = PHP_INT_MAX;  # max value for int type -> 9223372036854775807
 &min = PHP_INT_MIN;  # min value for int type -> -9223372036854775808
 &bytes = PHP_INT_SIZE;  # bytes for int type -> 8
@@ -127,7 +127,7 @@ var_dump($var);  # prints info of variable (bit dimension, type & value)
 
 ### Double
 
-```php
+```php linenums="1"
 $a = 1.234; // 1.234
 $b = 1.2e3; // 1200
 $c = 7E-10; // 0.0000000007
@@ -163,14 +163,14 @@ A string is a sequence of ASCII characters. In PHP a string is an array of chara
 
 ### String Concatenation
 
-```php
+```php linenums="1"
 $string1 . $string2; # method 1
 $string1 .= $string2;  # method 2
 ```
 
 ### String Functions
 
-```php
+```php linenums="1"
 strlen($string);  # returns the string length
 strpos($string, 'substring');  # position of substring in string
 substr($string, start, len);  # extract substring of len from position start
@@ -184,7 +184,7 @@ $var = sprintf("format", $variables)  # construct and return a formatted string
 
 ## Constants
 
-```php
+```php linenums="1"
 define ('CONSTANT_NAME', 'value')
 ```
 
@@ -201,7 +201,7 @@ define ('CONSTANT_NAME', 'value')
 
 Heterogeneous sequence of values.
 
-```php
+```php linenums="1"
 $array = (sequence_of_items);  # array declaration and valorization
 $array = [sequence_of_items];  # array declaration and valorization
 
@@ -216,7 +216,7 @@ $array[] = value;  # value appending
 
 Array of array. Can have arbitrary number of nested array
 
-```php
+```php linenums="1"
 $matrix = [
     [1, 2, 3],
     [4, 5, 6],
@@ -228,14 +228,14 @@ $matrix = [
 
 Single instruction to print whole array is ``
 
-```php
+```php linenums="1"
 $array = [1, 2, 3];
 print_r($array);  # print all the array values
 ```
 
 ### Array Functions
 
-```php
+```php linenums="1"
 count($array);  # returns number of items in the array
 array_sum($array)  # sum of the array value
 sort($array);  # quick sort
@@ -263,7 +263,7 @@ list($array1 [, $array2, ...]) = $data;  # Python-like tuple unpacking
 
 Associative arrays have a value as an index. Alternative names are _hash tables_ or _dictionaries_.
 
-```php
+```php linenums="1"
 $italianDay = [
     'Mon' => 'Lunedì',
     'Tue' => 'Martedì',
@@ -309,14 +309,14 @@ With `==` a string evaluates to `0`.
 
 ### Ternary Operator
 
-```php
+```php linenums="1"
 condition ? result_if_true : result_if_false;
 condition ?: result_if_false;
 ```
 
 ### NULL Coalesce
 
-```php
+```php linenums="1"
 $var1 = $var2 ?? value;  # if variable == NULL assign value, otherwise return value of $var2
 
 # equivalent to
@@ -325,7 +325,7 @@ $var1 = isset($var2) ? $var2 : value
 
 ### Spaceship Operator
 
-```php
+```php linenums="1"
 $a <=> $b;
 
 # equivalent to
@@ -339,7 +339,7 @@ if $a < $b
 
 ### `If` - `Elseif` - `Else`
 
-```php
+```php linenums="1"
 if (condition) {
   # code here
 } elseif (condition) {
@@ -359,7 +359,7 @@ endif;
 
 ### Switch Case
 
-```php
+```php linenums="1"
 # weak comparison
 switch ($var) {
     case value:
@@ -385,7 +385,7 @@ switch (true) {
 
 `match` can return values, doesn't require break statements, can combine conditions, uses strict type comparisons and doesn't do any type coercion.
 
-```php
+```php linenums="1"
 $result = match($input) {
     0 => "hello",
     '1', '2', '3' => "world",
@@ -396,7 +396,7 @@ $result = match($input) {
 
 ### For, Foreach
 
-```php
+```php linenums="1"
 for (init, condition, increment){
     # code here
 }
@@ -421,7 +421,7 @@ foreach($sequence as $key => $value) {
 
 ### While, Do-While
 
-```php
+```php linenums="1"
 while (condition) {
     # code here
 }
@@ -447,7 +447,7 @@ do {
 
 Parameters with default values are optional in the function call and must be the last ones in the function declaration. Return type is optional if type checking is disabled.
 
-```php
+```php linenums="1"
 declare(strict_types=1);  # activates type checking
 
 /**
@@ -475,7 +475,7 @@ function functionName (type $parameter, $parameter = default_value): Type
 
 ### Void function
 
-```php
+```php linenums="1"
 function functionName (type $parameter, $parameter = default_value): Void
 {
     # code here
@@ -484,7 +484,7 @@ function functionName (type $parameter, $parameter = default_value): Void
 
 ### Passing a parameter by reference (`&$`)
 
-```php
+```php linenums="1"
 function functionName (type &$parameter): Type
 {
     # code here
@@ -494,7 +494,7 @@ function functionName (type &$parameter): Type
 
 ### Variable number of parameters, variadic operator (`...`)
 
-```php
+```php linenums="1"
 function functionName (type $parameter, ...$args): Type
 function functionName (type $parameter, type ...$args): Type
 {
@@ -505,7 +505,7 @@ function functionName (type $parameter, type ...$args): Type
 
 ### Nullable parameters
 
-```php
+```php linenums="1"
 function functionName (?type $parameter): ?Type
 {
     # code here
@@ -515,7 +515,7 @@ function functionName (?type $parameter): ?Type
 
 ## Anonymous Functions (Closure)
 
-```php
+```php linenums="1"
 # declaration and assignment to variable
 $var = function (type $parameter) {
     # code here
@@ -526,7 +526,7 @@ $var($arg);
 
 ### Use Operator
 
-```php
+```php linenums="1"
 # use imports a variable into the closure
 $foo = function (type $parameter) use ($average) {
     # code here
@@ -537,7 +537,7 @@ $foo = function (type $parameter) use ($average) {
 
 **Union types** are a collection of two or more types which indicate that _either_ one of those _can be used_.
 
-```php
+```php linenums="1"
 public function foo(Foo|Bar $input): int|float;
 ```
 
@@ -546,7 +546,7 @@ public function foo(Foo|Bar $input): int|float;
 Named arguments allow to pass in values to a function, by specifying the value name, to avoid taking their order into consideration.
 It's also possible to skip optional parameters.
 
-```php
+```php linenums="1"
 function foo(string $a, string $b, ?string $c = null, ?string $d = null) { /* … */ }
 
 foo(
@@ -568,7 +568,7 @@ foo(
 
 ### Class Declaration & Instantiation
 
-```php
+```php linenums="1"
 # case insensitive
 class ClassName
 {
@@ -611,7 +611,7 @@ $object instanceof ClassName  // check type of the object
 Inside static methods it's impossible to use `$this`.
 A static variable is unique for the class and all instances.
 
-```php
+```php linenums="1"
 class ClassName {
 
     public static $var;
@@ -636,7 +636,7 @@ $obj::$var;  // access to the static variable
 
 Parameters of the dependency can be modified before passing the required class to the constructor.
 
-```php
+```php linenums="1"
 class ClassName
 {
     private $dependency;
@@ -653,7 +653,7 @@ class ClassName
 If a class is defined `final` it can't be extended.
 If a function is declared `final` it can't be overridden.
 
-```php
+```php linenums="1"
 class Child extends Parent
 {
     public __construct() {
@@ -666,7 +666,7 @@ class Child extends Parent
 
 Abstract classes cannot be instantiated;
 
-```php
+```php linenums="1"
 abstract class ClassName
 {
     # code here
@@ -679,7 +679,7 @@ An interface is a "contract" that defines what methods the implementing classes 
 
 A class can implement multiple interfaces but there must be no methods in common between interface to avoid ambiguity.
 
-```php
+```php linenums="1"
 interface InterfaceName {
 
     // it is possible to define __construct
@@ -703,7 +703,7 @@ It can be used to mitigate the problem of _multiple inheritance_, which is absen
 
 In case of functions name conflict it's possible to use `insteadof` to specify which function to use. It's also possible to use an _alias_ to resolve the conflicts.
 
-```php
+```php linenums="1"
 trait TraitName {
     // code here
 }
@@ -716,7 +716,7 @@ class ClassName {
 
 ### Anonymous Classes
 
-```php
+```php linenums="1"
 $obj = new ClassName;
 
 $obj->method(new class implements Interface {
@@ -728,7 +728,7 @@ $obj->method(new class implements Interface {
 
 ## Serialization & JSON
 
-```php
+```php linenums="1"
 $serialized = serialize($obj);  # serialization
 $obj = unserialize($serialized);  # de-serialization
 
@@ -740,7 +740,7 @@ $json = json_encode($value);  # Returns a string containing the JSON representat
 
 ### Read/Write on Files
 
-```php
+```php linenums="1"
 file(filename);  // return file lines in an array
 
 // problematic with large files (allocates memory to read all file, can fill RAM)
@@ -750,7 +750,7 @@ file_get_contents(filename);  // read whole file
 
 ## Regular Expressions
 
-```php
+```php linenums="1"
 preg_match('/PATTERN/', string $subject, array $matches);  # returns 1 if the pattern matches given subject, 0 if it does not, or FALSE if an error occurred
 # $matches[0] = whole matched string
 # $matches[i] = i-th group of the regex
@@ -774,7 +774,7 @@ Supported hashing algrithms:
 - `joaat`
 - `haval128,3`, `haval160,3`, `haval192,3`, `haval224,3`, `haval256,3`, `haval128,4`, `haval160,4`, `haval192,4`, `haval224,4`, `haval256,4`, `haval128,5`, `haval160,5`, `haval192,5`, `haval224,5`, `haval256,5`
 
-```php
+```php linenums="1"
 hash($algorithm, $data);
 ```
 
@@ -804,7 +804,7 @@ Algorithms currently supported:
 - **time_cost** (integer) - Maximum amount of time it may take to compute the Argon2 hash. Defaults to PASSWORD_ARGON2_DEFAULT_TIME_COST.
 - **threads** (integer) - Number of threads to use for computing the Argon2 hash. Defaults to PASSWORD_ARGON2_DEFAULT_THREADS.
 
-```php
+```php linenums="1"
 password_hash($password, $algorithm);  # create a new password hash using a strong one-way hashing algorithm.
 password_verify($password, $hash);  # Verifies that a password matches a hash
 ```
@@ -817,17 +817,17 @@ Types of PHP errors:
 - **Warning**: generated at runtime, does not stop the execution (non-blocking).
 - **Notice**: informative errors or messages, non-blocking.
 
-```php
+```php linenums="1"
 $a = new StdClass()
 $a->foo();  // PHP Fatal Error: foo() does not exist
 ```
 
-```php
+```php linenums="1"
 $a = 0;
 echo 1/$a;  // PHP Warning: Division by zero
 ```
 
-```php
+```php linenums="1"
 echo $a;  // PHP Notice: $a undefined
 ```
 
@@ -837,7 +837,7 @@ echo $a;  // PHP Notice: $a undefined
 
 Its possible to configure PHP to signal only some type of errors. Errors below a certain levels are ignored.
 
-```php
+```php linenums="1"
 error_reporting(E_<type>);  // set error report threshold (for log file)
 // does not disable PARSER ERROR
 
@@ -847,7 +847,7 @@ ini_set("error_log", "path\\error.log");  // set log file
 
 ### Triggering Errors
 
-```php
+```php linenums="1"
 // generate E_USER_ errors
 trigger_error("message");  // default type: E_USER_NOTICE
 trigger_error("message", E_USER_<Type>);
@@ -859,7 +859,7 @@ trigger_error("Deprecated Function", E_USER_DEPRECATED);
 
 It's possible to use log files unrelated to the php log file.
 
-```php
+```php linenums="1"
 error_log("message", 3, "path\\log.log");  // write log message to a specified file
 
 //example
@@ -870,7 +870,7 @@ error_log(sprintf("[%s] Error: _", date("Y-m-d h:i:s")), 3, "path\\log.log")
 
 PHP offers the possibility to handle errors with the _exception model_.
 
-```php
+```php linenums="1"
 try {
     // dangerous code
 } catch(ExceptionType1 | ExceptionType2 $e) {
@@ -884,7 +884,7 @@ throw new ExceptionType("message");  // throw an exception
 
 All exceptions in PHP implement the interface `Throwable`.
 
-```php
+```php linenums="1"
 Interface Throwable {
     abstract public string getMessage ( void )
     abstract public int getCode ( void )
@@ -899,7 +899,7 @@ Interface Throwable {
 
 ### Custom Exceptions
 
-```php
+```php linenums="1"
 /**
  * Define a custom exception class
  */
