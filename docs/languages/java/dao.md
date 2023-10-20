@@ -4,7 +4,7 @@
 
 Connection to the DB.
 
-```java
+```java linenums="1"
 package dao;
 
 import java.sql.Connection;
@@ -51,7 +51,7 @@ public class DB {
 
 Interface for CRUD methods on a database.
 
-```java
+```java linenums="1"
 package dao;
 
 import java.sql.SQLException;
@@ -69,7 +69,7 @@ public interface I<Type>DAO {
 
 Class implementing `I<Type>DAO` and handling the communication with the db.
 
-```java
+```java linenums="1"
 package dao;
 
 import java.sql.ResultSet;

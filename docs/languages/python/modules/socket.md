@@ -9,7 +9,7 @@ In this context, sockets are assumed to be associated with a specific socket add
 
 ## Socket Creation & Connection
 
-```python
+```python linenums="1"
 import socket
 
 # socket over the internet, socket is a stream of data
@@ -21,7 +21,7 @@ socket.close()  # close connection
 
 ## Making HTTP Requests
 
-```python
+```python linenums="1"
 import socket
 HTTP_Method = "GET http://url/resource HTTP/version\n\n".encode()  # set HTTP request (encoded string from UTF-8 to bytes)
 socket.send(HTTP_Method)   # make HTTP request

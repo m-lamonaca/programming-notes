@@ -18,7 +18,7 @@ The component class is usually written in the form of a Razor markup page with a
 
 [Blazor Components](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/)
 
-```cs
+```cs linenums="1"
 @page "/route/{RouteParameter}"  // make component accessible from a URL
 @page "/route/{RouteParameter?}"  // specify route parameter as optional
 @page "/route/{RouteParameter:<type>}"  // specify route parameter type
@@ -59,7 +59,7 @@ The component class is usually written in the form of a Razor markup page with a
 
 It's now possible to pass state when navigating in Blazor apps using the `NavigationManager`.
 
-```cs
+```cs linenums="1"
 navigationManager.NavigateTo("/<route>", new NavigationOptions { HistoryEntryState = value });
 ```
 
@@ -67,12 +67,12 @@ This mechanism allows for simple communication between different pages. The spec
 
 ### Blazor WASM
 
-```cs
+```cs linenums="1"
 // setup state singleton
 builder.Services.AddSingleton<StateContainer>();
 ```
 
-```cs
+```cs linenums="1"
 // StateContainer singleton
 using System;
 
@@ -96,7 +96,7 @@ public class StateContainer
 }
 ```
 
-```cs
+```cs linenums="1"
 // component that changes the state
 @inject StateContainer State
 
@@ -113,7 +113,7 @@ public class StateContainer
 }
 ```
 
-```cs
+```cs linenums="1"
 // component that should be update on state change
 @implements IDisposable
 @inject StateContainer State
@@ -139,7 +139,7 @@ public class StateContainer
 
 ## Data Binding & Events
 
-```cs
+```cs linenums="1"
 <p>
     <button @on{DOM EVENT}="{DELEGATE}" />
     <button @on{DOM EVENT}="{DELEGATE}" @on{DOM EVENT}:preventDefault />  // prevent default action
@@ -186,7 +186,6 @@ public class StateContainer
 ```
 
 > **Note**: When a user provides an unparsable value to a data-bound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
-
 > **Note**: The `@bind:get` and `@bind:set` modifiers are always used together.  
 > `The @bind:get` modifier specifies the value to bind to and the `@bind:set` modifier specifies a callback that is called when the value changes
 
@@ -199,7 +198,7 @@ public class StateContainer
 
 To render a Blazor component from JavaScript, first register it as a root component for JavaScript rendering and assign it an identifier:
 
-```cs
+```cs linenums="1"
 // Blazor Server
 builder.Services.AddServerSideBlazor(options =>
 {
@@ -212,7 +211,7 @@ builder.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
 
 Load Blazor into the JavaScript app (`blazor.server.js` or `blazor.webassembly.js`) and then render the component from JavaScript into a container element using the registered identifier, passing component parameters as needed:
 
-```js
+```js linenums="1"
 let containerElement = document.getElementById('my-counter');
 await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
 ```
@@ -224,6 +223,6 @@ Custom elements use standard HTML interfaces to implement custom HTML elements.
 
 To create a custom element using Blazor, register a Blazor root component as custom elements like this:
 
-```cs
+```cs linenums="1"
 options.RootComponents.RegisterAsCustomElement<Counter>("my-counter");
 ```

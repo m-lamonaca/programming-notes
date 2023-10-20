@@ -5,7 +5,7 @@
 
 ## xUnit
 
-```cs
+```cs linenums="1"
 using System;
 using Xunit;
 
@@ -37,7 +37,7 @@ For context cleanup, add the `IDisposable` interface to the test class, and put 
 
 ## Mocking with Moq
 
-```cs
+```cs linenums="1"
 var mockObj = new Mock<MockedType>();
 
 mockObj.Setup(m => m.Method(It.IsAny<InputType>())).Returns(value);

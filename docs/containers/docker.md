@@ -63,7 +63,7 @@ VMs incur a lot of overhead beyond what is being consumed by your application lo
 
 ### [`docker run`](https://docs.docker.com/engine/reference/commandline/run/)
 
-```sh
+```sh linenums="1"
 docker run <image>  # run selected app inside a container (downloaded from Docker Hub if missing from image)
 docker run -d|--detach <image>  # run docker container in the background (does not occupy stdout & stderr)
 docker run -i|--interactive <image>  # run docker container in interactive mode (read stdin)
@@ -80,7 +80,7 @@ docker run --name=<container_name> <image>  # set container name
 
 ### [`docker container`](https://docs.docker.com/engine/reference/commandline/container/)
 
-```sh
+```sh linenums="1"
 docker container ls  # list of currently running containers
 docker container ls -a|--all  # list of all containers, running and exited
 docker container rm <container>  # remove one or more containers
@@ -97,7 +97,7 @@ docker container exec <container> <command>  # exec a command inside a container
 
 ### [`docker image`](https://docs.docker.com/engine/reference/commandline/image/)
 
-```sh
+```sh linenums="1"
 docker image ls  # list of existing images
 docker image rm <image>  # remove one or more images
 docker image prune <image>  # remove unused images
@@ -106,20 +106,20 @@ docker image pull <image>  # download an image w/o starting the container
 
 ### [`docker build`](https://docs.docker.com/engine/reference/commandline/build/)
 
-```sh
+```sh linenums="1"
 docker build -t <tag> -f <dockerfile> <context>  # build image with specific tag (usually user/app:version)
 docker build -t <tag> -f <dockerfile> --build-arg ARG=value <context>  # pass args to ARG steps
 ```
 
 ### [`docker push`](https://docs.docker.com/engine/reference/commandline/push/)
 
-```sh
+```sh linenums="1"
 docker push <image>  # publish image to registry (defaults to Docker Hub)
 ```
 
 ## [Dockerfile](https://docs.docker.com/engine/reference/builder/)
 
-```docker
+```docker linenums="1"
 # starting image or scratch
 FROM <base_image>:<tag>
 
@@ -149,7 +149,7 @@ ENTRYPOINT <executable> <arg1> <arg2>
 
 ### `CMD` vs `ENTRYPOINT`
 
-`CMD` is used to provide all the default scenarios which can be overridden. _Anything_ defined in CMD can be overridden by passing arguments in `docker run` command.
+`CMD` is used to provide all the default scenarios which can be overridden. *Anything* defined in CMD can be overridden by passing arguments in `docker run` command.
 
 `ENTRYPOINT` is used to define a specific executable (and it's arguments) to be executed during container invocation which cannot be overridden.  
 The user can however define arguments to be passed in the executable by adding them in the `docker run` command.
@@ -160,7 +160,7 @@ With multi-stage builds, it's possible to use multiple `FROM` statements in the 
 
 It's possible to selectively copy artifacts from one stage to another, leaving behind everything not wanted in the final image.
 
-```docker
+```docker linenums="1"
 FROM <base_image>:<tag> AS <runtime_alias>
 RUN <command>  # install external dependencies (apt get ...)
 
@@ -186,7 +186,7 @@ COPY --from=<build_alias|stage_number> <src> <dir_in_container>
 CMD ["executable"]  # run app
 ```
 
-```docker
+```docker linenums="1"
 FROM mcr.microsoft.com/dotnet/<runtime|aspnet>:<alpine_tag> AS runtime
 RUN <command>  # install external dependencies (apt get ...)
 
@@ -219,7 +219,7 @@ ENTRYPOINT ["dotnet", "<project>.dll"]
 
 Starting container networks: `bridge` (default), `none`, `host`.
 
-```sh
+```sh linenums="1"
 docker run <image> --network=none/host  # specify a non-default network to be used
 docker network ls  # list all available networks
 ```
@@ -233,7 +233,7 @@ None: Containers are not attached to a network and cannot access other container
 
 ## User-defined Networks
 
-```sh
+```sh linenums="1"
 docker network create \
   --driver NETWORK_TYPE \
   --subnet GATEWAY_TP/SUBNET_MASK_SIZE 
@@ -250,7 +250,7 @@ Docker has an internal DNS that allows finding other container by their name ins
 
 ## File System
 
-```sh
+```sh linenums="1"
 /var/lib/docker
 |_<storage_driver>
 |_containers
@@ -270,7 +270,7 @@ To modify a file during while the container runs docker creates a local copy in 
 **volume mounting**: create a volume under the docker installation folder (`/var/lib/docker/volumes/`).
 **bind mounting**: link docker to an exiting folder to be used as a volume.
 
-```sh
+```sh linenums="1"
 docker run -v <existing_dir>:<container_dir> <image>:<tag>  # older command for bind mounting
 docker run --mount type=bind, source=:<existing_dir>, target=<container_dir> <image>:<tag>  # modern command for bind mounting
 ```
@@ -287,7 +287,7 @@ Using Compose is basically a three-step process:
 2. Define the services that make up your app in `docker-compose.yml` so they can be run together in an isolated environment.
 3. Run `docker-compose up` and Compose starts and runs the entire app.
 
-```yaml
+```yaml linenums="1"
 version: 3.x
 services:
   <service_name>:

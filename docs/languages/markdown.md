@@ -2,7 +2,7 @@
 
 ## Headings
 
-```markdown
+```markdown linenums="1"
 Heading 1
 =========
 
@@ -16,7 +16,7 @@ Heading 2
 
 ## Text Formatting
 
-```markdown
+```markdown linenums="1"
 *Italic*    _Italic_
 **Bold**    __Bold__
 
@@ -25,7 +25,7 @@ Heading 2
 
 ## Links & Images
 
-```markdown
+```markdown linenums="1"
 [link text](http://b.org "title")
 
 [link text][anchor]
@@ -37,7 +37,7 @@ Heading 2
 [anchor]: http://url/b.jpg "title"
 ```
 
-```markdown
+```markdown linenums="1"
 > Blockquote
 
 * unordered list        - unordered list
@@ -54,16 +54,16 @@ Heading 2
 
 ### Horizontal rule
 
-```markdown
+```markdown linenums="1"
 ---                     ***
 ```
 
 ## Code
 
-```markdown
+```markdown linenums="1"
 `inline code`
 
-    ```lang
+    ```lang linenums="1"
     multi-line
     code block
     ```
@@ -71,7 +71,7 @@ Heading 2
 
 ## Table
 
-```markdown
+```markdown linenums="1"
 | column label | column label | column label  |
 |:-------------|:------------:|--------------:|
 | left-aligned | centered     | right-aligned |

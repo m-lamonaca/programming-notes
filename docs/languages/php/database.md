@@ -8,7 +8,7 @@ PDO is the PHP extension for database access through a single API. It supports v
 
 ### Database Connection
 
-```php
+```php linenums="1"
 $dsn = "mysql:dbname=<dbname>;host=<ip>";
 $user="<db_user>";
 $password="<db_password>";
@@ -25,7 +25,7 @@ try {
 
 To execute a query it's necessary to "prepare it" with *parameters*.
 
-```php
+```php linenums="1"
 # literal string with markers
 $sql = 'SELECT fields
 FROM tables
@@ -44,7 +44,7 @@ $result = $stmt->fetchAll(PDO::FETCH_CLASS, ClassName::class);  # result as obje
 
 ### Parameter Binding
 
-```php
+```php linenums="1"
 # bindValue
 $stmt = pdo->prepare(sql);
 $stmt->bindValue(':marker', value, PDO::PARAM_<type>);
@@ -64,7 +64,7 @@ Its possible to disable this behaviour setting `PDO::ATTR_STRINGIFY_FETCHES` and
 
 > **Note**: `FETCH_OBJ` abd `FETCH_CLASS` return classes and don't have this behaviour.
 
-```php
+```php linenums="1"
 pdo->setAttribute()
 
 $pdo->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
@@ -77,7 +77,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ### PDO Debug
 
-```php
+```php linenums="1"
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':marker' => value]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -87,7 +87,7 @@ $stmt->debugDumpParams();  # print the SQL query that has been sent to the datab
 
 ## [SQLite3](https://www.php.net/manual/en/book.sqlite3.php)
 
-```php
+```php linenums="1"
 $db = SQLite3("db_file.sqlite3");  // connection
 
 $stmt = $db->prepare("SELECT fields FROM tables WHERE field <operator> :marker");  // prepare query

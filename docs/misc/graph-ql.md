@@ -14,7 +14,7 @@ A GraphQL service is created by defining types and fields on those types, then p
 
 The most basic components of a GraphQL schema are object types, which just represent a kind of object fetchable from the service, and what fields it has.
 
-```graphql
+```graphql linenums="1"
 type Type {
   field: Type
   field: Type!  # non-nullable type
@@ -29,7 +29,7 @@ Every field on a GraphQL object type can have zero or more arguments. All argume
 
 Arguments can be either *required* or *optional*. When an argument is optional, it's possible to define a default value.
 
-```graphql
+```graphql linenums="1"
 type Type {
   field: Type,
   field(namedArg: Type = defaultValue): Type
@@ -55,7 +55,7 @@ GraphQL comes with a set of default scalar types out of the box:
 
 In most GraphQL service implementations, there is also a way to specify custom scalar types.
 
-```graphql
+```graphql linenums="1"
 scalar ScalarType
 ```
 
@@ -70,7 +70,7 @@ This allows to:
 1. Validate that any arguments of this type are one of the allowed values
 2. Communicate through the type system that a field will always be one of a finite set of values
 
-```graphql
+```graphql linenums="1"
 enum Type{
   VALUE,
   VALUE,
@@ -97,7 +97,7 @@ Like many type systems, GraphQL supports interfaces. An Interface is an abstract
 
 Interfaces are useful when returning an object or set of objects, but those might be of several different types.
 
-```graphql
+```graphql linenums="1"
 interface Interface {
   fieldA: TypeA
   fieldB: TypeB
@@ -115,7 +115,7 @@ type Type implements Interface {
 
 Interfaces are useful when returning an object or set of objects, but those might be of several different types.
 
-```graphql
+```graphql linenums="1"
 union Union = TypeA | TypeB | TypeC
 ```
 
@@ -125,7 +125,7 @@ union Union = TypeA | TypeB | TypeC
 
 In the GraphQL schema language, input types look exactly the same as regular object types, but with the keyword input instead of type:
 
-```graphql
+```graphql linenums="1"
 input Input {
   field: Type,
   ...
@@ -141,7 +141,7 @@ Input object types also can't have arguments on their fields.
 
 ### Simple Query
 
-```graphql
+```graphql linenums="1"
 {
   field {  # root field
     ...  # payload
@@ -149,7 +149,7 @@ Input object types also can't have arguments on their fields.
 }
 ```
 
-```json
+```json linenums="1"
 {
   "data" : {
     "field": {
@@ -167,7 +167,7 @@ But in GraphQL, every field and nested object can get its own set of arguments, 
 
 It's aldo possible to pass arguments into scalar fields, to implement data transformations once on the server, instead of on every client separately.
 
-```graphql
+```graphql linenums="1"
 {
   fieldA(arg: value)  # filter results
   fieldB(arg: value)
@@ -177,7 +177,7 @@ It's aldo possible to pass arguments into scalar fields, to implement data trans
 
 ### Aliases
 
-```graphql
+```graphql linenums="1"
 {
   aliasA: field(arg: valueA) {
     field
@@ -193,7 +193,7 @@ It's aldo possible to pass arguments into scalar fields, to implement data trans
 Fragments allow to construct sets of fields, and then include them in queries where that are needed.
 The concept of fragments is frequently used to split complicated application data requirements into smaller chunks.
 
-```graphql
+```graphql linenums="1"
 {
   aliasA: field(arg: valueA) {
     ...fragment
@@ -214,7 +214,7 @@ fragment fragment on Type {
 
 It is possible for fragments to access variables declared in the query or mutation.
 
-```graphql
+```graphql linenums="1"
 query Query($var: Type = value) {
     aliasA: field(arg: valueA) {
   ...fragment
@@ -240,7 +240,7 @@ The *operation type* is either `query`, `mutation`, or `subscription` and descri
 
 The *operation name* is a meaningful and explicit name for the operation. It is only required in multi-operation documents, but its use is encouraged because it is very helpful for debugging and server-side logging. When something goes wrong it is easier to identify a query in the codebase by name instead of trying to decipher the contents.
 
-```graphql
+```graphql linenums="1"
 query Operation {
   ...
 }
@@ -254,7 +254,7 @@ When  working with variables, three things need to be done:
 2. Declare `$variableName` as one of the variables accepted by the query
 3. Pass `variableName: value` in the separate, transport-specific (usually JSON) variables dictionary
 
-```graphql
+```graphql linenums="1"
 query Operation($var: Type = defaultValue) {
   field(arg: $var) {
     field
@@ -288,7 +288,7 @@ Operations of mutations:
 - **Updating** existing data
 - **Deleting** existing data
 
-```graphql
+```graphql linenums="1"
 mutation Operation {
   createObject(arg: value, ...) {
     field
@@ -301,7 +301,7 @@ mutation Operation {
 
 Open a stable connection with the server to receive real-time updates on the operations happening.
 
-```graphql
+```graphql linenums="1"
 subscription Operation {
   event {  # get notified when event happens
     field  # data received on notification
@@ -314,7 +314,7 @@ subscription Operation {
 
 If you are querying a field that returns an interface or a union type, you will need to use inline fragments to access data on the underlying concrete type. Named fragments can also be used in the same way, since a named fragment always has a type attached.
 
-```graphql
+```graphql linenums="1"
 query Operation($var: Type) {
     field(arg: $var) {  # interface of union
   field
@@ -332,7 +332,7 @@ query Operation($var: Type) {
 
 GraphQL allows to request `__typename`, a meta field, at any point in a query to get the name of the object type at that point.
 
-```graphql
+```graphql linenums="1"
 {
     field(arg: value) {
   __typename
@@ -357,7 +357,7 @@ If a field produces a scalar value like a string or number, then the execution c
 
 At the top level of every GraphQL server is a type that represents all of the possible entry points into the GraphQL API, it's often called the *Root* type or the *Query* type.
 
-```graphql
+```graphql linenums="1"
 # root types for entry-points
 
 type Query {

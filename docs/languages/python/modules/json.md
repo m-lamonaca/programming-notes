@@ -34,7 +34,7 @@ WHITESPACE can be inserted between any pair of tokens.
 
 ## Usage
 
-```python
+```python linenums="1"
 
 # serialize obj as JSON formatted stream to fp
 json.dump(obj, fp, cls=None, indent=None, separators=None, sort_keys=False)
@@ -90,7 +90,7 @@ Conversions (Python -> Json):
 
 ## Extending JSONEncoder (Example)
 
-```python
+```python linenums="1"
 import json
 
 class ComplexEncoder(json.JSONEncoder):
@@ -103,7 +103,7 @@ class ComplexEncoder(json.JSONEncoder):
 
 ## Retrieving Data from json dict
 
-```python
+```python linenums="1"
 data = json.loads(json)
 data["key"]  # retrieve the value associated with the key
 data["outer key"]["nested key"]  # nested key value retrieval

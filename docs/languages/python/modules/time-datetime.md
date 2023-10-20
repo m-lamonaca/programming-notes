@@ -2,7 +2,7 @@
 
 ## Time
 
-```py
+```py linenums="1"
 # epoch: elapsed time in seconds (in UNIX starts from 01-010-1970)
 import time # UNIX time
 variable = time.time () # returns the time (in seconds) elapsed since 01-01-1970
@@ -42,7 +42,7 @@ var = time.perf_counter () # returns the current running time
 
 ## Datetime
 
-```py
+```py linenums="1"
 import datetime
 today = datetime.date.today () # returns current date
 today = datetime.datetime.today () # returns the current date and time

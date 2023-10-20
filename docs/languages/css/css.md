@@ -4,7 +4,7 @@
 
 ### Inline CSS
 
-```html
+```html linenums="1"
 <tag style="property:value"></tag>
 ```
 
@@ -14,7 +14,7 @@ Not recommended except in cases where choices are constrained.
 
 ### Embedded CSS
 
-```html
+```html linenums="1"
 <head>
     <style>
         selector {
@@ -40,7 +40,7 @@ Not Recommended, only use when the number of rules is small and there are constr
 
 ### External CSS
 
-```html
+```html linenums="1"
 <head>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -54,7 +54,7 @@ Easier to maintain, especially in larger projects.
 
 The selector points to the html element to style.
 
-```css
+```css linenums="1"
 selector {property: value; property: value}
 
 selector {
@@ -65,7 +65,7 @@ selector {
 
 ### Multiple Selectors
 
-```css
+```css linenums="1"
 selector1, selector2 {property: value;}
 ```
 
@@ -73,7 +73,7 @@ selector1, selector2 {property: value;}
 
 Used to select tags nested inn other tags.
 
-```css
+```css linenums="1"
 outerSelector innerSelector {property: value;}
 ```
 
@@ -81,7 +81,7 @@ outerSelector innerSelector {property: value;}
 
 Should apply to one element on a page.
 
-```css
+```css linenums="1"
 #selector {property: value;}    /* selects <tag id="selector"> */
 ```
 
@@ -89,13 +89,13 @@ Should apply to one element on a page.
 
 Many elements can have the same class, classes are used to group HTML elements together.
 
-```css
+```css linenums="1"
 .selector {property: value;}    /* selects <tag class="selector"> */
 ```
 
 ### Universal Selector
 
-```css
+```css linenums="1"
 * {property: value;}    /* selects every HTML element */
 ```
 
@@ -107,11 +107,11 @@ A CSS selector  can contain more than one basic selector.
 
 Selects an element that resides anywhere within an identified ancestor element.
 
-```css
+```css linenums="1"
 article h2 { property: value; }
 ```
 
-```html
+```html linenums="1"
 <!-- Will NOT match -->
 <h2>title</h2>
 <article>
@@ -128,11 +128,11 @@ article h2 { property: value; }
 
 Selects an elements that resides immediately inside an identified parent element.
 
-```css
+```css linenums="1"
 article > p { property: value; }
 ```
 
-```html
+```html linenums="1"
 <!-- Will NOT match -->
 <p>Lorem ipsum dolor sit amet</p>
 <article>
@@ -150,11 +150,11 @@ article > p { property: value; }
 Selects an element that follows anywhere after the prior element.  
 Both elements share the same parent.
 
-```css
+```css linenums="1"
 h2 ~ p { property: value; }
 ```
 
-```html
+```html linenums="1"
 <section>
     <!-- Will NOT match -->
     <p>Lorem ipsum dolor sit amet</p>
@@ -177,11 +177,11 @@ h2 ~ p { property: value; }
 Selects an element that follows directly after the prior element.  
 Both elements share the same parent.
 
-```css
+```css linenums="1"
 h2 + p { property: value; }
 ```
 
-```html
+```html linenums="1"
 <section>
     <!-- Will NOT match -->
     <p>Lorem ipsum dolor sit amet</p>
@@ -209,7 +209,7 @@ Select elements based on whether an attribute is present and what it's value may
 
 `a[target]{ property: value; }` will match
 
-```html
+```html linenums="1"
 <a href="#" target="_blank">click here</a>
 ```
 
@@ -217,7 +217,7 @@ Select elements based on whether an attribute is present and what it's value may
 
 `a[href="https://google.com"] { property: value; }` will match
 
-```html
+```html linenums="1"
 <a href="http://google.com/">search on google</a>
 ```
 
@@ -225,7 +225,7 @@ Select elements based on whether an attribute is present and what it's value may
 
 `a[href*="login"] { property: value; }` will match
 
-```html
+```html linenums="1"
 <a href="/login.php">login page</a>
 ```
 
@@ -233,7 +233,7 @@ Select elements based on whether an attribute is present and what it's value may
 
 `a[href^="Https://"] { property: value; }` will match
 
-```html
+```html linenums="1"
 <a href="https://www.bbc.com/">The BBC</a>
 ```
 
@@ -241,7 +241,7 @@ Select elements based on whether an attribute is present and what it's value may
 
 `a[href$=".pdf"] { property: value; }`
 
-```html
+```html linenums="1"
 <!-- WILL match -->
 <a href="/docs/menu.pdf">download menu</a>
 <!-- Will NOT match -->
@@ -252,7 +252,7 @@ Select elements based on whether an attribute is present and what it's value may
 
 `img[alt~="child"] { property: value; }`
 
-```html
+```html linenums="1"
 <!-- WILL match -->
 <img src="child.jpg" alt='a small child'>
 <!-- Will NOT match -->
@@ -265,7 +265,7 @@ Select elements based on whether an attribute is present and what it's value may
 
 `p[lang|="en"] { property: value; }`
 
-```html
+```html linenums="1"
 <!-- WILL match -->
 <p lang="en">English</p>
 <!-- WILL match -->
@@ -278,7 +278,7 @@ Select elements based on whether an attribute is present and what it's value may
 
 Pseudo-classes can style elements based on their current state. They must be specified after the base case.
 
-```css
+```css linenums="1"
 selector:pseudo-class { property: value; }
 ```
 
@@ -337,7 +337,7 @@ When used within selectors allow unique parts of the page to be stylized. Only o
 `selector::after {...}` creates a pseudo-element after, or behind, the selected element.  
 **These pseudo-elements appear nested within the selected element, not outside of it.**
 
-```css
+```css linenums="1"
 a::after/before {
     property: value;
     content: " (" attr(attribute_name) ")";
@@ -385,7 +385,7 @@ a::after/before {
 
 The color property changes the color of the text,
 
-```css
+```css linenums="1"
 selector {
     color: color-name;
     color: #<hex-digits>;
@@ -401,7 +401,7 @@ selector {
 - All background definitions are optional, but at least one must be stated
 - Default values are given to background if some are not defined
 
-```css
+```css linenums="1"
 selector {
     background:
          url('texture.jpg') /* image */
@@ -454,7 +454,7 @@ Specifies whether the background image should scroll with the page or be fixed
 
 The font family defines which font is used. When listing multiple fonts, always  list a generic name last.
 
-```css
+```css linenums="1"
 selector {
     /* specific font name */
     font-family: "Font Name";
@@ -473,14 +473,14 @@ selector {
 
 In `page.html`:
 
-```html
+```html linenums="1"
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=FontFamily&display=swap">
 ```
 
 In `style.css`:
 
-```css
+```css linenums="1"
 selector {
     font-family: 'Font Name';
 }
@@ -488,7 +488,7 @@ selector {
 
 ### Font Size
 
-```css
+```css linenums="1"
 selector {
     font-size: 11px;  /* pixels */
     font-size: 1.5em;
@@ -498,7 +498,7 @@ selector {
 
 ### Fonts (shorthand)
 
-```css
+```css linenums="1"
 selector {
     font-style: italic;
     font-weight: bold;
@@ -514,7 +514,7 @@ selector {
 
 ### Text Decoration & Text Align
 
-```css
+```css linenums="1"
 selector {
     text-decoration: line color style thickness;
     text-align: alignment;
@@ -544,7 +544,7 @@ selector {
 Sets the width of a block-level element or img; does not work for inline elements (unless their display property is changed).  
 Accepts a variety of length units.
 
-```css
+```css linenums="1"
 selector {
     width: 200px;
     width: 20em ;   /* relative to font size */
@@ -558,7 +558,7 @@ selector {
 Sets the height of a block-level element or img; does not work for inline elements (unless their display property is changed).  
 Accepts a variety of length units.
 
-```css
+```css linenums="1"
 selector {
     height: 200px;
     height: 20em ;    /* relative to font size */
@@ -571,7 +571,7 @@ selector {
 
 The aspect-ratio  CSS property sets a preferred aspect ratio for the box, which will be used in the calculation of auto sizes and some other layout functions.
 
-```css
+```css linenums="1"
 selector {
     aspect-ratio: <width> / <height>;
 }
@@ -583,7 +583,7 @@ Set upper or lower limits to the size of elements.
 An element cannot be smaller than its `min-width` or `min-height`.  
 An element cannot be larger than its `max-width` or `max-height`.
 
-```css
+```css linenums="1"
 selector {
     max-width: 100%;    /* may be no wider than the containing element */
     width: 30%;    /* will be 30% of the width of the containing element */
@@ -613,7 +613,7 @@ Only use `!important` when:
 - overriding foreign CSS (e.g. from a library)
 - overriding inline CSS
 
-```css
+```css linenums="1"
 selector[style*="property:value"] {
     property: value !important;
 }
@@ -652,7 +652,7 @@ Space between the border and the content.
 
 It's possible to specify the padding for each side of the element:
 
-```css
+```css linenums="1"
 selector {
     padding-top: 15px;
     padding-right: 10%;
@@ -663,7 +663,7 @@ selector {
 
 #### Padding shortcuts
 
-```css
+```css linenums="1"
 selector {
     padding: top right bottom left;  /* Four values (TRBL) */
     padding: top right/left bottom;  /* Three values (T/TL/B) */
@@ -678,7 +678,7 @@ selector {
 
 Borders are specified as "thickness, style, color".
 
-```css
+```css linenums="1"
 selector {
     border-width: 10px;
     border-style: dashed;
@@ -690,7 +690,7 @@ selector {
 
 #### Border shortcuts
 
-```css
+```css linenums="1"
 selector {
     border: thickness style color;
 }
@@ -702,7 +702,7 @@ selector {
 
 Defines whether the width and height (and min/max) of an element should include padding and borders or not.
 
-```css
+```css linenums="1"
 selector {
     box-sizing: content-box;    /* Border and padding are not included */
     box-sizing: border-box;    /* Include the content, padding and border */
@@ -713,7 +713,7 @@ selector {
 
 Universal Box Sizing with Inheritance
 
-```css
+```css linenums="1"
 html {
     box-sizing: border-box;
 }
@@ -730,7 +730,7 @@ Transparent area around the box that separates it from other elements.
 
 It's possible to specify the margin for each side of the element:
 
-```css
+```css linenums="1"
 selector {
     padding-top: 15px;
     padding-right: 10%;
@@ -741,7 +741,7 @@ selector {
 
 #### Margin shortcuts
 
-```css
+```css linenums="1"
 selector {
     margin: top right bottom left;  /* Four values (TRBL) */
     margin: top right/left bottom;  /* Three values (T/TL/B) */
@@ -756,7 +756,7 @@ selector {
 
 If a margin is set to auto on a box that has width it will take up as much space as possible.
 
-```css
+```css linenums="1"
 selector {
     /* Centered */
     margin: 0 auto;
@@ -779,7 +779,7 @@ Top and bottom margins of near elements are collapsed into a single margin that 
 
 ### Display Property
 
-```css
+```css linenums="1"
 div {
     display: inline; /* Default of all elements, unless UA (user agent) stylesheet overrides */
     display: block; /* block is default for elements like <div> and <section>*/
@@ -841,7 +841,7 @@ It's possible to specify whether an element is floated or not and which side it 
 
 To place two block level elements to be side by side float both elements, one left and one right.
 
-```css
+```css linenums="1"
 .float-child-left {
     float: left;
     width: 200px;
@@ -862,7 +862,7 @@ appear.
 
 Clearing both ensures the element doesn't wrap next to floats on either side.
 
-```css
+```css linenums="1"
 selector {
     clear: right;
     clear: left;
@@ -879,7 +879,7 @@ Static elements ignore top, bottom, right, or left property specifications.
 In normal flow block elements flow from top to bottom making a new line after every element.
 In normal flow inline elements flow from left to right wrapping to next line when needed.
 
-```css
+```css linenums="1"
 selector {
     position: static;
 }
@@ -891,7 +891,7 @@ Takes the element out of the normal flow, allowing it to be moved in relation to
 Makes an element a "positioning context" in which to position other elements relative to it.  
 The relative value will still put the element in the normal flow, but then offset it according to top, bottom, right and left properties.
 
-```css
+```css linenums="1"
 selector {
     position: relative;
 }
@@ -904,7 +904,7 @@ An absolutely positioned element is offset from its container block, set with th
 Its container block is the first surrounding element that has any position other than static.  
 If no such element is found, the container block is `<html>`.
 
-```css
+```css linenums="1"
 selector {
     position: absolute;
 }
@@ -915,7 +915,7 @@ selector {
 The fixed value takes an element out of the normal flow, it positions it relative to the viewport.  
 Parent positioning will no longer affect fixed elements.
 
-```css
+```css linenums="1"
 selector {
     position: fixed;
 }
@@ -926,7 +926,7 @@ selector {
 Sticky positioning is a hybrid of relative and fixed positioning.  
 The element is treated as relative positioned until it crosses a specified threshold, at which point it is treated as fixed positioned.
 
-```css
+```css linenums="1"
 selector {
     position: sticky;
     position: -webkit-sticky;
@@ -945,7 +945,7 @@ When elements overlap, the order of overlapping can be changed with z-index:
 
 **Nesting is important**: if element *B* is on top of element *A*, a child of element *A* can never be higher than element *B*.
 
-```css
+```css linenums="1"
 selector {
     z-index: <int>;
 }
@@ -953,7 +953,7 @@ selector {
 
 ### [Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
 
-```css
+```css linenums="1"
 selector {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;  /* 3 equal columns */
@@ -970,7 +970,7 @@ The `clamp()` function can be used anywhere a `<length>`, `<frequency>`, `<angle
 
 clamp(MIN, VAL, MAX) is resolved as max(MIN, min(VAL, MAX))
 
-```css
+```css linenums="1"
 selector {
     length: clamp(MIN, VAL, MAX)  /* is resolved as max(MIN, min(VAL, MAX)) */
 }
@@ -978,7 +978,7 @@ selector {
 
 ### Var & Variables
 
-```css
+```css linenums="1"
 :root {
     /* define variables on :root element */
     --variable: value;
@@ -1094,7 +1094,7 @@ Some of the most common widths used:
 
 Example of *Bootstrap* (front-end framework) breakpoints:
 
-```css
+```css linenums="1"
 /* Extra small devices (portrait phones, less than 576px) */
 /* No media query for `xs` since this is the default in Bootstrap */
 /* Small devices (landscape phones, 576px and up) */
@@ -1133,7 +1133,7 @@ A media query is a logical expression: true or false; if a media query is true, 
 | `screen` | computer screens, tablets, smart-phones, etc |
 | `speech` | screen readers that "reads" the page out loud |
 
-```css
+```css linenums="1"
 @media type operator (feature) {
     selector {
         /* css rule */
@@ -1168,14 +1168,14 @@ A media query is a logical expression: true or false; if a media query is true, 
 
 It's possible to specify a media attribute in the link element. This applies a whole stylesheet when the condition is true. Possible to do but preferable to specify a single stylesheet with individual media queries.
 
-```html
+```html linenums="1"
 <link rel="stylesheet" media="screen and (min-width: 900px)" href="widescreen.css">
 <link rel="stylesheet" media="screen and (max-width: 600px)" href="smallscreen.css">
 ```
 
 It's also possible to have different stylesheets based on media type. This might make sense for some use cases.
 
-```html
+```html linenums="1"
 <link rel="stylesheet" type="text/css" href="screen.css" media="screen">
 <link rel="stylesheet" type="text/css" href="print.css" media="print">
 ```

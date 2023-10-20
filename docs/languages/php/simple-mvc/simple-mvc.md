@@ -6,18 +6,17 @@ This framework is mainly used as tutorial for introducing the Model-View-Control
 
 [php-di]: https://php-di.org/
 [fastroute]: https://github.com/nikic/FastRoute
-[psr7]:https://github.com/Nyholm/psr7
 [plates]: https://platesphp.com/
 
 ## Installation
 
-```ps1
+```ps1 linenums="1"
 composer create-project ezimuel/simple-mvc
 ```
 
 ## Structure
 
-```txt
+```txt linenums="1"
 |- config
 |  |- container.php --> DI Container Config (PHP-DI)
 |  |- route.php --> routing
@@ -35,7 +34,7 @@ composer create-project ezimuel/simple-mvc
 
 ### `index.php`
 
-```php
+```php linenums="1"
 <?php
 declare(strict_types=1);
 
@@ -99,7 +98,7 @@ $controller->execute($request);
 
 ### `route.php`
 
-```php
+```php linenums="1"
 <?php
 use SimpleMVC\Controller;
 
@@ -112,7 +111,7 @@ return [
 
 ### `container.php`
 
-```php
+```php linenums="1"
 <?php
 use League\Plates\Engine;
 use Psr\Container\ContainerInterface;
@@ -131,7 +130,7 @@ return [
 
 Each controller *must* implement this interface.
 
-```php
+```php linenums="1"
 <?php
 declare(strict_types=1);
 

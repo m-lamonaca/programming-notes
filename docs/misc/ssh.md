@@ -4,7 +4,7 @@
 
 ## Basics
 
-```sh
+```sh linenums="1"
 ssh user@destination <command> # exec <command> in remote machine ($SHELL if omitted)
 ssh user@destination -i <path/to/private-key>  # use key for auth
 ssh user@destination -f  # exec ssh in the background
@@ -19,7 +19,7 @@ ssh user@destination -t  # force pseudo-tty emulation
 
 Connect to the final destination jumping through the specifies other destinations.
 
-```sh
+```sh linenums="1"
 ssh -J user_1@destination_1,user_2@destination_2 user@final_destination
 ```
 
@@ -31,7 +31,7 @@ ssh -J user_1@destination_1,user_2@destination_2 user@final_destination
 
 Start listening on `local_address:local_port` and forward any traffic to `remote_address:remote_port`.
 
-```sh
+```sh linenums="1"
 ssh -N -f -L local_address:local_port:remote_address:remote_port user@destination
 ssh -N -f -L local_port:remote_address:remote_port user@destination  # local_address defaults to localhost
 ```
@@ -40,6 +40,6 @@ ssh -N -f -L local_port:remote_address:remote_port user@destination  # local_add
 
 Start listening on `remote_address:remote_port` and forward any traffic to `local_address:local_port`.
 
-```sh
+```sh linenums="1"
 ssh -N -f -R remote_address:remote_port:local_address:local_port user@destination
 ```

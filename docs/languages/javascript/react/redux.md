@@ -11,7 +11,7 @@ By convention, that information is stored in a field called `payload`.
 
 **Action Creators** are functions that create and return action objects.
 
-```js
+```js linenums="1"
 function actionCreator(data)
 {
     return { type: ACTION_TYPE, payload: data };  // action obj
@@ -30,7 +30,7 @@ The store will run its reducer function and save the new state value inside.
 
 In `initialState.js`;
 
-```js
+```js linenums="1"
 export default {
     // initial state here
 }
@@ -38,7 +38,7 @@ export default {
 
 In `configStore.js`:
 
-```js
+```js linenums="1"
 // configStore.js
 import { createStore, applyMiddleware, compose } from "redux";
 
@@ -71,7 +71,7 @@ Reducers must **always** follow some specific rules:
   Instead, they must make *immutable updates*, by copying the existing `state` and making changes to the copied values.
 - They must not do any asynchronous logic, calculate random values, or cause other "side effects"
 
-```js
+```js linenums="1"
 import initialState from "path/to/initialState";
 
 function reducer(state = initialState, action) {
@@ -118,7 +118,7 @@ Presentational Components:
 
 Used at the root component and wraps all the application.
 
-```js
+```js linenums="1"
 // index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -139,7 +139,7 @@ ReactDOM.render(
 );
 ```
 
-```js
+```js linenums="1"
 // Component.js
 import { connect } from 'react-redux';
 import { increment, decrement, reset } from './actionCreators';
@@ -183,7 +183,7 @@ A "thunk" is a function that wraps an expression to delay it's evaluation.
 
 In `configStore.js`:
 
-```js
+```js linenums="1"
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
@@ -199,7 +199,7 @@ function configStore(initialState) {
 }
 ```
 
-```js
+```js linenums="1"
 // usually action on async func success
 function actionCreator(arg) {
     return { type: TYPE, data: arg };
@@ -241,7 +241,7 @@ Using Create React App​
 
 The recommended way to start new apps with React and Redux is by using the official Redux+JS template or Redux+TS template for Create React App, which takes advantage of Redux Toolkit and React Redux's integration with React components.
 
-```sh
+```sh linenums="1"
 # Redux + Plain JS template
 npx create-react-app my-app --template redux
 
@@ -286,7 +286,7 @@ Included Default Middleware​:
 
 Currently, the return value of `getDefaultMiddleware()` is:
 
-```js
+```js linenums="1"
 // development
 const middleware = [thunk, immutableStateInvariant, serializableStateInvariant]
 
@@ -294,7 +294,7 @@ const middleware = [thunk, immutableStateInvariant, serializableStateInvariant]
 const middleware = [thunk]
 ```
 
-```js
+```js linenums="1"
 
 import { combineReducers } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
@@ -320,7 +320,7 @@ export default store
 
 ### [`createAction`](https://redux-toolkit.js.org/api/createAction)
 
-```js
+```js linenums="1"
 import { createAction } from '@reduxjs/toolkit';
 
 const increment = createAction<number | undefined>('counter/increment');
@@ -333,7 +333,7 @@ increment.toString();  // 'counter/increment'
 
 ### [`createReducer`](https://redux-toolkit.js.org/api/createReducer)
 
-```js
+```js linenums="1"
 import { createAction, createReducer } from '@reduxjs/toolkit'
 
 interface CounterState {
@@ -368,7 +368,7 @@ Internally, it uses `createAction` and `createReducer`, so it's possible to use 
 
 **Note**: action types will have the `<slice-name>/<reducer-name>` shape.
 
-```js
+```js linenums="1"
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface CounterState {
@@ -415,7 +415,7 @@ The `payloadCreator` function will be called with two arguments:
 
 The logic in the `payloadCreator` function may use any of these values as needed to calculate the result.
 
-```js
+```js linenums="1"
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const payloadCreator = async (arg, ThunkAPI): Promise<T> => { /* ... */ };
@@ -444,7 +444,7 @@ It is intended to simplify common cases for loading data in a web application, e
 
 RTK Query is included within the installation of the core Redux Toolkit package. It is available via either of the two entry points below:
 
-```cs
+```cs linenums="1"
 import { createApi } from '@reduxjs/toolkit/query'
 
 /* React-specific entry point that automatically generates hooks corresponding to the defined endpoints */

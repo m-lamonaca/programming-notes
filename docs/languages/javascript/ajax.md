@@ -14,7 +14,7 @@ AJAX Interaction:
 
 ## XMLHttpRequest
 
-```js
+```js linenums="1"
 var request = new XMLHttpRequest();
 
 request.addEventListener(event, function() {...});
@@ -39,7 +39,7 @@ To check the status use `XMLHttpRequest.status` and `XMLHttpRequest.statusText`.
 
 **Alternative `XMLHttpRequest` using `onLoad`**:
 
-```js
+```js linenums="1"
 var request = new XMLHttpRequest();
 request.open('GET', 'myservice/username?id=some-unique-id');
 request.onload = function(){
@@ -54,7 +54,7 @@ request.send();
 
 **Alternative `XMLHttpRequest` using `readyState`**:
 
-```js
+```js linenums="1"
 var request = new XMLHttpRequest(),  method ='GET',  url ='https://developer.mozilla.org/';
 
 request.open(method, url, true);
@@ -77,7 +77,7 @@ request.send();
 
 Old versions of IE don't implement XMLHttpRequest. You must use the ActiveXObject if XMLHttpRequest is not available
 
-```js
+```js linenums="1"
 var request =window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 
 // OR
