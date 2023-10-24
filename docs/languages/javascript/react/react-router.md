@@ -16,7 +16,7 @@ Router Types:
 - *BrowserRouter*: `/route`, uses HTML5 history API to provide clean URLs
 - *MemoryRouter*: no URL
 
-```js
+```js linenums="1"
 // index.js
 
 //other imports ...
@@ -31,7 +31,7 @@ React.render(
 )
 ```
 
-```js
+```js linenums="1"
 // Component.js
 import { Route, Route } from "react-router-dom";
 
@@ -52,7 +52,7 @@ import { Route, Route } from "react-router-dom";
 
 ### URL Parameters & Query String
 
-```js
+```js linenums="1"
 // Given
 <Route path="/route/:placeholder" element={<Component props={props} />} />
 // URL: app.com/route/sub-route?param=value
@@ -66,7 +66,7 @@ function Component(props) {
 
 ### Redirecting
 
-```js
+```js linenums="1"
 import { Navigate } from "react-router-dom";
 
 // redirects to another URL on render, shouldn't be rendered on component mount but after an action
@@ -80,7 +80,7 @@ props.history.push("/new-route");
 
 ### Prompts
 
-```js
+```js linenums="1"
 import { Prompt } from "react-router-dom";
 
 // displays a prompt when the condition is true
@@ -91,7 +91,7 @@ import { Prompt } from "react-router-dom";
 
 Clicks on a link created with React-Router will be captured by react an all the routing will happen client side.
 
-```js
+```js linenums="1"
 import { Link } from "react-router-dom";
 
 // TARGET: <Route path="/route/:itemId" />

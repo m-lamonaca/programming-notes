@@ -8,7 +8,7 @@ Class -> PascalCase
 Method, Function -> snake_case  
 Variable -> snake_case
 
-```py
+```py linenums="1"
 # standard comment
 '''multiline comment'''
 """DOCSTRING"""
@@ -38,7 +38,7 @@ string.whitespace
 
 ### Assignment Operation
 
-```py
+```py linenums="1"
 """instructions to the right of = executed before instructions to the left of ="""
 variable = expression # the type of the variable is dynamically decided by python based on the content
 var_1, var_2 = value1, value2 # parallel assignment
@@ -56,7 +56,7 @@ x = a or b # If bool (a) returns False, then x is assigned the value of b
 
 ### Expression Assignment
 
-```py
+```py linenums="1"
 (var: = expression) # assign an expression to a variable to avoid repeating the expression
 ```
 
@@ -67,7 +67,7 @@ x = a or b # If bool (a) returns False, then x is assigned the value of b
 
 ### On Screen Output
 
-```py
+```py linenums="1"
 print() # print blank line and wrap
 print('string' * n) # print string n times
 print('string1 \ n string2') # wrap with \ n
@@ -131,7 +131,7 @@ Format: `[[fill]align] [sign] [#] [width] [grouping] [.precision] [type]`
 
 ### Keyboard Input
 
-```py
+```py linenums="1"
 # input always returns a STRING
 s = input() # input request without message
 s = input('Prompt') # request input
@@ -144,7 +144,7 @@ list = [int(x) for x in input('prompt'). split('separator')]
 
 ## Numeric Types
 
-```py
+```py linenums="1"
 a = 77
 b = 1_000_000 # underscore can be used to separate groups of digits
 c = -69
@@ -189,7 +189,7 @@ It is worth checking if the difference between the numbers is small enough.
 
 ## Strings
 
-```py
+```py linenums="1"
 
 string = 'string content' # assignment and creation of string variable
 string = '''multi
@@ -266,7 +266,7 @@ string.center(width, 'char') # stretch the string with char to width
 
 ## Lists
 
-```py
+```py linenums="1"
 list = [9, 11, 'WTC', -5.6, True] # lists can contain data of different types
 
 list[3] # indexing
@@ -339,7 +339,7 @@ var = [(exp_1, exp_2) for item_1 in seq_1 for item_2 in seq_2] # -> [(..., ...),
 
 ## Tuple
 
-```py
+```py linenums="1"
 # TUPLES CANNOT BE MODIFIED
 tuple = (69, 420, 69, 'abc') # tuple assignment
 tuple = (44,) # single element tuples need a comma
@@ -370,7 +370,7 @@ var_1, * body, var_2, var_3 = sequence # var_1 = seq [0], body = seq [1: -2], va
 
 ## Set
 
-```py
+```py linenums="1"
 # SETS MAY NOT CONTAIN REPEATED ELEMENTS (THEY ARE OMITTED)
 # THE ORDER DOES NOT MATTER (NO SLICING, INDEXING, REPETITION, ...)
 set = {10, 20, 30, 'abc', 20}
@@ -426,7 +426,7 @@ var[i, ...] # -> shortcut for var [i,:,:,:,]
 
 ## Bytes e Bytearray
 
-```py
+```py linenums="1"
 # THE BYTES CANNOT BE MODIFIED OR INDEXED
 # THE BYTEARRAYS CAN BE MODIFIED AND INDEXED
 # YOU CANNOT DO REPETITION AND SLICING ON BYTE OR BYTEARRAY
@@ -453,7 +453,7 @@ Unicode Literals:
 - `\U00000041` --> 'A'
 - `\x41` --> 'A'
 
-```py
+```py linenums="1"
 # ENCODING
 # transform string into literal byte
 # UnicodeEncodeError on error
@@ -494,7 +494,7 @@ def fold_equal (str_1, str_2):
 
 ## Memoryview
 
-```py
+```py linenums="1"
 # memoryview objects allow python to access the data inside the object
 # without copy if it supports the buffer protocol
 v = memoryview(object) # create a memoryview with reference to object
@@ -538,7 +538,7 @@ v.shape # tuple of integers indicating the shape of the memoryview
 
 ## Dictionaries
 
-```py
+```py linenums="1"
 # SET OF KEY-VALUE PAIRS
 d = {1: 'Alex', 2: 'Bob', 3: 'Carl'}
 d = dict (one = 'Alex', two = 'Bob', three = 'Carl')
@@ -677,7 +677,7 @@ built-in objects considered *false*:
 
 ### `if-else`
 
-```py
+```py linenums="1"
 if (condition):
     # code here
 elif (condition):
@@ -688,7 +688,7 @@ else:
 
 ### Context Manager
 
-```py
+```py linenums="1"
 with resource as target:
      # code here
 
@@ -709,7 +709,7 @@ contextmanager.__exit__(self, exc_type, exc_value, traceback)
 
 ### `while`
 
-```py
+```py linenums="1"
 while(condition):
      # code here
 else:
@@ -720,7 +720,7 @@ else:
 
 ### `for`
 
-```py
+```py linenums="1"
 for index in sequence: # sequence can be a list, set, tuple, etc ..
      # code here
 else:
@@ -742,21 +742,21 @@ for key, value in dict.items ():
 
 ### `range`
 
-```py
+```py linenums="1"
 range(start, end, step) # generate sequence num integers (does not include num stops) with possible step
 list(range(start, end, step)) # return sequence of integers in a list
 ```
 
 ### `enumerate`
 
-```py
+```py linenums="1"
 enumerate(iterable) # iterable of item & index pairs
 list(enumerate(iterable)) # returns list of tuples [(1, iterable [0]), (2, iterable [1]), (3, iterable [2])]
 ```
 
 ### `zip`
 
-```py
+```py linenums="1"
 list_1 = [1, 2, 3, 4, 5]
 list_2 = ['a', 'b', 'c', 'd', 'e']
 
@@ -766,7 +766,7 @@ list(zip(list_1, list_2)) # returns list of tuples by merging list [(list_1 [0],
 
 ### `shuffle` & `randint`
 
-```py
+```py linenums="1"
 from random import shuffle, randint
 shuffle(iterable) # shuffle the list
 randint(start, end) # returns a random integer between start and end
@@ -774,7 +774,7 @@ randint(start, end) # returns a random integer between start and end
 
 ### `in`
 
-```py
+```py linenums="1"
 item in iterable # check for the presence of item in iterable (returns True or False)
 ```
 
@@ -782,7 +782,7 @@ item in iterable # check for the presence of item in iterable (returns True or F
 
 ### Function Definition
 
-```py
+```py linenums="1"
 def function_name (parameters):
      "" "DOCSTRING" ""
      # code here
@@ -795,14 +795,14 @@ def function_name (parameters):
 - parameters between `/` and `*` can be *positional* or *keyworded*
 - parameters after `*` can only be *keyworded*
   
-```py
+```py linenums="1"
 def func (a, b, /, c, d, *, e, f):
      # code here
 ```
 
 ### Docstring Style
 
-```py
+```py linenums="1"
 """function description
 
 Args:
@@ -823,14 +823,14 @@ Raises:
 
 When used in combination `*args` always goes before`**kwargs` (in def function and in function call)
 
-```py
+```py linenums="1"
 def func(*args, **kwargs):
     # code here
 ```
 
 ### Function with default parameters
 
-```py
+```py linenums="1"
 def function(parameter1 = value1, parameter2 = value3): # default values in case of omitted use of arguments in the call
      # code here
      return expression
@@ -840,7 +840,7 @@ function(parameter2 = value2, parameter1 = value1) # arguments passed with keywo
 
 ### Global And Local Variables
 
-```py
+```py linenums="1"
 # global scope
 
 def external_func():
@@ -859,7 +859,7 @@ def external_func():
 
 `Note`: variables declared inside a function are not usable outside
 
-```py
+```py linenums="1"
 def function():
      # global statement makes a variable global
      # actions on global variable within the function also have an effect outside
@@ -887,7 +887,7 @@ Operation `iter()`:
 
 ### `next()` & `iter()`
 
-```py
+```py linenums="1"
 next(iterable) # next item of the iterable or error StopIteration
 
 iter(object) # get an iterator from an object
@@ -900,7 +900,7 @@ iter(callable_obj, sentinel)
 
 Used to generate a sequence of values to be used once (they are not stored)
 
-```py
+```py linenums="1"
 def custom_generator(parameters):
      while condition: # or for loop
          yield variable # returns the value without terminating the function, values passed to the caller without storing in a variable
@@ -912,7 +912,7 @@ for item in custom_generator(parameters):
 
 ### Termination Generator And Exception Handling
 
-```py
+```py linenums="1"
 # raise exception at the suspension point and return generator value
 # if the generator terminates without returning values it raises StopIteration
 # if an exception is not handled it is propagated to the caller
@@ -926,7 +926,7 @@ generator.close()
 
 ### Generator Comprehensions
 
-```py
+```py linenums="1"
 # zero-length sequence (instantaneously generated values)
 var = (for expression iterable in sequence if condition)
 # EDUCATION ENUMERATE ()
@@ -937,7 +937,7 @@ enumerate(sequence) # -> enumerate object
 
 ## Coroutines
 
-```py
+```py linenums="1"
 def simple_coroutine():
     """coroutine defined as a generator: yield in block"""
 
@@ -994,7 +994,7 @@ coroutine.close()
 **SUBGENERATOR**: generator obtained from `yield from`
 **CALLER-CLIENT**: code calling *delegating generator*
 
-The main function of `yield from` is to open a bidirectional channel between the external caller (* client *) and the internal * subgenerator * so that values and exceptions can pass between the two.
+The main function of `yield from` is to open a bidirectional channel between the external caller (*client*) and the internal *subgenerator* so that values and exceptions can pass between the two.
 
 1. client calls delegating generator, delegating generator calls subgenerator
 2. exhausted subgenerator returns value to `yield from <expr>` (`return <result>` statement)
@@ -1020,7 +1020,7 @@ The main function of `yield from` is to open a bidirectional channel between the
   - If this call results in an exception, it is propagated to the delegating generator.
   - Otherwise, `GeneratorExit` is raised in the delegating generator
 
-```py
+```py linenums="1"
 def sub_gen():
      sent_input = yield
      # result of sub_gen() returned to delegating_gen()
@@ -1040,7 +1040,7 @@ def client():
 
 Possible use within functions. Useful for replacing functions if the logic is simple.
 
-```py
+```py linenums="1"
 var = lambda argument_list: <expression>
 ```
 
@@ -1048,7 +1048,7 @@ var = lambda argument_list: <expression>
 
 ### Class Definition
 
-```py
+```py linenums="1"
 class Class:
 
     static_var = expression
@@ -1077,7 +1077,7 @@ class Class:
 
 ### Setter & Getter with `@Property`
 
-```py
+```py linenums="1"
 class Class:
      def __init__(self, parameter):
          self.__parameter = parameter
@@ -1102,7 +1102,7 @@ The `__slots__` attribute implements the **Flyweight Design Pattern**: it saves 
 
 ### Inner Classes
 
-```py
+```py linenums="1"
 class Class:
      def __init__(self, parameters):
          ...
@@ -1122,7 +1122,7 @@ object_2 = Class.InnerClass(arguments) # inner class created as object of the 'e
 
 Special methods are defined by the use of double underscores; they allow the use of specific functions (possibly adapted) on the objects defined by the class.
 
-```py
+```py linenums="1"
 class Class():
 
      def __init__(self, parameters):
@@ -1148,7 +1148,7 @@ del object # delete object
 
 **Note**: if the operator cannot be applied, returns `NotImplemented`
 
-```py
+```py linenums="1"
 # arithmetic operators
 __add__(self, other)         # +
 __sub__(self, other)         # -
@@ -1309,7 +1309,7 @@ however, if the underlying method is linear (as it would be with a linked list),
 
 ### Inheritance
 
-```py
+```py linenums="1"
 class Parent ():
     def __init __ (self, parameters):
         ...
@@ -1350,7 +1350,7 @@ class Child(Parent): # parent class in brackets to inherit properties
 
 **Note**: python does not support method overloading
 
-```py
+```py linenums="1"
 # DUCKTYPING
 # Working with objects regardless of their type, as long as they implement certain protocols
 
@@ -1396,7 +1396,7 @@ Virtual subclasses are used to include third-party classes as subclasses of a cl
 
 The `@Class.register` or `Class.register(subclass)` decorators are used to mark subclasses.
 
-```py
+```py linenums="1"
 from abc import abstractmethod, ABC
 
 class Abstract(ABC): # abstract class MUST INHERIT from parent class ABC
@@ -1429,7 +1429,7 @@ class Child(Abstract):
 
 ## Exception Handling
 
-```py
+```py linenums="1"
 # CHECK ASERATIONS
 assert condition, 'error message' # if the assertion is false show an error message
 
@@ -1490,7 +1490,7 @@ Open binary file mode:
 
 **Note**: Linux and MacOSX use `UTF-8` everywhere while windows uses `cp1252`, `cp850`,`mbcs`, `UTF-8`. Don't rely on default encoding and use **explicitly** `UTF-8`.
 
-```py
+```py linenums="1"
 object = open('filename', mode = 'r', encoding = 'utf-8') # encoding MUST BE utf-8 for compatibility
 # filename can be the absolute path to the file location (default: file created in the source code folder)
 # double slash to avoid \ escaping
@@ -1525,7 +1525,7 @@ else:
 **SHALLOW COPY**: copies the "container" and references to the content
 **DEEP COPY**: copies the "container" and contents (no reference)
 
-```py
+```py linenums="1"
 copy (x) # returns shallow copy of xor
 deepcopy (x) # returns shallow copy of x
 ```

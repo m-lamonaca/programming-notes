@@ -14,217 +14,11 @@ Components are .NET C# classes built into .NET assemblies that:
 
 The component class is usually written in the form of a Razor markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*.
 
-## Project Structure & Important Files
-
-### Blazor Server Project Structure
-
-```txt
-Project
-|-Properties
-| |- launchSettings.json
-|
-|-wwwroot --> static files
-| |-css
-| | |- site.css
-| | |- bootstrap
-| |
-| |- favicon.ico
-|
-|-Pages
-| |- _Host.cshtml  --> fallback page
-| |- Component.razor
-| |- Index.razor
-| |- ...
-|
-|-Shared
-| |- MainLayout.razor
-| |- MainLayout.razor.css
-| |- ...
-|
-|- _Imports.razor --> @using imports
-|- App.razor --> component root of the app
-|
-|- appsettings.json --> application settings
-|- Program.cs --> App entry-point
-|- Startup.cs --> services and middleware configs
-```
-
-### Blazor WASM Project Structure
-
-```txt
-Project
-|-Properties
-| |- launchSettings.json
-|
-|-wwwroot --> static files
-| |-css
-| | |- site.css
-| | |- bootstrap
-| |
-| |- index.html
-| |- favicon.ico
-|
-|-Pages
-| |- Component.razor
-| |- Index.razor
-| |- ...
-|
-|-Shared
-| |- MainLayout.razor
-| |- MainLayout.razor.css
-| |- ...
-|
-|- _Imports.razor --> @using imports
-|- App.razor --> component root of the app
-|
-|- appsettings.json --> application settings
-|- Program.cs --> App entry-point
-```
-
-### Blazor PWA Project Structure
-
-```txt
-Project
-|-Properties
-| |- launchSettings.json
-|
-|-wwwroot --> static files
-| |-css
-| | |- site.css
-| | |- bootstrap
-| |
-| |- index.html
-| |- favicon.ico
-| |- manifest.json
-| |- service-worker.js
-| |- icon-512.png
-|
-|-Pages
-| |- Component.razor
-| |- Index.razor
-| |- ...
-|
-|-Shared
-| |- MainLayout.razor
-| |- MainLayout.razor.css
-| |- ...
-|
-|- _Imports.razor --> @using imports
-|- App.razor --> component root of the app
-|
-|- appsettings.json --> application settings
-|- Program.cs --> App entrypoint
-```
-
-### `manifest.json`, `service-worker.js` (Blazor PWA)
-
-[PWA](https://web.dev/progressive-web-apps/)  
-[PWA MDN Docs](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)  
-[PWA Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest)  
-[Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
-
-```json
-// manifest.json
-{
-  "name": "<App Name>",
-  "short_name": "<Short App Name>",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#03173d",
-  "icons": [
-    {
-      "src": "icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ]
-}
-```
-
-## Common Blazor Files
-
-### `App.razor`
-
-```cs
-<Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
-```
-
-### `MainLayout.razor` (Blazor Server/WASM)
-
-```cs
-@inherits LayoutComponentBase
-
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />  // NavMenu Component
-    </div>
-
-    <div class="main">
-        <div class="top-row px-4">
-        </div>
-
-        <div class="content px-4">
-            @Body
-        </div>
-    </div>
-</div>
-```
-
-### `_Host.cshtml` (Blazor Server)
-
-```html
-@page "/"
-@namespace BlazorServerDemo.Pages
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlazorServerDemo</title>
-    <base href="~/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <link href="css/site.css" rel="stylesheet" />
-    <link href="BlazorServerDemo.styles.css" rel="stylesheet" />
-</head>
-<body>
-    <component type="typeof(App)" render-mode="ServerPrerendered" />
-
-    <div id="blazor-error-ui">
-        <environment include="Staging,Production">
-            An error has occurred. This application may no longer respond until reloaded.
-        </environment>
-        <environment include="Development">
-            An unhandled exception has occurred. See browser dev tools for details.
-        </environment>
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-
-    <script src="_framework/blazor.server.js"></script>
-</body>
-</html>
-```
-
 ## Components (`.razor`)
 
 [Blazor Components](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/)
 
-```cs
+```cs linenums="1"
 @page "/route/{RouteParameter}"  // make component accessible from a URL
 @page "/route/{RouteParameter?}"  // specify route parameter as optional
 @page "/route/{RouteParameter:<type>}"  // specify route parameter type
@@ -265,7 +59,7 @@ Project
 
 It's now possible to pass state when navigating in Blazor apps using the `NavigationManager`.
 
-```cs
+```cs linenums="1"
 navigationManager.NavigateTo("/<route>", new NavigationOptions { HistoryEntryState = value });
 ```
 
@@ -273,12 +67,12 @@ This mechanism allows for simple communication between different pages. The spec
 
 ### Blazor WASM
 
-```cs
+```cs linenums="1"
 // setup state singleton
 builder.Services.AddSingleton<StateContainer>();
 ```
 
-```cs
+```cs linenums="1"
 // StateContainer singleton
 using System;
 
@@ -302,7 +96,7 @@ public class StateContainer
 }
 ```
 
-```cs
+```cs linenums="1"
 // component that changes the state
 @inject StateContainer State
 
@@ -319,7 +113,7 @@ public class StateContainer
 }
 ```
 
-```cs
+```cs linenums="1"
 // component that should be update on state change
 @implements IDisposable
 @inject StateContainer State
@@ -345,7 +139,7 @@ public class StateContainer
 
 ## Data Binding & Events
 
-```cs
+```cs linenums="1"
 <p>
     <button @on{DOM EVENT}="{DELEGATE}" />
     <button @on{DOM EVENT}="{DELEGATE}" @on{DOM EVENT}:preventDefault />  // prevent default action
@@ -392,7 +186,6 @@ public class StateContainer
 ```
 
 > **Note**: When a user provides an unparsable value to a data-bound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
-
 > **Note**: The `@bind:get` and `@bind:set` modifiers are always used together.  
 > `The @bind:get` modifier specifies the value to bind to and the `@bind:set` modifier specifies a callback that is called when the value changes
 
@@ -401,11 +194,11 @@ public class StateContainer
 [Call Javascript from .NET](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet)  
 [Call .NET from Javascript](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-dotnet-from-javascript)
 
-### Render Blazor components from JavaScript [C# 10]
+### Render Blazor components from JavaScript
 
 To render a Blazor component from JavaScript, first register it as a root component for JavaScript rendering and assign it an identifier:
 
-```cs
+```cs linenums="1"
 // Blazor Server
 builder.Services.AddServerSideBlazor(options =>
 {
@@ -418,18 +211,18 @@ builder.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
 
 Load Blazor into the JavaScript app (`blazor.server.js` or `blazor.webassembly.js`) and then render the component from JavaScript into a container element using the registered identifier, passing component parameters as needed:
 
-```js
+```js linenums="1"
 let containerElement = document.getElementById('my-counter');
 await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
 ```
 
-### Blazor custom elements [C# 10]
+### Blazor custom elements
 
 Experimental support is also now available for building custom elements with Blazor using the Microsoft.AspNetCore.Components.CustomElements NuGet package.  
 Custom elements use standard HTML interfaces to implement custom HTML elements.
 
 To create a custom element using Blazor, register a Blazor root component as custom elements like this:
 
-```cs
+```cs linenums="1"
 options.RootComponents.RegisterAsCustomElement<Counter>("my-counter");
 ```

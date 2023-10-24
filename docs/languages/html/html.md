@@ -26,14 +26,14 @@ The first thing on an HTML page is the doctype, which tells the browser which ve
 
 ### XHTML 1.0 Strict
 
-```html
+```html linenums="1"
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 ```
 
 ### HTML4 Transitional
 
-```html
+```html linenums="1"
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
  "http://www.w3.org/TR/html4/loose.dtd">
 ```
@@ -46,7 +46,7 @@ The first thing on an HTML page is the doctype, which tells the browser which ve
 
 After `<doctype>`, the page content must be contained between tags.
 
-```html
+```html linenums="1"
 <!doctype html>
 <html lang="en">
     <!-- page contents -->
@@ -66,7 +66,7 @@ HTML5: `<meta charset="utf-8">`
 
 Used to make old browsers understand newer HTML5 and newer components.
 
-```html
+```html linenums="1"
 <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
 <![endif]-->
@@ -76,7 +76,7 @@ Used to make old browsers understand newer HTML5 and newer components.
 
 The body contains the actual content of the page. Everything that is contained in the body is visible to the user.
 
-```html
+```html linenums="1"
 <body>
     <!-- page contents -->
 </body>
@@ -147,7 +147,7 @@ Before using build-in validation make sure that it's supported by the target bro
 
 ## General structure of HTML page
 
-```html
+```html linenums="1"
 <!-- HTML Boilerplate -->
 <!DOCTYPE html>
 <html lang="en">
@@ -189,7 +189,7 @@ Attributes describe additional characteristics of an HTML element.
 
 Paragraphs allow to format the content in a readable fashion.
 
-```html
+```html linenums="1"
 <p> paragraph-content </p>
 <p> paragraph-content </p>
 ```
@@ -198,7 +198,7 @@ Paragraphs allow to format the content in a readable fashion.
 
 Heading numbers indicates hierarchy, not size.
 
-```html
+```html linenums="1"
 <h1> Heading 1 </h1>
 <h2> Heading 2 </h2>
 ```
@@ -225,7 +225,7 @@ Without semantic value, used as last resort:
 
 Surround content to turn into links.
 
-```html
+```html linenums="1"
 <!-- Link to absolute URL -->
 <a href="uri/url" title="content-title" target="_self"> text/image </a>
 
@@ -260,12 +260,12 @@ Surround content to turn into links.
 
 ### Images
 
-```html
+```html linenums="1"
 <img src="image-location" alt="brief-description"/>    <!-- image element -->
 <!-- alt should be always be populated for accessibility and SEO purposes -->
 ```
 
-```html
+```html linenums="1"
 <!-- supported by modern browsers -->
 <figure>
     <img src="img-location" alt="description">
@@ -275,7 +275,7 @@ Surround content to turn into links.
 
 ### Unordered list (bullet list)
 
-```html
+```html linenums="1"
 <ul>
     <li></li>    <!-- list element -->
     <li></li>
@@ -284,7 +284,7 @@ Surround content to turn into links.
 
 ### Ordered list (numbered list)
 
-```html
+```html linenums="1"
 <ol>
     <li></li>
     <li></li>
@@ -293,7 +293,7 @@ Surround content to turn into links.
 
 ### Description list (list of terms and descriptions)
 
-```html
+```html linenums="1"
 <dl>
     <dt>term</dt>    <!-- define term/name -->
     <dd>definition</dd> <!-- describe term/name -->
@@ -304,7 +304,7 @@ Surround content to turn into links.
 
 ### Tables
 
-```html
+```html linenums="1"
 <table>
     <thead>    <!-- table head row -->
         <th></th> <!-- table head, one for each column-->
@@ -332,7 +332,7 @@ Code     | Character
 
 Used to group elements together into sections, eventually to style them differently.
 
-```html
+```html linenums="1"
 <div>
     <!-- content here -->
 </div>
@@ -342,13 +342,13 @@ Used to group elements together into sections, eventually to style them differen
 
 Used to apply a specific style inline.
 
-```html
+```html linenums="1"
 <p> non-styled content <span class="..."> styled content </span> non-styled content </p>
 ```
 
 ### HTML5 new tags
 
-```html
+```html linenums="1"
 <header></header>
 <nav></nav>
 <main></main>
@@ -360,7 +360,7 @@ Used to apply a specific style inline.
 
 ## HTML Forms & Inputs
 
-```html
+```html linenums="1"
 <form action="data-receiver" target="" method="http-method">
     <!-- ALL form elements go here -->
 </form>
@@ -392,7 +392,7 @@ PROs & CONs of `POST` method:
 
 ### Basic Form Elements
 
-```html
+```html linenums="1"
 <form action="" method="">
     <label for="target-identifier">label-here</label>
     <input type="input-type" name="input-name" value="value-sent" id="target-identifier">
@@ -421,7 +421,7 @@ Input Attributes:
 
 One line areas that allow the user to input text.  
 
-```html
+```html linenums="1"
 <input type="text" placeholder="placeholder-text" spellcheck="true" pattern="\regex\">
 ```
 
@@ -429,27 +429,27 @@ One line areas that allow the user to input text.
 
 ### Password Field
 
-```html
+```html linenums="1"
 <input type="password">
 ```
 
 ### Radio Buttons
 
-```html
+```html linenums="1"
 <input type="radio" value="value">
 <input type="radio" value="value" checked>
 ```
 
 ### Checkboxes
 
-```html
+```html linenums="1"
 <input type="checkbox">
 <input type="checkbox" checked>
 ```
 
 ### Dropdown Menus
 
-```html
+```html linenums="1"
 <select multiple>
     <option value="value">Value</option>
     <option value="value">Value</option>
@@ -467,7 +467,7 @@ Conceptually, `<select>` becomes more similar to checkboxes.
 Upload a local file as an attachment. The `accept` attribute value is a string that defines the file types the file input should accept.  
 This string is a comma-separated list of [unique file type specifiers][file_type_specifiers_docs].
 
-```html
+```html linenums="1"
 <input type="file" value="filename" accept=".txt,application/json,audio/*">
 ```
 
@@ -477,13 +477,13 @@ This string is a comma-separated list of [unique file type specifiers][file_type
 
 Multi line text input.
 
-```html
+```html linenums="1"
 <textarea rows="row-number" cols="column-number" >pre-existing editable test</textarea>
 ```
 
 ### Submit & Reset
 
-```html
+```html linenums="1"
 <input type="submit" value="label">
 <input type="reset" value="label">
 <!-- OR -->
@@ -496,7 +496,7 @@ Multi line text input.
 
 ### Button
 
-```html
+```html linenums="1"
 <button type="button/reset/submit" value="label"/>
 
 <!-- can contain HTML -->
@@ -507,7 +507,7 @@ Multi line text input.
 
 Group controls into categories. Particularly important for screen readers.
 
-```html
+```html linenums="1"
 <fieldset>
     <legend>Color</legend>
     <input type="radio" name="colour" value="red" id="colour_red">
@@ -524,7 +524,7 @@ Group controls into categories. Particularly important for screen readers.
 Used to receive a valid e-mail address from the user. Most browsers can validate this without needing javascript.
 Older browsers don't support this input type.
 
-```html
+```html linenums="1"
 <form>
     <label for="user-email">Email:</label>
     <input type="email" name="user-email" id="form-email">
@@ -534,13 +534,13 @@ Older browsers don't support this input type.
 
 ### Progress Bar
 
-```html
+```html linenums="1"
 <progress max="100" value="70"> 70% </progress>
 ```
 
 ### Slider
 
-```html
+```html linenums="1"
 <input type="range" min="0" max="20">
 ```
 
@@ -548,13 +548,13 @@ Older browsers don't support this input type.
 
 The `<meter>` HTML element represents either a scalar value within a known range or a fractional value.
 
-```html
+```html linenums="1"
 <meter min="0" max="100" low="33" high="66" optimum="80" value="50" />
 ```
 
 ### More Input Types
 
-```html
+```html linenums="1"
 <input type="email" id="email" name="email">
 <input type="url" id="url" name="url">
 <input type="number" name="" id="identifier" min="min-value" max="max-value" step="">

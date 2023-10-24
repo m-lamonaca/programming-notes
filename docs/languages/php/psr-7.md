@@ -14,7 +14,7 @@ Standard of the PHP Framework Interop Group that defines common interfaces for h
 
 Example:
 
-```php
+```php linenums="1"
 // empty array if not found
 $header = $request->getHeader('Accept');
 

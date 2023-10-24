@@ -25,7 +25,7 @@ MongoDB automatically creates an `ObjectId()` if it's not provided.
 To create a database is sufficient to switch towards a non existing one with `use <database>` (implicit creation).
 The database is not actually created until a document is inserted.
 
-```sh
+```sh linenums="1"
 show dbs  # list all databases
 use <database>  # use a particular database
 show collections  # list all collection for the current database
@@ -38,7 +38,7 @@ db.<collection>.insertOne({document})  # implicit collection creation
 
 ## Operators (MQL Syntax)
 
-```json
+```json linenums="1"
 /* --- Update operators --- */
 { "$inc":  { "<key>": "<increment>", ... } }  // Increment value
 { "$set":  { "<key>": "<value>", ... } }  // Set value
@@ -79,7 +79,7 @@ db.<collection>.insertOne({document})  # implicit collection creation
 
 > **Note**:  `$<key>` is used to access the value of the field dynamically
 
-```json
+```json linenums="1"
 { "$expr": { "<expression>" } }  // aggregation expression, variables, conditional expressions
 { "$expr":  { "$<comparison_operator>": [ "$<key>", "$<key>" ] } }  // compare field values (operators use aggregation syntax)
 ```
@@ -95,7 +95,7 @@ Insertion results:
 - error -> rollback
 - success -> entire documents gets saved
 
-```sh
+```sh linenums="1"
 # explicit collection creation, all options are optional
 db.createCollection( <name>,
    {
@@ -128,7 +128,7 @@ db.<collection>.insertMany([ { document }, { document } ] , { "ordered": false }
 
 ### Querying
 
-```sh
+```sh linenums="1"
 db.<collection>.findOne()  # find only one document
 db.<collection>.find(filter)  # show selected documents
 db.<collection>.find().pretty()  # show documents formatted
@@ -172,7 +172,7 @@ db.<collection>.find().hint( { $natural : -1 } )  # force the query to perform a
 
 [Update Operators](https://docs.mongodb.com/manual/reference/operator/update/ "Update Operators Documentation")
 
-```sh
+```sh linenums="1"
 db.<collection>.replaceOne(filter, update, options)
 db.<collection>.updateOne(filter, update, {upsert: true})  # modify document if existing, insert otherwise
 
@@ -181,7 +181,7 @@ db.<collection>.updateOne(filter, { "$push": { ... }, "$set": { ... }, { "$inc":
 
 ### Deletion
 
-```sh
+```sh linenums="1"
 db.<collection>.deleteOne(filter, options)
 db.<collection>.deleteMany(filter, options)
 
@@ -199,7 +199,7 @@ Utility to import all docs into a specified collection.
 If the collection already exists `--drop` deletes it before reuploading it.
 **WARNING**: CSV separators must be commas (`,`)
 
-```sh
+```sh linenums="1"
 mongoimport <options> <connection-string> <file>
 
 --uri=<connectionString>
@@ -218,7 +218,7 @@ mongoimport <options> <connection-string> <file>
 
 Utility to export documents into a specified file.
 
-```sh
+```sh linenums="1"
 mongoexport --collection=<collection> <options> <connection-string>
 
 --uri=<connectionString>
@@ -272,7 +272,7 @@ Indexes _slow down writing operations_ since the index must be updated at every 
 
 ### Diagnosis and query planning
 
-```sh
+```sh linenums="1"
 db.<collection>.find({...}).explain()  # explain won't accept other functions
 db.explain().<collection>.find({...})  # can accept other functions
 db.explain("executionStats").<collection>.find({...})  # more info
@@ -280,7 +280,7 @@ db.explain("executionStats").<collection>.find({...})  # more info
 
 ### Index Creation
 
-```sh
+```sh linenums="1"
 db.<collection>.createIndex( <key and index type specification>, <options> )
 
 db.<collection>.createIndex( { "<key>": <type>, "<key>": <type>, ... } )  # normal, compound or multikey (field is array) index
@@ -302,7 +302,7 @@ db.<collection>.createIndex(
 
 ### [Index Management](https://docs.mongodb.com/manual/tutorial/manage-indexes/)
 
-```sh
+```sh linenums="1"
 # view all db indexes
 db.getCollectionNames().forEach(function(collection) {
    indexes = db[collection].getIndexes();
@@ -339,7 +339,7 @@ handling connections, requests and persisting the data.
 
 ### Basic Shell Helpers
 
-```sh
+```sh linenums="1"
 db.<method>()  # database interaction
 db.<collection>.<method>()  # collection interaction
 rs.<method>();  # replica set deployment and management
@@ -378,7 +378,7 @@ Log Verbosity Level:
 - `0`: Default Verbosity (Information)
 - `1 - 5`: Increases the verbosity up to Debug messages
 
-```sh
+```sh linenums="1"
 db.getLogComponents()  # get components and their verbosity
 db.adminCommand({"getLog": "<scope>"})  # retrieve logs (getLog must be run on admin db -> adminCommand)
 db.setLogLevel(<level>, "<component>");  # set log level (output is OLD verbosity levels)
@@ -404,7 +404,7 @@ Events captured by the profiler:
 
 > **Note**: Logs are saved in the `system.profile` _capped_ collection.
 
-```sh
+```sh linenums="1"
 db.setProfilingLevel(n)  # set profiler level
 db.setProfilingLevel(1, { slowms: <ms> })
 db.getProfilingStatus()  # check profiler status
@@ -454,7 +454,7 @@ Built-in Roles Groups and Names:
 - Backup/Restore: `backup`, `restore`
 - Super User: `root`
 
-```sh
+```sh linenums="1"
 db.createUser(
     {
         user: "<username>",
@@ -509,7 +509,7 @@ Variable syntax in aggregations:
 
 Filters the documents to pass only the documents that match the specified condition(s) to the next pipeline stage.
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([ 
     { "$match": { "<query>" } },
 
@@ -541,7 +541,7 @@ Passes along the documents with the requested fields to the next stage in the pi
 - [`$sum`][$sum_docs]
 - [`$avg`][$avg_docs]
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([ 
      { 
         "$project": { 
@@ -598,7 +598,7 @@ db.<collection>.aggregate([
 Adds new fields to documents (can be result of computation).  
 `$addFields` outputs documents that contain _all existing fields_ from the input documents and newly added fields.
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate({
     { $addFields: { <newField>: <expression>, ... } }
 })
@@ -610,7 +610,7 @@ db.<collection>.aggregate({
 
 The $`group` stage separates documents into groups according to a "group key". The output is one document for each unique group key.
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([ 
      { 
         "$group": {
@@ -629,7 +629,7 @@ db.<collection>.aggregate([
 Deconstructs an array field from the input documents to output a document for each element.  
 Each output document is the input document with the value of the array field replaced by the element
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([ 
      { "$unwind": "<array-key>" }
 
@@ -647,7 +647,7 @@ db.<collection>.aggregate([
 
 ### [`$count` Aggregation Stage][$count_docs]
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([ 
      { "$count": "<count-key>" }
 ])
@@ -657,7 +657,7 @@ db.<collection>.aggregate([
 
 ### [`$sort` Aggregation Stage][$sort_docs]
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([ 
      { 
         "$sort": { 
@@ -676,7 +676,7 @@ db.<collection>.aggregate([
 
 ### [`$skip` Aggregation Stage][$skip_docs]
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([ 
      { "$skip": "<positive 64-bit integer>" }
 ])
@@ -686,7 +686,7 @@ db.<collection>.aggregate([
 
 ### [`$limit` Aggregation Stage][$limit_docs]
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([ 
      { "$limit": "<positive 64-bit integer>" }
 ])
@@ -701,7 +701,7 @@ The `$lookup` stage adds a new array field to each input document. The new array
 
 > **Note**: To combine elements from two different collections, use the [`$unionWith`][$unionWith_docs] pipeline stage.
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([ 
     {
         "$lookup": {
@@ -722,9 +722,9 @@ db.<collection>.aggregate([
 
 Performs a recursive search on a collection, with options for restricting the search by recursion depth and query filter.
 
-The connection between documents follows `<from-collection>.<connectFromField>` => `<aggregated-collection>.<connectToField>`. The collection on which the aggregation is performed and the `from` collection can be the same (in-collection search) or different (cross-collection search)  
+The collection on which the aggregation is performed and the `from` collection can be the same (in-collection search) or different (cross-collection search)
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([
     {
         $graphLookup: {
@@ -754,7 +754,7 @@ Each output document contains two fields: an `_id` field containing the distinct
 
 The documents are sorted by count in descending order.
 
-```sh
+```sh linenums="1"
 db.<collection>.aggregate([
     { $sortByCount:  <expression> }
 ])

@@ -9,13 +9,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Install poetry
         run: pipx install poetry
       
       - name: Setup Python
-        uses: actions/setup-python@v3.1.3
+        uses: actions/setup-python@v4.7.1
         with:
           python-version: '3.x'
           cache: poetry

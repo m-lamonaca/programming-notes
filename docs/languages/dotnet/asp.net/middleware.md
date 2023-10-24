@@ -33,43 +33,31 @@ Short-circuiting is often desirable because it avoids unnecessary work.
 
 It's possible to perform actions both *before* and *after* the next delegate:
 
-```cs
-public class Startup
+```cs linenums="1"
+// "inline" middleware, best if in own class
+app.Use(async (context, next) =>
 {
-    public void Configure(IApplicationBuilder app)
-    {
-        // "inline" middleware, best if in own class
-        app.Use(async (context, next) =>
-        {
-            // Do work that doesn't write to the Response.
-            await next.Invoke();
-            // Do logging or other work that doesn't write to the Response.
-        });
-    }
-}
+    // Do work that doesn't write to the Response.
+    await next.Invoke();
+    // Do logging or other work that doesn't write to the Response.
+});
 ```
 
 `Run` delegates don't receive a next parameter. The first `Run` delegate is always terminal and terminates the pipeline.
 
-```cs
-public class Startup
+```cs linenums="1"
+// "inline" middleware, best if in own class
+app.Use(async (context, next) =>
 {
-    public void Configure(IApplicationBuilder app)
-    {
-        // "inline" middleware, best if in own class
-        app.Use(async (context, next) =>
-        {
-            // Do work that doesn't write to the Response.
-            await next.Invoke();
-            // Do logging or other work that doesn't write to the Response.
-        });
+    // Do work that doesn't write to the Response.
+    await next.Invoke();
+    // Do logging or other work that doesn't write to the Response.
+});
 
-        app.Run(async context =>
-        {
-            // no invocation of next
-        });
-    }
-}
+app.Run(async context =>
+{
+    // no invocation of next
+});
 ```
 
 ## Middleware Order
@@ -81,42 +69,37 @@ The Endpoint middleware executes the filter pipeline for the corresponding app t
 
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
-```cs
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+```cs linenums="1"
+if (env.IsDevelopment())
 {
-    if (env.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-        app.UseDatabaseErrorPage();
-    }
-    else
-    {
-        app.UseExceptionHandler("/Error");
-        app.UseHsts();
-    }
-
-    app.UseHttpsRedirection();
-    app.UseStaticFiles();
-    // app.UseCookiePolicy();
-
-    app.UseRouting();
-    // app.UseRequestLocalization();
-    // app.UseCors();
-
-    app.UseAuthentication();
-    app.UseAuthorization();
-    // app.UseSession();
-    // app.UseResponseCompression();
-    // app.UseResponseCaching();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapRazorPages();
-        endpoints.MapControllerRoute(
-            name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
-    });
+    app.UseDeveloperExceptionPage();
+    app.UseDatabaseErrorPage();
 }
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseCookiePolicy();
+
+app.UseRouting();
+app.UseRequestLocalization();
+app.UseCors();
+
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseSession();
+app.UseResponseCompression();
+app.UseResponseCaching();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapControllers();
+});
 ```
 
 [Built-in Middleware](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/#built-in-middleware)
@@ -138,28 +121,21 @@ Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn'
 
 Middleware is generally encapsulated in a class and exposed with an extension method.
 
-```cs
-using Microsoft.AspNetCore.Http;
-using System.Globalization;
-using System.Threading.Tasks;
-
-namespace <App>
+```cs linenums="1"
+public class CustomMiddleware
 {
-    public class CustomMiddleware
+    private readonly RequestDelegate _next;
+
+    public CustomMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
+        _next = next;
+    }
 
-        public CustomMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
-
-        public async Task InvokeAsync(HttpContext context)
-        {
-            // Do work that doesn't write to the Response.
-            await _next(context);  // Call the next delegate/middleware in the pipeline
-            // Do logging or other work that doesn't write to the Response.
-        }
+    public async Task InvokeAsync(HttpContext context)
+    {
+        // Do work that doesn't write to the Response.
+        await _next(context);  // Call the next delegate/middleware in the pipeline
+        // Do logging or other work that doesn't write to the Response.
     }
 }
 ```
@@ -176,32 +152,22 @@ The middleware class **must** include:
 
 ## Middleware Extension Methods
 
-```cs
+```cs linenums="1"
 using Microsoft.AspNetCore.Builder;
 
-namespace <App>
+public static class MiddlewareExtensions
 {
-    public static class MiddlewareExtensions
+    public static IApplicationBuilder UseCustom(this IApplicationBuilder builder)
     {
-        public static IApplicationBuilder UseCustom(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<CustomMiddleware>();
-        }
+        return builder.UseMiddleware<CustomMiddleware>();
     }
 }
 ```
 
-```cs
-// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    // other middlewares
+```cs linenums="1"
+// other middlewares
 
-    app.UseCustom();  // add custom middleware in the pipeline
+app.UseCustom();  // add custom middleware in the pipeline
 
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapControllers();
-    });
-}
+app.UseEndpoints(endpoints => endpoints.MapControllers());
 ```

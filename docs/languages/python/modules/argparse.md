@@ -2,7 +2,7 @@
 
 ## Creating a parser
 
-```py
+```py linenums="1"
 import argparse
 
 parser = argparse.ArgumentParser(description="description", allow_abbrev=True)
@@ -25,7 +25,7 @@ parser = argparse.ArgumentParser(description="description", allow_abbrev=True)
 
 ## [Adding Arguments](https://docs.python.org/3/library/argparse.html#the-add-argument-method)
 
-```py
+```py linenums="1"
 ArgumentParser.add_argument("name_or_flags", nargs="...", action="...")
 ```
 
@@ -47,7 +47,7 @@ ArgumentParser.add_argument("name_or_flags", nargs="...", action="...")
 
 `store`: This just stores the argument's value. This is the default action.
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument('--foo')
 >>> parser.parse_args('--foo 1'.split())
@@ -56,7 +56,7 @@ Namespace(foo='1')
 
 `store_const`: This stores the value specified by the const keyword argument. The `store_const` action is most commonly used with optional arguments that specify some sort of flag.
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument('--foo', action='store_const', const=42)
 >>> parser.parse_args(['--foo'])
@@ -65,7 +65,7 @@ Namespace(foo=42)
 
 `store_true` and `store_false`: These are special cases of `store_const` used for storing the values True and False respectively. In addition, they create default values of False and True respectively.
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument('--foo', action='store_true')
 >>> parser.add_argument('--bar', action='store_false')
@@ -76,7 +76,7 @@ Namespace(foo=True, bar=False, baz=True)
 
 `append`: This stores a list, and appends each argument value to the list. This is useful to allow an option to be specified multiple times. Example usage:
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument('--foo', action='append')
 >>> parser.parse_args('--foo 1 --foo 2'.split())
@@ -85,7 +85,7 @@ Namespace(foo=['1', '2'])
 
 `append_const`: This stores a list, and appends the value specified by the const keyword argument to the list. (Note that the const keyword argument defaults to None.) The `append_const` action is typically useful when multiple arguments need to store constants to the same list. For example:
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument('--str', dest='types', action='append_const', const=str)
 >>> parser.add_argument('--int', dest='types', action='append_const', const=int)
@@ -96,7 +96,7 @@ Namespace(types=[<class 'str'>, <class 'int'>])
 `count`: This counts the number of times a keyword argument occurs. For example, this is useful for increasing verbosity levels:
 **Note**: the default will be None unless explicitly set to 0.
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument('--verbose', '-v', action='count', default=0)
 >>> parser.parse_args(['-vvv'])
@@ -107,7 +107,7 @@ Namespace(verbose=3)
 
 `version`: This expects a version= keyword argument in the add_argument() call, and prints version information and exits when invoked:
 
-```py
+```py linenums="1"
 >>> import argparse
 >>> parser = argparse.ArgumentParser(prog='PROG')
 >>> parser.add_argument('--version', action='version', version='%(prog)s 2.0')
@@ -117,7 +117,7 @@ PROG 2.0
 
 `extend`: This stores a list, and extends each argument value to the list. Example usage:
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument("--foo", action="extend", nargs="+", type=str)
 >>> parser.parse_args(["--foo", "f1", "--foo", "f2", "f3", "f4"])
@@ -133,7 +133,7 @@ The `nargs` keyword argument associates a different number of command-line argum
 
 `N` (an integer): N arguments from the command line will be gathered together into a list.
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument('--foo', nargs=2)
 >>> parser.add_argument('bar', nargs=1)
@@ -147,7 +147,7 @@ Namespace(bar=['c'], foo=['a', 'b'])
 
 For optional arguments, there is an additional case: the option string is present but not followed by a command-line argument. In this case the value from const will be produced.
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument('--foo', nargs='?', const='c', default='d')
 >>> parser.add_argument('bar', nargs='?', default='d')
@@ -161,7 +161,7 @@ Namespace(bar='d', foo='d')
 
 `*`: All command-line arguments present are gathered into a list. Note that it generally doesn't make much sense to have more than one positional argument with `nargs='*'`, but multiple optional arguments with `nargs='*'` is possible.
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser()
 >>> parser.add_argument('--foo', nargs='*')
 >>> parser.add_argument('--bar', nargs='*')
@@ -172,7 +172,7 @@ Namespace(bar=['1', '2'], baz=['a', 'b'], foo=['x', 'y'])
 
 `+`: All command-line args present are gathered into a list. Additionally, an error message will be generated if there wasn't at least one command-line argument present.
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser(prog='PROG')
 >>> parser.add_argument('foo', nargs='+')
 >>> parser.parse_args(['a', 'b'])
@@ -184,7 +184,7 @@ PROG: error: the following arguments are required: foo
 
 `argparse.REMAINDER`: All the remaining command-line arguments are gathered into a list. This is commonly useful for command line utilities that dispatch to other command line utilities.
 
-```py
+```py linenums="1"
 >>> parser = argparse.ArgumentParser(prog='PROG')
 >>> parser.add_argument('--foo')
 >>> parser.add_argument('command')
@@ -195,7 +195,7 @@ Namespace(args=['--arg1', 'XX', 'ZZ'], command='cmd', foo='B')
 
 ## Parsing Arguments
 
-```py
+```py linenums="1"
 # Convert argument strings to objects and assign them as attributes of the namespace. Return the populated namespace.
 ArgumentParser.parse_args(args=None, namespace=None)
 

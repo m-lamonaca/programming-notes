@@ -2,7 +2,7 @@
 
 ## Creating a project
 
-```ps1
+```ps1 linenums="1"
 cargo new project_name  # creates project folder and basic files
 cargo new --vcs=git project_name  # init project as git repo
 ```
@@ -11,7 +11,7 @@ cargo new --vcs=git project_name  # init project as git repo
 
 Inside the project directory:
 
-```ps1
+```ps1 linenums="1"
 cargo build  # build project and download eventual needed dependencies
 cargo build --release  # build project for release (build + optimisations)
 cargo run  # executes the built executable
@@ -22,7 +22,7 @@ cargo check  # verifies buildability without producing an executable
 
 In `Cargo.toml`:
 
-```toml
+```toml linenums="1"
 [dependencies]
 crate_name = "<version_number>"
 ```
@@ -70,7 +70,7 @@ A path can take two forms:
 
 Both absolute and relative paths are followed by one or more identifiers separated by double colons (`::`).
 
-```rs
+```rs linenums="1"
 module::function();  // rel path (same crate)
 super::function();;  // rel path starting in outer module (same crate)
 
@@ -88,7 +88,7 @@ The way privacy works in Rust is that all items (functions, methods, structs, en
 Items in a parent module can’t use the private items inside child modules, but items in child modules can use the items in their ancestor modules.  
 The reason is that child modules wrap and hide their implementation details, but the child modules can see the context in which they’re defined.
 
-```rs
+```rs linenums="1"
 mod module {
     fn func() {}
 }
@@ -109,7 +109,7 @@ In contrast, if an enum is made public, all of its variants are then public.
 
 ### `use`
 
-```rs
+```rs linenums="1"
 use <crate_name>::module;  // import module (abs path, other crate)
 use crate::module;  // import module (abs path, same crate)
 use self::module;  // import module (rel path, same crate)
@@ -125,7 +125,7 @@ module::function();  // use func w/ shorter path
 
 ## Separating into multiple files
 
-```txt
+```txt linenums="1"
 src
 |_main.rs  --> default executable file
 |_lib.rs  --> default library file
@@ -134,7 +134,7 @@ src
 |  |_submodule.rs --> submodule
 ```
 
-```rs
+```rs linenums="1"
 // main.rs
 mod module;  // declare module directory as a module
 

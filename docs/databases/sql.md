@@ -2,7 +2,7 @@
 
 ## DDL
 
-```sql
+```sql linenums="1"
 show databases;    -- mostra database
 CREATE DATABASE <database>;    -- database creation
 use <database_name>;    -- usa un database particolare
@@ -16,7 +16,7 @@ show tables;    -- mostra tabelle del database
 
 ### Table Creation
 
-```sql
+```sql linenums="1"
 CREATE TABLE <table_name>
     (<field_name> <field_type> <option>,
     ...);
@@ -24,7 +24,7 @@ CREATE TABLE <table_name>
 
 ### PRIMARY KEY from multiple fields
 
-```sql
+```sql linenums="1"
 CREATE TABLE <table_name>(
     ...,
     PRIMARY KEY (<field1>, ...),
@@ -33,7 +33,7 @@ CREATE TABLE <table_name>(
 
 ### Table Field Options
 
-```sql
+```sql linenums="1"
 PRIMARY KEY -- marks primary key as field option
 NOT NULL -- marks a necessary field
 REFERENCES <table> (<field>) -- adds foreign key reference
@@ -43,7 +43,7 @@ UNIQUE (<field>) -- set field as unique (MySQL)
 
 ### Table Modification
 
-```sql
+```sql linenums="1"
 ALTER TABLE <table>
     ADD PRIMARY KEY (<field>, ...),    -- definition of PK after table creation
     ADD <field_name> <field_type> <option>;    -- addition of a new field, field will have no value in the table
@@ -63,20 +63,20 @@ ALTER TABLE <table>
 
 ### Data Insertion
 
-```sql
+```sql linenums="1"
 INSERT INTO <table> (field_1, ...) VALUES (value_1, ...), (value_1, ...);
 INSERT INTO <table> VALUES (value_1, ...), (value_1, ...);    -- field order MUST respect tables's columns order
 ```
 
 ### Data Update
 
-```sql
+```sql linenums="1"
 UPDATE <table> SET <field> = <value>, <field> = <value>, ... WHERE <condition>;
 ```
 
 ### Data Elimination
 
-```sql
+```sql linenums="1"
 DELETE FROM <table> WHERE <condition>
 DELETE FROM <table> -- empty the table
 ```
@@ -85,7 +85,7 @@ DELETE FROM <table> -- empty the table
 
 `*`: denotes all table fields
 
-```sql
+```sql linenums="1"
 SELECT * FROM <table>;    -- show table contents
 SHOW columns FROM <table>;    -- show table columns
 DESCRIBE <table>;    -- shows table
@@ -93,13 +93,13 @@ DESCRIBE <table>;    -- shows table
 
 ### Alias
 
-```sql
+```sql linenums="1"
 SELECT <field> as <alias>; -- shows <field/funzione> with name <alias>
 ```
 
 ### Conditional Selection
 
-```sql
+```sql linenums="1"
 SELECT * FROM <table> WHERE <condition>;    -- shows elements that satisfy the condition
 AND, OR, NOT    -- logic connectors
 
@@ -108,7 +108,7 @@ SELECT * FROM <table> WHERE <field> Between <value_1> AND <value_2>;
 
 ### Ordering
 
-```sql
+```sql linenums="1"
 SELECT * FROM <table> ORDER BY <field>, ...;    -- shows the table ordered by <field>
 SELECT * FROM <table> ORDER BY <field>, ... DESC;    -- shows the table ordered by <field>, decreasing order
 SELECT * FROM <table> ORDER BY <field>, ... LIMIT n;    -- shows the table ordered by <field>, shows n items
@@ -117,7 +117,7 @@ SELECT TOP(n) * FROM <table> ORDER BY <field>, ...;    -- T-SQL
 
 ## Grouping
 
-```sql
+```sql linenums="1"
 SELECT * FROM <table> GROUP BY <field>;
 SELECT * FROM <table> GROUP BY <field> HAVING <condition>;
 SELECT DISTINCT <field> FROM <table>;    -- shows elements without repetitions
@@ -127,7 +127,7 @@ SELECT DISTINCT <field> FROM <table>;    -- shows elements without repetitions
 
 `%`: any number of characters
 
-```sql
+```sql linenums="1"
 SELECT * FROM <table> WHERE <field> LIKE '<char>%';    -- selects items in <field> that start with <char>
 SELECT * FROM <table> WHERE <field> LIKE '%<char>';    -- selects items in <field> that end with <char>
 SELECT * FROM <table> WHERE <field> LIKE '%<char>%';    -- selects items in <field> that contain <char>
@@ -136,14 +136,14 @@ SELECT * FROM <table> WHERE <field> NOT LIKE '%<char>%';    -- selects items in 
 
 ### Selection from multiple tables
 
-```sql
+```sql linenums="1"
 SELECT a.<field>, b.<field> FROM <table> AS a, <table> AS b
     WHERE a.<field> ...;
 ```
 
 ## Functions
 
-```sql
+```sql linenums="1"
 SELECT COUNT(*) FROM <field>;    -- count of items in <field>
 SELECT MIN(*) FROM <table>;    -- min value
 SELECT MAX(*) FROM <table>;    -- max value
@@ -154,7 +154,7 @@ ANY (SELECT ...)
 
 ## Nested Queries
 
-```sql
+```sql linenums="1"
 SELECT * FROM <table> WHERE EXISTS (SELECT * FROM <table>)  -- selected field existing in subquery
 SELECT * FROM <table> WHERE NOT EXISTS (SELECT * FROM <table>)  -- selected field not existing in subquery
 ```
@@ -163,7 +163,7 @@ SELECT * FROM <table> WHERE NOT EXISTS (SELECT * FROM <table>)  -- selected fiel
 
 Create new table with necessary fields:
 
-```sql
+```sql linenums="1"
 CREATE TABLE <table> (
     (<field_name> <field_type> <option>,
     ...);
@@ -172,14 +172,14 @@ CREATE TABLE <table> (
 
 Fill fields with data from table:
 
-```sql
+```sql linenums="1"
 INSERT INTO <table>
     SELECT <fields> FROM <TABLE> WHERE <condition>;
 ```
 
 ## Join
 
-```sql
+```sql linenums="1"
 SELECT * FROM <table1> JOIN <table2> ON <table1>.<field> = <table2>.<field>;
 SELECT * FROM <table1> LEFT JOIN <table2> ON <condition>;
 SELECT * FROM <table1> RIGHT JOIN <table2> ON <condition>
@@ -189,7 +189,7 @@ SELECT * FROM <table1> RIGHT JOIN <table2> ON <condition>
 
 ## Multiple Join
 
-```sql
+```sql linenums="1"
 SELECT * FROM <table1>
 JOIN <table2> ON <table1>.<field> = <table2>.<field>
 JOIN <table3> ON <table2>.<field> = <table3>.<field>;
@@ -203,7 +203,7 @@ JOIN <table3> ON <table2>.<field> = <table3>.<field>;
 
 ### T-SQL Insert From table
 
-```sql
+```sql linenums="1"
 USE [<db_name>]
 
 SET IDENTITY_INSERT [<destination_table>] ON
@@ -217,7 +217,7 @@ SET IDENTITY_INSERT [<destination_table>] OFF
 
 ### T-SQL Parametric Query
 
-```sql
+```sql linenums="1"
 -- variable declaration
 DECLARE @var_name <type>
 
@@ -238,7 +238,7 @@ GO
 
 A view represents a virtual table. Join multiple tables in a view and use the view to present the data as if the data were coming from a single table.
 
-```sql
+```sql linenums="1"
 CREATE VIEW <name> AS
 SELECT * FROM <table> ...
 ```
@@ -250,7 +250,7 @@ SELECT * FROM <table> ...
 
 Stored Procedure Definition:
 
-```sql
+```sql linenums="1"
 CREATE PROCEDURE <Procedure_Name>
     -- Add the parameters for the stored procedure here
     <@Param1> <Datatype_For_Param1> = <Default_Value_For_Param1>,
@@ -268,7 +268,7 @@ GO
 
 Stored Procedure call in query:
 
-```sql
+```sql linenums="1"
 USE <database>
 GO
 

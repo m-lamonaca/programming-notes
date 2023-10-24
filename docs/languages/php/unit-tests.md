@@ -4,11 +4,11 @@
 
 ### Dev-Only Installation
 
-```ps1
+```ps1 linenums="1"
 composer require --dev phpunit/phpunit
 ```
 
-```json
+```json linenums="1"
     "require-dev": {
         "phpunit/phpunit": "<version>"
     }
@@ -18,7 +18,7 @@ composer require --dev phpunit/phpunit
 
 PHPUnit can be configured in a XML file called `phpunit.xml`:
 
-```xml
+```xml linenums="1"
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
@@ -46,7 +46,7 @@ PHPUnit can be configured in a XML file called `phpunit.xml`:
 A test is a method of a *test class* prefixed with `test`.  
 PHPUnit is executed from the command line with `vendor/bin/phpunit  --colors`.
 
-```php
+```php linenums="1"
 namespace App;
 
 class Filter
@@ -58,7 +58,7 @@ class Filter
 }
 ```
 
-```php
+```php linenums="1"
 namespace App\Test;
 use PHPUnit\Framework\TestCase;
 use App\Filter;
@@ -92,7 +92,7 @@ class FilterTest extends TestCase
 
 ### [PHPUnit Testing Exceptions](https://phpunit.readthedocs.io/en/9.3/writing-tests-for-phpunit.html#testing-exceptions)
 
-```php
+```php linenums="1"
 public function testAggiungiEsameException(string $esame)
 {
     $this->expectException(Exception::class);
@@ -131,7 +131,7 @@ public function testNoExceptions(string $esame)
 
 ### Test Setup & Teardown (Example)
 
-```php
+```php linenums="1"
 class ClassTest extends TestCase
 {
     // initialize the test
@@ -157,7 +157,7 @@ class ClassTest extends TestCase
 
 ### Data Provider
 
-```php
+```php linenums="1"
 class DataTest extends TestCase
 {
     /**
@@ -195,7 +195,7 @@ class DataTest extends TestCase
 
 ### Mock Objects
 
-```php
+```php linenums="1"
 class UnitTest extends TestCase
 {
     public function setUp()
@@ -225,6 +225,6 @@ class UnitTest extends TestCase
 
 ### Code Coverage (needs [XDebug](https://xdebug.org/))
 
-```ps1
+```ps1 linenums="1"
 vendor/bin/phpunit --coverage-text  # code coverage analysis in the terminal
 ```
