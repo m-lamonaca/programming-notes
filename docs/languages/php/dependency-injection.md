@@ -2,7 +2,7 @@
 
 Explicit definition of a class dependencies with the injection through the constructor or *getters*/*setters*.
 
-```php
+```php linenums="1"
 class Foo
 {
     public function __construct(PDO $pdo)  // depends on PDO
@@ -24,7 +24,7 @@ The dependency injection container for humans. Installation: `composer require p
 - Use of [Reflection](https://www.php.net/manual/en/intro.reflection.php)
 - Configuration of the container through annotations & PHP code.
 
-```php
+```php linenums="1"
 class Foo
 {
     private $bar;
@@ -42,7 +42,7 @@ $foo = $container->get('Foo');  // get instance of Foo (automatic DI of Bar)
 
 ### DIC Configuration
 
-```php
+```php linenums="1"
 // Foo.php
 class Foo
 {
@@ -53,7 +53,7 @@ class Foo
 }
 ```
 
-```php
+```php linenums="1"
 // config.php
 use Psr\Container\ContainerInterface;
 
@@ -68,7 +68,7 @@ return [
 ];
 ```
 
-```php
+```php linenums="1"
 $builder = new \DI\ContainerBuilder();
 $builder->addDefinitions("config.php");  // load config
 $container = $builder->build();  // construct container

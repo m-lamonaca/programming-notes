@@ -1,13 +1,22 @@
 version: 2
 updates:
-  - package-ecosystem: "pip" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "pip"
+    directory: "/"
     schedule:
       interval: "weekly"
     commit-message:
       prefix: "Poetry"
       include: "scope"
     ignore:
-      # ignore patch updates
       - dependency-name: "*"
         update-types: ["version-update:semver-patch"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule: 
+      interval: "weekly"
+    commit-message:
+      prefix: "Github Actions"
+      include: "scope"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-minor"]

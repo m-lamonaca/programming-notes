@@ -16,7 +16,7 @@ SwiftUI memorizes internally the value of the `@State` property and updates the 
 - Permits the visualization of simple UIs.
 - Constituted by a body of type `View`
 
-```swift
+```swift linenums="1"
 struct SimpleViewName: View {
 
     let CONSTANT: Type
@@ -38,7 +38,7 @@ struct SimpleViewName: View {
 
 Used to organize elements without dealing with constraints or forcing the visualization on devices wih different screen sizes.
 
-```swift
+```swift linenums="1"
 struct ContentView: View {
     var body: some View {
 
@@ -61,7 +61,7 @@ The basic object that creates the table view is the `List()`. It's job is to cre
 The array can be filtered with a *search bar*.
 The array elements can be grouped with the `Section()` object that groups cells under a common name in the table.
 
-```swift
+```swift linenums="1"
 // view name can be any
 struct TableView: View {
     var array = [...]
@@ -88,7 +88,7 @@ Every cell can have a link to visualize the details of the selected object. This
 The `NavigationView` contains the list and the property `.navigationBarTitle()` sets the view title.
 It's possible to add other controls in the top part of the view (buttons, ...) using the property `.navigationBarItems()`.
 
-```swift
+```swift linenums="1"
 struct ContentView: View {
     let array = [...]
     var body: some View {
@@ -108,7 +108,7 @@ struct ContentView: View {
 This view handles a bar on the bottom of the screen with links to simple or more complex views.
 This is useful for designing pages that can be easily navigated by the user.
 
-```swift
+```swift linenums="1"
 struct TabBarView: View {
     var body: some View {
 
@@ -143,20 +143,20 @@ It's possible to integrate the NavigationView in the TabBar in two ways:
 
 ### Text
 
-```swift
+```swift linenums="1"
 Text("")
 ```
 
 ### Shapes
 
-```swift
+```swift linenums="1"
 Rectangle()
 Circle()
 ```
 
 ### Spacing
 
-```swift
+```swift linenums="1"
 Divider()
 Spacer()
 ```
@@ -165,13 +165,13 @@ Spacer()
 
 [System Images](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/)
 
-```swift
+```swift linenums="1"
 Image(systemName: "sfsymbol")
 ```
 
 ### Button
 
-```swift
+```swift linenums="1"
 Button(action: { /* statements */ }) {
     Text("Label")
     //or
@@ -202,7 +202,7 @@ Common syle options:
 - `shadow()`: Sets the object's shadow
 - `lineLimit()`: limits the number of visible lines in `TextField`
 
-```swift
+```swift linenums="1"
 View().styleOption()
 // or
 View {
@@ -212,7 +212,7 @@ View {
 
 ## Forms & Input
 
-```swift
+```swift linenums="1"
 Form {
     Section (header: Text("Section Title")) {
         // form components
@@ -222,7 +222,7 @@ Form {
 
 ### Picker
 
-```swift
+```swift linenums="1"
 // list item picker
 Picker(selction: $index, label: Text("Selection Title")) {
     ForEach(0..<itemArray.count){
@@ -233,26 +233,26 @@ Picker(selction: $index, label: Text("Selection Title")) {
 
 ### Stepper
 
-```swift
+```swift linenums="1"
 Stepper("\(number)", value: $number, in: start...end)
 ```
 
 ### TextField
 
-```swift
+```swift linenums="1"
 TextField("Placeholder Text", text: $result)
     .keyboardType(.<kb_type>)
 ```
 
 ### Slider
 
-```swift
+```swift linenums="1"
 Slider(value: $numVariable)
 ```
 
 ## API Interaction
 
-```swift
+```swift linenums="1"
 @State private var apiItems = [<struct>]()
 
 // struct should be Identifiable & Codable

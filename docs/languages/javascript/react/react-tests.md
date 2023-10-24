@@ -4,7 +4,7 @@
 
 ### Jest Configuration
 
-```js
+```js linenums="1"
 // jest.config.js
 module.exports = {
   testEnvironment: 'jsdom',
@@ -18,7 +18,7 @@ module.exports = {
 
 [Expect docs](https://jestjs.io/docs/expect)
 
-```js
+```js linenums="1"
 // .spec.js or .test.js
 it("test description", () => {
     // test body
@@ -36,7 +36,7 @@ describe("test group name", () => {
 
 In `Component.Snapshots.js`:
 
-```js
+```js linenums="1"
 import React from "react";
 import renderer from "react-test-renderer";
 
@@ -60,7 +60,7 @@ it("test description", () => {
 
 ### Enzyme Configuration
 
-```js
+```js linenums="1"
 // testSetup.js
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-<version>";
@@ -72,7 +72,7 @@ configure({ adapter: new Adapter() });
 
 In `Component.test.js`:
 
-```js
+```js linenums="1"
 import React from "react";
 import { shallow, mount } from "enzyme";
 // eventual wrapper components (react-router, react-redux's provider, ...) for mount render
@@ -125,7 +125,7 @@ Encourages to write test based on what the user sees. So components are always *
 
 In `Components.test.js`:
 
-```js
+```js linenums="1"
 import React from "react";
 import { cleanup, render } from "@testing-library/react";
 

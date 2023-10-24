@@ -33,7 +33,7 @@ Short-circuiting is often desirable because it avoids unnecessary work.
 
 It's possible to perform actions both *before* and *after* the next delegate:
 
-```cs
+```cs linenums="1"
 // "inline" middleware, best if in own class
 app.Use(async (context, next) =>
 {
@@ -45,7 +45,7 @@ app.Use(async (context, next) =>
 
 `Run` delegates don't receive a next parameter. The first `Run` delegate is always terminal and terminates the pipeline.
 
-```cs
+```cs linenums="1"
 // "inline" middleware, best if in own class
 app.Use(async (context, next) =>
 {
@@ -69,7 +69,7 @@ The Endpoint middleware executes the filter pipeline for the corresponding app t
 
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
-```cs
+```cs linenums="1"
 if (env.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -121,7 +121,7 @@ Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn'
 
 Middleware is generally encapsulated in a class and exposed with an extension method.
 
-```cs
+```cs linenums="1"
 public class CustomMiddleware
 {
     private readonly RequestDelegate _next;
@@ -152,7 +152,7 @@ The middleware class **must** include:
 
 ## Middleware Extension Methods
 
-```cs
+```cs linenums="1"
 using Microsoft.AspNetCore.Builder;
 
 public static class MiddlewareExtensions
@@ -164,7 +164,7 @@ public static class MiddlewareExtensions
 }
 ```
 
-```cs
+```cs linenums="1"
 // other middlewares
 
 app.UseCustom();  // add custom middleware in the pipeline

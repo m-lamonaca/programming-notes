@@ -96,7 +96,7 @@ As pods successfully complete, the Job tracks the successful completions. When a
 
 ## Kubernetes Configuration
 
-Each kubernetes configuration file is composed by 3 parts: 
+Each kubernetes configuration file is composed by 3 parts:
 
 - metadata
 - specification
@@ -110,7 +110,7 @@ Each kubernetes configuration file is composed by 3 parts:
 
 ### `kubectl get`
 
-```sh
+```sh linenums="1"
 kubectl config get-contexts  # list available contexts
 
 kubectl get namespaces  # list namespaces inside current context
@@ -121,11 +121,12 @@ kubectl get pod [-n|--namespace <namespace>] <pod> -o|--output jsonpath='{.spec.
 
 ### `kubectl exec`
 
-```sh
+```sh linenums="1"
 kubectl exec [-i|--stdin] [-t|--tty] [-n|--namespace <namespace>] <pod> [-c|--container <container>] -- <command>  # execute a command inside a container
 ```
+
 ### `kubectl logs`
 
-```sh
+```sh linenums="1"
 kubectl logs [-f|--follow] [-n|--namespace <namespace>] <pod> [-c|--container]  # get pod/container logs
 ```

@@ -59,6 +59,7 @@ theme:
     - navigation.tabs.sticky
     - navigation.footer
     - toc.follow
+    - content.code.copy
 
 
 markdown_extensions:

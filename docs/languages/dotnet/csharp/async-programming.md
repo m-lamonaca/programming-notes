@@ -14,7 +14,7 @@ In performance-sensitive code, asynchronous APIs are useful, because instead of 
 
 The `async` and `await` keywords in C# are the heart of async programming.
 
-```cs
+```cs linenums="1"
 public async Task<TResult> MethodAsync
 {
     Task<TResult> resultTask = obj.OtherMethodAsync();
@@ -90,7 +90,7 @@ Because `Task` and `Task<TResult>` are **reference types**, memory allocation in
 
 ### Async Composition
 
-```cs
+```cs linenums="1"
 public async Task DoOperationsConcurrentlyAsync()
 {
   Task[] tasks = new Task[3];
@@ -132,7 +132,7 @@ If work starting from a UI thread is performed, but there is no particular need 
 If the asynchronous operation is a `Task`, `Task<T>`, `ValueTask` or `ValueTask<T>`, it's possible to discard the *synchronization context* by calling the `ConfigureAwait(false)`.  
 This returns a different representation of the asynchronous operation, and if this iss awaited that instead of the original task, it will ignore the current `SynchronizationContext` if there is one.
 
-```cs
+```cs linenums="1"
 private async Task DownloadFileAsync(string fileName)
 {
   await OperationAsync(fileName).ConfigureAwait(false);  // discarding original context
@@ -156,7 +156,7 @@ This is true even of exceptions thrown before the first `await`.
 If the calling method immediately calls `await` on the return task, this won’t matter much—it will see the exception in any case.  
 But some code may choose not to wait immediately, in which case it won’t see the argument exception until later.
 
-```cs
+```cs linenums="1"
 async Task<string> MethodWithValidationAsync(string argument)
 {
   if(sting.IsNullOrEmpty(argument))
@@ -173,7 +173,7 @@ async Task<string> MethodWithValidationAsync(string argument)
 In cases where you want to throw this kind of exception straightaway, the usual technique is to write a normal method that validates the arguments before calling an async method that does the
 work, and to make that second method either private or local.
 
-```cs
+```cs linenums="1"
 // not marked with async, exception propagate directly to caller
 public static Task<string> MethodWithValidationAsync(string argument)
 {

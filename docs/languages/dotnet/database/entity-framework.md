@@ -2,7 +2,7 @@
 
 ## Model & Data Annotations
 
-```cs
+```cs linenums="1"
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +35,7 @@ NuGet Packages to install:
 - `Microsoft.EntityFrameworkCore.Design` *or* `Microsoft.EntityFrameworkCore.<db_provider>.Design` needed for tools to work (bundled w\ tools)
 - `Microsoft.EntityFrameworkCore.<db_provider>`
 
-```cs
+```cs linenums="1"
 using Microsoft.EntityFrameworkCore;
 
 namespace <Project>.Model
@@ -69,14 +69,14 @@ Create & Update DB Schema if necessary.
 
 In Package Manager Shell:
 
-```ps1
+```ps1 linenums="1"
 PM> Add-Migration <migration_name>
 PM> update-database [-Verbose] # use the migrations to modify the db, -Verbose to show SQL queries
 ```
 
 In dotnet cli:
 
-```ps1
+```ps1 linenums="1"
 dotnet tool install --global dotnet-ef  # if not already installed
 
 dotnet ef migrations add <migration_name>
@@ -87,7 +87,7 @@ dotnet ef database update
 
 ### Create
 
-```cs
+```cs linenums="1"
 context.Add(entity);
 context.AddRange(entities);
 
@@ -98,7 +98,7 @@ context.SaveChanges();
 
 [Referenced Object Not Loading Fix](https://stackoverflow.com/a/5385288)
 
-```cs
+```cs linenums="1"
 context.Entities.ToList();
 context.Entities.Find(id);
 
@@ -108,7 +108,7 @@ context.Entities.Include(c => c.ForeignObject).Find(id);
 
 ### Update
 
-```cs
+```cs linenums="1"
 context.Entities.Update(entity);
 context.UpdateRange(entities);
 
@@ -117,7 +117,7 @@ context.SaveChanges();
 
 ### Delete
 
-```cs
+```cs linenums="1"
 context.Entities.Remove(entity);
 context.RemoveRange(entities);
 
