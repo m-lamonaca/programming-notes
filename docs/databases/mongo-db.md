@@ -40,9 +40,13 @@ db.<collection>.insertOne({document})  # implicit collection creation
 
 ```json linenums="1"
 /* --- Update operators --- */
-{ "$inc":  { "<key>": "<increment>", ... } }  // Increment value
-{ "$set":  { "<key>": "<value>", ... } }  // Set value
+{ "$inc":  { "<key>": "<increment>", ... } }  // increment value
+{ "$set":  { "<key>": "<value>", ... } }  // set value
+{ "$unsetset":  { "<key>": "true", ... } }  // unset value
 { "$push": { "<key>": "<value>", ... } }  // add a value to an array field or turn field into array
+{ "$pop": { "<key>": <-1 | 1>, ... } }  // remove first or last array element
+{ "$pull": { "<key>": "<value | condition>", ... } }  // remove a specific item in the array
+{ "$pullAll": { "<key>": [ "<value1>", "<value2>" ... ], ... } }  // remove all specified values from array
 
 /* --- Query Operators --- */
 { "<key>": { "$in": [ "<value_1>", "<value_2>", ...] } } // Membership
