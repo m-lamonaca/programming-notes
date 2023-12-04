@@ -549,24 +549,31 @@ Older browsers don't support this input type.
 The `<meter>` HTML element represents either a scalar value within a known range or a fractional value.
 
 ```html linenums="1"
-<meter min="0" max="100" low="33" high="66" optimum="80" value="50" />
+<meter min="0" max="100" low="33" high="66" optimum="80" value="50">current value</meter>
 ```
 
-### More Input Types
+### Datalist (Autocomplete)
 
-```html linenums="1"
-<input type="email" id="email" name="email">
-<input type="url" id="url" name="url">
-<input type="number" name="" id="identifier" min="min-value" max="max-value" step="">
-<input type="search" id="identifier" name="">
+The `datalist` HTML element can provide suggestions to an input that targets it's `id` with the `list` attribute.
 
-<!-- Native Search with autocomplete -->
+```html
 <input list="items">
+
 <datalist id="items">
     <option value="value-1">
     <option value="value-2">
     <option value="value-3">
 </datalist>
+```
+
+### More Input Types
+
+```html linenums="1"
+<input type="email" id="email" name="email" />
+<input type="url" id="url" name="url" />
+<input type="number" name="" id="identifier" min="min-value" max="max-value" step="" />
+<input type="search" id="identifier" name="">
+<input type="color" />
 ```
 
 ### [Using Built-In Form Validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
