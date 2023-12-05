@@ -166,8 +166,79 @@ shadow.appendChild(span);
 <span>I'm not in the shadow DOM</span>
 ```
 
+## [`<template>` and `<slot>`][using-template-slots-mdn]
+
+### The `<template>` element
+
+To reuse the same markup structures repeatedly on a web page, it makes sense to use some kind of a template rather than repeating the same structure over and over again.  
+The HTML `<template>` and its contents are not rendered in the DOM, but it can still be referenced using JavaScript.
+
+```html
+<template id="template-id">
+  <p>template fallback content</p>
+</template>
+```
+
+```js
+let template = document.getElementById("template-id").content;
+document.body.appendChild(template);
+```
+
+### Templates & Custom Elements
+
+Templates are useful on their own, but they work even better with web components.
+
+Since the template is added to a shadow DOM, it's possible to include styling information inside the template in a `<style>` element, which is then encapsulated inside the custom element.
+
+```html
+<template id="template-id">
+  <style>
+    p {
+      color: white;
+      background-color: #666;
+      padding: 5px;
+    }
+  </style>
+
+  <p>My paragraph</p>
+</template>
+```
+
+```js
+class CustomElement extends HTMLElement {
+    constructor() {
+        super();
+        let template = document.getElementById("template-id").content;;
+
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(template.cloneNode(true));
+    }
+}
+
+customElements.define("custom-element", CustomElement);
+```
+
+### The `<slot>` element
+
+It possible to display different content in each element instance in a nice declarative way using the `<slot>` element.
+
+Slots are identified by their _name attribute_, and allow to define placeholders in the template that can be filled with any markup fragment when the element is used in the markup.
+
+```html
+<template id="template-id">
+  <p>
+    <slot name="slot-name">Default slot content</slot>
+  </p>
+</template>
+
+<custom-element>
+  <span slot="slot-name">Substituted slot content</span>
+</custom-element>
+```
+
 <!-- links -->
 [web-components-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Components "Web Components Docs"
 [using-cusotom-elements-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements "Using Custom Elements"
 [using-shadow-dom-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM "Using Shadow DOM"
+[using-template-slots-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots "Using Templates and Slots"
 [shadow-dom-schema]: ../img/webcomponents_shadowdom.svg
