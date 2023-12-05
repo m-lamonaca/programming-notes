@@ -98,6 +98,76 @@ class CustomElement extends HTMLElement {
 }
 ```
 
+## [Shadow DOM][using-shadow-dom-mdn]
+
+THe **Shadow DOM** allows to attach a DOM tree to an element, and have the internals of this tree hidden from JavaScript and CSS running in the page.
+
+The shadow DOM tree starts with a shadow root, underneath which it's possible to attach any element, in the same way as the normal DOM.
+
+Terminology:
+
+- **Shadow host**: The regular DOM node that the shadow DOM is attached to.
+- **Shadow tree**: The DOM tree inside the shadow DOM.
+- **Shadow boundary**: the place where the shadow DOM ends, and the regular DOM begins.
+- **Shadow root**: The root node of the shadow tree.
+
+![shadow-dom-schema]
+
+### Creating a Shadow DOM
+
+```html
+<div id="host"></div>
+<span>I'm not in the shadow DOM</span>
+```
+
+```js
+const host = document.querySelector("#host");
+const shadow = host.attachShadow({ mode: "open" });
+const span = document.createElement("span");
+span.textContent = "I'm in the shadow DOM";
+shadow.appendChild(span);
+```
+
+> **Note**: `{mode: "open"}` allows accessing the shadow DOM from the _root node_ `shadowDom` property. The "close" mode does not expose this property.
+
+### JavaScript & CSS Encapsulation
+
+The JavaScript and CSS defined outside the shadow DOM do not have effect inside. To style a shadow dom there are two possibilities:
+
+- defining a `CSSStylesheet` and assigning it to the `ShadowRoot: adoptedStyleSheets`
+- adding a `<style>` element in a `<template>` element's declaration.
+
+```js
+const sheet = new CSSStyleSheet();
+sheet.replaceSync("span { color: red; border: 2px dotted black; }");
+
+const host = document.querySelector("#host");
+
+const shadow = host.attachShadow({ mode: "open" });
+shadow.adoptedStyleSheets = [sheet];
+
+const span = document.createElement("span");
+span.textContent = "I'm in the shadow DOM";
+shadow.appendChild(span);
+```
+
+```html
+<template id="custom-element">
+  <style>
+    span {
+      color: red;
+      border: 2px dotted black;
+    }
+  </style>
+  <span>I'm in the shadow DOM</span>
+</template>
+
+<div id="host"></div>
+<span>I'm not in the shadow DOM</span>
+```
+
 <!-- links -->
 [web-components-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Components "Web Components Docs"
 [using-cusotom-elements-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements "Using Custom Elements"
+[using-shadow-dom-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM "Using Shadow DOM"
+[shadow-dom-schema]: ../img/webcomponents_shadowdom.svg
