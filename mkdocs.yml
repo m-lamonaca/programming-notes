@@ -186,3 +186,4 @@ nav:
     - GraphQL: misc/graph-ql.md
     - RegEx: misc/regular-expressions.md
     - SSH: misc/ssh.md
+    - WebComponents: misc/web-components.md
