@@ -178,9 +178,6 @@ nav:
     - Bash:
         - Scripting: languages/bash/scripting.md
         - Commands: languages/bash/commands.md
-  - Devices:
-    - iOS:
-      - ContentView: devices/ios/content-view.md
   - Misc:
     - Git: misc/git.md
     - GraphQL: misc/graph-ql.md

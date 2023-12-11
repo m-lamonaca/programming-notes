@@ -1,8 +1,4 @@
-# Swift / SwiftUI
-
-- Statically Typed
-
-[Building for Mac with VBox](https://medium.com/@twister.mr/installing-macos-to-virtualbox-1fcc5cf22801)
+# Swift
 
 ## Basics
 
