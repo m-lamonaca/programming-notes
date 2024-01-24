@@ -426,8 +426,6 @@ Client Authentication Mechanisms:
 - **LADP**: Lightweight Directory Access Protocol (Enterprise Only)
 - **KERBEROS** (Enterprise Only)
 
-Cluster Authentication Mechanism:
-
 ### Authorization: Role Based Access Control (RBAC)
 
 Each user has one or more **Roles**. Each role has one or more **Privileges**.  
@@ -438,7 +436,7 @@ This is the "localhost exception" and it closes after the _first_ user is create
 
 > **Warn**: Always create an admin user first (ideally with the `userAdmin` role)
 
-Role's Resources:
+Role's **Resources**:
 
 - specific database and collection: `{ "db": "<database>", "collection": "<collection>" }`
 - all databases and collections: `{ "db": "", "collection": "" }`
@@ -446,7 +444,7 @@ Role's Resources:
 - specific database and any collection: `{ "db": "<database>", "collection": "" }`
 - cluster resource: `{ "cluster": true }`
 
-Role's Privileges: `{ resource: { <resource> }, actions: [ "<action>" ] }`
+Role's **Privileges**: `{ resource: { <resource> }, actions: [ "<action>" ] }`
 
 A role can _inherit_ from multiple others and can define **network restrictions** such as _Server Address_ and _Client Source_.
 
@@ -459,19 +457,46 @@ Built-in Roles Groups and Names:
 - Super User: `root`
 
 ```sh linenums="1"
-db.createUser(
-    {
-        user: "<username>",
-        pwd: "<password>",
-        roles: [ { role: "<role>", db: "<database>" } ]
-    }
-)
+db.createUser({
+    user: "<username>",
+    pwd: "<password>",
+    roles: [ { role: "<role>", db: "<database>" } ]
+})
+
+db.createRole({
+    role: "<role>",
+    privileges: [
+        { resource: { cluster: true }, actions: [ "<action>", ... ] },
+        {
+            resource: { 
+                db: "<database>",
+                collection: "<collection>"
+            },
+            actions: [ "<action>", ... ]
+        },
+    ],
+    roles: [
+        { role: "<role>", db: "<database>" }  # inherited permissions
+    ]
+})
 
 # add role to existing user
-db.grantRolesToUser( "<user>", [ { db: "<database>", role: "<role>" } ] )
+db.grantRolesToUser(
+    "<user>",
+    [
+        { 
+            role: "<role>"
+            db: "<database>",
+            collection: "<collection>",
+        }
+    ]
+)
 
-# show role privilege
-db.runCommand( { rolesInfo: { db: "<database>", role: "<role>" }, showPrivileges: true } )
+# show role privileges
+db.runCommand({
+    rolesInfo: { db: "<database>", role: "<role>" },
+    showPrivileges: true 
+})
 ```
 
 ### [Replica set](https://docs.mongodb.com/manual/replication/)
