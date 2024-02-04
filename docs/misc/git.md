@@ -118,6 +118,7 @@ def load_reference(name_or_id):
 `git diff  --cached`: show what is about to be committed  
 `git diff <first-branch>...<second-branch>`: show content diff between two branches  
 `git diff -w|--ignore-all-space`: show diff ignoring whitespace differences  
+`git diff --word-diff`: show diff word-by-word instead of line-wise  
 
 `git bisect`: binary search history (e.g. for regressions)  
 
