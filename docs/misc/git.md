@@ -102,6 +102,11 @@ def load_reference(name_or_id):
 `git add -p|--patch <files>`: interactively stage chunks of a file  
 
 `git blame <file>`: show who last edited which line  
+`git blame -L <start>,<end> -- <file>`: Annotate only the line range given by `<start>,<end>`, within the `<file>`  
+`git blame -L /<regex>/ -- <file>`: Annotate only the range given by the function name regex `<regex>`, within the `<file>`  
+`git blame -w`: Ignore whitespace when comparing the parent’s version and the child’s to find where the lines came from  
+`git blame -M`: Detect moved or copied lines within a file.  
+`git blame -M -C [-C -C]`: Detect moved or copied lines within a file (`-M`), from all modified files in the same commit (`-C`), in the commit that created the file (`-C -C`), in all commits (`-C -C -C`)  
 
 `git commit`: save the snapshot to the project history  
 `git commit -m|--message "message"`: commit and provide a message  
@@ -170,6 +175,13 @@ def load_reference(name_or_id):
 `git log --follow <file>`: list version history fo file, including renames  
 `git log --all --graph --decorate`: visualizes history as a DAG  
 `git log  --oneline`: compact log  
+
+`git log -S<string>`: Look for diffs that change the number of occurrences of the specified `<string>`  
+`git log -G<regex>`: Look for diffs whose patch text contains added/removed lines that match `<regex>`  
+
+`git log -L <start>,<end>:<file>`: Trace the evolution of the line range given by `<start>,<end>`, within the `<file>`  
+`git log -L /<regex>/:<file>`: Trace the evolution of the line range given by the function name regex `<regex>`, within the `<file>`  
+
 `git log <rev>`: Include commits that are reachable from `<rev>`  
 `git log ^<rev>`: Exclude commits that are reachable from `<rev>`  
 `git log <rev1>..<rev2>`: Include commits that are reachable from `<rev2>` but exclude those that are reachable from `<rev1>`. When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.  
