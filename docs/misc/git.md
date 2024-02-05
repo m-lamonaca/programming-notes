@@ -98,8 +98,9 @@ def load_reference(name_or_id):
 ### Making Changes
 
 `git status`: shows the status of changes as untracked, modified, or staged  
-`git add <filename1 filename2 ...>`: add files to the staging area  
-`git add -p|--patch <files>`: interactively stage chunks of a file  
+`git add <files>`: add files contents to the staging area  
+`git add -u|--update <files>`: stage changes but ignore untracked files  
+`git add -p|--patch <files>`: interactively stage chunks of files  
 
 `git blame <file>`: show who last edited which line  
 `git blame -L <start>,<end> -- <file>`: Annotate only the line range given by `<start>,<end>`, within the `<file>`  
