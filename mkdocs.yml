@@ -21,6 +21,7 @@ extra:
 plugins:
   - search
   - social
+  - offline
 
 
 theme:
