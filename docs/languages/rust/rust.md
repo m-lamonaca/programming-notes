@@ -1242,6 +1242,23 @@ This technique is mostly useful when passing a closure to a new thread to move t
 let closure = move |param| <expr>;
 ```
 
+## Function Pointers
+
+**Function pointer** types, written using the `fn` keyword, refer to a function whose identity is not necessarily known at compile-time.  
+They can be created via a coercion from both *function items* and *non-capturing closures*.
+
+```rs
+fn add_one(x: usize) -> usize {
+    x + 1
+}
+
+let ptr: fn(usize) -> usize = add_one;
+assert_eq!(ptr(5), 6);
+
+let clos: fn(usize) -> usize = |x| x + 5;
+assert_eq!(clos(5), 10);
+```
+
 ## Iterators
 
 The *iterator pattern* allows to perform some task on a sequence of items in turn. An iterator is responsible for the logic of iterating over each item and determining when the sequence has finished.
