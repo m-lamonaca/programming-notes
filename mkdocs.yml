@@ -157,6 +157,7 @@ nav:
             - REST API: languages/php/simple-mvc/rest-api.md
     - Rust:
         - Rust: languages/rust/rust.md
+        - Macros: languages/rust/macros.md
         - Cargo: languages/rust/cargo.md
         - Unit Tests: languages/rust/unit-tests.md
     - Javascript:
