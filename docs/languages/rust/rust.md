@@ -276,13 +276,11 @@ The curly brackets tell the compiler where the function body begins and ends.
 Rust doesn't care where the functions are defined, only that they're defined somewhere.
 
 ```rs linenums="1"
-fn func(param: Type) {  // parameters MUST have the Type annotation
-    // code here
-}
+  // parameters MUST have the Type annotation
+fn func(param: Type) {}
 
-fn func() -> Type {  // -> specifies the return type
-    // code here
-}
+  // -> specifies the return type
+fn func() -> Type {}
 
 fn func() {
     value  // returns value
@@ -299,7 +297,7 @@ fn func() {
 
 ## Control Flow
 
-### if - else if - else
+### if, else-if, else
 
 ```rs linenums="1"
 if condition {
@@ -317,7 +315,7 @@ if condition {
 let var = if condition { value } else { value };  // returned types must be the same
 ```
 
-### [if-let](https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html)
+### if-let
 
 ```rs linenums="1"
 if let <pattern> = <expr> {
@@ -340,10 +338,12 @@ match <expr> {
 loop { }
 ```
 
-### while
+### while, while-let
 
 ```rs linenums="1"
 while condition { }
+
+while let <pattern> {}
 ```
 
 ### for
@@ -528,7 +528,7 @@ it's not possible to use the owner at all, until the mutable reference goes away
 
 > **Note**: raw pointers can be used only in `unsafe` block. Rust doesn't track the pointed value
 
-*Mutable references* have one big restriction: you can have *only one* mutable reference to a particular piece of data in a particular scope.
+*Mutable references* have one big restriction: it's possible to have *only one* mutable reference to a particular piece of data in a particular scope.
 
 The benefit of having this restriction is that Rust can prevent **data races** at compile time.  
 A data race is similar to a race condition and happens when these three behaviors occur:
@@ -830,7 +830,9 @@ trait Iterator {
 
 The type `Item` is a placeholder, and the next method’s definition shows that it will return values of type `Option<Self::Item>`. Implementors of the `Iterator` trait will specify the concrete type for `Item`, and the next method will return an `Option` containing a value of that concrete type.
 
-### Generic Traits vs Associted Types
+> **Note**: if the type is *generic* then then they are called **generic associated types**
+
+### Generic Traits vs Associated Types
 
 The difference is that when a trait has a generic parameter, it can be implemented for a type multiple times, changing the concrete types of the generic type parameters each time.  
 With associated types, it's not possible to implement the trait multiple times so annotations are not needed.
@@ -969,22 +971,22 @@ fn match_variant(e: Enum) {
 
 ### Pattern Matching
 
-Pattern | Example | Notes
-:--------------------:|:--------------------------:|:---------------------------------------:
-Literal               | `100`                      | Match exact value or `const` name
-Range                 | `x..=y`                    | Match any value in range, including end
-Wildcard              | `_`                        | Match any value and ignore it
-`ref` Variable        | `ref field`                | Borrow reference of matched variable
-Variable              | `count`                    | Match any value and copy it to variable
-Bind with syb-pattern | `variable @ <pattern>`     | Match pattern and copy to variable
-Enum                  | `Some(value)`              |
-Tuple                 | `(key, value)`             |
-Array                 | `[first, second, third]`   |
-Slice                 | `[first, .., last]`        |
-Struct                | `Point { x, y, .. }`       |
-Reference             | `&value`                   |
-Multiple Patterns     | `'a' \| 'A'`               | `match, if let, while let` only
-Guard Expression      | `<pattern> if <condition>` | `match` only
+| Pattern              | Example                    | Notes                                   |
+|:--------------------:|:--------------------------:|:---------------------------------------:|
+|Literal               | `100`                      | Match exact value or `const` name       |
+|Range                 | `x..=y`                    | Match any value in range, including end |
+|Wildcard              | `_`                        | Match any value and ignore it           |
+|`ref` Variable        | `ref field`                | Borrow reference of matched variable    |
+|Variable              | `count`                    | Match any value and copy it to variable |
+|Bind with syb-pattern | `variable @ <pattern>`     | Match pattern and copy to variable      |
+|Enum                  | `Some(value)`              |                                         |
+|Tuple                 | `(key, value)`             |                                         |
+|Array                 | `[first, second, third]`   |                                         |
+|Slice                 | `[first, .., last]`        |                                         |
+|Struct                | `Point { x, y, .. }`       |                                         |
+|Reference             | `&value`                   |                                         |
+|Multiple Patterns     | `'a' \| 'A'`               | `match, if let, while let` only         |
+|Guard Expression      | `<pattern> if <condition>` | `match` only                            |
 
 > **Note**: `..` in slices matches *any number* of elements. `..` in structs *ignores* all remaining fields
 
