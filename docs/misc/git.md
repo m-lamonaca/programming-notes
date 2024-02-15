@@ -199,10 +199,10 @@ def load_reference(name_or_id):
 
 Git supports two types of tags: *lightweight* and *annotated*.  
 
-A lightweight tag is very much like a branch that doesn't change—it's just a pointer to a specific commit.  
+A lightweight tag is very much like a branch that doesn't change: it's just a pointer to a specific commit.  
 
 Annotated tags, however, are stored as full objects in the Git database.  
-They're checksummed;contain the tagger name, email, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG).  
+They're checksummed; contain the tagger name, email, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG).  
 It's generally recommended creating annotated tags so it's possible to have all this information.  
 
 `git tag`: list existing tags  
@@ -210,6 +210,8 @@ It's generally recommended creating annotated tags so it's possible to have all 
 
 `git tag <tag> [<commit_hash>]`: create a *lightweight* tag on the commit  
 `git tag -a|--annotate <tag> [<commit_hash> -m <message>]`: create am *annotated* tag on the commit  
+`git tag -f|--force <tag> [<commit_hash>]`: update a tag if it exists  
+`git tag -s|--sign <tag> [<commit_hash>]`: sign a tag  
 
 `git push <remote> <tagname>`: push a tag to the remote  
 `git push <remote> --tags`: push commits and their tags (both types) to the remote  
