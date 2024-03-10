@@ -261,13 +261,12 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git clean -d`: recurse into untracked directories while cleaning  
 `git clean --interactive`: clean files interactively  
 
-`git checkout <file>`: discard changes  
-`git checkout -- <file>`: discard changes, no output to screen  
 `git restore .`: discard uncommitted changes  
 `git restore <file>`: discard uncommitted changes to file  
 `git restore --source <commit> <file>`: revert file to commit version  
+`git restore --staged`: unstage changes made to a file  
+`git restore --staged --worktree`: unstage and discard changes made to a file  
 `git restore <deleted-file>`: recover deleted file if previously committed  
-`git restore --staged <file>`: unstage a file  
 
 `git rebase -i|--interactive`: modify (reword, edit, drop, squash, merge, ...) current branch commits  
 `git rebase -i|--interactive HEAD~<n>`: modify (reword, edit, drop, squash, merge, ...) *n* commits  
