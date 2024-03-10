@@ -233,8 +233,8 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git branch <branch-name>`: create new branch  
 `git branch -d|--delete <branch-name>`: delete specified branch  
 `git branch -m|--move <old_name> <new_name>`: rename a branch without affecting the branch's history  
-`git checkout -b <branch-name>`: create a branch and switches to it, same as `git branch <name>; git checkout <name>`  
-`git checkout <branch-name>`: change current branch (update HEAD) and update working directory  
+`git switch -c <branch-name>`: create a branch and switches to  
+`git switch <branch-name>`: change current branch (update HEAD) and update working directory  
 
 `git merge <branch-name>`: merges into current branch  
 `git merge --continue`: continue previous merge after solving a merge conflict  
@@ -244,6 +244,19 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git cherry-pick <commit>`: bring in a commit from another branch  
 `git cherry-pick <commit>^..<commit>`: bring in a  range of commits from another branch (first included)  
 `git cherry-pick <commit>..<commit>`: bring in a  range of commits from another branch (first excluded)  
+
+
+### Worktrees
+
+A git repository can support multiple working trees, allowing to check out more than one branch at a time.
+
+Additional worktrees are called "linked worktrees" as opposed to the "main worktree" prepared by `git init` or `git clone`.  
+A repository has one main worktree (if it’s not a bare repository) and zero or more linked worktrees.
+
+`git worktree list`: show worktrees  
+`git worktree add <path> <commit>`: create worktree at `<path>` and checkout `<commit>`  
+`git worktree add -b <branch> <path> <commit>`: create worktree and branch at `<path>`  
+`git worktree remove <worktree>`: remove a worktree  
 
 ### Undo & Rewriting History
 
