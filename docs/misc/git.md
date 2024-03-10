@@ -1,113 +1,46 @@
-# Git
+# [Git][git]
 
-## Glossary
+Git is a free and open source distributed [version control system][vcs] designed to handle everything from small to very large projects with speed and efficiency.
 
-**GIT**: an open source, distributed version-control system  
-**GITHUB**: a platform for hosting and collaborating on Git repositories
+## Terminology
 
-**TREE**: directory that maps names to blobs or trees  
-**BLOB**: any file  
-**COMMIT**: snapshot of the entire repository + metadata, identified it's SHA-1 hash
-
-**HEAD**: represents the current working directory, the HEAD pointer can be moved to different branches, tags, or commits when using git checkout  
-**BRANCH**: a lightweight movable pointer to a commit  
-**CLONE**: a local version of a repository, including all commits and branches  
-**REMOTE**: a common repository on GitHub that all team member use to exchange their changes
-
-**FORK**: a copy of a repository on GitHub owned by a different user  
-**PULL REQUEST**: a place to compare and discuss the differences introduced on a branch with reviews, comments, integrated tests, and more  
-
-**REPOSITORY**: collection of files and folder of a project aka repo  
-**STAGING AREA/STASH**: area of temporary snapshots (not yet commits)
-
-## Data Model
-
-Data Model Structure:
-
-```txt linenums="1"
-<root> (tree)
-|
-|_ foo (tree)
-|  |_ bar.txt (blob, contents = "hello world")
-|
-|_ baz.txt (blob, contents = "git is wonderful")
-```
-
-Data Model as pseudocode:
-
-```py linenums="1"
-# a file is a bunch of bytes
-blob = array<byte>
-
-# a directory contains named files and directories
-tree = map<string, tree | file>
-
-# a commit has parents, metadata, and the top-level tree
-commit = struct {
-    parent: array<commit>
-    author: string
-    message: string
-    snapshot: tree
-}
-
-# an object is either a blob, tree or commit
-object = map<string, blob | tree | commit>
-
-# commit identified by it's hash (unmutable)
-def store(object):
-    id = sha1(object)  # hash repo
-    objects<id> = object  # store repo w/ index hash
-
-# load the commit
-def load(id):
-    return objects<id>
-
-# human-readable names for SHA-1 hashes (mutable)
-references = map<string, string>
-
-# bind a reference to a hash
-def update_reference(name, id):
-    references<name> = id
-
-def read_reference(name):
-    return references<name>
-
-def load_reference(name_or_id):
-    if name_or_id in references:
-        return load(references<name_or_id>)
-    else:
-        return load(name_or_id)
-```
+**Repository**: collection of files (blobs) and directories (trees) managed by git
+**Commit**: snapshot of the entire repository and its metadata
+**Head**: pointer to the current commit  
+**Branch**: timeline or collection of consecutive commits  
+**Remote**: remote shared repository in which changes as synced
+**Working Tree**: current version of the repository on disk  
+**Index (Staging Area)**: collection of changes not yet committed
+**Stash**: collection of pseudo-commits not belonging to a specific branch
 
 ## Commands
 
-`git <command> -h|--help`: get help for a git command  
-`git -C <path> <command>`: execute a git commend in the specified path  
-`git <command> <commit>^`: operate on commit *before* the provided commit hash  
+### Managing Configs
 
-### Create Repository
+There are three git config sources/scopes:
 
-`git init [<project_name>]`: initialize a brand new Git repository and begins tracking  
-`.gitignore`: specify intentionally untracked files to ignore  
+1. **system**: defined in git's installation folder and managed with `--system`
+2. **global**: defined in `$HOME/.gitconfig` or `$XDG_CONFIG_HOME/git/config` and managed with `--global`
+3. **local**: defined in `.git/config` and managed with `--local`
 
-### Config
+The applied config in each repository is the combination of all three scopes in order.
 
-`git config --global user.name "<name>"`: set name attached to commits  
-`git config --global user.email "<email address>"`: set email attached to commits
+`git config [--<scope>] <key> <value>`: set git config key-value pair  
+`git config [--<scope>] --unset <key>`: unset git config key-value pair  
+`git config [--<scope>] --list`: list git config key-value pairs  
 
-### Making Changes
+### Tracking Files & Making Changes
 
 `git status`: shows the status of changes as untracked, modified, or staged  
+
 `git add <files>`: add files contents to the staging area  
 `git add -u|--update <files>`: stage changes but ignore untracked files  
 `git add -p|--patch <files>`: interactively stage chunks of files  
 
-`git blame <file>`: show who last edited which line  
-`git blame -L <start>,<end> -- <file>`: Annotate only the line range given by `<start>,<end>`, within the `<file>`  
-`git blame -L /<regex>/ -- <file>`: Annotate only the range given by the function name regex `<regex>`, within the `<file>`  
-`git blame -w`: Ignore whitespace when comparing the parent’s version and the child’s to find where the lines came from  
-`git blame -M`: Detect moved or copied lines within a file.  
-`git blame -M -C [-C -C]`: Detect moved or copied lines within a file (`-M`), from all modified files in the same commit (`-C`), in the commit that created the file (`-C -C`), in all commits (`-C -C -C`)  
+`git restore .`: discard uncommitted changes  
+`git restore <file>`: discard uncommitted changes to file  
+`git restore --staged`: discard changes made to a file  
+`git restore --staged --worktree`: unstage and discard changes made to a file  
 
 `git commit`: save the snapshot to the project history  
 `git commit -m|--message "message"`: commit and provide a message  
@@ -118,17 +51,7 @@ def load_reference(name_or_id):
 `git commit --fixup <commit>`: mark commit as correction to another  
 `git commit -s|--signoff`: Add a `Signed-off-by` trailer by the committer at the end of the commit log message  
 
-`git diff <filename>`: show difference since the last commit  
-`git diff <commit> <filename>`: show differences in a file since a particular snapshot  
-`git diff <reference_1> <reference_2> <filename>`: show differences in a file between two snapshots  
-`git diff  --cached`: show what is about to be committed  
-`git diff <first-branch>...<second-branch>`: show content diff between two branches  
-`git diff -w|--ignore-all-space`: show diff ignoring whitespace differences  
-`git diff --word-diff`: show diff word-by-word instead of line-wise  
-
-`git bisect`: binary search history (e.g. for regressions)  
-
-### Stashes
+### Managing Stashes
 
 `git stash [push] [-m|--message]`: add all changes to the stash (and provide message)  
 `git stash list` list all stashes  
@@ -137,7 +60,7 @@ def load_reference(name_or_id):
 `git stash drop [<stash>]`: remove a stash from the list  
 `git stash clear`: remove all stashes  
 
-### Remotes
+### Managing Remotes
 
 `git remote`: list remotes  
 `git remote -v|--verbose`: list remotes names and URLs  
@@ -157,14 +80,17 @@ def load_reference(name_or_id):
 `git push --force-with-lease --force-if--includes`: will verify if updates from the remote that may have been implicitly updated in the background are integrated locally before allowing a forced update  
 
 `git fetch [<remote>]`: retrieve objects/references from a remote  
-`git pull`: update the local branch with updates from its remote counterpart, same as `git fetch; git merge`  
-`git pull --ff`: when possible resolve the merge as a fast-forward (only update branch pointer, don't create merge commit). Otherwise create a merge commit.  
+`git pull`: incorporate remote changes by merging, same as `git fetch; git merge`  
+`git pull --rebase`: incorporate remote changes by rebasing  
+`git pull --ff`: fast-forward (only update branch tip) remote changes, merge if not possible  
+`git pull --ff-only`: fast-forward (only update branch tip) remote changes, error if not possible  
 
 `git fetch|pull -p|--prune`: remove any remote-tracking references that no longer exist on the remote  
-`git fetch|pull -t|--tags`: fetch all tags from the remote
+`git fetch|pull -t|--tags`: retrieve all tags from the remote
 
 `git clone <url> [<folder_name>]`: download repository and repo history from remote  
 `git clone --shallow`: clone only repo files, not history of commits  
+`git clone --depth <depth>`: clone only last `<depth>` commits  
 
 > **Note**: for a in depth explanation of `--force-if-includes` see [this][force-if-includes]
 
@@ -185,24 +111,46 @@ def load_reference(name_or_id):
 
 `git log <rev>`: Include commits that are reachable from `<rev>`  
 `git log ^<rev>`: Exclude commits that are reachable from `<rev>`  
-`git log <rev1>..<rev2>`: Include commits that are reachable from `<rev2>` but exclude those that are reachable from `<rev1>`. When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.  
-`git log <rev1>...<rev2>`: Include commits that are reachable from either `<rev1>` or `<rev2>` but exclude those that are reachable from both. When either `<rev1>` or `<rev2>` is omitted, it defaults to HEAD.  
+`git log <rev1>..<rev2>`: Include commits that are reachable from `<rev2>` but exclude those that are reachable from `<rev1>`  
+`git log <rev1>...<rev2>`: Include commits that are reachable from either `<rev1>` or `<rev2>` but exclude those that are reachable from both  
 `git log <rev>^@`: Include anything reachable from `<rev>` parents but not the commit itself
+
+> **Note**: when `<rev>` is omitted it defaults to HEAD
 
 `git shortlog`: list commits by author  
 `git reflog`: show record of when the tips of branches and other references were updated in the local repository  
 
-`git show <commit>`: output metadata and content changes of commit  
-`git cat-file -p <commit>`: output commit metadata  
+`git show <commit>`: show commit metadata and content  
+`git show --stat <commit>`: show number of changes in commit  
 
-### Tag
+`git blame <file>`: show who last edited which line  
+`git blame -L <start>,<end> -- <file>`: Annotate only the line range given by `<start>,<end>`, within the `<file>`  
+`git blame -L /<regex>/ -- <file>`: Annotate only the range given by the function name regex `<regex>`, within the `<file>`  
+`git blame -w`: Ignore whitespace when comparing the parent’s version and the child’s to find where the lines came from  
+`git blame -M`: Detect moved or copied lines within a file.  
+`git blame -M -C [-C -C]`: Detect moved or copied lines within a file (`-M`), from all modified files in the same commit (`-C`), in the commit that created the file (`-C -C`), in all commits (`-C -C -C`)  
+
+`git diff <filename>`: show difference since the last commit  
+`git diff <commit> <filename>`: show differences in a file since a particular snapshot  
+`git diff <reference_1> <reference_2> <filename>`: show differences in a file between two snapshots  
+`git diff  --cached`: show what is about to be committed  
+`git diff <first-branch>...<second-branch>`: show content diff between two branches  
+`git diff -w|--ignore-all-space`: show diff ignoring whitespace differences  
+`git diff --word-diff`: show diff word-by-word instead of line-wise  
+
+`git bisect start`: start binary search through commit history, to find the first "bad" commit  
+`git bisect good`: mark current commit as "good"  
+`git bisect bad`: mark current commit as "bad"  
+`git bisect reset`: conclude search and restore HEAD  
+
+### Managing Tags
 
 Git supports two types of tags: *lightweight* and *annotated*.  
 
 A lightweight tag is very much like a branch that doesn't change: it's just a pointer to a specific commit.  
 
 Annotated tags, however, are stored as full objects in the Git database.  
-They're checksummed; contain the tagger name, email, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG).  
+They're checksummed; contain the tagger name, email, and date; have a tagging message; and can be signed.  
 It's generally recommended creating annotated tags so it's possible to have all this information.  
 
 `git tag`: list existing tags  
@@ -220,7 +168,7 @@ It's generally recommended creating annotated tags so it's possible to have all 
 `git push <remote> :refs/tags<tagname>:`: remove a tag from the remote  
 `git push <remote> --delete <tagname>`: remove a tag from the remote  
 
-`git checkout <tag>`: checkout a tag - **WARNING**: will go into *detached HEAD*  
+`git switch <tag>`: checkout a tag - **WARNING**: will go into *detached HEAD*  
 
 ### Branching And Merging
 
@@ -238,13 +186,12 @@ It's generally recommended creating annotated tags so it's possible to have all 
 
 `git merge <branch-name>`: merges into current branch  
 `git merge --continue`: continue previous merge after solving a merge conflict  
-`git mergetool`: use a fancy tool to help resolve merge conflicts  
 `git rebase <branch>`: rebase current branch commits onto another branch  
+`git rebase --onto <commit>`: rebase current branch commits onto another commit  
 
 `git cherry-pick <commit>`: bring in a commit from another branch  
-`git cherry-pick <commit>^..<commit>`: bring in a  range of commits from another branch (first included)  
-`git cherry-pick <commit>..<commit>`: bring in a  range of commits from another branch (first excluded)  
-
+`git cherry-pick <commit>..<commit>`: bring in a range of commits from another branch (first excluded)  
+`git cherry-pick <commit>^..<commit>`: bring in a range of commits from another branch (first included)  
 
 ### Worktrees
 
@@ -258,27 +205,22 @@ A repository has one main worktree (if it’s not a bare repository) and zero or
 `git worktree add -b <branch> <path> <commit>`: create worktree and branch at `<path>`  
 `git worktree remove <worktree>`: remove a worktree  
 
-### Undo & Rewriting History
+### Rewriting History
 
-`git rm -r --cached <file>`: remove a file from being tracked  
 `git commit --amend`: replace last commit by creating a new one (can add files or rewrite commit message)  
 `git commit --amend -m "amended message"`: replace last commit by creating a new one (can add files or rewrite commit message)  
 `git commit --amend  --no-edit`: replace last commit by creating a new one (can add files or rewrite commit message)  
 
-`git reset HEAD <file>`: unstage a file  
-`git reset <commit>`: undo all commits after specified commit, preserving changes locally  
+`git reset <commit>`: revert to specific commit but keep changes  
 `git reset --soft <commit>`: revert to specific commit but keep changes and staged files  
-`git reset --hard <commit>`: discard all history and changes back to specified commit  
+`git reset --hard <commit>`: revert to specific commit and discard changes  
+`git reset <commit> <file>`: revert `<file>` to specific commit  
 
 `git clean`: remove untracked files form the working tree  
-`git clean -d`: recurse into untracked directories while cleaning  
-`git clean --interactive`: clean files interactively  
+`git clean -d`: remove untracked files recursively  
+`git clean --interactive`: remove untracked files interactively  
 
-`git restore .`: discard uncommitted changes  
-`git restore <file>`: discard uncommitted changes to file  
 `git restore --source <commit> <file>`: revert file to commit version  
-`git restore --staged`: unstage changes made to a file  
-`git restore --staged --worktree`: unstage and discard changes made to a file  
 `git restore <deleted-file>`: recover deleted file if previously committed  
 
 `git rebase -i|--interactive`: modify (reword, edit, drop, squash, merge, ...) current branch commits  
@@ -287,7 +229,7 @@ A repository has one main worktree (if it’s not a bare repository) and zero or
 `git rebase --autostash`: automatically create a temporary stash entry before rebasing  
 `git rebase --autosquash`: automatically apply "squash!" or "fixup!" or "amend!" commits  
 
-> **WARN**: Changing history can have nasty side effects
-
 <!-- links -->
+[git]: https://git-scm.com/ "Git Home Page"
+[vcs]: https://en.wikipedia.org/wiki/Version_control "VCS on Wikipedia"
 [force-if-includes]: https://stackoverflow.com/a/65839129 "git --force-if-includes explanation"
