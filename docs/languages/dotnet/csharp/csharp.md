@@ -3061,3 +3061,49 @@ public T Current { get; }
 ```cs linenums="1"
 public TaskAwaiter GetAwaiter(/* ... */);
 ```
+
+
+## Code Quality
+
+### [Code Analysis](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview)
+
+```xml
+<PropertyGroup>
+  <AnalisysMode>All</NugetAuditMode>
+</PropertyGroup>
+```
+
+| Level         | Description |
+|:-------------:| -------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `None`        | All rules are disabled. Can selectively [opt in][code-analysis-options] to individual rules to enable them.                                            |
+| `Default`     | Default mode, where certain rules are enabled as build warnings, certain rules are enabled as options IDE suggestions, and the remainder are disabled. |
+| `Minimum`     | More aggressive mode than `Default` mode. Certain suggestions that are highly recommended for build enforcement are enabled as build warnings.         |
+| `Recommended` | More aggressive mode than `Minimum` mode, where more rules are enabled as build warnings.                                                              |
+| `All`         | All rules are enabled as build warnings*. *Can selectively [opt out][code-analysis-options] of individual rules to disable them.                       |
+
+[code-analysis-options]: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-options "Coda Analysis Configuration Options"
+
+### [Dependency Auditing](https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages)
+
+```xml
+<PropertyGroup>
+  <!-- required -->
+  <NugetAuditMode>all|direct</NugetAuditMode>
+
+  <!-- suggested -->
+  <NugetAuditLevel>low|moderate|high|critical</NugetAuditLevel>
+
+  <!-- optional -->
+  <WarningsAsErrors>NU1901;NU1902;NU1903;NU1904</WarningAsErrors>
+</PropertyGroup>
+```
+
+The auditing of dependencies is done during the `dotnet restore` step.
+A description of the dependencies is checked against a report of known vulnerabilities on the [GitHub Advisory Database][github-advisory-db].
+
+Audit Mode:
+
+- **all**: audit direct _and_ transitive dependencies for vulnerabilities.
+- **direct**: audit _only_ direct dependencies for vulnerabilities.
+
+[github-advisory-db]: https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anuget "Github Advisory Database"
