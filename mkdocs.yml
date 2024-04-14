@@ -160,6 +160,7 @@ nav:
         - Rust: languages/rust/rust.md
         - Macros: languages/rust/macros.md
         - Cargo: languages/rust/cargo.md
+        - Concurrency: languages/rust/concurrency.md
         - Unit Tests: languages/rust/unit-tests.md
     - Javascript:
         - Javascript: languages/javascript/javascript.md
