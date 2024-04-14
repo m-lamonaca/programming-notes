@@ -212,3 +212,30 @@ impl AtomicI32 {
     ) -> Result<i32, i32>;
 }
 ```
+
+## Memory Ordering
+
+### Reordering and Optimizations
+
+Processors and compilers perform tricks to make programs run as fast as possible. A processor might determine that two particular consecutive instructions in the program will not affect each other, and execute them out of order, if that is faster.
+Similarly, a compiler might decide to reorder or rewrite parts of the program if it has reason to believe it might result in faster execution. But only if that wouldn’t change the behavior of the program.
+
+The logic for verifying that a specific reordering or other optimization won’t affect the behavior of the program does not take other threads into account. This is why explicitly telling the compiler and processor what they can and can’t do with the atomic operations it's necessary, since their usual logic ignores interactions between threads and might allow for optimizations that do change the result of the program.
+
+The available orderings in Rust are:
+
+- Relaxed ordering: `Ordering::Relaxed`
+- Release and acquire ordering: `Ordering::{Release, Acquire, AcqRel}`
+- Sequentially consistent ordering: `Ordering::SeqCst`
+
+### The Memory Model
+
+The different memory ordering options have a strict formal definition to make sure their assumption are known, and compiler writers know exactly what guarantees they need to provide. To decouple this from the details of specific processor architectures, memory ordering is defined in terms of an _abstract_ memory model.
+
+Rust’s memory model allows for concurrent atomic stores, but considers concurrent non-atomic stores to the same variable to be a data race, resulting in undefined behavior.
+
+### Happens-Before Relationship
+
+The memory model defines the order in which operations happen in terms of _happens-before_ relationships. This means that as an abstract model only defines situations where one thing is guaranteed to happen before another thing, and leaves the order of everything else undefined.
+
+Between threads, however, happens-before relationships only occur in a few specific cases, such as when spawning and joining a thread, unlocking and locking a mutex, and through atomic operations that use non-relaxed memory ordering. Relaxed memory ordering is the most basic (and most performant) memory ordering that, by itself, never results in any cross-thread happens-before relationships.
