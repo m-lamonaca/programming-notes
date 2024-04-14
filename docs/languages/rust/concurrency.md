@@ -153,3 +153,62 @@ To avoid the issue of missing notifications in the brief moment between unlockin
 The Rust standard library provides a condition variable as `std::sync::Condvar`. Its `wait` method takes a `MutexGuard` that proves we’ve locked the mutex. It first unlocks the mutex (allowing other threads to work on it) and goes to sleep. When woken up, it relocks the mutex and returns a new `MutexGuard` (which proves that the mutex is locked again).
 
 It has two notify functions: `notify_one` to wake up just one waiting thread (if any), and `notify_all` to wake them all up.
+
+## Atomics
+
+The word atomic comes from the Greek word ἄτομος, meaning indivisible, something that cannot be cut into smaller pieces. In computer science, it is used to describe an operation that is indivisible: it is either fully completed, or it didn’t happen yet.
+
+**Atomic operations** are the main building block for anything involving multiple threads. All the other concurrency primitives, such as mutexes and condition variables, are implemented using atomic operations.
+
+Each of the available atomic types has the same interface with methods for _storing_ and _loading_, methods for atomic "fetch-and-modify" operations, and some more advanced "compare-and-exchange" methods.
+
+Every atomic operation takes an argument of type `std::sync::atomic::Ordering`, which determines the guarantees about the relative ordering of operations. Based on the ordering the various threads can witness the same operations happening in different orders.
+
+### Load & Store
+
+The first two atomic operations are the most basic ones: **load** and **store**. Their function signatures are as follows, using AtomicI32 as an example:
+
+```rs
+impl AtomicI32 {
+    pub fn load(&self, ordering: Ordering) -> i32;
+    pub fn store(&self, value: i32, ordering: Ordering);
+}
+```
+
+The `load` method atomically loads the value stored in the atomic variable, and the `store` method atomically stores a new value in it.
+
+> **Note**: the store method takes a shared reference (`&T`) even though it modifies itself.
+
+### Fetch-and-Modify Operations
+
+The **fetch-and-modify** operations modify the atomic variable, but also load (fetch) the original value, as a single atomic operation.
+
+```rs
+impl AtomicI32 {
+    pub fn fetch_add(&self, v: i32, ordering: Ordering) -> i32;
+    pub fn fetch_sub(&self, v: i32, ordering: Ordering) -> i32;
+    pub fn fetch_or(&self, v: i32, ordering: Ordering) -> i32;
+    pub fn fetch_and(&self, v: i32, ordering: Ordering) -> i32;
+    pub fn fetch_nand(&self, v: i32, ordering: Ordering) -> i32;
+    pub fn fetch_xor(&self, v: i32, ordering: Ordering) -> i32;
+    pub fn fetch_max(&self, v: i32, ordering: Ordering) -> i32;
+    pub fn fetch_min(&self, v: i32, ordering: Ordering) -> i32;
+    pub fn swap(&self, v: i32, ordering: Ordering) -> i32;  // aka fetch_store
+}
+```
+
+### Compare-and-Exchange Operations
+
+The **compare-and-exchange** operation checks if the atomic value is equal to a given value, and only if that is the case does it replace it with a new value, all atomically as a single operation. It will return the previous value and tell whether it replaced it or not.
+
+```rs
+impl AtomicI32 {
+    pub fn compare_exchange(
+        &self,
+        expected: i32,
+        new: i32,
+        success_order: Ordering,
+        failure_order: Ordering
+    ) -> Result<i32, i32>;
+}
+```
