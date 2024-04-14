@@ -129,3 +129,27 @@ The Rust standard library provides this lock through the `std::sync::RwLock<T>` 
 The first only implements `Deref` to behave like a shared reference to the protected data, while the second also implements `DerefMut` to behave like an exclusive reference.
 
 Most implementations will block new readers when there is a writer waiting, even when the lock is already read-locked. This is done to prevent _writer starvation_, a situation where many readers collectively keep the lock from ever unlocking, never allowing any writer to update the data.
+
+## Waiting: Putting Thread to Sleep
+
+### Thread Parking
+
+One way to wait for a notification from another thread is called thread **parking**. A thread can _park_ itself, which puts it to sleep, stopping it from consuming any CPU cycles. Another thread can then _unpark_ the parked thread, waking it up from its sleep.
+
+Thread parking is available through the `std::thread::park()` function. For unparking, it's possible to call the `unpark()` method on a `Thread` handle.
+
+An important property of thread parking is that a call to `unpark()` before the thread parks itself does not get lost. The request to unpark is still recorded, and the next time the thread tries to park itself, it clears that request and directly continues without actually going to sleep.
+
+> **Note**: calls to `unpark()` do not stack up.
+
+### Condition Variables
+
+**Condition variables** are a more commonly used option for waiting for something to happen to data protected by a mutex. They have two basic operations: **wait** and **notify**.
+
+Threads can wait on a condition variable, after which they can be woken up when another thread notifies that same condition variable. Multiple threads can wait on the same condition variable, and notifications can either be sent to one waiting thread, or to all of them.
+
+To avoid the issue of missing notifications in the brief moment between unlocking a mutex and waiting for a condition variable, condition variables provide a way to atomically unlock the mutex and start waiting. This means there is simply no possible moment for notifications to get lost.
+
+The Rust standard library provides a condition variable as `std::sync::Condvar`. Its `wait` method takes a `MutexGuard` that proves we’ve locked the mutex. It first unlocks the mutex (allowing other threads to work on it) and goes to sleep. When woken up, it relocks the mutex and returns a new `MutexGuard` (which proves that the mutex is locked again).
+
+It has two notify functions: `notify_one` to wake up just one waiting thread (if any), and `notify_all` to wake them all up.
