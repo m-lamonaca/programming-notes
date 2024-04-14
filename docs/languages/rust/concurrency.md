@@ -119,3 +119,13 @@ std::thread::scope(|scope| {
 The `lock()` method returns a `Result` since the mutex can become **poisoned**. A mutex get marked as poisoned when a thread panics while holding the lock. Calling `lock()` on a poisoned mutex will return an `Err`. This poisoning mechanism protects against accessing data that may be in an inconsistent state.  
 
 > **Note**: The lock is still acquired and the `Err` variant contains the guard, allowing to correct the data inconsistency.
+
+### Reader-Writer Lock
+
+A **reader-writer lock** understands the difference between _exclusive_ and _shared_ access, and can provide either. It has three states: unlocked, locked by a single writer (for exclusive access), and locked by any number of readers (for shared access).
+
+The Rust standard library provides this lock through the `std::sync::RwLock<T>` type.  It has a `read()` and `write()` method for locking as either a reader or a writer and it has two guard types: `RwLockReadGuard` and `RwLockWriteGuard`.
+
+The first only implements `Deref` to behave like a shared reference to the protected data, while the second also implements `DerefMut` to behave like an exclusive reference.
+
+Most implementations will block new readers when there is a writer waiting, even when the lock is already read-locked. This is done to prevent _writer starvation_, a situation where many readers collectively keep the lock from ever unlocking, never allowing any writer to update the data.
