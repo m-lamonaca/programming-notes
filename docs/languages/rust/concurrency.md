@@ -86,3 +86,36 @@ The `Send` marker trait indicates that ownership of values of the type implement
 The `Sync` marker trait indicates that it is safe for the type implementing `Sync` to be referenced from multiple threads. In other words, any type `T` is `Sync` if `&T` (an immutable reference to `T`) is `Send`, meaning the reference can be sent safely to another thread. Similar to `Send`, primitive types are `Sync`, and types composed entirely of types that are `Sync`are also `Sync`.
 
 > **Note**: All primitive types such as `i32`, `bool`, and `str` are both `Send` and `Sync`.
+
+## Locking: Protecting Shared Data
+
+### Mutex
+
+The most commonly used tool for sharing (mutable) data between threads is a **mutex**, which is short for "mutual exclusion." The job of a mutex is to ensure threads have _exclusive access_ to some data by temporarily blocking other threads that try to access it at the same time.
+
+A mutex has only two _states_: **locked** and **unlocked**.
+
+When a thread locks an unlocked mutex, the mutex is marked as locked and the thread can immediately continue. When a thread then attempts to lock an already locked mutex, that operation will block. The thread is put to sleep while it waits for the mutex to be unlocked. Unlocking is only possible on a locked mutex, and should be done by the same thread that locked it. If other threads are waiting to lock the mutex, unlocking will cause one of those threads to be woken up, so it can try to lock the mutex again and continue its course.
+
+Protecting data with a mutex is simply the agreement between all threads that they will only access the data when they have the mutex locked. That way, no two threads can ever access that data concurrently and cause a **data race**.
+
+The Rust standard library provides this functionality through `std::sync::Mutex<T>`. Since the mutex wraps and owns the `T` it protects, the data can only be accessed through the mutex, allowing for a safe interface that can guarantee only one thread at a time can access the wrapped `T`.
+
+To ensure a locked mutex can only be unlocked by the thread that locked it, it does not have an `unlock()` method. Instead, its `lock()` method returns a  a `MutexGuard` to represent the lock. The `MutexGuard` allows exclusive access to the data the mutex protects. Unlocking the mutex is done by dropping the guard.
+
+```rs
+let mutex = std::sync::Mutex::new(0);
+
+std::thread::scope(|scope| {
+    scope.spawn(|| {
+        let guard = mutex.lock().unwrap();  // obtain access
+        *guard += 1;  // mutate protected value
+    })
+});
+```
+
+### Lock Poisoning
+
+The `lock()` method returns a `Result` since the mutex can become **poisoned**. A mutex get marked as poisoned when a thread panics while holding the lock. Calling `lock()` on a poisoned mutex will return an `Err`. This poisoning mechanism protects against accessing data that may be in an inconsistent state.  
+
+> **Note**: The lock is still acquired and the `Err` variant contains the guard, allowing to correct the data inconsistency.
