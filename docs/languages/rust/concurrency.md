@@ -239,3 +239,56 @@ Rust’s memory model allows for concurrent atomic stores, but considers concurr
 The memory model defines the order in which operations happen in terms of _happens-before_ relationships. This means that as an abstract model only defines situations where one thing is guaranteed to happen before another thing, and leaves the order of everything else undefined.
 
 Between threads, however, happens-before relationships only occur in a few specific cases, such as when spawning and joining a thread, unlocking and locking a mutex, and through atomic operations that use non-relaxed memory ordering. Relaxed memory ordering is the most basic (and most performant) memory ordering that, by itself, never results in any cross-thread happens-before relationships.
+
+_Spawning_ a thread creates a happens-before relationship between what happened before the `spawn()` call, and the new thread. Similarly, _joining_ a thread creates a happens-before relationship between the joined thread and what happens after the `join()` call.
+
+```rs
+static X: AtomicI32 = AtomicI32::new(0);
+
+fn main() {
+    X.store(1, Relaxed);
+
+    let t = thread::spawn(f);  // happens after "store 1"
+    X.store(2, Relaxed);
+    t.join().unwrap();  // happens before "store 3"
+
+    X.store(3, Relaxed);
+}
+
+fn f() {
+    let x = X.load(Relaxed);  // could happen after either before or after "store 2"
+    assert!(x == 1 || x == 2);
+}
+```
+
+### Relaxed Ordering
+
+While atomic operations using `Relaxed` memory ordering do not provide any happens-before relationship, they do guarantee a _total modification order_ of each individual atomic variable. This means that all modifications _of the same atomic variable_ happen in an order that is the same from the perspective of every single thread.
+
+### Release and Acquire Ordering
+
+`Release` and `Acquire` memory ordering are used in a pair to form a happens-before relationship between threads. `Release` memory ordering applies to _store_ operations, while `Acquire` memory ordering applies to _load_ operations.
+
+A happens-before relationship is formed when an _acquire-load_ operation observes the result of a _release-store_ operation. In this case, the store and everything before it, happened before the load and everything after it.
+
+When using `Acquire` for a **fetch-and-modify** or **compare-and-exchange** operation, it applies only to the part of the operation that _loads_ the value. Similarly, `Release` applies only to the _store_ part of an operation. `AcqRel` is used to represent the combination of `Acquire` and `Release`, which causes both the _load_ to use `Acquire` ordering, and the _store_ to use `Release` ordering.
+
+```rs
+use std::sync::atomic::Ordering::{Acquire, Release};
+
+static DATA: AtomicU64 = AtomicU64::new(0);
+static READY: AtomicBool = AtomicBool::new(false);
+
+fn main() {
+    thread::spawn(|| {
+        DATA.store(123, Relaxed);
+        READY.store(true, Release); // Everything from before this store ..
+    });
+    
+    while !READY.load(Acquire) { // .. is visible after this loads `true`.
+        thread::sleep(Duration::from_millis(100));
+        println!("waiting...");
+    }
+    println!("{}", DATA.load(Relaxed));
+}
+```
