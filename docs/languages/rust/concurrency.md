@@ -292,3 +292,25 @@ fn main() {
     println!("{}", DATA.load(Relaxed));
 }
 ```
+
+### Consume Ordering
+
+`Consume` ordering is a lightweight, more efficient, ​variant of `Acquire` ordering, whose synchronizing effects are limited to things that _depend on_ the loaded value.
+
+Now there’s good news and bad news.
+
+In all modern processor architectures, `Consume` ordering is achieved with the exact same instructions as `Relaxed` ordering. In other words, `Consume` ordering can be "free," which, at least on some platforms, is not the case for acquire ordering. Unfortunately no compiler actually implements `Consume` ordering.
+
+The concept of a "dependent" evaluation hard to define, it’s even harder to keep such dependencies intact while transforming and optimizing a program.
+
+Because of this, compilers upgrade `Consume` ordering to `Acquire` ordering, just to be safe. The C++20 standard even explicitly discourages the use of `Consume` ordering, noting that an implementation other than just `Acquire` ordering turned out to be infeasible.
+
+### Sequentially Consistent Ordering
+
+The strongest memory ordering is s**sequentially consistent** ordering (`SeqCst`). It includes all the guarantees of `Acquire` ordering (for loads) and `Release` ordering (for stores), and also guarantees a _globally consistent order_ of operations.
+
+This means that every single operation using `SeqCst` ordering within a program is part of a single total order that all threads agree on. This total order is consistent with the total modification order of each individual variable.
+
+Since it is strictly stronger than `Acquire` and `Release` memory ordering, a sequentially consistent load or store can take the place of an _acquire-load_ or _release-store_ in a _release-acquire_ pair to form a happens-before relationship. In other words, an _acquire-load_ can not only form a happens-before relationship with a _release-store_, but also with a sequentially consistent store, and similarly the other way around.
+
+Virtually all real-world uses of `SeqCst` involve a pattern of a store that must be globally visible before a subsequent load on the same thread. For these situations, a potentially more efficient alternative is to instead use `Relaxed` operations in combination with a `SeqCst` **fence**.
