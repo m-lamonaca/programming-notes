@@ -269,7 +269,7 @@ While atomic operations using `Relaxed` memory ordering do not provide any happe
 
 `Release` and `Acquire` memory ordering are used in a pair to form a happens-before relationship between threads. `Release` memory ordering applies to _store_ operations, while `Acquire` memory ordering applies to _load_ operations.
 
-A happens-before relationship is formed when an _acquire-load_ operation observes the result of a _release-store_ operation. In this case, the store and everything before it, happened before the load and everything after it.
+A happens-before relationship is formed when an **acquire-load** operation observes the result of a **release-store** operation. In this case, the store and everything before it, happened before the load and everything after it.
 
 When using `Acquire` for a **fetch-and-modify** or **compare-and-exchange** operation, it applies only to the part of the operation that _loads_ the value. Similarly, `Release` applies only to the _store_ part of an operation. `AcqRel` is used to represent the combination of `Acquire` and `Release`, which causes both the _load_ to use `Acquire` ordering, and the _store_ to use `Release` ordering.
 
@@ -311,6 +311,43 @@ The strongest memory ordering is s**sequentially consistent** ordering (`SeqCst`
 
 This means that every single operation using `SeqCst` ordering within a program is part of a single total order that all threads agree on. This total order is consistent with the total modification order of each individual variable.
 
-Since it is strictly stronger than `Acquire` and `Release` memory ordering, a sequentially consistent load or store can take the place of an _acquire-load_ or _release-store_ in a _release-acquire_ pair to form a happens-before relationship. In other words, an _acquire-load_ can not only form a happens-before relationship with a _release-store_, but also with a sequentially consistent store, and similarly the other way around.
+Since it is strictly stronger than `Acquire` and `Release` memory ordering, a sequentially consistent load or store can take the place of an **acquire-load** or **release-store** in a _release-acquire_ pair to form a happens-before relationship. In other words, an **acquire-load** can not only form a happens-before relationship with a **release-store**, but also with a sequentially consistent store, and similarly the other way around.
 
 Virtually all real-world uses of `SeqCst` involve a pattern of a store that must be globally visible before a subsequent load on the same thread. For these situations, a potentially more efficient alternative is to instead use `Relaxed` operations in combination with a `SeqCst` **fence**.
+
+### Fences
+
+The `std::sync::atomic::fence` function represents an **atomic fence** and is either a release fence (`Release`), an acquire fence (`Acquire`), or both (`AcqRel` or `SeqCst`). A `SeqCst` fence additionally also takes part in the sequentially consistent total order.
+
+An atomic fence allows to _separate_ the memory ordering from the atomic operation. This can be useful to apply a memory ordering to _multiple_ operations, or to apply it conditionally.
+
+In essence, a **release-store** can be split into a release fence followed by a (`Relaxed`) store, and an **acquire-load** can be split into a (`Relaxed`) load followed by an acquire fence.
+
+```rs
+// The store of a release-acquire relationship
+atom.store(1, Release);
+
+// can be substituted by a release fence followed by a relaxed store
+fence(Release);
+atom.store(1, Relaxed);
+```
+
+```rs
+
+// The load of a release-acquire relationship,
+atom.load(Acquire);
+
+// can be substituted by a relaxed load followed by an acquire fence
+atom.load(Relaxed);
+fence(Acquire);
+```
+
+> **Note**: Using a separate fence can result in an extra processor instruction which can be slightly less efficient.
+> **Note**: A fence is not tied to any single atomic variable. This means that a single fence can be used for multiple variables at once.
+
+A release fence can take the place of a release operation in a happens-before relationship if that release fence is followed (on the same thread) by any atomic operation that stores a value observed by the acquire operation it's synchronizing with.  
+Similarly, an acquire fence can take the place of any acquire operation if that acquire fence is preceded (on the same thread) by any atomic operation that loads a value stored by the release operation.
+
+An happens-before relationship is created between a release fence and an acquire fence if _any_ store after the release fence is observed by _any_ load before the acquire fence.
+
+A `SeqCst` fence is both a `Release` fence and an `Acquire` fence (just like `AcqRel`), but also part of the single total order of sequentially consistent operations. However, _only_ the fence is part of the total order, but not necessarily the atomic operations before or after it. This means that unlike a release or acquire operation, a sequentially consistent operation _cannot_ be split into a relaxed operation and a memory fence.
