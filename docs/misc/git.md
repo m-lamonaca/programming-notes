@@ -98,7 +98,7 @@ The applied config in each repository is the combination of all three scopes in 
 
 ### Viewing Project History
 
-`git log`: show history of changes  
+`git log [<rev>]`: show history of changes  
 `git log -p|--patch`: show history of changes and complete differences  
 `git log --stat --summary`: show overview of the change  
 `git log --follow <file>`: list version history fo file, including renames  
@@ -110,15 +110,6 @@ The applied config in each repository is the combination of all three scopes in 
 
 `git log -L <start>,<end>:<file>`: Trace the evolution of the line range given by `<start>,<end>`, within the `<file>`  
 `git log -L /<regex>/:<file>`: Trace the evolution of the line range given by the function name regex `<regex>`, within the `<file>`  
-
-`git log -<n>`: Include last `<n>` commits  
-`git log <rev>`: Include commits that are reachable from `<rev>`  
-`git log ^<rev>`: Exclude commits that are reachable from `<rev>`  
-`git log <rev1>..<rev2>`: Include commits that are reachable from `<rev2>` but exclude those that are reachable from `<rev1>`  
-`git log <rev1>...<rev2>`: Include commits that are reachable from either `<rev1>` or `<rev2>` but exclude those that are reachable from both  
-`git log <rev>^@`: Include anything reachable from `<rev>` parents but not the commit itself
-
-> **Note**: when `<rev>` is omitted it defaults to HEAD
 
 `git shortlog`: list commits by author  
 `git reflog [<rev>]`: show record of when the tips of branches and other references were updated in the local repository  
@@ -231,6 +222,38 @@ A repository has one main worktree (if it’s not a bare repository) and zero or
 `git rebase -i|--interactive <commit>`: modify (reword, edit, drop, squash, merge, ...) *from* commit to latest  
 `git rebase --autostash`: automatically create a temporary stash entry before rebasing  
 `git rebase --autosquash`: automatically apply "squash!" or "fixup!" or "amend!" commits  
+
+## [Git Revisions](https://git-scm.com/docs/gitrevisions)
+
+### Specifying Revisions
+
+A revision parameter `<rev>` can take one of these forms:
+
+- `<sha>`: full or short sha of the object.
+- `<refname>`: a named object reference. One of:
+    - `refs/<refname>`
+    - `refs/tags/<refname>`
+    - `refs/heads/<refname>`
+    - `refs/remotes/<refname>`
+    - `refs/remotes/<refname>`
+    - `HEAD` or `*_HEAD`
+- `[<refname>]@{<date>}`: a revision at a specific point in time.
+- `[<refname>]@{n}`: `n`th prior value of a `<refname>`.
+- `@{-n}`: `<n>`th branch/commit checked out before the current one.
+- `<rev>^`: first parent of `<rev>`.
+- `<rev>~[<n>]`: `n`th parent of `<rev>`
+
+### Specifying Ranges
+
+A revision range can take one of these forms:
+
+- `<rev>`: Include commits that are reachable from `<rev>` (`<rev>` and its ancestors).
+- `^<rev>`: Exclude commits that are reachable from `<rev>` (`<rev>` and its ancestors).
+- `<rev1>..<rev2>`: Include commits that are reachable from `<rev2>` but exclude those that are reachable from `<rev1>`.
+- `<rev1>...<rev2>`: Include commits that are reachable from either <rev1> or <rev2> but exclude those that are reachable from both.
+`<rev>^@`: A suffix `^` followed by `@` is the same as listing all parents of `<rev>` (meaning, include anything reachable from its parents, but not the commit itself).
+`<rev>^!`: A suffix `^` followed by `!` is the same as giving commit `<rev>` and all its parents prefixed with `^` to exclude them (and their ancestors).
+`<rev>^-<n>`: Equivalent to `<rev>^<n>..<rev>`, with `<n> = 1` if not given.
 
 <!-- links -->
 [git]: https://git-scm.com/ "Git Home Page"
