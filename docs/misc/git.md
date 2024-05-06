@@ -103,7 +103,7 @@ The applied config in each repository is the combination of all three scopes in 
 `git log --stat --summary`: show overview of the change  
 `git log --follow <file>`: list version history fo file, including renames  
 `git log --all --graph --decorate`: visualizes history as a DAG  
-`git log  --oneline`: compact log  
+`git log --oneline`: compact log  
 
 `git log -S<string>`: Look for diffs that change the number of occurrences of the specified `<string>`  
 `git log -G<regex>`: Look for diffs whose patch text contains added/removed lines that match `<regex>`  
@@ -111,6 +111,7 @@ The applied config in each repository is the combination of all three scopes in 
 `git log -L <start>,<end>:<file>`: Trace the evolution of the line range given by `<start>,<end>`, within the `<file>`  
 `git log -L /<regex>/:<file>`: Trace the evolution of the line range given by the function name regex `<regex>`, within the `<file>`  
 
+`git log -<n>`: Include last `<n>` commits  
 `git log <rev>`: Include commits that are reachable from `<rev>`  
 `git log ^<rev>`: Exclude commits that are reachable from `<rev>`  
 `git log <rev1>..<rev2>`: Include commits that are reachable from `<rev2>` but exclude those that are reachable from `<rev1>`  
