@@ -121,7 +121,7 @@ The applied config in each repository is the combination of all three scopes in 
 > **Note**: when `<rev>` is omitted it defaults to HEAD
 
 `git shortlog`: list commits by author  
-`git reflog`: show record of when the tips of branches and other references were updated in the local repository  
+`git reflog [<rev>]`: show record of when the tips of branches and other references were updated in the local repository  
 
 `git show <commit>`: show commit metadata and content  
 `git show --stat <commit>`: show number of changes in commit  
