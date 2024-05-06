@@ -41,6 +41,7 @@ The applied config in each repository is the combination of all three scopes in 
 `git restore <file>`: discard uncommitted changes to file  
 `git restore --staged`: discard changes made to a file  
 `git restore --staged --worktree`: unstage and discard changes made to a file  
+`git restore -p|--patch`: interactively unstage chunks of files  
 
 `git commit`: save the snapshot to the project history  
 `git commit -m|--message "message"`: commit and provide a message  
@@ -54,6 +55,7 @@ The applied config in each repository is the combination of all three scopes in 
 ### Managing Stashes
 
 `git stash [push] [-m|--message]`: add all changes to the stash (and provide message)  
+`git stash [push] -k|--keep-index`: create a stash but leave files as they are  
 `git stash list` list all stashes  
 `git stash show [<stash>]`: show changes in the stash  
 `git stash pop`: restore last stash  
@@ -133,7 +135,7 @@ The applied config in each repository is the combination of all three scopes in 
 `git diff <filename>`: show difference since the last commit  
 `git diff <commit> <filename>`: show differences in a file since a particular snapshot  
 `git diff <reference_1> <reference_2> <filename>`: show differences in a file between two snapshots  
-`git diff  --cached`: show what is about to be committed  
+`git diff  --staged`: show what is about to be committed  
 `git diff <first-branch>...<second-branch>`: show content diff between two branches  
 `git diff -w|--ignore-all-space`: show diff ignoring whitespace differences  
 `git diff --word-diff`: show diff word-by-word instead of line-wise  
