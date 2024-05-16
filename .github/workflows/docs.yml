@@ -2,7 +2,7 @@ name: Deploy to Github Pages
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -10,18 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Install poetry
-        run: pipx install poetry
-      
-      - name: Setup Python
-        uses: actions/setup-python@v5.0.0
+
+      - name: Install rye
+        uses: eifinger/setup-rye@v3
         with:
-          python-version: '3.x'
-          cache: poetry
-      
+          enable-cache: true
+          cache-prefix: "python-rye"
+
+      - name: Enable uv in rye
+        run: rye config --set-bool behavior.use-uv=true
+
       - name: Install dependencies
-        run: poetry install
-      
+        run: rye sync
+
       - name: Run gh-deploy
-        run: poetry run mkdocs gh-deploy --force
+        run: rye run mkdocs gh-deploy --force

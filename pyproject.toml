@@ -1,19 +1,18 @@
-[tool.poetry]
+[project]
 name = "programming-notes"
 version = "0.1.0"
 description = ""
-authors = ["Marcello Lamonaca <marcello@lamonaca.eu>"]
-license = "MIT"
+authors = [{ name = "Marcello Lamonaca", email = "marcello@lamonaca.eu" }]
+dependencies = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.23",
+    "pillow>=10.3.0",
+    "cairosvg>=2.7.1",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
 
-[tool.poetry.dependencies]
-python = "^3.10"
-mkdocs = "^1.4.3"
-mkdocs-material = "^9.5.5"
-pillow = "^10.3.0"
-cairosvg = "^2.7.0"
+[tool.rye]
+managed = true
+virtual = true
 
-[tool.poetry.dev-dependencies]
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
