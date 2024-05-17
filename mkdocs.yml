@@ -94,6 +94,7 @@ nav:
     - Swift: languages/swift/swift.md
     - Assembly:
       - Intel: languages/assembly/intel.md
+      - RISC-V: languages/assembly/riscv.md
     - Python:
       - Python: languages/python/python.md
       - Modules:  
