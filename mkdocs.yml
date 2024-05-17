@@ -86,13 +86,14 @@ nav:
     - SQL: databases/sql.md
     - MongoDB: databases/mongo-db.md
   - Languages:
-    - Assembly: languages/assembly/assembly.md
     - HTML: languages/html/html.md
     - Markdown: languages/markdown.md
     - CSS: languages/css/css.md
     - C: languages/c/c.md
     - Kotlin: languages/kotlin/kotlin.md
     - Swift: languages/swift/swift.md
+    - Assembly:
+      - Intel: languages/assembly/intel.md
     - Python:
       - Python: languages/python/python.md
       - Modules:  
