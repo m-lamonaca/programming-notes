@@ -2,7 +2,7 @@
 
 High-level file operations
 
-```python linenums="1"
+```python
 # copy file src to fil dst, return dst in most efficient way
 shutil.copyfile(src, dst)
 # dst MUST be complete target name

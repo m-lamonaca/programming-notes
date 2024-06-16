@@ -10,13 +10,13 @@ This framework is mainly used as tutorial for introducing the Model-View-Control
 
 ## Installation
 
-```ps1 linenums="1"
+```ps1
 composer create-project ezimuel/simple-mvc
 ```
 
 ## Structure
 
-```txt linenums="1"
+```txt
 |- config
 |  |- container.php --> DI Container Config (PHP-DI)
 |  |- route.php --> routing
@@ -34,7 +34,7 @@ composer create-project ezimuel/simple-mvc
 
 ### `index.php`
 
-```php linenums="1"
+```php
 <?php
 declare(strict_types=1);
 
@@ -98,7 +98,7 @@ $controller->execute($request);
 
 ### `route.php`
 
-```php linenums="1"
+```php
 <?php
 use SimpleMVC\Controller;
 
@@ -111,7 +111,7 @@ return [
 
 ### `container.php`
 
-```php linenums="1"
+```php
 <?php
 use League\Plates\Engine;
 use Psr\Container\ContainerInterface;
@@ -130,7 +130,7 @@ return [
 
 Each controller *must* implement this interface.
 
-```php linenums="1"
+```php
 <?php
 declare(strict_types=1);
 

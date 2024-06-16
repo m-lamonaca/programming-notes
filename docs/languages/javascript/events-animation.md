@@ -12,7 +12,7 @@ Event Types:
 
 ### Managing Event Listeners
 
-```js linenums="1"
+```js
 var domNode = document.getElementById("id");
 
 var onEvent = function(event) {  // parameter contains info on the triggered event
@@ -38,7 +38,7 @@ Event Options:
 - `bubbles` (bool): whether the event propagates through bubbling
 - `cancellable` (bool): if `true` the "default action" may be prevented
 
-```js linenums="1"
+```js
 let event = new Event(type [,options]);  // create the event, type can be custom
 let event = new CustomEvent(type, { detail: /* custom data */ });  // create event w/ custom data
 domNode.dispatchEvent(event);  // launch the event
@@ -53,7 +53,7 @@ The window object is the assumed global object on a page.
 Animation in JavascriptThe standard way to animate in JS is to use window methods.
 It's possible to animate CSS styles to change size, transparency, position, color, etc.
 
-```js linenums="1"
+```js
 //Calls a function once after a delay
 window.setTimeout(callbackFunction, delayMilliseconds);
 
@@ -73,7 +73,7 @@ window.requestAnimationFrame(callbackFunction);
 [StackOverflow](https://stackoverflow.com/a/294273/8319610)
 [Wrong dimensions at runtime](https://stackoverflow.com/a/46772849/8319610)
 
-```js linenums="1"
+```js
 > console.log(document.getElementById('id').getBoundingClientRect());
 DOMRect {
     bottom: 177,

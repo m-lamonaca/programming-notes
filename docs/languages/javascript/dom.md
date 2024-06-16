@@ -10,7 +10,7 @@ The document object is *globally available* in the browser. It allows to access 
 `getElementById()` and `querySelector()` return a single element.  
 `getElementsByClassName()`, `getElementsByTagName()`, and `querySelectorAll()` return a collection of elements.
 
-```js linenums="1"
+```js
 Javascript
 // By Id
 var node = document.getElementById('id');
@@ -32,7 +32,7 @@ var nodes = document.querySelectorAll('css-selector');
 
 It's possible access and change the attributes of a DOM node using the *dot notation*.
 
-```js linenums="1"
+```js
 // Changing the src of an image:
 var image = document.getElementById('id');
 var oldImageSource = image.src;
@@ -48,7 +48,7 @@ node.className = 'new-class';
 It's possible to access and change the styles of a DOM nodes via the **style** property.
 CSS property names with a `-` must be **camelCased** and number properties must have a unit.
 
-```css linenums="1"
+```css
 body {
     color: red;
     background-color: pink;
@@ -56,7 +56,7 @@ body {
 }
 ```
 
-```js linenums="1"
+```js
 var pageNode = document.body;
 pageNode.style.color = 'red';
 pageNode.style.backgroundColor = 'pink';
@@ -67,7 +67,7 @@ pageNode.style.paddingTop = '10px';
 
 Each DOM node has an `innerHTML` attribute. It contains the HTML of all its children.
 
-```js linenums="1"
+```js
 var pageNode = document.body;
 console.log(pageNode.innerHTML);
 
@@ -96,13 +96,13 @@ To change the actual text of a node, `textContent` may be a better choice:
 
 In `page.html`:
 
-```html linenums="1"
+```html
 <input type="" id="identifier" value="">
 ```
 
 In `script.js`:
 
-```js linenums="1"
+```js
 var formNode = document.getElementById("Identifier");
 var value = formNode.value;
 ```
@@ -111,7 +111,7 @@ var value = formNode.value;
 
 The document object also allows to create new nodes from scratch.
 
-```js linenums="1"
+```js
 // create node
 document.createElement('tagName');
 document.createTextNode('text');
@@ -129,7 +129,7 @@ node.parentNode.removeChild(node);
 
 Example:
 
-```js linenums="1"
+```js
 var body = document.body;
 
 var newImg = document.createElement('img');
@@ -148,7 +148,7 @@ body.appendChild(newParagraph);
 
 ### Creating DOM Nodes with Constructor Functions
 
-```js linenums="1"
+```js
 function Node(params) {
     this.node = document.createElement("tag");
 

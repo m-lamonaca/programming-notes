@@ -1,6 +1,6 @@
 # [Svelte](https://svelte.dev/docs)
 
-```sh linenums="1"
+```sh
 npx degit sveltejs/template <project name>
 
 # set project to use typescript
@@ -12,7 +12,7 @@ npm init vite@latest
 
 ## App Entry-point
 
-```js linenums="1"
+```js
 import App from "./App.svelte"; // import the component
 
 const app = new App({
@@ -29,7 +29,7 @@ export default app;
 
 ### Basic Structure
 
-```html linenums="1"
+```html
 <!-- code for the component -->
 <script lang="ts">
   import { Component } from "Component.svelte";
@@ -57,7 +57,7 @@ export default app;
 
 ### If-Else
 
-```js linenums="1"
+```js
 {#if <condition>}
   // markup here
 {:else if <condition>}
@@ -69,7 +69,7 @@ export default app;
 
 ### Loops
 
-```js linenums="1"
+```js
 {#each array as item, index}  // index is optional
     // markup here
 {/each}
@@ -81,7 +81,7 @@ export default app;
 
 ### Await Blocks
 
-```js linenums="1"
+```js
 {#await promise}
  <p>...waiting</p>
 {:then number}
@@ -103,7 +103,7 @@ The full list of modifiers:
 - `once` — remove the handler after the first time it runs
 - `self` — only trigger handler if `event.target` is the element itself
 
-```js linenums="1"
+```js
 <script>
   const eventHandler = () => {};
 </script>
@@ -119,7 +119,7 @@ The full list of modifiers:
 
 ## Binding
 
-```html linenums="1"
+```html
 <script>
   let name = "Foo";
 </script>
@@ -137,7 +137,7 @@ Often, some parts of a component's state need to be computed from other parts an
 
 For these, Svelte has reactive declarations. They look like this:
 
-```js linenums="1"
+```js
 let count = 0;
 $: double =  count * 2;  // recalculated when count changes
 // or
@@ -149,7 +149,7 @@ $: <expression>
 
 [Svelte Routing](https://github.com/EmilTholin/svelte-routing)
 
-```js linenums="1"
+```js
 <!-- App.svelte -->
 <script>
   import { Router, Link, Route } from "svelte-routing";
@@ -177,14 +177,14 @@ $: <expression>
 
 ## Data Stores
 
-```js linenums="1"
+```js
 // stores.js
 import { writable } from "svelte/store";
 
 export const count = writable(0);
 ```
 
-```html linenums="1"
+```html
 <script>
   import { onDestroy } from "svelte";
   import { count } from ".path/to/stores.js";

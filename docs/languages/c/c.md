@@ -2,7 +2,7 @@
 
 ## Library Import
 
-```c linenums="1"
+```c
 #include <stdio.h>  // search in current + system directories
 #include "lib.h" // search in current directory
 ```
@@ -22,7 +22,7 @@ Can be omitted and replaced by namespace`::`
 
 ## Main Function
 
-```c linenums="1"
+```c
 int main(int argc, char *argv[]) { }
 ```
 
@@ -30,14 +30,14 @@ int main(int argc, char *argv[]) { }
 
 ### Constant Declaration
 
-```c linenums="1"
+```c
 #define constant_name value
 const type constant_name = value;
 ```
 
 ### Variable Declaration
 
-```c linenums="1"
+```c
 type var_name = value;    //c-like initialization
 type var_name (value);    //constructor initialization
 type var_name {value};    //uniform initialization
@@ -124,7 +124,7 @@ Escape Character   | Character
 
 ### Standard Output
 
-```c linenums="1"
+```c
 #include <stdio.h>
 
 printf_s("text %<fmt_spec>", variable);
@@ -132,7 +132,7 @@ printf_s("text %<fmt_spec>", variable);
 
 ### Standard Input
 
-```c linenums="1"
+```c
 #include <stdio.h>
 
 scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted inputs
@@ -236,7 +236,7 @@ a `>>=` b   | a = a >> b
 
 ### Mathematical Functions
 
-```c linenums="1"
+```c
 #include <cmath>
 
 abs(x);    // absolute value
@@ -263,7 +263,7 @@ tanh(x);    //hyperbolic tan(X)
 
 ### Character Functions
 
-```c linenums="1"
+```c
 isalnum(c);    //true if c is alphanumeric
 isalpha(c);    //true if c is a letter
 isdigit(c);    //true if char is 0 1 2 3 4 5 6 7 8 9
@@ -283,7 +283,7 @@ toupper(c);    //transform character in uppercase
 
 ### String Functions
 
-```c linenums="1"
+```c
 strlen(string);    //return length (num of chars) of the string
 strcat(destination, source);    //appends chars of string2 to string1
 strncat(string1, string2, nchar);    //appends the first n chars of string 2 to string1
@@ -301,7 +301,7 @@ strpbrk(string, charSet);    //Returns a pointer to the first occurrence of any 
 
 ### String Conversion
 
-```c linenums="1"
+```c
 atof(string);    //converts string in double if possible
 atoi(string);    //converts string in integer if possible
 atol(string);    //converts string in long if possible
@@ -309,7 +309,7 @@ atol(string);    //converts string in long if possible
 
 ### String Methods
 
-```C linenums="1"++
+```C++
 string.at(pos);    // returns char at index pos
 string.substr(start, end);    // returns substring between indexes START and END
 string.c_str();    //reads string char by char
@@ -318,7 +318,7 @@ string.find(substring);    // The zero-based index of the first character in str
 
 ## Vectors
 
-```c linenums="1"
+```c
 #include <vector>
 vector<type> vector_name = {values};    //variable length array
 ```
@@ -327,7 +327,7 @@ vector<type> vector_name = {values};    //variable length array
 
 ### If Statements
 
-```c linenums="1"
+```c
 if (condition) { }
 
 if (condition) 
@@ -346,7 +346,7 @@ else
 
 ### Switch
 
-```c linenums="1"
+```c
 switch (expression) {
     case constant_1:
         //code here
@@ -365,7 +365,7 @@ switch (expression) {
 
 ### While Loop
 
-```c linenums="1"
+```c
 while (condition) {
     //code here
 }
@@ -373,7 +373,7 @@ while (condition) {
 
 ### Do While
 
-```c linenums="1"
+```c
 do {
     //code here
 } while (condition);
@@ -381,7 +381,7 @@ do {
 
 ### For Loop
 
-```c linenums="1"
+```c
 for (initialization; condition; increase) {
     //code here
 }
@@ -401,7 +401,7 @@ Functions **must** be declared **before** the main function.
 It is possible to declare functions **after** the main only if the *prototype* is declared **before** the main.  
 To return multiple variables those variables can be passed by reference so that their values is adjourned in the main.
 
-```c linenums="1"
+```c
 type function_name(type argument1, ...); // function prototype
 
 type functionName (parameters) {
@@ -416,7 +416,7 @@ void functionName (parameters) { }
 Passing arguments by reference causes modifications made inside the function to be propagated to the values outside.  
 Passing arguments by values copies the values to the arguments: changes remain inside the function.  
 
-```c linenums="1"
+```c
 type functionName (type &argument1, ...) {
     //code here
     return <expression>;
@@ -430,7 +430,7 @@ type functionName (type &argument1, ...) {
 Passing arguments by reference causes modifications made inside the function to be propagated to the values outside.  
 Passing arguments by values copies the values to the arguments: changes remain inside the function.
 
-```c linenums="1"
+```c
 type function_name (type *argument_1, ...) {
     instructions;
     return <expression>;
@@ -441,7 +441,7 @@ type function_name (type *argument_1, ...) {
 
 ## Arrays
 
-```c linenums="1"
+```c
 type arrayName[dimension];    //array declaration
 type arrayName[dimension] = {value1, value2, ...};    //array declaration & initialization, values number must match dimension
 
@@ -454,7 +454,7 @@ array[index] = value;    //value assignment at position index
 The dimension is not specified because it is determined by the passed array.  
 The array is passed by reference.
 
-```c linenums="1"
+```c
 type function(type array[]){
     //code here
 }
@@ -469,14 +469,14 @@ function(array);    //array passed w/out square brackets []
 
 ### Multi-Dimensional Array (Matrix)
 
-```c linenums="1"
+```c
 type matrix[rows][columns];
 matrix[i][j]    //element A_ij of the matrix
 ```
 
 ### Matrix as function parameter
 
-```c linenums="1"
+```c
 //matrix passed by reference, second dimension is mandatory
 type function(type matrix[][columns]){
     //code here
@@ -496,7 +496,7 @@ type function(type matrix[][dim2]...[dimN]){
 
 ### Struct Definition
 
-```c linenums="1"
+```c
 struct Struct {
     type field1;
     type field2;
@@ -512,7 +512,7 @@ variable.field    // field access
 
 Pointers hold memory addresses of declared variables, they should be initialized to NULL.
 
-```c linenums="1"
+```c
 type *pointer = &variable;     //pointer init and assignment
 type *pointer = NULL;
 type *pointer = otherPointer;
@@ -523,7 +523,7 @@ type **pointerToPointer = &pointer;    // pointerToPointer -> pointer -> variabl
 pointer type and variable type **must** match.  
 (*) --> "value pointed to by"
 
-```c linenums="1"
+```c
 pointer    //address of pointed value (value of variable)
 *pointer    //value of pointed variable
 **pointer //value pointed by *pointer (pointer to pointer)
@@ -531,7 +531,7 @@ pointer    //address of pointed value (value of variable)
 
 ### Pointer to array
 
-```c linenums="1"
+```c
 type *pointer;
 type array[dim] = {};
 
@@ -542,7 +542,7 @@ pointer++;    //change pointed value to successive "cell" of array
 
 ### Pointers, Arrays & Functions
 
-```c linenums="1"
+```c
 func(array)    //pass entire array to function (no need to use (&) to extract address)
 
 type func(type* array){
@@ -552,7 +552,7 @@ type func(type* array){
 
 ### Pointer to Struct
 
-```c linenums="1"
+```c
 (*structPointer).field    //access to field value
 structPointer->structField    //access to field value
 ```
@@ -576,7 +576,7 @@ Every node is composed by two parts:
 A **Stack** is a list in with nodes can be extracted from one *side* only (*LIFO*).
 The extraction of an item from the *top* is called **pop**
 
-```c linenums="1"
+```c
 // node structure
 struct Node {
     type value;
@@ -586,7 +586,7 @@ struct Node {
 
 #### Node Insertion
 
-```c linenums="1"
+```c
 Node *stackNode;    //current node
 Node* head = NULL;    //pointer to head of stack
 
@@ -603,7 +603,7 @@ head = stackNode;    //update head to point to new first node
 
 #### Node Deletion
 
-```c linenums="1"
+```c
 stackNode = head->next;    //memorize location of second node
 free(head);    //delete first node
 head = stackNode;    //update head to point to new first node
@@ -611,7 +611,7 @@ head = stackNode;    //update head to point to new first node
 
 #### Passing Head To Functions
 
-```c linenums="1"
+```c
 type function(Node** head)    //value of head passed by address (head is Node*)
 {
     *head = ...    //update value of head (pointed variable/object/Node)
@@ -644,7 +644,7 @@ C does not automatically free allocated memory when nodes are deleted. It must b
 * `malloc()` returns a void pointer if the allocation is successful.
 * `free()` frees the memory
 
-```C linenums="1"
+```C
 list *pointer = (list*)malloc(sizeof(list));    //memory allocation
 free(pointer)    //freeing of memory
 ```
@@ -666,7 +666,7 @@ The available classes in C++ to operate on files are:
 
 Filename can be string literal or CharArray (use `c_str()`).
 
-```c linenums="1"
+```c
 ifstream file;
 file.open("filename");    //read from file
 

@@ -5,7 +5,7 @@ Although servlets can respond to many types of requests, they most commonly impl
 
 ## Basic Structure
 
-```java linenums="1"
+```java
 package <package>;
 
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class <className> extends HttpServlet {
 
 ## Servlet Instructions
 
-```java linenums="1"
+```java
 request.getParameter()  // read request parameter
 
 response.setContentType("text/html");  // to return HTML in the response

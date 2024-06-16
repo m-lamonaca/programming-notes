@@ -11,14 +11,14 @@
 
 ### Comments
 
-```javascript linenums="1"
+```javascript
 //single line comment
 /*multiline comment*/
 ```
 
 ### File Header
 
-```javascript linenums="1"
+```javascript
 /**
  * @file filename.js
  * @author author's name
@@ -32,7 +32,7 @@
 
 If located at the top of the script the whole script works the “modern” way (enables post-ES5 functionalities).  
 
-```js linenums="1"
+```js
 "use strict"
 
 // script contents
@@ -42,7 +42,7 @@ If located at the top of the script the whole script works the “modern” way 
 
 Interrupts script execution until closure, **to be avoided**
 
-```javascript linenums="1"
+```javascript
 alert("message");
 ```
 
@@ -69,7 +69,7 @@ Variable names can only contain numbers, digits, underscores and $. Variable nam
 Variable declared with `let` are in local to the code block in which are declared.
 Variable declared with `var` are local only if declared in a function.
 
-```js linenums="1"
+```js
 function func(){
     variable = value;  // implicitly declared as a global variable
     var variable = value;  // local variable
@@ -99,7 +99,7 @@ Hard-coded values are UPPERCASE and snake_case, camelCase otherwise.
 
 Only numeric type is `number`.
 
-```javascript linenums="1"
+```javascript
 let number = 10;  //integer numbers
 number = 15.7;  //floating point numbers
 number = Infinity;  //mathematical infinity
@@ -115,7 +115,7 @@ Mathematical expression will *never* cause an error. At worst the result will be
 
 ### String data type
 
-```javascript linenums="1"
+```javascript
 let string = "text";
 let string$ = 'text';
 let string_ = `text ${expression}`;  //string interpolation (needs backticks)
@@ -137,7 +137,7 @@ Property access is unpredictable:
 
 If the parameters to slice are negative, they reference the string from the end. Substring and substr doesn´t.
 
-```js linenums="1"
+```js
 string.slice(begin [, end]);
 string.substring(from [, to]);
 string.substr(start [, length]);
@@ -145,27 +145,27 @@ string.substr(start [, length]);
 
 ### Boolean data type
 
-```javascript linenums="1"
+```javascript
 let boolean = true;
 let boolean_ = false;
 ```
 
 ### Null data type
 
-```javascript linenums="1"
+```javascript
 let _ = null;
 ```
 
 ### Undefined
 
-```javascript linenums="1"
+```javascript
 let $;  //value is "undefined"
 $ = undefined;
 ```
 
 ### Typeof()
 
-```javascript linenums="1"
+```javascript
 typeof x;  //returns the type of the variable x as a string
 typeof(x);  //returns the type of the variable x as a string
 ```
@@ -176,7 +176,7 @@ It is a special value with a separate type of its own. So, again, this is an err
 
 ### Type Casting
 
-```javascript linenums="1"
+```javascript
 String(value);  //converts value to string
 
 Number(value);  //converts value to a number
@@ -200,7 +200,7 @@ typeof var_ == "number";  // typeof returns a string with the name of the type
 
 ### Type Checking
 
-```js linenums="1"
+```js
 isNaN(var);  // converts var in number and then check if is NaN
 
 Number("A") == NaN;  //false ?!?
@@ -209,7 +209,7 @@ Number("A") == NaN;  //false ?!?
 
 ### Dangerous & Stupid Implicit Type Casting
 
-```js linenums="1"
+```js
 2 + 'text';  //"2text", implicit conversion and concatenation
 1 + "1";  //"11", implicit conversion and concatenation
 "1" + 1;  //"11", implicit conversion and concatenation
@@ -305,7 +305,7 @@ Number("A") == NaN;  //false ?!?
 
 ### IF-ELSE
 
-```javascript linenums="1"
+```javascript
 if (condition) {
     //code here
 } else {
@@ -315,7 +315,7 @@ if (condition) {
 
 ### IF-ELSE Multi-Branch
 
-```javascript linenums="1"
+```javascript
 if (condition) {
     //code here
 } else if (condition) {
@@ -331,7 +331,7 @@ if (condition) {
 
 ### Switch Statement
 
-```javascript linenums="1"
+```javascript
 switch (expression) {
     case expression:
         //code here
@@ -347,7 +347,7 @@ switch (expression) {
 
 ### While Loop
 
-```javascript linenums="1"
+```javascript
 while (condition) {
     //code here
 }
@@ -355,7 +355,7 @@ while (condition) {
 
 ### Do-While Loop
 
-```javascript linenums="1"
+```javascript
 do {
     //code here
 } while (condition);
@@ -363,7 +363,7 @@ do {
 
 ### For Loop
 
-```javascript linenums="1"
+```javascript
 // basic for
 for (begin; condition; step) { }
 
@@ -384,7 +384,7 @@ iterable.forEach(() => { /* statements */ });
 `break;`  exits the loop.  
 `continue;` skip to next loop cycle.
 
-```javascript linenums="1"
+```javascript
 label: for(begin; condition; step) {
     //code here
 }
@@ -394,7 +394,7 @@ break label;  //breaks labelled loop and nested loops inside it
 
 ## Arrays
 
-```js linenums="1"
+```js
 let array = [];  // empty array
 let array = ["text", 3.14, [1.41]];  // array declaration and initialization
 
@@ -417,7 +417,7 @@ array.splice(start, deleteCount, [items_to_add]);  // remove and RETURN items fr
 
 ### `filter()` & `map()`, `reduce()`
 
-```js linenums="1"
+```js
 let array = [ items ];
 
 // execute an operation on each item, producing a new array
@@ -432,7 +432,7 @@ array.reduce((x, y) => ...);
 
 ## Spread Operator (...)
 
-```js linenums="1"
+```js
 // arrays
 let array1 = [ 1, 2, 3, 4, 5, 6 ];
 let array2 = [ 7, 8, 9, 10 ];
@@ -457,7 +457,7 @@ func(arg0, ...args);
 
 ## Dictionaries
 
-```js linenums="1"
+```js
 let dict = { FirstName: "Chris", "one": 1, 1: "some value" };
 
 
@@ -471,7 +471,7 @@ dict.FirstName = "Chris";
 
 ### Iterating Key-Value pairs
 
-```js linenums="1"
+```js
 for(let key in dict) {
   let value = dict[key];
 
@@ -485,7 +485,7 @@ Object.keys(dict).forEach(key => { });
 
 ### JSDOC documentation standard
 
-```javascript linenums="1"
+```javascript
 /**
  * @param {type} parameter - description
  * @returns {type} parameter - description
@@ -494,7 +494,7 @@ Object.keys(dict).forEach(key => { });
 
 ### Function Declaration
 
-```javascript linenums="1"
+```javascript
 // ...args will contain extra parameters (rest argument)
 function functionName(parameter=default-value, ...args) {
     //code here
@@ -504,7 +504,7 @@ function functionName(parameter=default-value, ...args) {
 
 ### Default Parameters (old versions)
 
-```javascript linenums="1"
+```javascript
 function functionName(parameters) {
     if (parameter == undefined) {
         parameter = value;
@@ -517,7 +517,7 @@ function functionName(parameters) {
 
 ### Function Expressions
 
-```javascript linenums="1"
+```javascript
 let functionName = function(parameters) {
     //code here
     return expression;
@@ -526,7 +526,7 @@ let functionName = function(parameters) {
 
 ### Arrow Functions
 
-```javascript linenums="1"
+```javascript
 (input) => { /* statements */ }
 (input) => expression;
 input => expression;  // parenthesis are optional
@@ -552,7 +552,7 @@ An object is a collection of related data and/or functionality.
 
 **Note**: It's not possible to transform a variable in an object simply by using the object assignment.
 
-```js linenums="1"
+```js
 let variable = value;
 
 // object literal
@@ -596,7 +596,7 @@ Object.entries(obj);  // list contents as key-value pairs
 JavaScript uses special functions called **constructor functions** to define and initialize objects and their features.
 Notice that it has all the features you'd expect in a function, although it doesn't return anything or explicitly create an object — it basically just defines properties and methods.
 
-```js linenums="1"
+```js
 // constructor function definition
 function Class(params) {
     this.property = param;
@@ -622,7 +622,7 @@ An object's prototype object may also have a prototype object, which it inherits
 This is often referred to as a **prototype chain**, and explains why different objects have properties and methods defined on other objects available to them.
 If a method is implemented on an object (and not it's prototype) then only that object will heve that method and not all the ones that come from the same prototype.
 
-```js linenums="1"
+```js
 // constructor function
 function Obj(param1, ...) {
     this.param1 = param1,
@@ -640,7 +640,7 @@ obj.method();  // call method from prototype
 
 ### Extending with prototypes
 
-```js linenums="1"
+```js
 // constructor function
 function DerivedObj(param1, param2, ...) {
     Obj.call(this, param1);  // use prototype constructor
@@ -661,7 +661,7 @@ dobj.method();  // call method from prototype
 
 ### Classes (ES6+)
 
-```js linenums="1"
+```js
 class Obj {
     constructor(param1, ...) {
         this.param1 = param1,
@@ -686,7 +686,7 @@ obj.func();  // call method
 
 ### Extending with Classes
 
-```js linenums="1"
+```js
 class DerivedObj extends Obj {
     constructor(param1, param2, ...){
         super(param1);  // use superclass constructor
@@ -704,7 +704,7 @@ dobj.newFunc();
 
 ### Object deconstruction
 
-```js linenums="1"
+```js
 let obj = {
     property: value,
     ...
@@ -717,14 +717,14 @@ let { property: var1, var2 = default_value } = obj;  // use default values if ob
 
 ### Array Deconstruction
 
-```js linenums="1"
+```js
 let array = [ 1, 2, 3, 4, 5, 6 ];
 let [first, , third, , seventh = "missing" ] = array;  // extract specific values from array
 ```
 
 ## Serialization
 
-```js linenums="1"
+```js
 let object = {
     // object attributes
 }
@@ -741,7 +741,7 @@ let object = JSON.parse(json);  // deserialize to Object
 
 Function runs *once* after an interval of time.
 
-```js linenums="1"
+```js
 // param1, param2, ... are the arguments passed to the function (IE9+)
 let timerId = setTimeout(func [, milliseconds, param1, param2, ... ]);  // wait milliseconds before executing the code (params are read at execution time)
 
@@ -776,7 +776,7 @@ useTimeout();
 
 ### `let` vs `var` with `setTimeout`
 
-```js linenums="1"
+```js
 // let instantiates a new variable for each iteration
 for (let i = 0; i < 3; ++i) {
     setTimeout(function() {
@@ -795,7 +795,7 @@ for (var i = 0; i < 3; ++i) {
 
 ### Preserving the context
 
-```js linenums="1"
+```js
 let obj = {
     prop: value,
 
@@ -824,7 +824,7 @@ let obj = {
 
 Function runs regularly with a specified interval. JavaScript is **Single Threaded**.
 
-```js linenums="1"
+```js
 // param1, param2, ... are the arguments passed to the function (IE9+)
 let timerId = setInterval(func, milliseconds [, param1, param2, ... ]); // (params are read at execution time)
 
@@ -852,7 +852,7 @@ There are generally 4 types of JavaScript date input formats:
 - Long Date: `"Mar 25 2015"` or `"25 Mar 2015"`
 - Full Date: `"Wednesday March 25 2015"`
 
-```js linenums="1"
+```js
 // constructors
 new Date();
 new Date(milliseconds);
@@ -892,7 +892,7 @@ let date = new Date(msec);
 
 Comparison operators work also on dates
 
-```js linenums="1"
+```js
 let date1 = new Date();
 let date2 = new Date("May 24, 2017 10:50:00");
 
@@ -909,20 +909,20 @@ if(date1 > date2){
 
 > **Note**: Firefox 68 and later define the origin of a page opened using a `file:///` URI as unique. Therefore, other resources in the same directory or its subdirectories no longer satisfy the CORS same-origin rule. This new behavior is enabled by default using the `privacy.file_unique_origin` preference.
 
-```json linenums="1"
+```json
 "privacy.file_unique_origin": "false"
 ```
 
 In `page.html`
 
-```html linenums="1"
+```html
 <script src="scripts/module.js"></script>
 <script src="scripts/script.js"></script>
 ```
 
 In `module.js`:
 
-```js linenums="1"
+```js
 // exporting individual fractures
 export default function() {}  // one per module
 export func = () => expression;  // zero or more per module
@@ -942,7 +942,7 @@ export { func } from "other_script.js"
 
 In `script.js`:
 
-```js linenums="1"
+```js
 import default_func_alias, { func as alias } from "./module.js";  // import default and set alias
 import { default as default_func_alias, func as alias } from "./module.js";  // import default and set alias
 
@@ -951,7 +951,7 @@ default_func_alias();
 alias();
 ```
 
-```js linenums="1"
+```js
 import * from "./module.js";  // import all
 
 module.function();  // use imported content with fully qualified name

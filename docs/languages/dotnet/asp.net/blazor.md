@@ -18,7 +18,7 @@ The component class is usually written in the form of a Razor markup page with a
 
 [Blazor Components](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/)
 
-```cs linenums="1"
+```cs
 @page "/route/{RouteParameter}"  // make component accessible from a URL
 @page "/route/{RouteParameter?}"  // specify route parameter as optional
 @page "/route/{RouteParameter:<type>}"  // specify route parameter type
@@ -59,7 +59,7 @@ The component class is usually written in the form of a Razor markup page with a
 
 It's now possible to pass state when navigating in Blazor apps using the `NavigationManager`.
 
-```cs linenums="1"
+```cs
 navigationManager.NavigateTo("/<route>", new NavigationOptions { HistoryEntryState = value });
 ```
 
@@ -67,12 +67,12 @@ This mechanism allows for simple communication between different pages. The spec
 
 ### Blazor WASM
 
-```cs linenums="1"
+```cs
 // setup state singleton
 builder.Services.AddSingleton<StateContainer>();
 ```
 
-```cs linenums="1"
+```cs
 // StateContainer singleton
 using System;
 
@@ -96,7 +96,7 @@ public class StateContainer
 }
 ```
 
-```cs linenums="1"
+```cs
 // component that changes the state
 @inject StateContainer State
 
@@ -113,7 +113,7 @@ public class StateContainer
 }
 ```
 
-```cs linenums="1"
+```cs
 // component that should be update on state change
 @implements IDisposable
 @inject StateContainer State
@@ -139,7 +139,7 @@ public class StateContainer
 
 ## Data Binding & Events
 
-```cs linenums="1"
+```cs
 <p>
     <button @on{DOM EVENT}="{DELEGATE}" />
     <button @on{DOM EVENT}="{DELEGATE}" @on{DOM EVENT}:preventDefault />  // prevent default action
@@ -198,7 +198,7 @@ public class StateContainer
 
 To render a Blazor component from JavaScript, first register it as a root component for JavaScript rendering and assign it an identifier:
 
-```cs linenums="1"
+```cs
 // Blazor Server
 builder.Services.AddServerSideBlazor(options =>
 {
@@ -211,7 +211,7 @@ builder.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
 
 Load Blazor into the JavaScript app (`blazor.server.js` or `blazor.webassembly.js`) and then render the component from JavaScript into a container element using the registered identifier, passing component parameters as needed:
 
-```js linenums="1"
+```js
 let containerElement = document.getElementById('my-counter');
 await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
 ```
@@ -223,6 +223,6 @@ Custom elements use standard HTML interfaces to implement custom HTML elements.
 
 To create a custom element using Blazor, register a Blazor root component as custom elements like this:
 
-```cs linenums="1"
+```cs
 options.RootComponents.RegisterAsCustomElement<Counter>("my-counter");
 ```

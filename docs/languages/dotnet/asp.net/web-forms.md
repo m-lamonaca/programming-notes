@@ -4,7 +4,7 @@
 
 The fist loaded page is `Default.aspx` and its underlying code.
 
-```html linenums="1"
+```html
 <!-- directive -->
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Project.Default" %>
 
@@ -26,7 +26,7 @@ The fist loaded page is `Default.aspx` and its underlying code.
 
 ### Page Directive
 
-```cs linenums="1"
+```cs
 <%@ Page Language="C#"  // define language used (can be C# or VB)
     AutoEventWireup="true"  // automatically create and setup event handlers
     CodeBehind="Default.aspx.cs"  // define the underlying code file
@@ -35,7 +35,7 @@ The fist loaded page is `Default.aspx` and its underlying code.
 
 ### Web Controls
 
-```xml linenums="1"
+```xml
 <asp:Control ID="" runat="server" ...></asp:Control>
 
 <!-- Label: empty text will diplay ID, use empty space as text for empty label -->
@@ -59,7 +59,7 @@ The fist loaded page is `Default.aspx` and its underlying code.
 
 ## `Page.aspx.cs`
 
-```cs linenums="1"
+```cs
 public partial class Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)

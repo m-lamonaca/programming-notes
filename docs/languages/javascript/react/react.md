@@ -9,7 +9,7 @@ There are two types of react components:
 
 Both types can be stateful and have side effects or be purely presentational.
 
-```jsx linenums="1"
+```jsx
 // functional component
 const Component = (props) => {
     return (
@@ -33,7 +33,7 @@ Within the component state can be changed while the props object represent fixed
 
 JSX syntax can represent HTML but gets converted to pure JavaScript before being sent to the browser:
 
-```js linenums="1"
+```js
 // JSX
 const element = (
   <h1 className="greeting">Hello, world!</h1>
@@ -49,7 +49,7 @@ const element = React.createElement(
 
 ### App Entry-point
 
-```js linenums="1"
+```js
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
@@ -59,7 +59,7 @@ root.render(element)
 
 ### Dynamic Expressions
 
-```js linenums="1"
+```js
 <tag>{expression}</tag>  // expression is evaluated an it's result is displayed
 <tag onEvent={funcReference}>{expression}</tag>
 <tag onEvent={() => func(args)}>{expression}</tag>
@@ -67,7 +67,7 @@ root.render(element)
 
 ### Props
 
-```js linenums="1"
+```js
 <Component propName={value} />  // pass a value the component
 <Component propName={funcReference} />  // pass a function to the component
 
@@ -83,7 +83,7 @@ class Component extends React.Component{
 
 ### Simple Function Component
 
-```js linenums="1"
+```js
 // Button.js
 import { useState } from "react";
 
@@ -105,7 +105,7 @@ export default Button;
 
 ### Simple Class Component
 
-```js linenums="1"
+```js
 class Button extends React.Component {
 
     state = {count: 0};
@@ -137,7 +137,7 @@ class Button extends React.Component {
 
 ### Nesting Components
 
-```js linenums="1"
+```js
 import { useState } from "react";
 
 function Button(props) {
@@ -173,7 +173,7 @@ export default App;
 
 ### User Input (Forms)
 
-```js linenums="1"
+```js
 function Form() {
     const [userName, setUserName] = useState("");
 
@@ -198,7 +198,7 @@ function Form() {
 
 ### Lists of Components
 
-```js linenums="1"
+```js
 // ...
     <div>
         {array.map(item => <Component key={uniqueID}>)}
@@ -219,7 +219,7 @@ Hook used to create a state object.
 - state object (getter)
 - updater function (setter)
 
-```js linenums="1"
+```js
 const [state, setState] = useState(default);
 ```
 
@@ -227,7 +227,7 @@ const [state, setState] = useState(default);
 
 Hook used to trigger an action on each render of the component or when one of the watched items changes.
 
-```js linenums="1"
+```js
 
 useEffect(() => {
     // "side effects" operations
@@ -238,7 +238,7 @@ useEffect(() => {
 
 ### Custom Hooks
 
-```js linenums="1"
+```js
 // hook definitions
 const useCustomHook = () => {
     // eventual state definitions

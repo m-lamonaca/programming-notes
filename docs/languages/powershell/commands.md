@@ -1,6 +1,6 @@
 # Powershell Commands
 
-```ps1 linenums="1"
+```ps1
 Get-Location  # Gets information about the current working location or a location stack
 Set-Location -Path <path>  # change current working directory to specified path (DEFAULTs to ~)
 Get-ChildItem  -Path <path>  # Gets the items and child items in one or more specified locations.

@@ -110,7 +110,7 @@ Each kubernetes configuration file is composed by 3 parts:
 
 ### `kubectl get`
 
-```sh linenums="1"
+```sh
 kubectl config get-contexts  # list available contexts
 
 kubectl get namespaces  # list namespaces inside current context
@@ -121,12 +121,12 @@ kubectl get pod [-n|--namespace <namespace>] <pod> -o|--output jsonpath='{.spec.
 
 ### `kubectl exec`
 
-```sh linenums="1"
+```sh
 kubectl exec [-i|--stdin] [-t|--tty] [-n|--namespace <namespace>] <pod> [-c|--container <container>] -- <command>  # execute a command inside a container
 ```
 
 ### `kubectl logs`
 
-```sh linenums="1"
+```sh
 kubectl logs [-f|--follow] [-n|--namespace <namespace>] <pod> [-c|--container]  # get pod/container logs
 ```

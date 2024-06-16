@@ -10,14 +10,14 @@ Often Redis it is called a *data structure* server because it has outer key-valu
 
 ### Server Startup
 
-```bash linenums="1"
+```bash
 redis-server  # start the server
 redis-cli
 ```
 
 ### [Key-Value Pairs](https://redis.io/commands#generic)
 
-```sh linenums="1"
+```sh
 SET <key> <value> [ EX <seconds> ] # store a key-value pair, TTL optional
 GET <key>  # read a key content
 EXISTS <key>  # check if a key exists
@@ -40,7 +40,7 @@ PERSIST <key>  # make the key permanent
 
 A list is a series of ordered values.
 
-```sh linenums="1"
+```sh
 RPUSH <key> <value1> <value2> ... # add one or more values to the end of the list
 LPUSH <key> <value1> <value2> ...  # add one or more values to the start of a list
 
@@ -55,7 +55,7 @@ RPOP  # remove and return the last item fro the list
 
 A set is similar to a list, except it does not have a specific order and each element may only appear once.
 
-```sh linenums="1"
+```sh
 SADD <key> <value1> <value2> ... # add one or more values to the set (return 0 if values are already inside)
 SREM <key> <value>  # remove the given member from the set, return 1 or 0 to signal if the member was actually there or not.
 SPOP <key> <value>  # remove and return value from the set
@@ -72,7 +72,7 @@ Sets are a very handy data type, but as they are unsorted they don't work well f
 
 A sorted set is similar to a regular set, but now each value has an associated score. This score is used to sort the elements in the set.
 
-```sh linenums="1"
+```sh
 ZADD <key> <score> <value>  # add a value with it's score
 
 ZRANGE <key> <start_index> <end_index>  # return a subset of the sortedSet
@@ -84,7 +84,7 @@ ZRANGE <key> <start_index> <end_index>  # return a subset of the sortedSet
 
 Hashes are maps between string fields and string values, so they are the perfect data type to represent objects.
 
-```sh linenums="1"
+```sh
 HSET <key> <field> <value> [ <field> <value> ... ] # set the string of a hash field
 HSETNX <key> <field> <value>  # set the value of a hash field, only if the field does not exist
 

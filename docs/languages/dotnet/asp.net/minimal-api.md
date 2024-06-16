@@ -2,7 +2,7 @@
 
 > **Note**: Requires .NET 6+
 
-```cs linenums="1"
+```cs
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IService, Service>();
@@ -41,7 +41,7 @@ Setting a value is done with `dotnet user-secrets set <key> <value>`, keys can b
 
 ## Swagger
 
-```cs linenums="1"
+```cs
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -59,7 +59,7 @@ app.MapPost("/route", Handler).Accepts<Type>(contentType);
 
 ## MVC
 
-```cs linenums="1"
+```cs
 builder.Services.AddControllersWithViews();
 //or
 builder.Services.AddControllers();
@@ -95,7 +95,7 @@ app.MapControllerRoute(
 
 To define routes and handlers using Minimal APIs, use the `Map(Get|Post|Put|Delete)` methods.
 
-```cs linenums="1"
+```cs
 // the dependencies are passed as parameters in the handler delegate
 app.MapGet("/route/{id}", (IService service, int id) => {
     
@@ -112,7 +112,7 @@ IResult Search(int id, int? page = 1, int? pageSize = 10) { /* ... */ }
 The `MapGroup()` extension method, which helps organize groups of endpoints with a common prefix.  
 It allows for customizing entire groups of endpoints with a singe call to methods like `RequireAuthorization()` and `WithMetadata()`.
 
-```cs linenums="1"
+```cs
 var group = app.MapGroup("<route-prefix>");
 
 group.MapGet("/", GetAllTodos);  // route: /<route-prefix>
@@ -126,14 +126,14 @@ group.MapGet("/{id}", GetTodo);  // route: /<route-prefix>/{id}
 The `Microsoft.AspNetCore.Http.TypedResults` static class is the “typed” equivalent of the existing `Microsoft.AspNetCore.Http.Results` class.  
 It's possible to use `TypedResults` in minimal APIs to create instances of the in-framework `IResult`-implementing types and preserve the concrete type information.
 
-```cs linenums="1"
+```cs
 public static async Task<IResult> GetAllTodos(TodoDb db)
 {
     return TypedResults.Ok(await db.Todos.ToArrayAsync());
 }
 ```
 
-```cs linenums="1"
+```cs
 [Fact]
 public async Task GetAllTodos_ReturnsOkOfObjectResult()
 {
@@ -152,7 +152,7 @@ public async Task GetAllTodos_ReturnsOkOfObjectResult()
 
 The `Results<TResult1, TResult2, TResultN>` generic union types, along with the `TypesResults` class, can be used to declare that a route handler returns multiple `IResult`-implementing concrete types.
 
-```cs linenums="1"
+```cs
 // Declare that the lambda returns multiple IResult types
 app.MapGet("/todos/{id}", async Results<Ok<Todo>, NotFound> (int id, TodoDb db)
 {
@@ -164,7 +164,7 @@ app.MapGet("/todos/{id}", async Results<Ok<Todo>, NotFound> (int id, TodoDb db)
 
 ## Filters
 
-```cs linenums="1"
+```cs
 public class ExampleFilter : IRouteHandlerFilter
 {
     public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context, RouteHandlerFilterDelegate next)
@@ -177,7 +177,7 @@ public class ExampleFilter : IRouteHandlerFilter
 }
 ```
 
-```cs linenums="1"
+```cs
 app.MapPost("/route", Handler).AddFilter<ExampleFilter>();
 ```
 
@@ -191,7 +191,7 @@ With Minimal APIs it's possible to access the contextual information by passing 
 - `ClaimsPrincipal`
 - `CancellationToken` (RequestAborted)
 
-```cs linenums="1"
+```cs
 app.MapGet("/hello", (ClaimsPrincipal user) => {
     return "Hello " + user.FindFirstValue("sub");
 });
@@ -201,7 +201,7 @@ app.MapGet("/hello", (ClaimsPrincipal user) => {
 
 The `Microsoft.AspNetCore.OpenApi` package exposes a `WithOpenApi` extension method that generates an `OpenApiOperation` derived from a given endpoint’s route handler and metadata.
 
-```cs linenums="1"
+```cs
 app.MapGet("/todos/{id}", (int id) => ...)
     .WithOpenApi();
 
@@ -217,7 +217,7 @@ app.MapGet("/todos/{id}", (int id) => ...)
 Using [Minimal Validation](https://github.com/DamianEdwards/MinimalValidation) by Damian Edwards.  
 Alternatively it's possible to use [Fluent Validation](https://fluentvalidation.net/).
 
-```cs linenums="1"
+```cs
 app.MapPost("/widgets", (Widget widget) => {
     var isValid = MinimalValidation.TryValidate(widget, out var errors);
 
@@ -240,7 +240,7 @@ class Widget
 
 ## JSON Serialization
 
-```cs linenums="1"
+```cs
 // Microsoft.AspNetCore.Http.Json.JsonOptions
 builder.Services.Configure<JsonOptions>(opt =>
 {
@@ -250,7 +250,7 @@ builder.Services.Configure<JsonOptions>(opt =>
 
 ## Authorization
 
-```cs linenums="1"
+```cs
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
 builder.Services.AddAuthorization();
@@ -283,13 +283,13 @@ app.MapGet("/special-secret", () => "This is a special secret!")
 The `user-jwts` tool is similar in concept to the existing `user-secrets` tools, in that it can be used to manage values for the app that are only valid for the current user (the developer) on the current machine.  
 In fact, the `user-jwts` tool utilizes the `user-secrets` infrastructure to manage the key that the JWTs will be signed with, ensuring it’s stored safely in the user profile.
 
-```sh linenums="1"
+```sh
 dotnet user-jwts create  # configure a dev JWT fot the current user
 ```
 
 ## Output Caching
 
-```cs linenums="1"
+```cs
 builder.Services.AddOutputCaching();  // no special options
 builder.Services.AddOutputCaching(options => 
 {
@@ -321,7 +321,7 @@ app.MapGet("/<route>", [OutputCache(/* options */)]RouteHandler);
 
 ### Cache Eviction
 
-```cs linenums="1"
+```cs
 
 app.MapGet("/<route-one>", RouteHandler).CacheOutput(x => x.Tag("<tag>"));  // tag cache portion
 
@@ -333,11 +333,11 @@ app.MapGet("/<route-two>", (IOutputCacheStore cache, CancellationToken token) =>
 
 ### Custom Cache Policy
 
-```cs linenums="1"
+```cs
 app.MapGet("/<route-one>", RouteHandler).CacheOutput(x => x.AddCachePolicy<CustomCachePolicy>());
 ```
 
-```cs linenums="1"
+```cs
 class CustomCachePolicy : IOutputCachePolicy
 {
     public ValueTask CacheRequestAsync(OutputCacheContext context, CancellationToken cancellationToken) { }
@@ -352,7 +352,7 @@ class CustomCachePolicy : IOutputCachePolicy
 
 The *options pattern* uses classes to provide strongly-typed access to groups of related settings.
 
-```json linenums="1"
+```json
 {
     "SecretKey": "Secret key value",
     "TransientFaultHandlingOptions": {
@@ -369,7 +369,7 @@ The *options pattern* uses classes to provide strongly-typed access to groups of
 }
 ```
 
-```cs linenums="1"
+```cs
 // options model for binding
 public class TransientFaultHandlingOptions
 {
@@ -378,13 +378,13 @@ public class TransientFaultHandlingOptions
 }
 ```
 
-```cs linenums="1"
+```cs
 // setup the options
 builder.Services.Configure<TransientFaultHandlingOptions>(builder.Configuration.GetSection<TransientFaultHandlingOptions>(nameof(Options)));
 builder.Services.Configure<TransientFaultHandlingOptions>(builder.Configuration.GetSection<TransientFaultHandlingOptions>(key));
 ```
 
-```cs linenums="1"
+```cs
 class DependsOnOptions
 {
   private readonly IOptions<TransientFaultHandlingOptions> _options;

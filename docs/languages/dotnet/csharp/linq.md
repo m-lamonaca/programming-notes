@@ -13,7 +13,7 @@ LINQ to Objects will be used when any `IEnumerable<T>` is specified as the sourc
 All query expressions are required to begin with a `from` clause, which specifies the source of the query.  
 The final part of the query is a `select` (or `group`) clause. This determines the final output of the query and its system type.
 
-```cs linenums="1"
+```cs
 // query expression
 var result = from item in enumerable select item;
 
@@ -35,7 +35,7 @@ var result = from item in enumerable group item by item.property;  // returns IE
 The compiler converts all query expressions into one or more method calls. Once it has done that, the LINQ provider is selected through exactly the same mechanisms that C# uses for any other method call.  
 The compiler does not have any built-in concept of what constitutes a LINQ provider.
 
-```cs linenums="1"
+```cs
 // expanded query expression
 var result = Enumerable.Where(item => condition).Select(item => item);
 ```
@@ -44,7 +44,7 @@ The `Where` and `Select` methods are examples of LINQ operators. A LINQ operator
 
 ### Methods on `Enumerable` or `IEnumerable<T>`
 
-```cs linenums="1"
+```cs
 Enumerable.Range(int start, int end);  // IEnumerable<int> of values between start & end
 
 IEnumerable<TSource>.Select(Func<TSource, TResult> selector);  // map
@@ -77,7 +77,7 @@ IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable); // Produces a sequence
 
 > **Note**: `Enumerable` provides a set of `static` methods for querying objects that implement `IEnumerable<T>`. Most methods are extensions of `IEnumerable<T>`
 
-```cs linenums="1"
+```cs
 Enumerable.Method(IEnumerable<T> source, args);
 // if extension method same as
 IEnumerable<T>.Method(args);

@@ -27,7 +27,7 @@ The `ADO.NET` classes are found in `System.Data.dll`, and are integrated with th
 
 ## Connection to DB
 
-```cs linenums="1"
+```cs
 using System;
 using System.Data.SqlClient;  // ADO.NET Provider, installed through NuGet
 
@@ -55,7 +55,7 @@ namespace <namespace>
 
 ### `SqlConnection`
 
-```cs linenums="1"
+```cs
 using (SqlConnection connection = new SqlConnection())
 {
     connection.ConnectionString = connectionString.ConnectionString;
@@ -70,7 +70,7 @@ using (SqlConnection connection = new SqlConnection(connectionString)) {
 
 ### [SqlCommand](https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand)
 
-```cs linenums="1"
+```cs
 string sql = "<sql_instruction>";
 
 using (SqlCommand command = new SqlCommand())
@@ -94,7 +94,7 @@ using (SqlCommand command = new SqlCommand())
 
 ### `SqlDataReader`
 
-```cs linenums="1"
+```cs
 using (SqlDataReader cursor = command.ExecuteReader())  // object to get data from db
 {
     while (cursor.Read())  // get data till possible

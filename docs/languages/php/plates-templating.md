@@ -6,7 +6,7 @@ To separate HTML code and PHP code it's possible to use **templates** with marke
 Variables are created in the PHP code and are passed to the template in the **rendering** phase.
 The server transmits only the `index.php` file to the user. The php file renders the templates as needed.
 
-```html linenums="1"
+```html
 <html>
     <head>
         <title><?= $this->e($title)?></title>
@@ -24,7 +24,7 @@ Plates is a template engine for PHP. A template engine permits to separate the P
 
 Installation through composer: `composer require league/plates`.
 
-```php linenums="1"
+```php
 # index.php
 require "vendor/autoload.php";
 
@@ -38,7 +38,7 @@ echo $templates->render("template_name", [
 ]);
 ```
 
-```php linenums="1"
+```php
 # template.php
 <html>
     <head>
@@ -60,7 +60,7 @@ In a layout it's possible to create a section called **content** that identifies
 
 > **Note**: Since only the template has the data passed eventual loops have to be done there.
 
-```php linenums="1"
+```php
 # index.php
 require 'vendor/autoload.php';
 use League\Plates\Engine;
@@ -68,7 +68,7 @@ $template = new Engine('/path/to/templates');
 echo $template->render('template_name', [ "marker" => value, ... ]);
 ```
 
-```php linenums="1"
+```php
 # template.php
 
 # set the layout used for this template
@@ -78,7 +78,7 @@ echo $template->render('template_name', [ "marker" => value, ... ]);
 <p> <?= $this->e($marker) ?> </p>
 ```
 
-```php linenums="1"
+```php
 # layout.php
 <html>
     <head>
@@ -101,7 +101,7 @@ In general the output validation allows to prevent [Cross-Site Scripting][owasp-
 
 ### Folders
 
-```php linenums="1"
+```php
 # index.php
 $templates->addFolder("alias", "path/to/template/folder");  # add a template folder
 echo $templates->render("folder::template");  # use a template in a specific folder
@@ -111,7 +111,7 @@ echo $templates->render("folder::template");  # use a template in a specific fol
 
 It's possible to inject templates in a layout or template. It is done by using the `insert()` function.
 
-```php linenums="1"
+```php
 # layout.php
 <html>
     <head>
@@ -132,7 +132,7 @@ It's possible to inject templates in a layout or template. It is done by using t
 It's possible to insert page contest from another template with the `section()` function.
 The content to be inserted must be surrounded with by the `start()` and `stop()` functions.
 
-```php linenums="1"
+```php
 # template.php
 
 <?php $this->start("section_name") ?>  # start section

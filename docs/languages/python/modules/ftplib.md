@@ -2,7 +2,7 @@
 
 ## FTP CLASSES
 
-```py linenums="1"
+```py
 ftplib.FTP(host="", user="", password="", acct="")
 # if HOST => connect(host)
 # if USER => login(user, password, acct)
@@ -13,7 +13,7 @@ ftplib.FTP_TLS(host="", user="", password="", acct="")
 
 ## EXCEPTIONS
 
-```py linenums="1"
+```py
 ftplib.error_reply  # unexpected error from server
 ftplib.error_temp  # temporary error (response codes 400-499)
 ftplib.error_perm  # permanent error (response codes 500-599)
@@ -23,7 +23,7 @@ ftplib.all_errors  # tuple of all exceptions
 
 ## FTP OBJECTS
 
-```py linenums="1"
+```py
 # method on text files: -lines
 # method on binary files: -binary
 

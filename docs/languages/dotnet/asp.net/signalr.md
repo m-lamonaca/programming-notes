@@ -8,7 +8,7 @@ The SignalR Hubs API enables to call methods on connected clients from the serve
 
 In `Startup.cs`:
 
-```cs linenums="1"
+```cs
 builder.Services.AddSignalR();
 
 var app = builder.Build();
@@ -21,7 +21,7 @@ app.UseEndpoints(endpoints =>
 
 ### Creating Hubs
 
-```cs linenums="1"
+```cs
 public class CustomHub : Hub
 {
     public task HubMethod(Type args)
@@ -46,7 +46,7 @@ A drawback of using `SendAsync` is that it relies on a magic string to specify t
 
 An alternative to using SendAsync is to strongly type the Hub with `Hub<T>`.
 
-```cs linenums="1"
+```cs
 public interface IHubClient
 {
     // matches method to be called on the client
@@ -54,7 +54,7 @@ public interface IHubClient
 }
 ```
 
-```cs linenums="1"
+```cs
 public class CustomHub : Hub<IHubClient>
 {
     public Task HubMethod(Type args)
@@ -72,7 +72,7 @@ Using a strongly typed `Hub<T>` disables the ability to use `SendAsync`. Any met
 
 The SignalR Hubs API provides the OnConnectedAsync and OnDisconnectedAsync virtual methods to manage and track connections. Override the OnConnectedAsync virtual method to perform actions when a client connects to the Hub, such as adding it to a group.
 
-```cs linenums="1"
+```cs
 public override async Task OnConnectedAsync()
 {
     await Groups.AddToGroupAsync(Context.ConnectionId, "GroupName");
@@ -98,7 +98,7 @@ If the Hub throws an exception, connections aren't closed. By default, SignalR r
 
 If you have an exceptional condition you *do* want to propagate to the client, use the `HubException` class. If you throw a `HubException` from your hub method, SignalR will send the entire message to the client, unmodified.
 
-```cs linenums="1"
+```cs
 public Task ThrowException()
 {
     throw new HubException("This error will be sent to the client!");
@@ -109,7 +109,7 @@ public Task ThrowException()
 
 ### Installing the client package
 
-```sh linenums="1"
+```sh
 npm init -y
 npm install @microsoft/signalr
 ```
@@ -118,7 +118,7 @@ npm installs the package contents in the `node_modules\@microsoft\signalr\dist\b
 
 Reference the SignalR JavaScript client in the `<script>` element. For example:
 
-```html linenums="1"
+```html
 <script src="~/lib/signalr/signalr.js"></script>
 ```
 
@@ -126,7 +126,7 @@ Reference the SignalR JavaScript client in the `<script>` element. For example:
 
 [Reconnect Clients Docs](https://docs.microsoft.com/en-us/aspnet/core/signalr/javascript-client#reconnect-clients)
 
-```js linenums="1"
+```js
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/hub/endpoint")
     .configureLogging(signalR.LogLevel.Information)
@@ -158,7 +158,7 @@ JavaScript clients call public methods on hubs via the `invoke` method of the `H
 - The name of the hub method.
 - Any arguments defined in the hub method.
 
-```js linenums="1"
+```js
 try {
     await connection.invoke("HubMethod", args);
 } catch (err) {
@@ -177,6 +177,6 @@ To receive messages from the hub, define a method using the `on` method of the `
 - The name of the JavaScript client method.
 - Arguments the hub passes to the method.
 
-```cs linenums="1"
+```cs
 connection.on("ClientMethod", (args) => { /* ... */});
 ```
