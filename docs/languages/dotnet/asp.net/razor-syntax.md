@@ -2,7 +2,7 @@
 
 ## Markup
 
-```cs linenums="1"
+```cs
 @page  // set this as razor page
 
 @model <App>.Models.Entity  // if MVC set type of elements passed to the view 
@@ -35,7 +35,7 @@
 
 Example:
 
-```html linenums="1"
+```html
 <!-- tag helpers for a lin in ASP.NET MVC -->
 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 ```
@@ -44,7 +44,7 @@ Example:
 
 The `@addTagHelper` directive makes Tag Helpers available to the view. Generally, the view file is `Pages/_ViewImports.cshtml`, which by default is inherited by all files in the `Pages` folder and subfolders, making Tag Helpers available.
 
-```cs linenums="1"
+```cs
 @using <App>
 @namespace <App>.Pages  // or <Project>.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -57,7 +57,7 @@ The first parameter after `@addTagHelper` specifies the Tag Helpers to load (`*`
 
 It's possible to disable a Tag Helper at the element level with the Tag Helper opt-out character (`!`)
 
-```cshtml linenums="1"
+```cshtml
 <!-- disable email validation -->
 <!span asp-validation-for="Email" ></!span>
 ```
@@ -66,7 +66,7 @@ It's possible to disable a Tag Helper at the element level with the Tag Helper o
 
 The `@tagHelperPrefix` directive allows to specify a tag prefix string to enable Tag Helper support and to make Tag Helper usage explicit.
 
-```cshtml linenums="1"
+```cshtml
 @tagHelpersPrefix th:
 ```
 
@@ -74,7 +74,7 @@ The `@tagHelperPrefix` directive allows to specify a tag prefix string to enable
 
 [Understanding Html Helpers](https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers)
 
-```cs linenums="1"
+```cs
 @model <App>.Models.Entity
 
 // Display the name of the property
@@ -112,7 +112,7 @@ The `@tagHelperPrefix` directive allows to specify a tag prefix string to enable
 
 In `ViewModel.cs`:
 
-```cs linenums="1"
+```cs
 class ViewModel 
 {
     public int EntityId { get; set; }  // value selected in form ends up here
@@ -126,7 +126,7 @@ class ViewModel
 
 In `View.cs`
 
-```cs linenums="1"
+```cs
 @model ViewModel
 
 <form asp-controller="Controller" asp-action="PostAction">
@@ -140,7 +140,7 @@ In `View.cs`
 
 In `Controller.cs`:
 
-```cs linenums="1"
+```cs
 public IActionResult GetAction()
 {
     var vm = new ViewModel();

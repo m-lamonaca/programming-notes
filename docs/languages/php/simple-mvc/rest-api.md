@@ -2,7 +2,7 @@
 
 ## Routing (Example)
 
-```php linenums="1"
+```php
 // config/route.php
 return [   
    [ 'GET', '/api/user[/{id}]', Controller\User::class ],
@@ -14,7 +14,7 @@ return [
 
 ## Controller (Example)
 
-```php linenums="1"
+```php
 public class UserController implements ControllerInterface
 {
     public function __construct(UserModel $user)

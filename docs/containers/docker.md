@@ -2,7 +2,7 @@
 
 ## Images & Containers
 
-> **Containerization** is an approach to software development in which an application or service, its dependencies, and its configuration (abstracted as deployment manifest files) are packaged together as a container image.
+**Containerization** is an approach to software development in which an application or service, its dependencies, and its configuration (abstracted as deployment manifest files) are packaged together as a container image.
 
 Just as shipping containers allow goods to be transported by ship, train, or truck regardless of the cargo inside, software containers act as a standard unit of software deployment that can contain different code and dependencies. Containerizing software this way enables developers and IT professionals to deploy them across environments with little or no modification.
 
@@ -76,7 +76,7 @@ docker run --entrypoint <executable> <args> <image>  # run with a non-default en
 docker run --name=<container_name> <image>  # set container name
 ```
 
-> **Warn**: `<image>` must be last argument
+**Warn**: `<image>` must be last argument
 
 ### [`docker container`](https://docs.docker.com/engine/reference/commandline/container/)
 
@@ -232,7 +232,7 @@ docker network ls  # list all available networks
 - **Host**: Removes any network isolation between the host and the containers. Cannot run multiple containers on the same port.
 - **None**: Containers are not attached to a network and cannot access other containers or the external network.
 
-> **Note**: Mapping `host-gateway` to an hostname allows the container to reach the host network even with networks types different from `host`
+**Note**: Mapping `host-gateway` to an hostname allows the container to reach the host network even with networks types different from `host`
 
 ### User-defined Networks
 

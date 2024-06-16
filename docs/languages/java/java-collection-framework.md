@@ -18,7 +18,7 @@ The **Java Collection Framework** is constituted by:
 
 ### Collection Functions
 
-```java linenums="1"
+```java
 boolean add (Object o) e.g., <x>.add (<y>)    //append to collection, false if fails
 boolean add (int index, Object o)    //insertion at given index
 boolean addAll (Collection c)    //appends a collection to another
@@ -36,7 +36,7 @@ Iterator iterator()    //returns iterator to iterate over the collection
 
 ### Collections Methods
 
-```java linenums="1"
+```java
 Collection<E>.forEach(Consumer<? super T> action);
 ```
 
@@ -52,7 +52,7 @@ Abstracts the problem of iterating over all the elements of a collection;
 
 **Note**: ArrayLists can't contain *primitive* values. *Use wrapper classes* instead.
 
-```java linenums="1"
+```java
 import java.util.ArrayList;
 ArrayList<Type> ArrayListName = new ArrayList<Type>(starting_dim);    //resizable array
 ArrayList<Type> ArrayListName = new ArrayList<Type>();    //resizable array
@@ -82,7 +82,7 @@ ArrayListName.forEach(item -> function(v));
 
 To sort a collection it's items must implement `Comparable<T>`:
 
-```java linenums="1"
+```java
 class ClassName implements Comparable<ClassName> {
 
     @override
@@ -99,7 +99,7 @@ Collections.sort(list);    //"natural" sorting uses compareTo()
 
 Otherwise a `Comparator()` must be implemented:
 
-```java linenums="1"
+```java
 class Classname {
     //code here
 }

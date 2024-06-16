@@ -128,7 +128,7 @@ span.textContent = "I'm in the shadow DOM";
 shadow.appendChild(span);
 ```
 
-> **Note**: `{mode: "open"}` allows accessing the shadow DOM from the _root node_ `shadowDom` property. The "close" mode does not expose this property.
+**Note**: `{mode: "open"}` allows accessing the shadow DOM from the _root node_ `shadowDom` property. The "close" mode does not expose this property.
 
 ### JavaScript & CSS Encapsulation
 

@@ -2,7 +2,7 @@
 
 ## Basic Pandas Imports
 
-```py linenums="1"
+```py
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame
@@ -13,7 +13,7 @@ from pandas import Series, DataFrame
 1-dimensional labelled array, axis label referred as INDEX.  
 Index can contain repetitions.
 
-```py linenums="1"
+```py
 s = Series(data, index=index, name='name')
 # DATA: {python dict, ndarray, scalar value}
 # NAME: {string}
@@ -22,7 +22,7 @@ s = Series(dict)  # Series created from python dict, dict keys become index valu
 
 ### INDEXING / SELECTION / SLICING
 
-```py linenums="1"
+```py
 s['index']  # selection by index label
 s[condition]  # return slice selected by condition
 s[ : ]  # slice endpoint included
@@ -34,7 +34,7 @@ s[condition] = *value  # modify slice by condition
 
 Missing data appears as NaN (Not a Number).
 
-```py linenums="1"
+```py
 pd.isnull(array)  # return a Series index-bool indicating which indexes don't have data
 pd.notnull(array)  # return a Series index-bool indicating which indexes have data
 array.isnull()
@@ -43,7 +43,7 @@ array.notnull()
 
 ### SERIES ATTRIBUTES
 
-```py linenums="1"
+```py
 s.values  # NumPy representation of Series
 s.index  # index object of Series
 s.name = "Series name"  # renames Series object
@@ -52,7 +52,7 @@ s.index.name = "index name"  # renames index
 
 ### SERIES METHODS
 
-```py linenums="1"
+```py
 pd.Series.isin(self, values)  #  boolean Series showing whether elements in Series matches elements in values exactly
 
 # Conform Series to new index, new object produced unless the new index is equivalent to current one and copy=False
@@ -80,7 +80,7 @@ pd.Series.value_counts(self, normalize=False, sort=True, ascending=False, bins=N
 2-dimensional labeled data structure with columns of potentially different types.
 Index and columns can contain repetitions.
 
-```py linenums="1"
+```py
 df = DataFrame(data, index=row_labels, columns=column_labels)
 # DATA: {list, dict (of lists), nested dicts, series, dict of 1D ndarray, 2D ndarray, DataFrame}
 # INDEX: {list of row_labels}
@@ -112,7 +112,7 @@ del df[col]  # delete column
 
 ### DATAFRAME ATTRIBUTES
 
-```py linenums="1"
+```py
 df.index  # row labels
 df.columns  # column labels
 df.values  # NumPy representation of DataFrame
@@ -123,7 +123,7 @@ df.T # transpose
 
 ### DATAFRAME METHODS
 
-```py linenums="1"
+```py
 pd.DataFrame.isin(self , values)  # boolean DataFrame showing whether elements in DataFrame matches elements in values exactly
 
 # Conform DataFrame to new index, new object produced unless the new index is equivalent to current one and copy=False
@@ -146,7 +146,7 @@ Holds axis labels and metadata, immutable.
 
 ### INDEX TYPES
 
-```py linenums="1"
+```py
 pd.Index  # immutable ordered ndarray, sliceable. stores axis labels
 pd.Int64Index  # special case of Index with purely integer labels
 pd.MultiIndex  # multi-level (hierarchical) index object for pandas objects
@@ -156,7 +156,7 @@ pd.DatetimeIndex  # nanosecond timestamps (uses Numpy datetime64)
 
 ### INDEX ATTRIBUTERS
 
-```py linenums="1"
+```py
 pd.Index.is_monotonic_increasing  # Return True if the index is monotonic increasing (only equal or increasing) values
 pd.Index.is_monotonic_decreasing  # Return True if the index is monotonic decreasing (only equal or decreasing) values
 pd.Index.is_unique  # Return True if the index has unique values.
@@ -165,7 +165,7 @@ pd.Index.hasnans  # Return True if the index has NaNs
 
 ### INDEX METHODS
 
-```py linenums="1"
+```py
 pd.Index.append(self, other)  # append a collection of Index options together
 
 pd.Index.difference(self, other, sort=None)  # set difference of two Index objects
@@ -197,7 +197,7 @@ Missing values propagate in arithmetic computations (NaN `<operator>` value = Na
 
 ### ADDITION
 
-```py linenums="1"
+```py
 self + other
 pd.Series.add(self, other, fill_value=None)  # add(), supports substitution of NaNs
 pd,Series.radd(self, other, fill_value=None)  # radd(), supports substitution of NaNs
@@ -210,7 +210,7 @@ pd.DataFrame.radd(self, other, axis=columns, fill_value=None)  # radd(), support
 
 ### SUBTRACTION
 
-```py linenums="1"
+```py
 self - other
 pd.Series.sub(self, other, fill_value=None)  # sub(), supports substitution of NaNs
 pd.Series.radd(self, other, fill_value=None)  # radd(), supports substitution of NaNs
@@ -223,7 +223,7 @@ pd.DataFrame.rsub(self, other, axis=columns, fill_value=None)  # rsub(), support
 
 ### MULTIPLICATION
 
-```py linenums="1"
+```py
 self * other
 pd.Series.mul(self, other, fill_value=None)  # mul(), supports substitution of NaNs
 pd.Series.rmul(self, other, fill_value=None)  # rmul(), supports substitution of NaNs
@@ -236,7 +236,7 @@ pd.DataFrame.rmul(self, other, axis=columns, fill_value=None)  # rmul(), support
 
 ### DIVISION (float division)
 
-```py linenums="1"
+```py
 self / other
 pd.Series.div(self, other, fill_value=None)  # div(), supports substitution of NaNs
 pd.Series.rdiv(self, other, fill_value=None)  # rdiv(), supports substitution of NaNs
@@ -253,7 +253,7 @@ pd.DataFrame.rtruediv(self, other, axis=columns, fill_value=None)  # rtruediv(),
 
 ### FLOOR DIVISION
 
-```py linenums="1"
+```py
 self // other
 pd.Series.floordiv(self, other, fill_value=None)  # floordiv(), supports substitution of NaNs
 pd.Series.rfloordiv(self, other, fill_value=None)  # rfloordiv(), supports substitution of NaNs
@@ -266,7 +266,7 @@ pd.DataFrame.rfloordiv(self, other, axis=columns, fill_value=None)  # rfloordiv(
 
 ### MODULO
 
-```py linenums="1"
+```py
 self % other
 pd.Series.mod(self, other, fill_value=None)  # mod(), supports substitution of NaNs
 pd.Series.rmod(self, other, fill_value=None)  # rmod(), supports substitution of NaNs
@@ -279,7 +279,7 @@ pd.DataFrame.rmod(self, other, axis=columns, fill_value=None)  # rmod(), support
 
 ### POWER
 
-```py linenums="1"
+```py
 other ** self
 pd.Series.pow(self, other, fill_value=None)  # pow(), supports substitution of NaNs
 pd.Series.rpow(self, other, fill_value=None)  # rpow(), supports substitution of NaNs
@@ -296,7 +296,7 @@ pd.DataFrame.rpow(self, other, axis=columns, fill_value=None)  # rpow(), support
 
 NumPy ufuncs work fine with pandas objects.
 
-```py linenums="1"
+```py
 pd.DataFrame.applymap(self, func)  # apply function element-wise
 
 pd.DataFrame.apply(self, func, axis=0, args=())  # apply a function along an axis of a DataFrame
@@ -324,7 +324,7 @@ pd.DataFrame.sort_values(self, axis=0, ascending=True, **kwargs)  # sort object 
 
 ### COUNT
 
-```py linenums="1"
+```py
 pd.Series.count(self)  # return number of non-NA/null observations in the Series
 pd.DataFrame.count(self, numeric_only=False)  # count non-NA cells for each column or row
 # NUMERIC_ONLY: {bool} -- Include only float, int or boolean data -- DEFAULT False
@@ -334,7 +334,7 @@ pd.DataFrame.count(self, numeric_only=False)  # count non-NA cells for each colu
 
 Generate descriptive statistics summarizing central tendency, dispersion and shape of dataset's distribution (exclude NaN).
 
-```py linenums="1"
+```py
 pd.Series.describe(self, percentiles=None, include=None, exclude=None)
 pd.DataFrame.describe(self, percentiles=None, include=None, exclude=None)
 # PERCENTILES: {list-like of numbers} -- percentiles to include in output,between 0 and 1 -- DEFAULT [.25, .5, .75]
@@ -344,7 +344,7 @@ pd.DataFrame.describe(self, percentiles=None, include=None, exclude=None)
 
 ### MAX - MIN
 
-```py linenums="1"
+```py
 pd.Series.max(self, skipna=None, numeric_only=None)  # maximum of the values for the requested axis
 pd.Series.min(self, skipna=None, numeric_only=None)  # minimum of the values for the requested axis
 pd.DataFrame.max(self, axis=None, skipna=None, numeric_only=None)  # maximum of the values for the requested axis
@@ -355,7 +355,7 @@ pd.DataFrame.min(self, axis=None, skipna=None, numeric_only=None)  # minimum of 
 
 ### IDXMAX - IDXMIN
 
-```py linenums="1"
+```py
 pd.Series.idxmax(self, skipna=True)  # row label of the maximum value
 pd.Series.idxmin(self, skipna=True)  # row label of the minimum value
 pd.DataFrame.idxmax(self, axis=0, skipna=True)  #  Return index of first occurrence of maximum over requested axis
@@ -366,7 +366,7 @@ pd.DataFrame.idxmin(self, axis=0, skipna=True)  #  Return index of first occurre
 
 ### QUANTILE
 
-```py linenums="1"
+```py
 pd.Series.quantile(self, q=0.5, interpolation='linear')  # return values at the given quantile
 pd.DataFrame.quantile(self, q=0.5, axis=0, numeric_only=True, interpolation='linear') # return values at the given quantile over requested axis
 # Q: {flaot, array} -- value between 0 <= q <= 1, the quantile(s) to compute -- DEFAULT 0.5 (50%)
@@ -376,7 +376,7 @@ pd.DataFrame.quantile(self, q=0.5, axis=0, numeric_only=True, interpolation='lin
 
 ### SUM
 
-```py linenums="1"
+```py
 pd.Series.sum(self, skipna=None, numeric_only=None, min_count=0)  # sum of the values
 pd.DataFrame.sum(self, axis=None, skipna=None, numeric_only=None, min_count=0)  # sum of the values for the requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -387,7 +387,7 @@ pd.DataFrame.sum(self, axis=None, skipna=None, numeric_only=None, min_count=0)  
 
 ### MEAN
 
-```py linenums="1"
+```py
 pd.Series.mean(self, skipna=None, numeric_only=None)   # mean of the values
 pd.DataFrame.mean(self, axis=None, skipna=None, numeric_only=None)  # mean of the values for the requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -397,7 +397,7 @@ pd.DataFrame.mean(self, axis=None, skipna=None, numeric_only=None)  # mean of th
 
 ### MEDIAN
 
-```py linenums="1"
+```py
 pd.Series.median(self, skipna=None, numeric_only=None)  # median of the values
 pd.DataFrame.median(self, axis=None, skipna=None, numeric_only=None)  # median of the values for the requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -407,7 +407,7 @@ pd.DataFrame.median(self, axis=None, skipna=None, numeric_only=None)  # median o
 
 ### MAD (mean absolute deviation)
 
-```py linenums="1"
+```py
 pd.Series.mad(self, skipna=None)  # mean absolute deviation
 pd.DataFrame.mad(self, axis=None, skipna=None)  # mean absolute deviation of the values for the requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -416,7 +416,7 @@ pd.DataFrame.mad(self, axis=None, skipna=None)  # mean absolute deviation of the
 
 ### VAR (variance)
 
-```py linenums="1"
+```py
 pd.Series.var(self, skipna=None, numeric_only=None)  # unbiased variance
 pd.DataFrame.var(self, axis=None, skipna=None, ddof=1, numeric_only=None)  #  unbiased variance over requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -427,7 +427,7 @@ pd.DataFrame.var(self, axis=None, skipna=None, ddof=1, numeric_only=None)  #  un
 
 ### STD (standard deviation)
 
-```py linenums="1"
+```py
 pd.Series.std(self, skipna=None, ddof=1, numeric_only=None)  # sample standard deviation
 pd.Dataframe.std(self, axis=None, skipna=None, ddof=1, numeric_only=None)  # sample standard deviation over requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -438,7 +438,7 @@ pd.Dataframe.std(self, axis=None, skipna=None, ddof=1, numeric_only=None)  # sam
 
 ### SKEW
 
-```py linenums="1"
+```py
 pd.Series.skew(self, skipna=None, numeric_only=None)  # unbiased skew Normalized bt N-1
 pd.DataFrame.skew(self, axis=None, skipna=None, numeric_only=None)  #  unbiased skew over requested axis Normalized by N-1
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -450,7 +450,7 @@ pd.DataFrame.skew(self, axis=None, skipna=None, numeric_only=None)  #  unbiased 
 
 Unbiased kurtosis over requested axis using Fisher's definition of kurtosis (kurtosis of normal == 0.0). Normalized by N-1.
 
-```py linenums="1"
+```py
 pd.Series.kurt(self, skipna=None, numeric_only=None)
 pd.Dataframe.kurt(self, axis=None, skipna=None, numeric_only=None)
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -460,7 +460,7 @@ pd.Dataframe.kurt(self, axis=None, skipna=None, numeric_only=None)
 
 ### CUMSUM (cumulative sum)
 
-```py linenums="1"
+```py
 pd.Series.cumsum(self, skipna=True)  # cumulative sum
 pd.Dataframe.cumsum(self, axis=None, skipna=True)  # cumulative sum over requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -469,7 +469,7 @@ pd.Dataframe.cumsum(self, axis=None, skipna=True)  # cumulative sum over request
 
 ### CUMMAX - CUMMIN (cumulative maximum - minimum)
 
-```py linenums="1"
+```py
 pd.Series.cummax(self, skipna=True)  # cumulative maximum
 pd.Series.cummin(self, skipna=True)  # cumulative minimum
 pd.Dataframe.cummax(self, axis=None, skipna=True)  # cumulative maximum over requested axis
@@ -480,7 +480,7 @@ pd.Dataframe.cummin(self, axis=None, skipna=True)  # cumulative minimum over req
 
 ### CUMPROD (cumulative product)
 
-```py linenums="1"
+```py
 pd.Series.cumprod(self, skipna=True)  # cumulative product
 pd.Dataframe.cumprod(self, axis=None, skipna=True)  # cumulative product over requested axis
 # AXIS: {0, 1, index, columns} -- axis for the function to be applied on
@@ -492,7 +492,7 @@ pd.Dataframe.cumprod(self, axis=None, skipna=True)  # cumulative product over re
 Calculates the difference of a DataFrame element compared with another element in the DataFrame.  
 (default is the element in the same column of the previous row)
 
-```py linenums="1"
+```py
 pd.Series.diff(self, periods=1)
 pd.DataFrame.diff(self, periods=1, axis=0)
 # PERIODS: {int} -- Periods to shift for calculating difference, accepts negative values -- DEFAULT 1
@@ -503,7 +503,7 @@ pd.DataFrame.diff(self, periods=1, axis=0)
 
 Percentage change between the current and a prior element.
 
-```py linenums="1"
+```py
 pd.Series.Pct_change(self, periods=1, fill_method='pad', limit=None, freq=None)
 pd.Dataframe.pct_change(self, periods=1, fill_method='pad', limit=None)
 # PERIODS:{int} -- periods to shift for forming percent change
@@ -515,7 +515,7 @@ pd.Dataframe.pct_change(self, periods=1, fill_method='pad', limit=None)
 
 ### FILTERING OUT MISSING DATA
 
-```py linenums="1"
+```py
 pd.Series.dropna(self, inplace=False)  # return a new Series with missing values removed
 pd.DataFrame.dropna(axis=0, how='any', tresh=None, subset=None, inplace=False)  # return a new DataFrame with missing values removed
 # AXIS: {tuple, list} -- tuple or list to drop on multiple axes. only a single axis is allowed
@@ -529,7 +529,7 @@ pd.DataFrame.dropna(axis=0, how='any', tresh=None, subset=None, inplace=False)  
 
 Fill NA/NaN values using the specified method.
 
-```py linenums="1"
+```py
 pd.Series.fillna(self, value=None, method=None, inplace=False, limit=None)
 pd.DataFrame.fillna(self, value=None, method=None, axis=None, inplace=False, limit=None)
 # VALUE: {scalar, dict, Series, DataFrame} -- value to use to fill holes, dict/Series/DataFrame specifying which value to use for each index or column
@@ -546,7 +546,7 @@ In lower dimensional data structures like Series (1d) and DataFrame (2d).
 
 ### MULTIIINDEX CREATION
 
-```py linenums="1"
+```py
 pd.MultiIndex.from_arrays(*arrays, names=None)  # convert arrays to MultiIndex
 pd.MultiIndex.from_tuples(*arrays, names=None)  # convert tuples to MultiIndex
 pd.MultiIndex.from_frame(df, names=None)  # convert DataFrame to MultiIndex
@@ -559,7 +559,7 @@ pd.DataFrame(*arrays)  # Index constructor makes MultiINdex from DataFrame
 
 Vector of label values for requested level, equal to the length of the index.
 
-```py linenums="1"
+```py
 pd.MultiIndex.get_level_values(self, level)
 ```
 
@@ -567,7 +567,7 @@ pd.MultiIndex.get_level_values(self, level)
 
 Partial selection "drops" levels of the hierarchical index in the result  in a completely analogous way to selecting a column in a regular DataFrame.
 
-```py linenums="1"
+```py
 pd.Series.xs(self, key, axis=0, level=None, drop_level=True)  # cross-section from Series
 pd.DataFrame.xs(self, key, axis=0, level=None, drop_level=True)  #  cross-section from DataFrame
 # KEY: {label, tuple of label} -- label contained in the index, or partially in a MultiIndex
@@ -580,7 +580,7 @@ pd.DataFrame.xs(self, key, axis=0, level=None, drop_level=True)  #  cross-sectio
 
 Multi index keys take the form of tuples.
 
-```py linenums="1"
+```py
 df.loc[('lvl_1', 'lvl_2', ...)]  # selection of single row
 df.loc[('idx_lvl_1', 'idx_lvl_2', ...), ('col_lvl_1', 'col_lvl_2', ...)]  # selection of single value
 
@@ -591,7 +591,7 @@ df.loc[('idx_lvl_1', 'idx_lvl_2') : ('idx_lvl_1', 'idx_lvl_2')]  # slice of rows
 
 ### REORDERING AND SORTING LEVELS
 
-```py linenums="1"
+```py
 pd.MultiIndex.swaplevel(self, i=-2, j=-1)  # swap level i with level j
 pd.Series.swaplevel(self, i=-2, j=-1) # swap levels i and j in a MultiIndex
 pd.DataFrame.swaplevel(self, i=-2, j=-1, axis=0) # swap levels i and j in a MultiIndex on a partivular axis
@@ -604,7 +604,7 @@ pd.MultiIndex.sortlevel(self, level=0, ascending=True, sort_remaining=True)  # s
 
 ## DATA LOADING, STORAGE FILE FORMATS
 
-```py linenums="1"
+```py
 pd.read_fwf(filepath, colspecs='infer', widths=None, infer_nrows=100)  # read a table of fixed-width formatted lines into DataFrame
 # FILEPATH: {str, path object} -- any valid string path is acceptable, could be a URL. Valid URLs: http, ftp, s3, and file
 # COLSPECS: {list of tuple (int, int), 'infer'} -- list of tuples giving extents of fixed-width fields of each line as half-open intervals { [from, to) }

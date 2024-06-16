@@ -2,7 +2,7 @@
 
 ## Package & Imports
 
-```kotlin linenums="1"
+```kotlin
 package com.app.uniqueID
 
 import <package>
@@ -10,7 +10,7 @@ import <package>
 
 ## Variable & Constants
 
-```kotlin linenums="1"
+```kotlin
 
 var variable: Type    //variable declaration
 var variable = value    //type can be omitted if it can be deduced by initialization
@@ -23,7 +23,7 @@ val CONSTANT_NAME: Type = value    //constant declaration
 For a variable to hold a null value, it must be of a nullable type.  
 Nullable types are specified suffixing `?` to the variable type.
 
-```kotlin linenums="1"
+```kotlin
 var nullableVariable: Type? = null
 
 nullableVariable?.method()    //correct way to use
@@ -37,7 +37,7 @@ nullablevariavle!!.method()    //unsafe way
 
 ### `If` - `Else If` - `Else`
 
-```kotlin linenums="1"
+```kotlin
 if (condition) {
     //code here
 } else if (condition) {
@@ -49,7 +49,7 @@ if (condition) {
 
 ### Conditional Expressions
 
-```kotlin linenums="1"
+```kotlin
 var variable: Type = if (condition) {
     //value to be assigned here
 } else if (condition) {
@@ -65,7 +65,7 @@ Each branch in a `when` expression is represented by a condition, an arrow (`->`
 If the condition on the left-hand side of the arrow evaluates to true, then the result of the expression on the right-hand side is returned.  
 Note that execution does not fall through from one branch to the next.
 
-```kotlin linenums="1"
+```kotlin
 when (variable){
     condition -> value
     condition -> value
@@ -90,7 +90,7 @@ when {
 
 ### `For` Loop
 
-```kotlin linenums="1"
+```kotlin
 for (item in iterable){
     //code here
 }
@@ -103,7 +103,7 @@ for(i in start..end) {
 
 ## Functions
 
-```kotlin linenums="1"
+```kotlin
 fun functionName(parameter: Type): Type {
     //code here
 
@@ -113,7 +113,7 @@ fun functionName(parameter: Type): Type {
 
 ### Simplifying Function Declarations
 
-```kotlin linenums="1"
+```kotlin
 fun functionName(parameter: Type): Type {
     return if (condition) {
         //returned value
@@ -132,7 +132,7 @@ fun functionName(parameter: Type): Type = if (condition) {
 
 ### Anonymous Functions
 
-```kotlin linenums="1"
+```kotlin
 val anonymousFunction: (Type) -> Type = { input ->
     //code acting on input here
 }
@@ -145,7 +145,7 @@ val variableName: Type = anonymousFunction(input)
 A function can take another function as an argument. Functions that use other functions as arguments are called *higher-order* functions.  
 This pattern is useful for communicating between components in the same way that you might use a callback interface in Java.
 
-```kotlin linenums="1"
+```kotlin
 fun functionName(parameter: Type, function: (Type) -> Type): Type {
     //invoke function
     return function(parameter)
@@ -156,7 +156,7 @@ fun functionName(parameter: Type, function: (Type) -> Type): Type {
 
 ### Class
 
-```kotlin linenums="1"
+```kotlin
 //primary constructor
 class ClassName(private var attribute: Type) {
 
@@ -177,7 +177,7 @@ class ClassName {
 
 [Companion Object Docs](https://kotlinlang.org/docs/tutorials/kotlin-for-py/objects-and-companion-objects.html)
 
-```kotlin linenums="1"
+```kotlin
 class ClassName {
 
     // in java: static
@@ -191,7 +191,7 @@ class ClassName {
 
 ### ArrayList
 
-```kotlin linenums="1"
+```kotlin
 var array:ArrayList<Type>? = null  // List init
 
 array.add(item)  //add item to list

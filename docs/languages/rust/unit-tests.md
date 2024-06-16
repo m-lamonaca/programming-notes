@@ -2,7 +2,7 @@
 
 ## Test Functions
 
-```rs linenums="1"
+```rs
 // module code here
 
 #[cfg(test)]
@@ -33,7 +33,7 @@ mod tests {
 
 ## Controlling How Tests Are Run
 
-```sh linenums="1"
+```sh
 cargo test -- --test-threads=<number>  # run tests in parallel (1 no parallelism)
 cargo test -- --show-output  # show content printed in stdout in each test
 cargo test <test_name>  # run only a specific test

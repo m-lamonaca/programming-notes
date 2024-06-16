@@ -18,7 +18,7 @@ to native code later.
 
 ### Comments
 
-```cs linenums="1"
+```cs
 // comment
 /* multi line comment */
 /// single line xml comment (docstring)
@@ -44,7 +44,7 @@ to native code later.
 
 Hierarchic organization of programs an libraries.
 
-```cs linenums="1"
+```cs
 using System;  // import the System Namespace
 using static System.Console;  // statically import a class to use its static methods w/o qualification
 
@@ -65,13 +65,13 @@ namespace Namespace
 
 To enable .NET 6/C# 10 **implicit namespace imports**:
 
-```xml linenums="1"
+```xml
 <ImplicitUsings>enable</ImplicitUsings>
 ```
 
 ### Top Level Statements/Programs (C# 9)
 
-```cs linenums="1"
+```cs
 // imports
 
 // code here, no main, no namespace
@@ -79,7 +79,7 @@ To enable .NET 6/C# 10 **implicit namespace imports**:
 
 ### Main Method
 
-```cs linenums="1"
+```cs
 public static void Main(string[] args)
 {
     // code here
@@ -88,7 +88,7 @@ public static void Main(string[] args)
 
 ### Constant Declaration
 
-```cs linenums="1"
+```cs
 const type CONSTANT_NAME = value;
 ```
 
@@ -100,7 +100,7 @@ If a variable has not been assigned it assumes the `default` value.
 
 ### Input
 
-```cs linenums="1"
+```cs
 // input is a string, convert before saving in a non String variable
 Console.ReadLines();    // read util <Return>  is pressed
 Console.Read();    // read until space
@@ -118,7 +118,7 @@ Console.ReadKey();    // read a key from keyboard and display pressed kay immedi
 
 ### Screen Output
 
-```cs linenums="1"
+```cs
 Console.WriteLine();    // single line output
 ```
 
@@ -126,7 +126,7 @@ Console.WriteLine();    // single line output
 
 `{index[,alignment][:<formatString><num_decimal_digits>]}`
 
-```cs linenums="1"
+```cs
 Console.WriteLine("Name is {0}, Marks are {1}", name, marks);    // string composite formatting
 Console.WriteLine($"Name is {name}, Marks are {marks}");    // string interpolation
 
@@ -200,7 +200,7 @@ The static fields and methods of the `MathF` class correspond to those of the `M
 `BigInteger` represents an integer that will grow as large as is necessary to accommodate values.  
 Unlike the builtin numeric types, it has no theoretical limit on its range.
 
-```cs linenums="1"
+```cs
 using System;
 using System.Numerics;
 
@@ -212,7 +212,7 @@ BigInteger bi;
 Binary literal: `0b<digits>`
 Hexadecimal literal: `0x<digits>`
 
-```cs linenums="1"
+```cs
 // three variables that store the number 2 million
 int decimalNotation = 2_000_000;
 int binaryNotation = 0b_0001_1110_1000_0100_1000_0000;
@@ -232,19 +232,19 @@ int hexadecimalNotation = 0x_001E_8480;
 
 The compiler determines the required type based on the assigned value.
 
-```cs linenums="1"
+```cs
 var variable = value;  // Inferred tipe cant change after first assignment
 ```
 
 ### Dynamic Type
 
-```cs linenums="1"
+```cs
 dynamic variable = value;
 ```
 
 ### Anonymous types (Reference Type)
 
-```cs linenums="1"
+```cs
 // cannot be used as return types
 var x = new { Key = value, ...};  // read only properties
 x.Key;  // member access
@@ -260,7 +260,7 @@ A [System.Range][range_type] represents a range that has start and end indexes.
 [index_type]: https://docs.microsoft.com/en-us/dotnet/api/system.index
 [range_type]: https://docs.microsoft.com/en-us/dotnet/api/system.range
 
-```cs linenums="1"
+```cs
 Index i = position;
 Index i = new Index(position, IsFromEnd: false);  // start-relative index
 
@@ -288,7 +288,7 @@ Tuples are designed as a convenient way to package together a few values in case
 Tuples support comparison, so it's possible to use the `==` and `!=` relational operators.  
 To be considered equal, two tuples must have the same shape and each value in the first tuple must be equal to its counterpart in the second tuple.
 
-```cs linenums="1"
+```cs
 (Type Var1, Type Var2, ...) variable = (value1, value2, ...);
 var variable = (Var1: value1, Var2: value2, ...);  // if name are not supplied they default to Item1, Item2, ...
 var variable = (var1, var2);  // constructed w/ pre-existing values, tuple attributes named after the variables
@@ -296,14 +296,14 @@ var variable = (var1, var2);  // constructed w/ pre-existing values, tuple attri
 
 Since the names of the attributes of a tuple do not matter (a tuple is an instance of `ValueTuple<Type, Type, ...>`) it's possible to assign any tuple to another tuple with the same structure.
 
-```cs linenums="1"
+```cs
 (int X, Int Y) a = (1 , 0);
 (int Width, int Height) b = a;
 ```
 
 ### Tuple Deconstruction
 
-```cs linenums="1"
+```cs
 (int X, int Y) point = (10, 35);
 (int a, int b) = point;  // extract data based on position into two variables
 ```
@@ -312,7 +312,7 @@ Since the names of the attributes of a tuple do not matter (a tuple is an instan
 
 I'ts possible to create record types with immutable properties by using standard property syntax or positional parameters:
 
-```cs linenums="1"
+```cs
 public record Person
 {
     public string FirstName { get; init; } = default!;
@@ -333,7 +333,7 @@ public readonly record struct Point(double X, double Y, double Z);
 
 it's also possible to create record types with mutable properties and fields:
 
-```cs linenums="1"
+```cs
 // mutable record
 public record Person
 {
@@ -354,14 +354,14 @@ While records can be mutable, they're primarily intended for supporting immutabl
   - Built-in formatting for display
 - Support for inheritance hierarchies
 
-> **Note**: A _positional record_ and a _positional readonly record struct_ declare init-only properties. A _positional record struct_ declares read-write properties.
+**Note**: A _positional record_ and a _positional readonly record struct_ declare init-only properties. A _positional record struct_ declares read-write properties.
 
 ### `with`-expressions
 
 When working with immutable data, a common pattern is to create new values from existing ones to represent a new state.  
 To help with this style of programming, records allow for a new kind of expression; the with-expression.
 
-```cs linenums="1"
+```cs
 var newRecord = oldRecord with { Property = value };
 ```
 
@@ -369,11 +369,11 @@ With-expressions use object initializer syntax to state what's different in the 
 A record implicitly defines a protected "copy constructor", a constructor that takes an existing record object and copies it field by field to the new one.  
 The `with` expression causes the copy constructor to get called, and then applies the object initializer on top to change the properties accordingly.
 
-```cs linenums="1"
+```cs
 protected Record(Record original) { /* copy all the fields */ } // generated
 ```
 
-> **Note**: it's possible to define a custom copy constructor tha will be picked up by the `with` expression.
+**Note**: it's possible to define a custom copy constructor tha will be picked up by the `with` expression.
 
 ### `with`-expressions & Inheritance
 
@@ -381,7 +381,7 @@ Records have a hidden virtual method that is entrusted with "cloning" the whole 
 Every derived record type overrides this method to call the copy constructor of that type, and the copy constructor of a derived record chains to the copy constructor of the base record.  
 A with-expression simply calls the hidden "clone" method and applies the object initializer to the result.
 
-```cs linenums="1"
+```cs
 public record Base{ Type Prop1, Type Prop2 };
 public record Derived : Base { Type Prop3 };
 
@@ -394,7 +394,7 @@ var newBase = @base with { Prop2 = value };  // new Derived record even if type 
 Records have a virtual protected property called `EqualityContract`.  
 Every derived record overrides it, and in order to compare equal, the two objects musts have the same `EqualityContract`.
 
-```cs linenums="1"
+```cs
 public record Base{ Type Prop1, Type Prop2 };
 public record Derived : Base { Type Prop3 };
 
@@ -411,7 +411,7 @@ This creates a lot of extra work for .NET's garbage collector, causing the progr
 
 In these situations, it's possible to can use a type called `StringBuilder`. This is conceptually similar to a string but it is modifiable.
 
-```cs linenums="1"
+```cs
 "string contents here"    // string literal
 @"string contents here"    // verbatim string, escape characters printed as-is (raw string literal)
 $"{variable} contents here"    // string interpolation
@@ -422,7 +422,7 @@ String.Length    // returns the length of the string
 
 ### String Methods (Not In-Place)
 
-```cs linenums="1"
+```cs
 string_.IndexOf(<character/string>, startIndex, endIndex);    // index of first occurrence of character/string, -1 otherwise
 string_.LastIndexOf(<character/string>, startIndex, endIndex);    // index last occurrence of character/string, -1 otherwise
 string_.IndexOfAny(char_array, startIndex, endIndex);    // index of any of the characters in the supplied array
@@ -457,7 +457,7 @@ A raw string literal starts with at least three double-quote (`"""`) characters.
 Typically, a raw string literal uses three double quotes on a single line to start the string, and three double quotes on a separate line to end the string.
 The newlines following the opening quote and preceding the closing quote aren't included in the final content:
 
-```cs linenums="1"
+```cs
 
 string longMessage = """
     This is a long message.
@@ -469,11 +469,11 @@ string longMessage = """
     """;
 ```
 
-> **Note**: Any whitespace to the left of the closing double quotes will be removed from the string literal.
+**Note**: Any whitespace to the left of the closing double quotes will be removed from the string literal.
 
 Raw string literals can be combined with _string interpolation_ to include braces in the output text. Multiple `$` characters denote how many consecutive braces start and end the interpolation
 
-```cs linenums="1"
+```cs
 var location = $$"""
     You are at {{{Longitude}}, {{Latitude}}}
     """;
@@ -496,7 +496,7 @@ When a nullable type is boxed, the common language runtime automatically boxes t
 
 If the `HasValue` property of a nullable type is `false`, the result of a boxing operation is `null`. Consequently, if a boxed nullable type is passed to a method that expects an object argument, that method must be prepared to handle the case where the argument is `null`. When `null` is unboxed into a nullable type, the common language runtime creates a new `Nullable<T>` structure and initializes its `HasValue` property to `false`.
 
-```cs linenums="1"
+```cs
 Type? nullableValueType = default;  // assigns null
 
 nullableValueType.HasValue  // boolean, use for null check
@@ -548,7 +548,7 @@ Valid settings are:
 
 In `Project.csproj`:
 
-```xml linenums="1"
+```xml
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -562,7 +562,7 @@ In `Project.csproj`:
 
 In `Program.cs`:
 
-```cs linenums="1"
+```cs
 #nullable enable  // Sets the nullable annotation context and nullable warning context to enabled.
 #nullable disable  // Sets the nullable annotation context and nullable warning context to disabled.
 #nullable restore  // Restores the nullable annotation context and nullable warning context to the project settings.
@@ -576,7 +576,7 @@ In `Program.cs`:
 
 ### Null Conditional, Null Coalescing, Null Forgiving Operator, Null Checks
 
-```cs linenums="1"
+```cs
 Type? variable = null;  // the variable can also contain the NULL value (nullable type)
 
 <expr>!  // declare explicitly that the expression is not null (null forgiving operator)
@@ -627,7 +627,7 @@ That information helps the compiler perform static analysis and determine when a
 
 ## Type Conversion
 
-```cs linenums="1"
+```cs
 variable.GetType();  // System type of variable
 
 (type) variable  // explicit conversion
@@ -680,7 +680,7 @@ The _.NET SDK_ defines certain symbols by default. It supports two configuration
 It defines a `DEBUG` compilation symbol in the Debug configuration, whereas Release will define `RELEASE` instead.  
 It defines a symbol called `TRACE` in both configurations.
 
-```cs linenums="1"
+```cs
 #if DEBUG
     // instructions
 #endif
@@ -690,7 +690,7 @@ C# provides a more subtle mechanism to support this sort of thing, called a _con
 The compiler recognizes an attribute defined by the .NET class libraries, called `ConditionalAttribute`, for which it provides special compile time behavior.  
 Method annotated with this attribute will not be present in a non-Debug release.
 
-```cs linenums="1"
+```cs
 [System.Diagnostics.Conditional("DEBUG")]
 Type Method() { ... }
 ```
@@ -699,7 +699,7 @@ Type Method() { ... }
 
 C# allows choose to generate _compiler errors_ or warnings with the `#error` and `#warning` directives. These are typically used inside conditional regions.
 
-```cs linenums="1"
+```cs
 #if NETSTANDARD
     #error .NET Standard is not a supported target for this source file
 #endif
@@ -710,7 +710,7 @@ C# allows choose to generate _compiler errors_ or warnings with the `#error` and
 The `#pragma` directive provides two features: it can be used to disable selected compiler warnings, and it can also be used to override the checksum values the compiler puts into the `.pdb` file it generates containing debug information.  
 Both of these are designed primarily for code generation scenarios, although they can occasionally be useful to disable warnings in ordinary code.
 
-```cs linenums="1"
+```cs
 #pragma warning disable CS<number>
 ```
 
@@ -809,7 +809,7 @@ Both of these are designed primarily for code generation scenarios, although the
 
 ### `If`-`Else If`-`Else`
 
-```cs linenums="1"
+```cs
 Object o;
 
 if (condition)
@@ -832,7 +832,7 @@ else
 
 A pattern describes one or more criteria that a value can be tested against. It's usable in switch statements, switch expressions and if statements.
 
-```cs linenums="1"
+```cs
 // type pattern
 <expr> is Type t  // type pattern
 
@@ -885,7 +885,7 @@ The `when` keyword can be used to specify a filter condition that causes its ass
 
 [Switch Expressions](https://dotnetcoretutorials.com/2019/06/25/switch-expressions-in-c-8/)
 
-```cs linenums="1"
+```cs
 switch (expr)
 {
     // multiple labels for same block
@@ -924,7 +924,7 @@ variable switch
 
 ### `While` Loop
 
-```cs linenums="1"
+```cs
 while (condition)
 {
     // code here
@@ -935,7 +935,7 @@ while (condition)
 
 Executes at least one time.
 
-```cs linenums="1"
+```cs
 do
 {
     // code here
@@ -945,7 +945,7 @@ while (condition);
 
 ### `For` Loop
 
-```cs linenums="1"
+```cs
 for (initializer; condition; iterator)
 {
     // code here
@@ -962,19 +962,19 @@ Technically, the `foreach` statement will work on any type that follows these ru
 
 There are interfaces named `IEnumerable` and `IEnumerable<T>` that formally define these rules but technically the compiler does not require the type to implement these interfaces.
 
-```cs linenums="1"
+```cs
 foreach (type item in iterabile)
 {
     // code here
 }
 ```
 
-> **Note**: Due to the use of an _iterator_, the variable declared in a foreach statement cannot be used to modify the value of the current item.  
-> **Note**: From C# 9 it's possible to implement `GetEnumerator()` as an _extension method_ making enumerable an class that normally isn't.
+**Note**: Due to the use of an _iterator_, the variable declared in a foreach statement cannot be used to modify the value of the current item.  
+**Note**: From C# 9 it's possible to implement `GetEnumerator()` as an _extension method_ making enumerable an class that normally isn't.
 
 Example:
 
-```cs linenums="1"
+```cs
 // make integers enumerable
 public static IEnumerator<int> GetEnumerator(this int source)
 {
@@ -992,14 +992,14 @@ public static IEnumerator<int> GetEnumerator(this int source)
 
 ### Yield Statement
 
-```cs linenums="1"
+```cs
 yield return <expression>;    // returns the results one at a time.
 yield break;    // concludes the iteration
 ```
 
 ### Context Statement & Using Declarations
 
-```cs linenums="1"
+```cs
 using (Type obj = new Type())  // obj disposed at the end of the using block
 {
     // code here
@@ -1021,9 +1021,9 @@ In unchecked code block the mathematic overflow is _ignored_ end the result is _
 It's possible configure the C# compiler to put everything into a checked context by default, so that only explicitly unchecked expressions and statements will be able to overflow silently.  
 It is done by editing the `.csproj` file, adding `<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>` inside a `<PropertyGroup>`.
 
-> **Note**: checking can make individual integer operations several times slower.
+**Note**: checking can make individual integer operations several times slower.
 
-```cs linenums="1"
+```cs
 checked
 {
     // code here
@@ -1045,7 +1045,7 @@ unchecked(<expr>);
 
 [Exception Object](https://docs.microsoft.com/en-us/dotnet/api/system.exception)
 
-```cs linenums="1"
+```cs
 try
 {
     // "dangerous" code
@@ -1071,7 +1071,7 @@ finally
 
 ### Throwing Exceptions
 
-```cs linenums="1"
+```cs
 throw new ExceptionClass();
 throw new ExceptionClass("message");
 
@@ -1092,7 +1092,7 @@ Environment.FailFast(causeOfFailure);
 
 ### Custom Exceptions
 
-```cs linenums="1"
+```cs
 public class CustomException : Exception  // must derive from Exception (either directly or indirectly)
 {
     public CustomException()
@@ -1118,7 +1118,7 @@ public class CustomException : Exception  // must derive from Exception (either 
 An enumeration type (or enum type) is a value type defined by a set of **named constants** of the underlying _integral numeric_ type (`int`, `long`, `byte`, ...).  
 Consecutive names increase the value by one.
 
-```cs linenums="1"
+```cs
 [Flags]  // indicate that the flag can be combined (best if values are binary) as a bit mask
 enum EnumType : IntegralNumericType // named values MUST match IntegerNumericType allowed values
 {
@@ -1153,7 +1153,7 @@ The method signature is the number & type of the input parameters defined for th
 C# makes the fairly common distinction between _parameters_ and _arguments_: a method defines a list of the inputs it expects (the parameters) and the code inside the method refers to these parameters by name.  
 The values seen by the code could be different each time the method is invoked, and the term argument refers to the specific value supplied for a parameter in a particular invocation.
 
-```cs linenums="1"
+```cs
 type MethodName (type parameter, ...)
 {
     // code here
@@ -1168,13 +1168,13 @@ void MethodName (type parameter, ...) {
 
 ### Expression Body Definition
 
-```cs linenums="1"
+```cs
 type MethodName() => <expression>;    // expression result type MUST match method type
 ```
 
 ### Arbitrary Number Of Parameter In Methods
 
-```cs linenums="1"
+```cs
 // params keyword must be last parameter and must be an array
 type MethodName (type parameter, params type[] args)
 {
@@ -1184,7 +1184,7 @@ type MethodName (type parameter, params type[] args)
 
 ### [Named Arguments](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#named-arguments)
 
-```cs linenums="1"
+```cs
 type MethodName (type param1, type param2, ...) { }
 
 MethodName(param1: value, param2: value);
@@ -1208,13 +1208,13 @@ A default value must be one of the following types of expressions:
 - an expression of the form new ValType(), where ValType is a value type, such as an enum or a struct;
 - an expression of the form default(ValType), where ValType is a value type.
 
-```cs linenums="1"
+```cs
 type MethodName (type required, type firstOptional = default_value, type secondOptional = default_value, ...) { }
 MethodName(value1);  // use defaults for optional arguments
 MethodName(required: value, secondOptional: value);  // use default for first optional but pass second optional
 ```
 
-> **Note**: If the caller provides an argument for any one of a succession of optional parameters, it must provide arguments for all preceding optional parameters. Comma-separated gaps in the argument list are not supported.
+**Note**: If the caller provides an argument for any one of a succession of optional parameters, it must provide arguments for all preceding optional parameters. Comma-separated gaps in the argument list are not supported.
 
 ### Passing Values By Reference (`ref`, `out`, `in`)
 
@@ -1236,12 +1236,12 @@ Use cases:
 - `ref`: move data bidirectionally between method and call scope
 - `in`: pass large value type (e,g, struct) as a reference avoiding copying large amounts of data (must be readonly, copied regardless otherwise)
 
-> **Note**: use `in` only with readonly value types, because mutable value types can undo the performance benefits. (Mutable value types are typically a bad idea in any case.)
+**Note**: use `in` only with readonly value types, because mutable value types can undo the performance benefits. (Mutable value types are typically a bad idea in any case.)
 
 While the method can use members of the passed reference type, it can't normally replace it with a different object.  
 But if a reference type argument is marked with ref, the method has access to the variable, so it could replace it with a reference to a completely different object.
 
-```cs linenums="1"
+```cs
 // method declaration
 type MethodName (type param1,  ref type param2, out type param3, in type param4, ...)
 {
@@ -1261,7 +1261,7 @@ OutMethod(arg1, out var arg2);  // create out variable on the fly
 **Must** be C# 7+.  
 The retuned tuple MUST match the tuple-type in the instantiation
 
-```cs linenums="1"
+```cs
 (type returnedVar1, type returnedVar2, ...) MethodName (type parameter, ...)
 {
    // code here
@@ -1271,7 +1271,7 @@ The retuned tuple MUST match the tuple-type in the instantiation
 
 ### Returning Multiple Values W/ Structs (Return Struct Variable)
 
-```cs linenums="1"
+```cs
 StructName MethodName (args)
 {
    // code here
@@ -1285,7 +1285,7 @@ StructName MethodName (args)
 
 ### Local Functions
 
-```cs linenums="1"
+```cs
 type OuterMethod(...)
 {
     var foo = InnerMethod();
@@ -1300,9 +1300,9 @@ Extension methods allow their usage applied to the extended type as if their dec
 Extension methods are not really members of the class for which they are defined.  
 It's just an illusion maintained by the C# compiler, one that it keeps up even in situations where method invocation happens implicitly.
 
-> **Note**: Extension Method can be declared only inside static classes. Extension methods are available only if their namespace is imported with the `using` keyword.
+**Note**: Extension Method can be declared only inside static classes. Extension methods are available only if their namespace is imported with the `using` keyword.
 
-```cs linenums="1"
+```cs
 public static class ExtensionMethods
 {
     type ExtensionMethod(this type param)
@@ -1326,9 +1326,9 @@ When a `yield return` statement is reached, the current location in code is reme
 
 It's possible to use a `yield break` statement or exception to end the iteration.
 
-> **Note**: Since an iterator returns an `IEnumerable<T>` is can be used to implement a `GetEnumerator()`.
+**Note**: Since an iterator returns an `IEnumerable<T>` is can be used to implement a `GetEnumerator()`.
 
-```cs linenums="1"
+```cs
 // simple iterator
 public static System.Collections.IEnumerable<int> IterateRange(int start = 0, int end)
 {
@@ -1361,7 +1361,7 @@ Modifiable value types tend to be problematic, because it's all too easy to end 
 So it's usually a good idea for value types to be immutable. This doesn't mean that variables of these types cannot be modified;  
 it just means that to modify the variable, its contents must be replaced entirely with a different value.
 
-```cs linenums="1"
+```cs
 public struct Point
 {
     public Point(double x, double y)
@@ -1378,8 +1378,8 @@ public struct Point
 }
 ```
 
-> **Note**: From C# 10 is possible to have a parameterless constructor and make a new struct using a `with` statement.
-> **Note**: From C# 11 uninitialized values will be filed with their defaults
+**Note**: From C# 10 is possible to have a parameterless constructor and make a new struct using a `with` statement.
+**Note**: From C# 11 uninitialized values will be filed with their defaults
 
 The only way to affect a struct variable both inside a method and outside is to use the `ref` keyword;
 
@@ -1390,7 +1390,7 @@ If you attempt to access the variable outside of the code block, you'll get a co
 
 [Access Modifiers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers)
 
-```cs linenums="1"
+```cs
 // ACCESS MODIFIERS
 public    // visible from everywhere
 private    // not visible outside of the class (default for members)
@@ -1424,7 +1424,7 @@ If any part declares a base type, then the whole type inherits that class.
 
 ### Methods
 
-```cs linenums="1"
+```cs
 class Class
 {
     static Type Method(Type Argument, ...) {}  // static method, can operate ONLY on STATIC VARIABLES
@@ -1464,7 +1464,7 @@ class Class(Type Parameter, ...)  // primary constructor (like records)
 }
 ```
 
-> **Note**: if a _primary constructor_ is used all other constructors must use `this(...)` to invoke it
+**Note**: if a _primary constructor_ is used all other constructors must use `this(...)` to invoke it
 
 ### Properties & Fields
 
@@ -1473,7 +1473,7 @@ class Class(Type Parameter, ...)  // primary constructor (like records)
 A _field_ is a variable of any type that is declared directly in a class or struct. Fields are members of their containing type.  
 A _property_ is a member that provides a flexible mechanism to read, write, or compute the value of a private field.
 
-```cs linenums="1"
+```cs
 class Class
 {
 
@@ -1522,16 +1522,16 @@ class Class
 }
 ```
 
-> **Note**: The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.  
+**Note**: The `init` accessor is a variant of the `set` accessor which can only be called during object initialization.  
 Because `init` accessors can only be called during initialization, they are allowed to _mutate_ `readonly` fields of the enclosing class, just like in a constructor.
-> **Note**: creating at least one constructor hides the one provided by default (w/ zero parameters).
+**Note**: creating at least one constructor hides the one provided by default (w/ zero parameters).
 
 ### [Object and Collection Initializers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers)
 
 **Object initializers** allow to assign values to any accessible fields or properties of an object at creation time without having to invoke a constructor followed by lines of assignment statements.  
 The object initializer syntax enables to specify arguments for a constructor or omit the arguments (and parentheses syntax).
 
-```cs linenums="1"
+```cs
 public class Class
 {
     // Auto-implemented properties.
@@ -1563,7 +1563,7 @@ Class obj = new Class(arg1) { Prop2 = arg2 };  // w/ constructor
 var copy = original with { Prop = newValue };  // other props are copies of the original
 ```
 
-```cs linenums="1"
+```cs
 public class Matrix
 {
     private double[,] matrix = new double[3, 3];
@@ -1631,7 +1631,7 @@ Dictionary<int, string> digits = [
 The `static` keyword declares that a member is not associated with any particular instance of the class.  
 Static classes **can't** instantiate objects and all their methods **must** be static.
 
-```cs linenums="1"
+```cs
 static class Class
 {
     // static constructor, not called explicitly, has no arguments
@@ -1672,7 +1672,7 @@ static class Class
 An **indexer** is a property that takes one or more arguments, and is accessed with the same syntax as is used for arrays.  
 This is useful when writing a class that contains a collection of objects.
 
-```cs linenums="1"
+```cs
 public class Class<T>
 {
     public T this[int i]
@@ -1702,7 +1702,7 @@ Members marked as `abstract` must be implemented by non-abstract classes that de
   The `sealed` modifier prevents a class from being inherited and the `abstract` modifier requires a class to be inherited.
 - A _non-abstract_ class derived from an `abstract` class must include actual implementations of all inherited `abstract` methods and accessors.
 
-> **Note**: Use the `abstract` modifier in a method or property declaration to indicate that the method or property does not contain implementation.
+**Note**: Use the `abstract` modifier in a method or property declaration to indicate that the method or property does not contain implementation.
 
 `abstract` methods have the following features:
 
@@ -1718,7 +1718,7 @@ Members marked as `abstract` must be implemented by non-abstract classes that de
 - It is an error to use the `abstract` modifier on a `static` property.
 - An `abstract` inherited property can be overridden in a derived class by including a property declaration that uses the `override` modifier.
 
-```cs linenums="1"
+```cs
 public abstract class Abstract : Interface
 {
     public abstract Type Property { get; set; }
@@ -1743,7 +1743,7 @@ public class Derived : Abstract
 
 ### Cloning
 
-```cs linenums="1"
+```cs
 Class obj = new Class()
 
 Object.MemberwiseClone();  // Returns shallow copy of the object
@@ -1754,9 +1754,9 @@ IClonable.Clone();  //  Creates a new object that is a copy of the current insta
 
 Deconstruction is not limited to tuples. By providing a `Deconstruct(...)` method(s) C# allows to use the same syntax with the users types.
 
-> **Note**: Types with a deconstructor can also use _positional pattern matching_.
+**Note**: Types with a deconstructor can also use _positional pattern matching_.
 
-```cs linenums="1"
+```cs
 public readonly struct Size
 {
     public Size(double w, double h)
@@ -1809,7 +1809,7 @@ Use the operator keyword to declare an operator. An operator declaration must sa
 
 [Overloadable operators](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading#overloadable-operators)
 
-```cs linenums="1"
+```cs
 using System;
 
 public readonly struct Fraction
@@ -1888,7 +1888,7 @@ A type defined at _global scope_ can be only `public`or `internal`.
 private wouldn't make sense since that makes something accessible only from within its containing type, and there is no containing type at global scope.  
 But a nested type does have a containing type, so if a nested type is `private`, that type can be used only from inside the type within which it is nested.
 
-> **Note**: Code in a nested type is allowed to use nonpublic members of its containing type. However, an instance of a nested type does not automatically get a reference to an instance of its containing type.
+**Note**: Code in a nested type is allowed to use nonpublic members of its containing type. However, an instance of a nested type does not automatically get a reference to an instance of its containing type.
 
 ---
 
@@ -1899,7 +1899,7 @@ An interface is effectively a list of the members that a type will need to provi
 
 C# 8.0 adds the ability to define default implementations for some or all methods, and also to define nested types and static fields.
 
-```cs linenums="1"
+```cs
 // can only be public or internal if not nested, any accessibility otherwise
 public interface IContract
 {
@@ -1945,7 +1945,7 @@ IContract.StaticProperty;
 IContract.StaticMethod();
 ```
 
-> **Note**: Interfaces are reference types. Despite this, it's possible tp implement interfaces on both classes and structs.  
+**Note**: Interfaces are reference types. Despite this, it's possible tp implement interfaces on both classes and structs.  
 However, be careful when doing so with a struct, because when getting hold of an interface-typed reference to a struct, it will be a reference to a _box_,  
 which is effectively an object that holds a copy of a struct in a way that can be referred to via a reference.
 
@@ -1956,7 +1956,7 @@ which is effectively an object that holds a copy of a struct in a way that can b
 [Generics Docs](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/)
 [Generic Methods Docs](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods)
 
-```cs linenums="1"
+```cs
 // type parameter T in angle brackets
 // WARNING: T is not instantiable, new t(), new t[] are INVALID
 public class GenericClass<T> {
@@ -1983,7 +1983,7 @@ obj.GenericMethodName(Type param);  // type deduced by input, input type and gen
 
 ### Multiple Generics
 
-```cs linenums="1"
+```cs
 public class GenericClass<T1, T2, ...> { }  // number of generic types is not limited
 ```
 
@@ -2000,7 +2000,7 @@ C# supports only six kinds of constraints on a type argument:
 - `unmanaged`
 - `new()`
 
-```cs linenums="1"
+```cs
 // type constraints
 public class GenericClass<T> where T : Interface { }
 public class GenericClass<T> where T: GenericClass { }
@@ -2046,10 +2046,10 @@ One reason for this is that value types are not normally used by reference, whic
 Since a derived class inherits everything the base class has—all its fields, methods, and other members,  
 both public and private—an instance of the derived class can do anything an instance of the base could do.
 
-> **Note**: When deriving from a class, it's not possible to make the derived class more visible than its base. This restriction does not apply to interfaces.  
+**Note**: When deriving from a class, it's not possible to make the derived class more visible than its base. This restriction does not apply to interfaces.  
 A `public` class is free to implement `internal` or `private` interfaces. However, it does apply to an interface's bases: a `public` interface cannot derive from an `internal` interface.
 
-```cs linenums="1"
+```cs
 class BaseClass
 {
     public virtual Property { get; set; }
@@ -2074,7 +2074,7 @@ class ChildClass : BaseClass, Interface, Interface<Type>
 
 Downcasting is the conversion from a base class type to one of it's derived types.
 
-```cs linenums="1"
+```cs
 Base b;
 var d = (Derived) b;  // explicit casting (if conversion fails throws InvalidCastException)
 var d = b as Derived;  // as operator (if conversion fails AS will return NULL)
@@ -2095,7 +2095,7 @@ Initialization order:
 3. Base class constructor
 4. Derived class constructor
 
-```cs linenums="1"
+```cs
 public class Base
 {
     public Base(Type param) {}
@@ -2113,7 +2113,7 @@ public class Derived
 If you derive from a generic class, you must supply the type arguments it requires.  
 You must provide concrete types unless your derived type is generic, in which case it can use its own type parameters as arguments.
 
-```cs linenums="1"
+```cs
 public class GenericBase1<T>
 {
     public T Item { get; set; }
@@ -2132,7 +2132,7 @@ public class MixedDerived<T> : GenericBase2<T, Type>  // derived is generic but 
 
 It's allowed to use derived type as a type argument to the base class. And it's also possible to specify a constraint on a type argument requiring it to derive from the derived type.
 
-```cs linenums="1"
+```cs
 public class Derived : base<Derived> {}
 public class Derived<T> where T : Derived<T>
 ```
@@ -2150,9 +2150,9 @@ Generic type parameters support covariance and contravariance to provide greater
 
 ![covariance-vs-contravariance](../../../img/dotnet_covariant_contravariant.png)
 
-> **Note**: annotate generic type parameters with `out` and `in` annotations to specify whether they should behave covariantly or contravariantly.
+**Note**: annotate generic type parameters with `out` and `in` annotations to specify whether they should behave covariantly or contravariantly.
 
-```cs linenums="1"
+```cs
 public class Base {};
 public class Derived : Base {}
 
@@ -2194,7 +2194,7 @@ This ability to refer to a method as a parameter makes delegates ideal for defin
 Any method from any accessible class or struct that matches the delegate type can be assigned to the delegate. The method can be either static or an instance method.  
 This makes it possible to programmatically change method calls, and also plug new code into existing classes.
 
-```cs linenums="1"
+```cs
 // delegate definition
 public delegate Type Delegate(Type param, ...);  // can take any method with specified type params and return type
 public delegate Type Delegate<T>(T param);  // generic delegate
@@ -2208,13 +2208,13 @@ Delegate<Type> delegate = Method;  // implicit creation
 
 **Multicast Delegates** are delegates that can have more than one element in their invocation list.
 
-```cs linenums="1"
+```cs
 Delegate<Type> multicastDelegate = Method1 + Method2 + ...;  // multicast delegate creation
 multicastDelegate += Method;  // add method to delegate
 multicastDelegate -= Method;  // remove method from delegate
 ```
 
-> **Note**: Delegate removal behaves in a potentially surprising way if the delegate removed refers to multiple methods.  
+**Note**: Delegate removal behaves in a potentially surprising way if the delegate removed refers to multiple methods.  
 Subtraction of a multicast delegate succeeds only if the delegate from which subtract contains all of the methods in the delegate being subtracted _sequentially and in the same order_.
 
 ### Delegate Invocation
@@ -2222,7 +2222,7 @@ Subtraction of a multicast delegate succeeds only if the delegate from which sub
 Invoking a delegate with a single target method works as though the code had called the target method in the conventional way.  
 Invoking a multicast delegate is just like calling each of its target methods in turn.
 
-```cs linenums="1"
+```cs
 Delegate<Type> delegate = Method;
 
 delegate(args);  // use delegate as standard method
@@ -2233,9 +2233,9 @@ multicastDelegate.GetInvocationList();  // list of methods called by the delegat
 
 ### Common Delegate Types
 
-> **Note**: Each delegate has an overload taking from zero to 16 arguments;
+**Note**: Each delegate has an overload taking from zero to 16 arguments;
 
-```cs linenums="1"
+```cs
 public delegate void Action<in T1, ...>(T1 arg1, ...);
 public delegate TResult Func<in T1, ..., out TResult>(T1 arg1, ...);
 public delegate bool Predicate<in T1, ...>(T1 arg1, ...);
@@ -2250,7 +2250,7 @@ However, the type system supports certain implicit reference conversions for gen
 
 Delegates without explicit separated method.
 
-```cs linenums="1"
+```cs
 // lambda variations
 Delegate<Type> lambda = () => <expr>;
 Delegate<Type> lambda = input => <expr>;
@@ -2288,7 +2288,7 @@ Structs and classes can declare events. This kind of member enables a type to pr
 The class who raises events is called _Publisher_, and the class who receives the notification is called _Subscriber_. There can be multiple subscribers of a single event.  
 Typically, a publisher raises an event when some action occurred. The subscribers, who are interested in getting a notification when an action occurred, should register with an event and handle it.
 
-```cs linenums="1"
+```cs
 public delegate void EventDelegate(object sender, CustomEventArgs args);  // called on event trigger
 
 public class Publisher
@@ -2305,7 +2305,7 @@ public class Publisher
 
 ### Registering Event Handlers
 
-```cs linenums="1"
+```cs
 public class Subscriber
 {
     Publisher publisher = new Publisher();
@@ -2326,7 +2326,7 @@ public class Subscriber
 Typically, any event should include two parameters: the _source_ of the event and event _data_.  
 The `EventHandler` delegate is used for all events that do not include event data, the `EventHandler<TEventArgs>` delegate is used for events that include data to be sent to handlers.
 
-```cs linenums="1"
+```cs
 public class Publisher
 {
     public event EventHandler Event;
@@ -2352,7 +2352,7 @@ public class Subscriber
 
 ### Custom Event Args
 
-```cs linenums="1"
+```cs
 public class CustomEventArgs : EventArgs { }
 
 public class Publisher
@@ -2403,7 +2403,7 @@ With .NET Core 3.0 or later, .NET assemblies won't be built with an extension of
 Even project types that produce directly runnable outputs (such as console or WPF applications) produce a `.dll` as their primary output.  
 They also generate an executable file too, but it's not a .NET assembly. It's just a bootstrapper that starts the runtime and then loads and executes your application's main assembly.
 
-> **Note**: C# compiles to a binary intermediate language (IL), which is not directly executable.  
+**Note**: C# compiles to a binary intermediate language (IL), which is not directly executable.  
 The normal Windows mechanisms for loading and running the code in an executable or DLL won't work with IL, because that can run only with the help of the CLR.
 
 ### .NET MEtadata
@@ -2485,7 +2485,7 @@ As far as the CLR is concerned, there's really only one interesting thing you ca
 
 The build system tells the compiler which version number to use for the assembly name via an assembly-level attribute.
 
-> **Note**: NuGet packages also have version numbers, and these do not need to be connected in any way to assembly versions. NuGet does treat the components of a package version number as having particular significance: it has adopted the widely used _semantic versioning_ rules.
+**Note**: NuGet packages also have version numbers, and these do not need to be connected in any way to assembly versions. NuGet does treat the components of a package version number as having particular significance: it has adopted the widely used _semantic versioning_ rules.
 
 #### Culture
 
@@ -2533,18 +2533,18 @@ To be used as an attribute, a type must derive from the `System.Attribute` class
 
 It's possible to pass arguments to the attribute _constructor_ in the annotation.
 
-```cs linenums="1"
+```cs
 [AttName]  // simple attribute
 
 [AttName(value)]  // valorize private fields (through the constructor)
 [AttrName(Name = value)]  // valorize public properties or fields (no constructor needed)
 ```
 
-> **Note**: The real name of an attribute ends with "Attribute" (`[AttrName]` refers to the `AttrNameAttribute` class)
+**Note**: The real name of an attribute ends with "Attribute" (`[AttrName]` refers to the `AttrNameAttribute` class)
 
 ### Multiple Attributes
 
-```cs linenums="1"
+```cs
 [Attribute1]
 [Attribute2]
 
@@ -2553,7 +2553,7 @@ It's possible to pass arguments to the attribute _constructor_ in the annotation
 
 ### Defining Custom Attribute Types
 
-```cs linenums="1"
+```cs
 // specify what the attribute can be applied to (enforced by c# compiler)
 [AttributeUsage(AttributeTargets.<TargetType>)]
 public class CustomAttribute : Attribute
@@ -2564,14 +2564,14 @@ public class CustomAttribute : Attribute
 }
 ```
 
-> **NOTE**: From C# 11 attributes can be generic and have type constraints
+**NOTE**: From C# 11 attributes can be generic and have type constraints
 
 ### Retrieving Attributes
 
 It's possible to discover which attributes have been applied through the reflection API.  
 The various targets of attribute have a reflection type representing them (`MethodInfo`, `PropertyInfo`, ...) which all implement the interface `ICustomAttributeProvider`.
 
-```cs linenums="1"
+```cs
 public interface ICustomAttributeProvider
 {
     object[] GetCustomAttributes(bool inherit);
@@ -2590,7 +2590,7 @@ A console application uses streams to represent its input and output.
 The `Stream` class is defined in the `System.IO` namespace.  
 It is an abstract base class, with concrete derived types such as `FileStream` or `GZipStream` representing particular kinds of streams.
 
-```cs linenums="1"
+```cs
 // The most important members of Stream
 public abstract int Read(byte[] buffer, int offset, int count);
 public abstract void Write(byte[] buffer, int offset, int count);
@@ -2609,7 +2609,7 @@ This starts at zero, but at each read or write, the position advances by the num
 The `Read` method returns an `int`. This tells how many bytes were read from the stream, the method _does not guarantee_ to provide the amount of data requested.  
 The reason `Read` is slightly tricky is that some streams are live, representing a source of information that produces data gradually as the program runs.
 
-> **Note**: If asked for more than one byte at a time, a `Stream` is always free to return less data than requested from Read for any reason. Never presume that a call to `Read` returned as much data as it could.
+**Note**: If asked for more than one byte at a time, a `Stream` is always free to return less data than requested from Read for any reason. Never presume that a call to `Read` returned as much data as it could.
 
 ### Position & Seeking
 
@@ -2619,7 +2619,7 @@ This is not guaranteed to work because it's not always possible to support it. S
 Stream also defines a Seek method, this allows to specify the position required relative to the stream's current position.  
 Passing `SeekOrigin.Current` as second argument will set the position by adding the first argument to the current position.
 
-```cs linenums="1"
+```cs
 public abstract long Seek(long offset, SeekOrigin origin);  // offset can be negative
 ```
 
@@ -2633,7 +2633,7 @@ The Stream class therefore offers a `Flush` method. This tells the stream that i
 A stream automatically flushes its contents when calling `Dispose`. Flush only when it's needed to keep a stream open after writing out buffered data.  
 It is particularly important if there will be extended periods during which the stream is open but inactive.
 
-> **Note**: When using a `FileStream`, the `Flush` method does not necessarily guarantee that the data being flushed has made it to disk yet. It merely makes the stream pass the data to the OS.  
+**Note**: When using a `FileStream`, the `Flush` method does not necessarily guarantee that the data being flushed has made it to disk yet. It merely makes the stream pass the data to the OS.  
 Before calling `Flush`, the OS hasn't even seen the data, so if the process terminates suddenly, the data would be lost.  
 After `Flush` has returned, the OS has everything the code has written, so the process could be terminated without loss of data.  
 However, the OS may perform additional buffering of its own, so if the power fails before the OS gets around to writing everything to disk, the data will still be lost.
@@ -2650,7 +2650,7 @@ It's possible to constructing them by passing a `Stream` as a constructor argume
 
 [Encoding](https://docs.microsoft.com/en-us/dotnet/api/system.text.encoding)
 
-```cs linenums="1"
+```cs
 // Will detect encoding from stream contents
 StreamReader file = new StreamReader(string path);
 StreamReader file = new StreamReader(string path, System.Text.Encoding encoding);  // encoding is System.Text.Encoding
@@ -2697,7 +2697,7 @@ The `FileStream` class derives from `Stream` and represents a file from the file
 It' common to use the constructors in which the `FileStream` uses OS APIs to create the file handle. It's possible to provide varying levels of detail on how this si to be done.  
 At a minimum the file's path and a value from the `FileMode` enumeration must be provided.
 
-```cs linenums="1"
+```cs
 // overloaded FileStream Constructors
 public FileStream(string path, FileMode mode);
 public FileStream(string path, FileMode mode, FileAccess access);
@@ -2739,9 +2739,9 @@ public FileStream(string path, FileMode mode, FileAccess access, FileShare share
 - `DeleteOnCloseTells`: `FileStream` to delete the file when you call `Dispose`.
 - `EncryptedEncrypts`: the file so that its contents cannot be read by other users.
 
-> **Note**: The `WriteThrough` flag will ensure that when the stream is disposed or flushed, all the data written will have been delivered to the drive, but the drive will not necessarily have written that data persistently (drives can defer writing for performance), so data loss id still possible if the power fails.
+**Note**: The `WriteThrough` flag will ensure that when the stream is disposed or flushed, all the data written will have been delivered to the drive, but the drive will not necessarily have written that data persistently (drives can defer writing for performance), so data loss id still possible if the power fails.
 
-```cs linenums="1"
+```cs
 // object to read or write to a file (file can be binary)
 {
     using(FileStream fstream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite))
@@ -2755,7 +2755,7 @@ public FileStream(string path, FileMode mode, FileAccess access, FileShare share
 
 The static `File` class provides methods for performing various operations on files.
 
-```cs linenums="1"
+```cs
 File.Create(string path);  // Return Read/Write FileStream to file
 File.Open(string path, System.IO.FileMode mode);  // Open a FileStream on the specified path with read/write access with no sharing.
 File.Open(string path, System.IO.FileMode mode, System.IO.FileAccess access);  // Opens a FileStream on the specified path, with the specified mode and access with no sharing.
@@ -2795,7 +2795,7 @@ File.Replace(string sourceFileName, string destinationFileName, string destinati
 
 Exposes static methods for creating, moving, and enumerating through directories and subdirectories.
 
-```cs linenums="1"
+```cs
 Directory.CreateDirectory(string path);  // Create directory as specified
 Directory.Delete(string path);  // Delete an empty directory from a specified path (dir must be writable)
 Directory.Delete(string path, bool recursive);  // Delete the specified directory and, if indicated, any subdirectories and files in the directory
@@ -2823,7 +2823,7 @@ Directory.GetFileSystemEntries (string path, string searchPattern, SearchOption 
 
 ### [Path](https://docs.microsoft.com/en-us/dotnet/api/system.io.path) Class
 
-```cs linenums="1"
+```cs
 Combine(string path1, string path2);  // Combine two strings into a path
 Combine(string[] paths);  // Combine strings into a path
 
@@ -2870,14 +2870,14 @@ Classes to hold multiple info about a file or directory. If some property change
 
 Types are required to opt into CLR serialization. .NET defines a `[Serializable]` attribute that must be present before the CLR will serialize the type (class).
 
-```cs linenums="1"
+```cs
 [Serializable]
 class Class { }
 ```
 
 Serialization works directly with an object's fields. It uses reflection, which enables it to access all members, whether public or private.
 
-> **Note**: CLR Serialization produces binary streams in a .NET specific format
+**Note**: CLR Serialization produces binary streams in a .NET specific format
 
 ---
 
@@ -2887,7 +2887,7 @@ Serialization works directly with an object's fields. It uses reflection, which 
 
 Object that represents the difference between two dates
 
-```cs linenums="1"
+```cs
 TimeSpan Interval = new DateTime() - new DateTime()  // difference between dates
 
 // constructors
@@ -2920,12 +2920,12 @@ length.
 
 Access to a span contents is done like an and since a `Span<T>` knows its own length, its indexer checks that the index is in range, just as the built-in array type does.
 
-```cs linenums="1"
+```cs
 Span<int> numbers = stackalloc int[] { 1, 2, 3 };
 var first = numbers[0];
 ```
 
-> **Note**: Normally, C# won’t allow to use `stackalloc` outside of code marked as unsafe, since it allocates memory on the stack producing a pointer. However, the compiler makes an exception to this rule when assigning the pointer produced by a `stackalloc` expression directly into a span.
+**Note**: Normally, C# won’t allow to use `stackalloc` outside of code marked as unsafe, since it allocates memory on the stack producing a pointer. However, the compiler makes an exception to this rule when assigning the pointer produced by a `stackalloc` expression directly into a span.
 
 The fact that `Span<T>` and `ReadOnlySpan<T>` are both `ref struct` types ensures that a span cannot outlive its containing stack frame, guaranteeing that the stack frame on which the stack-allocated memory lives will not vanish while there are still outstanding references to it.
 
@@ -2943,7 +2943,7 @@ This also imposes some potentially more surprising restrictions:
 
 This restriction is necessary for .NET to be able to offer the combination of array-like performance, type safety, and the flexibility to work with multiple different containers.
 
-> **Note**: it's possible to use spans in local methods, and even declare a ref struct variable in the outer method and use it from the nested one, but with one restriction: it's not possible a delegate that refers to that local method, because this would cause the compiler to move shared variables into an object that lives on the heap.
+**Note**: it's possible to use spans in local methods, and even declare a ref struct variable in the outer method and use it from the nested one, but with one restriction: it's not possible a delegate that refers to that local method, because this would cause the compiler to move shared variables into an object that lives on the heap.
 
 ## `Memory<T>`
 
@@ -2960,7 +2960,7 @@ This makes these memory types useful when you want something span-like, but in a
 
 [regex reference](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
 
-```cs linenums="1"
+```cs
 Match match = Regex.Match(string, pattern, regexOptions);
 
 match.Success;  // whether there was a match or not
@@ -2997,7 +2997,7 @@ The `fixed` statement sets a pointer to a managed variable and "pins" that varia
 Pointers to movable managed variables are useful only in a fixed context. Without a fixed context, garbage collection could relocate the variables unpredictably.  
 The C# compiler only allows to assign a pointer to a managed variable in a fixed statement.
 
-```cs linenums="1"
+```cs
 unsafe Type UnsafeMethod() { /* unsafe context */ }
 // or
 unsafe
@@ -3023,7 +3023,7 @@ unsafe
 
 ### Native Memory
 
-```cs linenums="1"
+```cs
 using System.Runtime.InteropServices;
 
 unsafe
@@ -3040,7 +3040,7 @@ The `extern` modifier is used to declare a method that is implemented externally
 A common use of the extern modifier is with the `DllImport` attribute when using Interop services to call into _unmanaged_ code.  
 In this case, the method must also be declared as `static`.
 
-```cs linenums="1"
+```cs
 [DllImport("avifil32.dll")]
 private static extern void AVIFileInit();
 ```
@@ -3051,14 +3051,14 @@ Methods needed to implement a behaviour which do not need an interface to work. 
 
 ### Enumerable
 
-```cs linenums="1"
+```cs
 public bool MoveNext(/* ... */);
 public T Current { get; }
 ```
 
 ### Awaitable
 
-```cs linenums="1"
+```cs
 public TaskAwaiter GetAwaiter(/* ... */);
 ```
 

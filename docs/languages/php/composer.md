@@ -6,7 +6,7 @@ The function [spl_autoload_register()](https://www.php.net/manual/en/function.sp
 
 In `autoload.php`:
 
-```php linenums="1"
+```php
 # custom function
 function autoloader($class) {
 
@@ -31,19 +31,19 @@ spl_autoload_register('autoloader');  // register function
 
 In `file.php`:
 
-```php linenums="1"
+```php
 require "autoload.php";
 
 # other code
 ```
 
-> **Note**: will fuck up if namespaces exists.
+**Note**: will fuck up if namespaces exists.
 
 ### Multiple Autoloading
 
 It's possible to resister multiple autoloading functions by calling `spl_autoload_register()` multiple times.
 
-```php linenums="1"
+```php
 # prepend adds the function at the start of the queue
 # throws selects if errors in loading throw exceptions
 spl_autoload_register(callable $func, $throw=TRUE, $prepend=FALSE);
@@ -60,7 +60,7 @@ Libraries are downloaded through [Packagist](https://packagist.org/) and [GitHub
 
 In `composer.json`:
 
-```json linenums="1"
+```json
 {
     "require": {
         "php": ">=7.0",
@@ -81,7 +81,7 @@ Composer will create:
 
 In alternative `composer require <lib>` will add the library to the project and create a `composer.json` if missing.
 
-> **Note**: to ignore the php version use `composer <command> --ignore-platform-reqs`
+**Note**: to ignore the php version use `composer <command> --ignore-platform-reqs`
 
 ### Updating Dependencies
 
@@ -93,7 +93,7 @@ To update dependencies use `composer update`. To update only the autoloading sec
 
 Composer can also autoload classes belonging to the current project. It's sufficient to add the `autoload` keyword in the JSON and specify the path and autoload mode.
 
-```json linenums="1"
+```json
 {
     "autoload": {
         "psr-4": {

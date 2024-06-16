@@ -4,7 +4,7 @@
 
 Get or retrieve data from specified resource
 
-```py linenums="1"
+```py
 response = requests.get('URL')    # returns response object
 
 # PAYLOAD -> valuable information of response
@@ -18,7 +18,7 @@ The response message consists of:
 - empty line
 - optional message body
 
-```text linenums="1"
+```text
 1xx -> INFORMATIONAL RESPONSE
 2xx -> SUCCESS
     200 OK -> request successful
@@ -28,7 +28,7 @@ The response message consists of:
 5xx -> SERVER ERRORS
 ```
 
-```py linenums="1"
+```py
 # raise exception HTTPError for error status codes
 response.raise_for_status()
 
@@ -41,7 +41,7 @@ response.headers    # response headers (dict)
 
 ### QUERY STRING PARAMETERS
 
-```py linenums="1"
+```py
 response = requests.get('URL', params={'q':'query'})
 response = requests.get('URL', params=[('q', 'query')])
 response = requests.get('URL', params=b'q=query')
@@ -49,7 +49,7 @@ response = requests.get('URL', params=b'q=query')
 
 ### REQUEST HEADERS
 
-```py linenums="1"
+```py
 response = requests.get(
     'URL',
     params={'q': 'query'},
@@ -61,7 +61,7 @@ response = requests.get(
 
 ### DATA INPUT
 
-```py linenums="1"
+```py
 # requests that entity enclosed be stored as a new subordinate of the web resource identified by the URI
 requests.post('URL', data={'key':'value'})
 # requests that the enclosed entity be stored under the supplied URI
@@ -78,13 +78,13 @@ requests.options('URL')
 
 ### SENDING JSON DATA
 
-```py linenums="1"
+```py
 requests.post('URL', json={'key': 'value'})
 ```
 
 ### INSPECTING THE REQUEST
 
-```py linenums="1"
+```py
 # requests lib prepares the requests before sending it
 response = requests.post('URL', data={'key':'value'})
 response.request.something    # inspect request field
@@ -92,7 +92,7 @@ response.request.something    # inspect request field
 
 ## AUTHENTICATION
 
-```py linenums="1"
+```py
 requests.get('URL', auth=('username', 'password'))    # use implicit HTTP Basic Authorization
 
 # explicit HTTP Basic Authorization and other
@@ -103,7 +103,7 @@ requests.get('URL', auth=HTTPBasicAuth('username', getpass()))
 
 ### PERSONALIZED AUTH
 
-```py linenums="1"
+```py
 from requests.auth import AuthBase
 class TokenAuth(AuthBase):
     "custom authentication scheme"
@@ -121,7 +121,7 @@ requests.get('URL', auth=TokenAuth('1234abcde-token'))
 
 ### DISABLING SSL VERIFICATION
 
-```py linenums="1"
+```py
 requests.get('URL', verify=False)
 ```
 
@@ -129,14 +129,14 @@ requests.get('URL', verify=False)
 
 ### REQUEST TIMEOUT
 
-```py linenums="1"
+```py
 # raise Timeout exception if request times out
 requests.get('URL', timeout=(connection_timeout, read_timeout))
 ```
 
 ### MAX RETRIES
 
-```py linenums="1"
+```py
 from requests.adapters import HTTPAdapter
 URL_adapter = HTTPAdapter(max_retries = int)
 session = requests.Session()

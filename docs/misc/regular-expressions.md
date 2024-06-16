@@ -19,7 +19,7 @@ A **character class** matches any one of a set of characters.
 - `\d`: matches any decimal digit.
 - `\D`: matches any character other than a decimal digit.
 
-> **Note**: `^`, `\`, `-` and `]` must be escaped to be used in ranges. (`[ \] \[ \^ \- ]`)
+**Note**: `^`, `\`, `-` and `]` must be escaped to be used in ranges. (`[ \] \[ \^ \- ]`)
 
 ## Anchors
 
@@ -40,7 +40,7 @@ A **character class** matches any one of a set of characters.
 
 ### Subexpressions
 
-```regex title="Regex Syntax" linenums="1"
+```regex title="Regex Syntax"
 (subexpression)
 ```
 
@@ -48,7 +48,7 @@ The *subexpression* is any valid regular expression pattern.
 
 Captures that use parentheses are numbered automatically from left to right based on the order of the opening parentheses in the regular expression, starting from `1`. The capture that's numbered `0` is the text matched by the entire regular expression pattern.
 
-> **Note**: named capture groups are always ordered last, after non-named capture groups.
+**Note**: named capture groups are always ordered last, after non-named capture groups.
 
 It's possible to access the captured group in the following ways:
 
@@ -66,7 +66,7 @@ It's possible to access the captured group in the following ways:
 
 ### Named Subexpressions
 
-```regex title="Regex Syntax" linenums="1"
+```regex title="Regex Syntax"
 (?<name> subexpression)
 (?'name' subexpression)
 ```
@@ -90,7 +90,7 @@ It's possible to access the named captured group in the following ways:
 
 ### Noncapturing groups
 
-```regex title="Regex Syntax" linenums="1"
+```regex title="Regex Syntax"
 (?:subexpression)
 ```
 
@@ -98,7 +98,7 @@ The *subexpression* is any valid regular expression pattern. The noncapturing gr
 
 ### Zero-width positive lookahead assertions
 
-```regex title="Regex Syntax" linenums="1"
+```regex title="Regex Syntax"
 (?= subexpression)
 ```
 
@@ -110,7 +110,7 @@ It's possible to use a zero-width positive lookahead assertion to ensure that a 
 
 ### Zero-width negative lookahead assertions
 
-```regex title="Regex Syntax" linenums="1"
+```regex title="Regex Syntax"
 (?! subexpression)
 ```
 
@@ -120,7 +120,7 @@ A zero-width negative lookahead assertion is typically used either at the beginn
 
 ### Zero-width positive lookbehind assertions
 
-```regex title="Regex Syntax" linenums="1"
+```regex title="Regex Syntax"
 (?<= subexpression)
 ```
 
@@ -130,7 +130,7 @@ Zero-width positive lookbehind assertions are typically used at the beginning of
 
 ### Zero-width negative lookbehind assertions
 
-```regex title="Regex Syntax" linenums="1"
+```regex title="Regex Syntax"
 (?<! subexpression)
 (?> subexpression)
 ```
@@ -141,7 +141,7 @@ Zero-width negative lookbehind assertions are typically used at the beginning of
 
 ### Atomic groups
 
-```regex title="Regex Syntax" linenums="1"
+```regex title="Regex Syntax"
 (?> subexpression )
 ```
 

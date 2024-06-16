@@ -83,7 +83,7 @@ The entry point is deﬁned by an address, which is the address of the _first_ i
 .globl start # <-- program entry point 
 ```
 
-> **Note**: the `start` label **must** be registered as a _global_ symbol for the linker to recognize it as the entry point.
+**Note**: the `start` label **must** be registered as a _global_ symbol for the linker to recognize it as the entry point.
 
 ## Program Sections
 

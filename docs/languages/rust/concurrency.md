@@ -31,7 +31,7 @@ Since a thread might run until the very end of the program’s execution, the sp
 
 Getting a value back out of the thread is done by returning it from the closure. This return value can be obtained from the `Result` returned by the `join` method.
 
-> **Note**: if a thread panics the handle will return the panic message so that it can be handled.
+**Note**: if a thread panics the handle will return the panic message so that it can be handled.
 
 ```rs
 let numbers = Vec::from_iter(0..=1000);
@@ -85,7 +85,7 @@ The `Send` marker trait indicates that ownership of values of the type implement
 
 The `Sync` marker trait indicates that it is safe for the type implementing `Sync` to be referenced from multiple threads. In other words, any type `T` is `Sync` if `&T` (an immutable reference to `T`) is `Send`, meaning the reference can be sent safely to another thread. Similar to `Send`, primitive types are `Sync`, and types composed entirely of types that are `Sync`are also `Sync`.
 
-> **Note**: All primitive types such as `i32`, `bool`, and `str` are both `Send` and `Sync`.
+**Note**: All primitive types such as `i32`, `bool`, and `str` are both `Send` and `Sync`.
 
 ## Locking: Protecting Shared Data
 
@@ -118,7 +118,7 @@ std::thread::scope(|scope| {
 
 The `lock()` method returns a `Result` since the mutex can become **poisoned**. A mutex get marked as poisoned when a thread panics while holding the lock. Calling `lock()` on a poisoned mutex will return an `Err`. This poisoning mechanism protects against accessing data that may be in an inconsistent state.  
 
-> **Note**: The lock is still acquired and the `Err` variant contains the guard, allowing to correct the data inconsistency.
+**Note**: The lock is still acquired and the `Err` variant contains the guard, allowing to correct the data inconsistency.
 
 ### Reader-Writer Lock
 
@@ -140,7 +140,7 @@ Thread parking is available through the `std::thread::park()` function. For unpa
 
 An important property of thread parking is that a call to `unpark()` before the thread parks itself does not get lost. The request to unpark is still recorded, and the next time the thread tries to park itself, it clears that request and directly continues without actually going to sleep.
 
-> **Note**: calls to `unpark()` do not stack up.
+**Note**: calls to `unpark()` do not stack up.
 
 ### Condition Variables
 
@@ -177,7 +177,7 @@ impl AtomicI32 {
 
 The `load` method atomically loads the value stored in the atomic variable, and the `store` method atomically stores a new value in it.
 
-> **Note**: the store method takes a shared reference (`&T`) even though it modifies itself.
+**Note**: the store method takes a shared reference (`&T`) even though it modifies itself.
 
 ### Fetch-and-Modify Operations
 
@@ -342,8 +342,8 @@ atom.load(Relaxed);
 fence(Acquire);
 ```
 
-> **Note**: Using a separate fence can result in an extra processor instruction which can be slightly less efficient.
-> **Note**: A fence is not tied to any single atomic variable. This means that a single fence can be used for multiple variables at once.
+**Note**: Using a separate fence can result in an extra processor instruction which can be slightly less efficient.
+**Note**: A fence is not tied to any single atomic variable. This means that a single fence can be used for multiple variables at once.
 
 A release fence can take the place of a release operation in a happens-before relationship if that release fence is followed (on the same thread) by any atomic operation that stores a value observed by the acquire operation it's synchronizing with.  
 Similarly, an acquire fence can take the place of any acquire operation if that acquire fence is preceded (on the same thread) by any atomic operation that loads a value stored by the release operation.

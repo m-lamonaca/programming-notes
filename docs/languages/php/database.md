@@ -8,7 +8,7 @@ PDO is the PHP extension for database access through a single API. It supports v
 
 ### Database Connection
 
-```php linenums="1"
+```php
 $dsn = "mysql:dbname=<dbname>;host=<ip>";
 $user="<db_user>";
 $password="<db_password>";
@@ -25,7 +25,7 @@ try {
 
 To execute a query it's necessary to "prepare it" with *parameters*.
 
-```php linenums="1"
+```php
 # literal string with markers
 $sql = 'SELECT fields
 FROM tables
@@ -44,7 +44,7 @@ $result = $stmt->fetchAll(PDO::FETCH_CLASS, ClassName::class);  # result as obje
 
 ### Parameter Binding
 
-```php linenums="1"
+```php
 # bindValue
 $stmt = pdo->prepare(sql);
 $stmt->bindValue(':marker', value, PDO::PARAM_<type>);
@@ -62,9 +62,9 @@ $stmt->execute();
 By default PDO converts all results into strings since it is a generic driver for multiple databases.
 Its possible to disable this behaviour setting `PDO::ATTR_STRINGIFY_FETCHES` and `PDO::ATTR_EMULATE_PREPARES` as `false`.
 
-> **Note**: `FETCH_OBJ` abd `FETCH_CLASS` return classes and don't have this behaviour.
+**Note**: `FETCH_OBJ` abd `FETCH_CLASS` return classes and don't have this behaviour.
 
-```php linenums="1"
+```php
 pdo->setAttribute()
 
 $pdo->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
@@ -77,7 +77,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ### PDO Debug
 
-```php linenums="1"
+```php
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':marker' => value]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -87,7 +87,7 @@ $stmt->debugDumpParams();  # print the SQL query that has been sent to the datab
 
 ## [SQLite3](https://www.php.net/manual/en/book.sqlite3.php)
 
-```php linenums="1"
+```php
 $db = SQLite3("db_file.sqlite3");  // connection
 
 $stmt = $db->prepare("SELECT fields FROM tables WHERE field <operator> :marker");  // prepare query
@@ -99,4 +99,4 @@ $result->finalize();  // close result set, recommended calling before another ex
 $records = $results->fetchArray(SQLITE3_ASSOC);  // extract records as array (false if no results)
 ```
 
-> **Note**: Result set objects retrieved by calling `SQLite3Stmt::execute()` on the same statement object are not independent, but rather share the same underlying structure. Therefore it is recommended to call `SQLite3Result::finalize()`, before calling `SQLite3Stmt::execute()` on the same statement object again.
+**Note**: Result set objects retrieved by calling `SQLite3Stmt::execute()` on the same statement object are not independent, but rather share the same underlying structure. Therefore it is recommended to call `SQLite3Result::finalize()`, before calling `SQLite3Stmt::execute()` on the same statement object again.

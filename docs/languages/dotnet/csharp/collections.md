@@ -6,7 +6,7 @@ An array is an object that contains multiple elements of a particular type. The 
 
 An array type is always a reference type, regardless of the element type. Nonetheless, the choice between reference type and value type elements makes a significant difference in an array's behavior.
 
-```cs linenums="1"
+```cs
 type[] array = new type[dimension];
 type array[] = new type[dimension];  //invalid
 
@@ -24,7 +24,7 @@ array.OfType<Type>();  // filter array based on type, returns IEnumerable<Type>
 
 ### [Array Methods](https://docs.microsoft.com/en-us/dotnet/api/system.array?view=netcore-3.1#methods)
 
-```cs linenums="1"
+```cs
 // overloaded search methods
 Array.IndexOf(array, item);  // return index of searched item in passed array
 Array.LastIndexOf(array, item); // return index of searched item staring from the end of the array
@@ -54,7 +54,7 @@ C# supports two multidimensional array forms: [jagged][jagg_arrays] arrays and [
 [jagg_arrays]: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/jagged-arrays
 [rect_arrays]: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/multidimensional-arrays
 
-```cs linenums="1"
+```cs
 //specify first dimension
 type[][] jagged = new type[][]
 {
@@ -87,7 +87,7 @@ matrix.GetLength(int dimension); // get the size of a particular direction
 
 `List<T>` stores sequences of elements. It can grow or shrink, allowing to add or remove elements.
 
-```cs linenums="1"
+```cs
 using System.Collections.Generics;
 
 List<T> list = new List<T>();
@@ -140,7 +140,7 @@ It's possible to use a `yield break` statement or exception to end the iteration
 
 **Note**: Since an iterator returns an `IEnumerable<T>` is can be used to implement a `GetEnumerator()`.
 
-```cs linenums="1"
+```cs
 // simple iterator
 public static System.Collections.IEnumerable<int> IterateRange(int start = 0, int end)
 {
@@ -156,7 +156,7 @@ public static System.Collections.IEnumerable<int> IterateRange(int start = 0, in
 
 Exposes the enumerator, which supports a simple iteration over a collection of a specified type.
 
-```cs linenums="1"
+```cs
 public interface IEnumerable<out T> : IEnumerable
 {
     IEnumerator<T> GetEnumerator();  // return an enumerator
@@ -179,7 +179,7 @@ public interface IEnumerator<T>
 
 ### [`ICollection<T>`](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1)
 
-```cs linenums="1"
+```cs
 public interface ICollection<T> : IEnumerable<T>
 {
     // properties
@@ -197,7 +197,7 @@ public interface ICollection<T> : IEnumerable<T>
 
 ### [`IList<T>`](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ilist-1)
 
-```cs linenums="1"
+```cs
 public interface IList<T> : ICollection<T>, IEnumerable<T>
 {
     // properties
@@ -228,7 +228,7 @@ public interface IList<T> : ICollection<T>, IEnumerable<T>
 - Enumerating a dictionary will return `KeyValuePair<TKey, TValue>`.
 - The `Dictionary<TKey, TValue>` collection class relies on hashes to offer fast lookup (`TKey` should have a good `GetHashCode()`).
 
-```cs linenums="1"
+```cs
 Dictionary<TKey, TValue> dict = new Dictionary<TKey, TValue>();  // init empty dict
 Dictionary<TKey, TValue> dict = new Dictionary<TKey, TValue>(IEqualityComparer<TKey>);  // specify key comparer (TKey must implement Equals() and GetHashCode())
 
@@ -270,7 +270,7 @@ dict.TryGetValue(key, out var);  // put the value associated with kay in the var
 
 Collection of non duplicate items.
 
-```cs linenums="1"
+```cs
 HashSet<T> set = new HashSet<T>();
 
 set.Add(T); // adds an item to the set; true if the element is added, false if the element is already present.

@@ -410,7 +410,7 @@ A weight is applied to a CSS declaration, determined by the number of each selec
 - `0-0-1`: Element Selector, Pseudo-element  
 - `0-0-0`: Universal selector (`*`), combinators (`+`, `>`, `~`, `||`) and negation pseudo-class `:not()`  
 
-> **Note**: The selectors declared inside `:not()` contribute to the weight.
+**Note**: The selectors declared inside `:not()` contribute to the weight.
 
 ## [Units](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units)
 
@@ -551,7 +551,7 @@ selector {
 }
 ```
 
-> **Note**: `width` and `height` properties do not have effect on inline elements.
+**Note**: `width` and `height` properties do not have effect on inline elements.
 
 ### Hiding Elements
 
@@ -591,7 +591,7 @@ selector {
 }
 ```
 
-> **Note**: Padding adds to the total size of the box, unless `box-sizing: border-box;` is used.
+**Note**: Padding adds to the total size of the box, unless `box-sizing: border-box;` is used.
 
 ### Border
 
@@ -636,7 +636,7 @@ selector {
 }
 ```
 
-> **Note**: Border adds to the total size of the box, `unless box-sizing: border-box;` is used
+**Note**: Border adds to the total size of the box, `unless box-sizing: border-box;` is used
 
 ### Box Sizing
 
@@ -669,7 +669,7 @@ selector {
 }
 ```
 
-> **Note**: Top and bottom margins of near elements are collapsed into a single margin that is equal to the largest of the two margins.
+**Note**: Top and bottom margins of near elements are collapsed into a single margin that is equal to the largest of the two margins.
 
 ## [Element Positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
 

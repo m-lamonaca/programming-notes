@@ -1,6 +1,6 @@
 # Unittest Module
 
-```py linenums="1"
+```py
 import unittest
 import module_under_test
 

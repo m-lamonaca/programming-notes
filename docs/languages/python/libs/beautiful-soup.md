@@ -2,7 +2,7 @@
 
 ## Making the Soup
 
-```py linenums="1"
+```py
 
 from bs4 import BeautifulSoup
 import requests
@@ -24,7 +24,7 @@ Beautiful Soup transforms a complex HTML document into a complex tree of Python 
 
 A Tag object corresponds to an XML or HTML tag in the original document
 
-```py linenums="1"
+```py
 soup = BeautifulSoup('<b class="boldest">Extremely bold</b>', 'html.parser')  # parse HTML/XML
 
 tag = soup.b
@@ -44,7 +44,7 @@ A string corresponds to a bit of text within a tag. Beautiful Soup uses the `Nav
 
 ### Going Down
 
-```py linenums="1"
+```py
 soup.<tag>.<child_tag>  # navigate using tag names
 
 <tag>.contents  # direct children as a list
@@ -61,14 +61,14 @@ soup.<tag>.<child_tag>  # navigate using tag names
 
 ### Going Up
 
-```py linenums="1"
+```py
 <tag>.parent  # tags direct parent (BeautifulSoup has parent None, html has parent BeautifulSoup)
 <tag>.parents  # iterable over all parents
 ```
 
 ### Going Sideways
 
-```py linenums="1"
+```py
 <tag>.previous_sibling
 <tag>.next_sibling
 
@@ -78,7 +78,7 @@ soup.<tag>.<child_tag>  # navigate using tag names
 
 ### Going Back and Forth
 
-```py linenums="1"
+```py
 <tag>.previous_element  # whatever was parsed immediately before
 <tag>.next_element # whatever was parsed immediately afterwards
 
@@ -90,7 +90,7 @@ soup.<tag>.<child_tag>  # navigate using tag names
 
 ## Filter Types
 
-```py linenums="1"
+```py
 soup.find_all("tag")  # by name
 soup.find_all(["tag1", "tag2"])  # multiple tags in a list
 soup.find_all(function)  # based on a bool function
@@ -107,7 +107,7 @@ Methods arguments:
 - `limit` (int). limit number of results
 - `**kwargs`: be turned into a filter on one of a tag's attributes.
 
-```py linenums="1"
+```py
 find_all(name, attrs, recursive, string, limit, **kwargs)  # several results
 find(name, attrs, recursive, string, **kwargs)  # one result
 
@@ -135,7 +135,7 @@ soup.select("css_selector")  # search for CSS selectors of HTML tags
 
 ### Changing Tag Names an Attributes
 
-```py linenums="1"
+```py
 <tag>.name = "new_html_tag"  # modify the tag type
 <tag>["attribute"]  = "value"  # modify the attribute value
 del <tag>["attribute"]  # remove the attribute

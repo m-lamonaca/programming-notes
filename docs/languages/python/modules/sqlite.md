@@ -4,14 +4,14 @@
 
 To use the module, you must first create a Connection object that represents the database.
 
-```python linenums="1"
+```python
 import sqlite3
 connection = sqlite3.connect("file.db")
 ```
 
 Once you have a `Connection`, you can create a `Cursor` object and call its `execute()` method to perform SQL commands.
 
-```python linenums="1"
+```python
 cursor = connection.cursor()
 
 cursor.execute(sql)
@@ -31,7 +31,7 @@ it makes your program vulnerable to an [SQL injection attack](https://en.wikiped
 
 Put `?` as a placeholder wherever you want to use a value, and then provide a _tuple of values_ as the second argument to the cursor's `execute()` method.
 
-```python linenums="1"
+```python
 # Never do this -- insecure!
 c.execute("SELECT * FROM stocks WHERE symbol = value")
 
@@ -50,7 +50,7 @@ c.executemany('INSERT INTO stocks VALUES (?,?,?,?,?)', purchases)
 
 ### Writing Operations to Disk
 
-```python linenums="1"
+```python
 cursor = connection.cursor()
 cursor.execute("SQL")
 connection.commit()
@@ -58,7 +58,7 @@ connection.commit()
 
 ### Multiple SQL Instructions
 
-```python linenums="1"
+```python
 connection = sqlite3.connect("file.db")
 cur = con.cursor()
 cur.executescript("""
@@ -73,7 +73,7 @@ con.close()
 
 ### Retrieving Records
 
-```python linenums="1"
+```python
 # Fetches the next row of a query result set, returning a single sequence.
 # Returns None when no more data is available.
 cursor.fetchone()  

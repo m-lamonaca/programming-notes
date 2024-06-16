@@ -44,8 +44,8 @@ Declaration instructions:
 - `dq`: declare quad word (8 bytes)
 - `equ`: set a name to the value of an expression
 
-> **Note**: See the NASM manual, section 3.2.1 for the full list.
-> **Note**: all byte declarations are [Little Endian](https://en.wikipedia.org/wiki/Endianness "Endiannes")
+**Note**: See the NASM manual, section 3.2.1 for the full list.
+**Note**: all byte declarations are [Little Endian](https://en.wikipedia.org/wiki/Endianness "Endiannes")
 
 ```asm
 arr: db 0x12,0x34,0x56,0x78,0x90

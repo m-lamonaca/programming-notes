@@ -2,7 +2,7 @@
 
 ## MOST IMPORTANT ATTRIBUTES ATTRIBUTES
 
-```py linenums="1"
+```py
 array.ndim     # number of axes (dimensions) of the array
 array.shape  # dimensions of the array, tuple of integers
 array.size  # total number of elements in the array
@@ -15,7 +15,7 @@ array.data  # buffer containing the array elements
 Unless explicitly specified `np.array` tries to infer a good data type for the array that it creates.  
 The data type is stored in a special dtype object.
 
-```py linenums="1"
+```py
 var = np.array(sequence)  # creates array
 var = np.asarray(sequence)  # convert input to array
 var = np.ndarray(*sequence)  # creates multidimensional array
@@ -33,7 +33,7 @@ var = np.linspace(start, stop, num_of_elements)  # step of elements calculated b
 
 ## DATA TYPES FOR NDARRAYS
 
-```py linenums="1"
+```py
 var = array.astype(np.dtype)  # copy of the array, cast to a specified type
 # return TypeError if casting fails
 ```
@@ -72,7 +72,7 @@ array_1 `/` array_2 --> element-wise division (`[1, 2, 3] / [3, 2, 1] = [0.33, 1
 
 ## SHAPE MANIPULATION
 
-```py linenums="1"
+```py
 np.reshape(array, new_shape)  # changes the shape of the array
 np.ravel(array)  #  returns the array flattened
 array.resize(shape)  # modifies the array itself
@@ -84,7 +84,7 @@ np.swapaxes(array, first_axis, second_axis)  # interchange two axes of an array
 
 ## JOINING ARRAYS
 
-```py linenums="1"
+```py
 np.vstack((array1, array2))   # takes tuple, vertical stack of arrays (column wise)
 np.hstack((array1, array2))  # takes a tuple, horizontal stack of arrays (row wise)
 np.dstack((array1, array2)) # takes a tuple, depth wise stack of arrays (3rd dimension)
@@ -94,7 +94,7 @@ np.concatenate((array1, array2, ...), axis) # joins a sequence of arrays along a
 
 ## SPLITTING ARRAYS
 
-```py linenums="1"
+```py
 np.split(array, indices)  # splits an array into equall7 long sub-arrays (indices is int), if not possible raises error
 np.vsplit(array, indices)  # splits an array equally into sub-arrays vertically (row wise) if not possible raises error
 np.hsplit(array, indices)  # splits an array equally into sub-arrays horizontally (column wise) if not possible raises error
@@ -104,7 +104,7 @@ np.array_split(array, indices) # splits an array into sub-arrays, arrays can be 
 
 ## VIEW()
 
-```py linenums="1"
+```py
 var = array.view()  # creates a new array that looks at the same data
 # slicing returns a view
 # view shapes are separated but assignment changes all arrays
@@ -112,7 +112,7 @@ var = array.view()  # creates a new array that looks at the same data
 
 ## COPY()
 
-```py linenums="1"
+```py
 var = array.copy()  # creates a deep copy of the array
 ```
 
@@ -136,7 +136,7 @@ iteration on first index, use .flat() to iterate over each element
 
 Functions that performs element-wise operations (vectorization).
 
-```py linenums="1"
+```py
 np.abs(array)  # vectorized abs(), return element absolute value
 np.fabs(array)  # faster abs() for non-complex values
 np.sqrt(array)  # vectorized square root (x^0.5)
@@ -193,7 +193,7 @@ np.logical_xor(x_array, y_array)  # vectorized x ^ y
 
 ## CONDITIONAL LOGIC AS ARRAY OPERATIONS
 
-```py linenums="1"
+```py
 np.where(condition, x, y)  # return x if condition == True, y otherwise
 ```
 
@@ -202,7 +202,7 @@ np.where(condition, x, y)  # return x if condition == True, y otherwise
 `np.method(array, args)` or `array.method(args)`.  
 Boolean values are coerced to 1 (`True`) and 0 (`False`).
 
-```py linenums="1"
+```py
 np.sum(array, axis=None)  # sum of array elements over a given axis
 np.median(array, axis=None)  # median along the specified axis
 np.mean(array, axis=None)  # arithmetic mean along the specified axis
@@ -220,21 +220,21 @@ np.cumprod(array, axis=None)  # cumulative sum of the elements along a given axi
 
 ## METHODS FOR BOOLEAN ARRAYS
 
-```py linenums="1"
+```py
 np.all(array, axis=None)  # test whether all array elements along a given axis evaluate to True
 np.any(array, axis=None)  # test whether any array element along a given axis evaluates to True
 ```
 
 ## SORTING
 
-```py linenums="1"
+```py
 array.sort(axis=-1)  # sort an array in-place (axis = None applies on flattened array)
 np.sort(array, axis=-1)  # return a sorted copy of an array (axis = None applies on flattened array)
 ```
 
 ## SET LOGIC
 
-```py linenums="1"
+```py
 np.unique(array)  # sorted unique elements of an array
 np.intersect1d(x, y)  # sorted common elements in x and y
 np.union1d(x, y)  # sorte union of elements
@@ -245,7 +245,7 @@ np.setxor1d()  # Set symmetric differences; elements that are in either of the a
 
 ## FILE I/O WITH ARRAYS
 
-```py linenums="1"
+```py
 np.save(file, array)  # save array to binary file in .npy format
 np.savez(file, *array) # save several arrays into a single file in uncompressed .npz format
 np.savez_compressed(file, *args, *kwargs)  # save several arrays into a single file in compressed .npz format
@@ -266,7 +266,7 @@ np.loadtxt(file, dtype=float, comments="#", delimiter=None)
 
 ## LINEAR ALGEBRA
 
-```py linenums="1"
+```py
 np.diag(array, k=0)  # extract a diagonal or construct a diagonal array
 # K: {int} -- k>0 diagonals above main diagonal, k<0 diagonals below main diagonal (main diagonal k = 0)
 
@@ -290,7 +290,7 @@ np.linalg.lstsq(A, B)  # return the least-squares solution to a linear matrix eq
 
 ## RANDOM NUMBER GENERATION
 
-```py linenums="1"
+```py
 np.random.seed()
 np.random.rand()
 np.random.randn()

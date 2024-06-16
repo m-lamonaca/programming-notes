@@ -2,7 +2,7 @@
 
 ## Basics
 
-```rs linenums="1"
+```rs
 use <module>;  // bring a type into scope
 
 fn main() {  //program entry point
@@ -12,7 +12,7 @@ fn main() {  //program entry point
 
 ### Standard Output
 
-```rs linenums="1"
+```rs
 // macro (func have no "!")
 println!("Value: {}", value);  // {} is a placeholder for a value or variable
 println!("Values: {1}, {0}", value1, value2);  // use index to print values
@@ -30,7 +30,7 @@ print!();
 
 ### Standard Input
 
-```rs linenums="1"
+```rs
 use io;
 
 let mut buffer = String::new();
@@ -50,7 +50,7 @@ An associated function is implemented on a type rather than on a particular inst
 
 By default variables are *immutable*.
 
-```rs linenums="1"
+```rs
 let var1 = value;  // immutable var init
 let var2: Type = value;  // explicit type annotation
 
@@ -68,7 +68,7 @@ By using let, it's possible to perform a few transformations on a value but have
 The other difference between *mut* and *shadowing* is that because we're effectively creating a new variable when we use the let keyword again,  
 we can change the type of the value but reuse the same name.
 
-```rs linenums="1"
+```rs
 let x: u32 = 10;
 let x: i32 = 11;  // shadowing
 ```
@@ -88,14 +88,14 @@ let x: i32 = 11;  // shadowing
 
 #### Explicit Mathematical Operations (Integers)
 
-```rs linenums="1"
+```rs
 i32::MAX.checked_add(value);  // Option<i32> => None if overflow
 i32::MAX.wrapping_add(value);  // i32 => Wrap around
 i32::MAX.saturating_add(value);  //  i32 => MIN <= x <= MAX (Clamp)
 i32::MAX.overflowing_add(value); // (i32, bool) => overflowed result and if overflowed
 ```
 
-> **Note**: analogous method exist for other mathematical operation
+**Note**: analogous method exist for other mathematical operation
 
 ### Floating-Point Types
 
@@ -111,7 +111,7 @@ Numeric Base Prefix:
 - `0o`: Octal Number
 - `0b`: Binary Number
 
-> **Note**: Number can have `_` interposed for legibility (E.g: `1_000_u64`)
+**Note**: Number can have `_` interposed for legibility (E.g: `1_000_u64`)
 
 Binary Literals:
 
@@ -164,7 +164,7 @@ Rust's `char` type is the language's most primitive alphabetic type.
 
 Rust's `char` type is four bytes in size and represents a Unicode Scalar Value: range from `U+0000` to `U+D7FF` and `U+E000` to `U+10FFFF` inclusive.
 
-```rs linenums="1"
+```rs
 let c: char = 'C';  // SINGLE QUOTES
 let c: char = '\u{261D}';  // Unicode Code Point U+261D
 let c: char = '\x2A';  // ASCII for *
@@ -179,7 +179,7 @@ std::char::from:digit(2, 10);  // Some(2)
 
 ### String Types
 
-```rs linenums="1"
+```rs
 let s = String::new();  // create empty string
 let s = String::from("string literal");  // construct string from literal
 
@@ -205,7 +205,7 @@ s.push_str(""); // appending string literals
 A tuple is a general way of grouping together a number of values with a variety of types into one compound type.  
 Tuples have a *fixed length*: once declared, they cannot grow or shrink in size.
 
-```rs linenums="1"
+```rs
 let tup: (i32, f64, u8) = (500, 6.4, 1);
 let tup = (500, 6.4, 1);
 
@@ -219,7 +219,7 @@ tup.0 = value;  // member access & update (mut be mutable)
 Every element of an array must have the *same type*. Arrays in Rust have a fixed length, like tuples.  
 An array isn't as flexible as the `vector` type, though. A vector is a similar collection type provided by the standard library that *is allowed to grow or shrink in size*.
 
-```rs linenums="1"
+```rs
 let array = [0, 1, 2, 3, 4];
 let array: [Type; length] = [...];
 let array: [value; length];  // repeat expression (same as python's [value] * length)
@@ -247,9 +247,9 @@ a *shared* slice `&[T]` allows to share access among several readers, but doesn�
 `&String` can be used in place of a `&str` (string slice)  trough *String Coercion*. The `&String` gets converted to a `&str` that borrows the entire string.
 The reverse is not possible since the slice lacks some information about the String.
 
-> **Note**: When working with functions is easier to always expect a `&str` instead of a `&String`.
+**Note**: When working with functions is easier to always expect a `&str` instead of a `&String`.
 
-```rs linenums="1"
+```rs
 let s = String::from("string literal");
 let slice: &str = &s[start..end];
 
@@ -262,7 +262,7 @@ sequence[..end]  // slice from start to end (excluded)
 
 ### Type Aliases
 
-```rs linenums="1"
+```rs
 type Alias = T;
 ```
 
@@ -275,7 +275,7 @@ The curly brackets tell the compiler where the function body begins and ends.
 
 Rust doesn't care where the functions are defined, only that they're defined somewhere.
 
-```rs linenums="1"
+```rs
   // parameters MUST have the Type annotation
 fn func(param: Type) {}
 
@@ -299,7 +299,7 @@ fn func() {
 
 ### if, else-if, else
 
-```rs linenums="1"
+```rs
 if condition {
     // [...]
 } else if condition {
@@ -311,13 +311,13 @@ if condition {
 
 ### let if
 
-```rs linenums="1"
+```rs
 let var = if condition { value } else { value };  // returned types must be the same
 ```
 
 ### if-let
 
-```rs linenums="1"
+```rs
 if let <pattern> = <expr> {
     <block1>
 } else {
@@ -333,14 +333,14 @@ match <expr> {
 
 ### loop
 
-```rs linenums="1"
+```rs
 // loop's forever if not explicitly stopped (return or break)
 loop { }
 ```
 
 ### while, while-let
 
-```rs linenums="1"
+```rs
 while condition { }
 
 while let <pattern> {}
@@ -348,7 +348,7 @@ while let <pattern> {}
 
 ### for
 
-```rs linenums="1"
+```rs
 for item in sequence.iter() { }
 for item in sequence.iter_mut() { }  // iterate over mutable items
 
@@ -362,7 +362,7 @@ for i in (start..end) { }
 
 ### Range
 
-```rs linenums="1"
+```rs
 ..  // RangeFull
 a ..  // RangeFrom { start: a }
 .. b  // RangeTo { end: b }
@@ -373,7 +373,7 @@ a ..= b  // RangeInclusive::new(a, b)
 
 ### `break` & `continue`
 
-```rs linenums="1"
+```rs
 while <condition> {
     // [...]
 
@@ -449,7 +449,7 @@ Cloning is an explicit action, `x.clone()`. The implementation of Clone can prov
 
 Rust won't allow to annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.  
 
-```rs linenums="1"
+```rs
 let s = String::new()
 let t = s;  // MOVE, s is now uninitialized
 let u = t.clone();  // deep copy, t is still valid
@@ -462,7 +462,7 @@ let x = n;  // x holds a COPY of the VALUE of n
 
 The semantics for passing a value to a function are similar to those for assigning a value to a variable. Passing a variable to a function will move or copy, just as assignment does.
 
-```rs linenums="1"
+```rs
 fn main() {
     let s = String::from("hello");  // s comes into scope
 
@@ -487,7 +487,7 @@ fn makes_copy(some_integer: i32) { // some_integer comes into scope
 
 Returning values can also transfer ownership.
 
-```rs linenums="1"
+```rs
 fn main() {
     let s1 = gives_ownership();         // gives_ownership moves its return value into s1
 
@@ -526,7 +526,7 @@ As long as there are *shared references* to a value, not even its owner can modi
 Similarly, if there is a *mutable reference* to a value, it has exclusive access to the value;
 it's not possible to use the owner at all, until the mutable reference goes away.
 
-> **Note**: raw pointers can be used only in `unsafe` block. Rust doesn't track the pointed value
+**Note**: raw pointers can be used only in `unsafe` block. Rust doesn't track the pointed value
 
 *Mutable references* have one big restriction: it's possible to have *only one* mutable reference to a particular piece of data in a particular scope.
 
@@ -537,7 +537,7 @@ A data race is similar to a race condition and happens when these three behavior
 - At least one of the pointers is being used to write to the data.  
 - There's no mechanism being used to synchronize access to the data.
 
-```rs linenums="1"
+```rs
 fn borrow(var: &Type) {  // &Type indicates that the var is a reference
     // here var cannot be modified
 } // when var goes out of scope it doesn't get dropped because the scope didn't own it
@@ -554,7 +554,7 @@ fn borrow2(var: &mut Type) {
 
 The `.` operator can **implicitly borrow or dereference** a reference
 
-```rs linenums="1"
+```rs
 let struct = Struct { field: /* [...] */ }
 let ref = &struct;
 
@@ -567,8 +567,8 @@ v.sort()  // implicit mutable borrow
 (&mut vec).sort()  // explicit mutable borrow
 ```
 
-> **Note**: arithmetic expressions can "see through" one level of references.  
-> **Note**: comparison affect the final value of a reference chain. To compare references directly use `std::ptr::eq`
+**Note**: arithmetic expressions can "see through" one level of references.  
+**Note**: comparison affect the final value of a reference chain. To compare references directly use `std::ptr::eq`
 
 ## Structs
 
@@ -578,7 +578,7 @@ To define a struct enter the keyword struct and name the entire struct.
 A struct's name should describe the significance of the pieces of data being grouped together.  
 Then, inside curly brackets, define the names and types of the pieces of data, which we call *fields*.
 
-```rs linenums="1"
+```rs
 struct Struct {
     field: Type,
     ...
@@ -591,7 +591,7 @@ struct UnitStruct;  // no field, useful in generics
 
 To use a struct after defining it, create an instance of that struct by specifying concrete values for each of the fields.
 
-```rs linenums="1"
+```rs
 let mut var = Struct {
     field: value,
     ...
@@ -600,7 +600,7 @@ let mut var = Struct {
 
 ### Field Init Shorthand
 
-```rs linenums="1"
+```rs
 let mut var = Struct {
     field,  // shortened form since func param is named as the struct's field
     ...
@@ -613,7 +613,7 @@ var.field = value;  // member access
 
 ### Struct Update Syntax
 
-```rs linenums="1"
+```rs
 let struct1 = Struct {
     field1: value,
     field2: value,
@@ -631,7 +631,7 @@ let struct2 = Struct {
 Use Tuple Structs to create different types easily.  
 To define a **tuple struct**, start with the `struct` keyword and the struct name followed by the types in the tuple.
 
-```rs linenums="1"
+```rs
 struct Point(i32, i32, i32);
 struct Color(i32, i32, i32);
 
@@ -640,7 +640,7 @@ let origin = Point(0, 0, 0);
 
 ### Struct Printing
 
-```rs linenums="1"
+```rs
 #[derive(Debug)]  // inherit the debug trait
 struct Struct { }
 
@@ -650,7 +650,7 @@ println!("{:?}", s)  // debug output: { field: value, ... }
 
 ### Associated Functions & Type-Associated Functions (aka Methods)
 
-```rs linenums="1"
+```rs
 struct Struct { };
 impl Struct
 {
@@ -667,7 +667,7 @@ Struct::type_associated_function(arg);
 
 ### Associated Consts
 
-```rs linenums="1"
+```rs
 struct Struct {
     const ASSOCIATED_CONST: Type = <value>;
 }
@@ -680,7 +680,7 @@ Struct::ASSOCIATED_CONST;
 A Trait is a collection of methods representing a set of behaviours necessary to accomplish some task.  
 Traits can be used as generic types constraints and can be implemented by data types.
 
-```rs linenums="1"
+```rs
 trait Trait {
     fn method_signature(&self, param: Type) -> Type;
     fn method_signature(&self, param: Type) -> Type {
@@ -701,14 +701,14 @@ impl Trait for Struct {
 
 ### Fully Qualified Method Calls
 
-```rs linenums="1"
+```rs
 value.method();
 Type::method(value);
 Trait::method(value);
 <Type as Trait>::method(value);
 ```
 
-> **Note**: fully qualified method calls also works with associated functions
+**Note**: fully qualified method calls also works with associated functions
 
 ### Derive Traits
 
@@ -726,7 +726,7 @@ Derivable Traits:
 - `Default`
 - `Debug`
 
-```rs linenums="1"
+```rs
 #[derive(Trait)]  // derive a trait for the struct
 #[derive(Trait, Trait, ...)]  // derive multiple traits
 struct Struct {
@@ -738,7 +738,7 @@ struct Struct {
 
 Trait Bound are used to require a generic to implement specific traits and guarantee that a type will have the necessary behaviours.
 
-```rs linenums="1"
+```rs
 fn generic_method<T: RequiredTrait>() {}
 fn generic_method<T: RequiredTrait + RequiredTrait>() {}  // multiple bounds
 // or
@@ -760,7 +760,7 @@ fn method_signature(param: &(impl TraitOne + TraitTwo)) -> Type {}
 
 ### Trait Extensions
 
-```rs linenums="1"
+```rs
 extern crate foo;
 use foo::Foo;
 
@@ -784,7 +784,7 @@ Rust accomplishes this by performing *monomorphization* of the code that is usin
 Monomorphization is the process of turning generic code into specific code by filling in the concrete types that are used when compiled.
 For this reason if a function as a trait as return type (trait bound), only a single type that implements the trait can be returned.
 
-```rs linenums="1"
+```rs
 struct GenericStruct<T, U> {
     T generic_field,
     U generic_field,
@@ -813,14 +813,14 @@ fn generic_func<T>() -> &T { }  // T could be heap-based type, returning referen
 fn generic<T: Trait>() -> Type { }  // use generic constraint
 ```
 
-> **Note**: the calling code needs to import your new trait in addition to the external type
+**Note**: the calling code needs to import your new trait in addition to the external type
 
 ### Associated Types
 
 *Associated types* connect a type placeholder with a trait such that the trait method definitions can use these placeholder types in their signatures.  
 The implementor of a trait will specify the concrete type to be used instead of the placeholder type for the particular implementation.
 
-```rs linenums="1"
+```rs
 trait Iterator {
     type Item;
 
@@ -830,7 +830,7 @@ trait Iterator {
 
 The type `Item` is a placeholder, and the next method’s definition shows that it will return values of type `Option<Self::Item>`. Implementors of the `Iterator` trait will specify the concrete type for `Item`, and the next method will return an `Option` containing a value of that concrete type.
 
-> **Note**: if the type is *generic* then then they are called **generic associated types**
+**Note**: if the type is *generic* then then they are called **generic associated types**
 
 ### Generic Traits vs Associated Types
 
@@ -848,9 +848,9 @@ So a trait object includes a little extra information about the referent’s typ
 
 In memory, a trait object is a fat pointer consisting of a pointer to the value, plus a pointer to a table representing that value’s type.  
 
-> **Note**: Rust automatically converts ordinary references into trait objects when needed
+**Note**: Rust automatically converts ordinary references into trait objects when needed
 
-```rs linenums="1"
+```rs
 let trait_object = &mut dyn Trait = &mut source;
 let trait_object: Box<dyn Trait> = Box::new(source);  // same for Rc<T>, Arc<T>, ...
 ```
@@ -858,7 +858,7 @@ let trait_object: Box<dyn Trait> = Box::new(source);  // same for Rc<T>, Arc<T>,
 This works differently from defining a struct or function that uses a generic type parameter with trait bounds.  
 A generic type parameter can only be substituted with *one concrete type* at a time, whereas trait objects allow for *multiple* concrete types to fill in for the trait object at runtime.
 
-```rs linenums="1"
+```rs
 fn func() -> Box<dyn Trait> { }  // return something that implements the specified trait
 ```
 
@@ -883,7 +883,7 @@ The annotation does not affect how long the references live.
 
 In case of different lifetimes the complier will use the most restrictive.
 
-```rs linenums="1"
+```rs
 // lifetime annotation syntax
 fn func<'a>(x: &'a Type, y: &'a Type) -> &'a Type { }
 
@@ -916,7 +916,7 @@ They describe situations that do not require explicit lifetime annotations.
 
 ## Enums
 
-```rs linenums="1"
+```rs
 // enum definition
 enum Enum
 {
@@ -948,9 +948,9 @@ impl Enum
 
 A *match expression* is made up of *arms*. An arm consists of a *pattern* and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern. Rust takes the value given to match and looks through each arm's pattern in turn.
 
-> **Note**: `match` arms must be exhaustive for compilation.
+**Note**: `match` arms must be exhaustive for compilation.
 
-```rs linenums="1"
+```rs
 enum Enum {
     Variant1,
     Variant2,
@@ -988,9 +988,9 @@ fn match_variant(e: Enum) {
 |Multiple Patterns     | `'a' \| 'A'`               | `match, if let, while let` only         |
 |Guard Expression      | `<pattern> if <condition>` | `match` only                            |
 
-> **Note**: `..` in slices matches *any number* of elements. `..` in structs *ignores* all remaining fields
+**Note**: `..` in slices matches *any number* of elements. `..` in structs *ignores* all remaining fields
 
-```rs linenums="1"
+```rs
 // unpack a struct into local variables
 let Struct { local_1, local_2, local_3, .. } = source;
 
@@ -1012,7 +1012,7 @@ A **refutable pattern** is one that might not match, like `Ok(x)`. Refutable pat
 
 Refutable patterns are also allowed in `if let` and `while let` expressions:
 
-```rs linenums="1"
+```rs
 // handle just one enum variant specially
 if let Enum::VariantX(_, _) = source { }
 
@@ -1034,7 +1034,7 @@ The `Option` type is used in many places because it encodes the very common scen
 
 `Result<T, E>` is the type used for returning and propagating errors. It is an enum with the variants, `Ok(T)`, representing success and containing a value, and `Err(E)`, representing error and containing an error value.
 
-```rs linenums="1"
+```rs
 // std implementation
 enum Option<T> {
     Some(T),
@@ -1094,24 +1094,24 @@ fn returns_result() -> Result<T, E> {
 Ending an expression with `?` will result in the unwrapped success (`Ok`) value, unless the result is `Err`, in which case `Err` is returned early from the enclosing function.  
 `?` can only be used in functions that return `Result` because of the early return of `Err` that it provides.
 
-> **Note**: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
-> **Note**: error values that have the `?` operator called on them go through the `from` function, defined in the `From` trait in the standard library, which is used to convert errors from one type into another
+**Note**: When `None` is used the type of `Option<T>` must be specified, because the compiler can't infer the type that the `Some` variant will hold by looking only at a `None` value.
+**Note**: error values that have the `?` operator called on them go through the `from` function, defined in the `From` trait in the standard library, which is used to convert errors from one type into another
 
 ### Multiple Error Types
 
 When working with multiple error types is useful to return a "generic error" type. All the standard library error types can be represented by `Box<dyn std::Error + Send + Sync + 'static>`.
 
-```rs linenums="1"
+```rs
 // convenience type aliases for the generic error
 type GenericError = Box<dyn std::Error + Send + Sync + 'static>;
 type GenericResult<T> = Result<T; GenericError>;
 ```
 
-> **Note**: the [`anyhow`](https://crates.io/crates/anyhow) crate provides error and result types like `GenericError` with additional features
+**Note**: the [`anyhow`](https://crates.io/crates/anyhow) crate provides error and result types like `GenericError` with additional features
 
 ### Custom Error Types
 
-```rs linenums="1"
+```rs
 use thiserror::Error;  // utility crate for custom errors
 
 #[derive(Error, Debug)]
@@ -1123,7 +1123,7 @@ pub struct JsonError {
 }
 ```
 
-> **Note**: the [`thiserror`](https://crates.io/crates/thiserror) crate provides utilities to create custom error types
+**Note**: the [`thiserror`](https://crates.io/crates/thiserror) crate provides utilities to create custom error types
 
 ## Collections
 
@@ -1132,7 +1132,7 @@ pub struct JsonError {
 Vectors allow to store more than one value in a single data structure that puts all the values next to each other in memory. Vectors can only store values of the *same type*.  
 Like any other struct, a vector is freed when it goes out of scope. When the vector gets dropped, all of its contents are also dropped.
 
-```rs linenums="1"
+```rs
 let v: Vec<Type> = Vec<Type>::new();  // empty vec init
 let mut v: vec![item1, item2, ...];  // vec init (type inferred)
 
@@ -1151,7 +1151,7 @@ for i in mut &v {
 
 A vector can hold different types if those type are variants of the same enum. It's also possible to use trait objects.
 
-```rs linenums="1"
+```rs
 enum Enum {
     Int(i32),
     Float(f64),
@@ -1169,7 +1169,7 @@ let v = vec![
 
 Stores data in key-value pairs.
 
-```rs linenums="1"
+```rs
 use std::collections::HashMap;
 
 let map: HashMap<K, V> = HashMap::new();
@@ -1191,7 +1191,7 @@ Within these limited contexts, the compiler is reliably able to infer the types 
 The first time a closure is called with an argument, the compiler infers the type of the parameter and the return type of the closure.  
 Those types are then locked into the closure and a type error is returned if a different type is used with the same closure.
 
-```rs linenums="1"
+```rs
 // closure definition
 let closure = |param1, param2| <expr>;
 let closure = |param1, param2| {/* multiple lines of code */};
@@ -1209,7 +1209,7 @@ To define structs, enums, or function parameters that use closures generics and 
 
 The `Fn` traits are provided by the standard library. All closures implement at least one of the traits: `Fn`, `FnMut`, or `FnOnce`.
 
-```rs linenums="1"
+```rs
 struct ClosureStruct<T> where T: Fn(u32) -> u32 {
     closure: T,
 }
@@ -1238,7 +1238,7 @@ All closures implement `FnOnce` because they can all be called at least once. Cl
 To force the closure to take ownership of the values it uses in the environment, use the `move` keyword before the parameter list.  
 This technique is mostly useful when passing a closure to a new thread to move the data so it's owned by the new thread.
 
-```rs linenums="1"
+```rs
 let closure = move |param| <expr>;
 ```
 
@@ -1265,7 +1265,7 @@ The *iterator pattern* allows to perform some task on a sequence of items in tur
 
 In Rust, iterators are *lazy*, meaning they have no effect until a call to methods that consume the iterator to use it up.
 
-```rs linenums="1"
+```rs
 // iterator trait
 pub trait Iterator {
     type Item;
@@ -1285,7 +1285,7 @@ Other methods defined on the `Iterator` trait, known as *iterator adaptors*, all
 It's possible to chain multiple calls to iterator adaptors to perform complex actions in a readable way.  
 But because all iterators are lazy, a call one of the consuming adaptor methods is needed to get the results.
 
-```rs linenums="1"
+```rs
 let iterator: = vec![1, 2, 3];
 iterator
     .map(|x| x + 1)  // iterator adapter
@@ -1295,7 +1295,7 @@ iterator
 
 ### Custom Iterators
 
-```rs linenums="1"
+```rs
 struct Counter {
     count: u32,
 }
@@ -1353,7 +1353,7 @@ Boxes don't have performance overhead, other than storing their data on the heap
 - Transferring ownership of a large amount of data but ensuring the data won't be copied when you do so
 - Owning a value and which implements a particular trait rather than being of a specific type
 
-```rs linenums="1"
+```rs
 let _box = Box::new(pointed_value);
 ```
 
@@ -1362,7 +1362,7 @@ let _box = Box::new(pointed_value);
 Implementing the `Deref` trait allows to customize the behavior of the dereference operator, `*`.
 By implementing `Deref` in such a way that a smart pointer can be treated like a regular reference.
 
-```rs linenums="1"
+```rs
 struct CustomSmartPointer<T>(T);
 
 impl<T> CustomSmartPointer<T> {
@@ -1389,7 +1389,7 @@ let v = *(s.deref());
 It works only on types that implement the `Deref` trait and converts such a type into a reference to another type.  
 Deref coercion was added to Rust so that programmers writing function and method calls don't need to add as many explicit references and dereferences with `&` and `*`.
 
-```rs linenums="1"
+```rs
 fn hello(name: &str) {
     println!("Hello {}", name);
 }
@@ -1414,7 +1414,7 @@ Rust does *deref coercion* when it finds types and trait implementations in thre
 
 `Drop` allows to customize what happens when a value is about to go out of scope. It-s possible to provide an implementation for the `Drop` trait on any type.
 
-```rs linenums="1"
+```rs
 struct CustomSmartPointer<T>(T);
 
 impl<T> Drop for CustomSmartPointer<T> {
@@ -1438,7 +1438,7 @@ Rust provides the *reference-counted* pointer types `Rc<T>` and `Arc<T>`.
 The `Rc<T>` and `Arc<T>` types are very similar; the only difference between them is that an `Arc<T>` is safe to share between
 threads directly (the name Arc is short for *atomic* reference count) whereas a plain `Rc<T>` uses faster non-thread-safe code to update its reference count.
 
-```rs linenums="1"
+```rs
 use std::rc::Rc;
 
 let s: Rc<String> = Rc::new("some string".to_string());
@@ -1449,7 +1449,7 @@ let u: Rc<String> = s.clone();  // contains a new pointer to the value held by s
 Each of the `Rc<T>` pointers is referring to the same block of memory, which holds a reference count and space for the value.  
 The usual ownership rules apply to the `Rc<T>` pointers themselves, and when the last extant `Rc<T>` is dropped, Rust drops the value as well.
 
-> **Note**: A value owned by an `Rc<T>` pointer is immutable.
+**Note**: A value owned by an `Rc<T>` pointer is immutable.
 
 ### `RefCell<T>` & Interior Mutability Pattern
 
@@ -1466,7 +1466,7 @@ For those reasons, checking the borrowing rules at compile time is the best choi
 The advantage of checking the borrowing rules at runtime instead is that certain memory-safe scenarios are then allowed, whereas they are disallowed by the compile-time checks.  
 Static analysis, like the Rust compiler, is inherently conservative.
 
-> **Note**: `RefCell<T>` is only for use in single-threaded scenarios and will cause a compile-time error if used it in a multithreaded context.
+**Note**: `RefCell<T>` is only for use in single-threaded scenarios and will cause a compile-time error if used it in a multithreaded context.
 
 When creating immutable and mutable references, the `&` and `&mut` syntax is used, respectively.  
 With `RefCell<T>`, the `borrow` and `borrow_mut` methods are ued, which are part of the safe API that belongs to `RefCell<T>`.  
@@ -1496,7 +1496,7 @@ This creates memory leaks because the reference count of each item in the cycle 
 
 ### Reading Files
 
-```rs linenums="1"
+```rs
 use std::fs;
 
 let contents: Vec<u8> = fs::read("path/to/file").unwrap_or_default();
@@ -1507,7 +1507,7 @@ contents.lines(); // iterator over text lines
 
 ### Writing Files
 
-```rs linenums="1"
+```rs
 use std::fs;
 use std::io::Write;  // write trait
 // or
@@ -1531,7 +1531,7 @@ The extern keyword is used in two places in Rust:
 
 `extern` is used in two different contexts within FFI. The first is in the form of external blocks, for declaring function interfaces that Rust code can call foreign code by.
 
-```rs linenums="1"
+```rs
 #[link(name = "my_c_library")]
 extern "C" {
     fn my_c_function(x: i32) -> bool;
@@ -1544,7 +1544,7 @@ Working with non-Rust languages and FFI is inherently unsafe, so wrappers are us
 
 The mirror use case of FFI is also done via the extern keyword:
 
-```rs linenums="1"
+```rs
 #[no_mangle]
 pub extern "C" fn callable_from_c(x: i32) -> bool {
     x % 3 == 0

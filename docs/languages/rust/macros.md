@@ -8,7 +8,7 @@ A function signature must declare the number and type of parameters the function
 
 The downside to implementing a macro instead of a function is that macro definitions are more complex than function definitions because it's Rust code that writes Rust code. Due to this indirection, macro definitions are generally more difficult to read, understand, and maintain than function definitions.
 
-> **Note**: macros need to be defined and brought into scope before they are usable in a file, as opposed to functions that can be defined anywhere and be called anywhere.
+**Note**: macros need to be defined and brought into scope before they are usable in a file, as opposed to functions that can be defined anywhere and be called anywhere.
 
 ## Declarative Macros (Macro-by-Example)
 
@@ -43,7 +43,7 @@ In both the matcher and the transcriber, the `$` token is used to invoke special
 The exception is that the outer delimiters for the matcher will match any pair of delimiters.  
 Thus, for instance, the matcher (()) will match `{()}` but not `{{}}`.
 
-> **Note**: The character `$` cannot be matched or transcribed literally.
+**Note**: The character `$` cannot be matched or transcribed literally.
 
 When forwarding a matched fragment to another macro-by-example, matchers in the *second macro* will see an opaque AST of the fragment type. The second macro can't use literal tokens to match the fragments in the matcher, only a fragment specifier of the same type. The `ident`, `lifetime`, and `tt` fragment types are an exception, and can be matched by literal tokens.
 
@@ -110,7 +110,7 @@ The repetition operators are:
 - `+`: indicates any number but at least one.
 - `?`: indicates an optional fragment with zero or one occurrence.
 
-> **Note**: Since `?` represents at most one occurrence, it cannot be used with a separator.
+**Note**: Since `?` represents at most one occurrence, it cannot be used with a separator.
 
 The repeated fragment both matches and transcribes to the specified number of the fragment, separated by the separator token. Metavariables are matched to every repetition of their corresponding fragment.
 
@@ -137,7 +137,7 @@ lazy_static!{lazy} // textual lookup finds local macro first.
 self::lazy_static!{} // path-based lookup ignores local macro, finds imported one.
 ```
 
-> **Note**: It is not an error to define a macro multiple times; the most recent declaration will shadow the previous one unless it has gone out of scope.
+**Note**: It is not an error to define a macro multiple times; the most recent declaration will shadow the previous one unless it has gone out of scope.
 
 ### The `macro_use` attribute
 
@@ -166,7 +166,7 @@ lazy_static!{}
 self::lazy_static!{} // Error: lazy_static is not defined in `self`
 ```
 
-> **Note**: Macros to be imported with `#[macro_use]` must be exported with `#[macro_export]`.
+**Note**: Macros to be imported with `#[macro_use]` must be exported with `#[macro_export]`.
 
 [meta_list_idents]: https://doc.rust-lang.org/reference/attributes.html#meta-item-attribute-syntax
 
@@ -191,7 +191,7 @@ mod mac {
 }
 ```
 
-> **Note**: Macros labeled with `#[macro_export]` are always pub and can be referred to by other crates, either by path or by `#[macro_use]`.
+**Note**: Macros labeled with `#[macro_export]` are always pub and can be referred to by other crates, either by path or by `#[macro_use]`.
 
 ### [Follow-set Ambiguity Restrictions][macro_ambiguity]
 

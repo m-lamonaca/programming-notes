@@ -94,7 +94,7 @@ The applied config in each repository is the combination of all three scopes in 
 `git clone --shallow`: clone only repo files, not history of commits  
 `git clone --depth <depth>`: clone only last `<depth>` commits  
 
-> **Note**: for a in depth explanation of `--force-if-includes` see [this][force-if-includes]
+**Note**: for a in depth explanation of `--force-if-includes` see [this][force-if-includes]
 
 ### Viewing Project History
 

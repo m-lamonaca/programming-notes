@@ -19,7 +19,7 @@ Because Rx implements standard LINQ operators, it's possible to write queries ag
 The two most important types in Rx are the `IObservable<T>` and `IObserver<T>` interfaces.  
 They are important enough to be in the System namespace. The other parts of Rx are in the `System.Reactive` NuGet package.
 
-```cs linenums="1"
+```cs
 public interface IObservable<out T>
 {
     IDisposable Subscribe(IObserver<T> observer);

@@ -10,7 +10,7 @@
 
 ## application.properties
 
-```ini linenums="1"
+```ini
 spring.datasource.url=DB_url
 spring.datasource.username=user
 spring.datasource.password=password
@@ -24,7 +24,7 @@ server.port=server_port
 
 Model of a table of the DB
 
-```java linenums="1"
+```java
 package <base_package>.entities;
 
 import javax.persistence.Entity;
@@ -54,7 +54,7 @@ public class Entity {
 
 Spring Interface for DB connection and CRUD operations.
 
-```java linenums="1"
+```java
 package <base_package>.dal  // or .repository
 
 import org.springframework.data.repository.JpaRepository;
@@ -77,7 +77,7 @@ Interfaces and method to access the Data Access Layer (DAL).
 
 In `IEntityService.java`:
 
-```java linenums="1"
+```java
 package <base_package>.services;
 
 import java.util.List;
@@ -105,7 +105,7 @@ public interface IEntityService {
 
 In `EntityService.java`:
 
-```java linenums="1"
+```java
 package <base_package>.services;
 
 import java.util.List;
@@ -161,7 +161,7 @@ public class EntityService implements IEntityService {
 
 REST API routes & endpoints to supply data as JSON.
 
-```java linenums="1"
+```java
 package <base_package>.integration;
 
 import java.util.List;
