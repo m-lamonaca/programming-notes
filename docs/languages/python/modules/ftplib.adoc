@@ -1,6 +1,6 @@
-== Ftplib Module
+= Ftplib Module
 
-=== FTP CLASSES
+== FTP CLASSES
 
 [source,py]
 ----
@@ -12,7 +12,7 @@ ftplib.FTP(host="", user="", password="", acct="")
 ftplib.FTP_TLS(host="", user="", password="", acct="")
 ----
 
-=== EXCEPTIONS
+== EXCEPTIONS
 
 [source,py]
 ----
@@ -23,7 +23,7 @@ ftplib.error_proto  # error not in ftp specs
 ftplib.all_errors  # tuple of all exceptions
 ----
 
-=== FTP OBJECTS
+== FTP OBJECTS
 
 [source,py]
 ----

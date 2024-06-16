@@ -1,4 +1,4 @@
-== Java
+= Java
 
 [source,java]
 ----
@@ -8,19 +8,19 @@
 ----
 
 [cols=",",options="header",]
-|===
+|==
 |Java element |Case
 |package |lowercase
 |class |PascalCase
 |variable |camelCase
 |method |camelCase
-|===
+|==
 
-=== Basics
+== Basics
 
 Package definition: `+package <package_location>;+`
 
-==== Main Method (entry point of algorithm)
+== Main Method (entry point of algorithm)
 
 [source,java]
 ----
@@ -29,11 +29,11 @@ public static void main (String[] args) {
 }
 ----
 
-==== Variable Assignment
+== Variable Assignment
 
 `+Type variable_1 = <expr>, ..., variable_n = <expr>;+`
 
-==== Constant Definition (outside of main method/function)
+== Constant Definition (outside of main method/function)
 
 [source,java]
 ----
@@ -41,7 +41,7 @@ public static final Type CONSTANT_NAME = value;
 public static final double PI = 3.14159;   //example
 ----
 
-==== Constant Definition (inside main method/function)
+== Constant Definition (inside main method/function)
 
 [source,java]
 ----
@@ -49,7 +49,7 @@ final Type CONSTANT_NAME = value;
 final double PI = 3.14159;   //example
 ----
 
-==== Screen Output
+== Screen Output
 
 [source,java]
 ----
@@ -57,7 +57,7 @@ System.out.println(output_1 + _ + output_n);   //newline at every invocation
 System.out.print(output_1 + _ + output_n);
 ----
 
-==== Output Formatting
+== Output Formatting
 
 https://dzone.com/articles/java-string-format-examples[String.format()
 Examples]
@@ -83,7 +83,7 @@ NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);  // format a number
 fmt.format(number);  // apply format to a number, returns a String
 ----
 
-=== Keyboard Input
+== Keyboard Input
 
 [source,java]
 ----
@@ -104,7 +104,7 @@ The `+nextLine()+` method imports from the *last* `+\n+`. +
 Thus when switching to a different input method is necessary to call
 `+nextLine()+` one more time to avoid errors.
 
-==== Primitive Types
+== Primitive Types
 
 [source,java]
 ----
@@ -122,15 +122,15 @@ boolean     Boolean                 false                   true
 Digits can be separated by _ (underscore). +
 If not specified int & double are the default types.
 
-==== Floating-Point numbers & Precision Calcs
+== Floating-Point numbers & Precision Calcs
 
-Don’t use `+==+` or `+!=+` to confront floating value numbers since they
+Don’t use `+=+` or `+!=+` to confront floating value numbers since they
 use approximation or have a lot of digits. +
 It’s best to check if the difference between two numbers is small
 enough. +
 For high precision calcs is best to use `+BigDecimal+`.
 
-==== Type Conversion (casting) & Type checking
+== Type Conversion (casting) & Type checking
 
 [source,java]
 ----
@@ -138,7 +138,7 @@ Type variable = (Type) <expression>;  // convert to other Type
 var instanceof Type;  // true if var is an instance of Type
 ----
 
-==== Wrapper Classes
+== Wrapper Classes
 
 Every primitive type has a corresponding wrapper class. +
 Wrapper classes permits the creation of an object with the same type of
@@ -161,7 +161,7 @@ WrapperClass.parseClasseWrapper(string);  // converts the tring to the wrapper c
 WrapperClass.toString(primitive);  // converts the wrapper class value to a string
 ----
 
-==== String & Char
+== String & Char
 
 [source,java]
 ----
@@ -169,10 +169,10 @@ String string = "text";  //strings always in double quotes
 char character = 'C';  //chars always in single quotes
 ----
 
-==== Special Characters
+== Special Characters
 
 [cols=",",options="header",]
-|===
+|==
 |Escape Character |Character
 |`+\n+` |new line
 |`+\t+` |tab
@@ -185,15 +185,15 @@ char character = 'C';  //chars always in single quotes
 |`+\x<digits>+` |hexadecimal characters
 |`+\o<digits>+` |octal characters
 |`+\<digits>+` |ASCII character
-|===
+|==
 
-==== String Concatenation
+== String Concatenation
 
 The value of the variable is appende to the string literal. +
 `+"text" + variable+` +
 String are immutable. Concatenation creates a new string.
 
-==== String Conversion to Number
+== String Conversion to Number
 
 [source,java]
 ----
@@ -202,7 +202,7 @@ float f = Float.parseFloat(string);
 int i = integer.parseInt(string);
 ----
 
-==== String Class Methods
+== String Class Methods
 
 [source,java]
 ----
@@ -234,7 +234,7 @@ string.compareTo(otherString);
 `+compareTo()+` compares the lexicographic order (based on UNICODE). +
 To compare in alphabetical order both strings must have the same case.
 
-==== Mathematical Operations
+== Mathematical Operations
 
 [source,java]
 ----
@@ -264,10 +264,10 @@ Math.toDegrees(rad)
 Math.toRadians(deg)
 ----
 
-==== Arithmetic Operators
+== Arithmetic Operators
 
 [cols=",",options="header",]
-|===
+|==
 |operator |operation
 |a `+++` b |sum
 |a `+-+` b |subtraction
@@ -276,35 +276,35 @@ Math.toRadians(deg)
 |a `+%+` b |modulo
 |a`++++` |increment
 |a`+--+` |decrement
-|===
+|==
 
-==== Comparison Operators
+== Comparison Operators
 
 [cols=",",options="header",]
-|===
+|==
 |operator |operation
-|a `+==+` b |equal to
+|a `+=+` b |equal to
 |a `+!=+` b |not equal to
 |a `+>+` b |greater than
 |a `+<+` b |lesser than
 |a `+>=+` b |greater than or equal to
 |a `+<=+` b |lesser than or equal to
-|===
+|==
 
-==== Logical Operators
+== Logical Operators
 
 [cols=",",options="header",]
-|===
+|==
 |operator |operation
 |`+!+`a |logical negation (*NOT*)
 |a `+&&+` b, |logical *AND*
 |a `+||+` b, |logical *OR*
-|===
+|==
 
-==== Bitwise Operators
+== Bitwise Operators
 
 [cols=",",options="header",]
-|===
+|==
 |operator |operation
 |`+~+`a |bitwise *NOT*
 |a `+&+` b |bitwise *AND*
@@ -312,12 +312,12 @@ Math.toRadians(deg)
 |a `+^+` b |bitwise *XOR*
 |a `+<<+` b |bitwise left shift
 |a `+>>+` b |bitwise right shift
-|===
+|==
 
-==== Compound Assignment Operators
+== Compound Assignment Operators
 
 [cols=",",options="header",]
-|===
+|==
 |operator |operation
 |a `++=+` b |a = a + b
 |a `+-=+` b |a = a - b
@@ -329,22 +329,22 @@ Math.toRadians(deg)
 |a `+^=+` b |a = a ^ b
 |a `+<<=+` b |a = a << b
 |a `+>>=+` b |a = a >> b
-|===
+|==
 
-==== Operator Precedence
+== Operator Precedence
 
 [arabic]
 . unary operators `++++` , `+--+`, `+!+`
 . binary arithmetic operators `+*+`, `+/+`, `+%+`
 . binary arithmetic operators `+++`, `+-+`
 . boolean operators `+<+`, `+>+` , `+<=+`, `+>=+`
-. boolean operators `+==+`, `+!=+`
+. boolean operators `+=+`, `+!=+`
 . bitwise operator `+&+`
 . bitwise operator `+|+`
 . logical operator `+&&+`
 . logical operator `+||+`
 
-==== Short Circuit Evaluation
+== Short Circuit Evaluation
 
 If in `+(expressionA || expressionB)+` expressionA results `+true+`,
 Java returns `+true+` without evaluating expressionB. +
@@ -352,9 +352,9 @@ If in `+(expressionA && expressionB)+` expressionA results `+false+`,
 Java returns `+false+` without evaluating expressionB. +
 Full evaluation can be forced using `+&+` and `+|+`.
 
-=== Decision Statements
+== Decision Statements
 
-==== `+If Else+`
+== `+If Else+`
 
 [source,java]
 ----
@@ -365,7 +365,7 @@ if (condition) {
 }
 ----
 
-==== `+If, Else If, Else+`
+== `+If, Else If, Else+`
 
 [source,java]
 ----
@@ -380,13 +380,13 @@ if (condition) {
 }
 ----
 
-==== Ternary Operator
+== Ternary Operator
 
 `+(condition) ? istruzione_1 : istruzione_2;+` +
 if condition is `+true+` executes instruction1 otherwise executes
 instruction2.
 
-==== `+Switch+`
+== `+Switch+`
 
 [source,java]
 ----
@@ -406,9 +406,9 @@ switch (matchExpression) {
 Omitting the `+break+` keyword causes multiple branches to execute the
 same code.
 
-=== Loop Statements
+== Loop Statements
 
-==== `+While+` Loop
+== `+While+` Loop
 
 [source,java]
 ----
@@ -417,7 +417,7 @@ while (condition) {
 }
 ----
 
-==== `+Do While+` Loop
+== `+Do While+` Loop
 
 [source,java]
 ----
@@ -428,7 +428,7 @@ do {
 
 Loop body executed _at least_ one time
 
-==== `+For+` Loop
+== `+For+` Loop
 
 [source,java]
 ----
@@ -437,7 +437,7 @@ for (initializer; condition; iterator) {
 }
 ----
 
-==== `+Foreach+` Loop
+== `+Foreach+` Loop
 
 [source,java]
 ----
@@ -446,7 +446,7 @@ for (Type variable : iterable){
 }
 ----
 
-==== Multiple iterators in `+For+` Loop
+== Multiple iterators in `+For+` Loop
 
 [source,java]
 ----
@@ -458,12 +458,12 @@ for (initializer1, initializer2; condition; iterator1, iterator2) {
 The iterator declared in the for is a local variable and can be used
 only in the for loop block.
 
-==== Forced Program Termination
+== Forced Program Termination
 
 `+System.exit(returnedValue);+` forces the termination of the program
 execution returning a specified value.
 
-==== Assertion Checks
+== Assertion Checks
 
 If the assertion check is enabled
 (`+java -ebableassetrions programName+`) the execution of the algorithm
@@ -476,12 +476,12 @@ precise point in the code (Sanity Check).
 assert <booleanExpression>;
 ----
 
-=== Static Methods
+== Static Methods
 
 Static methods are not bound to an _instance_ of a class but they act on
 the class _itself_.
 
-==== Static Void Method Definition
+== Static Void Method Definition
 
 [source,java]
 ----
@@ -490,7 +490,7 @@ static void methodName (parameters) {
 }
 ----
 
-==== Static Method Definition
+== Static Method Definition
 
 [source,java]
 ----
@@ -500,7 +500,7 @@ static tipo_metodo methodName (parameters) {
 }
 ----
 
-==== Static Method Invocation
+== Static Method Invocation
 
 [source,java]
 ----
@@ -508,9 +508,9 @@ methodName(arguments);
 ClassName.methodName(arguments);    //if method is used outside its class
 ----
 
-=== Array
+== Array
 
-=== Array Declaration
+== Array Declaration
 
 [source,java]
 ----
@@ -529,12 +529,12 @@ Type[] arrayName;
 arrayType = new Type[dimension];
 ----
 
-=== Array Creation by Initialization
+== Array Creation by Initialization
 
 `+Type[] arrayName = {value1, value2, ...}+` +
 Array dimension is determined by the number of values.
 
-==== Arrays as method parameters
+== Arrays as method parameters
 
 [source,java]
 ----
@@ -548,13 +548,13 @@ methodName(arrayName);  //[] omitted when passing array as argument
 Single elements of an array can be passed to a method. Array dimension
 can be omitted.
 
-==== Equality of Arrays
+== Equality of Arrays
 
-As arrays ar object in Java, the operators `+==+` and `+!=+` confront
+As arrays ar object in Java, the operators `+=+` and `+!=+` confront
 the memory address of the arrays. +
 Array contents must be confronted by looping through the array.
 
-==== Methods returning Arrays
+== Methods returning Arrays
 
 [source,java]
 ----
@@ -565,7 +565,7 @@ static Type[] methodName (parameters) {
 }
 ----
 
-=== Variable numbers of parameters in a method
+== Variable numbers of parameters in a method
 
 [source,java]
 ----
@@ -577,7 +577,7 @@ static Type methodName (parameters, tipo[] ArrayName) {
 It’s not necessary to specify a dimension of the array, it’s determined
 by Java
 
-==== Multi-Dimensional Arrays
+== Multi-Dimensional Arrays
 
 [source,java]
 ----
@@ -585,7 +585,7 @@ Type[]...[] arrayName = new Type[dimension1]...[dimensionN];
 Type arrayName[]...[] = new Type[dimension1]...[dimensionN];
 ----
 
-==== Multi-Dimensional Arrays as parameters
+== Multi-Dimensional Arrays as parameters
 
 [source,java]
 ----
@@ -594,7 +594,7 @@ static Type methodName (Type[]...[] ArrayName) {
 }
 ----
 
-==== Methods returning multi-dimensional arrays
+== Methods returning multi-dimensional arrays
 
 [source,java]
 ----
@@ -605,7 +605,7 @@ static Type[]...[] methodName (parameters) {
 }
 ----
 
-==== Array Length of multi-dimensional arrays
+== Array Length of multi-dimensional arrays
 
 [source,java]
 ----
@@ -613,7 +613,7 @@ array.length  //row length
 array[rowIndex].length  //column length
 ----
 
-==== Irregular Table Visualization
+== Irregular Table Visualization
 
 [source,java]
 ----
@@ -627,7 +627,7 @@ static void viewTable (Type[][] matrix){
 }
 ----
 
-=== Recursion Guidelines
+== Recursion Guidelines
 
 The core of the recursion must be constituted by a _conditional
 instruction_ that permits to handle the cases based on the method
@@ -638,7 +638,7 @@ method. +
 _At leats one_ of the alternatives must not contain a recursive call or
 it must produce a value that constitutes a base case or an arrest value.
 
-=== Exception Handling
+== Exception Handling
 
 An *Exception* is an object used to signal an anomalous event. *Checked
 Exceptions* must be handled in a catch meanwhile *Unchecked Exceptions*
@@ -646,7 +646,7 @@ do not need to be cached like `+RuntimeException+`. Unchecked exceptions
 usually mean that there is an error in the logic of the program that
 must be fixed.
 
-==== `+Try-Catch-Finally+`
+== `+Try-Catch-Finally+`
 
 This construct permits to monitor what happens in a block of code and to
 specify what to do in case of errors (_exceptions_).
@@ -671,7 +671,7 @@ A `+try-catch+` construct can handle multiple exceptions at once. Every
 `+catch+` is analyzed in sequence and is executed the first to happen
 thus is best to leave a generic exception last.
 
-==== Try with Resources
+== Try with Resources
 
 [source,java]
 ----
@@ -686,7 +686,7 @@ try (
 }
 ----
 
-==== `+Throw+` & `+Throws+`
+== `+Throw+` & `+Throws+`
 
 The `+throw+` keyword is used to generate a custom exception in a point
 of the code. +
@@ -715,7 +715,7 @@ Type methodName(parameters) throws ExceptionClass {
 }
 ----
 
-==== Defining Personalized Exceptions
+== Defining Personalized Exceptions
 
 A user-defined exception has to inherit from `+Exception+` or one of
 it’s descendants.
@@ -737,9 +737,9 @@ public class CustomException extends Exception {
 }
 ----
 
-=== Object Oriented Programming
+== Object Oriented Programming
 
-==== Access Modifiers
+== Access Modifiers
 
 `+public+` variables, methods, classes are usable outside of class of
 definition. +
@@ -751,7 +751,7 @@ defining class, it’s descendants and the package. +
 specified variables, methods and classes are _only_ accessible from the
 same package.
 
-==== Instance Method Definition
+== Instance Method Definition
 
 [source,java]
 ----
@@ -760,7 +760,7 @@ Type methodName (parameters) {
 }
 ----
 
-==== `+Void+` Instance Method
+== `+Void+` Instance Method
 
 [source,java]
 ----
@@ -769,7 +769,7 @@ void methodName (parameters) {
 }
 ----
 
-==== Class Definition
+== Class Definition
 
 [source,java]
 ----
@@ -791,22 +791,22 @@ public class ClassName {
 }
 ----
 
-==== `+This+` identifier
+== `+This+` identifier
 
 `+this.instanceVariable+` identifies the instance variable It’s possible
 to use `+this+` to distinguish between instance and static variables
 with the same name.
 
-==== Classes and Reference Addresses
+== Classes and Reference Addresses
 
 A an instance of a class doesn’t contain an object of that class but a
 memory address in which the object is memorized. +
-operations of assignment (`+=+`) and confront (`+==+`) act on the memory
+operations of assignment (`+=+`) and confront (`+=+`) act on the memory
 address and not on the values of the objects. +
 To confront object is necessary to define a `+equals()+` method that
 checks if the values of the object attributes are equal.
 
-==== Constructors
+== Constructors
 
 Constructors are special methods that are invoked with the `+new+`
 operator when an object is instantiated. +
@@ -831,14 +831,14 @@ class ClassName (){
 }
 ----
 
-==== Static Variables
+== Static Variables
 
 `+Type staticVariable = value;+` +
 Static variables are shared by all objects of a class and all static
 method can act upon them. +
 Static variable do not belong to the class objects.
 
-==== Getters & Setter Methods
+== Getters & Setter Methods
 
 [source,java]
 ----
@@ -851,7 +851,7 @@ public Type getAttribute(){
 }
 ----
 
-==== `+ToString()+` Method
+== `+ToString()+` Method
 
 Automatically returns a string if the object is directly called in a
 print method.
@@ -864,7 +864,7 @@ Public String toString(){
 }
 ----
 
-==== Static Methods in Classes
+== Static Methods in Classes
 
 Static methods are used to effectuate operations not applied to
 objects. +
@@ -872,13 +872,13 @@ Outside of the class of definition that are invoked with
 ClassName.methodName() +
 Static method *cannot* act on instance variables.
 
-==== Method Overloading
+== Method Overloading
 
 A class can have multiple methods with the same name given that each
 method has a different number or type of parameters (different method
 _signature_).
 
-==== Inheritance & Method Overriding
+== Inheritance & Method Overriding
 
 Child classes inherit all methods and attributes from parent class. +
 Child methods can _override_ parent methods to adapt their
@@ -923,7 +923,7 @@ ParentClass objectName = ChildClass();  // upcast
 (ChildClass)ParentClassObject;  // downcast
 ----
 
-==== Abstract Classes & Abstract Methods
+== Abstract Classes & Abstract Methods
 
 An Abstract Class is a particular class that contains an Abstract
 Method. This type of class cannot be instantiated but is used leave the
@@ -947,7 +947,7 @@ abstract class className{
 }
 ----
 
-==== Interfaces
+== Interfaces
 
 An Interface is a class with _only_ abstract methods. An interface has
 more flexibility than an abstract class. +
@@ -991,7 +991,7 @@ Expressions_)
 
 Since Java 1.8 interfaces can implements also `+static+` methods.
 
-==== Enumerations
+== Enumerations
 
 Enums are used to restrict the type of data to a set of the possible
 constant values. Enums are classes which constructor is private by
@@ -1030,7 +1030,7 @@ enum enumName {
 enumName variable;  //creation of a variable of type enumName
 ----
 
-==== Anonymous Classes
+== Anonymous Classes
 
 _Anonymous classes_ make the code more concise. They enable to declare
 and instantiate a class at the same time. They are like local classes
@@ -1047,7 +1047,7 @@ AnonymousClass objectName = new AnonymousClass(Type parameter, ...) {
 };
 ----
 
-==== Cloning
+== Cloning
 
 [source,java]
 ----
@@ -1056,7 +1056,7 @@ class ClassName implements Clonable {
 }
 ----
 
-=== Generics
+== Generics
 
 [source,java]
 ----
@@ -1083,14 +1083,14 @@ GenericClass<Type> obj = new GenericClass<>();
 GenericClass<Type>[] obj = new GenericClass<>[];  // invalid
 ----
 
-==== Multiple Generics
+== Multiple Generics
 
 [source,java]
 ----
 public class GenericClass<T1, T2, ...> { }  // number of generic types is not limited
 ----
 
-==== Parameters Constraints
+== Parameters Constraints
 
 Specify an interface or class that the generic type must
 implement/inherit.
@@ -1102,7 +1102,7 @@ public class GenericClass<T1 extends Interface1 & Interface2, T2 extends Class1>
 public class GenericClass<T extends Class1> { }
 ----
 
-==== Generic Methods
+== Generic Methods
 
 [source,java]
 ----
@@ -1135,11 +1135,11 @@ public class GenericClass<S> {
 obj.<Type>methodName();  // generic method call
 ----
 
-=== File I/O
+== File I/O
 
-==== Text Files
+== Text Files
 
-===== Writing on a file
+=== Writing on a file
 
 [source,java]
 ----
@@ -1164,7 +1164,7 @@ data is collected in a *buffer*. When the buffer is _full_ the data is
 written in the file. This is called _buffering_ and is used to append up
 operations.
 
-===== Reading from a file
+=== Reading from a file
 
 [source,java]
 ----
@@ -1199,7 +1199,7 @@ public long skip(n) throws IOException  // skip n characters
 public void close() throws IOException  // closes the stream
 ----
 
-===== `+File()+` class
+=== `+File()+` class
 
 The File class is an abstraction of the file and it’s path. The
 abstraction is independent from the OS.
@@ -1218,9 +1218,9 @@ file.getPath()  // returns the file's path
 file.length()  // file length in bytes
 ----
 
-==== Binary Files
+== Binary Files
 
-===== Writing to a binary file
+=== Writing to a binary file
 
 [source,java]
 ----
@@ -1250,7 +1250,7 @@ public void writeObject(Object obj) throws IOException, NotSerializableException
 public void close()
 ----
 
-===== Reading from a binary file
+=== Reading from a binary file
 
 [source,java]
 ----
@@ -1287,7 +1287,7 @@ public void readObject(Object obj) throws IOException, NotSerializableException,
 public void close()
 ----
 
-==== Object & Array I/O with Binary Files (Serialization)
+== Object & Array I/O with Binary Files (Serialization)
 
 Needed for a class to be _serializable_:
 
@@ -1302,9 +1302,9 @@ An array is serializable if it’s base type is a serializable object.
 SerializableObject[] array = (SerializableObject[])inStream.readObject();  // read returns Object, cast needed
 ----
 
-=== Functional Programming in Java
+== Functional Programming in Java
 
-==== Functional Interfaces
+== Functional Interfaces
 
 Functional interfaces provide target types for _lambda expressions_.
 
@@ -1333,7 +1333,7 @@ public interface Function<T, R> {
 }
 ----
 
-==== Streams
+== Streams
 
 In java a _stream_ is a
 https://en.wikipedia.org/wiki/Monad_%28functional_programming%29#Usage[Monad].
@@ -1368,7 +1368,7 @@ Terminal operations mark the end of the stream and return the result.
 * reduce to a single summary element: `+count()+`, `+max()+`, `+min()+`,
 `+reduce()+`, `+summaryStatistics()+`
 
-==== Lambda Expressions
+== Lambda Expressions
 
 Usable only by a `+@FunctionalInterface+`’s method or a method of a
 _stream_.

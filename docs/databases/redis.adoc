@@ -1,4 +1,4 @@
-== https://redis.io/[Redis]
+= https://redis.io/[Redis]
 
 Redis is in the family of databases called *key-value stores*.
 
@@ -11,9 +11,9 @@ key-value shell, but each value can contain a complex data structure,
 such as a string, a list, a hashes, or ordered data structures called
 sorted sets as well as probabilistic data structures like _hyperloglog_.
 
-=== https://redis.io/commands[Redis Commands]
+== https://redis.io/commands[Redis Commands]
 
-==== Server Startup
+== Server Startup
 
 [source,bash]
 ----
@@ -21,7 +21,7 @@ redis-server  # start the server
 redis-cli
 ----
 
-==== https://redis.io/commands#generic[Key-Value Pairs]
+== https://redis.io/commands#generic[Key-Value Pairs]
 
 [source,sh]
 ----
@@ -43,7 +43,7 @@ PTTL <key>  # see remaining milli-seconds before expiry
 PERSIST <key>  # make the key permanent
 ----
 
-==== https://redis.io/commands#list[Lists]
+== https://redis.io/commands#list[Lists]
 
 A list is a series of ordered values.
 
@@ -59,7 +59,7 @@ LPOP  # remove and return the first item fro the list
 RPOP  # remove and return the last item fro the list
 ----
 
-==== https://redis.io/commands#set[Sets]
+== https://redis.io/commands#set[Sets]
 
 A set is similar to a list, except it does not have a specific order and
 each element may only appear once.
@@ -76,7 +76,7 @@ SMEMBERS <key>  # lis of all set items
 SUINION <key1> <key2> ...  # combine two or more sets and return the list of all elements.
 ----
 
-==== https://redis.io/commands#sorted_set[Sorted Sets]
+== https://redis.io/commands#sorted_set[Sorted Sets]
 
 Sets are a very handy data type, but as they are unsorted they don’t
 work well for a number of problems. This is why Redis 1.2 introduced
@@ -94,7 +94,7 @@ ZRANGE <key> <start_index> <end_index>  # return a subset of the sortedSet
 ...
 ----
 
-==== https://redis.io/commands#hash[Hashes]
+== https://redis.io/commands#hash[Hashes]
 
 Hashes are maps between string fields and string values, so they are the
 perfect data type to represent objects.

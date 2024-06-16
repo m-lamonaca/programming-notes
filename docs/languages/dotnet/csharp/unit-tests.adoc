@@ -1,10 +1,10 @@
-== Unit Testing
+= Unit Testing
 
 https://stackoverflow.com/a/5666591/8319610[UnitTest Overloaded Methods]
 https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html[Naming
 standards for unit tests]
 
-=== xUnit
+== xUnit
 
 [source,cs]
 ----
@@ -30,7 +30,7 @@ namespace Project.Tests
 }
 ----
 
-==== Test Setup & Teardown
+== Test Setup & Teardown
 
 xUnit.net creates a new instance of the test class for every test that
 is run, so any code which is placed into the constructor of the test
@@ -41,7 +41,7 @@ setup code.
 For context cleanup, add the `+IDisposable+` interface to the test
 class, and put the cleanup code in the `+Dispose()+` method.
 
-=== Mocking with Moq
+== Mocking with Moq
 
 [source,cs]
 ----

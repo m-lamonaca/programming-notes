@@ -1,4 +1,4 @@
-== Minimal API
+= Minimal API
 
 *Note*: Requires .NET 6+
 
@@ -19,7 +19,7 @@ app.Run();
 app.RunAsync();
 ----
 
-=== Application Settings
+== Application Settings
 
 App settings are loaded (in order) from:
 
@@ -32,7 +32,7 @@ The environment is controlled by the env var `+ASPNETCORE_ENVIRONMENT+`.
 If a setting is present in multiple locations, the last one is used and
 overrides the previous ones.
 
-==== User Secrets
+== User Secrets
 
 User secrets are specific to each machine and can be initialized with
 `+dotnet user-secrets init+`. Each application is linked with it’s
@@ -48,7 +48,7 @@ The settings are stored in:
 Setting a value is done with `+dotnet user-secrets set <key> <value>+`,
 keys can be nested by separating each level with `+:+` or `+__+`.
 
-=== Swagger
+== Swagger
 
 [source,cs]
 ----
@@ -67,7 +67,7 @@ app.MapGet("/route", Handler).Produces<Type>(statusCode);
 app.MapPost("/route", Handler).Accepts<Type>(contentType);
 ----
 
-=== MVC
+== MVC
 
 [source,cs]
 ----
@@ -102,7 +102,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 ----
 
-=== Routing, Handlers & Results
+== Routing, Handlers & Results
 
 To define routes and handlers using Minimal APIs, use the
 `+Map(Get|Post|Put|Delete)+` methods.
@@ -120,7 +120,7 @@ app.MapGet("/search/{id}", Search);
 IResult Search(int id, int? page = 1, int? pageSize = 10) { /* ... */ }
 ----
 
-==== Route Groups
+== Route Groups
 
 The `+MapGroup()+` extension method, which helps organize groups of
 endpoints with a common prefix. +
@@ -137,7 +137,7 @@ group.MapGet("/{id}", GetTodo);  // route: /<route-prefix>/{id}
 // [...]
 ----
 
-==== `+TypedResults+`
+== `+TypedResults+`
 
 The `+Microsoft.AspNetCore.Http.TypedResults+` static class is the
 "`typed`" equivalent of the existing
@@ -170,7 +170,7 @@ public async Task GetAllTodos_ReturnsOkOfObjectResult()
 }
 ----
 
-==== Multiple Result Types
+== Multiple Result Types
 
 The `+Results<TResult1, TResult2, TResultN>+` generic union types, along
 with the `+TypesResults+` class, can be used to declare that a route
@@ -187,7 +187,7 @@ app.MapGet("/todos/{id}", async Results<Ok<Todo>, NotFound> (int id, TodoDb db)
 });
 ----
 
-=== Filters
+== Filters
 
 [source,cs]
 ----
@@ -208,7 +208,7 @@ public class ExampleFilter : IRouteHandlerFilter
 app.MapPost("/route", Handler).AddFilter<ExampleFilter>();
 ----
 
-=== Context
+== Context
 
 With Minimal APIs it’s possible to access the contextual information by
 passing one of the following types as a parameter to your handler
@@ -227,7 +227,7 @@ app.MapGet("/hello", (ClaimsPrincipal user) => {
 });
 ----
 
-=== OpenAPI
+== OpenAPI
 
 The `+Microsoft.AspNetCore.OpenApi+` package exposes a `+WithOpenApi+`
 extension method that generates an `+OpenApiOperation+` derived from a
@@ -245,7 +245,7 @@ app.MapGet("/todos/{id}", (int id) => ...)
     });
 ----
 
-=== Validation
+== Validation
 
 Using https://github.com/DamianEdwards/MinimalValidation[Minimal
 Validation] by Damian Edwards. +
@@ -274,7 +274,7 @@ class Widget
 }
 ----
 
-=== JSON Serialization
+== JSON Serialization
 
 [source,cs]
 ----
@@ -285,7 +285,7 @@ builder.Services.Configure<JsonOptions>(opt =>
 });
 ----
 
-=== Authorization
+== Authorization
 
 [source,cs]
 ----
@@ -316,7 +316,7 @@ app.MapGet("/special-secret", () => "This is a special secret!")
     .RequireAuthorization(p => p.RequireClaim("scope", "myapi:secrets"));
 ----
 
-==== Local JWT Tokens
+== Local JWT Tokens
 
 The `+user-jwts+` tool is similar in concept to the existing
 `+user-secrets+` tools, in that it can be used to manage values for the
@@ -331,7 +331,7 @@ ensuring it’s stored safely in the user profile.
 dotnet user-jwts create  # configure a dev JWT fot the current user
 ----
 
-=== Output Caching
+== Output Caching
 
 [source,cs]
 ----
@@ -364,7 +364,7 @@ app.MapGet("/<route>", RouteHandler).CacheOutput(x => x.VaryByValue());
 app.MapGet("/<route>", [OutputCache(/* options */)]RouteHandler);
 ----
 
-==== Cache Eviction
+== Cache Eviction
 
 [source,cs]
 ----
@@ -377,7 +377,7 @@ app.MapGet("/<route-two>", (IOutputCacheStore cache, CancellationToken token) =>
 });
 ----
 
-==== Custom Cache Policy
+== Custom Cache Policy
 
 [source,cs]
 ----
@@ -396,7 +396,7 @@ class CustomCachePolicy : IOutputCachePolicy
 }
 ----
 
-=== Options Pattern
+== Options Pattern
 
 The _options pattern_ uses classes to provide strongly-typed access to
 groups of related settings.
@@ -446,7 +446,7 @@ class DependsOnOptions
 }
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/core/extensions/options#options-interfaces[Options interfaces]
+== https://docs.microsoft.com/en-us/dotnet/core/extensions/options#options-interfaces[Options interfaces]
 
 `+IOptions<TOptions>+`:
 

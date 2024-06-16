@@ -1,4 +1,4 @@
-== Blazor
+= Blazor
 
 Blazor apps are based on _components_. A *component* in Blazor is an
 element of UI, such as a page, dialog, or data entry form.
@@ -19,7 +19,7 @@ The component class is usually written in the form of a Razor markup
 page with a `+.razor+` file extension. Components in Blazor are formally
 referred to as _Razor components_.
 
-=== Components (`+.razor+`)
+== Components (`+.razor+`)
 
 https://docs.microsoft.com/en-us/aspnet/core/blazor/components/[Blazor
 Components]
@@ -60,9 +60,9 @@ Components]
 }
 ----
 
-=== State Management
+== State Management
 
-=== Passing state with `+NavigationManager+`
+== Passing state with `+NavigationManager+`
 
 It’s now possible to pass state when navigating in Blazor apps using the
 `+NavigationManager+`.
@@ -79,7 +79,7 @@ it can be accessed later using either the
 `+LocationChangedEventArgs.HistoryEntryState+` property when listening
 for location changed events.
 
-==== Blazor WASM
+== Blazor WASM
 
 [source,cs]
 ----
@@ -155,7 +155,7 @@ public class StateContainer
 }
 ----
 
-=== Data Binding & Events
+== Data Binding & Events
 
 [source,cs]
 ----
@@ -212,14 +212,14 @@ value when the bind event is triggered. *Note*: The `+@bind:get+` and
 `+@bind:set+` modifier specifies a callback that is called when the
 value changes
 
-=== Javascript/.NET Interop
+== Javascript/.NET Interop
 
 https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet[Call
 Javascript from .NET] +
 https://docs.microsoft.com/en-us/aspnet/core/blazor/call-dotnet-from-javascript[Call
 .NET from Javascript]
 
-==== Render Blazor components from JavaScript
+== Render Blazor components from JavaScript
 
 To render a Blazor component from JavaScript, first register it as a
 root component for JavaScript rendering and assign it an identifier:
@@ -247,7 +247,7 @@ let containerElement = document.getElementById('my-counter');
 await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
 ----
 
-==== Blazor custom elements
+== Blazor custom elements
 
 Experimental support is also now available for building custom elements
 with Blazor using the Microsoft.AspNetCore.Components.CustomElements

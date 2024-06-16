@@ -1,4 +1,4 @@
-== PHP
+= PHP
 
 https://www.php.net/docs.php[PHP Docs]
 
@@ -10,7 +10,7 @@ declare(strict_types=1);  # activates variable type checking on function argumen
 /* multi line comment */
 ----
 
-=== Include, Require
+== Include, Require
 
 [source,php]
 ----
@@ -21,7 +21,7 @@ require "path\\file.php";  # import an external php file, E_COMPILE_ERROR if fai
 require_once "path\\file.php";  # imports only if not already loaded
 ----
 
-==== Import configs from a file with `+include+`
+== Import configs from a file with `+include+`
 
 In `+config.php+`:
 
@@ -41,7 +41,7 @@ return [
 $config = include "config.php";  // retrieve config and store into variable
 ----
 
-=== Namespace
+== Namespace
 
 https://www.php-fig.org/psr/psr-4/[PSR-4 Spec]
 
@@ -71,7 +71,7 @@ use Foo\Bar\Baz as fbb  # use namespace with alias
 fnn\func();  # use function from Foo\Bar\Baz
 ----
 
-=== Basics
+== Basics
 
 [source,php]
 ----
@@ -81,7 +81,7 @@ declare(strict_types=1);  # activates type checking
 /* multi line comment */
 ----
 
-==== Screen Output
+== Screen Output
 
 [source,php]
 ----
@@ -91,7 +91,7 @@ printf("format", $variables);  # formatted output of strings and variables
 sprintf("format", $variables);  # return formatted string
 ----
 
-==== User Input
+== User Input
 
 [source,php]
 ----
@@ -111,7 +111,7 @@ if (!function_exists('readline')) {
 }
 ----
 
-=== Variables
+== Variables
 
 [source,php]
 ----
@@ -121,7 +121,7 @@ echo gettype(&variable);  # output type of variable
 var_dump($var);  # prints info of variable (bit dimension, type & value)
 ----
 
-==== Integers
+== Integers
 
 [source,php]
 ----
@@ -135,7 +135,7 @@ var_dump($var);  # prints info of variable (bit dimension, type & value)
 &num = 0xff;  # hexadecimal
 ----
 
-==== Double
+== Double
 
 [source,php]
 ----
@@ -144,10 +144,10 @@ $b = 1.2e3; // 1200
 $c = 7E-10; // 0.0000000007
 ----
 
-==== Mathematical Operators
+== Mathematical Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |`+-+` |Subtraction
 |`+*+` |Multiplication
@@ -158,9 +158,9 @@ $c = 7E-10; // 0.0000000007
 |`+++var+` |Pre Increment
 |`+var--+` |Post Decrement
 |`+--var+` |Pre Decrement
-|===
+|==
 
-==== Mathematical Functions
+== Mathematical Functions
 
 * `+sqrt($x)+`
 * `+sin($x)+`
@@ -170,12 +170,12 @@ $c = 7E-10; // 0.0000000007
 * `+floor($x)+`
 * `+ceil($x)+`
 
-=== Strings
+== Strings
 
 A string is a sequence of ASCII characters. In PHP a string is an array
 of characters.
 
-==== String Concatenation
+== String Concatenation
 
 [source,php]
 ----
@@ -183,7 +183,7 @@ $string1 . $string2; # method 1
 $string1 .= $string2;  # method 2
 ----
 
-==== String Functions
+== String Functions
 
 [source,php]
 ----
@@ -198,14 +198,14 @@ explode(delimiter, string);  # return array of substrings
 $var = sprintf("format", $variables)  # construct and return a formatted string
 ----
 
-=== Constants
+== Constants
 
 [source,php]
 ----
 define ('CONSTANT_NAME', 'value')
 ----
 
-==== Magic Constants `+__NAME__+`
+== Magic Constants `+__NAME__+`
 
 * `+__FILE__+`: script path + script filename
 * `+__DIR__+`: file directory
@@ -215,7 +215,7 @@ functions.
 * `+__CLASS__+`: name of the class
 * `+__NAMESPACE__+`: the name of the current namespace.
 
-=== Array
+== Array
 
 Heterogeneous sequence of values.
 
@@ -231,7 +231,7 @@ $array[index] = value;   # array valorization (can add items)
 $array[] = value;  # value appending
 ----
 
-==== Multi Dimensional Array (Matrix)
+== Multi Dimensional Array (Matrix)
 
 Array of array. Can have arbitrary number of nested array
 
@@ -244,7 +244,7 @@ $matrix = [
 ];
 ----
 
-==== Array Printing
+== Array Printing
 
 Single instruction to print whole array is ``
 
@@ -254,7 +254,7 @@ $array = [1, 2, 3];
 print_r($array);  # print all the array values
 ----
 
-==== Array Functions
+== Array Functions
 
 [source,php]
 ----
@@ -281,7 +281,7 @@ array_values($array);   # regenerates the array fixing the indexes
 list($array1 [, $array2, ...]) = $data;  # Python-like tuple unpacking
 ----
 
-==== Associative Arrays
+== Associative Arrays
 
 Associative arrays have a value as an index. Alternative names are _hash
 tables_ or _dictionaries_.
@@ -301,31 +301,31 @@ $italianDay = [
 $italianDay["Mon"];  # evaluates to Lunedì
 ----
 
-=== Conditional Instructions
+== Conditional Instructions
 
-==== Conditional Operators
+== Conditional Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
-|$a `+==+` $b |value equality
-|$a `+===+` $b |value & type equality
+|$a `+=+` $b |value equality
+|$a `+==+` $b |value & type equality
 |$a `+!=+` $b |value inequality
 |$a `+<>+` $b |value inequality
-|$a `+!==+` $b |value or type inequality
+|$a `+!=+` $b |value or type inequality
 |$a `+<+` $b |less than
 |$a `+>+` $b |greater than
 |$a `+<=+` $b |less or equal to
 |$a `+>=+` $b |greater or equal to
 |$a `+<=>+` $b |spaceship operator
-|===
+|==
 
-With `+==+` a string evaluates to `+0+`.
+With `+=+` a string evaluates to `+0+`.
 
-==== Logical Operators
+== Logical Operators
 
 [width="100%",cols="12%,15%,73%",options="header",]
-|===
+|==
 |Operator |Example |Result
 |`+and+` |`+$a and $b+` |TRUE if both `+$a+` and `+$b+` are TRUE.
 
@@ -339,9 +339,9 @@ _not both_.
 |`+and+` |`+$a && $b+` |TRUE if both `+$a+` and `+$b+` are TRUE.
 
 |`+or+` |`+$a || $b+` |TRUE if either `+$a+` or `+$b+` is TRUE.
-|===
+|==
 
-==== Ternary Operator
+== Ternary Operator
 
 [source,php]
 ----
@@ -349,17 +349,17 @@ condition ? result_if_true : result_if_false;
 condition ?: result_if_false;
 ----
 
-==== NULL Coalesce
+== NULL Coalesce
 
 [source,php]
 ----
-$var1 = $var2 ?? value;  # if variable == NULL assign value, otherwise return value of $var2
+$var1 = $var2 ?? value;  # if variable = NULL assign value, otherwise return value of $var2
 
 # equivalent to
 $var1 = isset($var2) ? $var2 : value
 ----
 
-==== Spaceship Operator
+== Spaceship Operator
 
 [source,php]
 ----
@@ -368,13 +368,13 @@ $a <=> $b;
 # equivalent to
 if $a > $b
     return 1;
-if $a == $b
+if $a = $b
     return 0;
 if $a < $b
     return -1;
 ----
 
-==== `+If+` - `+Elseif+` - `+Else+`
+== `+If+` - `+Elseif+` - `+Else+`
 
 [source,php]
 ----
@@ -395,7 +395,7 @@ else:
 endif;
 ----
 
-==== Switch Case
+== Switch Case
 
 [source,php]
 ----
@@ -411,7 +411,7 @@ switch ($var) {
 
 # strong comparison
 switch (true) {
-    case $var === value:
+    case $var == value:
         # code here
         break;
 
@@ -420,7 +420,7 @@ switch (true) {
 }
 ----
 
-==== Match Expression (PHP 8)
+== Match Expression (PHP 8)
 
 `+match+` can return values, doesn’t require break statements, can
 combine conditions, uses strict type comparisons and doesn’t do any type
@@ -434,9 +434,9 @@ $result = match($input) {
 };
 ----
 
-=== Loops
+== Loops
 
-==== For, Foreach
+== For, Foreach
 
 [source,php]
 ----
@@ -462,7 +462,7 @@ foreach($sequence as $key => $value) {
 }
 ----
 
-==== While, Do-While
+== While, Do-While
 
 [source,php]
 ----
@@ -479,13 +479,13 @@ do {
 } while (condition);
 ----
 
-==== Break, Continue, exit()
+== Break, Continue, exit()
 
 `+break+` stops the iteration. +
 `+continue+` skips one cycle of the iteration. `+exit()+` terminates the
 execution of any PHP code.
 
-=== Functions
+== Functions
 
 https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/[Function
 Docstring]
@@ -521,7 +521,7 @@ function functionName (type $parameter, $parameter = default_value): Type
 }
 ----
 
-==== Void function
+== Void function
 
 [source,php]
 ----
@@ -531,7 +531,7 @@ function functionName (type $parameter, $parameter = default_value): Void
 }
 ----
 
-==== Passing a parameter by reference (`+&$+`)
+== Passing a parameter by reference (`+&$+`)
 
 [source,php]
 ----
@@ -542,7 +542,7 @@ function functionName (type &$parameter): Type
 }
 ----
 
-==== Variable number of parameters, variadic operator (`+...+`)
+== Variable number of parameters, variadic operator (`+...+`)
 
 [source,php]
 ----
@@ -554,7 +554,7 @@ function functionName (type $parameter, type ...$args): Type
 }
 ----
 
-==== Nullable parameters
+== Nullable parameters
 
 [source,php]
 ----
@@ -565,7 +565,7 @@ function functionName (?type $parameter): ?Type
 }
 ----
 
-=== Anonymous Functions (Closure)
+== Anonymous Functions (Closure)
 
 [source,php]
 ----
@@ -577,7 +577,7 @@ $var = function (type $parameter) {
 $var($arg);
 ----
 
-==== Use Operator
+== Use Operator
 
 [source,php]
 ----
@@ -587,7 +587,7 @@ $foo = function (type $parameter) use ($average) {
 }
 ----
 
-==== Union Types (PHP 8)
+== Union Types (PHP 8)
 
 *Union types* are a collection of two or more types which indicate that
 _either_ one of those _can be used_.
@@ -597,7 +597,7 @@ _either_ one of those _can be used_.
 public function foo(Foo|Bar $input): int|float;
 ----
 
-==== Named Arguments (PHP 8)
+== Named Arguments (PHP 8)
 
 Named arguments allow to pass in values to a function, by specifying the
 value name, to avoid taking their order into consideration. It’s also
@@ -614,9 +614,9 @@ foo(
 );
 ----
 
-=== Object Oriented Programming
+== Object Oriented Programming
 
-==== Scope & Visibility
+== Scope & Visibility
 
 `+public+` methods and attributes are visible to anyone (_default_).
 `+private+` methods and attributes are visible only inside the class in
@@ -625,7 +625,7 @@ only to child classes.
 
 `+final+` classes cannot be extended.
 
-==== Class Declaration & Instantiation
+== Class Declaration & Instantiation
 
 [source,php]
 ----
@@ -666,7 +666,7 @@ $var = clone $object  # copy by value
 $object instanceof ClassName  // check type of the object
 ----
 
-==== Static classes, attributes & methods
+== Static classes, attributes & methods
 
 Inside static methods it’s impossible to use `+$this+`. A static
 variable is unique for the class and all instances.
@@ -693,7 +693,7 @@ $obj = new ClassName();
 $obj::$var;  // access to the static variable
 ----
 
-==== https://en.wikipedia.org/wiki/Dependency_injection[Dependency Injection]
+== https://en.wikipedia.org/wiki/Dependency_injection[Dependency Injection]
 
 Parameters of the dependency can be modified before passing the required
 class to the constructor.
@@ -711,7 +711,7 @@ class ClassName
 }
 ----
 
-==== Inheritance
+== Inheritance
 
 If a class is defined `+final+` it can’t be extended. If a function is
 declared `+final+` it can’t be overridden.
@@ -726,7 +726,7 @@ class Child extends Parent
 }
 ----
 
-==== Abstract Class
+== Abstract Class
 
 Abstract classes cannot be instantiated;
 
@@ -738,7 +738,7 @@ abstract class ClassName
 }
 ----
 
-==== Interface
+== Interface
 
 An interface is a "`contract`" that defines what methods the
 implementing classes *must* have and implement.
@@ -764,7 +764,7 @@ class ClassName implements InterfaceName {
 }
 ----
 
-==== Traits
+== Traits
 
 `+Traits+` allows the reutilization of code inside different classes
 without links of inheritance. It can be used to mitigate the problem of
@@ -786,7 +786,7 @@ class ClassName {
 }
 ----
 
-==== Anonymous Classes
+== Anonymous Classes
 
 [source,php]
 ----
@@ -799,7 +799,7 @@ $obj->method(new class implements Interface {
 });
 ----
 
-=== Serialization & JSON
+== Serialization & JSON
 
 [source,php]
 ----
@@ -810,9 +810,9 @@ $var = json_decode(string $json, bool $associative);  # Takes a JSON encoded str
 $json = json_encode($value);  # Returns a string containing the JSON representation of the supplied value.
 ----
 
-=== Files
+== Files
 
-==== Read/Write on Files
+== Read/Write on Files
 
 [source,php]
 ----
@@ -823,7 +823,7 @@ file_put_contents(filename, data);  // write whole file
 file_get_contents(filename);  // read whole file
 ----
 
-=== Regular Expressions
+== Regular Expressions
 
 [source,php]
 ----
@@ -832,7 +832,7 @@ preg_match('/PATTERN/', string $subject, array $matches);  # returns 1 if the pa
 # $matches[i] = i-th group of the regex
 ----
 
-=== Hashing
+== Hashing
 
 Supported hashing algrithms:
 
@@ -860,7 +860,7 @@ Supported hashing algrithms:
 hash($algorithm, $data);
 ----
 
-==== Password Hashes
+== Password Hashes
 
 `+password_hash()+` is compatible with `+crypt()+`. Therefore, password
 hashes created by `+crypt()+` can be used with `+password_hash()+`.
@@ -912,7 +912,7 @@ password_hash($password, $algorithm);  # create a new password hash using a stro
 password_verify($password, $hash);  # Verifies that a password matches a hash
 ----
 
-=== Errors
+== Errors
 
 Types of PHP errors:
 
@@ -938,7 +938,7 @@ echo 1/$a;  // PHP Warning: Division by zero
 echo $a;  // PHP Notice: $a undefined
 ----
 
-==== Error Reporting
+== Error Reporting
 
 https://www.php.net/manual/en/errorfunc.constants.php[PHP Error
 Constants]
@@ -955,7 +955,7 @@ ini_set("display_errors", 0);  // don't display any errors on stderr
 ini_set("error_log", "path\\error.log");  // set log file
 ----
 
-==== Triggering Errors
+== Triggering Errors
 
 [source,php]
 ----
@@ -966,7 +966,7 @@ trigger_error("message", E_USER_<Type>);
 trigger_error("Deprecated Function", E_USER_DEPRECATED);
 ----
 
-==== https://www.php.net/manual/en/function.error-log.php[Writing in the Log File]
+== https://www.php.net/manual/en/function.error-log.php[Writing in the Log File]
 
 It’s possible to use log files unrelated to the php log file.
 
@@ -978,7 +978,7 @@ error_log("message", 3, "path\\log.log");  // write log message to a specified f
 error_log(sprintf("[%s] Error: _", date("Y-m-d h:i:s")), 3, "path\\log.log")
 ----
 
-=== Exception Handling
+== Exception Handling
 
 PHP offers the possibility to handle errors with the _exception model_.
 
@@ -1011,7 +1011,7 @@ Interface Throwable {
 }
 ----
 
-==== Custom Exceptions
+== Custom Exceptions
 
 [source,php]
 ----

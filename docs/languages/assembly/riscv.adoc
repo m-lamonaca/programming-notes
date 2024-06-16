@@ -1,5 +1,5 @@
 [[assembly-risc-vbook]]
-== https://riscv-programming.org/book/riscv-book.html[Assembly (RISC-V)]
+= https://riscv-programming.org/book/riscv-book.html[Assembly (RISC-V)]
 
 Assembly programs are encoded as plain text files and contain four main
 elements:
@@ -12,9 +12,9 @@ converted by the assembler into machine instructions.
 * *Directives*: Assembly directives are commands used to coordinate the
 assembling process.
 
-=== Assembly Language
+== Assembly Language
 
-==== Labels
+== Labels
 
 *Labels* are "`markers`" that represent program _locations_. They can be
 inserted into an assembly program to "`mark`" a program position so that
@@ -47,7 +47,7 @@ References to numeric labels contain a _suffix_ that indicates whether
 the reference is to a numeric label positioned before (`+b+` suffix) or
 after (`+f+` suffix) the reference.
 
-==== Symbols
+== Symbols
 
 Program *symbols* are "`names`" that are associated with _numerical
 values_ and the *symbol table* is a data structure that maps each
@@ -68,7 +68,7 @@ get_answer:
   ret
 ----
 
-==== References & Relocations
+== References & Relocations
 
 Each reference to a label must be replaced by an address during the
 assembling and linking processes. *Relocation* is the process in which
@@ -81,7 +81,7 @@ to reﬂect the addresses reassignment. Each object ﬁle contains a
 relocation table and the linker uses their information to adjust the
 code when performing the relocation process.
 
-==== Global vs Local Symbols
+== Global vs Local Symbols
 
 Symbols are classified as _local_ or _global_ symbols.
 
@@ -104,7 +104,7 @@ exit:
   ecall
 ----
 
-==== Program Entry Point
+== Program Entry Point
 
 Every program has an *entry point*: the point from which the CPU must
 start executing the program. The entry point is deﬁned by an address,
@@ -118,7 +118,7 @@ which is the address of the _first_ instruction that must be executed.
 *Note*: the `+start+` label *must* be registered as a _global_ symbol
 for the linker to recognize it as the entry point.
 
-=== Program Sections
+== Program Sections
 
 Executable and object files, and assembly programs are usually organized
 in *sections*. +
@@ -161,7 +161,7 @@ x: .word 10
 y: .word 12
 ----
 
-==== Assembly Instructions
+== Assembly Instructions
 
 Assembly instructions are instructions that are converted by the
 assembler into machine instructions. +
@@ -185,7 +185,7 @@ are replaced by their respective values during the assembling and
 linking processes. Their value are encoded into the machine instruction
 as a sequence of bits.
 
-==== Immediate Values
+== Immediate Values
 
 Immediate values are represented on assembly language by a sequence of
 alphanumeric characters.
@@ -210,7 +210,7 @@ li a0, 10        # load value ten into register a0
 6 li a5, ’a’     # load value ninety seven into register a5
 ----
 
-==== The `+.<value>+` Directives
+== The `+.<value>+` Directives
 
 The `+.byte+`, `+.half+`, `+.word+`, and `+.dword+` directives add one
 or more values to the active section. Their arguments may be expressed
@@ -222,7 +222,7 @@ The `+.string+`, `+.asciz+`, and `+.ascii+` directives add strings to
 the active section. The string is encoded as a sequence of bytes.
 
 [width="100%",cols="^15%,^22%,^63%",options="header",]
-|===
+|==
 |Directive |Arguments |Description
 |`+.byte+` |`+expr [, expr]*+` |Emit one or more *8bit* comma separated
 words
@@ -241,9 +241,9 @@ separated words
 |`+.asciz+` |`+string+` |Alias for `+.string+`
 
 |`+.ascii+` |`+string+` |Emit string without `+NULL+` character
-|===
+|==
 
-==== The `+.set+` and `+.equ+` directives
+== The `+.set+` and `+.equ+` directives
 
 The `+.set name, expression+` directive adds a symbol to the symbol
 table. +
@@ -253,7 +253,7 @@ table.
 
 The `+.equ+` directive performs the same task as the .set directive.
 
-==== The `+.globl+` directive
+== The `+.globl+` directive
 
 The `+.globl+` directive can be used to turn local symbols into global
 ones.
@@ -271,7 +271,7 @@ start:
   ret
 ----
 
-==== The `+.skip+` directive
+== The `+.skip+` directive
 
 The `+.bss+` section is dedicated for storing _uninitialized_ global
 variables. +
@@ -296,7 +296,7 @@ y: .skip 80
 z: .skip 4
 ----
 
-==== The `+.align+` directive
+== The `+.align+` directive
 
 Some ISA’s require instructions or multi-byte data to be stored on
 addresses that are multiple of a given number.

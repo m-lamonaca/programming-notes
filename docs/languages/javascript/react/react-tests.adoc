@@ -1,8 +1,8 @@
-== Testing React
+= Testing React
 
-=== https://jestjs.io/[Jest]
+== https://jestjs.io/[Jest]
 
-==== Jest Configuration
+== Jest Configuration
 
 [source,js]
 ----
@@ -15,7 +15,7 @@ module.exports = {
 }
 ----
 
-==== Jest Tests
+== Jest Tests
 
 https://jestjs.io/docs/expect[Expect docs]
 
@@ -34,7 +34,7 @@ describe("test group name", () => {
 });
 ----
 
-==== Snapshots
+== Snapshots
 
 In `+Component.Snapshots.js+`:
 
@@ -59,9 +59,9 @@ it("test description", () => {
 
 '''''
 
-=== https://enzymejs.github.io/enzyme/[Enzyme]
+== https://enzymejs.github.io/enzyme/[Enzyme]
 
-==== Enzyme Configuration
+== Enzyme Configuration
 
 [source,js]
 ----
@@ -72,7 +72,7 @@ import Adapter from "enzyme-adapter-react-<version>";
 configure({ adapter: new Adapter() });
 ----
 
-==== Enzyme Tests
+== Enzyme Tests
 
 In `+Component.test.js+`:
 
@@ -122,12 +122,12 @@ if("test description" () => {
 
 '''''
 
-=== https://testing-library.com/docs/react-testing-library/intro/[React Testing Library]
+== https://testing-library.com/docs/react-testing-library/intro/[React Testing Library]
 
 Encourages to write test based on what the user sees. So components are
 always _mounted_ and fully rendered.
 
-==== React Testing Library Tests
+== React Testing Library Tests
 
 In `+Components.test.js+`:
 

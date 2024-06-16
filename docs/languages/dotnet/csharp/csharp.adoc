@@ -1,4 +1,4 @@
-== `+C#+`
+= `+C#+`
 
 *.NET* Core is a development platform that includes a *Common Language
 Runtime* (*CoreCLR*), which manages the execution of code, and a *Base
@@ -30,9 +30,9 @@ the CLR to compile IL code JIT to native code later. +
 for applications because the native code is generated at build time and
 then deployed instead of the IL code.
 
-=== Basics
+== Basics
 
-==== Comments
+== Comments
 
 [source,cs]
 ----
@@ -42,14 +42,14 @@ then deployed instead of the IL code.
 /** multi line xml string (docstring) */
 ----
 
-==== Docstring Structure
+== Docstring Structure
 
 `+/** <tag> content </tag> **/+`
 
-==== Naming Convention
+== Naming Convention
 
 [cols=",",options="header",]
-|===
+|==
 |Element |Case
 |Namespace |PascalCase
 |Class, Interface |PascalCase
@@ -57,9 +57,9 @@ then deployed instead of the IL code.
 |Field, Property |PascalCase
 |Event, Enum, Enum Value, |PascalCase
 |Variables, Parameters |camelCase
-|===
+|==
 
-==== Namespaces, Imports & Aliases
+== Namespaces, Imports & Aliases
 
 Hierarchic organization of programs an libraries.
 
@@ -90,7 +90,7 @@ To enable .NET 6/C# 10 *implicit namespace imports*:
 <ImplicitUsings>enable</ImplicitUsings>
 ----
 
-==== Top Level Statements/Programs (C# 9)
+== Top Level Statements/Programs (C# 9)
 
 [source,cs]
 ----
@@ -99,7 +99,7 @@ To enable .NET 6/C# 10 *implicit namespace imports*:
 // code here, no main, no namespace
 ----
 
-==== Main Method
+== Main Method
 
 [source,cs]
 ----
@@ -109,20 +109,20 @@ public static void Main(string[] args)
 }
 ----
 
-==== Constant Declaration
+== Constant Declaration
 
 [source,cs]
 ----
 const type CONSTANT_NAME = value;
 ----
 
-==== Assignment Operation
+== Assignment Operation
 
 `+type variable1 = value1, variable2 = value2, ...;+`
 
 If a variable has not been assigned it assumes the `+default+` value.
 
-==== Input
+== Input
 
 [source,cs]
 ----
@@ -141,14 +141,14 @@ Convert.ToInt32(string, <base>);  // parse from numeric base
 Console.ReadKey();    // read a key from keyboard and display pressed kay immediately
 ----
 
-==== Screen Output
+== Screen Output
 
 [source,cs]
 ----
 Console.WriteLine();    // single line output
 ----
 
-==== String Formatting
+== String Formatting
 
 `+{index[,alignment][:<formatString><num_decimal_digits>]}+`
 
@@ -165,7 +165,7 @@ Console.WriteLine(
 );
 ----
 
-==== Number Format String
+== Number Format String
 
 https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings[Numeric
 Format Strings Docs]
@@ -187,9 +187,9 @@ are determined by `+CultureInfo+`. +
 `+$"{number:P}"+` formats the number as a _percentage_. +
 `+$"{number:X}"+` formats the number as a _hexadecimal_.
 
-=== Variable Types
+== Variable Types
 
-==== Value Type
+== Value Type
 
 A value type variable will store its values directly in an area of
 storage called the _STACK_. +
@@ -198,7 +198,7 @@ the CPU. +
 When the stack frame has finished executing, the values in the stack are
 removed.
 
-==== Reference Type
+== Reference Type
 
 A reference type variable will store its values in a separate memory
 region called the _HEAP_. +
@@ -213,10 +213,10 @@ When your code uses the variable, the .NET Runtime seamlessly looks up
 the address stored in the variable and retrieves the value that’s stored
 there.
 
-==== Integral Numeric Types
+== Integral Numeric Types
 
 [width="100%",cols="^12%,^17%,^7%,^8%,28%,28%",options="header",]
-|===
+|==
 |Keyword |System Type |Example |Bit/Byte |Min Value |Max Value
 |`+sbyte+` |`+System.SByte+` | |8 bit |-128 |127
 
@@ -240,12 +240,12 @@ there.
 
 |`+ulong+` |`+System.UInt64+` |123ul |64 bit |0
 |18’446’744’073’709’551’615
-|===
+|==
 
-==== Floating-Point Numeric Types
+== Floating-Point Numeric Types
 
 [width="100%",cols="^11%,^13%,^5%,^6%,^4%,31%,30%",options="header",]
-|===
+|==
 |Keyword |System Types |Example |Bit/Byte |Digits |Min Value |Max Value
 |`+float+` |`+System.Single+` |3.14f |4 byte |6-9 |-3.402823 E+38
 |3.402823 E+38
@@ -256,14 +256,14 @@ E+308 |1.79769313486232 E+308
 |`+decimal+` |`+System.Decimal+` |3.14m |16 byte |28-29
 |-79’228’162’514’264’337’593’543’950’335
 |79’228’162’514’264’337’593’543’950’335
-|===
+|==
 
 The static fields and methods of the `+MathF+` class correspond to those
 of the `+Math+` class, except that their parameters are of type
 `+Single+` rather than `+Double+`, and they return `+Single+` rather
 than `+Double+` values.
 
-==== BigInteger
+== BigInteger
 
 `+BigInteger+` represents an integer that will grow as large as is
 necessary to accommodate values. +
@@ -278,7 +278,7 @@ using System.Numerics;
 BigInteger bi;
 ----
 
-==== Binary & Hexadecimal Numbers
+== Binary & Hexadecimal Numbers
 
 Binary literal: `+0b<digits>+` Hexadecimal literal: `+0x<digits>+`
 
@@ -290,16 +290,16 @@ int binaryNotation = 0b_0001_1110_1000_0100_1000_0000;
 int hexadecimalNotation = 0x_001E_8480;
 ----
 
-==== Boolean Type (`+System.Boolean+`)
+== Boolean Type (`+System.Boolean+`)
 
 `+bool+`: `+true+` or `+false+`
 
-==== Text Type (`+System.Char+` & `+System.String+`)
+== Text Type (`+System.Char+` & `+System.String+`)
 
 `+char+`: single unicode character +
 `+string+`: multiple Unicode characters
 
-==== Implicit Type
+== Implicit Type
 
 The compiler determines the required type based on the assigned value.
 
@@ -308,14 +308,14 @@ The compiler determines the required type based on the assigned value.
 var variable = value;  // Inferred tipe cant change after first assignment
 ----
 
-==== Dynamic Type
+== Dynamic Type
 
 [source,cs]
 ----
 dynamic variable = value;
 ----
 
-==== Anonymous types (Reference Type)
+== Anonymous types (Reference Type)
 
 [source,cs]
 ----
@@ -326,7 +326,7 @@ x.Key;  // member access
 var y = x with { Key = value };  // with expression [C# 10]
 ----
 
-==== Index & Range Types (Structs)
+== Index & Range Types (Structs)
 
 A https://docs.microsoft.com/en-us/dotnet/api/system.index[System.Index]
 represents a type that can be used to index a collection either from the
@@ -356,12 +356,12 @@ array[start..end];  // select elements between start index and end index (non in
 array[start..^n];  // select elements between start index and n-th last item (non inclusive)
 ----
 
-=== Tuples (Value Type)
+== Tuples (Value Type)
 
 Tuples are designed as a convenient way to package together a few values
 in cases where defining a whole new type wouldn’t really be justified.
 
-Tuples support comparison, so it’s possible to use the `+==+` and `+!=+`
+Tuples support comparison, so it’s possible to use the `+=+` and `+!=+`
 relational operators. +
 To be considered equal, two tuples must have the same shape and each
 value in the first tuple must be equal to its counterpart in the second
@@ -384,7 +384,7 @@ any tuple to another tuple with the same structure.
 (int Width, int Height) b = a;
 ----
 
-==== Tuple Deconstruction
+== Tuple Deconstruction
 
 [source,cs]
 ----
@@ -392,7 +392,7 @@ any tuple to another tuple with the same structure.
 (int a, int b) = point;  // extract data based on position into two variables
 ----
 
-=== Records
+== Records
 
 I’ts possible to create record types with immutable properties by using
 standard property syntax or positional parameters:
@@ -447,7 +447,7 @@ immutable data models. The record type offers the following features:
 declare init-only properties. A _positional record struct_ declares
 read-write properties.
 
-==== `+with+`-expressions
+== `+with+`-expressions
 
 When working with immutable data, a common pattern is to create new
 values from existing ones to represent a new state. +
@@ -477,7 +477,7 @@ protected Record(Record original) { /* copy all the fields */ } // generated
 *Note*: it’s possible to define a custom copy constructor tha will be
 picked up by the `+with+` expression.
 
-==== `+with+`-expressions & Inheritance
+== `+with+`-expressions & Inheritance
 
 Records have a hidden virtual method that is entrusted with "`cloning`"
 the whole object. +
@@ -496,7 +496,7 @@ Base @base  = new Derived { Prop1 = value1, Prop2 =  value2, Prop3 = value3 };
 var newBase = @base with { Prop2 = value };  // new Derived record even if type of _base is Base since _base contains a Derived record
 ----
 
-==== Value-based Equality & Inheritance
+== Value-based Equality & Inheritance
 
 Records have a virtual protected property called `+EqualityContract+`. +
 Every derived record overrides it, and in order to compare equal, the
@@ -512,7 +512,7 @@ Base rec2 = new Derived { Prop1 = value1, Prop2 =  value2, Prop3 = value3 };
 // will result not equal even if container is of same type
 ----
 
-=== Strings
+== Strings
 
 .NET strings are _immutable_. The downside of immutability is that
 string processing can be inefficient. +
@@ -536,7 +536,7 @@ string stringa_1 = stringa_2 + "string contents here";    // string concatenatio
 String.Length    // returns the length of the string
 ----
 
-==== String Methods (Not In-Place)
+== String Methods (Not In-Place)
 
 [source,cs]
 ----
@@ -567,7 +567,7 @@ String.Format($"{variable}"); // string interpolation outside of a Write/WriteLi
 String.Empty;  // value of an empty string, used for string init
 ----
 
-==== Raw string literals
+== Raw string literals
 
 Raw string literals can contain arbitrary text, including whitespace,
 new lines, embedded quotes, and other special characters without
@@ -608,9 +608,9 @@ var location = $$"""
 
 '''''
 
-=== Nullable Types
+== Nullable Types
 
-==== https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types[Nullable value types]
+== https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types[Nullable value types]
 
 A *nullable value type* `+T?+` represents all values of its underlying
 value type `+T+` and an additional `+null+` value.
@@ -646,7 +646,7 @@ nullableValueType.HasValue  // boolean, use for null check
 nullableValueType.Value  // underlying value type contents
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references[Nullable reference types]
+== https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references[Nullable reference types]
 
 C# 8.0 introduces nullable reference types and non-nullable reference
 types that enable to make important statements about the properties for
@@ -672,7 +672,7 @@ an expression to declare that the expression isn’t null. Any variable
 where the `+?+` isn’t appended to the type name is a non-nullable
 reference type.
 
-===== Nullability of types
+=== Nullability of types
 
 Any reference type can have one of four _nullabilities_, which describes
 when warnings are generated:
@@ -691,7 +691,7 @@ don’t tell the compiler that the type must be nullable or nonnullable.
 The nullability of a type in a variable declaration is controlled by the
 nullable context in which the variable is declared.
 
-===== Nullable Context
+=== Nullable Context
 
 Nullable contexts enable fine-grained control for how the compiler
 interprets reference type variables.
@@ -742,7 +742,7 @@ In `+Program.cs+`:
 #nullable restore annotations  // Restores the annotation warning context to the project settings.
 ----
 
-==== Null Conditional, Null Coalescing, Null Forgiving Operator, Null Checks
+== Null Conditional, Null Coalescing, Null Forgiving Operator, Null Checks
 
 [source,cs]
 ----
@@ -750,7 +750,7 @@ Type? variable = null;  // the variable can also contain the NULL value (nullabl
 
 <expr>!  // declare explicitly that the expression is not null (null forgiving operator)
 
-(variable == null ? null : variable.property)
+(variable = null ? null : variable.property)
 // same as
 variable?.property  // if variable != null access it's property (null conditional), return null otherwise
 
@@ -765,9 +765,9 @@ else
 // same as
 var variable = var ?? value  // return var if var != null, return value otherwise
 
-variable = variable?.property ?? value  // if (variable == null) -> variable = value -- null coalescing
+variable = variable?.property ?? value  // if (variable = null) -> variable = value -- null coalescing
 // same as
-variable ??= value;  // if (variable == null) -> variable = value -- null coalescing
+variable ??= value;  // if (variable = null) -> variable = value -- null coalescing
 
 // null checks through patter matching
 variable is null
@@ -777,7 +777,7 @@ variable is not null
 ArgumentNullException.ThrowIfNull(obj);
 ----
 
-==== Nullable Attributes
+== Nullable Attributes
 
 It’s possible to apply a number of attributes that provide information
 to the compiler about the semantics of APIs. That information helps the
@@ -801,7 +801,7 @@ parameter has the specified value.
 
 '''''
 
-=== Type Conversion
+== Type Conversion
 
 [source,cs]
 ----
@@ -819,13 +819,13 @@ It returns a bool to indicate if it was successful or not */
 Convert.To<SystemType>(variable);    // proper conversion and round-up of values (no truncation of values)
 ----
 
-==== Converting from any type to a string
+== Converting from any type to a string
 
 The `+ToString+` method converts the current value of any variable into
 a textual representation. Some types can’t be sensibly represented as
 text, so they return their namespace and type name.
 
-==== Number Downcasting
+== Number Downcasting
 
 The rule for rounding (in explicit casting) in C# is subtly different
 from the primary school rule:
@@ -841,14 +841,14 @@ part is even.
 This rule is known as *Banker’s Rounding*, and it is preferred because
 it reduces bias by alternating when it rounds up or down.
 
-==== Converting from a binary object to a string
+== Converting from a binary object to a string
 
 The safest thing to do is to convert the binary object into a string of
 safe characters. Programmers call this *Base64 encoding*. +
 The `+Convert+` type has a pair of methods, `+ToBase64String+` and
 `+FromBase64String+`, that perform this conversion.
 
-==== Parsing from strings to numbers or dates and times
+== Parsing from strings to numbers or dates and times
 
 The second most common conversion is from strings to numbers or date and
 time values. +
@@ -857,7 +857,7 @@ The opposite of `+ToString+` is `+Parse+`. Only a few types have a
 
 '''''
 
-=== Preprocessor Directives
+== Preprocessor Directives
 
 C# offers a `+#define+` directive that lets you define a compilation
 symbol. +
@@ -898,7 +898,7 @@ release.
 Type Method() { ... }
 ----
 
-==== `+#error+` and `+#warning+`
+== `+#error+` and `+#warning+`
 
 C# allows choose to generate _compiler errors_ or warnings with the
 `+#error+` and `+#warning+` directives. These are typically used inside
@@ -911,7 +911,7 @@ conditional regions.
 #endif
 ----
 
-==== `+#pragma+`
+== `+#pragma+`
 
 The `+#pragma+` directive provides two features: it can be used to
 disable selected compiler warnings, and it can also be used to override
@@ -928,12 +928,12 @@ code.
 
 '''''
 
-=== Expressions & Operators
+== Expressions & Operators
 
-==== Primary Expressions
+== Primary Expressions
 
 [width="100%",cols="23%,77%",options="header",]
-|===
+|==
 |Syntax |Operation
 |x`+.+`m |access to member `+m+` of object `+x+` ("`.`" –> member access
 operator)
@@ -957,12 +957,12 @@ operator)
 |`+default(T)+` |default value of `+T+`
 
 |`+x!+` |declare x as not null
-|===
+|==
 
-==== Unary Operators
+== Unary Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |`+++`x |identity
 |`+-+`x |negation
@@ -973,12 +973,12 @@ operator)
 |x`++++` |post-increment
 |x`+--+` |post decrement
 |`+(type)+`x |explicit casting
-|===
+|==
 
-==== Mathematical Operators
+== Mathematical Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |x `+++` y |addition, string concatenation
 |x `+-+` y |subtraction
@@ -987,26 +987,26 @@ operator)
 |x `+%+` y |modulo, remainder
 |x `+<<+` y |left bit shift
 |x `+>>+` y |right bit shift
-|===
+|==
 
-==== Relational Operators
+== Relational Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |x `+<+` y |less than
 |x `+<=+` y |less or equal to
 |x `+>+` y |greater than
 |x `+>=+` y |greater or equal to
 |x `+is+` T |`+true+` if `+x+` is an object of type `+T+`
-|x `+==+` y |equality
+|x `+=+` y |equality
 |x `+!=+` y |inequality
-|===
+|==
 
-==== Logical Operators
+== Logical Operators
 
 [width="100%",cols="12%,68%,20%",options="header",]
-|===
+|==
 |Operator |Operation |Name
 |`+~+`x |bitwise NOT |
 
@@ -1023,14 +1023,14 @@ operator)
 |x `+??+` y |evaluates to `+y+` only if `+x+` is `+null+`, `+x+`
 otherwise |Null coalescing
 
-|x`+?.+`y |stop if `+x == null+`, evaluate `+x.y+` otherwise |Null
+|x`+?.+`y |stop if `+x = null+`, evaluate `+x.y+` otherwise |Null
 conditional
-|===
+|==
 
-==== Assignment
+== Assignment
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |x `++=+` y |x = x + y
 |x `+-=+` y |x = x - y
@@ -1042,16 +1042,16 @@ conditional
 |x `+&=+` y |x = x & y
 |x `+|=+` y |x = x
 |x `+^=+` y |x = x ^ y
-|x `+??=+` y |if (x == null) \{x = y}
-|===
+|x `+??=+` y |if (x = null) \{x = y}
+|==
 
-==== Conditional Operator
+== Conditional Operator
 
 `+<condition> ? <return_if_condition_true> : <return_if_condition_false>;+`
 
-=== Decision Statements
+== Decision Statements
 
-==== `+If+`-`+Else If+`-`+Else+`
+== `+If+`-`+Else If+`-`+Else+`
 
 [source,cs]
 ----
@@ -1071,7 +1071,7 @@ else
 }
 ----
 
-==== Pattern Matching
+== Pattern Matching
 
 https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns[Pattern
 Matching]
@@ -1128,7 +1128,7 @@ statements.
 <expr> is [value1, .. var rest]  // capture any number of items
 ----
 
-==== Switch
+== Switch
 
 The `+when+` keyword can be used to specify a filter condition that
 causes its associated case label to be true only if the filter condition
@@ -1173,9 +1173,9 @@ variable switch
 };
 ----
 
-=== Loop Statements
+== Loop Statements
 
-==== `+While+` Loop
+== `+While+` Loop
 
 [source,cs]
 ----
@@ -1185,7 +1185,7 @@ while (condition)
 }
 ----
 
-=== `+Do+`-`+While+` Loop
+== `+Do+`-`+While+` Loop
 
 Executes at least one time.
 
@@ -1198,7 +1198,7 @@ do
 while (condition);
 ----
 
-==== `+For+` Loop
+== `+For+` Loop
 
 [source,cs]
 ----
@@ -1208,7 +1208,7 @@ for (initializer; condition; iterator)
 }
 ----
 
-==== `+Foreach+` Loop
+== `+Foreach+` Loop
 
 Technically, the `+foreach+` statement will work on any type that
 follows these rules:
@@ -1253,13 +1253,13 @@ public static IEnumerator<int> GetEnumerator(this int source)
 }
 ----
 
-==== `+Break+`, `+Continue+`
+== `+Break+`, `+Continue+`
 
 `+break;+` interrupts and exits the loop. +
 `+continue;+` restarts the loop cycle without evaluating the
 instructions.
 
-==== Yield Statement
+== Yield Statement
 
 [source,cs]
 ----
@@ -1267,7 +1267,7 @@ yield return <expression>;    // returns the results one at a time.
 yield break;    // concludes the iteration
 ----
 
-==== Context Statement & Using Declarations
+== Context Statement & Using Declarations
 
 [source,cs]
 ----
@@ -1284,7 +1284,7 @@ using (Type obj = new Type())  // obj disposed at the end of the using block
 }
 ----
 
-==== `+Checked+`/`+Unchecked+` Statements
+== `+Checked+`/`+Unchecked+` Statements
 
 In checked code block ore expression the mathematic overflow causes an
 `+OverflowException+`. +
@@ -1320,7 +1320,7 @@ unchecked(<expr>);
 
 '''''
 
-=== Exception Handling
+== Exception Handling
 
 https://docs.microsoft.com/en-us/dotnet/api/system.exception[Exception
 Object]
@@ -1350,7 +1350,7 @@ finally
 }
 ----
 
-==== Throwing Exceptions
+== Throwing Exceptions
 
 [source,cs]
 ----
@@ -1372,7 +1372,7 @@ catch (SpecificException e)
 Environment.FailFast(causeOfFailure);
 ----
 
-==== Custom Exceptions
+== Custom Exceptions
 
 [source,cs]
 ----
@@ -1396,7 +1396,7 @@ public class CustomException : Exception  // must derive from Exception (either 
 
 '''''
 
-=== Enums
+== Enums
 
 An enumeration type (or enum type) is a value type defined by a set of
 *named constants* of the underlying _integral numeric_ type (`+int+`,
@@ -1432,7 +1432,7 @@ string[] enumNames = Enum.GetNames(typeof(EnumType));
 
 '''''
 
-=== Methods
+== Methods
 
 The method signature is the number & type of the input parameters
 defined for the method.
@@ -1459,14 +1459,14 @@ void MethodName (type parameter, ...) {
 }
 ----
 
-==== Expression Body Definition
+== Expression Body Definition
 
 [source,cs]
 ----
 type MethodName() => <expression>;    // expression result type MUST match method type
 ----
 
-==== Arbitrary Number Of Parameter In Methods
+== Arbitrary Number Of Parameter In Methods
 
 [source,cs]
 ----
@@ -1477,7 +1477,7 @@ type MethodName (type parameter, params type[] args)
 }
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#named-arguments[Named Arguments]
+== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#named-arguments[Named Arguments]
 
 [source,cs]
 ----
@@ -1490,7 +1490,7 @@ MethodName(param2: value, param1: value);  // order can be any
 MethodName(value, param2: value);
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments[Optional Arguments]
+== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#optional-arguments[Optional Arguments]
 
 The definition of a method, constructor, indexer, or delegate can
 specify that its parameters are required or that they are optional. +
@@ -1522,7 +1522,7 @@ of optional parameters, it must provide arguments for all preceding
 optional parameters. Comma-separated gaps in the argument list are not
 supported.
 
-==== Passing Values By Reference (`+ref+`, `+out+`, `+in+`)
+== Passing Values By Reference (`+ref+`, `+out+`, `+in+`)
 
 https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref[Ref
 Docs],
@@ -1578,7 +1578,7 @@ type OutMethod(type param1, out type param2){}
 OutMethod(arg1, out var arg2);  // create out variable on the fly
 ----
 
-==== Returning Multiple Values with Tuples
+== Returning Multiple Values with Tuples
 
 *Must* be C# 7+. +
 The retuned tuple MUST match the tuple-type in the instantiation
@@ -1592,7 +1592,7 @@ The retuned tuple MUST match the tuple-type in the instantiation
 }
 ----
 
-==== Returning Multiple Values W/ Structs (Return Struct Variable)
+== Returning Multiple Values W/ Structs (Return Struct Variable)
 
 [source,cs]
 ----
@@ -1607,7 +1607,7 @@ StructName MethodName (args)
 }
 ----
 
-==== Local Functions
+== Local Functions
 
 [source,cs]
 ----
@@ -1619,7 +1619,7 @@ type OuterMethod(...)
 }
 ----
 
-==== Extension Methods
+== Extension Methods
 
 Extension methods allow their usage applied to the extended type as if
 their declaration was inside the object’s class. +
@@ -1648,7 +1648,7 @@ var.ExtensionMethod();  // use the method on a object as if the method belongs t
 
 '''''
 
-=== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/iterators[Iterators]
+== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/iterators[Iterators]
 
 An iterator can be used to step through collections such as lists and
 arrays.
@@ -1679,7 +1679,7 @@ public static System.Collections.IEnumerable<int> IterateRange(int start = 0, in
 
 '''''
 
-=== Structs (Custom Value Types) & Classes (Custom Reference Types)
+== Structs (Custom Value Types) & Classes (Custom Reference Types)
 
 .reference-vs-value
 image::../../../img/dotnet_pass-by-reference-vs-pass-by-value-animation.gif[reference-vs-value]
@@ -1742,7 +1742,7 @@ uninitialized values will be filed with their defaults
 The only way to affect a struct variable both inside a method and
 outside is to use the `+ref+` keyword;
 
-==== Modifiers (Methods & Variables)
+== Modifiers (Methods & Variables)
 
 A locally scoped variable is only accessible inside of the code block in
 which it’s defined. +
@@ -1790,7 +1790,7 @@ sealed. +
 If any part declares a base type, then the whole type inherits that
 class.
 
-==== Methods
+== Methods
 
 [source,cs]
 ----
@@ -1836,7 +1836,7 @@ class Class(Type Parameter, ...)  // primary constructor (like records)
 *Note*: if a _primary constructor_ is used all other constructors must
 use `+this(...)+` to invoke it
 
-==== Properties & Fields
+== Properties & Fields
 
 https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties[Properties
 Docs]
@@ -1903,7 +1903,7 @@ they are allowed to _mutate_ `+readonly+` fields of the enclosing class,
 just like in a constructor. *Note*: creating at least one constructor
 hides the one provided by default (w/ zero parameters).
 
-==== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers[Object and Collection Initializers]
+== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers[Object and Collection Initializers]
 
 *Object initializers* allow to assign values to any accessible fields or
 properties of an object at creation time without having to invoke a
@@ -2008,7 +2008,7 @@ Dictionary<int, string> digits = [
 ];
 ----
 
-==== `+Static+` Class
+== `+Static+` Class
 
 The `+static+` keyword declares that a member is not associated with any
 particular instance of the class. +
@@ -2036,7 +2036,7 @@ static class Class
 }
 ----
 
-==== Class Members Init Order
+== Class Members Init Order
 
 *Static Field or Method Usage*:
 
@@ -2054,7 +2054,7 @@ static class Class
 Method Usage*: `+object.method(arguments);+` *Static Method Usage*:
 `+Class.method(arguments);+`
 
-==== Indexers
+== Indexers
 
 An *indexer* is a property that takes one or more arguments, and is
 accessed with the same syntax as is used for arrays. +
@@ -2074,10 +2074,10 @@ public class Class<T>
 // null conditional index access
 Class? c = objWithIndexer?[index];
 // same as
-Class? c = objWithIndexer == null ? null : objWithIndexer[index];
+Class? c = objWithIndexer = null ? null : objWithIndexer[index];
 ----
 
-==== Abstract Classes
+== Abstract Classes
 
 The `+abstract+` modifier indicates that the thing being modified has a
 missing or incomplete implementation. +
@@ -2152,7 +2152,7 @@ public class Derived : Abstract
 }
 ----
 
-==== Cloning
+== Cloning
 
 [source,cs]
 ----
@@ -2162,7 +2162,7 @@ Object.MemberwiseClone();  // Returns shallow copy of the object
 IClonable.Clone();  //  Creates a new object that is a copy of the current instance.
 ----
 
-==== Deconstruction
+== Deconstruction
 
 Deconstruction is not limited to tuples. By providing a
 `+Deconstruct(...)+` method(s) C# allows to use the same syntax with the
@@ -2213,7 +2213,7 @@ int height = 0;
 
 '''''
 
-=== Operator Overloading
+== Operator Overloading
 
 A user-defined type can overload a predefined C# operator. That is, a
 type can provide the custom implementation of an operation in case one
@@ -2242,7 +2242,7 @@ public readonly struct Fraction
 
     public Fraction(int numerator, int denominator)
     {
-        if (denominator == 0)
+        if (denominator = 0)
         {
             throw new ArgumentException("Denominator cannot be zero.", nameof(denominator));
         }
@@ -2266,7 +2266,7 @@ public readonly struct Fraction
 
     public static Fraction operator /(Fraction a, Fraction b)
     {
-        if (b.num == 0)
+        if (b.num = 0)
         {
             throw new DivideByZeroException();
         }
@@ -2279,11 +2279,11 @@ public readonly struct Fraction
 
     // true & false operator overloading (truthiness and falseness more than exact boolean value)
     public static bool operator true(Fraction f) => f != 0;
-    public static bool operator false(Fraction f) => f == 0;
+    public static bool operator false(Fraction f) => f = 0;
     // if &, |, true, false are overloaded than && and || will work
 
     // comparison operators overloading
-    public static bool operator ==(Fraction f1, Fraction f2) => f1.num == f2.num && f1.den == f2.den;
+    public static bool operator =(Fraction f1, Fraction f2) => f1.num = f2.num && f1.den = f2.den;
     public static bool operator !=(Fraction f1, Fraction f2) => f1.num != f2.num || f1.den != f2.den;
     public static bool operator >(Fraction f1, Fraction f2) => ...;
     public static bool operator >=(Fraction f1, Fraction f2) => ...;
@@ -2292,7 +2292,7 @@ public readonly struct Fraction
 
     public override bool Equals(object obj)
     {
-        return obj is Fraction f && this.num == f.num && this.den == f.den;  // same type + same values
+        return obj is Fraction f && this.num = f.num && this.den = f.den;  // same type + same values
     }
 
     // required if Equals has been implemented
@@ -2305,7 +2305,7 @@ public readonly struct Fraction
 }
 ----
 
-==== Nested Types
+== Nested Types
 
 A type defined at _global scope_ can be only `+public+`or `+internal+`.
 private wouldn’t make sense since that makes something accessible only
@@ -2321,7 +2321,7 @@ automatically get a reference to an instance of its containing type.
 
 '''''
 
-=== Interfaces
+== Interfaces
 
 An interface declares methods, properties, and events, but it doesn’t
 have to define their bodies. +
@@ -2388,7 +2388,7 @@ that can be referred to via a reference.
 
 '''''
 
-=== Generics
+== Generics
 
 https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/[Generics
 Docs]
@@ -2421,14 +2421,14 @@ obj.GenericMethodName<Type>();  // generic method call
 obj.GenericMethodName(Type param);  // type deduced by input, input type and generic method type must match
 ----
 
-==== Multiple Generics
+== Multiple Generics
 
 [source,cs]
 ----
 public class GenericClass<T1, T2, ...> { }  // number of generic types is not limited
 ----
 
-==== Parameters Constraints
+== Parameters Constraints
 
 Specify an interface or class that the generic type must
 implement/inherit.
@@ -2481,7 +2481,7 @@ public T GenericMethod<T>() where T : class?
 
 '''''
 
-=== Inheritance
+== Inheritance
 
 Classes support only single inheritance. Interfaces offer a form of
 multiple inheritance. Value types do not support inheritance at all. +
@@ -2523,7 +2523,7 @@ class ChildClass : BaseClass, Interface, Interface<Type>
 }
 ----
 
-==== Downcasting
+== Downcasting
 
 Downcasting is the conversion from a base class type to one of it’s
 derived types.
@@ -2537,7 +2537,7 @@ if(b is Derived d) {}  // type pattern, d contains converted obj (if conversion 
 if(b is Derived) {}  // simple type pattern (if conversion fails IS returns FALSE)
 ----
 
-==== Inheritance & Constructors
+== Inheritance & Constructors
 
 All of a base class’s constructors are available to a derived type, but
 they can be invoked only by constructors in the derived class. +
@@ -2570,7 +2570,7 @@ public class Derived
 }
 ----
 
-==== Generics Inheritance
+== Generics Inheritance
 
 If you derive from a generic class, you must supply the type arguments
 it requires. +
@@ -2605,7 +2605,7 @@ public class Derived : base<Derived> {}
 public class Derived<T> where T : Derived<T>
 ----
 
-==== Covariance & Contravariance (only for interfaces)
+== Covariance & Contravariance (only for interfaces)
 
 http://tomasp.net/blog/variance-explained.aspx/[The theory behind
 covariance and contravariance in C#]
@@ -2666,7 +2666,7 @@ CompareDerived(baseComparator);  // valid since baseComparator can compare Base 
 
 '''''
 
-=== Delegates
+== Delegates
 
 A *delegate* is a type that represents a _reference to a method_ with a
 particular parameter list and return type. Delegates are used to pass
@@ -2691,7 +2691,7 @@ var delegate = new Delegate<Type>(Method);  // explicit creation, useful when co
 Delegate<Type> delegate = Method;  // implicit creation
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.multicastdelegate[Multicast Delegates]
+== https://docs.microsoft.com/en-us/dotnet/api/system.multicastdelegate[Multicast Delegates]
 
 *Multicast Delegates* are delegates that can have more than one element
 in their invocation list.
@@ -2709,7 +2709,7 @@ Subtraction of a multicast delegate succeeds only if the delegate from
 which subtract contains all of the methods in the delegate being
 subtracted _sequentially and in the same order_.
 
-==== Delegate Invocation
+== Delegate Invocation
 
 Invoking a delegate with a single target method works as though the code
 had called the target method in the conventional way. +
@@ -2726,7 +2726,7 @@ delegate.DynamicInvoke(argsArray); // Dynamically invokes the method represented
 multicastDelegate.GetInvocationList();  // list of methods called by the delegate
 ----
 
-==== Common Delegate Types
+== Common Delegate Types
 
 *Note*: Each delegate has an overload taking from zero to 16 arguments;
 
@@ -2737,7 +2737,7 @@ public delegate TResult Func<in T1, ..., out TResult>(T1 arg1, ...);
 public delegate bool Predicate<in T1, ...>(T1 arg1, ...);
 ----
 
-==== Type Compatibility
+== Type Compatibility
 
 Delegate types do not derive from one another. Any delegate type defined
 in C# will derive directly from `+MulticastDelegate+`. +
@@ -2745,7 +2745,7 @@ However, the type system supports certain implicit reference conversions
 for generic delegate types through covariance and contravariance. The
 rules are very similar to those for interfaces.
 
-=== Anonymous Functions (Lambda Expressions)
+== Anonymous Functions (Lambda Expressions)
 
 Delegates without explicit separated method.
 
@@ -2781,7 +2781,7 @@ var f = static void (_) => Console.Write("Help");
 
 '''''
 
-=== https://www.tutorialsteacher.com/csharp/csharp-event[Events]
+== https://www.tutorialsteacher.com/csharp/csharp-event[Events]
 
 Structs and classes can declare events. This kind of member enables a
 type to provide notifications when interesting things happen, using a
@@ -2810,7 +2810,7 @@ public class Publisher
 }
 ----
 
-==== Registering Event Handlers
+== Registering Event Handlers
 
 [source,cs]
 ----
@@ -2828,7 +2828,7 @@ public class Subscriber
 }
 ----
 
-==== Built-In EventHandler Delegate
+== Built-In EventHandler Delegate
 
 .NET includes built-in delegate types `+EventHandler+` and
 `+EventHandler<TEventArgs>+` for the most common events. +
@@ -2863,7 +2863,7 @@ public class Subscriber
 }
 ----
 
-==== Custom Event Args
+== Custom Event Args
 
 [source,cs]
 ----
@@ -2894,7 +2894,7 @@ public class Subscriber
 
 '''''
 
-=== Assemblies
+== Assemblies
 
 In .NET the proper term for a software component is an *assembly*, and
 it is typically a `+.dll+` or `+.exe+` file. +
@@ -2915,7 +2915,7 @@ To ensure that the loader can find the right components, assemblies have
 structured names that include version information, and they can
 optionally contain a globally unique element to prevent ambiguity.
 
-==== Anatomy of an Assembly
+== Anatomy of an Assembly
 
 Assemblies use the *Win32 Portable Executable* (PE) file format, the
 same format that executables (EXEs) and dynamic link libraries (DLLs)
@@ -2944,7 +2944,7 @@ The normal Windows mechanisms for loading and running the code in an
 executable or DLL won’t work with IL, because that can run only with the
 help of the CLR.
 
-==== .NET MEtadata
+== .NET MEtadata
 
 As well as containing the compiled IL, an assembly contains metadata,
 which provides a full description of all of the types it defines,
@@ -2954,7 +2954,7 @@ uses to be able to make sense of the IL and turn it into running code,
 the binary format for IL frequently refers to the containing assembly’s
 metadata and is meaningless without it.
 
-==== Resources
+== Resources
 
 It’s possible to embed binary resources in a DLL alongside the code and
 metadata. To embed a file select "`Embedded Resource`" as it’s _Build
@@ -2965,7 +2965,7 @@ To extract the resource at runtime use the `+Assembly+` class’s
 `+GetManifestResourceStream+` method which is par of the *Reflection
 API*.
 
-==== Multifile Assembly
+== Multifile Assembly
 
 .NET Framework allowed an assembly to span multiple files. +
 It was possible to split the code and metadata across multiple modules,
@@ -2987,7 +2987,7 @@ including a list of any external modules or other external files; in a
 multimodule assembly, the manifest describes which types are defined in
 which files.
 
-==== Assembly Resolution
+== Assembly Resolution
 
 When the runtime needs to load an assembly, it goes through a process
 called _assembly resolution_.
@@ -2997,7 +2997,7 @@ called _assembly resolution_.
 * *self-contained*
 * *framework-dependent*
 
-==== Self-Contained Deployment
+== Self-Contained Deployment
 
 When publishing a self-contained application, it includes a complete
 copy of .NET Core, the whole of the CLR and all the built-in
@@ -3015,7 +3015,7 @@ With self-contained deployment, unless the application directs the CLR
 to look elsewhere everything will load from the application folder,
 including all assemblies built into .NET.
 
-===== Framework-Dependent Deployment
+=== Framework-Dependent Deployment
 
 The default build behavior for applications is to create a
 framework-dependent executable. In this case, the code relies on a
@@ -3028,7 +3028,7 @@ version of .NET Core to run. +
 The chosen runtime version selects not just the CLR, but also the
 assemblies making up the parts of the class library built into .NET.
 
-==== Assembly Names
+== Assembly Names
 
 Assembly names are structured. They always include a *simple name*,
 which is the name by which normally refer to the DLL. +
@@ -3040,7 +3040,7 @@ Assembly names always include a *version number*. There are also some
 optional components, including *the public key token*, a string of
 _hexadecimal digits_, which is required to have a unique name.
 
-===== Strong Names
+=== Strong Names
 
 If an assembly’s name includes a public key token, it is said to be a
 *strong name*. Microsoft advises that any .NET component that is
@@ -3065,7 +3065,7 @@ possession of the private key can generate a valid signature. Any
 attempt to modify the assembly after signing it will invalidate the
 signature.
 
-===== Version
+=== Version
 
 All assembly names include a four-part version number:
 `+major.minor.build.revision+`. However, there’s no particular
@@ -3089,7 +3089,7 @@ components of a package version number as having particular
 significance: it has adopted the widely used _semantic versioning_
 rules.
 
-===== Culture
+=== Culture
 
 All assembly names include a *culture* component. +
 This is not optional, although the most common value for this is the
@@ -3103,7 +3103,7 @@ strings.
 
 '''''
 
-=== Reflection
+== Reflection
 
 The CLR knows a great deal about the types the programs define and use.
 It requires all assemblies to provide detailed metadata, describing each
@@ -3123,7 +3123,7 @@ The reflection API defines various classes in the `+System.Reflection+`
 namespace. These classes have a structural relationship that mirrors the
 way that assemblies and the type system work.
 
-==== Assembly
+== Assembly
 
 The `+Assembly+` class defines three context-sensitive static methods
 that each return an `+Assembly+`. +
@@ -3143,7 +3143,7 @@ assemblies it depends on be loaded automatically.
 
 '''''
 
-=== Attributes
+== Attributes
 
 In .NET, it’s possible to _annotate_ components, types, and their
 members with attributes. +
@@ -3153,7 +3153,7 @@ framework, a tool, the compiler, or the CLR.
 Attributes are passive containers of information that do nothing on
 their own.
 
-==== Applying Attributes
+== Applying Attributes
 
 To avoid having to introduce an extra set of concepts into the type
 system, .NET models attributes as instances of .NET types. +
@@ -3174,7 +3174,7 @@ annotation.
 *Note*: The real name of an attribute ends with "`Attribute`"
 (`+[AttrName]+` refers to the `+AttrNameAttribute+` class)
 
-==== Multiple Attributes
+== Multiple Attributes
 
 [source,cs]
 ----
@@ -3184,7 +3184,7 @@ annotation.
 [Attribute1, Attribute2]
 ----
 
-==== Defining Custom Attribute Types
+== Defining Custom Attribute Types
 
 [source,cs]
 ----
@@ -3200,7 +3200,7 @@ public class CustomAttribute : Attribute
 
 *NOTE*: From C# 11 attributes can be generic and have type constraints
 
-==== Retrieving Attributes
+== Retrieving Attributes
 
 It’s possible to discover which attributes have been applied through the
 reflection API. +
@@ -3220,7 +3220,7 @@ public interface ICustomAttributeProvider
 
 '''''
 
-=== Files & Streams
+== Files & Streams
 
 A .NET *stream* is simply a _sequence of bytes_. That makes a stream a
 useful abstraction for many commonly encountered features such as a file
@@ -3269,7 +3269,7 @@ program runs.
 always free to return less data than requested from Read for any reason.
 Never presume that a call to `+Read+` returned as much data as it could.
 
-==== Position & Seeking
+== Position & Seeking
 
 Streams automatically update their current position each time a read or
 write operation is completed. The `+Position+` property can be set to
@@ -3288,7 +3288,7 @@ by adding the first argument to the current position.
 public abstract long Seek(long offset, SeekOrigin origin);  // offset can be negative
 ----
 
-==== Flushing
+== Flushing
 
 Writing data to a Stream does not necessarily cause the data to reach
 its destination immediately. +
@@ -3324,7 +3324,7 @@ ensuring that it has been handed it to the OS), use either the
 passing `+true+` to force flushing to disk.
 
 [[streamreaderstream_reader_docs-streamwriterstream_writer_docs-text-files]]
-==== https://docs.microsoft.com/en-us/dotnet/api/system.io.streamreader[StreamReader] & https://docs.microsoft.com/en-us/dotnet/api/system.io.streamwriter[StreamWriter] (Text Files)
+== https://docs.microsoft.com/en-us/dotnet/api/system.io.streamreader[StreamReader] & https://docs.microsoft.com/en-us/dotnet/api/system.io.streamwriter[StreamWriter] (Text Files)
 
 The most useful concrete text-oriented streams types are
 `+StreamReader+` and `+StreamWriter+`, which wrap a `+Stream+` object. +
@@ -3369,7 +3369,7 @@ catch (Exception e)
 }
 ----
 
-==== StringReader & StringWriter
+== StringReader & StringWriter
 
 The `+StringReader+` and `+StringWriter+` classes serve a similar
 purpose to `+MemoryStream+`: they are useful when working with an API
@@ -3380,9 +3380,9 @@ array, `+StringReader+` wraps a string as a `+TextReader+`, while
 `+StringWriter+` presents a `+TextWriter+` API on top of a
 `+StringBuilder+`.
 
-=== Files & Directories
+== Files & Directories
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.io.filestream[FileStream] Class (Binary Files)
+== https://docs.microsoft.com/en-us/dotnet/api/system.io.filestream[FileStream] Class (Binary Files)
 
 The `+FileStream+` class derives from `+Stream+` and represents a file
 from the filesystem.
@@ -3405,7 +3405,7 @@ public FileStream(string path, FileMode mode, FileAccess access, FileShare share
 ----
 
 [width="100%",cols="16%,53%,31%",options="header",]
-|===
+|==
 |`+FileMode+` |Behavior if file exists |Behavior if file does not exist
 |`+CreateNew+` |Throws `+IOException+` |Creates new file
 
@@ -3419,7 +3419,7 @@ public FileStream(string path, FileMode mode, FileAccess access, FileShare share
 
 |`+Append+` |Opens existing file, setting Position to end of file
 |Creates new file
-|===
+|==
 
 *`+FileAccess+` Enumeration*:
 
@@ -3483,7 +3483,7 @@ still possible if the power fails.
 }
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.io.file[File] Class
+== https://docs.microsoft.com/en-us/dotnet/api/system.io.file[File] Class
 
 The static `+File+` class provides methods for performing various
 operations on files.
@@ -3525,7 +3525,7 @@ File.AppendAllLines(string path, IEnumerable<string> contents);  // appends a co
 File.Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName);
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.io.directory[Directory] Class
+== https://docs.microsoft.com/en-us/dotnet/api/system.io.directory[Directory] Class
 
 Exposes static methods for creating, moving, and enumerating through
 directories and subdirectories.
@@ -3557,7 +3557,7 @@ Directory.EnumerateFileSystemEntries(string path, string searchPattern, SearchOp
 Directory.GetFileSystemEntries (string path, string searchPattern, SearchOption searchOption);  // string[] array of file names and directory names that match a search pattern in a specified path
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.io.path[Path] Class
+== https://docs.microsoft.com/en-us/dotnet/api/system.io.path[Path] Class
 
 [source,cs]
 ----
@@ -3596,12 +3596,12 @@ string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.Applica
 ----
 
 [[fileinfofileinfo_docs-directoryinfodirectoryinfo_docs-filesysteminfofilesysteminfo_docs]]
-==== https://docs.microsoft.com/en-us/dotnet/api/system.io.fileinfo[FileInfo], https://docs.microsoft.com/en-us/dotnet/api/system.io.directoryinfo[DirectoryInfo] & https://docs.microsoft.com/en-us/dotnet/api/system.io.filesysteminfo[FileSystemInfo]
+== https://docs.microsoft.com/en-us/dotnet/api/system.io.fileinfo[FileInfo], https://docs.microsoft.com/en-us/dotnet/api/system.io.directoryinfo[DirectoryInfo] & https://docs.microsoft.com/en-us/dotnet/api/system.io.filesysteminfo[FileSystemInfo]
 
 Classes to hold multiple info about a file or directory. If some
 property changes using the method `+Refresh()+` will update the data.
 
-==== CLR Serialization
+== CLR Serialization
 
 Types are required to opt into CLR serialization. .NET defines a
 `+[Serializable]+` attribute that must be present before the CLR will
@@ -3622,9 +3622,9 @@ format
 
 '''''
 
-=== DateTime & TimeSpan
+== DateTime & TimeSpan
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.timespan[TimeSpan Struct]
+== https://docs.microsoft.com/en-us/dotnet/api/system.timespan[TimeSpan Struct]
 
 Object that represents the difference between two dates
 
@@ -3646,7 +3646,7 @@ TimeSpan interval = TimeSpan.FromDays(days);
 
 '''''
 
-=== Memory Efficiency
+== Memory Efficiency
 
 The CLR is able to perform automatic memory management thanks to its
 garbage collector (GC). This comes at a price: when a CPU spends time on
@@ -3662,7 +3662,7 @@ memory for the GC to recover, so this translates directly to lower GC
 overhead. There is a price to pay, of course: these GC-efficient
 techniques add significant complication to the code.
 
-==== `+Span<T>+`
+== `+Span<T>+`
 
 The `+System.Span<T>+` (a `+ref struct+`) value type represents a
 sequence of elements of type `+T+` stored contiguously in memory. Those
@@ -3724,7 +3724,7 @@ but with one restriction: it’s not possible a delegate that refers to
 that local method, because this would cause the compiler to move shared
 variables into an object that lives on the heap.
 
-=== `+Memory<T>+`
+== `+Memory<T>+`
 
 The `+Memory<T>+` type and its counterpart, `+ReadOnlyMemory<T>+`,
 represent the same basic concept as `+Span<T>+` and `+ReadOnlySpan<T>+`:
@@ -3742,7 +3742,7 @@ but in a context where spans are not allowed.
 
 '''''
 
-=== Regular Expressions
+== Regular Expressions
 
 https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference[regex
 reference]
@@ -3763,7 +3763,7 @@ match.Groups[index].Index;  // position in the input string of the matched group
 
 '''''
 
-=== Unsafe Code & Pointers
+== Unsafe Code & Pointers
 
 The `+unsafe+` keyword denotes an _unsafe context_, which is required
 for any operation involving pointers.
@@ -3792,7 +3792,7 @@ increment and decrement]).
 arithmetic
 (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-arithmetic[Pointer
 arithmetic]).
-* The `+==+`, `+!=+`, `+<+`, `+>+`, `+<=+`, and `+>=+` operators may be
+* The `+=+`, `+!=+`, `+<+`, `+>+`, `+<=+`, and `+>=+` operators may be
 used to compare pointers
 (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code#pointer-comparison[Pointer
 comparison]).
@@ -3830,7 +3830,7 @@ unsafe
 }
 ----
 
-==== Native Memory
+== Native Memory
 
 [source,cs]
 ----
@@ -3844,7 +3844,7 @@ unsafe
 }
 ----
 
-==== External Code
+== External Code
 
 The `+extern+` modifier is used to declare a method that is implemented
 externally. +
@@ -3858,13 +3858,13 @@ In this case, the method must also be declared as `+static+`.
 private static extern void AVIFileInit();
 ----
 
-=== Magic Methods
+== Magic Methods
 
 Methods needed to implement a behaviour which do not need an interface
 to work. The methods *must* be named _appropriately_ and have the
 correct _return type_.
 
-==== Enumerable
+== Enumerable
 
 [source,cs]
 ----
@@ -3872,16 +3872,16 @@ public bool MoveNext(/* ... */);
 public T Current { get; }
 ----
 
-==== Awaitable
+== Awaitable
 
 [source,cs]
 ----
 public TaskAwaiter GetAwaiter(/* ... */);
 ----
 
-=== Code Quality
+== Code Quality
 
-==== https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview[Code Analysis]
+== https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview[Code Analysis]
 
 [source,xml]
 ----
@@ -3891,7 +3891,7 @@ public TaskAwaiter GetAwaiter(/* ... */);
 ----
 
 [width="100%",cols="^10%,90%",options="header",]
-|===
+|==
 |Level |Description
 |`+None+` |All rules are disabled. Can selectively
 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-options[opt
@@ -3911,9 +3911,9 @@ rules are enabled as build warnings.
 |`+All+` |All rules are enabled as build warnings__. __Can selectively
 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-options[opt
 out] of individual rules to disable them.
-|===
+|==
 
-==== https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages[Dependency Auditing]
+== https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages[Dependency Auditing]
 
 [source,xml]
 ----

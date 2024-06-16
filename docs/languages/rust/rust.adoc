@@ -1,6 +1,6 @@
-== Rust
+= Rust
 
-=== Basics
+== Basics
 
 [source,rs]
 ----
@@ -11,7 +11,7 @@ fn main() {  //program entry point
 }
 ----
 
-==== Standard Output
+== Standard Output
 
 [source,rs]
 ----
@@ -30,7 +30,7 @@ println!("{:b}", 0b11011);  // print as bits
 print!();
 ----
 
-==== Standard Input
+== Standard Input
 
 [source,rs]
 ----
@@ -52,7 +52,7 @@ An associated function is implemented on a type rather than on a
 particular instance of the type. Some languages call this a
 `+static method+`.
 
-=== Variables & Mutability
+== Variables & Mutability
 
 By default variables are _immutable_.
 
@@ -67,7 +67,7 @@ let mut var4: Type = value;  // explicit type annotation
 const CONSTANT_NAME: type = value;  // constant must have the type annotation
 ----
 
-==== Shadowing
+== Shadowing
 
 It’s possible declare a new variable with the _same name_ as a previous
 variable, and the new variable _shadows_ the previous variable. +
@@ -85,12 +85,12 @@ let x: u32 = 10;
 let x: i32 = 11;  // shadowing
 ----
 
-=== Data Types
+== Data Types
 
-==== Integer Types
+== Integer Types
 
 [cols=",,",options="header",]
-|===
+|==
 |Length |Signed |Unsigned
 |8-bit |`+i8+` |`+u8+`
 |16-bit |`+i16+` |`+u16+`
@@ -98,9 +98,9 @@ let x: i32 = 11;  // shadowing
 |64-bit |`+i64+` |`+u64+`
 |128-bit |`+i128+` |`+u128+`
 |architecture |`+isize+` |`+usize+`
-|===
+|==
 
-===== Explicit Mathematical Operations (Integers)
+=== Explicit Mathematical Operations (Integers)
 
 [source,rs]
 ----
@@ -112,7 +112,7 @@ i32::MAX.overflowing_add(value); // (i32, bool) => overflowed result and if over
 
 *Note*: analogous method exist for other mathematical operation
 
-==== Floating-Point Types
+== Floating-Point Types
 
 Rust also has two primitive types for floating-point numbers, which are
 numbers with decimal points. +
@@ -121,7 +121,7 @@ and 64 bits in size, respectively. +
 The default type is `+f64+` because on modern CPUs it’s roughly the same
 speed as `+f32+` but is capable of more precision.
 
-==== Numeric & Byte Literals
+== Numeric & Byte Literals
 
 Numeric Base Prefix:
 
@@ -139,42 +139,42 @@ characters
 * `+b'<C>'+`: Byte whose value is the ASCII character `+<C>+`
 * `+b'\x<HH>'+`: Byte whose value is the hexadecimal `+<HH>+`
 
-==== Numeric Operators
+== Numeric Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |`+>+` |Greater than
 |`+>=+` |Greater or Equal to
 |`+<+` |Less than
 |`+<=+` |Less or Equal to
-|`+==+` |Equals
+|`+=+` |Equals
 |`+!=+` |Not Equals
-|===
+|==
 
-==== Comparison Operators
+== Comparison Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |`+++` |Addition
 |`+-+` |Subtraction
 |`+*+` |Multiplication
 |`+/+` |Division
 |`+%+` |Modulo
-|===
+|==
 
-==== Boolean Types
+== Boolean Types
 
 Boolean types in Rust have two possible values: `+true+` and
 `+false+`. +
 Booleans are one byte in size. The Boolean type in Rust is specified
 using `+bool+`.
 
-==== Bitwise Operators
+== Bitwise Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |`+&+` |AND
 |`+|+` |OR
@@ -184,9 +184,9 @@ using `+bool+`.
 |`+!+` |NOT
 |`+<<+` |LEFT SHIFT
 |`+>>+` |RIGHT SHIFT
-|===
+|==
 
-==== Character Types
+== Character Types
 
 Rust’s `+char+` type is the language’s most primitive alphabetic type.
 
@@ -208,7 +208,7 @@ let c: char = '\x2A';  // ASCII for *
 std::char::from:digit(2, 10);  // Some(2)
 ----
 
-==== String Types
+== String Types
 
 [source,rs]
 ----
@@ -232,7 +232,7 @@ let byte_string = b"some bite string"  // &[u8] => slice og u8, equal to &[b'E',
 s.push_str(""); // appending string literals
 ----
 
-==== Tuple Types
+== Tuple Types
 
 A tuple is a general way of grouping together a number of values with a
 variety of types into one compound type. +
@@ -249,7 +249,7 @@ let (x, y, z) = tup;  // tuple deconstruction (unpacking)
 tup.0 = value;  // member access & update (mut be mutable)
 ----
 
-==== Array Types
+== Array Types
 
 Every element of an array must have the _same type_. Arrays in Rust have
 a fixed length, like tuples. +
@@ -276,7 +276,7 @@ let matrix: [[Type, length]; length]; = [[...], [...], ...]
 matrix[row][column];
 ----
 
-==== Slice Types (`+&[T]+`, `+&mut [T]+`)
+== Slice Types (`+&[T]+`, `+&mut [T]+`)
 
 Slices allows to reference a contiguous sequence of elements in a
 collection rather than the whole collection. *Slices don’t take
@@ -306,14 +306,14 @@ sequence[start..]  // slice to end of sequence
 sequence[..end]  // slice from start to end (excluded)
 ----
 
-==== Type Aliases
+== Type Aliases
 
 [source,rs]
 ----
 type Alias = T;
 ----
 
-=== Functions
+== Functions
 
 Rust code uses _snake_case_ as the conventional style for function and
 variable names.
@@ -347,9 +347,9 @@ fn func() {
 }
 ----
 
-=== Control Flow
+== Control Flow
 
-==== if, else-if, else
+== if, else-if, else
 
 [source,rs]
 ----
@@ -362,14 +362,14 @@ if condition {
 }
 ----
 
-==== let if
+== let if
 
 [source,rs]
 ----
 let var = if condition { value } else { value };  // returned types must be the same
 ----
 
-==== if-let
+== if-let
 
 [source,rs]
 ----
@@ -386,7 +386,7 @@ match <expr> {
 }
 ----
 
-==== loop
+== loop
 
 [source,rs]
 ----
@@ -394,7 +394,7 @@ match <expr> {
 loop { }
 ----
 
-==== while, while-let
+== while, while-let
 
 [source,rs]
 ----
@@ -403,7 +403,7 @@ while condition { }
 while let <pattern> {}
 ----
 
-==== for
+== for
 
 [source,rs]
 ----
@@ -418,7 +418,7 @@ for item in &mut sequence { }
 for i in (start..end) { }
 ----
 
-==== Range
+== Range
 
 [source,rs]
 ----
@@ -430,7 +430,7 @@ a .. b  // Range { start: a, end: b }
 a ..= b  // RangeInclusive::new(a, b)
 ----
 
-==== `+break+` & `+continue+`
+== `+break+` & `+continue+`
 
 [source,rs]
 ----
@@ -461,7 +461,7 @@ let loop_result = 'outer: loop {
 }
 ----
 
-=== Ownership
+== Ownership
 
 Ownership is Rust’s most unique feature, and it enables Rust to make
 memory safety guarantees without needing a garbage collector.
@@ -477,7 +477,7 @@ time. +
 None of the ownership features slow down your program while it’s
 running.
 
-==== Stack & Heap
+== Stack & Heap
 
 Both the stack and the heap are parts of memory that are available to
 your code to use at runtime, but they are structured in different ways.
@@ -515,13 +515,13 @@ minimizing the amount of duplicate data on the heap, and cleaning up
 unused data on the heap so you don’t run out of space are all problems
 that ownership addresses.
 
-==== Ownership Rules
+== Ownership Rules
 
 * Each _value_ in Rust has a variable that’s called its _owner_.
 * There can only be one owner at a time.
 * When the owner goes out of scope, the value will be dropped.
 
-==== Moving, Cloning & Copying data
+== Moving, Cloning & Copying data
 
 A "`shallow copy`" of a variable allocated on the _heap_ causes the
 original variable goes out of scope and only the "`copy`" remains
@@ -557,7 +557,7 @@ let n: i32 = 1;
 let x = n;  // x holds a COPY of the VALUE of n
 ----
 
-==== Ownership & Functions
+== Ownership & Functions
 
 The semantics for passing a value to a function are similar to those for
 assigning a value to a variable. Passing a variable to a function will
@@ -585,7 +585,7 @@ fn makes_copy(some_integer: i32) { // some_integer comes into scope
 } // Here, some_integer goes out of scope. Nothing special happens.
 ----
 
-==== Return Values & Scope
+== Return Values & Scope
 
 Returning values can also transfer ownership.
 
@@ -613,7 +613,7 @@ fn takes_and_gives_back(a_string: String) -> String { // a_string comes into sco
 }
 ----
 
-==== References, Raw Pointers & Borrowing
+== References, Raw Pointers & Borrowing
 
 Reference types:
 
@@ -685,7 +685,7 @@ references. +
 *Note*: comparison affect the final value of a reference chain. To
 compare references directly use `+std::ptr::eq+`
 
-=== Structs
+== Structs
 
 A *struct*, or structure, is a custom data type that allows to name and
 package together multiple related values that make up a meaningful
@@ -721,7 +721,7 @@ let mut var = Struct {
 };
 ----
 
-==== Field Init Shorthand
+== Field Init Shorthand
 
 [source,rs]
 ----
@@ -736,7 +736,7 @@ var.field = value;  // member access
 *Note*: the entire instance must be mutable; Rust doesn’t allow to mark
 only certain fields as mutable.
 
-==== Struct Update Syntax
+== Struct Update Syntax
 
 [source,rs]
 ----
@@ -752,7 +752,7 @@ let struct2 = Struct {
 }
 ----
 
-==== Tuple Structs
+== Tuple Structs
 
 Use Tuple Structs to create different types easily. +
 To define a *tuple struct*, start with the `+struct+` keyword and the
@@ -766,7 +766,7 @@ struct Color(i32, i32, i32);
 let origin = Point(0, 0, 0);
 ----
 
-==== Struct Printing
+== Struct Printing
 
 [source,rs]
 ----
@@ -777,7 +777,7 @@ let s: Struct = { /* valorization */};
 println!("{:?}", s)  // debug output: { field: value, ... }
 ----
 
-==== Associated Functions & Type-Associated Functions (aka Methods)
+== Associated Functions & Type-Associated Functions (aka Methods)
 
 [source,rs]
 ----
@@ -795,7 +795,7 @@ s.associated_function(arg);  // use struct method
 Struct::type_associated_function(arg);
 ----
 
-==== Associated Consts
+== Associated Consts
 
 [source,rs]
 ----
@@ -806,7 +806,7 @@ struct Struct {
 Struct::ASSOCIATED_CONST;
 ----
 
-=== Traits
+== Traits
 
 A Trait is a collection of methods representing a set of behaviours
 necessary to accomplish some task. +
@@ -833,7 +833,7 @@ impl Trait for Struct {
 }
 ----
 
-==== Fully Qualified Method Calls
+== Fully Qualified Method Calls
 
 [source,rs]
 ----
@@ -846,7 +846,7 @@ Trait::method(value);
 *Note*: fully qualified method calls also works with associated
 functions
 
-==== Derive Traits
+== Derive Traits
 
 The Rust compiler is able to provide a basic implementation of a trait
 with the `+derive+` attribute.
@@ -872,7 +872,7 @@ struct Struct {
 }
 ----
 
-==== Trait Bounds
+== Trait Bounds
 
 Trait Bound are used to require a generic to implement specific traits
 and guarantee that a type will have the necessary behaviours.
@@ -898,7 +898,7 @@ fn method_signature(param: &impl Trait) -> Type {}
 fn method_signature(param: &(impl TraitOne + TraitTwo)) -> Type {}
 ----
 
-==== Trait Extensions
+== Trait Extensions
 
 [source,rs]
 ----
@@ -916,7 +916,7 @@ impl FooExt for Foo {
 }
 ----
 
-==== Generic Structs & Methods
+== Generic Structs & Methods
 
 Generic Data Types are abstract stand-ind for concrete data types or
 other properties. +
@@ -962,7 +962,7 @@ fn generic<T: Trait>() -> Type { }  // use generic constraint
 *Note*: the calling code needs to import your new trait in addition to
 the external type
 
-==== Associated Types
+== Associated Types
 
 _Associated types_ connect a type placeholder with a trait such that the
 trait method definitions can use these placeholder types in their
@@ -988,7 +988,7 @@ value of that concrete type.
 *Note*: if the type is _generic_ then then they are called *generic
 associated types*
 
-==== Generic Traits vs Associated Types
+== Generic Traits vs Associated Types
 
 The difference is that when a trait has a generic parameter, it can be
 implemented for a type multiple times, changing the concrete types of
@@ -1003,7 +1003,7 @@ Associated types often have a name that describes how the type will be
 used, and documenting the associated type in the API documentation is
 good practice.
 
-==== Trait Objects
+== Trait Objects
 
 A _reference_ to a trait is called a *Trait Object*. Like any other
 reference, a trait object points to some value, it has a lifetime, and
@@ -1060,7 +1060,7 @@ following properties:
 * The return type isn’t `+Self+`.
 * There are no generic type parameters.
 
-=== Lifetimes
+== Lifetimes
 
 Lifetime annotation indicates to the _borrow checker_ that the lifetime
 of the returned value is as long as the lifetime of the referenced
@@ -1093,7 +1093,7 @@ impl<'a, 'b> Struct<'a> {
 let string: &'static str = "...";
 ----
 
-==== Lifetime Elision Rules
+== Lifetime Elision Rules
 
 The _Lifetime Elision Rules_ are a set of rules for the compiler to
 analyze references lifetimes. +
@@ -1107,7 +1107,7 @@ output lifetimes
 * *Rule 3*: If there is a `+&self+` or `+&mut self+` input parameter,
 it’s lifetime will be assigned to all output lifetimes
 
-=== Enums
+== Enums
 
 [source,rs]
 ----
@@ -1138,7 +1138,7 @@ impl Enum
 }
 ----
 
-==== Match Expressions
+== Match Expressions
 
 A _match expression_ is made up of _arms_. An arm consists of a
 _pattern_ and the code that should be run if the value given to the
@@ -1167,10 +1167,10 @@ fn match_variant(e: Enum) {
 }
 ----
 
-==== Pattern Matching
+== Pattern Matching
 
 [width="100%",cols="^25%,^30%,^45%",options="header",]
-|===
+|==
 |Pattern |Example |Notes
 |Literal |`+100+` |Match exact value or `+const+` name
 
@@ -1200,7 +1200,7 @@ to variable
 |Multiple Patterns |`+'a' \| 'A'+` |`+match, if let, while let+` only
 
 |Guard Expression |`+<pattern> if <condition>+` |`+match+` only
-|===
+|==
 
 *Note*: `+..+` in slices matches _any number_ of elements. `+..+` in
 structs _ignores_ all remaining fields
@@ -1249,9 +1249,9 @@ while let Err(err) = fallible_func() { }
 while let Some(_) = lines.peek() { }
 ----
 
-=== Error Handling
+== Error Handling
 
-==== Option & Result
+== Option & Result
 
 The `+Option+` type is used in many places because it encodes the very
 common scenario in which a value could be something or it could be
@@ -1336,7 +1336,7 @@ values that have the `+?+` operator called on them go through the
 `+from+` function, defined in the `+From+` trait in the standard
 library, which is used to convert errors from one type into another
 
-==== Multiple Error Types
+== Multiple Error Types
 
 When working with multiple error types is useful to return a "`generic
 error`" type. All the standard library error types can be represented by
@@ -1352,7 +1352,7 @@ type GenericResult<T> = Result<T; GenericError>;
 *Note*: the https://crates.io/crates/anyhow[`+anyhow+`] crate provides
 error and result types like `+GenericError+` with additional features
 
-==== Custom Error Types
+== Custom Error Types
 
 [source,rs]
 ----
@@ -1370,9 +1370,9 @@ pub struct JsonError {
 *Note*: the https://crates.io/crates/thiserror[`+thiserror+`] crate
 provides utilities to create custom error types
 
-=== Collections
+== Collections
 
-==== Vector
+== Vector
 
 Vectors allow to store more than one value in a single data structure
 that puts all the values next to each other in memory. Vectors can only
@@ -1416,7 +1416,7 @@ let v = vec![
 ];
 ----
 
-==== HashMap
+== HashMap
 
 Stores data in key-value pairs.
 
@@ -1432,7 +1432,7 @@ map.entry(key).or_insert(value); // insert if not existing
 map.entry(key).and_modify(|value| { *value = <expr> });  // modify item based on current value
 ----
 
-=== Closures
+== Closures
 
 Rust’s closures are anonymous functions that can be saved in a variable
 or passed as arguments to other functions. +
@@ -1461,7 +1461,7 @@ let closure = |num: i32| = <expr>;
 let result = closure(arg1, arg2);
 ----
 
-==== Storing Closures Using Generic Parameters and the Fn Traits
+== Storing Closures Using Generic Parameters and the Fn Traits
 
 To make a struct that holds a closure, the type of the closure must be
 specified, because a struct definition needs to know the types of each
@@ -1482,7 +1482,7 @@ struct ClosureStruct<T> where T: Fn(u32) -> u32 {
 }
 ----
 
-==== Capturing the Environment with Closures
+== Capturing the Environment with Closures
 
 When a closure captures a value from its environment, it uses memory to
 store the values for use in the closure body. +
@@ -1522,7 +1522,7 @@ to move the data so it’s owned by the new thread.
 let closure = move |param| <expr>;
 ----
 
-=== Function Pointers
+== Function Pointers
 
 *Function pointer* types, written using the `+fn+` keyword, refer to a
 function whose identity is not necessarily known at compile-time. +
@@ -1542,7 +1542,7 @@ let clos: fn(usize) -> usize = |x| x + 5;
 assert_eq!(clos(5), 10);
 ----
 
-=== Iterators
+== Iterators
 
 The _iterator pattern_ allows to perform some task on a sequence of
 items in turn. An iterator is responsible for the logic of iterating
@@ -1584,11 +1584,11 @@ methods is needed to get the results.
 let iterator: = vec![1, 2, 3];
 iterator
     .map(|x| x + 1)  // iterator adapter
-    .filter(|x| x % 2 == 0)  // iterator adapter
+    .filter(|x| x % 2 = 0)  // iterator adapter
     .collect();  // consuming adapter
 ----
 
-==== Custom Iterators
+== Custom Iterators
 
 [source,rs]
 ----
@@ -1616,7 +1616,7 @@ impl Iterator for Counter {
 }
 ----
 
-=== Smart Pointers
+== Smart Pointers
 
 A *pointer* is a general concept for a variable that contains an address
 in memory. This address refers to, or "`points at`" some other data. +
@@ -1653,7 +1653,7 @@ The most common smart pointers in the standard library are:
 * `+Ref<T>+` and `+RefMut<T>+`, accessed through `+RefCell<T>+`: a type
 that enforces the borrowing rules at runtime instead of compile time
 
-==== Using `+Box<T>+` to Point to Data on the Heap
+== Using `+Box<T>+` to Point to Data on the Heap
 
 The most straightforward smart pointer is `+Box<T>+`. Boxes allow to
 store data on the heap rather than the stack. What remains on the stack
@@ -1676,7 +1676,7 @@ being of a specific type
 let _box = Box::new(pointed_value);
 ----
 
-==== `+Deref+` Trait & Deref Coercion
+== `+Deref+` Trait & Deref Coercion
 
 Implementing the `+Deref+` trait allows to customize the behavior of the
 dereference operator, `+*+`. By implementing `+Deref+` in such a way
@@ -1741,7 +1741,7 @@ in three cases:
 * From `+&mut T+` to `+&mut U+` when `+T: DerefMut<Target=U>+`
 * From `+&mut T+` to `+&U+` when `+T: Deref<Target=U>+`
 
-==== `+Drop+` Trait
+== `+Drop+` Trait
 
 `+Drop+` allows to customize what happens when a value is about to go
 out of scope. It-s possible to provide an implementation for the
@@ -1767,7 +1767,7 @@ fn main() {
 Rust automatically calls `+drop+` when the instances went go of scope.
 Variables are dropped in the reverse order of their creation.
 
-==== `+Rc<T>+`, `+Arc<T>+` & Multiple Ownership
+== `+Rc<T>+`, `+Arc<T>+` & Multiple Ownership
 
 Rust provides the _reference-counted_ pointer types `+Rc<T>+` and
 `+Arc<T>+`. +
@@ -1794,7 +1794,7 @@ well.
 
 *Note*: A value owned by an `+Rc<T>+` pointer is immutable.
 
-==== `+RefCell<T>+` & Interior Mutability Pattern
+== `+RefCell<T>+` & Interior Mutability Pattern
 
 _Interior mutability_ is a design pattern in Rust that allows to mutate
 data even when there are immutable references to that data; +
@@ -1855,7 +1855,7 @@ to the inner value, the value is copied in and out of the `+Cell<T>+`.
 * `+Mutex<T>+` which offers interior mutability that’s safe to use
 across threads;
 
-==== Reference Cycles Can Leak Memory
+== Reference Cycles Can Leak Memory
 
 Rust’s memory safety guarantees make it difficult, but not impossible,
 to accidentally create memory that is never cleaned up (known as a
@@ -1866,9 +1866,9 @@ cycle. +
 This creates memory leaks because the reference count of each item in
 the cycle will never reach 0, and the values will never be dropped.
 
-=== Files
+== Files
 
-==== Reading Files
+== Reading Files
 
 [source,rs]
 ----
@@ -1880,7 +1880,7 @@ let contents: String = fs::read_to_string("path/to/file").unwrap_or_default();
 contents.lines(); // iterator over text lines
 ----
 
-==== Writing Files
+== Writing Files
 
 [source,rs]
 ----
@@ -1898,7 +1898,7 @@ let mut file = fs::OpenOptions::new().append(true).open("path/to/file").unwrap()
 file.write(b"appended text");  // write wants an [u8]
 ----
 
-=== External Code
+== External Code
 
 The extern keyword is used in two places in Rust:
 
@@ -1932,7 +1932,7 @@ The mirror use case of FFI is also done via the extern keyword:
 ----
 #[no_mangle]
 pub extern "C" fn callable_from_c(x: i32) -> bool {
-    x % 3 == 0
+    x % 3 = 0
 }
 ----
 

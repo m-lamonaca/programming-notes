@@ -1,11 +1,11 @@
-== Markdown Notes
+= Markdown Notes
 
-=== Headings
+== Headings
 
 [source,markdown]
 ----
 Heading 1
-=========
+=====
 
 Heading 2
 ---------
@@ -15,7 +15,7 @@ Heading 2
 ### Heading 3
 ----
 
-=== Text Formatting
+== Text Formatting
 
 [source,markdown]
 ----
@@ -25,7 +25,7 @@ Heading 2
 ~GitHub's strike-trough~
 ----
 
-=== Links & Images
+== Links & Images
 
 [source,markdown]
 ----
@@ -56,14 +56,14 @@ Heading 2
 - [x] checked checkbox
 ----
 
-==== Horizontal rule
+== Horizontal rule
 
 [source,markdown]
 ----
 ---                     ***
 ----
 
-=== Code
+== Code
 
 [source,markdown]
 ----
@@ -75,7 +75,7 @@ Heading 2
     ```
 ----
 
-=== Table
+== Table
 
 [source,markdown]
 ----

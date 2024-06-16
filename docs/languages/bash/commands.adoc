@@ -1,11 +1,11 @@
-== Bash Commands
+= Bash Commands
 
 *Note*: Square brackets (`+[]+`) denotes optional
 commands/flags/arguments. Uppercase denotes placeholders for arguments.
 
-=== Basic Commands
+== Basic Commands
 
-==== Elevated Privileges and Users
+== Elevated Privileges and Users
 
 https://unix.stackexchange.com/questions/35338/su-vs-sudo-s-vs-sudo-i-vs-sudo-bash/35342[sudo
 vs su]
@@ -23,7 +23,7 @@ su - USER  # change user and load it's home folder
 su USER  # change user but don't load it's home folder
 ----
 
-==== Getting Info
+== Getting Info
 
 [source,sh]
 ----
@@ -37,7 +37,7 @@ history  # list of used commands
 id  # Print user and group information for the specified USER, or (when USER omitted) for the current user
 ----
 
-==== Moving & Showing Directory Contents
+== Moving & Showing Directory Contents
 
 [source,sh]
 ----
@@ -52,7 +52,7 @@ pushd PATH  # go from current directory to path
 popd  # return to previous directory (before pushd)
 ----
 
-==== Creating, Reading, Copying, Moving, Modifying Files And Directories
+== Creating, Reading, Copying, Moving, Modifying Files And Directories
 
 [source,sh]
 ----
@@ -86,7 +86,7 @@ mv SOURCE DIRECTORY  # move FILE to DIRECTORY
 cp SOURCE DESTINATION  # copy SOURCE to DESTINATION
 ----
 
-==== Files Permissions & Ownership
+== Files Permissions & Ownership
 
 .Linux Permissions
 image::../../img/bash_files-permissions-and-ownership-basics-in-linux.png[Linux
@@ -146,7 +146,7 @@ users.
 else has any rights. This setting is useful for directories that only
 the owner may use and must be kept private from others.
 
-==== Finding Files And Directories
+== Finding Files And Directories
 
 [source,sh]
 ----
@@ -160,7 +160,7 @@ find [path] -exec <command> {} \;  # execute command on found items (identified 
 [[ -L "path" ]]  # test if is symlink
 ----
 
-==== Other
+== Other
 
 [source,sh]
 ----
@@ -196,7 +196,7 @@ watch [OPTIONS] COMMAND  # execute a program periodically, showing output full-s
 watch -n SECONDS COMMAND  # execute command every SECONDS seconds (no less than 0.1 seconds)
 ----
 
-=== Data Wrangling
+== Data Wrangling
 
 *Data wrangling* is the process of transforming and mapping data from
 one "`raw`" data form into another format with the intent of making it

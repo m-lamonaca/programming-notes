@@ -1,6 +1,6 @@
-== Spring Project
+= Spring Project
 
-=== Libs
+== Libs
 
 * MySql Driver
 * Spring Data JPA (data persistance)
@@ -8,7 +8,7 @@
 * Jersey (Serializzazione)
 * Spring Web
 
-=== application.properties
+== application.properties
 
 [source,ini]
 ----
@@ -21,7 +21,7 @@ spring.jpa.show-sql=true
 server.port=server_port
 ----
 
-=== Package `+entities+`
+== Package `+entities+`
 
 Model of a table of the DB
 
@@ -52,7 +52,7 @@ public class Entity {
 }
 ----
 
-=== Package `+dal+`
+== Package `+dal+`
 
 Spring Interface for DB connection and CRUD operations.
 
@@ -74,7 +74,7 @@ public interface IEntityDAO extends JpaRepository<Entity, Integer> {
 }
 ----
 
-=== Package `+services+`
+== Package `+services+`
 
 Interfaces and method to access the Data Access Layer (DAL).
 
@@ -162,7 +162,7 @@ public class EntityService implements IEntityService {
 }
 ----
 
-=== Package `+integration+`
+== Package `+integration+`
 
 REST API routes & endpoints to supply data as JSON.
 

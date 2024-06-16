@@ -1,4 +1,4 @@
-== MongoDB
+= MongoDB
 
 The database is a container of *collections*. The collections are
 containers of *documents*.
@@ -6,10 +6,10 @@ containers of *documents*.
 The documents are _schema-less_ that is they have a dynamic structure
 that can change between documents in the same collection.
 
-=== Data Types
+== Data Types
 
 [width="99%",cols="20%,54%,26%",options="header",]
-|===
+|==
 |Type |Example Value |Function
 |Text |`+"Text"+` |
 
@@ -27,12 +27,12 @@ that can change between documents in the same collection.
 |Embedded Document |`+{"a": {...}}+` |
 
 |Embedded Array |`+{"b": [...]}+` |
-|===
+|==
 
 It’s mandatory for each document ot have an unique field `+_id+`.
 MongoDB automatically creates an `+ObjectId()+` if it’s not provided.
 
-=== Databases & Collections Usage
+== Databases & Collections Usage
 
 To create a database is sufficient to switch towards a non existing one
 with `+use <database>+` (implicit creation). The database is not
@@ -50,7 +50,7 @@ db.createCollection(name, {options})  # explicit collection creation
 db.<collection>.insertOne({document})  # implicit collection creation
 ----
 
-=== Operators (MQL Syntax)
+== Operators (MQL Syntax)
 
 [source,json]
 ----
@@ -73,7 +73,7 @@ db.<collection>.insertOne({document})  # implicit collection creation
 { "<key>": { "$gte": "<value>" }}  // >=
 { "<key>": { "$lt":  "<value>" }}  // <
 { "<key>": { "$lte": "<value>" }}  // <=
-{ "<key>": { "$eq":  "<value>" }}  // ==
+{ "<key>": { "$eq":  "<value>" }}  // =
 { "<key>": { "$ne":  "<value>" }}  // !=
 
 /* --- Logic Operators (DEFAULT $and) --- */
@@ -94,7 +94,7 @@ db.<collection>.insertOne({document})  # implicit collection creation
 { "<key>": "/pattern/<options>" }
 ----
 
-==== Expressive Query Operator
+== Expressive Query Operator
 
 *Note*: `+$<key>+` is used to access the value of the field dynamically
 
@@ -104,9 +104,9 @@ db.<collection>.insertOne({document})  # implicit collection creation
 { "$expr":  { "$<comparison_operator>": [ "$<key>", "$<key>" ] } }  // compare field values (operators use aggregation syntax)
 ----
 
-=== Mongo Query Language (MQL)
+== Mongo Query Language (MQL)
 
-==== Insertion
+== Insertion
 
 It’s possible to insert a single document with the command
 `+insertOne()+` or multiple documents with `+insertMany()+`.
@@ -150,7 +150,7 @@ db.<collection>.insertMany([ { document }, { document } ] , { "ordered": false }
 rolled back but all the successive ones (even the correct ones) will not
 be inserted.
 
-==== Querying
+== Querying
 
 [source,sh]
 ----
@@ -194,7 +194,7 @@ db.<collection>.find().hint( { $natural : -1 } )  # force the query to perform a
 *Note*: `+{ <key>: <value> }+` in case of a field array will match if
 the array _contains_ the value
 
-==== Updating
+== Updating
 
 https://docs.mongodb.com/manual/reference/operator/update/[Update
 Operators]
@@ -207,7 +207,7 @@ db.<collection>.updateOne(filter, update, {upsert: true})  # modify document if 
 db.<collection>.updateOne(filter, { "$push": { ... }, "$set": { ... }, { "$inc": { ... }, ... } })
 ----
 
-==== Deletion
+== Deletion
 
 [source,sh]
 ----
@@ -220,9 +220,9 @@ db.dropDatabase()  # delete entire database
 
 '''''
 
-=== MongoDB Database Tools
+== MongoDB Database Tools
 
-==== https://docs.mongodb.com/database-tools/mongoimport/[Mongoimport]
+== https://docs.mongodb.com/database-tools/mongoimport/[Mongoimport]
 
 Utility to import all docs into a specified collection. +
 If the collection already exists `+--drop+` deletes it before
@@ -244,7 +244,7 @@ mongoimport <options> <connection-string> <file>
 --jsonarray  # Accepts the import of data expressed with multiple MongoDB documents within a single json array. MAX 16 MB
 ----
 
-==== https://docs.mongodb.com/database-tools/mongoexport/[Mongoexport]
+== https://docs.mongodb.com/database-tools/mongoexport/[Mongoexport]
 
 Utility to export documents into a specified file.
 
@@ -268,7 +268,7 @@ mongoexport --collection=<collection> <options> <connection-string>
 ----
 
 [[mongodumpmongodump_docs-mongorestoremongorestore_docs]]
-==== https://docs.mongodb.com/database-tools/mongodump/[Mongodump] & https://docs.mongodb.com/database-tools/mongorestore/[Mongorestore]
+== https://docs.mongodb.com/database-tools/mongodump/[Mongodump] & https://docs.mongodb.com/database-tools/mongorestore/[Mongorestore]
 
 `+mongodump+` exports the content of a running server into `+.bson+`
 files.
@@ -278,7 +278,7 @@ running server.
 
 '''''
 
-=== https://docs.mongodb.com/manual/indexes/[Indexes]
+== https://docs.mongodb.com/manual/indexes/[Indexes]
 
 Indexes support the efficient execution of queries in MongoDB.
 
@@ -301,7 +301,7 @@ at every writing.
 .IXSCAN
 image::../img/mongodb_ixscan.png[IXSCAN,title=".find() using an index"]
 
-==== https://docs.mongodb.com/manual/indexes/#index-types[Index Types]
+== https://docs.mongodb.com/manual/indexes/#index-types[Index Types]
 
 * *Normal*: Fields sorted by name
 * *Compound*: Multiple Fields sorted by name
@@ -313,7 +313,7 @@ image::../img/mongodb_ixscan.png[IXSCAN,title=".find() using an index"]
 indexed field, even if the index field contains a null value. The index
 skips over any document that is missing the indexed field.
 
-==== Diagnosis and query planning
+== Diagnosis and query planning
 
 [source,sh]
 ----
@@ -322,7 +322,7 @@ db.explain().<collection>.find({...})  # can accept other functions
 db.explain("executionStats").<collection>.find({...})  # more info
 ----
 
-==== Index Creation
+== Index Creation
 
 [source,sh]
 ----
@@ -345,7 +345,7 @@ db.<collection>.createIndex(
 )
 ----
 
-==== https://docs.mongodb.com/manual/tutorial/manage-indexes/[Index Management]
+== https://docs.mongodb.com/manual/tutorial/manage-indexes/[Index Management]
 
 [source,sh]
 ----
@@ -363,9 +363,9 @@ db.<collection>.dropIndex( { "index-name": 1 } )  # drop a specific index
 
 '''''
 
-=== Cluster Administration
+== Cluster Administration
 
-==== `+mongod+`
+== `+mongod+`
 
 `+mongod+` is the main deamon process for MongoDB. It’s the core process
 of the database, handling connections, requests and persisting the data.
@@ -382,7 +382,7 @@ config file] +
 https://www.mongodb.com/docs/manual/reference/program/mongod/#options[`+mongod+`
 command line options]
 
-==== Basic Shell Helpers
+== Basic Shell Helpers
 
 [source,sh]
 ----
@@ -414,7 +414,7 @@ db.runCommand({ "<COMMAND>" })
 db.commandHelp("<command>)
 ----
 
-==== Logging
+== Logging
 
 The *process log* displays activity on the MongoDB instance and collects
 activities of various components:
@@ -437,7 +437,7 @@ tail -f /path/to/mongod.log  # read end og log file
 *Note*: Log Message Structure:
 `+<timestamp> <severity-level> <component> <connection> <event> ...+`
 
-==== Database Profiling
+== Database Profiling
 
 Profiling Levels:
 
@@ -463,7 +463,7 @@ db.system.profile.find().limit(n).sort( {} ).pretty()  # see logs
 db.system.profile.find().limit(n).sort( { ts : -1 } ).pretty()  # sort by decreasing timestamp
 ----
 
-==== Authentication
+== Authentication
 
 Client Authentication Mechanisms:
 
@@ -472,7 +472,7 @@ Client Authentication Mechanisms:
 * *LADP*: Lightweight Directory Access Protocol (Enterprise Only)
 * *KERBEROS* (Enterprise Only)
 
-==== Authorization: Role Based Access Control (RBAC)
+== Authorization: Role Based Access Control (RBAC)
 
 Each user has one or more *Roles*. Each role has one or more
 *Privileges*. +
@@ -559,13 +559,13 @@ db.runCommand({
 })
 ----
 
-==== https://docs.mongodb.com/manual/replication/[Replica set]
+== https://docs.mongodb.com/manual/replication/[Replica set]
 
 A *replica set* in MongoDB is a group of `+mongod+` processes that
 maintain the `+same dataset+`. Replica sets provide redundancy and high
 availability, and are the basis for all production deployments.
 
-==== Sharding
+== Sharding
 
 *Sharding* is a MongoDB concept through which big datasets are
 subdivided in smaller sets and distributed towards multiple instances of
@@ -592,14 +592,14 @@ Cluster,title="Components of a shared cluster"]
 
 '''''
 
-=== https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/[Aggregation Framework]
+== https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/[Aggregation Framework]
 
 Sequence of operations applied to a collection as a _pipeline_ to get a
 result: `+db.collection.aggregate(pipeline, options)+`. +
 Each step of the pipeline acts on its inputs and not on the original
 data in the collection.
 
-==== Variables
+== Variables
 
 Variable syntax in aggregations:
 
@@ -607,7 +607,7 @@ Variable syntax in aggregations:
 * `+$$UPPERCASE+`: system variable (e.g.: `+$$CURRENT+`)
 * `+$$foo+`: user defined variable
 
-==== [`+$match+` Aggregation Stage][$match_docs]
+== [`+$match+` Aggregation Stage][$match_docs]
 
 Filters the documents to pass only the documents that match the
 specified condition(s) to the next pipeline stage.
@@ -630,7 +630,7 @@ db.<collection>.aggregate([
 [latexmath:[match_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/ "]match
 operator docs”
 
-==== [`+$project+` Aggregation Stage][$project_docs]
+== [`+$project+` Aggregation Stage][$project_docs]
 
 Passes along the documents with the requested fields to the next stage
 in the pipeline. The specified fields can be existing fields from the
@@ -710,7 +710,7 @@ operator docs”
 [latexmath:[avg_docs]: https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/avg/ "]avg
 operator docs”
 
-==== [`+$addFields+` Aggregation Stage][$addFields_docs]
+== [`+$addFields+` Aggregation Stage][$addFields_docs]
 
 Adds new fields to documents (can be result of computation). +
 `+$addFields+` outputs documents that contain _all existing fields_ from
@@ -726,7 +726,7 @@ db.<collection>.aggregate({
 [latexmath:[addFields_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/addFields/ "]addFields
 operator docs”
 
-==== [`+$group+` Aggregation Stage][$group_docs]
+== [`+$group+` Aggregation Stage][$group_docs]
 
 The $`+group+` stage separates documents into groups according to a
 "`group key`". The output is one document for each unique group key.
@@ -747,7 +747,7 @@ db.<collection>.aggregate([
 [latexmath:[group_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/ "]group
 operator docs”
 
-==== [`+$unwind+` Aggregation Stage][$unwind_docs]
+== [`+$unwind+` Aggregation Stage][$unwind_docs]
 
 Deconstructs an array field from the input documents to output a
 document for each element. +
@@ -772,7 +772,7 @@ db.<collection>.aggregate([
 [latexmath:[unwind_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/unwind/ "]unwind
 operator docs”
 
-==== [`+$count+` Aggregation Stage][$count_docs]
+== [`+$count+` Aggregation Stage][$count_docs]
 
 [source,sh]
 ----
@@ -784,7 +784,7 @@ db.<collection>.aggregate([
 [latexmath:[count_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/count/ "]count
 operator docs”
 
-==== [`+$sort+` Aggregation Stage][$sort_docs]
+== [`+$sort+` Aggregation Stage][$sort_docs]
 
 [source,sh]
 ----
@@ -807,7 +807,7 @@ before any `+%project+`, `+$group+` and `+$unwind+` +
 [latexmath:[sort_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/sort/ "]sort
 operator docs”
 
-==== [`+$skip+` Aggregation Stage][$skip_docs]
+== [`+$skip+` Aggregation Stage][$skip_docs]
 
 [source,sh]
 ----
@@ -819,7 +819,7 @@ db.<collection>.aggregate([
 [latexmath:[skip_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/skip/ "]skip
 operator docs”
 
-==== [`+$limit+` Aggregation Stage][$limit_docs]
+== [`+$limit+` Aggregation Stage][$limit_docs]
 
 [source,sh]
 ----
@@ -831,7 +831,7 @@ db.<collection>.aggregate([
 [latexmath:[limit_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/limit/ "]limit
 operator docs”
 
-==== [`+$lookup+` Aggregation Stage][$lookup_docs]
+== [`+$lookup+` Aggregation Stage][$lookup_docs]
 
 Performs a left outer join to a collection _in the same database_ to
 filter in documents from the "`joined`" collection for processing. +
@@ -862,7 +862,7 @@ operator docs”
 [latexmath:[unionWith_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/unionWith/ "]unionWith
 operator docs”
 
-==== [`+$graphLookup+` Aggregation Stage][$graph_lookup_docs]
+== [`+$graphLookup+` Aggregation Stage][$graph_lookup_docs]
 
 Performs a recursive search on a collection, with options for
 restricting the search by recursion depth and query filter.
@@ -897,7 +897,7 @@ performance +
 [latexmath:[graph_lookup_docs]: https://www.mongodb.com/docs/upcoming/reference/operator/aggregation/graphLookup/ "]graphLookup
 operator docs”
 
-==== [`+$sortByCount+` Aggregation Stage][$sort_by_count_docs]
+== [`+$sortByCount+` Aggregation Stage][$sort_by_count_docs]
 
 Groups incoming documents based on the value of a specified expression,
 then computes the count of documents in each distinct group.

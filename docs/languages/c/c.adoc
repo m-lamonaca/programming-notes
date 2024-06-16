@@ -1,6 +1,6 @@
-== C/C++
+= C/C++
 
-=== Library Import
+== Library Import
 
 [source,c]
 ----
@@ -8,31 +8,31 @@
 #include "lib.h" // search in current directory
 ----
 
-=== Special Operators
+== Special Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operator Name
 |`+::+` |global reference operator
 |`+&+` |address operator (returns a memory address)
 |`+*+` |deferentiation operator (returns the pointed value)
-|===
+|==
 
-=== Namespace definition
+== Namespace definition
 
 Can be omitted and replaced by namespace`+::+` +
 `+using namespace <namespace>;+`
 
-=== Main Function
+== Main Function
 
 [source,c]
 ----
 int main(int argc, char *argv[]) { }
 ----
 
-=== Variables & Types
+== Variables & Types
 
-==== Constant Declaration
+== Constant Declaration
 
 [source,c]
 ----
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) { }
 const type constant_name = value;
 ----
 
-==== Variable Declaration
+== Variable Declaration
 
 [source,c]
 ----
@@ -50,15 +50,15 @@ type var_name {value};    //uniform initialization
 type var_1, var_2, ..., var_n;
 ----
 
-==== Type Casting
+== Type Casting
 
 `+(type) var;+` +
 `+type(var);+`
 
-==== Variable Types
+== Variable Types
 
 [cols=",,",options="header",]
-|===
+|==
 |Type |Value Range |Byte
 |`+short+` |-32768 to 32765 |1
 |`+unsigned short+` |0 to 65535 |1
@@ -70,21 +70,21 @@ type var_1, var_2, ..., var_n;
 |`+float+` |+/- 3.4e +/- 38 (~7 digits) |4
 |`+double+` |+/- 1.7e +/- 308 (~15 digits) |8
 |`+long double+` | |16 (?)
-|===
+|==
 
 [cols=",",options="header",]
-|===
+|==
 |Type |Value
 |`+bool+` |true or false
 |`+char+` |ascii characters
 |`+string+` |sequence of ascii characters
 |`+NULL+` |empty value
-|===
+|==
 
-==== Integer Numerals
+== Integer Numerals
 
 [cols=",",options="header",]
-|===
+|==
 |Example |Type
 |`+75+` |decimal
 |`+0113+` |octal (zero prefix)
@@ -94,35 +94,35 @@ type var_1, var_2, ..., var_n;
 |`+75l+` |long
 |`+75ul+` |unsigned long
 |`+75lu+` |unsigned long
-|===
+|==
 
-==== Floating Point Numerals
+== Floating Point Numerals
 
 [cols=",",options="header",]
-|===
+|==
 |Example |Type
 |`+3.14159L+` |long double
 |`+60.22e23f+` |float
-|===
+|==
 
 [cols=",",options="header",]
-|===
+|==
 |Code |Value
 |`+3.14159+` |3.14159
 |`+6.02e23+` |6.022 * 10^23
 |`+1.6e-19+` |1.6 * 10^-19
 |`+3.0+` |3.0
-|===
+|==
 
-==== Character/String Literals
+== Character/String Literals
 
 `+'z'+` single character literal +
 `+"text here"+` string literal
 
-==== Special Characters
+== Special Characters
 
 [cols=",",options="header",]
-|===
+|==
 |Escape Character |Character
 |`+\n+` |newline
 |`+\r+` |carriage return
@@ -136,11 +136,11 @@ type var_1, var_2, ..., var_n;
 |`+\?+` |question mark (?)
 |`+\\+` |backslash ()
 |`+\0+` |string termination character
-|===
+|==
 
-=== Standard Input/Output
+== Standard Input/Output
 
-==== Standard Output
+== Standard Output
 
 [source,c]
 ----
@@ -149,7 +149,7 @@ type var_1, var_2, ..., var_n;
 printf_s("text %<fmt_spec>", variable);
 ----
 
-==== Standard Input
+== Standard Input
 
 [source,c]
 ----
@@ -158,10 +158,10 @@ printf_s("text %<fmt_spec>", variable);
 scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted inputs
 ----
 
-==== Format Specifiers `+%[width].[length][specifier]+`
+== Format Specifiers `+%[width].[length][specifier]+`
 
 [cols=",",options="header",]
-|===
+|==
 |Specifier |Specified Format
 |`+%d+`, `+%i+` |singed decimal integer
 |`+%u+` |unsigned decimal integer
@@ -177,14 +177,14 @@ scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted i
 |`+%c+` |character
 |`+%s+` |string
 |`+%p+` |pointer address
-|===
+|==
 
-=== Operators
+== Operators
 
-==== Arithmetic Operators
+== Arithmetic Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |a `+++` b |sum
 |a `+-+` b |subtraction
@@ -193,40 +193,40 @@ scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted i
 |a `+%+` b |modulo
 |a`++++` |increment
 |a`+--+` |decrement
-|===
+|==
 
-==== Comparison Operators
+== Comparison Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
-|a `+==+` b |equal to
+|a `+=+` b |equal to
 |a `+!=+` b |not equal to
 |a `+>+` b |greater than
 |a `+<+` b |lesser than
 |a `+>=+` b |greater than or equal to
 |a `+<=+` b |lesser than or equal to
-|===
+|==
 
-==== Logical Operator
+== Logical Operator
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |`+!+`a, `+not+` a |logical negation (NOT)
 |a `+&&+` b, a `+and+` b |logical AND
 |a `+||+` b, a `+or+` b |logical OR
-|===
+|==
 
-==== Conditional Ternary Operator
+== Conditional Ternary Operator
 
 `+condition ? result_1 : result_2+` +
 If condition is true evaluates to result_1, and otherwise to result_2
 
-==== Bitwise Operators
+== Bitwise Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |`+~+`a, `+compl+` a |bitwise *NOT*
 |a `+&+` b, a `+bitand+` b |bitwise *AND*
@@ -234,12 +234,12 @@ If condition is true evaluates to result_1, and otherwise to result_2
 |a `+^+` b, a `+xor+` b, |bitwise *XOR*
 |a `+<<+` b |bitwise left shift
 |a `+>>+` b |bitwise right shift
-|===
+|==
 
-==== Compound Assignment Operators
+== Compound Assignment Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |a `++=+` b |a = a + b
 |a `+-=+` b |a = a - b
@@ -251,23 +251,23 @@ If condition is true evaluates to result_1, and otherwise to result_2
 |a `+^=+` b |a = a ^ b
 |a `+<<=+` b |a = a << b
 |a `+>>=+` b |a = a >> b
-|===
+|==
 
-==== Operator Precedence
+== Operator Precedence
 
 [arabic]
 . `+!+`
 . `+*+`, `+/+`, `+%+`
 . `+++`, `+-+`
 . `+<+`, `+<=+`, `+<+`, `+>=+`
-. `+==+`, `+!=+`
+. `+=+`, `+!=+`
 . `+&&+`
 . `+||+`
 . `+=+`
 
-=== Common Functions
+== Common Functions
 
-==== Mathematical Functions
+== Mathematical Functions
 
 [source,c]
 ----
@@ -295,7 +295,7 @@ cosh(x);    //hyperbolic cos(x)
 tanh(x);    //hyperbolic tan(X)
 ----
 
-==== Character Functions
+== Character Functions
 
 [source,c]
 ----
@@ -316,7 +316,7 @@ tolower(c);    //transforms character in lowercase
 toupper(c);    //transform character in uppercase
 ----
 
-==== String Functions
+== String Functions
 
 [source,c]
 ----
@@ -328,14 +328,14 @@ strncpy(string1, string2, n);    //copy first n chars from string2 to string1
 strcmp(string1, string2);    //compares string1 w/ string2
 strncmp(string1, string2, n);    //compares first n chars
 //returns < 0 if string1 precedes string2
-//returns 0 if string1 == string2
+//returns 0 if string1 = string2
 // returns > 0 if string1 succeeds string2
 strchr(string, c);    //returns index of c in string if it exists, NULL otherwise
 strstr(string1, string2);    //returns pointer to starting index of string1 in string2
 strpbrk(string, charSet);    //Returns a pointer to the first occurrence of any character from strCharSet in str, or a NULL pointer if the two string arguments have no characters in common.
 ----
 
-==== String Conversion
+== String Conversion
 
 [source,c]
 ----
@@ -344,7 +344,7 @@ atoi(string);    //converts string in integer if possible
 atol(string);    //converts string in long if possible
 ----
 
-==== String Methods
+== String Methods
 
 [source,c++]
 ----
@@ -354,7 +354,7 @@ string.c_str();    //reads string char by char
 string.find(substring);    // The zero-based index of the first character in string object that matches the requested substring or characters
 ----
 
-=== Vectors
+== Vectors
 
 [source,c]
 ----
@@ -362,9 +362,9 @@ string.find(substring);    // The zero-based index of the first character in str
 vector<type> vector_name = {values};    //variable length array
 ----
 
-=== Decision Statements
+== Decision Statements
 
-==== If Statements
+== If Statements
 
 [source,c]
 ----
@@ -384,7 +384,7 @@ else
 }
 ----
 
-==== Switch
+== Switch
 
 [source,c]
 ----
@@ -402,9 +402,9 @@ switch (expression) {
 }
 ----
 
-=== Loop Statements
+== Loop Statements
 
-==== While Loop
+== While Loop
 
 [source,c]
 ----
@@ -413,7 +413,7 @@ while (condition) {
 }
 ----
 
-==== Do While
+== Do While
 
 [source,c]
 ----
@@ -422,7 +422,7 @@ do {
 } while (condition);
 ----
 
-==== For Loop
+== For Loop
 
 [source,c]
 ----
@@ -431,17 +431,17 @@ for (initialization; condition; increase) {
 }
 ----
 
-==== Break Statement
+== Break Statement
 
 `+break;+` leaves a loop, even if the condition for its end is not
 fulfilled.
 
-==== Continue Statement
+== Continue Statement
 
 `+continue;+` causes the program to skip the rest of the loop in the
 current iteration.
 
-=== Functions
+== Functions
 
 Functions *must* be declared *before* the main function. +
 It is possible to declare functions *after* the main only if the
@@ -460,7 +460,7 @@ type functionName (parameters) {
 void functionName (parameters) { }
 ----
 
-==== Arguments passed by reference without pointers
+== Arguments passed by reference without pointers
 
 Passing arguments by reference causes modifications made inside the
 function to be propagated to the values outside. +
@@ -477,7 +477,7 @@ type functionName (type &argument1, ...) {
 
 `+functionName (arguments);+`
 
-==== Arguments passed by reference with pointers
+== Arguments passed by reference with pointers
 
 Passing arguments by reference causes modifications made inside the
 function to be propagated to the values outside. +
@@ -494,7 +494,7 @@ type function_name (type *argument_1, ...) {
 
 `+function_name (&argument_1, ...);+`
 
-=== Arrays
+== Arrays
 
 [source,c]
 ----
@@ -505,7 +505,7 @@ array[index]    //item access, index starts at 0 (zero)
 array[index] = value;    //value assignment at position index
 ----
 
-=== Array as function parameter
+== Array as function parameter
 
 The dimension is not specified because it is determined by the passed
 array. +
@@ -525,7 +525,7 @@ type function(const type array[]){
 function(array);    //array passed w/out square brackets []
 ----
 
-==== Multi-Dimensional Array (Matrix)
+== Multi-Dimensional Array (Matrix)
 
 [source,c]
 ----
@@ -533,7 +533,7 @@ type matrix[rows][columns];
 matrix[i][j]    //element A_ij of the matrix
 ----
 
-==== Matrix as function parameter
+== Matrix as function parameter
 
 [source,c]
 ----
@@ -552,9 +552,9 @@ type function(type matrix[][dim2]...[dimN]){
 }
 ----
 
-=== Structs
+== Structs
 
-==== Struct Definition
+== Struct Definition
 
 [source,c]
 ----
@@ -569,7 +569,7 @@ Struct variable;    // struct-type variable
 variable.field    // field access
 ----
 
-=== Pointers
+== Pointers
 
 Pointers hold memory addresses of declared variables, they should be
 initialized to NULL.
@@ -594,7 +594,7 @@ pointer    //address of pointed value (value of variable)
 **pointer //value pointed by *pointer (pointer to pointer)
 ----
 
-==== Pointer to array
+== Pointer to array
 
 [source,c]
 ----
@@ -606,7 +606,7 @@ pointer = array;    //point to array (pointer points to first "cell" of array)
 pointer++;    //change pointed value to successive "cell" of array
 ----
 
-==== Pointers, Arrays & Functions
+== Pointers, Arrays & Functions
 
 [source,c]
 ----
@@ -617,7 +617,7 @@ type func(type* array){
 }
 ----
 
-==== Pointer to Struct
+== Pointer to Struct
 
 [source,c]
 ----
@@ -625,7 +625,7 @@ type func(type* array){
 structPointer->structField    //access to field value
 ----
 
-=== Dynamic Structures
+== Dynamic Structures
 
 Dynamic structures are structures without a fixed number of items.
 
@@ -642,7 +642,7 @@ preceding and succeeding item. A List is a group of homogeneous items
 *Trees*, *Graphs* are non _linear_ dynamic structures in which an item
 cha have multiple successors.
 
-==== Stack
+== Stack
 
 A *Stack* is a list in with nodes can be extracted from one _side_ only
 (_LIFO_). The extraction of an item from the _top_ is called *pop*
@@ -656,7 +656,7 @@ struct Node {
 }
 ----
 
-===== Node Insertion
+=== Node Insertion
 
 [source,c]
 ----
@@ -674,7 +674,7 @@ stackNode->next = head;    //update node pointer to old head adding it to the st
 head = stackNode;    //update head to point to new first node
 ----
 
-===== Node Deletion
+=== Node Deletion
 
 [source,c]
 ----
@@ -683,7 +683,7 @@ free(head);    //delete first node
 head = stackNode;    //update head to point to new first node
 ----
 
-===== Passing Head To Functions
+=== Passing Head To Functions
 
 [source,c]
 ----
@@ -693,12 +693,12 @@ type function(Node** head)    //value of head passed by address (head is Node*)
 }
 ----
 
-==== Queue
+== Queue
 
 A *Queue* is a list in which nodes enter from one side and can be
 extracted only from the other side (_FIFO_).
 
-==== Linked List
+== Linked List
 
 A *Linked List* is list in which nodes can be extracted from each side
 and from inside the linked list.
@@ -715,7 +715,7 @@ Nodes of bidirectional linked lists are composed by three parts:
 Thus the first and last node will have a component empty since they only
 point to a single node.
 
-==== Dynamic Memory Allocation
+== Dynamic Memory Allocation
 
 C does not automatically free allocated memory when nodes are deleted.
 It must be done manually.
@@ -732,7 +732,7 @@ free(pointer)    //freeing of memory
 `+malloc()+` returns a _void pointer_ thus the list must be casted to a
 void type with `+(list*)+`
 
-=== Files
+== Files
 
 The object oriented approach is based on the use of _streams_. +
 A *Stream* can be considered a stream of data that passes sequentially
@@ -744,7 +744,7 @@ The available classes in C++ to operate on files are:
 * `+ofstream+` for the output (writing)
 * `+fstream+` for input or output
 
-==== File Opening
+== File Opening
 
 Filename can be string literal or CharArray (use `+c_str()+`).
 
@@ -772,7 +772,7 @@ assigned memory address. +
 Opening modes can be combined with the OR operator:
 `+ios::mode | ios::mode+`.
 
-==== Stream state & Input errors
+== Stream state & Input errors
 
 Once a stream is in a *state of error* it will remain so until the
 status flags are _explicitly resetted_. The input operations on such a

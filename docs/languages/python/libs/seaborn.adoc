@@ -1,6 +1,6 @@
-== Seaborn Lib
+= Seaborn Lib
 
-=== Basic Imports For Seaborn
+== Basic Imports For Seaborn
 
 [source,python]
 ----
@@ -14,7 +14,7 @@ sns.set(style='darkgrid')
 #STYLE: {None, darkgrid, whitegrid, dark, white, ticks}
 ----
 
-=== REPLOT (relationship)
+== REPLOT (relationship)
 
 [source,python]
 ----
@@ -36,7 +36,7 @@ sns.replot(kind='scatter')  # calls scatterplot()
 sns.scatterplot()  # underlying axis-level function of replot()
 ----
 
-==== LINEPLOT
+== LINEPLOT
 
 Using semantics in lineplot will determine the aggregation of data.
 
@@ -46,7 +46,7 @@ sns.replot(ci=None, sort=bool, kind='line')
 sns.lineplot()  # underlying axis-level function of replot()
 ----
 
-=== CATPLOT (categorical)
+== CATPLOT (categorical)
 
 Categorical: divided into discrete groups.
 
@@ -68,7 +68,7 @@ sns.stripplot()
 # JITTER: {False, float} -- magnitude of points jitter (distance from axis)
 ----
 
-==== CATEGORICAL SCATTERPLOT - SWARMPLOT
+== CATEGORICAL SCATTERPLOT - SWARMPLOT
 
 Adjusts the points along the categorical axis preventing overlap.
 
@@ -85,7 +85,7 @@ sns.boxplot()
 # DODGE: {bool} -- whether elements should be shifted along the categorical axis if hue is used
 ----
 
-==== CATEGORICAL DISTRIBUTION - VIOLINPLOT
+== CATEGORICAL DISTRIBUTION - VIOLINPLOT
 
 Combines a boxplot with the kernel density estimation procedure.
 
@@ -95,7 +95,7 @@ sns.catplot(kind='violin')
 sns.violonplot()
 ----
 
-==== CATEGORICAL DISTRIBUTION - BOXENPLOT
+== CATEGORICAL DISTRIBUTION - BOXENPLOT
 
 Plot similar to boxplot but optimized for showing more information about
 the shape of the distribution. +
@@ -107,7 +107,7 @@ sns.catplot(kind='boxen')
 sns.boxenplot()
 ----
 
-==== CATEGORICAL ESTIMATE - POINTPLOT
+== CATEGORICAL ESTIMATE - POINTPLOT
 
 Show point estimates and confidence intervals using scatter plot glyphs.
 
@@ -125,7 +125,7 @@ sns.pointplot()
 # CAPSIZE: {float} -- width of the "caps" on error bars
 ----
 
-==== CATEGORICAL ESTIMATE - BARPLOT
+== CATEGORICAL ESTIMATE - BARPLOT
 
 Show point estimates and confidence intervals as rectangular bars.
 
@@ -140,7 +140,7 @@ sns.barplot()
 # DODGE: {bool} -- whether elements should be shifted along the categorical axis if hue is used
 ----
 
-==== CATEGORICAL ESTIMATE - COUNTPLOT
+== CATEGORICAL ESTIMATE - COUNTPLOT
 
 Show the counts of observations in each categorical bin using bars.
 
@@ -151,9 +151,9 @@ sns.countplot()
 # DODGE: {bool} -- whether elements should be shifted along the categorical axis if hue is used
 ----
 
-=== UNIVARIATE DISTRIBUTIONS
+== UNIVARIATE DISTRIBUTIONS
 
-==== DISTPLOT
+== DISTPLOT
 
 Flexibly plot a univariate distribution of observations
 
@@ -168,7 +168,7 @@ sns.distplot(a=data)
 # COLOR: {matplotlib color} -- color to plot everything but the fitted curve in
 ----
 
-==== RUGPLOT
+== RUGPLOT
 
 Plot datapoints in an array as sticks on an axis.
 
@@ -181,7 +181,7 @@ sns.rugplot(a=data) # -> axes obj with plot on it
 # AX: {matplotlib axes} -- axes to draw plot into, otherwise grabs current axes
 ----
 
-==== KDEPLOT
+== KDEPLOT
 
 Fit and plot a univariate or bivariate kernel density estimate.
 
@@ -193,9 +193,9 @@ sns.kdeplot(data=data)
 # SHADE: {bool} -- if True, shade-in the area under KDE curve (or draw with filled contours is bivariate)
 ----
 
-=== BIVARIATE DISTRIBUTION
+== BIVARIATE DISTRIBUTION
 
-==== JOINTPLOT
+== JOINTPLOT
 
 Draw a plot of two variables with bivariate and univariate graphs.
 
@@ -212,9 +212,9 @@ sns.jointplot(x=data, y=data)
 # JOINT_KWD, MARGINAL_KWD, ANNOT_KWD: {dict} -- additional keyword arguments for the plot components
 ----
 
-=== PAIR-WISE RELATIONISPS IN DATASET
+== PAIR-WISE RELATIONISPS IN DATASET
 
-==== PAIRPLOT
+== PAIRPLOT
 
 Plot pairwise relationships in a dataset.
 

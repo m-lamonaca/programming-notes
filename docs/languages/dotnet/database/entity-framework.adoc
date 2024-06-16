@@ -1,6 +1,6 @@
-== Entity Framework
+= Entity Framework
 
-=== Model & Data Annotations
+== Model & Data Annotations
 
 [source,cs]
 ----
@@ -26,7 +26,7 @@ namespace <Project>.Model
 }
 ----
 
-=== Context
+== Context
 
 NuGet Packages to install:
 
@@ -69,7 +69,7 @@ namespace <Project>.Model
 }
 ----
 
-=== Migrations
+== Migrations
 
 Create & Update DB Schema if necessary.
 
@@ -91,9 +91,9 @@ dotnet ef migrations add <migration_name>
 dotnet ef database update
 ----
 
-=== CRUD
+== CRUD
 
-==== Create
+== Create
 
 [source,cs]
 ----
@@ -103,7 +103,7 @@ context.AddRange(entities);
 context.SaveChanges();
 ----
 
-==== Read
+== Read
 
 https://stackoverflow.com/a/5385288[Referenced Object Not Loading Fix]
 
@@ -116,7 +116,7 @@ context.Entities.Find(id);
 context.Entities.Include(c => c.ForeignObject).Find(id);
 ----
 
-==== Update
+== Update
 
 [source,cs]
 ----
@@ -126,7 +126,7 @@ context.UpdateRange(entities);
 context.SaveChanges();
 ----
 
-==== Delete
+== Delete
 
 [source,cs]
 ----

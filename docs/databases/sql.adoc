@@ -1,6 +1,6 @@
-== SQL
+= SQL
 
-=== DDL
+== DDL
 
 [source,sql]
 ----
@@ -15,7 +15,7 @@ show tables;    -- mostra tabelle del database
 /* MULTI-LINE COMMENT */
 ----
 
-==== Table Creation
+== Table Creation
 
 [source,sql]
 ----
@@ -24,7 +24,7 @@ CREATE TABLE <table_name>
     ...);
 ----
 
-==== PRIMARY KEY from multiple fields
+== PRIMARY KEY from multiple fields
 
 [source,sql]
 ----
@@ -34,7 +34,7 @@ CREATE TABLE <table_name>(
 );
 ----
 
-==== Table Field Options
+== Table Field Options
 
 [source,sql]
 ----
@@ -45,7 +45,7 @@ UNIQUE (<field>) -- set field as unique (MySQL)
 <field> UNIQUE -- T-SQL
 ----
 
-==== Table Modification
+== Table Modification
 
 [source,sql]
 ----
@@ -64,9 +64,9 @@ ALTER TABLE <table>
     ADD FOREIGN KEY (<field>) REFERENCES <TABLE> (<FIELD>);
 ----
 
-=== DML
+== DML
 
-==== Data Insertion
+== Data Insertion
 
 [source,sql]
 ----
@@ -74,14 +74,14 @@ INSERT INTO <table> (field_1, ...) VALUES (value_1, ...), (value_1, ...);
 INSERT INTO <table> VALUES (value_1, ...), (value_1, ...);    -- field order MUST respect tables's columns order
 ----
 
-==== Data Update
+== Data Update
 
 [source,sql]
 ----
 UPDATE <table> SET <field> = <value>, <field> = <value>, ... WHERE <condition>;
 ----
 
-==== Data Elimination
+== Data Elimination
 
 [source,sql]
 ----
@@ -89,7 +89,7 @@ DELETE FROM <table> WHERE <condition>
 DELETE FROM <table> -- empty the table
 ----
 
-=== Data Selection
+== Data Selection
 
 `+*+`: denotes all table fields
 
@@ -100,14 +100,14 @@ SHOW columns FROM <table>;    -- show table columns
 DESCRIBE <table>;    -- shows table
 ----
 
-==== Alias
+== Alias
 
 [source,sql]
 ----
 SELECT <field> as <alias>; -- shows <field/funzione> with name <alias>
 ----
 
-==== Conditional Selection
+== Conditional Selection
 
 [source,sql]
 ----
@@ -117,7 +117,7 @@ AND, OR, NOT    -- logic connectors
 SELECT * FROM <table> WHERE <field> Between <value_1> AND <value_2>;
 ----
 
-==== Ordering
+== Ordering
 
 [source,sql]
 ----
@@ -127,7 +127,7 @@ SELECT * FROM <table> ORDER BY <field>, ... LIMIT n;    -- shows the table order
 SELECT TOP(n) * FROM <table> ORDER BY <field>, ...;    -- T-SQL
 ----
 
-=== Grouping
+== Grouping
 
 [source,sql]
 ----
@@ -136,7 +136,7 @@ SELECT * FROM <table> GROUP BY <field> HAVING <condition>;
 SELECT DISTINCT <field> FROM <table>;    -- shows elements without repetitions
 ----
 
-==== Ricerca caratteri in valori
+== Ricerca caratteri in valori
 
 `+%+`: any number of characters
 
@@ -148,7 +148,7 @@ SELECT * FROM <table> WHERE <field> LIKE '%<char>%';    -- selects items in <fie
 SELECT * FROM <table> WHERE <field> NOT LIKE '%<char>%';    -- selects items in <field> that do not contain <char>
 ----
 
-==== Selection from multiple tables
+== Selection from multiple tables
 
 [source,sql]
 ----
@@ -156,7 +156,7 @@ SELECT a.<field>, b.<field> FROM <table> AS a, <table> AS b
     WHERE a.<field> ...;
 ----
 
-=== Functions
+== Functions
 
 [source,sql]
 ----
@@ -168,7 +168,7 @@ ALL (SELECT ...)
 ANY (SELECT ...)
 ----
 
-=== Nested Queries
+== Nested Queries
 
 [source,sql]
 ----
@@ -176,7 +176,7 @@ SELECT * FROM <table> WHERE EXISTS (SELECT * FROM <table>)  -- selected field ex
 SELECT * FROM <table> WHERE NOT EXISTS (SELECT * FROM <table>)  -- selected field not existing in subquery
 ----
 
-=== New table from data
+== New table from data
 
 Create new table with necessary fields:
 
@@ -196,7 +196,7 @@ INSERT INTO <table>
     SELECT <fields> FROM <TABLE> WHERE <condition>;
 ----
 
-=== Join
+== Join
 
 [source,sql]
 ----
@@ -208,7 +208,7 @@ SELECT * FROM <table1> RIGHT JOIN <table2> ON <condition>
 https://www.diffen.com/difference/Inner_Join_vs_Outer_Join[Inner
 Join&#44; Left Join&#44; Right Join&#44; Full Outer Join]
 
-=== Multiple Join
+== Multiple Join
 
 [source,sql]
 ----
@@ -222,9 +222,9 @@ nchar&#44; varchar&#44; nvarchar]
 
 '''''
 
-=== T-SQL (MSSQL Server)
+== T-SQL (MSSQL Server)
 
-==== T-SQL Insert From table
+== T-SQL Insert From table
 
 [source,sql]
 ----
@@ -239,7 +239,7 @@ SELECT (field_1, ...) FROM <source_table>
 SET IDENTITY_INSERT [<destination_table>] OFF
 ----
 
-==== T-SQL Parametric Query
+== T-SQL Parametric Query
 
 [source,sql]
 ----
@@ -259,7 +259,7 @@ PRINT 'Text: ' + CONVERT(type, @var_name)  -- convert data before printing
 GO
 ----
 
-==== T-SQL View
+== T-SQL View
 
 A view represents a virtual table. Join multiple tables in a view and
 use the view to present the data as if the data were coming from a
@@ -271,7 +271,7 @@ CREATE VIEW <name> AS
 SELECT * FROM <table> ...
 ----
 
-==== T-SQL Stored Procedure
+== T-SQL Stored Procedure
 
 https://docs.microsoft.com/en-us/sql/relational-databases/stored-procedures/create-a-stored-procedure[Stored
 Procedure How-To]

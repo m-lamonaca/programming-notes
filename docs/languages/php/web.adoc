@@ -1,6 +1,6 @@
-== PHP for the Web
+= PHP for the Web
 
-=== PHP Internal Web Server
+== PHP Internal Web Server
 
 Command Line Web Server in PHP, useful in testing phase. Limited since
 handles only one request at a time. *Do not use in production*.
@@ -12,7 +12,7 @@ PHP -S <ip:post> -t /path/to/folder  # execute in specified folder at specified 
 PHP -S <ip:post> file.php  # redirect requests to single file
 ----
 
-=== HTTP Methods
+== HTTP Methods
 
 Handling of HTTP requests happens using the following global variables:
 
@@ -23,7 +23,7 @@ Handling of HTTP requests happens using the following global variables:
 * `+$_COOKIE+`
 * `+$_FILES+`: file to send to web app.
 
-==== `+$_FILES+`
+== `+$_FILES+`
 
 [source,html]
 ----
@@ -63,7 +63,7 @@ if (! move_uploaded_file($_FILES['photo']['tmp_name'], $path)) {
 echo'<h1>File successfully sent</h1>';
 ----
 
-==== `+$_SERVER+`
+== `+$_SERVER+`
 
 Request Header Access:
 
@@ -80,7 +80,7 @@ $_SERVER["HTTP_USER_AGENT"];
 // others
 ----
 
-==== `+$_COOKIE+`
+== `+$_COOKIE+`
 
 https://www.iubenda.com/it/cookie-solution[Cookie Laws]
 http://www.privacy.it/archivio/garanteprovv201405081.html[Garante
@@ -137,7 +137,7 @@ setcookie ("User-id", "112", time() + 3600*24, "/", "example.com");
 if(isset($_COOKIE["cookie_name"])) {}
 ----
 
-==== https://www.php.net/manual/en/ref.session.php[$_SESSION]
+== https://www.php.net/manual/en/ref.session.php[$_SESSION]
 
 *Sessions* are info memorized _on the server_ associated to the client
 that makes an HTTP request.
@@ -173,7 +173,7 @@ variables by:
 * writing as personalized handler with the function
 `+session_set_save_handler()+` and/or the class `+SessionHandler+`
 
-=== PHP Web Instructions
+== PHP Web Instructions
 
 `+http_response_code()+` is used to return an HTTP response code. If no
 code is specified `+200 OK+` is returned. `+header("Location: /route")+`

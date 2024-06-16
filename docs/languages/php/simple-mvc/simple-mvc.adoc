@@ -1,4 +1,4 @@
-== https://github.com/ezimuel/simplemvc[SimpleMVC] Mini-Framework
+= https://github.com/ezimuel/simplemvc[SimpleMVC] Mini-Framework
 
 SimpleMVC is a micro MVC framework for PHP using
 https://github.com/nikic/FastRoute[FastRoute],
@@ -8,14 +8,14 @@ https://php-di.org/[PHP-DI] standard for HTTP messages.
 This framework is mainly used as tutorial for introducing the
 Model-View-Controller architecture in modern PHP applications.
 
-=== Installation
+== Installation
 
 [source,ps1]
 ----
 composer create-project ezimuel/simple-mvc
 ----
 
-=== Structure
+== Structure
 
 [source,txt]
 ----
@@ -34,7 +34,7 @@ composer create-project ezimuel/simple-mvc
 |  |- Controller
 ----
 
-==== `+index.php+`
+== `+index.php+`
 
 [source,php]
 ----
@@ -99,7 +99,7 @@ $controller = $container->get($controllerName);
 $controller->execute($request);
 ----
 
-==== `+route.php+`
+== `+route.php+`
 
 [source,php]
 ----
@@ -113,7 +113,7 @@ return [
 ];
 ----
 
-==== `+container.php+`
+== `+container.php+`
 
 [source,php]
 ----
@@ -131,7 +131,7 @@ return [
 ];
 ----
 
-==== `+ControllerInterface.php+`
+== `+ControllerInterface.php+`
 
 Each controller _must_ implement this interface.
 

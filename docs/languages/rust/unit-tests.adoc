@@ -1,6 +1,6 @@
-== Unit Tests
+= Unit Tests
 
-=== Test Functions
+== Test Functions
 
 [source,rs]
 ----
@@ -32,7 +32,7 @@ mod tests {
 }
 ----
 
-=== Controlling How Tests Are Run
+== Controlling How Tests Are Run
 
 [source,sh]
 ----
@@ -44,7 +44,7 @@ cargo test -- --ignored  # run tests annotated with #[ignore]
 cargo test --test  # run all integration tests
 ----
 
-=== Test Organization
+== Test Organization
 
 Unit Tests:
 

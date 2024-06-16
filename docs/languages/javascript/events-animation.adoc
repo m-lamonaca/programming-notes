@@ -1,6 +1,6 @@
-== Events & Animation
+= Events & Animation
 
-=== Events
+== Events
 
 Event Types:
 
@@ -14,7 +14,7 @@ Event Types:
 * *Window Events*: `+scroll+`, `+resize+`, `+hashchange+`, `+load+`,
 `+unload+`, …
 
-==== Managing Event Listeners
+== Managing Event Listeners
 
 [source,js]
 ----
@@ -29,7 +29,7 @@ domNode.addEventListener(eventType, callback);
 domNode.removeEventListener(eventType, callback);
 ----
 
-==== Bubbling & Capturing
+== Bubbling & Capturing
 
 Events in Javascript propagate through the DOM tree.
 
@@ -37,7 +37,7 @@ https://javascript.info/bubbling-and-capturing[Bubbling and Capturing]
 https://www.sitepoint.com/event-bubbling-javascript/[What Is Event
 Bubbling in JavaScript? Event Propagation Explained]
 
-==== Dispatching Custom Events
+== Dispatching Custom Events
 
 Event Options:
 
@@ -55,7 +55,7 @@ domNode.dispatchEvent(event);  // launch the event
 .Event Inheritance
 image::../../img/javascript_event-inheritance.png[Event Inheritance]
 
-=== Animation
+== Animation
 
 The window object is the assumed global object on a page.
 
@@ -79,7 +79,7 @@ window.clearInterval(timer);
 window.requestAnimationFrame(callbackFunction);
 ----
 
-==== Element Position & dimensions
+== Element Position & dimensions
 
 https://stackoverflow.com/a/294273/8319610[StackOverflow]
 https://stackoverflow.com/a/46772849/8319610[Wrong dimensions at

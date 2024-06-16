@@ -1,4 +1,4 @@
-== CSV Module
+= CSV Module
 
 [source,python]
 ----

@@ -1,6 +1,6 @@
-== Kubernetes (`+k8s+`)
+= Kubernetes (`+k8s+`)
 
-=== Cluster Architecture
+== Cluster Architecture
 
 A Kubernetes *cluster* consists of a set of worker machines, called
 *nodes*, that run _containerized_ applications. Every cluster has at
@@ -16,7 +16,7 @@ fault-tolerance and high availability.
 .kubernetes-cluster-overview
 image::../img//kubernetes_cluster-overview.svg[kubernetes-cluster-overview]
 
-==== Control Plane
+== Control Plane
 
 The conrtol plane is the container orchestration layer that exposes the
 API and interfaces to define, deploy, and manage the lifecycle of
@@ -34,7 +34,7 @@ cluster data
 *Note*: in production environment there are _at least_ two control
 planes to ensure constant availability of thier functionalities
 
-==== Node
+== Node
 
 Nodes are the worker machines in kubernetes. The node components are:
 
@@ -45,9 +45,9 @@ that allows communication to pods from inside or outside of the cluster
 * *conatiner runtime*: the software that is responsible for running
 containers
 
-=== Kubernetes Components
+== Kubernetes Components
 
-==== Pod
+== Pod
 
 *Pods* are the smallest unit in kubernetes. They are an abstraction over
 a set of running containers. The pod abstarction is used to make
@@ -58,7 +58,7 @@ cluster; this makes pod comunication possible. +
 Since pods are _ephemeral_ resources when a pod dies another one will
 replace it. The new pod will get a new IP address.
 
-==== Service
+== Service
 
 *Services* are permanet IP addresses and ar used to resolve the issue of
 changing pod IPs. Each pod can be atatched to a service. The lifecycle
@@ -67,13 +67,13 @@ _External_ services are used to make the contents of a pod accessible
 from the outside of the cluster while _internal_ services are not
 exposed.
 
-==== Ingress
+== Ingress
 
 *Ingresses* are the componentst hat forwards external requests to
 specific services. Ingresses are used to expose services through secure
 protocols and friendly URLs instead of service IPs.
 
-==== ConfigMap
+== ConfigMap
 
 *ConfigMaps* are external configurations used to store non-confidential
 data in key-value pairs. Pods can consume ConfigMaps as environment
@@ -83,7 +83,7 @@ volume.
 ConfigMaps allow to decouple environment-specific configuration from
 container images, so that applications are easily portable.
 
-==== Secret
+== Secret
 
 *Secrets* contains a small amount of sensitive data such as a password,
 a token, or a key. Such information might otherwise be put in a Pod
@@ -99,7 +99,7 @@ workflow of creating, viewing, and editing Pods.
 *Warn*: secrets, by dedfault, are _not_ encrypted: they are stored in
 base64. Conside using third-party encryption tools.
 
-==== Volumes
+== Volumes
 
 *Volumes* are physical storage attached to a pod in order to persist
 data when a pod is shut down.
@@ -107,7 +107,7 @@ data when a pod is shut down.
 *Warn*: kubernetes dows not manage data persistance. Backups must be
 managed externally.
 
-==== Deployment
+== Deployment
 
 *Deployments* are a description of the _desired state_ of the cluster.
 The _deployment controller_ changes the actual state to match the
@@ -115,24 +115,24 @@ desired one.
 
 Deployments can be used to manage the scaling of the replicas of a pod.
 
-==== ReplicaSet
+== ReplicaSet
 
 *ReplicaSets* are groups of identical pods and are used to guarantee the
 availability of the replicated appliaction. ReplicaSets are used to
 manage _stateless_ applications.
 
-==== StatefulSet
+== StatefulSet
 
 *StatefulSets* are group of pods with guarantees about the _ordering_
 and _uniqueness_ of the pods. StatefulSets are used to manage pods that
 need consistent state like databases.
 
-==== DaemonSet
+== DaemonSet
 
 *DaemonSets* ensure the _all or some_ nodes in a cluster run a copy of a
 specifc pod.
 
-==== Jobs
+== Jobs
 
 *Jobs* create one or more Pods and will continue to retry execution of
 the Pods until a specified number of them successfully terminate.
@@ -143,7 +143,7 @@ reached, the task is complete.
 
 '''''
 
-=== Kubernetes Configuration
+== Kubernetes Configuration
 
 Each kubernetes configuration file is composed by 3 parts:
 
@@ -155,9 +155,9 @@ Each kubernetes configuration file is composed by 3 parts:
 
 '''''
 
-=== `+kubectl+`
+== `+kubectl+`
 
-==== `+kubectl get+`
+== `+kubectl get+`
 
 [source,sh]
 ----
@@ -169,14 +169,14 @@ kubectl get pod -n|--namespace <namespace>  # list pods inside namespace
 kubectl get pod [-n|--namespace <namespace>] <pod> -o|--output jsonpath='{.spec.containers[*].name}'  # list containers inside pod
 ----
 
-==== `+kubectl exec+`
+== `+kubectl exec+`
 
 [source,sh]
 ----
 kubectl exec [-i|--stdin] [-t|--tty] [-n|--namespace <namespace>] <pod> [-c|--container <container>] -- <command>  # execute a command inside a container
 ----
 
-==== `+kubectl logs+`
+== `+kubectl logs+`
 
 [source,sh]
 ----

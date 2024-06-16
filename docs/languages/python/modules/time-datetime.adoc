@@ -1,6 +1,6 @@
-== Time & Datetime
+= Time & Datetime
 
-=== Time
+== Time
 
 [source,py]
 ----
@@ -13,10 +13,10 @@ var = time.perf_counter () # returns the current running time
 # execution time = start time - end time
 ----
 
-==== time.srtfrime() format
+== time.srtfrime() format
 
 [width="100%",cols="7%,93%",options="header",]
-|===
+|==
 |Format |Data
 |`+%a+` |Locale’s abbreviated weekday name.
 
@@ -66,9 +66,9 @@ difference from UTC/GMT of the form +HHMM or -HHMM
 |`+%Z+` |Time zone name (no characters if no time zone exists).
 
 |`+%%+` |A literal `+%+` character.
-|===
+|==
 
-=== Datetime
+== Datetime
 
 [source,py]
 ----

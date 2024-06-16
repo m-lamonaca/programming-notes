@@ -1,4 +1,4 @@
-== Powershell Commands
+= Powershell Commands
 
 [source,ps1]
 ----

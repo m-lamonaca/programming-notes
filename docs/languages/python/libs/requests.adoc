@@ -1,6 +1,6 @@
-== Requests Lib
+= Requests Lib
 
-=== GET REQUEST
+== GET REQUEST
 
 Get or retrieve data from specified resource
 
@@ -42,7 +42,7 @@ response.json()    # dict of payload
 response.headers    # response headers (dict)
 ----
 
-==== QUERY STRING PARAMETERS
+== QUERY STRING PARAMETERS
 
 [source,py]
 ----
@@ -51,7 +51,7 @@ response = requests.get('URL', params=[('q', 'query')])
 response = requests.get('URL', params=b'q=query')
 ----
 
-==== REQUEST HEADERS
+== REQUEST HEADERS
 
 [source,py]
 ----
@@ -62,9 +62,9 @@ response = requests.get(
 )
 ----
 
-=== OTHER HTTP METHODS
+== OTHER HTTP METHODS
 
-==== DATA INPUT
+== DATA INPUT
 
 [source,py]
 ----
@@ -82,14 +82,14 @@ requests.head('URL')
 requests.options('URL')
 ----
 
-==== SENDING JSON DATA
+== SENDING JSON DATA
 
 [source,py]
 ----
 requests.post('URL', json={'key': 'value'})
 ----
 
-==== INSPECTING THE REQUEST
+== INSPECTING THE REQUEST
 
 [source,py]
 ----
@@ -98,7 +98,7 @@ response = requests.post('URL', data={'key':'value'})
 response.request.something    # inspect request field
 ----
 
-=== AUTHENTICATION
+== AUTHENTICATION
 
 [source,py]
 ----
@@ -110,7 +110,7 @@ from getpass import getpass
 requests.get('URL', auth=HTTPBasicAuth('username', getpass()))
 ----
 
-==== PERSONALIZED AUTH
+== PERSONALIZED AUTH
 
 [source,py]
 ----
@@ -129,16 +129,16 @@ class TokenAuth(AuthBase):
 requests.get('URL', auth=TokenAuth('1234abcde-token'))
 ----
 
-==== DISABLING SSL VERIFICATION
+== DISABLING SSL VERIFICATION
 
 [source,py]
 ----
 requests.get('URL', verify=False)
 ----
 
-=== PERFORMANCE
+== PERFORMANCE
 
-==== REQUEST TIMEOUT
+== REQUEST TIMEOUT
 
 [source,py]
 ----
@@ -146,7 +146,7 @@ requests.get('URL', verify=False)
 requests.get('URL', timeout=(connection_timeout, read_timeout))
 ----
 
-==== MAX RETRIES
+== MAX RETRIES
 
 [source,py]
 ----

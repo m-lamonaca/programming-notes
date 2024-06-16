@@ -1,16 +1,16 @@
-== Bash Scripting
+= Bash Scripting
 
 https://www.gnu.org/software/bash/manual/[Bash Manual]
 
 `+Ctrl+Shift+C+`: copy +
 `+Ctrl+Shift+C+`: paste
 
-=== Bash Use Modes
+== Bash Use Modes
 
 Interactive mode –> shell waits for user’s commands Non-interactive mode
 –> shell runs scripts
 
-=== File & Directories Permissions
+== File & Directories Permissions
 
 File:
 
@@ -25,7 +25,7 @@ Directory:
 * `+x+`: Search. Can access and navigate inside the dir. Necessary to
 operate on files
 
-=== File Descriptors
+== File Descriptors
 
 `+FD 0+` "`standard input`" –> Channel for standard input (default
 keyboard) +
@@ -46,19 +46,19 @@ stream. +
 Files with a shebang as their first line (and the executable permission)
 can be started by your system’s kernel like any other program.
 
-==== First Line Of Bash
+== First Line Of Bash
 
 `+#!/bin/env bash+` +
 shebang indicating which interpreter to use
 
-==== Simple Command
+== Simple Command
 
 [source,bash]
 ----
 [ var=value ... ] command [ arg ... ] [ redirection ... ]  # [.] is optional component
 ----
 
-==== Pipelines (commands concatenation)
+== Pipelines (commands concatenation)
 
 [source,bash]
 ----
@@ -66,7 +66,7 @@ command | file.ext  # link the first process' standard output to the second proc
 command |& file.ext  # link the first process' standard output & standard error to the second process' standard input
 ----
 
-==== Lists (sequence of commands)
+== Lists (sequence of commands)
 
 [source,bash]
 ----
@@ -75,7 +75,7 @@ command_1 || command_2 || ...  # execute successive commands only if preceding o
 command_1 && command_2 && ..  # execute successive commands only if preceding ones succeeds
 ----
 
-==== COMPOUND COMMANDs (multiple commands as one)
+== COMPOUND COMMANDs (multiple commands as one)
 
 [source,bash]
 ----
@@ -87,12 +87,12 @@ command_1 && command_2 && ..  # execute successive commands only if preceding on
 {command_1; command_2; ...}  # sequence of commands executed as one
 ----
 
-==== Functions (blocks of easily reusable code)
+== Functions (blocks of easily reusable code)
 
 `+function_name () {compound_command}+` +
 Bash does not accept func arguments, parentheses must be empty
 
-=== Command names & Running programs
+== Command names & Running programs
 
 To run a command, bash uses the name of your command and performs a
 search for how to execute that command. +
@@ -102,7 +102,7 @@ Failing that, it will try to run the name as a program. +
 If bash finds no way to run your command, it will output an error
 message.
 
-=== The path to a program
+== The path to a program
 
 When bash needs to run a program, it uses the command name to perform a
 search. +
@@ -112,7 +112,7 @@ your command. +
 To run a program that is not installed in a PATH directory, use the path
 to that program as your command’s name.
 
-=== Command arguments & Quoting literals
+== Command arguments & Quoting literals
 
 To tell a command what to do, we pass it arguments. In bash, arguments
 are tokens, that are separated from each other by blank space. +
@@ -123,7 +123,7 @@ arguments at its blank space. +
 Quoting arguments also prevents other symbols in it from being
 accidentally interpreted as bash code.
 
-=== Managing a command’s input and output using redirection
+== Managing a command’s input and output using redirection
 
 By default, new commands inherit the shell’s current file descriptors. +
 We can use redirections to change where a command’s input comes from and
@@ -132,7 +132,7 @@ File redirection allows us to stream file descriptors to files. +
 We can copy file descriptors to make them share a stream. There are also
 many other more advanced redirection operators.
 
-==== Redirections
+== Redirections
 
 [source,bash]
 ----
@@ -149,7 +149,7 @@ x>&-, x<&-  # close FD x (stream disconnected from FD x)
 [x]<>file  # open FD x for both reading and writing to file
 ----
 
-=== Pathname Expansion (filname pattern [glob] matching)
+== Pathname Expansion (filname pattern [glob] matching)
 
 `+*+` matches any kind of text (even no text). +
 `+?+` matches any single character. +
@@ -172,7 +172,7 @@ list appears just once. ("`one of …`"). +
 `+!(pattern [| pattern ...])+` matches only when none of the patterns in
 the list appear. ("`none of …`").
 
-=== Command Substitution
+== Command Substitution
 
 With Command Substitution, we effectively write a command within a
 command, and we ask bash to expand the inner command into its output and
@@ -186,7 +186,7 @@ command !$  # refers to the last argument of the previous command
 sudo !! # !! expands to the entire previous command
 ----
 
-=== Shell Variables
+== Shell Variables
 
 [source,bash]
 ----
@@ -204,7 +204,7 @@ $?  # error message of the last (previous) command
 !!  # executes last command used (echo !! prints the last command)
 ----
 
-=== Parameter Expansion Modifiers (in double-quotes)
+== Parameter Expansion Modifiers (in double-quotes)
 
 `+${parameter#pattern}+` removes the shortest string that matches the
 pattern if it’s at the start of the value. +
@@ -231,9 +231,9 @@ by a) negative value. +
 either upper-casing or lower-casing the first or all characters that
 match the pattern. Omit the pattern to match any character.
 
-=== Decision Statements
+== Decision Statements
 
-==== If Statement
+== If Statement
 
 Only the final exit code after executing the entire list is relevant for
 the branch’s evaluation.
@@ -248,15 +248,15 @@ else command_list;
 fi
 ----
 
-==== Test Command
+== Test Command
 
 `+[[ argument_1 <operator> argument_2 ]]+`
 
-==== Arithmetic expansion and evaluation
+== Arithmetic expansion and evaluation
 
 `+(( expression ))+`
 
-==== Comparison Operators
+== Comparison Operators
 
 [source,bash]
 ----
@@ -268,7 +268,7 @@ fi
 [[ "$a" -le "$b" ]]  # less than or equal to
 ----
 
-==== Arithmetic Comparison Operators
+== Arithmetic Comparison Operators
 
 [source,bash]
 ----
@@ -278,16 +278,16 @@ fi
 (("$a" <= "$b"))   # less than or equal to
 ----
 
-==== String Comparison Operators
+== String Comparison Operators
 
 [source,bash]
 ----
 [ "$a" = "$b" ]    # is equal to (whitespace around operator)
 
-[[ $a == z* ]]     # True if $a starts with an "z" (pattern matching)
-[[ $a == "z*" ]]   # True if $a is equal to z* (literal matching)
-[ $a == z* ]       # File globbing and word splitting take place
-[ "$a" == "z*" ]   # True if $a is equal to z* (literal matching)
+[[ $a = z* ]]     # True if $a starts with an "z" (pattern matching)
+[[ $a = "z*" ]]   # True if $a is equal to z* (literal matching)
+[ $a = z* ]       # File globbing and word splitting take place
+[ "$a" = "z*" ]   # True if $a is equal to z* (literal matching)
 
 [ "$a" != "$b" ]   # is not equal to, pattern matching within a [[ ... ]] construct
 
@@ -298,7 +298,7 @@ fi
 [ "$a" \> "$b" ]   # ">" needs to be escaped within a [ ] construct.
 ----
 
-=== Commands short circuit evaluation
+== Commands short circuit evaluation
 
 [source,bash]
 ----
@@ -306,7 +306,7 @@ command_1 || command_2  # if command_1 fails executes command_2
 command_1 && command_2  # executes command_2 only if command_1 succeeds
 ----
 
-=== Loops
+== Loops
 
 [source,bash]
 ----
@@ -315,7 +315,7 @@ for var in iterable ; do
 done
 ----
 
-=== Script Hardening
+== Script Hardening
 
 [source,sh]
 ----
@@ -324,7 +324,7 @@ set -o nounset  # fail on unset variable (bypass with ${VAR:-})
 set -o pipefail  # file entire pipeline if one step fails
 
 # hook to enable tracing
-if [[ "${TRACE-0}" == "1" ]]; then
+if [[ "${TRACE-0}" = "1" ]]; then
     set -o xtrace
 fi
 ----

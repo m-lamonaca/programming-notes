@@ -1,4 +1,4 @@
-== https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters[Filters]
+= https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters[Filters]
 
 *Filters* in ASP.NET Core allow code to be run _before_ or _after_
 specific stages in the request processing pipeline.
@@ -15,7 +15,7 @@ of cross-cutting concerns include error handling, caching,
 configuration, authorization, and logging. Filters avoid duplicating
 code.
 
-=== *How filters work*
+== *How filters work*
 
 Filters run within the _ASP.NET Core action invocation pipeline_,
 sometimes referred to as the _filter pipeline_. The filter pipeline runs
@@ -24,7 +24,7 @@ after ASP.NET Core selects the action to execute.
 image:../../../img/dotnet_filter-pipeline-1.png[filter-pipeline-1]
 image:../../../img/dotnet_filter-pipeline-2.png[filter-pipeline-2]
 
-=== *Filter types*
+== *Filter types*
 
 Each filter type is executed at a different stage in the filter
 pipeline:
@@ -51,7 +51,7 @@ of action results. They run only when the action method has executed
 successfully. They are useful for logic that must surround view or
 formatter execution.
 
-=== *Implementation*
+== *Implementation*
 
 Filters support both synchronous and asynchronous implementations
 through different interface definitions.
@@ -92,7 +92,7 @@ public class SampleAsyncActionFilter : IAsyncActionFilter
 }
 ----
 
-=== *Built-in filter attributes*
+== *Built-in filter attributes*
 
 ASP.NET Core includes built-in _attribute-based_ filters that can be
 subclassed and customized. Several of the filter interfaces have
@@ -108,7 +108,7 @@ Filter attributes:
 * https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.servicefilterattribute[ServiceFilterAttribute]
 * https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.typefilterattribute[TypeFilterAttribute]
 
-=== *Filter scopes*
+== *Filter scopes*
 
 A filter can be added to the pipeline at one of three _scopes_:
 
@@ -149,7 +149,7 @@ builder.Services.AddControllersWithViews(options =>
 });
 ----
 
-=== Filter Order of Execution
+== Filter Order of Execution
 
 When there are multiple filters for a particular stage of the pipeline,
 scope determines the default order of filter execution. Global filters
@@ -165,7 +165,7 @@ reverse order of the _before_ code. The filter sequence:
 ** The _after_ code of controller and Razor Page filters.
 * The _after_ code of global filters.
 
-==== Cancellation and Short-Circuiting
+== Cancellation and Short-Circuiting
 
 The filter pipeline can be short-circuited by setting the `+Result+`
 property on the `+ResourceExecutingContext+` parameter provided to the
@@ -189,7 +189,7 @@ public class ShortCircuitingResourceFilterAttribute : Attribute, IResourceFilter
 }
 ----
 
-=== Dependency Injection
+== Dependency Injection
 
 Filters can be added _by type_ or _by instance_. If an instance is
 added, that instance is used for every request. If a type is added, it’s
@@ -214,7 +214,7 @@ The following filters support constructor dependencies provided from DI:
 * IFilterFactory implemented on the attribute.
 
 [[servicefilterattributeservice-filter-attribute]]
-==== https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-7.0#servicefilterattribute[`+ServiceFilterAttribute+`]
+== https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-7.0#servicefilterattribute[`+ServiceFilterAttribute+`]
 
 [source,cs]
 ----

@@ -1,4 +1,4 @@
-== https://svelte.dev/docs[Svelte]
+= https://svelte.dev/docs[Svelte]
 
 [source,sh]
 ----
@@ -11,7 +11,7 @@ node scripts/setupTypeScript.js
 npm init vite@latest
 ----
 
-=== App Entry-point
+== App Entry-point
 
 [source,js]
 ----
@@ -27,9 +27,9 @@ const app = new App({
 export default app;
 ----
 
-=== Components (`+.svelte+`)
+== Components (`+.svelte+`)
 
-==== Basic Structure
+== Basic Structure
 
 [source,html]
 ----
@@ -58,7 +58,7 @@ export default app;
 <Component prop="{value}" />
 ----
 
-==== If-Else
+== If-Else
 
 [source,js]
 ----
@@ -71,7 +71,7 @@ export default app;
 {/if}
 ----
 
-==== Loops
+== Loops
 
 [source,js]
 ----
@@ -84,7 +84,7 @@ export default app;
 {/each}
 ----
 
-==== Await Blocks
+== Await Blocks
 
 [source,js]
 ----
@@ -97,7 +97,7 @@ export default app;
 {/await}
 ----
 
-==== Event Handling
+== Event Handling
 
 The full list of modifiers:
 
@@ -130,7 +130,7 @@ itself
 *Note*: It’s possible to chain modifiers together,
 e.g. `+on:click|once|capture={...}+`.
 
-=== Binding
+== Binding
 
 [source,html]
 ----
@@ -144,7 +144,7 @@ e.g. `+on:click|once|capture={...}+`.
 <!-- ... -->
 ----
 
-==== Reactive declarations & Reactive Statements
+== Reactive declarations & Reactive Statements
 
 Svelte automatically updates the DOM when the component’s state
 changes. +
@@ -162,7 +162,7 @@ $: { }
 $: <expression>
 ----
 
-=== Routing
+== Routing
 
 https://github.com/EmilTholin/svelte-routing[Svelte Routing]
 
@@ -193,7 +193,7 @@ https://github.com/EmilTholin/svelte-routing[Svelte Routing]
 </Router>
 ----
 
-=== Data Stores
+== Data Stores
 
 [source,js]
 ----

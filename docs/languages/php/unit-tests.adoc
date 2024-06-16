@@ -1,8 +1,8 @@
-== PHP Unit Test
+= PHP Unit Test
 
-=== Installation & Configuration
+== Installation & Configuration
 
-==== Dev-Only Installation
+== Dev-Only Installation
 
 [source,ps1]
 ----
@@ -16,7 +16,7 @@ composer require --dev phpunit/phpunit
     }
 ----
 
-==== Config
+== Config
 
 PHPUnit can be configured in a XML file called `+phpunit.xml+`:
 
@@ -41,9 +41,9 @@ PHPUnit can be configured in a XML file called `+phpunit.xml+`:
 </phpunit>
 ----
 
-=== Testing
+== Testing
 
-==== Test Structure
+== Test Structure
 
 *PHPUnit* tests are grouped in classes suffixed with `+Test+`. Each
 class _extends_ `+PHPUnit\Framework\TestCase+`. +
@@ -86,7 +86,7 @@ class FilterTest extends TestCase
 }
 ----
 
-==== https://phpunit.readthedocs.io/en/9.3/assertions.html[PHPUnit Assertions]
+== https://phpunit.readthedocs.io/en/9.3/assertions.html[PHPUnit Assertions]
 
 * `+asseretTrue()+`: verifies that the element is true
 * `+assertFalse()+`: verifies that the element is false
@@ -100,7 +100,7 @@ specific class
 * `+assertArrayHasKey(mixed $key, array $array)+`: verify that a
 specific key is in the array
 
-==== https://phpunit.readthedocs.io/en/9.3/writing-tests-for-phpunit.html#testing-exceptions[PHPUnit Testing Exceptions]
+== https://phpunit.readthedocs.io/en/9.3/writing-tests-for-phpunit.html#testing-exceptions[PHPUnit Testing Exceptions]
 
 [source,php]
 ----
@@ -140,7 +140,7 @@ public function testNoExceptions(string $esame)
 }
 ----
 
-==== Test Setup & Teardown (Example)
+== Test Setup & Teardown (Example)
 
 [source,php]
 ----
@@ -168,7 +168,7 @@ class ClassTest extends TestCase
 *Note*: `+setUp()+` and `+tearDown()+` are called _before_ and _after_
 each test method.
 
-==== Data Provider
+== Data Provider
 
 [source,php]
 ----
@@ -207,7 +207,7 @@ class DataTest extends TestCase
 }
 ----
 
-==== Mock Objects
+== Mock Objects
 
 [source,php]
 ----
@@ -238,7 +238,7 @@ class UnitTest extends TestCase
 }
 ----
 
-==== Code Coverage (needs https://xdebug.org/[XDebug])
+== Code Coverage (needs https://xdebug.org/[XDebug])
 
 [source,ps1]
 ----

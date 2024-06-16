@@ -1,4 +1,4 @@
-== Concurrency
+= Concurrency
 
 https://doc.rust-lang.org/book/ch16-00-concurrency.html[Rust Book -
 Concurrency] +
@@ -15,7 +15,7 @@ same process. Threads within the same process are not isolated from each
 other. Threads share memory and can interact with each other through
 that memory.
 
-=== Threads
+== Threads
 
 Every program starts with exactly _one_ thread: the *main* thread. This
 thread will execute the `+main+` function and can be used to spawn more
@@ -71,7 +71,7 @@ let handle = thread::spawn(move || {
 let average = handle.join().unwrap();
 ----
 
-==== Scoped Threads
+== Scoped Threads
 
 *Scoped threads* ensure that all thread spawned within a _scope_ do not
 outlive said scope. This makes possible to borrow data that outlives the
@@ -96,7 +96,7 @@ std::thread::scope(|scope| {
 });
 ----
 
-==== Shared Ownership
+== Shared Ownership
 
 When sharing data between two threads where neither thread is guaranteed
 to outlive the other, neither of them can be the owner of that data. Any
@@ -121,7 +121,7 @@ make sure the value is dropped only when there are no owners left. The
 standard library offers such functionality with the `+Rc<T>+` &
 `+Arc<T>+` types.
 
-==== Thread Safety: Send and Sync
+== Thread Safety: Send and Sync
 
 The `+Send+` marker trait indicates that ownership of values of the type
 implementing `+Send+` can be transferred between threads. Any type
@@ -138,9 +138,9 @@ composed entirely of types that are `+Sync+`are also `+Sync+`.
 *Note*: All primitive types such as `+i32+`, `+bool+`, and `+str+` are
 both `+Send+` and `+Sync+`.
 
-=== Locking: Protecting Shared Data
+== Locking: Protecting Shared Data
 
-==== Mutex
+== Mutex
 
 The most commonly used tool for sharing (mutable) data between threads
 is a *mutex*, which is short for "`mutual exclusion.`" The job of a
@@ -188,7 +188,7 @@ std::thread::scope(|scope| {
 });
 ----
 
-==== Lock Poisoning
+== Lock Poisoning
 
 The `+lock()+` method returns a `+Result+` since the mutex can become
 *poisoned*. A mutex get marked as poisoned when a thread panics while
@@ -199,7 +199,7 @@ may be in an inconsistent state.
 *Note*: The lock is still acquired and the `+Err+` variant contains the
 guard, allowing to correct the data inconsistency.
 
-==== Reader-Writer Lock
+== Reader-Writer Lock
 
 A *reader-writer lock* understands the difference between _exclusive_
 and _shared_ access, and can provide either. It has three states:
@@ -221,9 +221,9 @@ prevent _writer starvation_, a situation where many readers collectively
 keep the lock from ever unlocking, never allowing any writer to update
 the data.
 
-=== Waiting: Putting Thread to Sleep
+== Waiting: Putting Thread to Sleep
 
-==== Thread Parking
+== Thread Parking
 
 One way to wait for a notification from another thread is called thread
 *parking*. A thread can _park_ itself, which puts it to sleep, stopping
@@ -242,7 +242,7 @@ sleep.
 
 *Note*: calls to `+unpark()+` do not stack up.
 
-==== Condition Variables
+== Condition Variables
 
 *Condition variables* are a more commonly used option for waiting for
 something to happen to data protected by a mutex. They have two basic
@@ -269,7 +269,7 @@ the mutex is locked again).
 It has two notify functions: `+notify_one+` to wake up just one waiting
 thread (if any), and `+notify_all+` to wake them all up.
 
-=== Atomics
+== Atomics
 
 The word atomic comes from the Greek word ἄτομος, meaning indivisible,
 something that cannot be cut into smaller pieces. In computer science,
@@ -289,7 +289,7 @@ Every atomic operation takes an argument of type
 the relative ordering of operations. Based on the ordering the various
 threads can witness the same operations happening in different orders.
 
-==== Load & Store
+== Load & Store
 
 The first two atomic operations are the most basic ones: *load* and
 *store*. Their function signatures are as follows, using AtomicI32 as an
@@ -309,7 +309,7 @@ variable, and the `+store+` method atomically stores a new value in it.
 *Note*: the store method takes a shared reference (`+&T+`) even though
 it modifies itself.
 
-==== Fetch-and-Modify Operations
+== Fetch-and-Modify Operations
 
 The *fetch-and-modify* operations modify the atomic variable, but also
 load (fetch) the original value, as a single atomic operation.
@@ -329,7 +329,7 @@ impl AtomicI32 {
 }
 ----
 
-==== Compare-and-Exchange Operations
+== Compare-and-Exchange Operations
 
 The *compare-and-exchange* operation checks if the atomic value is equal
 to a given value, and only if that is the case does it replace it with a
@@ -349,9 +349,9 @@ impl AtomicI32 {
 }
 ----
 
-=== Memory Ordering
+== Memory Ordering
 
-==== Reordering and Optimizations
+== Reordering and Optimizations
 
 Processors and compilers perform tricks to make programs run as fast as
 possible. A processor might determine that two particular consecutive
@@ -374,7 +374,7 @@ The available orderings in Rust are:
 * Release and acquire ordering: `+Ordering::{Release, Acquire, AcqRel}+`
 * Sequentially consistent ordering: `+Ordering::SeqCst+`
 
-==== The Memory Model
+== The Memory Model
 
 The different memory ordering options have a strict formal definition to
 make sure their assumption are known, and compiler writers know exactly
@@ -386,7 +386,7 @@ Rust’s memory model allows for concurrent atomic stores, but considers
 concurrent non-atomic stores to the same variable to be a data race,
 resulting in undefined behavior.
 
-==== Happens-Before Relationship
+== Happens-Before Relationship
 
 The memory model defines the order in which operations happen in terms
 of _happens-before_ relationships. This means that as an abstract model
@@ -421,11 +421,11 @@ fn main() {
 
 fn f() {
     let x = X.load(Relaxed);  // could happen after either before or after "store 2"
-    assert!(x == 1 || x == 2);
+    assert!(x = 1 || x = 2);
 }
 ----
 
-==== Relaxed Ordering
+== Relaxed Ordering
 
 While atomic operations using `+Relaxed+` memory ordering do not provide
 any happens-before relationship, they do guarantee a _total modification
@@ -433,7 +433,7 @@ order_ of each individual atomic variable. This means that all
 modifications _of the same atomic variable_ happen in an order that is
 the same from the perspective of every single thread.
 
-==== Release and Acquire Ordering
+== Release and Acquire Ordering
 
 `+Release+` and `+Acquire+` memory ordering are used in a pair to form a
 happens-before relationship between threads. `+Release+` memory ordering
@@ -474,7 +474,7 @@ fn main() {
 }
 ----
 
-==== Consume Ordering
+== Consume Ordering
 
 `+Consume+` ordering is a lightweight, more efficient, ​variant of
 `+Acquire+` ordering, whose synchronizing effects are limited to things
@@ -498,7 +498,7 @@ discourages the use of `+Consume+` ordering, noting that an
 implementation other than just `+Acquire+` ordering turned out to be
 infeasible.
 
-==== Sequentially Consistent Ordering
+== Sequentially Consistent Ordering
 
 The strongest memory ordering is s**sequentially consistent** ordering
 (`+SeqCst+`). It includes all the guarantees of `+Acquire+` ordering
@@ -524,7 +524,7 @@ thread. For these situations, a potentially more efficient alternative
 is to instead use `+Relaxed+` operations in combination with a
 `+SeqCst+` *fence*.
 
-==== Fences
+== Fences
 
 The `+std::sync::atomic::fence+` function represents an *atomic fence*
 and is either a release fence (`+Release+`), an acquire fence

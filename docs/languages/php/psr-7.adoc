@@ -1,6 +1,6 @@
-== PSR-7
+= PSR-7
 
-=== https://www.php-fig.org/psr/psr-7/[PSR-7]
+== https://www.php-fig.org/psr/psr-7/[PSR-7]
 
 Standard of the PHP Framework Interop Group that defines common
 interfaces for handling HTTP messages.
@@ -30,7 +30,7 @@ if (! $request->hasHeader('Accept')) {}
 $query = $request->getQueryParams();
 ----
 
-==== Immutability
+== Immutability
 
 PSR-7 requests are _immutable_ objects; a change in the data will return
 a new instance of the object. The stream objects of PSR-7 are _not

@@ -1,10 +1,10 @@
-== Common Regex Syntax
+= Common Regex Syntax
 
 A *regular expression* is a _pattern_ that the regular expression engine
 attempts to match in input text. A pattern consists of one or more
 character literals, operators, or constructs.
 
-=== Character Classes
+== Character Classes
 
 A *character class* matches any one of a set of characters.
 
@@ -29,7 +29,7 @@ general category or named block specified by _name_.
 *Note*: `+^+`, `+\+`, `+-+` and `+]+` must be escaped to be used in
 ranges. (`+[ \] \[ \^ \- ]+`)
 
-=== Anchors
+== Anchors
 
 *Anchors*, or atomic zero-width assertions, cause a match to succeed or
 fail depending on the current position in the string, but they do not
@@ -48,12 +48,12 @@ where matching started.
 (alphanumeric) and a `+\W+` (non-alphanumeric) character.
 * `+\B+`: The match must not occur on a `+\b+` boundary.
 
-=== Grouping Constructs
+== Grouping Constructs
 
 *Grouping constructs* delineate subexpressions of a regular expression
 and typically capture substrings of an input string.
 
-==== Subexpressions
+== Subexpressions
 
 `+regex title="Regex Syntax" (subexpression)+`
 
@@ -88,7 +88,7 @@ this topic.
 * By using the `+$number+` _replacement sequence_ where number is the
 ordinal number of the captured subexpression.
 
-==== Named Subexpressions
+== Named Subexpressions
 
 `+regex title="Regex Syntax" (?<name> subexpression) (?'name' subexpression)+`
 
@@ -117,7 +117,7 @@ of the captured subexpression.
 * By using the `+$number+` _replacement sequence_ where number is the
 ordinal number of the captured subexpression.
 
-==== Noncapturing groups
+== Noncapturing groups
 
 `+regex title="Regex Syntax" (?:subexpression)+`
 
@@ -126,7 +126,7 @@ noncapturing group construct is typically used when a quantifier is
 applied to a group, but the substrings captured by the group are of no
 interest.
 
-==== Zero-width positive lookahead assertions
+== Zero-width positive lookahead assertions
 
 `+regex title="Regex Syntax" (?= subexpression)+`
 
@@ -146,7 +146,7 @@ It’s possible to use a zero-width positive lookahead assertion to ensure
 that a particular captured group begins with text that matches a subset
 of the pattern defined for that captured group.
 
-==== Zero-width negative lookahead assertions
+== Zero-width negative lookahead assertions
 
 `+regex title="Regex Syntax" (?! subexpression)+`
 
@@ -163,7 +163,7 @@ similar but more general pattern to be matched. In this case, it is
 often used to limit backtracking. At the end of a regular expression, it
 can define a subexpression that cannot occur at the end of a match.
 
-==== Zero-width positive lookbehind assertions
+== Zero-width positive lookbehind assertions
 
 `+regex title="Regex Syntax" (?<= subexpression)+`
 
@@ -177,7 +177,7 @@ Zero-width positive lookbehind assertions are typically used at the
 beginning of regular expressions. The pattern that they define is a
 precondition for a match, although it is not a part of the match result.
 
-==== Zero-width negative lookbehind assertions
+== Zero-width negative lookbehind assertions
 
 `+regex title="Regex Syntax" (?<! subexpression) (?> subexpression)+`
 
@@ -193,7 +193,7 @@ backtracking when the last character or characters in a captured group
 must not be one or more of the characters that match that group’s
 regular expression pattern.
 
-==== Atomic groups
+== Atomic groups
 
 `+regex title="Regex Syntax" (?> subexpression )+`
 
@@ -215,7 +215,7 @@ subexpression matches only strings that would be matched by the
 subexpression alone; it does not attempt to match a string based on the
 subexpression and any subexpressions that follow it.)
 
-=== Quantifiers
+== Quantifiers
 
 A quantifier specifies how many instances of the previous element (which
 can be a character, a group, or a character class) must be present in
@@ -239,7 +239,7 @@ times as possible.
 * `+{n,m}?+`: Matches the previous element between n and m times, but as
 few times as possible.
 
-=== Alternation Constructs
+== Alternation Constructs
 
 Alternation constructs modify a regular expression to enable either/or
 matching.
@@ -247,7 +247,7 @@ matching.
 * `+|+`: Matches any one element separated by the vertical bar (`+|+`)
 character.
 
-=== Backreference Constructs
+== Backreference Constructs
 
 A backreference allows a previously matched subexpression to be
 identified subsequently in the same regular expression.
@@ -256,7 +256,7 @@ identified subsequently in the same regular expression.
 subexpression. `+\k<name>+`: Named backreference. Matches the value of a
 named expression.
 
-=== Substitutions
+== Substitutions
 
 Substitutions are regular expression language elements that are
 supported in replacement patterns.
@@ -271,7 +271,7 @@ name.
 * `+$++`: Substitutes the last group that was captured.
 * `+$_+`: Substitutes the entire input string.
 
-=== Special Constructs
+== Special Constructs
 
 * `+(.*)+`: Matches anything
 * `+(.*?)+`: Matches anything, but as few times as possible

@@ -1,6 +1,6 @@
-== Templates with Plates
+= Templates with Plates
 
-=== Template
+== Template
 
 To separate HTML code and PHP code it’s possible to use *templates* with
 markers for variable substitution. Variables are created in the PHP code
@@ -21,7 +21,7 @@ the templates as needed.
 </html>
 ----
 
-=== https://platesphp.com/[Plates]
+== https://platesphp.com/[Plates]
 
 Plates is a template engine for PHP. A template engine permits to
 separate the PHP code (business logic) from the HTML pages.
@@ -61,7 +61,7 @@ Variables in the template are created through an associative array
 `+key => value+`. The key (`+"key"+`) becomes a variable (`+$key+`) in
 the template.
 
-==== Layout
+== Layout
 
 It’s possible to create a layout (a model) for a group of pages to make
 that identical save for the contents. In a layout it’s possible to
@@ -104,7 +104,7 @@ echo $template->render('template_name', [ "marker" => value, ... ]);
 </html>
 ----
 
-==== Escape
+== Escape
 
 It’s necessary to verify that the output is in the necessary format.
 
@@ -113,7 +113,7 @@ output. In general the output validation allows to prevent
 https://owasp.org/www-community/attacks/xss/[Cross-Site Scripting]
 (XSS).
 
-==== Folders
+== Folders
 
 [source,php]
 ----
@@ -122,7 +122,7 @@ $templates->addFolder("alias", "path/to/template/folder");  # add a template fol
 echo $templates->render("folder::template");  # use a template in a specific folder
 ----
 
-==== Insert
+== Insert
 
 It’s possible to inject templates in a layout or template. It is done by
 using the `+insert()+` function.
@@ -144,7 +144,7 @@ using the `+insert()+` function.
 </html>
 ----
 
-==== Sections
+== Sections
 
 It’s possible to insert page contest from another template with the
 `+section()+` function. The content to be inserted must be surrounded

@@ -1,6 +1,6 @@
-== https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor[Razor Syntax]
+= https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor[Razor Syntax]
 
-=== Markup
+== Markup
 
 [source,cs]
 ----
@@ -30,7 +30,7 @@
 
 '''''
 
-=== Tag Helpers (ASP.NET Core)
+== Tag Helpers (ASP.NET Core)
 
 *Tag helpers* are reusable components for automating the generation of
 HTML in Razor Pages. Tag helpers target specific HTML tags.
@@ -43,7 +43,7 @@ Example:
 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 ----
 
-==== Managing Tag Helpers
+== Managing Tag Helpers
 
 The `+@addTagHelper+` directive makes Tag Helpers available to the view.
 Generally, the view file is `+Pages/_ViewImports.cshtml+`, which by
@@ -63,7 +63,7 @@ load (`+*+` for all Tag Helpers), and the second parameter
 containing the Tag Helpers. `+Microsoft.AspNetCore.Mvc.TagHelpers+` is
 the assembly for the built-in ASP.NET Core Tag Helpers.
 
-===== Opting out of individual elements
+=== Opting out of individual elements
 
 It’s possible to disable a Tag Helper at the element level with the Tag
 Helper opt-out character (`+!+`)
@@ -74,7 +74,7 @@ Helper opt-out character (`+!+`)
 <!span asp-validation-for="Email" ></!span>
 ----
 
-==== Explicit Tag Helpers
+== Explicit Tag Helpers
 
 The `+@tagHelperPrefix+` directive allows to specify a tag prefix string
 to enable Tag Helper support and to make Tag Helper usage explicit.
@@ -84,7 +84,7 @@ to enable Tag Helper support and to make Tag Helper usage explicit.
 @tagHelpersPrefix th:
 ----
 
-==== Important Tag Helpers (`+asp-+`) & HTML Helpers (`+@Html+`)
+== Important Tag Helpers (`+asp-+`) & HTML Helpers (`+@Html+`)
 
 https://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers[Understanding
 Html Helpers]
@@ -121,7 +121,7 @@ Html Helpers]
 <a asp-controller="<Controller>" asp-action="<Action>" asp-route-queryParameter="value">Link</a>  // asp-route-* for query strings
 ----
 
-==== https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms[Select Tag Helper]
+== https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms[Select Tag Helper]
 
 https://stackoverflow.com/a/34624217[StackOverflow]
 https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.selectlist[SelectList

@@ -1,4 +1,4 @@
-== PowerShell Scripting
+= PowerShell Scripting
 
 Cmdlets are formed by a verb-noun pair. Cmdlets are case-insensitive.
 
@@ -10,14 +10,14 @@ functions CANNOT be called with parentheses. If you do call a cmdlet/PS
 function with parentheses, it is the same as passing a single parameter
 list.
 
-=== Screen Output
+== Screen Output
 
 [source,ps1]
 ----
 Write-Host "message"
 ----
 
-=== User Input
+== User Input
 
 [source,ps1]
 ----
@@ -25,7 +25,7 @@ Write-Host "message"
 $variable = Read-Host "prompt"
 ----
 
-=== Variables
+== Variables
 
 [source,ps1]
 ----
@@ -54,7 +54,7 @@ Write-Host "text $variable"  # single quotes will not interpolate
 Write-Host (<expression>)
 ----
 
-==== Built-in Variables
+== Built-in Variables
 
 [source,ps1]
 ----
@@ -74,7 +74,7 @@ $Args # Unbound arguments
 . .\otherScriptName.ps1  # Inline another file (dot operator)
 ----
 
-==== Lists & Dictionaries
+== Lists & Dictionaries
 
 [source,ps1]
 ----
@@ -97,7 +97,7 @@ foreach ($k in $Dict.keys) {
 }
 ----
 
-=== Flow Control
+== Flow Control
 
 [source,ps1]
 ----
@@ -110,7 +110,7 @@ if (condition) {
 }
 ----
 
-==== Switch
+== Switch
 
 `+Switch+` has the following parameters:
 
@@ -159,7 +159,7 @@ switch [-regex|-wildcard|-exact][-casesensitive] -file filename
 }
 ----
 
-==== Loops
+== Loops
 
 [source,ps1]
 ----
@@ -187,7 +187,7 @@ do {
 } while (condition)
 ----
 
-==== Operators
+== Operators
 
 [source,ps1]
 ----
@@ -205,7 +205,7 @@ $True -Or $False
 -Not $True
 ----
 
-==== Exception Handling
+== Exception Handling
 
 [source,ps1]
 ----
@@ -215,7 +215,7 @@ try {} catch [System.NullReferenceException] {
 }
 ----
 
-=== https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions?view=powershell-7[Functions]
+== https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions?view=powershell-7[Functions]
 
 [source,ps1]
 ----
@@ -276,9 +276,9 @@ function Func {
 }
 ----
 
-=== Script Arguments
+== Script Arguments
 
-==== Parsing Script Arguments
+== Parsing Script Arguments
 
 [source,ps1]
 ----
@@ -287,7 +287,7 @@ $args[$index]  # access to the arguments
 $args.count  # number of arguments
 ----
 
-==== Script Named Arguments
+== Script Named Arguments
 
 In `+scripts.ps1+`:
 
@@ -310,7 +310,7 @@ In PowerShell:
 .\script.ps1 -param2 arg2 -param1 arg1  # custom order
 ----
 
-==== Filters
+== Filters
 
 A filter is a type of function that runs on each object in the pipeline.
 A filter resembles a function with all its statements in a `+Process+`
@@ -321,7 +321,7 @@ block.
 filter [<scope:>]<name> {<statement list>}
 ----
 
-=== PowerShell Comment-based Help
+== PowerShell Comment-based Help
 
 The syntax for comment-based help is as follows:
 
@@ -355,17 +355,17 @@ Keywords define each section of comment-based help. Each comment-based
 help keyword is preceded by a dot `+.+`. The keywords can appear in any
 order. The keyword names are not case-sensitive.
 
-==== .SYNOPSIS
+== .SYNOPSIS
 
 A brief description of the function or script. This keyword can be used
 only once in each topic.
 
-==== .DESCRIPTION
+== .DESCRIPTION
 
 A detailed description of the function or script. This keyword can be
 used only once in each topic.
 
-==== .PARAMETER
+== .PARAMETER
 
 The description of a parameter. Add a `+.PARAMETER+` keyword for each
 parameter in the function or script syntax.
@@ -412,27 +412,27 @@ function Verb-Noun {
 }
 ----
 
-==== .EXAMPLE
+== .EXAMPLE
 
 A sample command that uses the function or script, optionally followed
 by sample output and a description. Repeat this keyword for each
 example.
 
-==== .INPUTS
+== .INPUTS
 
 The .NET types of objects that can be piped to the function or script.
 You can also include a description of the input objects.
 
-==== .OUTPUTS
+== .OUTPUTS
 
 The .NET type of the objects that the cmdlet returns. You can also
 include a description of the returned objects.
 
-==== .NOTES
+== .NOTES
 
 Additional information about the function or script.
 
-==== .LINK
+== .LINK
 
 The name of a related topic. The value appears on the line below the
 `+.LINK+` keyword and must be preceded by a comment symbol `+#+` or
@@ -447,25 +447,25 @@ Identifier (URI) to an online version of the same help topic. The online
 version opens when you use the *Online* parameter of `+Get-Help+`. The
 URI must begin with "`http`" or "`https`".
 
-==== .COMPONENT
+== .COMPONENT
 
 The name of the technology or feature that the function or script uses,
 or to which it is related. The *Component* parameter of `+Get-Help+`
 uses this value to filter the search results returned by `+Get-Help+`.
 
-==== .ROLE
+== .ROLE
 
 The name of the user role for the help topic. The *Role* parameter of
 `+Get-Help+` uses this value to filter the search results returned by
 `+Get-Help+`.
 
-==== .FUNCTIONALITY
+== .FUNCTIONALITY
 
 The keywords that describe the intended use of the function. The
 *Functionality* parameter of `+Get-Help+` uses this value to filter the
 search results returned by `+Get-Help+`.
 
-==== .FORWARDHELPTARGETNAME
+== .FORWARDHELPTARGETNAME
 
 Redirects to the help topic for the specified command. You can redirect
 users to any help topic, including help topics for a function, script,
@@ -476,7 +476,7 @@ cmdlet, or provider.
 # .FORWARDHELPTARGETNAME <Command-Name>
 ----
 
-==== .FORWARDHELPCATEGORY
+== .FORWARDHELPCATEGORY
 
 Specifies the help category of the item in `+.ForwardHelpTargetName+`.
 Valid values are `+Alias+`, `+Cmdlet+`, `+HelpFile+`, `+Function+`,
@@ -489,7 +489,7 @@ conflicts when there are commands with the same name.
 # .FORWARDHELPCATEGORY <Category>
 ----
 
-==== .REMOTEHELPRUNSPACE
+== .REMOTEHELPRUNSPACE
 
 Specifies a session that contains the help topic. Enter a variable that
 contains a *PSSession* object. This keyword is used by the
@@ -501,7 +501,7 @@ cmdlet to find the help topics for the exported commands.
 # .REMOTEHELPRUNSPACE <PSSession-variable>
 ----
 
-==== .EXTERNALHELP
+== .EXTERNALHELP
 
 Specifies an XML-based help file for the script or function.
 
@@ -542,9 +542,9 @@ For more information about the cmdlet help XML-based help file format,
 see https://go.microsoft.com/fwlink/?LinkID=123415[How to Write Cmdlet
 Help] in the MSDN library. ***
 
-=== Project Oriented Programming
+== Project Oriented Programming
 
-==== Classes
+== Classes
 
 [source,ps1]
 ----

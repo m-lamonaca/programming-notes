@@ -1,4 +1,4 @@
-== https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/[ADO.NET]
+= https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/[ADO.NET]
 
 `+ADO.NET+` is a set of classes that expose data access services for
 .NET. The `+ADO.NET+` classes are found in `+System.Data.dll+`, and are
@@ -7,9 +7,9 @@ integrated with the XML classes found in `+System.Xml.dll+`.
 https://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki[ADO.NET
 provider for SQLite]
 
-=== https://www.connectionstrings.com[Connection Strings]
+== https://www.connectionstrings.com[Connection Strings]
 
-==== https://www.connectionstrings.com/sql-server-2019/[SQL Server 2019]
+== https://www.connectionstrings.com/sql-server-2019/[SQL Server 2019]
 
 * Standard Security:
 ** `+Server=<server_name>; Database=<database>; UID=<user>; Pwd=<password>;+`
@@ -26,14 +26,14 @@ provider for SQLite]
 with SQL Server to allow the execution of multiple batches on a single
 connection.
 
-==== https://www.connectionstrings.com/sqlite/[SQLite]
+== https://www.connectionstrings.com/sqlite/[SQLite]
 
 * Basic: `+Data Source: path\to\db.sqlite3; Version=3;+`
 * In-Memory Database: `+Data Source=:memory:; Version=3; New=True+`
 * With Password:
 `+Data Source: path\to\db.sqlite3; Version=3; Password=<password>+`
 
-=== Connection to DB
+== Connection to DB
 
 [source,cs]
 ----
@@ -60,9 +60,9 @@ namespace <namespace>
 }
 ----
 
-=== DB Interrogation
+== DB Interrogation
 
-==== `+SqlConnection+`
+== `+SqlConnection+`
 
 [source,cs]
 ----
@@ -78,7 +78,7 @@ using (SqlConnection connection = new SqlConnection(connectionString)) {
 }
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand[SqlCommand]
+== https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand[SqlCommand]
 
 [source,cs]
 ----
@@ -103,7 +103,7 @@ using (SqlCommand command = new SqlCommand())
 }
 ----
 
-==== `+SqlDataReader+`
+== `+SqlDataReader+`
 
 [source,cs]
 ----

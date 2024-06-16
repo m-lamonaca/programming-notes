@@ -1,8 +1,8 @@
-== jQuery Library
+= jQuery Library
 
-=== Including jQuery
+== Including jQuery
 
-==== Download and link the file
+== Download and link the file
 
 [source,html]
 ----
@@ -11,7 +11,7 @@
 </head>
 ----
 
-==== Use a CDN
+== Use a CDN
 
 [source,html]
 ----
@@ -26,7 +26,7 @@
 </head>
 ----
 
-==== What is a CDN
+== What is a CDN
 
 A *content delivery network* or *content distribution network* (CDN) is
 a large distributed system of servers deployed in multiple data centers
@@ -37,9 +37,9 @@ scripts), downloadable objects (media files, software, documents),
 applications (e-commerce, portals), live streaming media, on-demand
 streaming media, and social networks.
 
-=== HTML Manipulation
+== HTML Manipulation
 
-==== https://api.jquery.com/category/selectors/[Finding DOM elements]
+== https://api.jquery.com/category/selectors/[Finding DOM elements]
 
 [source,js]
 ----
@@ -48,7 +48,7 @@ $("#id");
 $(".class");
 ----
 
-==== Manipulating DOM elements
+== Manipulating DOM elements
 
 [source,js]
 ----
@@ -64,7 +64,7 @@ $("p").addClass("special");
 <p class="special">Welcome to jQuery<p>
 ----
 
-==== Reading Elements
+== Reading Elements
 
 [source,html]
 ----
@@ -82,7 +82,7 @@ link.attr('href'); // 'http://www.yahoo.com'
 link.css('font-size'); // '20px
 ----
 
-==== Modifying Elements
+== Modifying Elements
 
 [source,js]
 ----
@@ -101,7 +101,7 @@ $('a').css({'color': 'purple'});
 <a href="http://www.yahoo.com" style="color:purple">Yahoo</a>
 ----
 
-==== Create, Store, Manipulate and inject
+== Create, Store, Manipulate and inject
 
 [source,js]
 ----
@@ -112,7 +112,7 @@ paragraph.css('property', 'value');  // manipulate element
 $("body").append(paragraph);  // inject in DOM
 ----
 
-==== Regular DOM Nodes to jQuery Objects
+== Regular DOM Nodes to jQuery Objects
 
 [source,js]
 ----
@@ -128,7 +128,7 @@ for(var i = 0; i < paragraphs.length; i++) {
 }
 ----
 
-=== https://api.jquery.com/category/events/[Events]
+== https://api.jquery.com/category/events/[Events]
 
 [source,js]
 ----
@@ -148,7 +148,7 @@ $('button').on('click', function(){
 $('button').click(onButtonClick);
 ----
 
-==== Preventing Default Event
+== Preventing Default Event
 
 [source,js]
 ----
@@ -158,7 +158,7 @@ $('selector').on('event', function(event) {
 });
 ----
 
-=== Plugins
+== Plugins
 
 In the HTML, add a `+<script>+` ag that hotlinks to the CDN or source
 file:
@@ -179,9 +179,9 @@ $("form").validate();
 https://developers.google.com/speed/docs/insights/MinifyResources[minified]
 js files.
 
-=== More jQuery
+== More jQuery
 
-==== Patters & Anti-Patterns
+== Patters & Anti-Patterns
 
 [source,js]
 ----
@@ -201,7 +201,7 @@ $(document).on('click', 'p', function(argument){
 });
 ----
 
-==== Chaining
+== Chaining
 
 [source,js]
 ----
@@ -218,7 +218,7 @@ banner.css('color', 'red')
     .show();
 ----
 
-==== DOM Readiness
+== DOM Readiness
 
 DOM manipulation and event binding doesn’t work if the `+<script>+` is
 in the `+<head>+`
@@ -234,7 +234,7 @@ $(window).on('load', function(){
 });
 ----
 
-=== AJAX (jQuery `+1.5+`+)
+== AJAX (jQuery `+1.5+`+)
 
 [source,js]
 ----

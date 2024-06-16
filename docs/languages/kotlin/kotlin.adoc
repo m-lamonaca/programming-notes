@@ -1,6 +1,6 @@
-== Kotlin
+= Kotlin
 
-=== Package & Imports
+== Package & Imports
 
 [source,kotlin]
 ----
@@ -9,7 +9,7 @@ package com.app.uniqueID
 import <package>
 ----
 
-=== Variable & Constants
+== Variable & Constants
 
 [source,kotlin]
 ----
@@ -20,7 +20,7 @@ var variable = value    //type can be omitted if it can be deduced by initializa
 val CONSTANT_NAME: Type = value    //constant declaration
 ----
 
-==== Nullable Variables
+== Nullable Variables
 
 For a variable to hold a null value, it must be of a nullable type. +
 Nullable types are specified suffixing `+?+` to the variable type.
@@ -36,9 +36,9 @@ nullablevariavle!!.method()    //unsafe way
 //!! -> ignore that var can be null
 ----
 
-=== Decision Statements
+== Decision Statements
 
-==== `+If+` - `+Else If+` - `+Else+`
+== `+If+` - `+Else If+` - `+Else+`
 
 [source,kotlin]
 ----
@@ -51,7 +51,7 @@ if (condition) {
 }
 ----
 
-==== Conditional Expressions
+== Conditional Expressions
 
 [source,kotlin]
 ----
@@ -64,7 +64,7 @@ var variable: Type = if (condition) {
 }
 ----
 
-==== `+When+` Expression
+== `+When+` Expression
 
 Each branch in a `+when+` expression is represented by a condition, an
 arrow (`+->+`), and a result. +
@@ -94,9 +94,9 @@ when {
 }
 ----
 
-=== Loops
+== Loops
 
-==== `+For+` Loop
+== `+For+` Loop
 
 [source,kotlin]
 ----
@@ -110,7 +110,7 @@ for(i in start..end) {
 }
 ----
 
-=== Functions
+== Functions
 
 [source,kotlin]
 ----
@@ -121,7 +121,7 @@ fun functionName(parameter: Type): Type {
 }
 ----
 
-==== Simplifying Function Declarations
+== Simplifying Function Declarations
 
 [source,kotlin]
 ----
@@ -141,7 +141,7 @@ fun functionName(parameter: Type): Type = if (condition) {
 }
 ----
 
-==== Anonymous Functions
+== Anonymous Functions
 
 [source,kotlin]
 ----
@@ -152,7 +152,7 @@ val anonymousFunction: (Type) -> Type = { input ->
 val variableName: Type = anonymousFunction(input)
 ----
 
-==== Higher-order Functions
+== Higher-order Functions
 
 A function can take another function as an argument. Functions that use
 other functions as arguments are called _higher-order_ functions. +
@@ -167,9 +167,9 @@ fun functionName(parameter: Type, function: (Type) -> Type): Type {
 }
 ----
 
-=== Object Oriented Programming
+== Object Oriented Programming
 
-==== Class
+== Class
 
 [source,kotlin]
 ----
@@ -189,7 +189,7 @@ class ClassName {
 }
 ----
 
-==== Companion Object
+== Companion Object
 
 https://kotlinlang.org/docs/tutorials/kotlin-for-py/objects-and-companion-objects.html[Companion
 Object Docs]
@@ -205,9 +205,9 @@ class ClassName {
 }
 ----
 
-=== Collections
+== Collections
 
-==== ArrayList
+== ArrayList
 
 [source,kotlin]
 ----

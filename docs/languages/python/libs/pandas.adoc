@@ -1,6 +1,6 @@
-== Pandas
+= Pandas
 
-=== Basic Pandas Imports
+== Basic Pandas Imports
 
 [source,py]
 ----
@@ -9,7 +9,7 @@ import pandas as pd
 from pandas import Series, DataFrame
 ----
 
-=== SERIES
+== SERIES
 
 1-dimensional labelled array, axis label referred as INDEX. +
 Index can contain repetitions.
@@ -22,7 +22,7 @@ s = Series(data, index=index, name='name')
 s = Series(dict)  # Series created from python dict, dict keys become index values
 ----
 
-==== INDEXING / SELECTION / SLICING
+== INDEXING / SELECTION / SLICING
 
 [source,py]
 ----
@@ -33,7 +33,7 @@ s[ : ] = *value  # modify value of entire slice
 s[condition] = *value  # modify slice by condition
 ----
 
-=== MISSING DATA
+== MISSING DATA
 
 Missing data appears as NaN (Not a Number).
 
@@ -45,7 +45,7 @@ array.isnull()
 array.notnull()
 ----
 
-==== SERIES ATTRIBUTES
+== SERIES ATTRIBUTES
 
 [source,py]
 ----
@@ -55,7 +55,7 @@ s.name = "Series name"  # renames Series object
 s.index.name = "index name"  # renames index
 ----
 
-==== SERIES METHODS
+== SERIES METHODS
 
 [source,py]
 ----
@@ -81,7 +81,7 @@ pd.Series.value_counts(self, normalize=False, sort=True, ascending=False, bins=N
 # DROPNA: {bool} -- don't include counts of NaN
 ----
 
-=== DATAFRAME
+== DATAFRAME
 
 2-dimensional labeled data structure with columns of potentially
 different types. Index and columns can contain repetitions.
@@ -117,7 +117,7 @@ df[condition] = *value  # modify contents
 del df[col]  # delete column
 ----
 
-==== DATAFRAME ATTRIBUTES
+== DATAFRAME ATTRIBUTES
 
 [source,py]
 ----
@@ -129,7 +129,7 @@ df.columns.index.name = "columns name"
 df.T # transpose
 ----
 
-==== DATAFRAME METHODS
+== DATAFRAME METHODS
 
 [source,py]
 ----
@@ -149,11 +149,11 @@ pd.DataFrame.drop(self, index=None, columns=None, **kwargs)  # Remove rows or co
 # KeyError raised if not all of the labels are found in the selected axis
 ----
 
-=== INDEX OBJECTS
+== INDEX OBJECTS
 
 Holds axis labels and metadata, immutable.
 
-==== INDEX TYPES
+== INDEX TYPES
 
 [source,py]
 ----
@@ -164,7 +164,7 @@ pd.PeriodINdex  # immutable ndarray holding ordinal values indicating regular pe
 pd.DatetimeIndex  # nanosecond timestamps (uses Numpy datetime64)
 ----
 
-==== INDEX ATTRIBUTERS
+== INDEX ATTRIBUTERS
 
 [source,py]
 ----
@@ -174,7 +174,7 @@ pd.Index.is_unique  # Return True if the index has unique values.
 pd.Index.hasnans  # Return True if the index has NaNs
 ----
 
-==== INDEX METHODS
+== INDEX METHODS
 
 [source,py]
 ----
@@ -201,14 +201,14 @@ pd.Index.reindex(self, target, **kwargs)  # create index with target's values (m
 # METHOD: {none (don't fill gaps), pad (fill or carry values forward), backfill (fill or carry values backward)}-- hole filling method
 ----
 
-=== ARITHMETIC OPERATIONS
+== ARITHMETIC OPERATIONS
 
 NumPy arrays operations preserve labels-value link. +
 Arithmetic operations automatically align differently indexed data. +
 Missing values propagate in arithmetic computations (NaN `+<operator>+`
 value = NaN)
 
-==== ADDITION
+== ADDITION
 
 [source,py]
 ----
@@ -222,7 +222,7 @@ pd.DataFrame.radd(self, other, axis=columns, fill_value=None)  # radd(), support
 # FILLVALUE: {None, float} -- fill missing value
 ----
 
-==== SUBTRACTION
+== SUBTRACTION
 
 [source,py]
 ----
@@ -236,7 +236,7 @@ pd.DataFrame.rsub(self, other, axis=columns, fill_value=None)  # rsub(), support
 # FILLVALUE: {None, float} -- fill missing value
 ----
 
-==== MULTIPLICATION
+== MULTIPLICATION
 
 [source,py]
 ----
@@ -250,7 +250,7 @@ pd.DataFrame.rmul(self, other, axis=columns, fill_value=None)  # rmul(), support
 # FILLVALUE: {None, float} -- fill missing value
 ----
 
-==== DIVISION (float division)
+== DIVISION (float division)
 
 [source,py]
 ----
@@ -268,7 +268,7 @@ pd.DataFrame.rtruediv(self, other, axis=columns, fill_value=None)  # rtruediv(),
 # FILLVALUE: {None, float} -- fill missing value
 ----
 
-==== FLOOR DIVISION
+== FLOOR DIVISION
 
 [source,py]
 ----
@@ -282,7 +282,7 @@ pd.DataFrame.rfloordiv(self, other, axis=columns, fill_value=None)  # rfloordiv(
 # FILLVALUE: {None, float} -- fill missing value
 ----
 
-==== MODULO
+== MODULO
 
 [source,py]
 ----
@@ -296,7 +296,7 @@ pd.DataFrame.rmod(self, other, axis=columns, fill_value=None)  # rmod(), support
 # FILLVALUE: {None, float} -- fill missing value
 ----
 
-==== POWER
+== POWER
 
 [source,py]
 ----
@@ -310,9 +310,9 @@ pd.DataFrame.rpow(self, other, axis=columns, fill_value=None)  # rpow(), support
 # FILLVALUE: {None, float} -- fill missing value
 ----
 
-=== ESSENTIAL FUNCTIONALITY
+== ESSENTIAL FUNCTIONALITY
 
-==== FUNCTION APPLICATION AND MAPPING
+== FUNCTION APPLICATION AND MAPPING
 
 NumPy ufuncs work fine with pandas objects.
 
@@ -341,9 +341,9 @@ pd.DataFrame.sort_values(self, axis=0, ascending=True, **kwargs)  # sort object 
 # NA_POSITION {first, last} -- 'first' puts NaNs at the beginning, 'last' puts NaNs at the end
 ----
 
-=== DESCRIPTIVE AND SUMMARY STATISTICS
+== DESCRIPTIVE AND SUMMARY STATISTICS
 
-==== COUNT
+== COUNT
 
 [source,py]
 ----
@@ -352,7 +352,7 @@ pd.DataFrame.count(self, numeric_only=False)  # count non-NA cells for each colu
 # NUMERIC_ONLY: {bool} -- Include only float, int or boolean data -- DEFAULT False
 ----
 
-==== DESCRIBE
+== DESCRIBE
 
 Generate descriptive statistics summarizing central tendency, dispersion
 and shape of dataset’s distribution (exclude NaN).
@@ -366,7 +366,7 @@ pd.DataFrame.describe(self, percentiles=None, include=None, exclude=None)
 # EXCLUDE: {None, list of dtypes} -- black list of dtypes to omit from the result. ignored for Series
 ----
 
-==== MAX - MIN
+== MAX - MIN
 
 [source,py]
 ----
@@ -378,7 +378,7 @@ pd.DataFrame.min(self, axis=None, skipna=None, numeric_only=None)  # minimum of 
 # NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ----
 
-==== IDXMAX - IDXMIN
+== IDXMAX - IDXMIN
 
 [source,py]
 ----
@@ -390,7 +390,7 @@ pd.DataFrame.idxmin(self, axis=0, skipna=True)  #  Return index of first occurre
 # SKIPNA: {bool} -- exclude NA/null values. ff an entire row/column is NA, result will be NA
 ----
 
-==== QUANTILE
+== QUANTILE
 
 [source,py]
 ----
@@ -401,7 +401,7 @@ pd.DataFrame.quantile(self, q=0.5, axis=0, numeric_only=True, interpolation='lin
 # INTERPOLATION: {linear, lower, higher, midpoint, nearest} -- SEE DOCS
 ----
 
-==== SUM
+== SUM
 
 [source,py]
 ----
@@ -413,7 +413,7 @@ pd.DataFrame.sum(self, axis=None, skipna=None, numeric_only=None, min_count=0)  
 # MIN_COUNT: {int} -- required number of valid values to perform the operation. if fewer than min_count non-NA values are present the result will be NA
 ----
 
-==== MEAN
+== MEAN
 
 [source,py]
 ----
@@ -424,7 +424,7 @@ pd.DataFrame.mean(self, axis=None, skipna=None, numeric_only=None)  # mean of th
 # NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ----
 
-==== MEDIAN
+== MEDIAN
 
 [source,py]
 ----
@@ -435,7 +435,7 @@ pd.DataFrame.median(self, axis=None, skipna=None, numeric_only=None)  # median o
 # NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ----
 
-==== MAD (mean absolute deviation)
+== MAD (mean absolute deviation)
 
 [source,py]
 ----
@@ -445,7 +445,7 @@ pd.DataFrame.mad(self, axis=None, skipna=None)  # mean absolute deviation of the
 # SKIPNA: {bool} -- exclude NA/null values when computing the result
 ----
 
-==== VAR (variance)
+== VAR (variance)
 
 [source,py]
 ----
@@ -457,7 +457,7 @@ pd.DataFrame.var(self, axis=None, skipna=None, ddof=1, numeric_only=None)  #  un
 # NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ----
 
-==== STD (standard deviation)
+== STD (standard deviation)
 
 [source,py]
 ----
@@ -469,7 +469,7 @@ pd.Dataframe.std(self, axis=None, skipna=None, ddof=1, numeric_only=None)  # sam
 # NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ----
 
-==== SKEW
+== SKEW
 
 [source,py]
 ----
@@ -480,10 +480,10 @@ pd.DataFrame.skew(self, axis=None, skipna=None, numeric_only=None)  #  unbiased 
 # NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ----
 
-==== KURT
+== KURT
 
 Unbiased kurtosis over requested axis using Fisher’s definition of
-kurtosis (kurtosis of normal == 0.0). Normalized by N-1.
+kurtosis (kurtosis of normal = 0.0). Normalized by N-1.
 
 [source,py]
 ----
@@ -494,7 +494,7 @@ pd.Dataframe.kurt(self, axis=None, skipna=None, numeric_only=None)
 # NUMERIC_ONLY: {bool} -- include only float, int, boolean columns, not implemented for Series
 ----
 
-==== CUMSUM (cumulative sum)
+== CUMSUM (cumulative sum)
 
 [source,py]
 ----
@@ -504,7 +504,7 @@ pd.Dataframe.cumsum(self, axis=None, skipna=True)  # cumulative sum over request
 # SKIPNA: {bool} -- exclude NA/null values. if an entire row/column is NA, the result will be NA
 ----
 
-==== CUMMAX - CUMMIN (cumulative maximum - minimum)
+== CUMMAX - CUMMIN (cumulative maximum - minimum)
 
 [source,py]
 ----
@@ -516,7 +516,7 @@ pd.Dataframe.cummin(self, axis=None, skipna=True)  # cumulative minimum over req
 # SKIPNA: {bool} -- exclude NA/null values. if an entire row/column is NA, the result will be NA
 ----
 
-==== CUMPROD (cumulative product)
+== CUMPROD (cumulative product)
 
 [source,py]
 ----
@@ -526,7 +526,7 @@ pd.Dataframe.cumprod(self, axis=None, skipna=True)  # cumulative product over re
 # SKIPNA: {bool} -- exclude NA/null values. if an entire row/column is NA, the result will be NA
 ----
 
-==== DIFF
+== DIFF
 
 Calculates the difference of a DataFrame element compared with another
 element in the DataFrame. +
@@ -540,7 +540,7 @@ pd.DataFrame.diff(self, periods=1, axis=0)
 # AXIS: {0, 1, index, columns} -- Take difference over rows or columns
 ----
 
-==== PCT_CHANGE
+== PCT_CHANGE
 
 Percentage change between the current and a prior element.
 
@@ -553,9 +553,9 @@ pd.Dataframe.pct_change(self, periods=1, fill_method='pad', limit=None)
 # LIMIT: {int} -- number of consecutive NAs to fill before stopping -- DEFAULT None
 ----
 
-=== HANDLING MISSING DATA
+== HANDLING MISSING DATA
 
-==== FILTERING OUT MISSING DATA
+== FILTERING OUT MISSING DATA
 
 [source,py]
 ----
@@ -568,7 +568,7 @@ pd.DataFrame.dropna(axis=0, how='any', tresh=None, subset=None, inplace=False)  
 # INPLACE: {bool} -- if True, do operation inplace and return None -- DEFAULT False
 ----
 
-==== FILLING IN MISSING DATA
+== FILLING IN MISSING DATA
 
 Fill NA/NaN values using the specified method.
 
@@ -583,14 +583,14 @@ pd.DataFrame.fillna(self, value=None, method=None, axis=None, inplace=False, lim
 # LIMIT: {int} --  maximum number of consecutive NaN values to forward/backward fill -- DEFAULT None
 ----
 
-=== HIERARCHICAL INDEXING (MultiIndex)
+== HIERARCHICAL INDEXING (MultiIndex)
 
 Enables storing and manipulation of data with an arbitrary number of
 dimensions. +
 In lower dimensional data structures like Series (1d) and DataFrame
 (2d).
 
-==== MULTIIINDEX CREATION
+== MULTIIINDEX CREATION
 
 [source,py]
 ----
@@ -602,7 +602,7 @@ pd.Series(*arrays)  # Index constructor makes MultiIndex from Series
 pd.DataFrame(*arrays)  # Index constructor makes MultiINdex from DataFrame
 ----
 
-==== MULTIINDEX LEVELS
+== MULTIINDEX LEVELS
 
 Vector of label values for requested level, equal to the length of the
 index.
@@ -612,7 +612,7 @@ index.
 pd.MultiIndex.get_level_values(self, level)
 ----
 
-==== PARTIAL AND CROSS-SECTION SELECTION
+== PARTIAL AND CROSS-SECTION SELECTION
 
 Partial selection "`drops`" levels of the hierarchical index in the
 result in a completely analogous way to selecting a column in a regular
@@ -628,7 +628,7 @@ pd.DataFrame.xs(self, key, axis=0, level=None, drop_level=True)  #  cross-sectio
 # DROP_LEVEL: {bool} -- If False, returns object with same levels as self -- DEFAULT True
 ----
 
-==== INDEXING, SLICING
+== INDEXING, SLICING
 
 Multi index keys take the form of tuples.
 
@@ -641,7 +641,7 @@ df.loc['idx_lvl_1':'idx_lvl_1']  # slice of rows (aka partial selection)
 df.loc[('idx_lvl_1', 'idx_lvl_2') : ('idx_lvl_1', 'idx_lvl_2')]  # slice of rows with levels
 ----
 
-==== REORDERING AND SORTING LEVELS
+== REORDERING AND SORTING LEVELS
 
 [source,py]
 ----
@@ -655,7 +655,7 @@ pd.MultiIndex.sortlevel(self, level=0, ascending=True, sort_remaining=True)  # s
 # SORT_REMAINING: {bool} -- sort by the remaining levels after level
 ----
 
-=== DATA LOADING, STORAGE FILE FORMATS
+== DATA LOADING, STORAGE FILE FORMATS
 
 [source,py]
 ----

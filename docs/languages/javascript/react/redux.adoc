@@ -1,4 +1,4 @@
-== https://redux.js.org/[Redux]
+= https://redux.js.org/[Redux]
 
 Redux is a pattern and library for managing and updating application
 state, using events called _actions_. It serves as a centralized store
@@ -6,9 +6,9 @@ for state that needs to be used across the entire application, with
 rules ensuring that the state can only be updated in a predictable
 fashion.
 
-=== Actions, Store, Immutability & Reducers
+== Actions, Store, Immutability & Reducers
 
-==== Actions & Action Creators
+== Actions & Action Creators
 
 An *Action* is a plain JavaScript object that has a `+type+` field. An
 action object can have other fields with additional information about
@@ -25,7 +25,7 @@ function actionCreator(data)
 }
 ----
 
-==== Store
+== Store
 
 The current Redux application state lives in an object called the
 *store*. +
@@ -75,7 +75,7 @@ store.subscribe(listener);
 store.getState();  // retrieve current state
 ----
 
-==== Reducers
+== Reducers
 
 *Reducers* are functions that receives the current state and an action,
 decide how to update the state if necessary, and return the new state.
@@ -117,9 +117,9 @@ const rootReducer = combineReducers({
 *Note*: multiple reducers can be triggered by the same action since each
 one operates on a different portion of the state.
 
-=== https://react-redux.js.org/[React-Redux]
+== https://react-redux.js.org/[React-Redux]
 
-==== Container vs Presentational Components
+== Container vs Presentational Components
 
 Container Components:
 
@@ -135,7 +135,7 @@ Presentational Components:
 * Read data from props
 * Invoke callbacks on props
 
-==== Provider Component & Connect
+== Provider Component & Connect
 
 Used at the root component and wraps all the application.
 
@@ -197,7 +197,7 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(Component);
 ----
 
-=== Async Operations with https://github.com/reduxjs/redux-thunk[Redux-Thunk]
+== Async Operations with https://github.com/reduxjs/redux-thunk[Redux-Thunk]
 
 *Note*: Redux middleware runs _after_ and action and _before_ it’s
 reducer.
@@ -257,7 +257,7 @@ export async function thunk() {
 }
 ----
 
-=== https://redux-toolkit.js.org/[Redux-Toolkit]
+== https://redux-toolkit.js.org/[Redux-Toolkit]
 
 The Redux Toolkit package is intended to be the standard way to write
 Redux logic. It was originally created to help address three common
@@ -320,7 +320,7 @@ data in the store
 * The `+createSelector+` utility from the Reselect library, re-exported
 for ease of use.
 
-==== https://redux-toolkit.js.org/api/configureStore[`+configureStore+`]
+== https://redux-toolkit.js.org/api/configureStore[`+configureStore+`]
 
 Included Default Middleware​:
 
@@ -377,7 +377,7 @@ const store = configureStore({
 export default store
 ----
 
-==== https://redux-toolkit.js.org/api/createAction[`+createAction+`]
+== https://redux-toolkit.js.org/api/createAction[`+createAction+`]
 
 [source,js]
 ----
@@ -391,7 +391,7 @@ const action = increment(3);  // { type: 'counter/increment', payload: 3 }
 increment.toString();  // 'counter/increment'
 ----
 
-==== https://redux-toolkit.js.org/api/createReducer[`+createReducer+`]
+== https://redux-toolkit.js.org/api/createReducer[`+createReducer+`]
 
 [source,js]
 ----
@@ -421,7 +421,7 @@ const counterReducer = createReducer(initialState, (builder) => {
 })
 ----
 
-==== https://redux-toolkit.js.org/api/createSlice[`+createSlice+`]
+== https://redux-toolkit.js.org/api/createSlice[`+createSlice+`]
 
 A function that accepts an initial state, an object of reducer
 functions, and a "`slice name`", and automatically generates action
@@ -463,7 +463,7 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions
 export default counterSlice.reducer
 ----
 
-==== https://redux-toolkit.js.org/api/createAsyncThunk[`+createAsyncThunk+`]
+== https://redux-toolkit.js.org/api/createAsyncThunk[`+createAsyncThunk+`]
 
 The function `+createAsyncThunk+` returns a standard Redux thunk action
 creator. The thunk action creator function will have plain action
@@ -513,7 +513,7 @@ const slice = createSlice({
 })
 ----
 
-=== RTK Query​
+== RTK Query​
 
 RTK Query is provided as an optional addon within the
 `+@reduxjs/toolkit+` package. +

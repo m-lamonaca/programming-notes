@@ -1,6 +1,6 @@
-== NumPy Lib
+= NumPy Lib
 
-=== MOST IMPORTANT ATTRIBUTES ATTRIBUTES
+== MOST IMPORTANT ATTRIBUTES ATTRIBUTES
 
 [source,py]
 ----
@@ -11,7 +11,7 @@ array.itemsize  # size in bytes of each element
 array.data  # buffer containing the array elements
 ----
 
-=== ARRAY CREATION
+== ARRAY CREATION
 
 Unless explicitly specified `+np.array+` tries to infer a good data type
 for the array that it creates. +
@@ -34,7 +34,7 @@ var = np.arange(start, stop, step)  # creates an array with parameters specified
 var = np.linspace(start, stop, num_of_elements)  # step of elements calculated based on parameters
 ----
 
-=== DATA TYPES FOR NDARRAYS
+== DATA TYPES FOR NDARRAYS
 
 [source,py]
 ----
@@ -46,7 +46,7 @@ The numerical `+dtypes+` are named the same way: a type name followed by
 a number indicating the number of bits per element.
 
 [width="100%",cols="26%,9%,65%",options="header",]
-|===
+|==
 |TYPE |TYPE CODE |DESCRIPTION
 |int8, uint8 |i1, u1 |Signed and unsigned 8-bit (1 byte) integer types
 
@@ -77,9 +77,9 @@ represented by two 32, 64, or 128 floats, respectively
 `+<num>+` is string length
 
 |unicode_ |`+U<num>+` |Fixed-length unicode type, `+<num>+` is length
-|===
+|==
 
-=== OPERATIONS BETWEEN ARRAYS AND SCALARS
+== OPERATIONS BETWEEN ARRAYS AND SCALARS
 
 Any arithmetic operations between equal-size arrays applies the
 operation element-wise.
@@ -97,7 +97,7 @@ array_1 `+*+` array_2 –> element-wise multiplication
 (`+[1, 2, 3] * [3, 2, 1] = [3, 4, 3]+`) array_1 `+/+` array_2 –>
 element-wise division (`+[1, 2, 3] / [3, 2, 1] = [0.33, 1, 3]+`)
 
-=== SHAPE MANIPULATION
+== SHAPE MANIPULATION
 
 [source,py]
 ----
@@ -110,7 +110,7 @@ np.swapaxes(array, first_axis, second_axis)  # interchange two axes of an array
 # if array is an ndarray, then a view of it is returned; otherwise a new array is created
 ----
 
-=== JOINING ARRAYS
+== JOINING ARRAYS
 
 [source,py]
 ----
@@ -121,7 +121,7 @@ np.stack(*arrays, axis)  # joins a sequence of arrays along a new axis (axis is 
 np.concatenate((array1, array2, ...), axis) # joins a sequence of arrays along an existing axis (axis is an int)
 ----
 
-=== SPLITTING ARRAYS
+== SPLITTING ARRAYS
 
 [source,py]
 ----
@@ -132,7 +132,7 @@ np.dsplit(array, indices)  # splits an array into equally sub-arrays along the 3
 np.array_split(array, indices) # splits an array into sub-arrays, arrays can be of different lengths
 ----
 
-=== VIEW()
+== VIEW()
 
 [source,py]
 ----
@@ -141,23 +141,23 @@ var = array.view()  # creates a new array that looks at the same data
 # view shapes are separated but assignment changes all arrays
 ----
 
-=== COPY()
+== COPY()
 
 [source,py]
 ----
 var = array.copy()  # creates a deep copy of the array
 ----
 
-=== INDEXING, SLICING, ITERATING
+== INDEXING, SLICING, ITERATING
 
 1-dimensional –> sliced, iterated and indexed as standard n-dimensional
 –> one index per axis, index given in tuple separated by commas
 `+[i, j] (i, j)+` dots (`+...+`) represent as many colons as needed to
 produce complete indexing tuple
 
-* `+x[1, 2, ...] == [1, 2, :, :, :]+`
-* `+x[..., 3] == [:, :, :, :, 3]+`
-* `+x[4, ..., 5, :] == [4, :, :, 5, :]+` iteration on first index, use
+* `+x[1, 2, ...] = [1, 2, :, :, :]+`
+* `+x[..., 3] = [:, :, :, :, 3]+`
+* `+x[4, ..., 5, :] = [4, :, :, 5, :]+` iteration on first index, use
 .flat() to iterate over each element
 * `+x[*bool]+` returns row with corresponding True index
 * `+x[condition]+` return only elements that satisfy condition
@@ -165,7 +165,7 @@ produce complete indexing tuple
 * `+x[[*i], [*j]]+` return elements selected by tuple (i, j)
 * `+x[ np.ix_( [*i], [*j] ) ]+` return rectangular region
 
-=== UNIVERSAL FUNCTIONS (ufunc)
+== UNIVERSAL FUNCTIONS (ufunc)
 
 Functions that performs element-wise operations (vectorization).
 
@@ -185,7 +185,7 @@ np.ceil(array)  # vectorized ceil()
 np.floor(array)  # vectorized floor()
 np.rint(array)     # vectorized round() to nearest int
 np.modf(array)  #  vectorized divmod(), returns the fractional and integral parts of element
-np.isnan(array)   # vectorized x == NaN, return boolean array
+np.isnan(array)   # vectorized x = NaN, return boolean array
 np.isinf(array)  # vectorized test for positive or negative infinity, return boolean array
 np.isfineite(array)  # vectorized test fo finiteness, returns boolean array
 np.cos(array)  # vectorized cos(x)
@@ -218,21 +218,21 @@ np.greater(x_array, y_array)  # vectorized x > y
 np.less(x_array, y_array)  # vectorized x < y
 np.greter_equal(x_array, y_array)  # vectorized x >= y
 np.less_equal(x_array, y_array)  # vectorized x <= y
-np.equal(x_array, y_array)  # vectorized x == y
+np.equal(x_array, y_array)  # vectorized x = y
 np.not_equal(x_array, y_array)  # vectorized x != y
 np.logical_and(x_array, y_array)  # vectorized x & y
 np.logical_or(x_array, y_array)  # vectorized x | y
 np.logical_xor(x_array, y_array)  # vectorized x ^ y
 ----
 
-=== CONDITIONAL LOGIC AS ARRAY OPERATIONS
+== CONDITIONAL LOGIC AS ARRAY OPERATIONS
 
 [source,py]
 ----
-np.where(condition, x, y)  # return x if condition == True, y otherwise
+np.where(condition, x, y)  # return x if condition = True, y otherwise
 ----
 
-=== MATHEMATICAL AND STATISTICAL METHODS
+== MATHEMATICAL AND STATISTICAL METHODS
 
 `+np.method(array, args)+` or `+array.method(args)+`. +
 Boolean values are coerced to 1 (`+True+`) and 0 (`+False+`).
@@ -254,7 +254,7 @@ np.cumsum(array, axis=None)  # cumulative sum of the elements along a given axis
 np.cumprod(array, axis=None)  # cumulative sum of the elements along a given axis
 ----
 
-=== METHODS FOR BOOLEAN ARRAYS
+== METHODS FOR BOOLEAN ARRAYS
 
 [source,py]
 ----
@@ -262,7 +262,7 @@ np.all(array, axis=None)  # test whether all array elements along a given axis e
 np.any(array, axis=None)  # test whether any array element along a given axis evaluates to True
 ----
 
-=== SORTING
+== SORTING
 
 [source,py]
 ----
@@ -270,7 +270,7 @@ array.sort(axis=-1)  # sort an array in-place (axis = None applies on flattened 
 np.sort(array, axis=-1)  # return a sorted copy of an array (axis = None applies on flattened array)
 ----
 
-=== SET LOGIC
+== SET LOGIC
 
 [source,py]
 ----
@@ -282,7 +282,7 @@ np.setdiff1d(x, y)  # Set difference, elements in x that are not in y
 np.setxor1d()  # Set symmetric differences; elements that are in either of the arrays, but not both
 ----
 
-=== FILE I/O WITH ARRAYS
+== FILE I/O WITH ARRAYS
 
 [source,py]
 ----
@@ -304,7 +304,7 @@ np.loadtxt(file, dtype=float, comments="#", delimiter=None)
 # DELIMITER: {str} -- string used to separate values
 ----
 
-=== LINEAR ALGEBRA
+== LINEAR ALGEBRA
 
 [source,py]
 ----
@@ -329,7 +329,7 @@ np.linalg.solve(A, B)  # solve a linear matrix equation, or system of linear sca
 np.linalg.lstsq(A, B)  # return the least-squares solution to a linear matrix equation AX = B
 ----
 
-=== RANDOM NUMBER GENERATION
+== RANDOM NUMBER GENERATION
 
 [source,py]
 ----

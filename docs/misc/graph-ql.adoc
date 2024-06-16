@@ -1,4 +1,4 @@
-== GraphQL
+= GraphQL
 
 https://www.howtographql.com/[How to GraphQL - The Fullstack Tutorial
 for GraphQL]
@@ -13,9 +13,9 @@ types, then providing functions for each field on each type.
 
 '''''
 
-=== Schema and Types
+== Schema and Types
 
-==== Object types and fields
+== Object types and fields
 
 The most basic components of a GraphQL schema are object types, which
 just represent a kind of object fetchable from the service, and what
@@ -31,7 +31,7 @@ type Type {
 }
 ----
 
-==== Field Arguments
+== Field Arguments
 
 Every field on a GraphQL object type can have zero or more arguments.
 All arguments are named.
@@ -47,14 +47,14 @@ type Type {
 }
 ----
 
-==== Query and Mutation types
+== Query and Mutation types
 
 Every GraphQL service has a `+query+` type and may or may not have a
 `+mutation+` type. These types are the same as a regular object type,
 but they are special because they define the _entry point_ of every
 GraphQL query.
 
-==== Scalar Types
+== Scalar Types
 
 A GraphQL object type has a name and fields, but at some point those
 fields have to resolve to some concrete data. That’s where the scalar
@@ -83,7 +83,7 @@ scalar ScalarType
 Then it’s up to the implementation to define how that type should be
 serialized, deserialized, and validated.
 
-==== Enumeration Types
+== Enumeration Types
 
 Also called _Enums_, enumeration types are a special kind of scalar that
 is restricted to a particular set of allowed values.
@@ -112,7 +112,7 @@ these values might be internally mapped to a set of integers. However,
 these details don’t leak out to the client, which can operate entirely
 in terms of the string names of the enum values.
 
-=== Lists and Non-Null
+== Lists and Non-Null
 
 Object types, scalars, and enums are the only kinds of types that can be
 defined in GraphQL. But when used in other parts of the schema, or in
@@ -136,7 +136,7 @@ schema language, this is denoted by wrapping the type in square
 brackets, `+[+` and `+]+`. It works the same for arguments, where the
 validation step will expect an array for that value.
 
-==== Interfaces
+== Interfaces
 
 Like many type systems, GraphQL supports interfaces. An Interface is an
 abstract type that includes a certain set of fields that a type must
@@ -160,7 +160,7 @@ type Type implements Interface {
 }
 ----
 
-==== Union Type
+== Union Type
 
 Interfaces are useful when returning an object or set of objects, but
 those might be of several different types.
@@ -173,7 +173,7 @@ union Union = TypeA | TypeB | TypeC
 *Note*: members of a union type need to be _concrete_ object types; it’s
 not possible to create a union type out of interfaces or other unions.
 
-==== Input Type
+== Input Type
 
 In the GraphQL schema language, input types look exactly the same as
 regular object types, but with the keyword input instead of type:
@@ -192,9 +192,9 @@ schema. Input object types also can’t have arguments on their fields.
 
 '''''
 
-=== Queries, Mutations and Subscriptions
+== Queries, Mutations and Subscriptions
 
-==== Simple Query
+== Simple Query
 
 [source,graphql]
 ----
@@ -216,7 +216,7 @@ schema. Input object types also can’t have arguments on their fields.
 }
 ----
 
-==== Query Arguments
+== Query Arguments
 
 In a system like REST, it’s possible to only pass a single set of
 arguments - the query parameters and URL segments in your request.
@@ -238,7 +238,7 @@ separately.
 }
 ----
 
-==== Aliases
+== Aliases
 
 [source,graphql]
 ----
@@ -252,7 +252,7 @@ separately.
 }
 ----
 
-==== Fragments
+== Fragments
 
 Fragments allow to construct sets of fields, and then include them in
 queries where that are needed. The concept of fragments is frequently
@@ -277,7 +277,7 @@ fragment fragment on Type {
 }
 ----
 
-==== Using variables inside fragments
+== Using variables inside fragments
 
 It is possible for fragments to access variables declared in the query
 or mutation.
@@ -303,7 +303,7 @@ fragment fragment on Type{
 }
 ----
 
-==== Operation Name
+== Operation Name
 
 The _operation type_ is either `+query+`, `+mutation+`, or
 `+subscription+` and describes what type of operation it’s intended to
@@ -324,7 +324,7 @@ query Operation {
 }
 ----
 
-==== Variables
+== Variables
 
 When working with variables, three things need to be done:
 
@@ -359,7 +359,7 @@ are provided for all variables, it’s possible to call the query without
 passing any variables. If any variables are passed as part of the
 variables dictionary, they will override the defaults.
 
-==== Directives
+== Directives
 
 A directive can be attached to a field or fragment inclusion, and can
 affect execution of the query in any way the server desires.
@@ -374,7 +374,7 @@ argument is `+true+`.
 Server implementations may also add experimental features by defining
 completely new directives.
 
-==== Mutations
+== Mutations
 
 Operations of mutations:
 
@@ -392,7 +392,7 @@ mutation Operation {
 }
 ----
 
-==== Subscriptions
+== Subscriptions
 
 Open a stable connection with the server to receive real-time updates on
 the operations happening.
@@ -407,7 +407,7 @@ subscription Operation {
 }
 ----
 
-==== Inline Fragments
+== Inline Fragments
 
 If you are querying a field that returns an interface or a union type,
 you will need to use inline fragments to access data on the underlying
@@ -429,7 +429,7 @@ query Operation($var: Type) {
 }
 ----
 
-==== Meta Fields
+== Meta Fields
 
 GraphQL allows to request `+__typename+`, a meta field, at any point in
 a query to get the name of the object type at that point.
@@ -448,7 +448,7 @@ a query to get the name of the object type at that point.
 
 '''''
 
-=== Execution
+== Execution
 
 After being validated, a GraphQL query is executed by a GraphQL server
 which returns a result that mirrors the shape of the requested query,
@@ -465,7 +465,7 @@ the query will contain another selection of fields which apply to that
 object. This continues until scalar values are reached. GraphQL queries
 always end at scalar values.
 
-==== Root fields and Resolvers
+== Root fields and Resolvers
 
 At the top level of every GraphQL server is a type that represents all
 of the possible entry points into the GraphQL API, it’s often called the

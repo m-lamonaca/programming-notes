@@ -1,8 +1,8 @@
-== CSS
+= CSS
 
-=== Applying CSS to HTML
+== Applying CSS to HTML
 
-==== Inline CSS
+== Inline CSS
 
 The style only applies to one element at a time.
 
@@ -11,7 +11,7 @@ The style only applies to one element at a time.
 <tag style="property:value"></tag>
 ----
 
-==== Embedded CSS
+== Embedded CSS
 
 The style is not shared but only applies to one HTML file.
 
@@ -24,7 +24,7 @@ The style is not shared but only applies to one HTML file.
 </style>
 ----
 
-==== External CSS
+== External CSS
 
 * Shared resource, can be referenced from multiple pages. +
 * Can be cached, reduced HTML file size & bandwidth.
@@ -34,7 +34,7 @@ The style is not shared but only applies to one HTML file.
 <link rel="stylesheet" href="style.css">
 ----
 
-=== https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors[CSS Selectors]
+== https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors[CSS Selectors]
 
 A CSS selector points to an html element to style.
 
@@ -46,14 +46,14 @@ selector {
 }
 ----
 
-==== Multiple Selectors
+== Multiple Selectors
 
 [source,css]
 ----
 selector1, selector2 { property: value; }
 ----
 
-==== Nested Selectors
+== Nested Selectors
 
 Used to select tags nested in other tags.
 
@@ -62,7 +62,7 @@ Used to select tags nested in other tags.
 outerSelector innerSelector { property: value; }
 ----
 
-==== ID Selector
+== ID Selector
 
 Can only apply to one element in a page.
 
@@ -71,7 +71,7 @@ Can only apply to one element in a page.
 #selector { property: value; }    /* selects <tag id="selector"> */
 ----
 
-==== Class Selector
+== Class Selector
 
 Many elements can have the same class, classes are used to group HTML
 elements together.
@@ -81,14 +81,14 @@ elements together.
 .selector { property: value; }    /* selects <tag class="selector"> */
 ----
 
-==== Universal Selector
+== Universal Selector
 
 [source,css]
 ----
 * { property: value; }    /* selects every HTML element */
 ----
 
-==== Descendant selector (space)
+== Descendant selector (space)
 
 Selects an element that resides anywhere within an identified ancestor
 element.
@@ -112,7 +112,7 @@ article h2 { property: value; }
 </article>
 ----
 
-==== Direct child selector (`+>+`)
+== Direct child selector (`+>+`)
 
 Selects an elements that resides immediately inside an identified parent
 element.
@@ -136,7 +136,7 @@ article > p { property: value; }
 </article>
 ----
 
-==== General sibling selector (`+~+`)
+== General sibling selector (`+~+`)
 
 Selects an element that follows anywhere after the prior element. +
 Both elements share the same parent.
@@ -165,7 +165,7 @@ h2 ~ p { property: value; }
 <p>Lorem ipsum dolor sit amet</p>
 ----
 
-==== Adjacent sibling selector (`+++`)
+== Adjacent sibling selector (`+++`)
 
 Selects an element that follows directly after the prior element. +
 Both elements share the same parent.
@@ -194,7 +194,7 @@ h2 + p { property: value; }
 <p>Lorem ipsum dolor sit amet</p>
 ----
 
-==== Namespace Separator (`+|+`)
+== Namespace Separator (`+|+`)
 
 The *namespace* separator separates the selector from the namespace,
 identifying the namespace, or lack thereof, for a type selector.
@@ -245,7 +245,7 @@ svg|a {
 </svg>
 ----
 
-==== Column Selector (`+||+`)
+== Column Selector (`+||+`)
 
 The column combinator (||) is placed between two CSS selectors. It
 matches only those elements matched by the second selector that belong
@@ -256,7 +256,7 @@ to the column elements matched by the first.
 column-selector || cell-selector { property: value; }
 ----
 
-==== Attribute Present Selector (`+tag[attr]+`)
+== Attribute Present Selector (`+tag[attr]+`)
 
 `+a[target]{ property: value; }+` will match
 
@@ -265,7 +265,7 @@ column-selector || cell-selector { property: value; }
 <a href="#" target="_blank">click here</a>
 ----
 
-==== Attribute Equals Selector (`+=+`)
+== Attribute Equals Selector (`+=+`)
 
 `+a[href="https://google.com"] { property: value; }+` will match
 
@@ -274,7 +274,7 @@ column-selector || cell-selector { property: value; }
 <a href="http://google.com/">search on google</a>
 ----
 
-==== Attribute Contains Selector (`+*=+`)
+== Attribute Contains Selector (`+*=+`)
 
 `+a[href*="login"] { property: value; }+` will match
 
@@ -283,7 +283,7 @@ column-selector || cell-selector { property: value; }
 <a href="/login.php">login page</a>
 ----
 
-==== Attribute Begins With Selector (`+^=+`)
+== Attribute Begins With Selector (`+^=+`)
 
 `+a[href^="Https://"] { property: value; }+` will match
 
@@ -292,7 +292,7 @@ column-selector || cell-selector { property: value; }
 <a href="https://www.bbc.com/">The BBC</a>
 ----
 
-==== Attribute Ends With Selector (`+$=+`)
+== Attribute Ends With Selector (`+$=+`)
 
 `+a[href$=".pdf"] { property: value; }+`
 
@@ -304,7 +304,7 @@ column-selector || cell-selector { property: value; }
 <a href="/audio/song.mp3">download song</a>
 ----
 
-==== Attribute Spaced Selector (`+~=+`)
+== Attribute Spaced Selector (`+~=+`)
 
 `+img[alt~="child"] { property: value; }+`
 
@@ -318,7 +318,7 @@ column-selector || cell-selector { property: value; }
 <img src="child.jpg" alt='asmallchild'>
 ----
 
-==== Attribute Hyphenated Selector (`+|=+`)
+== Attribute Hyphenated Selector (`+|=+`)
 
 `+p[lang|="en"] { property: value; }+`
 
@@ -332,7 +332,7 @@ column-selector || cell-selector { property: value; }
 <p lang="fr">Français</p>
 ----
 
-=== https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes[Pseudo-Classes]
+== https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes[Pseudo-Classes]
 
 Pseudo-classes can style elements based on their current state. They
 must be specified after the base case.
@@ -342,14 +342,14 @@ must be specified after the base case.
 selector:pseudo-class { property: value; }
 ----
 
-==== Link Pseudo-Classes
+== Link Pseudo-Classes
 
 `+a:link {...}+` selects only `+<a>+` tags that have `+href+` attribute,
 same as `+a[href]+`. +
 `+a:visited {...}+` selects links that have already been visited by the
 current browser.
 
-==== User Action Pseudo-Classes
+== User Action Pseudo-Classes
 
 `+a:hover {...}+` selects a link when the mouse rolls over it (hover
 state). +
@@ -358,7 +358,7 @@ or otherwise). +
 `+selector:focus {...}+` selects an element when the user focuses on it
 (e.g. tab w/ keyboard). Often used on links, inputs, text-areas.
 
-==== User Interface State Pseudo-Classes
+== User Interface State Pseudo-Classes
 
 `+input:enabled {...}+` selects an input that is in the default state of
 enabled and available for use. +
@@ -368,7 +368,7 @@ checked. +
 `+input:indeterminate {...}+` selects checkboxes or radio button that
 has neither selected nor unselected.
 
-==== Structural & Position Pseudo-Classes
+== Structural & Position Pseudo-Classes
 
 `+selector:first-child {...}+` selects an element if it’s the first
 child within its parent. +
@@ -394,27 +394,27 @@ up from the bottom instead of the top. +
 `+selector:nth-last-child() {...}+` like `+:nth-child+` but counts up
 from the bottom instead of the top.
 
-==== Empty & Negation Pseudo-Classes
+== Empty & Negation Pseudo-Classes
 
 `+selector:empty {...}+` selects elements with no content (empty
 tags). +
 `+selector:not() {...}+` selects elements that do not have a certain
 tag, attribute, class, ID, etc.
 
-=== https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements[Pseudo-Elements]
+== https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements[Pseudo-Elements]
 
 Dynamic elements that don’t exist in the document tree. When used within
 selectors allow unique parts of the page to be stylized. Only one
 pseudo-element may be used within a selector at a given time.
 
-==== Textual Pseudo-Elements
+== Textual Pseudo-Elements
 
 `+selector::first-letter {...}+` selects the first letter of the text
 within an element. +
 `+selector::first-line {...}+` selects the first line of text within an
 element.
 
-==== Content Pseudo-Elements
+== Content Pseudo-Elements
 
 `+selector::before {...}+` creates a pseudo-element before, or in front
 of, the selected element. +
@@ -432,12 +432,12 @@ selector::<after|before> {
 }
 ----
 
-==== Fragment Pseudo-Elements
+== Fragment Pseudo-Elements
 
 `+selector::selection {...}+` identifies part of the document that has
 been selected, or highlighted, by a user’s actions.
 
-=== CSS Cascading
+== CSS Cascading
 
 The browser assigns different priorities to CSS depending on the type of
 selector.
@@ -452,7 +452,7 @@ The browser also assigns priority based on the specificity of the
 selection. More specific selectors have higher priority. +
 Rules lower in the file overwrite higher rules in the file.
 
-==== Cascading Override With `+!important+`
+== Cascading Override With `+!important+`
 
 The `+!important+` declaration overrides any other declaration. +
 Using it is very bad practice because it makes debugging more difficult
@@ -470,7 +470,7 @@ selector[style*="property:value"] {
 }
 ----
 
-==== Specificity
+== Specificity
 
 A weight is applied to a CSS declaration, determined by the number of
 each selector type:
@@ -484,12 +484,12 @@ each selector type:
 *Note*: The selectors declared inside `+:not()+` contribute to the
 weight.
 
-=== https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units[Units]
+== https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units[Units]
 
-==== Absolute Length units
+== Absolute Length units
 
 [cols=",,",options="header",]
-|===
+|==
 |Unit |Name |Equivalent to
 |`+cm+` |centimeters |1cm = 38px = 25/64in
 |`+mm+` |Millimeters |1mm = 1/10th of 1cm
@@ -498,12 +498,12 @@ weight.
 |`+pc+` |Picas |1pc = 1/6th of 1in
 |`+pt+` |Points |1pt = 1/72th of 1in
 |`+px+` |Pixels |1px = 1/96th of 1in
-|===
+|==
 
-==== Relative Length Units
+== Relative Length Units
 
 [width="100%",cols="9%,91%",options="header",]
-|===
+|==
 |Unit |Relative to
 |`+rem+` |Font size of the root element.
 
@@ -525,11 +525,11 @@ font.
 |`+vmax+` |1% of the viewport’s larger dimension.
 
 |`+%+` |Relative to the parent element
-|===
+|==
 
-=== Common Element Properties
+== Common Element Properties
 
-==== Color
+== Color
 
 [source,css]
 ----
@@ -541,7 +541,7 @@ selector {
 }
 ----
 
-==== Background
+== Background
 
 [source,css]
 ----
@@ -575,7 +575,7 @@ selector {
 }
 ----
 
-==== Font
+== Font
 
 [source,css]
 ----
@@ -597,7 +597,7 @@ selector {
 }
 ----
 
-==== Text Decoration & Aliment
+== Text Decoration & Aliment
 
 [source,css]
 ----
@@ -637,7 +637,7 @@ justified.
 calculated according to the parent’s direction and are replaced by the
 appropriate left or right value.
 
-==== Size
+== Size
 
 [source,css]
 ----
@@ -657,7 +657,7 @@ selector {
 *Note*: `+width+` and `+height+` properties do not have effect on inline
 elements.
 
-==== Hiding Elements
+== Hiding Elements
 
 There are several methods to '`hide`' elements:
 
@@ -668,19 +668,19 @@ in the layout
 events work
 
 [cols=",,,",options="header",]
-|===
+|==
 |Rule |Collapse |Events |Tab Order
 |`+display: none+` |Yes |No |No
 |`+visibility: hidden+` |No |No |No
 |`+opacity: 0+` |No |Yes |Yes
-|===
+|==
 
-=== https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model[Box Model]
+== https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model[Box Model]
 
 .Box Model
 image::../../img/css_box-model.png[Box Model]
 
-==== Padding
+== Padding
 
 Space between the border and the content.
 
@@ -704,7 +704,7 @@ selector {
 *Note*: Padding adds to the total size of the box, unless
 `+box-sizing: border-box;+` is used.
 
-==== Border
+== Border
 
 Borders are specified as "`size, style, color`".
 
@@ -751,7 +751,7 @@ selector {
 *Note*: Border adds to the total size of the box,
 `+unless box-sizing: border-box;+` is used
 
-==== Box Sizing
+== Box Sizing
 
 Defines whether the width and height (and min/max) of an element should
 include padding and borders or not.
@@ -764,7 +764,7 @@ selector {
 }
 ----
 
-==== Margin
+== Margin
 
 Transparent area around the box that separates it from other elements.
 
@@ -788,9 +788,9 @@ selector {
 *Note*: Top and bottom margins of near elements are collapsed into a
 single margin that is equal to the largest of the two margins.
 
-=== https://developer.mozilla.org/en-US/docs/Web/CSS/position[Element Positioning]
+== https://developer.mozilla.org/en-US/docs/Web/CSS/position[Element Positioning]
 
-==== Static Positioning
+== Static Positioning
 
 All HTML elements are positioned static by default. +
 Static elements are positioned in the normal flow of the page. +
@@ -808,7 +808,7 @@ selector {
 }
 ----
 
-==== Relative positioning
+== Relative positioning
 
 Takes the element out of the normal flow, allowing it to be moved in
 relation to the top, bottom, right, or left but does not affect the
@@ -825,7 +825,7 @@ selector {
 }
 ----
 
-==== Absolute Positioning
+== Absolute Positioning
 
 Positions element outside of the normal flow and other elements act as
 if it’s not there. +
@@ -842,7 +842,7 @@ selector {
 }
 ----
 
-==== Fixed Positioning
+== Fixed Positioning
 
 The fixed value takes an element out of the normal flow, it positions it
 relative to the viewport. +
@@ -855,7 +855,7 @@ selector {
 }
 ----
 
-==== Sticky Positioning
+== Sticky Positioning
 
 Sticky positioning is a hybrid of relative and fixed positioning. +
 The element is treated as relative positioned until it crosses a
@@ -871,7 +871,7 @@ selector {
 `+Note+`: sticky is not supported by IE and still needs to be prefixed
 for webkit based browsers
 
-==== Z-Index
+== Z-Index
 
 When elements overlap, the order of overlapping can be changed with
 z-index:
@@ -892,7 +892,7 @@ selector {
 }
 ----
 
-=== https://developer.mozilla.org/en-US/docs/Web/CSS/display[Layouts]
+== https://developer.mozilla.org/en-US/docs/Web/CSS/display[Layouts]
 
 [source,css]
 ----
@@ -906,7 +906,7 @@ div {
 }
 ----
 
-==== Inline
+== Inline
 
 * The default value for elements (e.g. `+<span>+`, `+<em>+`, `+<b>+`,
 etc.)
@@ -917,7 +917,7 @@ inline
 vertically
 * An inline element will not accept height and width.
 
-==== Block
+== Block
 
 * Some elements are set to block by the browser UA (user agent)
 stylesheet
@@ -926,19 +926,19 @@ stylesheet
 * Do not sit inline
 * By default take up as much horizontal space as they can
 
-==== Inline Block
+== Inline Block
 
 * Combines aspects of inline and block
 * Very similar to inline in that it will sit inline with the natural
 flow of text
 * Able to set a width and height
 
-==== None
+== None
 
 * `+display: none+` removes the element from the document flow
 * The element does not take up any space
 
-==== https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout[Flex]
+== https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout[Flex]
 
 [source,css]
 ----
@@ -948,7 +948,7 @@ selector {
 }
 ----
 
-==== https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout[Grid]
+== https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout[Grid]
 
 [source,css]
 ----
@@ -959,7 +959,7 @@ selector {
 }
 ----
 
-=== Variables
+== Variables
 
 [source,css]
 ----
@@ -974,12 +974,12 @@ selector {
 }
 ----
 
-=== Responsive Design
+== Responsive Design
 
 A *responsive* website or application automatically adjusts to the
 screen and adapts to any device.
 
-==== Viewport Meta-Tag
+== Viewport Meta-Tag
 
 Is located in the `+<head>+` of the HTML document. It defines how a site
 should render in a web browser for mobile devices and makes media
@@ -995,7 +995,7 @@ of the device
 * `+initial-scale+`: ensure the zoom will not be applied and the layout
 will always show on a `+1:1+` scale
 
-==== Media Queries
+== Media Queries
 
 *Media queries* allow the customization of web pages for specific
 devices screen sizes. A media query is a logical expression: true or

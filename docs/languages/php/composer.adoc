@@ -1,6 +1,6 @@
-== Composer & Autoloading
+= Composer & Autoloading
 
-=== Autoloading
+== Autoloading
 
 The function
 https://www.php.net/manual/en/function.spl-autoload-register.php[spl_autoload_register()]
@@ -44,7 +44,7 @@ require "autoload.php";
 
 *Note*: will fuck up if namespaces exists.
 
-==== Multiple Autoloading
+== Multiple Autoloading
 
 It’s possible to resister multiple autoloading functions by calling
 `+spl_autoload_register()+` multiple times.
@@ -58,7 +58,7 @@ spl_autoload_register(callable $func, $throw=TRUE, $prepend=FALSE);
 spl_autoload_functions()  # return a list of registered functions.
 ----
 
-=== https://getcomposer.org/[Composer]
+== https://getcomposer.org/[Composer]
 
 Open Source project for dependency management and autoloading of PHP
 libraries and classes.
@@ -79,7 +79,7 @@ In `+composer.json+`:
 }
 ----
 
-==== Installing Dependencies
+== Installing Dependencies
 
 In the same folder of `+composer.json+` execute `+composer install+`.
 
@@ -95,12 +95,12 @@ project and create a `+composer.json+` if missing.
 *Note*: to ignore the php version use
 `+composer <command> --ignore-platform-reqs+`
 
-==== Updating Dependencies
+== Updating Dependencies
 
 To update dependencies use `+composer update+`. To update only the
 autoloading section use `+composer dump-autoload+`.
 
-==== https://getcomposer.org/doc/04-schema.md#autoload[Autoloading Project Classes]
+== https://getcomposer.org/doc/04-schema.md#autoload[Autoloading Project Classes]
 
 https://www.php-fig.org/psr/psr-4/[PSR-4 Spec]
 

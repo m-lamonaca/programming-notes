@@ -1,6 +1,6 @@
-== Argpasrse Module
+= Argpasrse Module
 
-=== Creating a parser
+== Creating a parser
 
 [source,py]
 ----
@@ -32,7 +32,7 @@ None)
 * `+allow_abbrev+`: Allows long options to be abbreviated if the
 abbreviation is unambiguous. (default: True)
 
-=== https://docs.python.org/3/library/argparse.html#the-add-argument-method[Adding Arguments]
+== https://docs.python.org/3/library/argparse.html#the-add-argument-method[Adding Arguments]
 
 [source,py]
 ----
@@ -61,7 +61,7 @@ converted to.
 * `+dest+`: The name of the attribute to be added to the object returned
 by `+parse_args()+`.
 
-==== Actions
+== Actions
 
 `+store+`: This just stores the argument’s value. This is the default
 action.
@@ -167,7 +167,7 @@ list. Example usage:
 Namespace(foo=['f1', 'f2', 'f3', 'f4'])
 ----
 
-==== Nargs
+== Nargs
 
 ArgumentParser objects usually associate a single command-line argument
 with a single action to be taken. The `+nargs+` keyword argument
@@ -257,7 +257,7 @@ that dispatch to other command line utilities.
 Namespace(args=['--arg1', 'XX', 'ZZ'], command='cmd', foo='B')
 ----
 
-=== Parsing Arguments
+== Parsing Arguments
 
 [source,py]
 ----

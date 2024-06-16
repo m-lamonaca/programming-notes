@@ -1,12 +1,12 @@
 [[gitgit]]
-== https://git-scm.com/[Git]
+= https://git-scm.com/[Git]
 
 Git is a free and open source distributed
 https://en.wikipedia.org/wiki/Version_control[version control system]
 designed to handle everything from small to very large projects with
 speed and efficiency.
 
-=== Terminology
+== Terminology
 
 *Repository*: collection of files (blobs) and directories (trees)
 managed by git *Commit*: snapshot of the entire repository and its
@@ -17,9 +17,9 @@ Tree*: current version of the repository on disk +
 *Index (Staging Area)*: collection of changes not yet committed *Stash*:
 collection of pseudo-commits not belonging to a specific branch
 
-=== Commands
+== Commands
 
-==== Managing Configs
+== Managing Configs
 
 There are three git config sources/scopes:
 
@@ -39,7 +39,7 @@ pair +
 pair +
 `+git config [--<scope>] --list+`: list git config key-value pairs
 
-==== Tracking Files & Making Changes
+== Tracking Files & Making Changes
 
 `+git status+`: shows the status of changes as untracked, modified, or
 staged
@@ -68,7 +68,7 @@ and what would be committed +
 `+git commit -s|--signoff+`: Add a `+Signed-off-by+` trailer by the
 committer at the end of the commit log message
 
-==== Managing Stashes
+== Managing Stashes
 
 `+git stash [push] [-m|--message]+`: add all changes to the stash (and
 provide message) +
@@ -80,7 +80,7 @@ they are +
 `+git stash drop [<stash>]+`: remove a stash from the list +
 `+git stash clear+`: remove all stashes
 
-==== Managing Remotes
+== Managing Remotes
 
 `+git remote+`: list remotes +
 `+git remote -v|--verbose+`: list remotes names and URLs +
@@ -125,7 +125,7 @@ history from remote +
 *Note*: for a in depth explanation of `+--force-if-includes+` see
 https://stackoverflow.com/a/65839129[this]
 
-==== Viewing Project History
+== Viewing Project History
 
 `+git log [<rev>]+`: show history of changes +
 `+git log -p|--patch+`: show history of changes and complete
@@ -183,7 +183,7 @@ find the first "`bad`" commit +
 `+git bisect bad+`: mark current commit as "`bad`" +
 `+git bisect reset+`: conclude search and restore HEAD
 
-==== Managing Tags
+== Managing Tags
 
 Git supports two types of tags: _lightweight_ and _annotated_.
 
@@ -221,7 +221,7 @@ remote +
 `+git switch <tag>+`: checkout a tag - *WARNING*: will go into _detached
 HEAD_
 
-==== Branching And Merging
+== Branching And Merging
 
 .branch
 image::../img/git_branches.png[branch,title="how branches work"]
@@ -254,7 +254,7 @@ another branch (first excluded) +
 `+git cherry-pick <commit>^..<commit>+`: bring in a range of commits
 from another branch (first included)
 
-==== Worktrees
+== Worktrees
 
 A git repository can support multiple working trees, allowing to check
 out more than one branch at a time.
@@ -271,7 +271,7 @@ checkout `+<commit>+` +
 branch at `+<path>+` +
 `+git worktree remove <worktree>+`: remove a worktree
 
-==== Rewriting History
+== Rewriting History
 
 `+git commit --amend+`: replace last commit by creating a new one (can
 add files or rewrite commit message) +
@@ -307,9 +307,9 @@ before rebasing +
 `+git rebase --autosquash+`: automatically apply "`squash!`" or
 "`fixup!`" or "`amend!`" commits
 
-=== https://git-scm.com/docs/gitrevisions[Git Revisions]
+== https://git-scm.com/docs/gitrevisions[Git Revisions]
 
-==== Specifying Revisions
+== Specifying Revisions
 
 A revision parameter `+<rev>+` can take one of these forms:
 
@@ -327,7 +327,7 @@ A revision parameter `+<rev>+` can take one of these forms:
 * `+<rev>^+`: first parent of `+<rev>+`.
 * `+<rev>~[<n>]+`: `+n+`th parent of `+<rev>+`
 
-==== Specifying Ranges
+== Specifying Ranges
 
 A revision range can take one of these forms:
 

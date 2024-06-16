@@ -1,6 +1,6 @@
-== LINQ
+= LINQ
 
-=== LINQ to Objects
+== LINQ to Objects
 
 The term *LINQ to Objects* refers to the use of LINQ queries with any
 `+IEnumerable+` or `+IEnumerable<T>+` collection directly, without the
@@ -13,7 +13,7 @@ to XML].
 LINQ to Objects will be used when any `+IEnumerable<T>+` is specified as
 the source, unless a more specialized provider is available.
 
-==== Query Expressions
+== Query Expressions
 
 All query expressions are required to begin with a `+from+` clause,
 which specifies the source of the query. +
@@ -38,7 +38,7 @@ var result = from item in enumerable let tmp = <sub-expr> ...  // BEWARE: compil
 var result = from item in enumerable group item by item.property;  // returns IEnumerable<IGrouping<TKey,TElement>>
 ----
 
-==== How Query Expressions Expand
+== How Query Expressions Expand
 
 The compiler converts all query expressions into one or more method
 calls. Once it has done that, the LINQ provider is selected through
@@ -56,7 +56,7 @@ The `+Where+` and `+Select+` methods are examples of LINQ operators. A
 LINQ operator is nothing more than a method that conforms to one of the
 standard patterns.
 
-==== Methods on `+Enumerable+` or `+IEnumerable<T>+`
+== Methods on `+Enumerable+` or `+IEnumerable<T>+`
 
 [source,cs]
 ----

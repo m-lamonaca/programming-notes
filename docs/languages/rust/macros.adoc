@@ -1,4 +1,4 @@
-== Macros
+= Macros
 
 Fundamentally, *macros* are a way of _writing code that writes other
 code_, which is known as *metaprogramming*.
@@ -24,7 +24,7 @@ function definitions.
 usable in a file, as opposed to functions that can be defined anywhere
 and be called anywhere.
 
-=== Declarative Macros (Macro-by-Example)
+== Declarative Macros (Macro-by-Example)
 
 At their core, *declarative macros* allow to write something similar to
 a Rust match expression.
@@ -57,7 +57,7 @@ macro_rules! <name> {
 }
 ----
 
-==== Transcribing
+== Transcribing
 
 When a macro is invoked, the macro expander looks up macro invocations
 by name, and tries each macro rule in turn. It transcribes the first
@@ -103,7 +103,7 @@ macro_rules! baz {
 }
 ----
 
-==== https://doc.rust-lang.org/reference/macros-by-example.html#metavariables[Metavariables]
+== https://doc.rust-lang.org/reference/macros-by-example.html#metavariables[Metavariables]
 
 In the matcher, `+$name:fragment+` matches a Rust syntax fragment of the
 kind specified and binds it to the metavariable `+$name+`.
@@ -150,7 +150,7 @@ replaced with the syntax element that matched them.
 The keyword metavariable `+$crate+` can be used to refer to the current
 crate. Metavariables can be transcribed more than once or not at all.
 
-==== Repetitions
+== Repetitions
 
 In both the matcher and transcriber, repetitions are indicated by
 placing the tokens to be repeated inside `+$(…)+`, followed by a
@@ -183,7 +183,7 @@ metavariable to decide how many times to expand it. If multiple
 metavariables appear in the same repetition, they must be bound to the
 same number of fragments.
 
-==== Scoping, Exporting, and Importing
+== Scoping, Exporting, and Importing
 
 Macros have two forms of scope: _textual scope_, and _path-based scope_.
 Textual scope is based on the order that things appear in source files,
@@ -214,7 +214,7 @@ self::lazy_static!{} // path-based lookup ignores local macro, finds imported on
 recent declaration will shadow the previous one unless it has gone out
 of scope.
 
-==== The `+macro_use+` attribute
+== The `+macro_use+` attribute
 
 The `+macro_use+` attribute has two purposes. First, it can be used to
 make a module’s macro scope not end when the module is closed, by
@@ -256,7 +256,7 @@ self::lazy_static!{} // Error: lazy_static is not defined in `self`
 *Note*: Macros to be imported with `+#[macro_use]+` must be exported
 with `+#[macro_export]+`.
 
-==== The `+macro_export+` attribute
+== The `+macro_export+` attribute
 
 By default, a macro has no path-based scope. However, if it has the
 `+#[macro_export]+` attribute, then it is declared in the crate root
@@ -284,7 +284,7 @@ mod mac {
 be referred to by other crates, either by path or by `+#[macro_use]+`.
 
 [[follow-set-ambiguity-restrictionsmacro_ambiguity]]
-==== https://doc.rust-lang.org/reference/macro-ambiguity.html[Follow-set Ambiguity Restrictions]
+== https://doc.rust-lang.org/reference/macro-ambiguity.html[Follow-set Ambiguity Restrictions]
 
 The parser used by the macro system is reasonably powerful, but it is
 limited in order to prevent ambiguity in current or future versions of

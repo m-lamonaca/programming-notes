@@ -1,6 +1,6 @@
-== JSON Module
+= JSON Module
 
-=== JSON Format
+== JSON Format
 
 JSON (JavaScript Object Notation) is a lightweight data-interchange
 format. It is easy for humans to read and write. It is easy for machines
@@ -31,7 +31,7 @@ hexadecimal formats are not used.
 
 WHITESPACE can be inserted between any pair of tokens.
 
-=== Usage
+== Usage
 
 [source,python]
 ----
@@ -63,7 +63,7 @@ json.loads(s, cls=None)
 # CLS: {custom JSONEncoder} -- specifies custom decoder to be used
 ----
 
-=== Default Decoder (`+json.JSONDecoder()+`)
+== Default Decoder (`+json.JSONDecoder()+`)
 
 Conversions (JSON -> Python):
 
@@ -76,7 +76,7 @@ Conversions (JSON -> Python):
 * false -> False
 * null -> None
 
-=== Default Encoder (`+json.JSONEncoder()+`)
+== Default Encoder (`+json.JSONEncoder()+`)
 
 Conversions (Python -> Json):
 
@@ -88,7 +88,7 @@ Conversions (Python -> Json):
 * False -> false
 * None -> null
 
-=== Extending JSONEncoder (Example)
+== Extending JSONEncoder (Example)
 
 [source,python]
 ----
@@ -102,7 +102,7 @@ class ComplexEncoder(json.JSONEncoder):
             return json.JSONEncoder.default(self, obj)
 ----
 
-=== Retrieving Data from json dict
+== Retrieving Data from json dict
 
 [source,python]
 ----

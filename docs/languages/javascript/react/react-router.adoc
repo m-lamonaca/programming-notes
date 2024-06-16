@@ -1,4 +1,4 @@
-== https://reactrouter.com[React Router]
+= https://reactrouter.com[React Router]
 
 Popular routing library. Allows to specify a route through React
 components, declaring which component is to be loaded for a given URL.
@@ -9,7 +9,7 @@ Key Components:
 * *Route*: "`Load this component for this URL`"
 * *Link*: react-managed anchors that won’t post back to the browser
 
-=== Routers
+== Routers
 
 Router Types:
 
@@ -54,7 +54,7 @@ import { Route, Route } from "react-router-dom";
 </Route>
 ----
 
-==== URL Parameters & Query String
+== URL Parameters & Query String
 
 [source,js]
 ----
@@ -69,7 +69,7 @@ function Component(props) {
 }
 ----
 
-==== Redirecting
+== Redirecting
 
 [source,js]
 ----
@@ -84,7 +84,7 @@ import { Navigate } from "react-router-dom";
 props.history.push("/new-route");
 ----
 
-==== Prompts
+== Prompts
 
 [source,js]
 ----
@@ -94,7 +94,7 @@ import { Prompt } from "react-router-dom";
 <Prompt when={condition} message="prompt message" />
 ----
 
-=== Link
+== Link
 
 Clicks on a link created with React-Router will be captured by react an
 all the routing will happen client side.

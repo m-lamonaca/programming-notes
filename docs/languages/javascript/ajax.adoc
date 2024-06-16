@@ -1,4 +1,4 @@
-== AJAX
+= AJAX
 
 *AJAX*: Asynchronous JavaScript and XML
 
@@ -14,7 +14,7 @@ clicked)
 . 6.The response is read by JavaScript
 . 7.Proper action (like page update) is performed by JavaScript
 
-=== XMLHttpRequest
+== XMLHttpRequest
 
 [source,js]
 ----
@@ -30,7 +30,7 @@ request.send()
 To check the status use `+XMLHttpRequest.status+` and
 `+XMLHttpRequest.statusText+`.
 
-==== XMLHttpRequest Events
+== XMLHttpRequest Events
 
 *loadstart*: fires when the process of loading data has begun. This
 event always fires first *progress*: fires multiple times as data is
@@ -50,7 +50,7 @@ has changed
 var request = new XMLHttpRequest();
 request.open('GET', 'myservice/username?id=some-unique-id');
 request.onload = function(){
-    if(request.status ===200){
+    if(request.status ==200){
         console.log("User's name is "+ request.responseText);
     } else {
         console.log('Request failed.  Returned status of '+ request.status);
@@ -67,7 +67,7 @@ var request = new XMLHttpRequest(),  method ='GET',  url ='https://developer.moz
 
 request.open(method, url, true);
 request.onreadystatechange = function(){
-    if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+    if(request.readyState == XMLHttpRequest.DONE && request.status == 200){
         console.log(request.responseText);
     }
 };
@@ -81,7 +81,7 @@ headers and status are available. `+3+` `+LOADING+`: Downloading;
 `+responseText+` holds partial data. `+4+` `+DONE+`: The operation is
 complete.
 
-==== `+XMLHttpRequest+` Browser compatibility
+== `+XMLHttpRequest+` Browser compatibility
 
 Old versions of IE don’t implement XMLHttpRequest. You must use the
 ActiveXObject if XMLHttpRequest is not available
@@ -102,13 +102,13 @@ if(window.XMLHttpRequest){
 }
 ----
 
-=== Status & Error Handling
+== Status & Error Handling
 
 Always inform the user when something is loading. Check the status and
 give feedback (a loader or message) Errors and responses need to be
 handled. There is no guarantee that HTTP requests will always succeed.
 
-==== Cross Domain Policy
+== Cross Domain Policy
 
 Cross domain requests have restrictions.
 
@@ -116,11 +116,11 @@ Examples of outcome for requests originating from:
 `+http://store.company.com/dir/page.htmlCross-origin+`
 
 [width="100%",cols="64%,11%,25%",options="header",]
-|===
+|==
 |URL |Outcome |Reason
 |`+http://store.company.com/dir2/other.html+` |success |
 |`+http://store.company.com/dir/inner/other.html+` |success |
 |`+https://store.company.com/secure.html+` |failure |Different protocol
 |`+http://store.company.com:81/dir/other.html+` |failure |Different port
 |`+http://news.company.com/dir/other.html+` |failure |Different host
-|===
+|==

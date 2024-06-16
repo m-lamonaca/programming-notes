@@ -1,4 +1,4 @@
-== Java Collection Framework - JCF
+= Java Collection Framework - JCF
 
 All classes that permit the handling of groups of objects constitute the
 Java Collection Framework.
@@ -21,9 +21,9 @@ structures.
 image::../../img/java_java-collection-framework.png[Java Collection
 Hierarchy,title="Java Collection Hierarchy"]
 
-=== java.util.Collections
+== java.util.Collections
 
-==== Collection Functions
+== Collection Functions
 
 [source,java]
 ----
@@ -42,14 +42,14 @@ Object [] toArray()    //transform collection in array
 Iterator iterator()    //returns iterator to iterate over the collection
 ----
 
-==== Collections Methods
+== Collections Methods
 
 [source,java]
 ----
 Collection<E>.forEach(Consumer<? super T> action);
 ----
 
-==== Iterator
+== Iterator
 
 Abstracts the problem of iterating over all the elements of a
 collection;
@@ -58,7 +58,7 @@ collection;
 * `+public boolean hasNext()+` checks if there is a successive element
 * `+public Object next()+` extracts the successive element
 
-==== ArrayList
+== ArrayList
 
 *Note*: ArrayLists can’t contain _primitive_ values. _Use wrapper
 classes_ instead.
@@ -90,7 +90,7 @@ ArrayListName.tirmToSize();  // reduce ArrayList size to minimum needed
 ArrayListName.forEach(item -> function(v));
 ----
 
-==== Collection Sorting
+== Collection Sorting
 
 To sort a collection it’s items must implement `+Comparable<T>+`:
 

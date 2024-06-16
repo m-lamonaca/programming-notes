@@ -1,4 +1,4 @@
-== Dependency Injection
+= Dependency Injection
 
 Explicit definition of a class dependencies with the injection through
 the constructor or _getters_/_setters_.
@@ -14,13 +14,13 @@ class Foo
 }
 ----
 
-=== Dependency Injection Container
+== Dependency Injection Container
 
 The *Dependency Injection Container* (DIC) allow to archive all the
 dependencies in a single `+Container+` class. Some offer automatic
 resolution of the dependencies.
 
-=== https://php-di.org/[PHP-DI]
+== https://php-di.org/[PHP-DI]
 
 The dependency injection container for humans. Installation:
 `+composer require php-di/php-di+`
@@ -47,7 +47,7 @@ $container = new DI\Container();  // DI Container
 $foo = $container->get('Foo');  // get instance of Foo (automatic DI of Bar)
 ----
 
-==== DIC Configuration
+== DIC Configuration
 
 [source,php]
 ----

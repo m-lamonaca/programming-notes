@@ -1,13 +1,13 @@
-== Databases in PHP
+= Databases in PHP
 
 [[php-data-objects-pdopdo]]
-=== PHP Data Objects (https://www.php.net/manual/en/book.pdo.php[PDO])
+== PHP Data Objects (https://www.php.net/manual/en/book.pdo.php[PDO])
 
 PDO is the PHP extension for database access through a single API. It
 supports various databases: MySQL, SQLite, PostgreSQL, Oracle, SQL
 Server, etc.
 
-==== Database Connection
+== Database Connection
 
 [source,php]
 ----
@@ -23,7 +23,7 @@ try {
 }
 ----
 
-==== Queries
+== Queries
 
 To execute a query it’s necessary to "`prepare it`" with _parameters_.
 
@@ -45,7 +45,7 @@ $result = $stmt->fetchAll(PDO::FETCH_OBJ);  # result as object of stdClass
 $result = $stmt->fetchAll(PDO::FETCH_CLASS, ClassName::class);  # result as object of a specific class
 ----
 
-==== Parameter Binding
+== Parameter Binding
 
 [source,php]
 ----
@@ -61,7 +61,7 @@ $stmt->bindParam(':marker', $variable);  # type optional
 $stmt->execute();
 ----
 
-==== PDO & Data Types
+== PDO & Data Types
 
 By default PDO converts all results into strings since it is a generic
 driver for multiple databases. Its possible to disable this behaviour
@@ -83,7 +83,7 @@ $stmt->execute([':marker' => value]);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ----
 
-==== PDO Debug
+== PDO Debug
 
 [source,php]
 ----
@@ -94,7 +94,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->debugDumpParams();  # print the SQL query that has been sent to the database
 ----
 
-=== https://www.php.net/manual/en/book.sqlite3.php[SQLite3]
+== https://www.php.net/manual/en/book.sqlite3.php[SQLite3]
 
 [source,php]
 ----

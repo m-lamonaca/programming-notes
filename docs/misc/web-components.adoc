@@ -1,14 +1,14 @@
 [[web-componentsweb-components-mdn]]
-== https://developer.mozilla.org/en-US/docs/Web/API/Web_Components[Web Components]
+= https://developer.mozilla.org/en-US/docs/Web/API/Web_Components[Web Components]
 
 [[custom-elementsusing-cusotom-elements-mdn]]
-=== https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements[Custom Elements]
+== https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements[Custom Elements]
 
 A set of JavaScript APIs that allow you to define custom elements and
 their behavior, which can then be used as desired in your user
 interface.
 
-==== Types of Custom Elements
+== Types of Custom Elements
 
 There are two types of custom element:
 
@@ -38,7 +38,7 @@ class CustomElement extends HTMLElement {
 }
 ----
 
-==== Registering & Using Custom Elements
+== Registering & Using Custom Elements
 
 To make a custom element available in a page, call the `+define()+`
 method of `+Window.customElements+`.
@@ -73,7 +73,7 @@ window.customElements.define("custom-element", CustomElement);
 </custom-element>
 ----
 
-==== Custom Elements Lifecycle Callbacks
+== Custom Elements Lifecycle Callbacks
 
 Once the custom element is _registered_, the browser will call certain
 methods of the class when code in the page interacts with the custom
@@ -127,7 +127,7 @@ class CustomElement extends HTMLElement {
 ----
 
 [[shadow-domusing-shadow-dom-mdn]]
-=== https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM[Shadow DOM]
+== https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM[Shadow DOM]
 
 THe *Shadow DOM* allows to attach a DOM tree to an element, and have the
 internals of this tree hidden from JavaScript and CSS running in the
@@ -148,7 +148,7 @@ regular DOM begins.
 .shadow-dom-schema
 image::../img/webcomponents_shadowdom.svg[shadow-dom-schema]
 
-==== Creating a Shadow DOM
+== Creating a Shadow DOM
 
 [source,html]
 ----
@@ -169,7 +169,7 @@ shadow.appendChild(span);
 _root node_ `+shadowDom+` property. The "`close`" mode does not expose
 this property.
 
-==== JavaScript & CSS Encapsulation
+== JavaScript & CSS Encapsulation
 
 The JavaScript and CSS defined outside the shadow DOM do not have effect
 inside. To style a shadow dom there are two possibilities:
@@ -211,9 +211,9 @@ shadow.appendChild(span);
 ----
 
 [[template-and-slotusing-template-slots-mdn]]
-=== https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots[`+<template>+` and `+<slot>+`]
+== https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots[`+<template>+` and `+<slot>+`]
 
-==== The `+<template>+` element
+== The `+<template>+` element
 
 To reuse the same markup structures repeatedly on a web page, it makes
 sense to use some kind of a template rather than repeating the same
@@ -234,7 +234,7 @@ let template = document.getElementById("template-id").content;
 document.body.appendChild(template);
 ----
 
-==== Templates & Custom Elements
+== Templates & Custom Elements
 
 Templates are useful on their own, but they work even better with web
 components.
@@ -273,7 +273,7 @@ class CustomElement extends HTMLElement {
 customElements.define("custom-element", CustomElement);
 ----
 
-==== The `+<slot>+` element
+== The `+<slot>+` element
 
 It possible to display different content in each element instance in a
 nice declarative way using the `+<slot>+` element.

@@ -1,15 +1,15 @@
-== JavaScript
+= JavaScript
 
-=== Basics
+== Basics
 
-==== Notable javascript engines
+== Notable javascript engines
 
 * *Chromium*: `+V8+` from Google +
 * *Firefox*: `+SpiderMonkey+` from Mozilla +
 * *Safari*: `+JavaScriptCore+` from Apple +
 * *Internet Explorer*: `+Chakra+` from Microsoft
 
-==== Comments
+== Comments
 
 [source,javascript]
 ----
@@ -17,7 +17,7 @@
 /*multiline comment*/
 ----
 
-==== File Header
+== File Header
 
 [source,javascript]
 ----
@@ -30,7 +30,7 @@
  */
 ----
 
-==== Modern Mode
+== Modern Mode
 
 If located at the top of the script the whole script works the
 "`modern`" way (enables post-ES5 functionalities).
@@ -42,7 +42,7 @@ If located at the top of the script the whole script works the
 // script contents
 ----
 
-==== Pop-Up message
+== Pop-Up message
 
 Interrupts script execution until closure, *to be avoided*
 
@@ -51,13 +51,13 @@ Interrupts script execution until closure, *to be avoided*
 alert("message");
 ----
 
-==== Print message to console
+== Print message to console
 
 `+console.log(value);+`
 
-=== Variables
+== Variables
 
-==== Declaration & Initialization
+== Declaration & Initialization
 
 https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/[var
 vs let vs const]
@@ -71,7 +71,7 @@ enclosing block. `+var+`: Function-scoped
 `+let variable1 = value1, variable2 = value2;+`
 `+var variable1 = value1, variable2 = value2;+`
 
-==== Scope
+== Scope
 
 Variable declared with `+let+` are in local to the code block in which
 are declared. Variable declared with `+var+` are local only if declared
@@ -95,17 +95,17 @@ let b = 10;  // b is 10
 // y CAN be used here
 ----
 
-==== Constants
+== Constants
 
 Hard-coded values are UPPERCASE and snake_case, camelCase otherwise. +
 `+const CONSTANT = value;+`
 
-=== Data Types
+== Data Types
 
 `+Number+`, `+String+`, `+Boolean+`, etc are _built-in global objects_.
 They are *not* types. *Do not use them for type checking*.
 
-==== Numeric data types
+== Numeric data types
 
 Only numeric type is `+number+`.
 
@@ -126,7 +126,7 @@ https://github.com/MikeMcl/decimal.js[Decimal.js]
 Mathematical expression will _never_ cause an error. At worst the result
 will be NaN.
 
-==== String data type
+== String data type
 
 [source,javascript]
 ----
@@ -149,7 +149,7 @@ returns an empty string
 * Is read only: `+string[index] = "value"+` does not work and gives no
 errors
 
-==== https://stackoverflow.com/questions/2243824/what-is-the-difference-between-string-slice-and-string-substring[Slice vs Substring vs Substr]
+== https://stackoverflow.com/questions/2243824/what-is-the-difference-between-string-slice-and-string-substring[Slice vs Substring vs Substr]
 
 If the parameters to slice are negative, they reference the string from
 the end. Substring and substr doesn´t.
@@ -161,7 +161,7 @@ string.substring(from [, to]);
 string.substr(start [, length]);
 ----
 
-==== Boolean data type
+== Boolean data type
 
 [source,javascript]
 ----
@@ -169,14 +169,14 @@ let boolean = true;
 let boolean_ = false;
 ----
 
-==== Null data type
+== Null data type
 
 [source,javascript]
 ----
 let _ = null;
 ----
 
-==== Undefined
+== Undefined
 
 [source,javascript]
 ----
@@ -184,7 +184,7 @@ let $;  //value is "undefined"
 $ = undefined;
 ----
 
-==== Typeof()
+== Typeof()
 
 [source,javascript]
 ----
@@ -197,7 +197,7 @@ It is an officially recognized error in typeof, kept for compatibility.
 Of course, null is not an object. It is a special value with a separate
 type of its own. So, again, this is an error in the language.
 
-==== Type Casting
+== Type Casting
 
 [source,javascript]
 ----
@@ -219,19 +219,19 @@ Boolean(NaN);  //--> false
 
 
 //numeric type checking the moronic way
-typeof var_ == "number";  // typeof returns a string with the name of the type
+typeof var_ = "number";  // typeof returns a string with the name of the type
 ----
 
-==== Type Checking
+== Type Checking
 
 [source,js]
 ----
 isNaN(var);  // converts var in number and then check if is NaN
 
-Number("A") == NaN;  //false ?!?
+Number("A") = NaN;  //false ?!?
 ----
 
-==== Dangerous & Stupid Implicit Type Casting
+== Dangerous & Stupid Implicit Type Casting
 
 [source,js]
 ----
@@ -240,28 +240,28 @@ Number("A") == NaN;  //false ?!?
 "1" + 1;  //"11", implicit conversion and concatenation
 +"1";  //1, implicit conversion
 +"text";  // NaN
-1 == "1";  //true
-1 === "1";  //false
-1 == true;  //true
-0 == false;  //true
-"" == false;  //true
+1 = "1";  //true
+1 == "1";  //false
+1 = true;  //true
+0 = false;  //true
+"" = false;  //true
 ----
 
-=== Operators
+== Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |`+(...)+` |grouping
 |a`+.+`b |member access
 |`+new+` a(…) |object creation
 |a `+in+` b |membership
-|===
+|==
 
-==== Mathematical Operators
+== Mathematical Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |a `+++` b |addition
 |a `+-+` b |subtraction
@@ -269,48 +269,48 @@ Number("A") == NaN;  //false ?!?
 |a `+**+` b |a^b
 |a `+/+` b |division
 |a `+%+` b |modulus
-|===
+|==
 
-==== Unary Increment Operators
+== Unary Increment Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |`+--+`variable |prefix decrement
 |`++++`variable |prefix increment
 |variable`+--+` |postfix decrement
 |variable`++++` |postfix increment
-|===
+|==
 
-==== Logical Operators
+== Logical Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |a `+&&+` b |logical *AND*
 |a `+||+` b |logical *OR*
 |`+!+`a |logical *NOT*
-|===
+|==
 
-==== Comparison Operators
+== Comparison Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |a `+<+` b |less than
 |a `+<=+` b |less or equal to
 |a `+>+` b |greater than
 |a `+>=+` b |greater or equal to
-|a `+==+` b |equality
+|a `+=+` b |equality
 |a `+!=+` b |inequality
-|a `+===+` b |strict equality
-|a `+!==+` b |strict inequality
-|===
+|a `+==+` b |strict equality
+|a `+!=+` b |strict inequality
+|==
 
-==== Bitwise Logical Operators
+== Bitwise Logical Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |a `+&+` b |bitwise AND
 |a `+|+` b |bitwise OR
@@ -319,12 +319,12 @@ Number("A") == NaN;  //false ?!?
 |a `+<<+` b |bitwise left shift
 |a `+>>+` b |bitwise right shift
 |a `+>>>+` b |bitwise unsigned right shift
-|===
+|==
 
-==== Compound Operators
+== Compound Operators
 
 [cols=",",options="header",]
-|===
+|==
 |Operator |Operation
 |a `++=+` b |a = a + b
 |a `+-=+` b |a = a - b
@@ -338,11 +338,11 @@ Number("A") == NaN;  //false ?!?
 |a `+&=+` b |a = a & b
 |a `+^=+` b |a = a ^ b
 |a `+|=+` b |a = a ! b
-|===
+|==
 
-=== Decision Statements
+== Decision Statements
 
-==== IF-ELSE
+== IF-ELSE
 
 [source,javascript]
 ----
@@ -353,7 +353,7 @@ if (condition) {
 }
 ----
 
-==== IF-ELSE Multi-Branch
+== IF-ELSE Multi-Branch
 
 [source,javascript]
 ----
@@ -366,11 +366,11 @@ if (condition) {
 }
 ----
 
-==== Ternary Operator
+== Ternary Operator
 
 `+condition ? <expr1> : <expr2>;+`
 
-==== Switch Statement
+== Switch Statement
 
 [source,javascript]
 ----
@@ -385,9 +385,9 @@ switch (expression) {
 }
 ----
 
-=== Loops
+== Loops
 
-==== While Loop
+== While Loop
 
 [source,javascript]
 ----
@@ -396,7 +396,7 @@ while (condition) {
 }
 ----
 
-==== Do-While Loop
+== Do-While Loop
 
 [source,javascript]
 ----
@@ -405,7 +405,7 @@ do {
 } while (condition);
 ----
 
-==== For Loop
+== For Loop
 
 [source,javascript]
 ----
@@ -424,7 +424,7 @@ for (let variable of iterable) { }  // instantiate a new variable at each iterat
 iterable.forEach(() => { /* statements */ });
 ----
 
-==== Break & Continue statements
+== Break & Continue statements
 
 `+break;+` exits the loop. +
 `+continue;+` skip to next loop cycle.
@@ -438,7 +438,7 @@ label: for(begin; condition; step) {
 break label;  //breaks labelled loop and nested loops inside it
 ----
 
-=== Arrays
+== Arrays
 
 [source,js]
 ----
@@ -462,7 +462,7 @@ array.slice(start, end);  // RETURN list of items between indexes start and end-
 array.splice(start, deleteCount, [items_to_add]);  // remove and RETURN items from array, can append a list of items. IN PLACE operation
 ----
 
-==== `+filter()+` & `+map()+`, `+reduce()+`
+== `+filter()+` & `+map()+`, `+reduce()+`
 
 [source,js]
 ----
@@ -478,7 +478,7 @@ array.filter(() => condition);  // return an items only if the condition is true
 array.reduce((x, y) => ...);
 ----
 
-=== Spread Operator (…)
+== Spread Operator (…)
 
 [source,js]
 ----
@@ -504,7 +504,7 @@ let args = [ value1, value2 ];
 func(arg0, ...args);
 ----
 
-=== Dictionaries
+== Dictionaries
 
 [source,js]
 ----
@@ -519,7 +519,7 @@ dict["Age"] = 42;
 dict.FirstName = "Chris";
 ----
 
-==== Iterating Key-Value pairs
+== Iterating Key-Value pairs
 
 [source,js]
 ----
@@ -532,9 +532,9 @@ for(let key in dict) {
 Object.keys(dict).forEach(key => { });
 ----
 
-=== Functions
+== Functions
 
-==== JSDOC documentation standard
+== JSDOC documentation standard
 
 [source,javascript]
 ----
@@ -544,7 +544,7 @@ Object.keys(dict).forEach(key => { });
  * */
 ----
 
-==== Function Declaration
+== Function Declaration
 
 [source,javascript]
 ----
@@ -555,12 +555,12 @@ function functionName(parameter=default-value, ...args) {
 }
 ----
 
-==== Default Parameters (old versions)
+== Default Parameters (old versions)
 
 [source,javascript]
 ----
 function functionName(parameters) {
-    if (parameter == undefined) {
+    if (parameter = undefined) {
         parameter = value;
     }
 
@@ -569,7 +569,7 @@ function functionName(parameters) {
 }
 ----
 
-==== Function Expressions
+== Function Expressions
 
 [source,javascript]
 ----
@@ -579,7 +579,7 @@ let functionName = function(parameters) {
 }
 ----
 
-==== Arrow Functions
+== Arrow Functions
 
 [source,javascript]
 ----
@@ -602,7 +602,7 @@ func();  // function call
 let func = (value) => ({property: value});
 ----
 
-=== Object Oriented Programming
+== Object Oriented Programming
 
 An object is a collection of related data and/or functionality.
 
@@ -649,7 +649,7 @@ Object.keys(obj);  // list of all property names
 Object.entries(obj);  // list contents as key-value pairs
 ----
 
-==== Constructors and object instances
+== Constructors and object instances
 
 JavaScript uses special functions called *constructor functions* to
 define and initialize objects and their features. Notice that it has all
@@ -674,7 +674,7 @@ let obj = new Object({
 });
 ----
 
-==== Prototypes
+== Prototypes
 
 Prototypes are the mechanism by which JavaScript objects _inherit_
 features from one another.
@@ -708,7 +708,7 @@ let obj = new Obj(args);  // object instantiation
 obj.method();  // call method from prototype
 ----
 
-==== Extending with prototypes
+== Extending with prototypes
 
 [source,js]
 ----
@@ -730,7 +730,7 @@ let dobj = new DerivedObj(args);  // object instantiation
 dobj.method();  // call method from prototype
 ----
 
-==== Classes (ES6+)
+== Classes (ES6+)
 
 [source,js]
 ----
@@ -756,7 +756,7 @@ let obj = new Obj(param1, ...);
 obj.func();  // call method
 ----
 
-==== Extending with Classes
+== Extending with Classes
 
 [source,js]
 ----
@@ -773,9 +773,9 @@ let dobj = DerivedObj();
 dobj.newFunc();
 ----
 
-=== Deconstruction
+== Deconstruction
 
-==== Object deconstruction
+== Object deconstruction
 
 [source,js]
 ----
@@ -789,7 +789,7 @@ let { property: var1, property2 : var2 } = obj;  // extract props in variables w
 let { property: var1, var2 = default_value } = obj;  // use default values if object has less then expected props
 ----
 
-==== Array Deconstruction
+== Array Deconstruction
 
 [source,js]
 ----
@@ -797,7 +797,7 @@ let array = [ 1, 2, 3, 4, 5, 6 ];
 let [first, , third, , seventh = "missing" ] = array;  // extract specific values from array
 ----
 
-=== Serialization
+== Serialization
 
 [source,js]
 ----
@@ -811,9 +811,9 @@ let json = {  /* JSON */ };
 let object = JSON.parse(json);  // deserialize to Object
 ----
 
-=== Timing
+== Timing
 
-==== Timers
+== Timers
 
 Function runs _once_ after an interval of time.
 
@@ -851,7 +851,7 @@ function useTimeout(pos=0) {
 useTimeout();
 ----
 
-==== `+let+` vs `+var+` with `+setTimeout+`
+== `+let+` vs `+var+` with `+setTimeout+`
 
 [source,js]
 ----
@@ -871,7 +871,7 @@ for (var i = 0; i < 3; ++i) {
 // output: 3, 3, 3
 ----
 
-==== Preserving the context
+== Preserving the context
 
 [source,js]
 ----
@@ -899,7 +899,7 @@ let obj = {
 }
 ----
 
-==== Intervals
+== Intervals
 
 Function runs regularly with a specified interval. JavaScript is *Single
 Threaded*.
@@ -922,7 +922,7 @@ let timerId = setInterval(function(arg1, ...){
 clearTimeout(timerId);  // cancel execution
 ----
 
-=== DateTime
+== DateTime
 
 A date consists of a year, a month, a day, an hour, a minute, a second,
 and milliseconds.
@@ -971,7 +971,7 @@ let msec = Date.parse("March 21, 2012");
 let date = new Date(msec);
 ----
 
-==== Comparing Dates
+== Comparing Dates
 
 Comparison operators work also on dates
 
@@ -987,7 +987,7 @@ if(date1 > date2){
 }
 ----
 
-=== https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export[Exports]
+== https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export[Exports]
 
 https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSRequestNotHttp[Firefox
 CORS not HTTP]

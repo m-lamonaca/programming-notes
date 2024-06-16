@@ -1,7 +1,7 @@
-== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/[Async Programming]
+= https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/[Async Programming]
 
 [[task-asynchronous-programming-model-taptap_docs]]
-=== Task Asynchronous Programming Model (https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/task-asynchronous-programming-model[TAP])
+== Task Asynchronous Programming Model (https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/task-asynchronous-programming-model[TAP])
 
 It’s possible to avoid performance bottlenecks and enhance the overall
 responsiveness of an application by using asynchronous programming. +
@@ -61,7 +61,7 @@ asynchronous operation is complete. +
 In the meantime, the method is suspended, and control returns to the
 method’s caller.
 
-==== Threads
+== Threads
 
 Async methods are intended to be non-blocking operations. An `+await+`
 expression in an async method doesn’t block the current thread while the
@@ -87,7 +87,7 @@ than `+BackgroundWorker+` for CPU-bound operations because async
 programming separates the coordination details of running the code from
 the work that `+Task.Run+` transfers to the thread pool.
 
-==== Naming Convention
+== Naming Convention
 
 By convention, methods that return commonly awaitable types (for
 example, `+Task+`, `+Task<T>+`, `+ValueTask+`, `+ValueTask<T>+`) should
@@ -97,9 +97,9 @@ end with _Async_, but may start with "`Begin`", "`Start`", or some other
 verb to suggest this method does not return or throw the result of the
 operation.
 
-=== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/async-return-types[Async Return Types]
+== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/async-return-types[Async Return Types]
 
-==== `+Task+` return type
+== `+Task+` return type
 
 Async methods that don’t contain a return statement or that contain a
 return statement that doesn’t return an operand usually have a return
@@ -109,7 +109,7 @@ If a `+Task+` return type is used for an async method, a calling method
 can use an `+await+` operator to suspend the caller’s completion until
 the called async method has finished.
 
-==== `+Task<TResult>+` return type
+== `+Task<TResult>+` return type
 
 The `+Task<TResult>+` return type is used for an async method that
 contains a return statement in which the operand is `+TResult+`.
@@ -120,7 +120,7 @@ active is blocked until the task completes and the value is available. +
 In most cases, access the value by using `+await+` instead of accessing
 the property directly.
 
-==== `+void+` return type
+== `+void+` return type
 
 The `+void+` return type is used in asynchronous event handlers, which
 require a `+void+` return type. For methods other than event handlers
@@ -140,7 +140,7 @@ Therefore, make sure that any async method that can produce an exception
 has a return type of `+Task+` or `+Task<TResult>+` and that calls to the
 method are awaited.
 
-==== Generalized async return types and `+ValueTask<TResult>+`
+== Generalized async return types and `+ValueTask<TResult>+`
 
 Starting with C# 7.0, an async method can return any type that has an
 accessible `+GetAwaiter+` method.
@@ -158,7 +158,7 @@ task-returning value. To use the
 `+System.Threading.Tasks.ValueTask<TResult>+` type, add the
 *System.Threading.Tasks.Extensions* NuGet package to the project.
 
-==== Async Composition
+== Async Composition
 
 [source,cs]
 ----
@@ -188,7 +188,7 @@ public async Task<int> GetFirstToRespondAsync()
 }
 ----
 
-==== Execution & Synchronization Context
+== Execution & Synchronization Context
 
 When the program’s execution reaches an `+await+` expression for an
 operation that doesn’t complete immediately, the code generated for that
@@ -238,9 +238,9 @@ frameworks that do not set up a synchronization context. +
 generally doesn’t matter whether or not `+ConfigureAwait(false)+` is
 called in those)
 
-=== Error Handling
+== Error Handling
 
-==== Argument Validation
+== Argument Validation
 
 Inside an `+async+` method, the compiler treats all exceptions in the
 same way: none are allowed to pass up the stack as in a normal method,

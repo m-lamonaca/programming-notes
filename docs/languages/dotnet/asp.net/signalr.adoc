@@ -1,4 +1,4 @@
-== SignalR
+= SignalR
 
 The SignalR Hubs API enables to call methods on connected clients from
 the server. In the server code, define methods that are called by
@@ -6,9 +6,9 @@ client. In the client code, define methods that are called from the
 server. SignalR takes care of everything behind the scenes that makes
 real-time client-to-server and server-to-client communications possible.
 
-=== Server-Side
+== Server-Side
 
-==== Configuration
+== Configuration
 
 In `+Startup.cs+`:
 
@@ -24,7 +24,7 @@ app.UseEndpoints(endpoints =>
 });
 ----
 
-==== Creating Hubs
+== Creating Hubs
 
 [source,cs]
 ----
@@ -46,7 +46,7 @@ public class CustomHub : Hub
 }
 ----
 
-==== Strongly Typed Hubs
+== Strongly Typed Hubs
 
 A drawback of using `+SendAsync+` is that it relies on a magic string to
 specify the client method to be called. This leaves code open to runtime
@@ -84,7 +84,7 @@ Using a strongly typed `+Hub<T>+` disables the ability to use
 as asynchronous. In fact, each of these methods should return a
 `+Task+`. Since it’s an interface, don’t use the `+async+` keyword.
 
-==== Handling Connection Events
+== Handling Connection Events
 
 The SignalR Hubs API provides the OnConnectedAsync and
 OnDisconnectedAsync virtual methods to manage and track connections.
@@ -115,7 +115,7 @@ However, if the client is disconnected due to an error (such as a
 network failure), the exception parameter will contain an exception
 describing the failure.
 
-==== Sending Errors to the client
+== Sending Errors to the client
 
 Exceptions thrown in the hub methods are sent to the client that invoked
 the method. On the JavaScript client, the `+invoke+` method returns a
@@ -139,9 +139,9 @@ public Task ThrowException()
 }
 ----
 
-==== Client-Side (JavaScript)
+== Client-Side (JavaScript)
 
-==== Installing the client package
+== Installing the client package
 
 [source,sh]
 ----
@@ -162,7 +162,7 @@ example:
 <script src="~/lib/signalr/signalr.js"></script>
 ----
 
-==== Connecting to a Hub
+== Connecting to a Hub
 
 https://docs.microsoft.com/en-us/aspnet/core/signalr/javascript-client#reconnect-clients[Reconnect
 Clients Docs]
@@ -193,7 +193,7 @@ function connect() {
 }
 ----
 
-==== Call hub methods fom the client
+== Call hub methods fom the client
 
 JavaScript clients call public methods on hubs via the `+invoke+` method
 of the `+HubConnection+`. The `+invoke+` method accepts:
@@ -225,7 +225,7 @@ sending the message, the `+Promise+` is rejected with the error message.
 Use `+async+` and `+await+` or the `+Promise+`’s then and catch methods
 to handle these cases.
 
-==== Call client methods from the hub
+== Call client methods from the hub
 
 To receive messages from the hub, define a method using the `+on+`
 method of the `+HubConnection+`. The `+on+` method accepts:

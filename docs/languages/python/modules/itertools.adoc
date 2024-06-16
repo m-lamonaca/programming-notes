@@ -1,4 +1,4 @@
-== Itertools Module
+= Itertools Module
 
 [source,py]
 ----

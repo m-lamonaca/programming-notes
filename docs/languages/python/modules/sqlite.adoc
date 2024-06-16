@@ -1,6 +1,6 @@
-== sqlite3 Module
+= sqlite3 Module
 
-=== Connecting To The Database
+== Connecting To The Database
 
 To use the module, you must first create a Connection object that
 represents the database.
@@ -27,7 +27,7 @@ cursor.close()  # close the cursor now
 
 The data saved is persistent and is available in subsequent sessions.
 
-==== Query Construction
+== Query Construction
 
 Usually your SQL operations will need to use values from Python
 variables. You shouldn’t assemble your query using Python’s string
@@ -57,7 +57,7 @@ purchases = [('2006-03-28', 'BUY', 'IBM', 1000, 45.00),
 c.executemany('INSERT INTO stocks VALUES (?,?,?,?,?)', purchases)
 ----
 
-==== Writing Operations to Disk
+== Writing Operations to Disk
 
 [source,python]
 ----
@@ -66,7 +66,7 @@ cursor.execute("SQL")
 connection.commit()
 ----
 
-==== Multiple SQL Instructions
+== Multiple SQL Instructions
 
 [source,python]
 ----
@@ -82,7 +82,7 @@ cur.executescript("""
 con.close()
 ----
 
-==== Retrieving Records
+== Retrieving Records
 
 [source,python]
 ----

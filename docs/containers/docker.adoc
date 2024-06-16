@@ -1,6 +1,6 @@
-== Docker
+= Docker
 
-=== Images & Containers
+== Images & Containers
 
 *Containerization* is an approach to software development in which an
 application or service, its dependencies, and its configuration
@@ -23,7 +23,7 @@ In short, containers offer the benefits of isolation, portability,
 agility, scalability, and control across the entire application
 lifecycle workflow.
 
-=== Containers vs Virtual Machines
+== Containers vs Virtual Machines
 
 A container runs _natively_ on Linux and shares the kernel of the host
 machine with other containers. It runs a discrete process, taking no
@@ -37,7 +37,7 @@ consumed by your application logic.
 image:../img/docker_container-architecture.svg[container-architecture,title="Container Architecture"]
 image:../img/docker_virtual-machine-architecture.svg[vm-architecture,title="Virtual Machine Architecture"]
 
-=== https://docs.docker.com/glossary/[Docker Terminology]
+== https://docs.docker.com/glossary/[Docker Terminology]
 
 .docker-architecture
 image::../img/docker_architecture.svg[docker-architecture,title="Docker Architecture"]
@@ -147,9 +147,9 @@ Fabric, among other offerings in the market.
 
 '''''
 
-=== Docker CLI
+== Docker CLI
 
-==== https://docs.docker.com/engine/reference/commandline/run/[`+docker run+`]
+== https://docs.docker.com/engine/reference/commandline/run/[`+docker run+`]
 
 [source,sh]
 ----
@@ -167,7 +167,7 @@ docker run --name=<container_name> <image>  # set container name
 
 *Warn*: `+<image>+` must be last argument
 
-==== https://docs.docker.com/engine/reference/commandline/container/[`+docker container+`]
+== https://docs.docker.com/engine/reference/commandline/container/[`+docker container+`]
 
 [source,sh]
 ----
@@ -185,7 +185,7 @@ docker container start <container>  # start a stopped container
 docker container exec <container> <command>  # exec a command inside a container
 ----
 
-==== https://docs.docker.com/engine/reference/commandline/image/[`+docker image+`]
+== https://docs.docker.com/engine/reference/commandline/image/[`+docker image+`]
 
 [source,sh]
 ----
@@ -195,7 +195,7 @@ docker image prune <image>  # remove unused images
 docker image pull <image>  # download an image w/o starting the container
 ----
 
-==== https://docs.docker.com/engine/reference/commandline/build/[`+docker build+`]
+== https://docs.docker.com/engine/reference/commandline/build/[`+docker build+`]
 
 [source,sh]
 ----
@@ -203,14 +203,14 @@ docker build -t <tag> -f <dockerfile> <context>  # build image with specific tag
 docker build -t <tag> -f <dockerfile> --build-arg ARG=value <context>  # pass args to ARG steps
 ----
 
-==== https://docs.docker.com/engine/reference/commandline/push/[`+docker push+`]
+== https://docs.docker.com/engine/reference/commandline/push/[`+docker push+`]
 
 [source,sh]
 ----
 docker push <image>  # publish image to registry (defaults to Docker Hub)
 ----
 
-=== https://docs.docker.com/engine/reference/builder/[Dockerfile]
+== https://docs.docker.com/engine/reference/builder/[Dockerfile]
 
 [source,dockerfile]
 ----
@@ -241,7 +241,7 @@ CMD <executable> <arg1> <arg2>
 ENTRYPOINT <executable> <arg1> <arg2>
 ----
 
-==== `+CMD+` vs `+ENTRYPOINT+`
+== `+CMD+` vs `+ENTRYPOINT+`
 
 `+CMD+` is used to provide all the default scenarios which can be
 overridden. _Anything_ defined in CMD can be overridden by passing
@@ -253,7 +253,7 @@ overridden. +
 The user can however define arguments to be passed in the executable by
 adding them in the `+docker run+` command.
 
-=== https://docs.docker.com/develop/develop-images/multistage-build/[Docker Multi-Stage Build]
+== https://docs.docker.com/develop/develop-images/multistage-build/[Docker Multi-Stage Build]
 
 With multi-stage builds, it’s possible to use multiple `+FROM+`
 statements in the Dockerfile. Each `+FROM+` instruction can use a
@@ -319,7 +319,7 @@ ENTRYPOINT ["dotnet", "<project>.dll"]
 
 '''''
 
-=== https://docs.docker.com/engine/reference/commandline/network/[Networking]
+== https://docs.docker.com/engine/reference/commandline/network/[Networking]
 
 Starting container networks: `+bridge+` (default), `+none+`, `+host+`.
 
@@ -344,14 +344,14 @@ other containers or the external network.
 *Note*: Mapping `+host-gateway+` to an hostname allows the container to
 reach the host network even with networks types different from `+host+`
 
-==== User-defined Networks
+== User-defined Networks
 
 [source,sh]
 ----
 docker network create --driver NETWORK_TYPE --subnet GATEWAY_TP/SUBNET_MASK_SIZE NETWORK_NAME
 ----
 
-==== Embedded DNS
+== Embedded DNS
 
 Docker has an internal DNS that allows finding other container by their
 name instead of their IP. The DNS always runs at the address
@@ -359,9 +359,9 @@ name instead of their IP. The DNS always runs at the address
 
 '''''
 
-=== Docker Storage
+== Docker Storage
 
-=== File System
+== File System
 
 [source,sh]
 ----
@@ -375,12 +375,12 @@ name instead of their IP. The DNS always runs at the address
 |_...
 ----
 
-==== Copy-On-Write
+== Copy-On-Write
 
 To modify a file during while the container runs docker creates a local
 copy in the specific container and the local copy will be modified.
 
-==== Volumes
+== Volumes
 
 *volume mounting*: create a volume under the docker installation folder
 (`+/var/lib/docker/volumes/+`). *bind mounting*: link docker to an
@@ -394,7 +394,7 @@ docker run --mount type=bind, source=:<existing_dir>, target=<container_dir> <im
 
 '''''
 
-=== Docker Compose
+== Docker Compose
 
 Compose is a tool for defining and running multi-container Docker
 applications. With Compose, you use a YAML file to configure your

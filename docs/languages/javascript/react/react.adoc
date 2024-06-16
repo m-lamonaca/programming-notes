@@ -1,6 +1,6 @@
-== React
+= React
 
-=== Components
+== Components
 
 There are two types of react components:
 
@@ -53,7 +53,7 @@ const element = React.createElement(
 );
 ----
 
-==== App Entry-point
+== App Entry-point
 
 [source,js]
 ----
@@ -64,7 +64,7 @@ const element = <h1s>Hello World</h1>
 root.render(element)
 ----
 
-==== Dynamic Expressions
+== Dynamic Expressions
 
 [source,js]
 ----
@@ -73,7 +73,7 @@ root.render(element)
 <tag onEvent={() => func(args)}>{expression}</tag>
 ----
 
-==== Props
+== Props
 
 [source,js]
 ----
@@ -90,7 +90,7 @@ class Component extends React.Component{
 }
 ----
 
-==== Simple Function Component
+== Simple Function Component
 
 [source,js]
 ----
@@ -113,7 +113,7 @@ function Button() {
 export default Button;
 ----
 
-==== Simple Class Component
+== Simple Class Component
 
 [source,js]
 ----
@@ -146,7 +146,7 @@ class Button extends React.Component {
 }
 ----
 
-==== Nesting Components
+== Nesting Components
 
 [source,js]
 ----
@@ -183,7 +183,7 @@ function App() {
 export default App;
 ----
 
-==== User Input (Forms)
+== User Input (Forms)
 
 [source,js]
 ----
@@ -209,7 +209,7 @@ function Form() {
 }
 ----
 
-==== Lists of Components
+== Lists of Components
 
 [source,js]
 ----
@@ -223,9 +223,9 @@ function Form() {
 *Note*: The `+key+` attribute of the component is needed to identify a
 particular item. It’s most useful if the list has to be sorted.
 
-=== Hooks
+== Hooks
 
-==== `+useState+`
+== `+useState+`
 
 Hook used to create a state object.
 
@@ -239,7 +239,7 @@ Hook used to create a state object.
 const [state, setState] = useState(default);
 ----
 
-==== `+useEffect+`
+== `+useEffect+`
 
 Hook used to trigger an action on each render of the component or when
 one of the watched items changes.
@@ -254,7 +254,7 @@ useEffect(() => {
 }, [/* list of watched items, empty triggers once */]);
 ----
 
-==== Custom Hooks
+== Custom Hooks
 
 [source,js]
 ----

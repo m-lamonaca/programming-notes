@@ -1,6 +1,6 @@
-== Socket Module
+= Socket Module
 
-=== Definition
+== Definition
 
 A network socket is an internal endpoint for sending or receiving data
 within a node on a computer network.
@@ -15,7 +15,7 @@ node (other node), which itself has an associated socket, used by the
 foreign process. Associating a socket with a socket address is called
 _binding_.
 
-=== Socket Creation & Connection
+== Socket Creation & Connection
 
 [source,python]
 ----
@@ -28,7 +28,7 @@ socket.connect = (("URL", port: int))  # connect to socket
 socket.close()  # close connection
 ----
 
-=== Making HTTP Requests
+== Making HTTP Requests
 
 [source,python]
 ----

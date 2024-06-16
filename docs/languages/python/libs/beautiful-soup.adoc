@@ -1,6 +1,6 @@
-== https://www.crummy.com/software/BeautifulSoup/bs4/doc/[Beautiful Soup Library]
+= https://www.crummy.com/software/BeautifulSoup/bs4/doc/[Beautiful Soup Library]
 
-=== Making the Soup
+== Making the Soup
 
 [source,py]
 ----
@@ -17,12 +17,12 @@ soup = BeautifulSoup(response.text, "lxml")  # parse HTML from response w/ lxml 
 soup.prettify()  # prettify parsed HTML for display
 ----
 
-=== Kinds of Objects
+== Kinds of Objects
 
 Beautiful Soup transforms a complex HTML document into a complex tree of
 Python objects.
 
-==== Tag
+== Tag
 
 A Tag object corresponds to an XML or HTML tag in the original document
 
@@ -39,14 +39,14 @@ tag["attribute"]  # access to tag attribute  values
 tag.attrs  # dict of attribue-value pairs
 ----
 
-==== Navigable String
+== Navigable String
 
 A string corresponds to a bit of text within a tag. Beautiful Soup uses
 the `+NavigableString+` class to contain these bits of text.
 
-=== Navigating the Tree
+== Navigating the Tree
 
-==== Going Down
+== Going Down
 
 [source,py]
 ----
@@ -64,7 +64,7 @@ soup.<tag>.<child_tag>  # navigate using tag names
 <tag>.stripped_strings  # generator to iterate over all children's strings (will NOT list white space)
 ----
 
-==== Going Up
+== Going Up
 
 [source,py]
 ----
@@ -72,7 +72,7 @@ soup.<tag>.<child_tag>  # navigate using tag names
 <tag>.parents  # iterable over all parents
 ----
 
-==== Going Sideways
+== Going Sideways
 
 [source,py]
 ----
@@ -83,7 +83,7 @@ soup.<tag>.<child_tag>  # navigate using tag names
 <tag>.next_siblings
 ----
 
-==== Going Back and Forth
+== Going Back and Forth
 
 [source,py]
 ----
@@ -94,9 +94,9 @@ soup.<tag>.<child_tag>  # navigate using tag names
 <tag>.next_elements  # whatever was parsed immediately afterwards as a list
 ----
 
-=== Searching the Tree
+== Searching the Tree
 
-=== Filter Types
+== Filter Types
 
 [source,py]
 ----
@@ -106,7 +106,7 @@ soup.find_all(function)  # based on a bool function
 soup.find_all(True)  # Match everything
 ----
 
-=== Methods
+== Methods
 
 Methods arguments:
 
@@ -141,9 +141,9 @@ soup.find("html_tag").text  # text of the found tag
 soup.select("css_selector")  # search for CSS selectors of HTML tags
 ----
 
-=== Modifying the Tree
+== Modifying the Tree
 
-==== Changing Tag Names an Attributes
+== Changing Tag Names an Attributes
 
 [source,py]
 ----

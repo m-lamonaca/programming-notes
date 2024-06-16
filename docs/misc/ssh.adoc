@@ -1,10 +1,10 @@
-== SSH
+= SSH
 
 `+ssh+` is a program for logging into a remote machine and for executing
 commands on a remote machine. It is intended to provide secure encrypted
 communications between two untrusted hosts over an insecure network.
 
-=== Basics
+== Basics
 
 [source,sh]
 ----
@@ -18,7 +18,7 @@ ssh user@destination -t  # force pseudo-tty emulation
 
 *Note*: use `+~+` while connected to use the "`ssh console`".
 
-==== Jump-Hosts
+== Jump-Hosts
 
 Connect to the final destination jumping through the specifies other
 destinations.
@@ -28,12 +28,12 @@ destinations.
 ssh -J user_1@destination_1,user_2@destination_2 user@final_destination
 ----
 
-=== Port Forwarding
+== Port Forwarding
 
 .ssh-tunnels
 image::https://iximiuz.com/ssh-tunnels/ssh-tunnels.png[ssh-tunnels,title="SSH Tunnels Cheat Sheet By Ivan Velichko"]
 
-==== Local Port Forwarding
+== Local Port Forwarding
 
 Start listening on `+local_address:local_port+` and forward any traffic
 to `+remote_address:remote_port+`.
@@ -44,7 +44,7 @@ ssh -N -f -L local_address:local_port:remote_address:remote_port user@destinatio
 ssh -N -f -L local_port:remote_address:remote_port user@destination  # local_address defaults to localhost
 ----
 
-==== Remote Port Forwarding
+== Remote Port Forwarding
 
 Start listening on `+remote_address:remote_port+` and forward any
 traffic to `+local_address:local_port+`.

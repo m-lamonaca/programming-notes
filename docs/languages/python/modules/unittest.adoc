@@ -1,4 +1,4 @@
-== Unittest Module
+= Unittest Module
 
 [source,py]
 ----
@@ -10,11 +10,11 @@ class Test(unittest.TestCase):
     def test_1(self):
         self.assert*(output, expected_output)
 
-if __name__ == '__main__':
+if __name__ = '__main__':
     unittest.main()
 ----
 
-=== TestCase Class
+== TestCase Class
 
 Instances of the `+TestCase+` class represent the logical test units in
 the unittest universe. This class is intended to be used as a base
@@ -23,12 +23,12 @@ This class implements the interface needed by the test runner to allow
 it to drive the tests, and methods that the test code can use to check
 for and report various kinds of failure.
 
-==== Assert Methods
+== Assert Methods
 
 [cols=",",options="header",]
-|===
+|==
 |Method |Checks that
-|`+assertEqual(a, b)+` |`+a == b+`
+|`+assertEqual(a, b)+` |`+a = b+`
 |`+assertNotEqual(a, b)+` |`+a != b+`
 |`+assertTrue(x)+` |`+bool(x) is True+`
 |`+assertFalse(x)+` |`+bool(x) is False+`
@@ -40,10 +40,10 @@ for and report various kinds of failure.
 |`+assertNotIn(a, b)+` |`+a not in b+`
 |`+assertIsInstance(a, b)+` |`+isinstance(a, b)+`
 |`+assertNotIsInstance(a, b)+` |`+not isinstance(a, b)+`
-|===
+|==
 
 [width="100%",cols="42%,58%",options="header",]
-|===
+|==
 |Method |Checks that
 |`+assertRaises(exc, fun, *args, **kwds)+` |`+fun(*args, **kwds)+`
 raises _exc_
@@ -59,12 +59,12 @@ raises warn
 
 |`+assertLogs(logger, level)+` |The with block logs on logger with
 minimum level
-|===
+|==
 
 [width="100%",cols="28%,72%",options="header",]
-|===
+|==
 |Method |Checks that
-|`+assertAlmostEqual(a, b)+` |`+round(a-b, 7) == 0+`
+|`+assertAlmostEqual(a, b)+` |`+round(a-b, 7) = 0+`
 
 |`+assertNotAlmostEqual(a, b)+` |`+round(a-b, 7) != 0+`
 
@@ -82,10 +82,10 @@ minimum level
 
 |`+assertCountEqual(a, b)+` |a and b have the same elements in the same
 number, regardless of their order.
-|===
+|==
 
 [cols=",",options="header",]
-|===
+|==
 |Method |Used to compare
 |`+assertMultiLineEqual(a, b)+` |strings
 |`+assertSequenceEqual(a, b)+` |sequences
@@ -93,4 +93,4 @@ number, regardless of their order.
 |`+assertTupleEqual(a, b)+` |tuples
 |`+assertSetEqual(a, b)+` |sets or frozensets
 |`+assertDictEqual(a, b)+` |dicts
-|===
+|==

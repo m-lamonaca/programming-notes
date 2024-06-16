@@ -1,6 +1,6 @@
-== Redux Testing
+= Redux Testing
 
-=== Tests for Connected Components
+== Tests for Connected Components
 
 Connected components are wrapped in a call to `+connect+`. Way of
 solving the problem:
@@ -50,7 +50,7 @@ it("test description", () => {
 });
 ----
 
-=== Tests for Action Creators
+== Tests for Action Creators
 
 [source,js]
 ----
@@ -68,7 +68,7 @@ it("test description", () => {
 });
 ----
 
-=== Tests for Reducers
+== Tests for Reducers
 
 [source,js]
 ----
@@ -87,7 +87,7 @@ it("test description", () => {
 });
 ----
 
-=== Tests for the Store
+== Tests for the Store
 
 [source,js]
 ----
@@ -111,7 +111,7 @@ it("test description", () => {
 });
 ----
 
-=== Tests for Thunks
+== Tests for Thunks
 
 Thunk testing requires the mocking of:
 

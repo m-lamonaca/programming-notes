@@ -1,6 +1,6 @@
-== C# Collections
+= C# Collections
 
-=== Arrays
+== Arrays
 
 An array is an object that contains multiple elements of a particular
 type. The number of elements is fixed for the lifetime of the array, so
@@ -27,7 +27,7 @@ array.Length;  // dimension of the array
 array.OfType<Type>();  // filter array based on type, returns IEnumerable<Type>
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.array?view=netcore-3.1#methods[Array Methods]
+== https://docs.microsoft.com/en-us/dotnet/api/system.array?view=netcore-3.1#methods[Array Methods]
 
 [source,cs]
 ----
@@ -53,7 +53,7 @@ Array.Copy(sourceArray, destinationArray, numItemsToCopy);
 Array.Clone();  // returns a shallow copy of the array
 ----
 
-==== Multidimensional Arrays
+== Multidimensional Arrays
 
 C# supports two multidimensional array forms:
 https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/jagged-arrays[jagged]
@@ -91,7 +91,7 @@ matrix.GetLength(int dimension); // get the size of a particular direction
 // row = 0, column = 1, ...
 ----
 
-=== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1[Lists]
+== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1[Lists]
 
 `+List<T>+` stores sequences of elements. It can grow or shrink,
 allowing to add or remove elements.
@@ -139,7 +139,7 @@ list.OfType<Type>();  // filter list based on type, returns IEnumerable<Type>
 list.OfType<Type>().ToList();  // filter list based on type, returns List<Type>
 ----
 
-=== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/iterators[Iterators]
+== https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/iterators[Iterators]
 
 An iterator can be used to step through collections such as lists and
 arrays.
@@ -168,9 +168,9 @@ public static System.Collections.IEnumerable<int> IterateRange(int start = 0, in
 }
 ----
 
-=== List & Sequence Interfaces
+== List & Sequence Interfaces
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1[`+IEnumerable<T>+`]
+== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1[`+IEnumerable<T>+`]
 
 Exposes the enumerator, which supports a simple iteration over a
 collection of a specified type.
@@ -199,7 +199,7 @@ public interface IEnumerator<T>
 because many of them rely on this. `+Reset()+` is legacy and can, in
 some situations, throw `+NotSupportedException()+`.
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1[`+ICollection<T>+`]
+== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.icollection-1[`+ICollection<T>+`]
 
 [source,cs]
 ----
@@ -218,7 +218,7 @@ public interface ICollection<T> : IEnumerable<T>
 }
 ----
 
-==== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ilist-1[`+IList<T>+`]
+== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.ilist-1[`+IList<T>+`]
 
 [source,cs]
 ----
@@ -242,7 +242,7 @@ public interface IList<T> : ICollection<T>, IEnumerable<T>
 }
 ----
 
-=== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2[Dictionaries]
+== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2[Dictionaries]
 
 https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.valuecollection[ValueCollection]
 https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.keycollection[KeyCollection]
@@ -292,7 +292,7 @@ dict.TryAdd(key, value);  // adds a key-value pair; returns true if pair is adde
 dict.TryGetValue(key, out var);  // put the value associated with kay in the var parameter; true if the dict contains an element with the specified key, false otherwise.
 ----
 
-=== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1[Sets]
+== https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1[Sets]
 
 Collection of non duplicate items.
 

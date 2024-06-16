@@ -1,6 +1,6 @@
-== Cargo build system and package manager
+= Cargo build system and package manager
 
-=== Creating a project
+== Creating a project
 
 [source,ps1]
 ----
@@ -8,7 +8,7 @@ cargo new project_name  # creates project folder and basic files
 cargo new --vcs=git project_name  # init project as git repo
 ----
 
-=== Building, Running & Checking a project
+== Building, Running & Checking a project
 
 Inside the project directory:
 
@@ -20,7 +20,7 @@ cargo run  # executes the built executable
 cargo check  # verifies buildability without producing an executable
 ----
 
-=== Dependencies
+== Dependencies
 
 In `+Cargo.toml+`:
 
@@ -30,7 +30,7 @@ In `+Cargo.toml+`:
 crate_name = "<version_number>"
 ----
 
-=== Code Organization
+== Code Organization
 
 Rust has a number of features that allow to manage the code’s
 organization, including which details are exposed, which details are
@@ -47,7 +47,7 @@ privacy of paths
 * *Paths*: A way of naming an item, such as a struct, function, or
 module
 
-==== Packages & Crates
+== Packages & Crates
 
 A crate is a binary or library. The crate root is a source file that the
 Rust compiler starts from and makes up the root module of he crate. +
@@ -75,7 +75,7 @@ Likewise, Cargo knows that if the package directory contains
 `+src/lib.rs+`, the package contains a library crate with the same name
 as the package, and `+src/lib.rs+` is its crate root.
 
-==== Modules
+== Modules
 
 Modules allow to organize code within a crate into groups for
 readability and easy reuse. Modules also control the privacy of items,
@@ -90,7 +90,7 @@ Inside modules, it’s possible to have other modules. Modules can also
 hold definitions for other items, such as structs, enums, constants,
 traits, or functions.
 
-==== Paths
+== Paths
 
 A path can take two forms:
 
@@ -111,7 +111,7 @@ crate::module::function();  // abs path (same crate)
 <crate_name>::module::function();  // abs path (other crate)
 ----
 
-==== Public vs Private
+== Public vs Private
 
 Modules aren’t useful only for organizing the code. They also define
 Rust’s privacy boundary: +
@@ -152,7 +152,7 @@ It’s possible make each field public or not on a case-by-case basis.
 In contrast, if an enum is made public, all of its variants are then
 public.
 
-==== `+use+`
+== `+use+`
 
 [source,rs]
 ----
@@ -169,7 +169,7 @@ pub use <crate_name>::module::*; // import all public items (Glob operator)
 module::function();  // use func w/ shorter path
 ----
 
-=== Separating into multiple files
+== Separating into multiple files
 
 [source,txt]
 ----

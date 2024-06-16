@@ -1,4 +1,4 @@
-== Collections Module
+= Collections Module
 
 [source,py]
 ----
