@@ -1,0 +1,311 @@
+== SQL
+
+=== DDL
+
+[source,sql]
+----
+show databases;    -- mostra database
+CREATE DATABASE <database>;    -- database creation
+use <database_name>;    -- usa un database particolare
+exit;    -- exit mysql
+
+show tables;    -- mostra tabelle del database
+
+-- INLINE COMMENT
+/* MULTI-LINE COMMENT */
+----
+
+==== Table Creation
+
+[source,sql]
+----
+CREATE TABLE <table_name>
+    (<field_name> <field_type> <option>,
+    ...);
+----
+
+==== PRIMARY KEY from multiple fields
+
+[source,sql]
+----
+CREATE TABLE <table_name>(
+    ...,
+    PRIMARY KEY (<field1>, ...),
+);
+----
+
+==== Table Field Options
+
+[source,sql]
+----
+PRIMARY KEY -- marks primary key as field option
+NOT NULL -- marks a necessary field
+REFERENCES <table> (<field>) -- adds foreign key reference
+UNIQUE (<field>) -- set field as unique (MySQL)
+<field> UNIQUE -- T-SQL
+----
+
+==== Table Modification
+
+[source,sql]
+----
+ALTER TABLE <table>
+    ADD PRIMARY KEY (<field>, ...),    -- definition of PK after table creation
+    ADD <field_name> <field_type> <option>;    -- addition of a new field, field will have no value in the table
+
+ALTER TABLE <table>
+    CHANGE <field_name> <new_name> <new_type>;
+    ALTER COLUMN <field_name> <new_name> <new_type>;    -- T-SQL
+
+ALTER TABLE <table>
+    DROP <field>;
+
+ALTER TABLE <table>
+    ADD FOREIGN KEY (<field>) REFERENCES <TABLE> (<FIELD>);
+----
+
+=== DML
+
+==== Data Insertion
+
+[source,sql]
+----
+INSERT INTO <table> (field_1, ...) VALUES (value_1, ...), (value_1, ...);
+INSERT INTO <table> VALUES (value_1, ...), (value_1, ...);    -- field order MUST respect tables's columns order
+----
+
+==== Data Update
+
+[source,sql]
+----
+UPDATE <table> SET <field> = <value>, <field> = <value>, ... WHERE <condition>;
+----
+
+==== Data Elimination
+
+[source,sql]
+----
+DELETE FROM <table> WHERE <condition>
+DELETE FROM <table> -- empty the table
+----
+
+=== Data Selection
+
+`+*+`: denotes all table fields
+
+[source,sql]
+----
+SELECT * FROM <table>;    -- show table contents
+SHOW columns FROM <table>;    -- show table columns
+DESCRIBE <table>;    -- shows table
+----
+
+==== Alias
+
+[source,sql]
+----
+SELECT <field> as <alias>; -- shows <field/funzione> with name <alias>
+----
+
+==== Conditional Selection
+
+[source,sql]
+----
+SELECT * FROM <table> WHERE <condition>;    -- shows elements that satisfy the condition
+AND, OR, NOT    -- logic connectors
+
+SELECT * FROM <table> WHERE <field> Between <value_1> AND <value_2>;
+----
+
+==== Ordering
+
+[source,sql]
+----
+SELECT * FROM <table> ORDER BY <field>, ...;    -- shows the table ordered by <field>
+SELECT * FROM <table> ORDER BY <field>, ... DESC;    -- shows the table ordered by <field>, decreasing order
+SELECT * FROM <table> ORDER BY <field>, ... LIMIT n;    -- shows the table ordered by <field>, shows n items
+SELECT TOP(n) * FROM <table> ORDER BY <field>, ...;    -- T-SQL
+----
+
+=== Grouping
+
+[source,sql]
+----
+SELECT * FROM <table> GROUP BY <field>;
+SELECT * FROM <table> GROUP BY <field> HAVING <condition>;
+SELECT DISTINCT <field> FROM <table>;    -- shows elements without repetitions
+----
+
+==== Ricerca caratteri in valori
+
+`+%+`: any number of characters
+
+[source,sql]
+----
+SELECT * FROM <table> WHERE <field> LIKE '<char>%';    -- selects items in <field> that start with <char>
+SELECT * FROM <table> WHERE <field> LIKE '%<char>';    -- selects items in <field> that end with <char>
+SELECT * FROM <table> WHERE <field> LIKE '%<char>%';    -- selects items in <field> that contain <char>
+SELECT * FROM <table> WHERE <field> NOT LIKE '%<char>%';    -- selects items in <field> that do not contain <char>
+----
+
+==== Selection from multiple tables
+
+[source,sql]
+----
+SELECT a.<field>, b.<field> FROM <table> AS a, <table> AS b
+    WHERE a.<field> ...;
+----
+
+=== Functions
+
+[source,sql]
+----
+SELECT COUNT(*) FROM <field>;    -- count of items in <field>
+SELECT MIN(*) FROM <table>;    -- min value
+SELECT MAX(*) FROM <table>;    -- max value
+SELECT AVG(*) FROM <table>;    -- mean of values
+ALL (SELECT ...)
+ANY (SELECT ...)
+----
+
+=== Nested Queries
+
+[source,sql]
+----
+SELECT * FROM <table> WHERE EXISTS (SELECT * FROM <table>)  -- selected field existing in subquery
+SELECT * FROM <table> WHERE NOT EXISTS (SELECT * FROM <table>)  -- selected field not existing in subquery
+----
+
+=== New table from data
+
+Create new table with necessary fields:
+
+[source,sql]
+----
+CREATE TABLE <table> (
+    (<field_name> <field_type> <option>,
+    ...);
+)
+----
+
+Fill fields with data from table:
+
+[source,sql]
+----
+INSERT INTO <table>
+    SELECT <fields> FROM <TABLE> WHERE <condition>;
+----
+
+=== Join
+
+[source,sql]
+----
+SELECT * FROM <table1> JOIN <table2> ON <table1>.<field> = <table2>.<field>;
+SELECT * FROM <table1> LEFT JOIN <table2> ON <condition>;
+SELECT * FROM <table1> RIGHT JOIN <table2> ON <condition>
+----
+
+https://www.diffen.com/difference/Inner_Join_vs_Outer_Join[Inner
+Join&#44; Left Join&#44; Right Join&#44; Full Outer Join]
+
+=== Multiple Join
+
+[source,sql]
+----
+SELECT * FROM <table1>
+JOIN <table2> ON <table1>.<field> = <table2>.<field>
+JOIN <table3> ON <table2>.<field> = <table3>.<field>;
+----
+
+https://stackoverflow.com/questions/176514/what-is-the-difference-between-char-nchar-varchar-and-nvarchar-in-sql-server[char&#44;
+nchar&#44; varchar&#44; nvarchar]
+
+'''''
+
+=== T-SQL (MSSQL Server)
+
+==== T-SQL Insert From table
+
+[source,sql]
+----
+USE [<db_name>]
+
+SET IDENTITY_INSERT [<destination_table>] ON
+
+INSERT INTO <table> (field_1, ...)
+
+SELECT (field_1, ...) FROM <source_table>
+
+SET IDENTITY_INSERT [<destination_table>] OFF
+----
+
+==== T-SQL Parametric Query
+
+[source,sql]
+----
+-- variable declaration
+DECLARE @var_name <type>
+
+-- init variable (input parameter)
+SET @var_name = <value>
+
+-- use in query (memorize data)
+SELECT @var_name = COUNT(*)  -- query won't show results in the "table view" since param is used in SELECT
+FROM <table> ...
+
+-- display message (query won't show results in the "table view")
+PRINT 'Text: ' + @var_name
+PRINT 'Text: ' + CONVERT(type, @var_name)  -- convert data before printing
+GO
+----
+
+==== T-SQL View
+
+A view represents a virtual table. Join multiple tables in a view and
+use the view to present the data as if the data were coming from a
+single table.
+
+[source,sql]
+----
+CREATE VIEW <name> AS
+SELECT * FROM <table> ...
+----
+
+==== T-SQL Stored Procedure
+
+https://docs.microsoft.com/en-us/sql/relational-databases/stored-procedures/create-a-stored-procedure[Stored
+Procedure How-To]
+https://docs.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql[T-SQL
+Stored Procedure]
+
+Stored Procedure Definition:
+
+[source,sql]
+----
+CREATE PROCEDURE <Procedure_Name>
+    -- Add the parameters for the stored procedure here
+    <@Param1> <Datatype_For_Param1> = <Default_Value_For_Param1>,
+    <@Param2> <Datatype_For_Param2>
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
+    SET NOCOUNT ON;  -- don't return number of selected rows
+
+    -- Insert statements for procedure here
+    SELECT ...
+END
+GO
+----
+
+Stored Procedure call in query:
+
+[source,sql]
+----
+USE <database>
+GO
+
+-- Stored Procedure call
+EXECUTE <Procedure_Name>
+-- or
+EXEC <Procedure_Name>
+----

@@ -1,0 +1,96 @@
+== Unittest Module
+
+[source,py]
+----
+import unittest
+import module_under_test
+
+class Test(unittest.TestCase):
+
+    def test_1(self):
+        self.assert*(output, expected_output)
+
+if __name__ == '__main__':
+    unittest.main()
+----
+
+=== TestCase Class
+
+Instances of the `+TestCase+` class represent the logical test units in
+the unittest universe. This class is intended to be used as a base
+class, with specific tests being implemented by concrete subclasses.
+This class implements the interface needed by the test runner to allow
+it to drive the tests, and methods that the test code can use to check
+for and report various kinds of failure.
+
+==== Assert Methods
+
+[cols=",",options="header",]
+|===
+|Method |Checks that
+|`+assertEqual(a, b)+` |`+a == b+`
+|`+assertNotEqual(a, b)+` |`+a != b+`
+|`+assertTrue(x)+` |`+bool(x) is True+`
+|`+assertFalse(x)+` |`+bool(x) is False+`
+|`+assertIs(a, b)+` |`+a is b+`
+|`+assertIsNot(a, b)+` |`+a is not b+`
+|`+assertIsNone(x)+` |`+x is None+`
+|`+assertIsNotNone(x)+` |`+x is not None+`
+|`+assertIn(a, b)+` |`+a in b+`
+|`+assertNotIn(a, b)+` |`+a not in b+`
+|`+assertIsInstance(a, b)+` |`+isinstance(a, b)+`
+|`+assertNotIsInstance(a, b)+` |`+not isinstance(a, b)+`
+|===
+
+[width="100%",cols="42%,58%",options="header",]
+|===
+|Method |Checks that
+|`+assertRaises(exc, fun, *args, **kwds)+` |`+fun(*args, **kwds)+`
+raises _exc_
+
+|`+assertRaisesRegex(exc, r, fun, *args, **kwds)+`
+|`+fun(*args, **kwds)+` raises _exc_ and the message matches regex `+r+`
+
+|`+assertWarns(warn, fun, *args, **kwds)+` |`+fun(*args, **kwds)+`
+raises warn
+
+|`+assertWarnsRegex(warn, r, fun, *args, **kwds)+`
+|`+fun(*args, **kwds)+` raises warn and the message matches regex _r_
+
+|`+assertLogs(logger, level)+` |The with block logs on logger with
+minimum level
+|===
+
+[width="100%",cols="28%,72%",options="header",]
+|===
+|Method |Checks that
+|`+assertAlmostEqual(a, b)+` |`+round(a-b, 7) == 0+`
+
+|`+assertNotAlmostEqual(a, b)+` |`+round(a-b, 7) != 0+`
+
+|`+assertGreater(a, b)+` |`+a > b+`
+
+|`+assertGreaterEqual(a, b)+` |`+a >= b+`
+
+|`+assertLess(a, b)+` |`+a < b+`
+
+|`+assertLessEqual(a, b)+` |`+a <= b+`
+
+|`+assertRegex(s, r)+` |`+r.search(s)+`
+
+|`+assertNotRegex(s, r)+` |`+not r.search(s)+`
+
+|`+assertCountEqual(a, b)+` |a and b have the same elements in the same
+number, regardless of their order.
+|===
+
+[cols=",",options="header",]
+|===
+|Method |Used to compare
+|`+assertMultiLineEqual(a, b)+` |strings
+|`+assertSequenceEqual(a, b)+` |sequences
+|`+assertListEqual(a, b)+` |lists
+|`+assertTupleEqual(a, b)+` |tuples
+|`+assertSetEqual(a, b)+` |sets or frozensets
+|`+assertDictEqual(a, b)+` |dicts
+|===
