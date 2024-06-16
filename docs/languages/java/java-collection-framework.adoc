@@ -1,4 +1,5 @@
 = Java Collection Framework - JCF
+:source-highlighter: highlight.js
 
 All classes that permit the handling of groups of objects constitute the
 Java Collection Framework.

@@ -1,4 +1,5 @@
 = Bash Commands
+:source-highlighter: highlight.js
 
 *Note*: Square brackets (`+[]+`) denotes optional
 commands/flags/arguments. Uppercase denotes placeholders for arguments.

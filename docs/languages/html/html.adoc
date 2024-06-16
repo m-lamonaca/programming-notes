@@ -1,4 +1,5 @@
 = HTML
+:source-highlighter: highlight.js
 
 == Terminology
 

@@ -1,4 +1,5 @@
 = PHP Unit Test
+:source-highlighter: highlight.js
 
 == Installation & Configuration
 

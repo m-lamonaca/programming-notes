@@ -1,5 +1,6 @@
 [[web-componentsweb-components-mdn]]
 = https://developer.mozilla.org/en-US/docs/Web/API/Web_Components[Web Components]
+:source-highlighter: highlight.js
 
 [[custom-elementsusing-cusotom-elements-mdn]]
 == https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements[Custom Elements]

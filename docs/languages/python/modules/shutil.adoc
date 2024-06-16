@@ -1,4 +1,5 @@
 = Shutil Module
+:source-highlighter: highlight.js
 
 High-level file operations
 

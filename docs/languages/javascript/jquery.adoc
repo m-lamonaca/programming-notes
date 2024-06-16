@@ -1,4 +1,5 @@
 = jQuery Library
+:source-highlighter: highlight.js
 
 == Including jQuery
 

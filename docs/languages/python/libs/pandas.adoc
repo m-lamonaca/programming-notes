@@ -1,4 +1,5 @@
 = Pandas
+:source-highlighter: highlight.js
 
 == Basic Pandas Imports
 

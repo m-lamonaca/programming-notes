@@ -1,4 +1,5 @@
 = Itertools Module
+:source-highlighter: highlight.js
 
 [source,py]
 ----

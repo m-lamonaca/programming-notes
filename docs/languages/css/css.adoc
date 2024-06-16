@@ -1,4 +1,5 @@
 = CSS
+:source-highlighter: highlight.js
 
 == Applying CSS to HTML
 

@@ -1,4 +1,5 @@
 = Macros
+:source-highlighter: highlight.js
 
 Fundamentally, *macros* are a way of _writing code that writes other
 code_, which is known as *metaprogramming*.

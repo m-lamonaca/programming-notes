@@ -1,4 +1,5 @@
 = Tkinter Module/Library
+:source-highlighter: highlight.js
 
 == Standard Imports
 

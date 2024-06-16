@@ -1,5 +1,6 @@
 [[gitgit]]
 = https://git-scm.com/[Git]
+:source-highlighter: highlight.js
 
 Git is a free and open source distributed
 https://en.wikipedia.org/wiki/Version_control[version control system]

@@ -1,4 +1,5 @@
 = CSV Module
+:source-highlighter: highlight.js
 
 [source,python]
 ----

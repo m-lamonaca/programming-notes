@@ -1,4 +1,5 @@
 = WebForms
+:source-highlighter: highlight.js
 
 == `+Page.aspx+`
 

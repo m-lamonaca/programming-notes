@@ -1,4 +1,5 @@
 = https://redux.js.org/[Redux]
+:source-highlighter: highlight.js
 
 Redux is a pattern and library for managing and updating application
 state, using events called _actions_. It serves as a centralized store

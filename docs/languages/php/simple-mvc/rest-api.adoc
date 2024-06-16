@@ -1,4 +1,5 @@
 = REST API with Simple-MVC
+:source-highlighter: highlight.js
 
 == Routing (Example)
 

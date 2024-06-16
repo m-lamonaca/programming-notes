@@ -1,4 +1,5 @@
 = Docker
+:source-highlighter: highlight.js
 
 == Images & Containers
 

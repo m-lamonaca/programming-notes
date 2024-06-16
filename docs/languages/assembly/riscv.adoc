@@ -1,5 +1,6 @@
 [[assembly-risc-vbook]]
 = https://riscv-programming.org/book/riscv-book.html[Assembly (RISC-V)]
+:source-highlighter: highlight.js
 
 Assembly programs are encoded as plain text files and contain four main
 elements:

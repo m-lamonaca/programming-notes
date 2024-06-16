@@ -1,4 +1,5 @@
 = AJAX
+:source-highlighter: highlight.js
 
 *AJAX*: Asynchronous JavaScript and XML
 

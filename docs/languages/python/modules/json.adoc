@@ -1,4 +1,5 @@
 = JSON Module
+:source-highlighter: highlight.js
 
 == JSON Format
 

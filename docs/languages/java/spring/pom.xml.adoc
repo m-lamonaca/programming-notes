@@ -1,4 +1,5 @@
 = pom.xml
+:source-highlighter: highlight.js
 
 File specifing project dependencies.
 

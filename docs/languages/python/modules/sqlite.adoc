@@ -1,4 +1,5 @@
 = sqlite3 Module
+:source-highlighter: highlight.js
 
 == Connecting To The Database
 

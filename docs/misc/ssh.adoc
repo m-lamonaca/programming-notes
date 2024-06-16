@@ -1,4 +1,5 @@
 = SSH
+:source-highlighter: highlight.js
 
 `+ssh+` is a program for logging into a remote machine and for executing
 commands on a remote machine. It is intended to provide secure encrypted

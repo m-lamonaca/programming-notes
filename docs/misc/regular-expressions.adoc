@@ -1,4 +1,5 @@
 = Common Regex Syntax
+:source-highlighter: highlight.js
 
 A *regular expression* is a _pattern_ that the regular expression engine
 attempts to match in input text. A pattern consists of one or more

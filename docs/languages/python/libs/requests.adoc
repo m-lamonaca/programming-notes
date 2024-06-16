@@ -1,4 +1,5 @@
 = Requests Lib
+:source-highlighter: highlight.js
 
 == GET REQUEST
 

@@ -1,4 +1,5 @@
 = PowerShell Scripting
+:source-highlighter: highlight.js
 
 Cmdlets are formed by a verb-noun pair. Cmdlets are case-insensitive.
 

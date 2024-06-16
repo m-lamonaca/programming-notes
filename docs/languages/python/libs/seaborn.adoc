@@ -1,4 +1,5 @@
 = Seaborn Lib
+:source-highlighter: highlight.js
 
 == Basic Imports For Seaborn
 

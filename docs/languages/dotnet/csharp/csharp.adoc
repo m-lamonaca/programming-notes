@@ -1,4 +1,5 @@
 = `+C#+`
+:source-highlighter: highlight.js
 
 *.NET* Core is a development platform that includes a *Common Language
 Runtime* (*CoreCLR*), which manages the execution of code, and a *Base

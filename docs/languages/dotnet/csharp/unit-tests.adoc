@@ -1,4 +1,5 @@
 = Unit Testing
+:source-highlighter: highlight.js
 
 https://stackoverflow.com/a/5666591/8319610[UnitTest Overloaded Methods]
 https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html[Naming

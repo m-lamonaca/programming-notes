@@ -1,4 +1,5 @@
 = Composer & Autoloading
+:source-highlighter: highlight.js
 
 == Autoloading
 

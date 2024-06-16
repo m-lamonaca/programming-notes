@@ -1,4 +1,5 @@
 = Reactive Extensions (Rx)
+:source-highlighter: highlight.js
 
 https://reactivex.io[ReactiveX]
 

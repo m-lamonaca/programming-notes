@@ -1,4 +1,5 @@
 = SignalR
+:source-highlighter: highlight.js
 
 The SignalR Hubs API enables to call methods on connected clients from
 the server. In the server code, define methods that are called by

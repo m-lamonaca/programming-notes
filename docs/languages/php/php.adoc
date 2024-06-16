@@ -1,4 +1,5 @@
 = PHP
+:source-highlighter: highlight.js
 
 https://www.php.net/docs.php[PHP Docs]
 

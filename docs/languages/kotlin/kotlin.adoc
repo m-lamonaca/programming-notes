@@ -1,4 +1,5 @@
 = Kotlin
+:source-highlighter: highlight.js
 
 == Package & Imports
 

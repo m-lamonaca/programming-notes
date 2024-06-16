@@ -1,4 +1,5 @@
 = Servlet
+:source-highlighter: highlight.js
 
 A Java servlet is a Java software component that extends the
 capabilities of a server. Although servlets can respond to many types of

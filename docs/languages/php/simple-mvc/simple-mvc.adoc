@@ -1,4 +1,5 @@
 = https://github.com/ezimuel/simplemvc[SimpleMVC] Mini-Framework
+:source-highlighter: highlight.js
 
 SimpleMVC is a micro MVC framework for PHP using
 https://github.com/nikic/FastRoute[FastRoute],

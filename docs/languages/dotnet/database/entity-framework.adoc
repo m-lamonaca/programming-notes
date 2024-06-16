@@ -1,4 +1,5 @@
 = Entity Framework
+:source-highlighter: highlight.js
 
 == Model & Data Annotations
 

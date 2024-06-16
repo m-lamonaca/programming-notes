@@ -1,4 +1,5 @@
 = Redux Testing
+:source-highlighter: highlight.js
 
 == Tests for Connected Components
 

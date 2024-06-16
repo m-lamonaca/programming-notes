@@ -1,4 +1,5 @@
 = Python Notes
+:source-highlighter: highlight.js
 
 == Basics
 

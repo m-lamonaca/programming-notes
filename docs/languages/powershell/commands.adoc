@@ -1,4 +1,5 @@
 = Powershell Commands
+:source-highlighter: highlight.js
 
 [source,ps1]
 ----

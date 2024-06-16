@@ -1,4 +1,5 @@
 = Rust
+:source-highlighter: highlight.js
 
 == Basics
 

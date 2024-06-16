@@ -1,4 +1,5 @@
 = Dependency Injection
+:source-highlighter: highlight.js
 
 Explicit definition of a class dependencies with the injection through
 the constructor or _getters_/_setters_.

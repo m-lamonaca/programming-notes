@@ -1,4 +1,5 @@
 = https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters[Filters]
+:source-highlighter: highlight.js
 
 *Filters* in ASP.NET Core allow code to be run _before_ or _after_
 specific stages in the request processing pipeline.

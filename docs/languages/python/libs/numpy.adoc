@@ -1,4 +1,5 @@
 = NumPy Lib
+:source-highlighter: highlight.js
 
 == MOST IMPORTANT ATTRIBUTES ATTRIBUTES
 

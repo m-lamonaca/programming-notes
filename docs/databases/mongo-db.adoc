@@ -1,4 +1,5 @@
 = MongoDB
+:source-highlighter: highlight.js
 
 The database is a container of *collections*. The collections are
 containers of *documents*.

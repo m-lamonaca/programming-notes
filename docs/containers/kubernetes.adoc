@@ -1,4 +1,5 @@
 = Kubernetes (`+k8s+`)
+:source-highlighter: highlight.js
 
 == Cluster Architecture
 

@@ -1,4 +1,5 @@
 = Blazor
+:source-highlighter: highlight.js
 
 Blazor apps are based on _components_. A *component* in Blazor is an
 element of UI, such as a page, dialog, or data entry form.

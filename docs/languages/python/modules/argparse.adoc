@@ -1,4 +1,5 @@
 = Argpasrse Module
+:source-highlighter: highlight.js
 
 == Creating a parser
 

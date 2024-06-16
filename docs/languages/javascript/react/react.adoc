@@ -1,4 +1,5 @@
 = React
+:source-highlighter: highlight.js
 
 == Components
 

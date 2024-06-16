@@ -1,4 +1,5 @@
 = Markdown Notes
+:source-highlighter: highlight.js
 
 == Headings
 

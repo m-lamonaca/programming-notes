@@ -1,4 +1,5 @@
 = Ftplib Module
+:source-highlighter: highlight.js
 
 == FTP CLASSES
 

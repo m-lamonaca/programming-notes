@@ -1,4 +1,5 @@
 = Databases in PHP
+:source-highlighter: highlight.js
 
 [[php-data-objects-pdopdo]]
 == PHP Data Objects (https://www.php.net/manual/en/book.pdo.php[PDO])

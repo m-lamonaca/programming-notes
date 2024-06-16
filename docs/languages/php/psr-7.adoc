@@ -1,4 +1,5 @@
 = PSR-7
+:source-highlighter: highlight.js
 
 == https://www.php-fig.org/psr/psr-7/[PSR-7]
 

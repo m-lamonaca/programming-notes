@@ -1,4 +1,5 @@
 = https://svelte.dev/docs[Svelte]
+:source-highlighter: highlight.js
 
 [source,sh]
 ----

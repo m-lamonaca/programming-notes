@@ -1,4 +1,5 @@
 = Unit Tests
+:source-highlighter: highlight.js
 
 == Test Functions
 

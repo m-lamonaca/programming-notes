@@ -1,4 +1,5 @@
 = Document Object Model (DOM)
+:source-highlighter: highlight.js
 
 The *Document Object Model* is a _map_ of the HTML document. Elements in
 an HTML document can be accessed, changed, deleted, or added using the

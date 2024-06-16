@@ -1,4 +1,5 @@
 = https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware[Middleware]
+:source-highlighter: highlight.js
 
 Middleware is software that’s assembled into an app pipeline to handle
 requests and responses. Each component:

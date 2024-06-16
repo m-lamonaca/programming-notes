@@ -1,4 +1,5 @@
 = LINQ
+:source-highlighter: highlight.js
 
 == LINQ to Objects
 

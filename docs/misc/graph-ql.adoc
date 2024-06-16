@@ -1,4 +1,5 @@
 = GraphQL
+:source-highlighter: highlight.js
 
 https://www.howtographql.com/[How to GraphQL - The Fullstack Tutorial
 for GraphQL]
