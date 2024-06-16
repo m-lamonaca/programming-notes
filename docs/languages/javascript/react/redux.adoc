@@ -115,7 +115,7 @@ const rootReducer = combineReducers({
 });
 ----
 
-*Note*: multiple reducers can be triggered by the same action since each
+NOTE: multiple reducers can be triggered by the same action since each
 one operates on a different portion of the state.
 
 == https://react-redux.js.org/[React-Redux]
@@ -200,7 +200,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Component);
 
 == Async Operations with https://github.com/reduxjs/redux-thunk[Redux-Thunk]
 
-*Note*: Redux middleware runs _after_ and action and _before_ it’s
+NOTE: Redux middleware runs _after_ and action and _before_ it’s
 reducer.
 
 Redux-Thunk allows to return functions instead of objects from action
@@ -431,7 +431,7 @@ creators and action types that correspond to the reducers and state.
 Internally, it uses `+createAction+` and `+createReducer+`, so it’s
 possible to use Immer to write "`mutating`" immutable updates.
 
-*Note*: action types will have the `+<slice-name>/<reducer-name>+`
+NOTE: action types will have the `+<slice-name>/<reducer-name>+`
 shape.
 
 [source,js]

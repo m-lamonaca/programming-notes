@@ -443,7 +443,7 @@ immutable data models. The record type offers the following features:
 ** Built-in formatting for display
 * Support for inheritance hierarchies
 
-*Note*: A _positional record_ and a _positional readonly record struct_
+NOTE: A _positional record_ and a _positional readonly record struct_
 declare init-only properties. A _positional record struct_ declares
 read-write properties.
 
@@ -474,7 +474,7 @@ accordingly.
 protected Record(Record original) { /* copy all the fields */ } // generated
 ----
 
-*Note*: it’s possible to define a custom copy constructor tha will be
+NOTE: it’s possible to define a custom copy constructor tha will be
 picked up by the `+with+` expression.
 
 == `+with+`-expressions & Inheritance
@@ -592,7 +592,7 @@ string longMessage = """
     """;
 ----
 
-*Note*: Any whitespace to the left of the closing double quotes will be
+NOTE: Any whitespace to the left of the closing double quotes will be
 removed from the string literal.
 
 Raw string literals can be combined with _string interpolation_ to
@@ -620,7 +620,7 @@ Any nullable value type is an instance of the generic
 Refer to a nullable value type with an underlying type `+T+` in any of
 the following interchangeable forms: `+Nullable<T>+` or `+T?+`.
 
-*Note*: Nullable Value Types default to `+null+`.
+NOTE: Nullable Value Types default to `+null+`.
 
 When a nullable type is boxed, the common language runtime automatically
 boxes the underlying value of the `+Nullable<T>+` object, not the
@@ -1229,10 +1229,10 @@ foreach (type item in iterabile)
 }
 ----
 
-*Note*: Due to the use of an _iterator_, the variable declared in a
+NOTE: Due to the use of an _iterator_, the variable declared in a
 foreach statement cannot be used to modify the value of the current
 item. +
-*Note*: From C# 9 it’s possible to implement `+GetEnumerator()+` as an
+NOTE: From C# 9 it’s possible to implement `+GetEnumerator()+` as an
 _extension method_ making enumerable an class that normally isn’t.
 
 Example:
@@ -1294,7 +1294,7 @@ It is done by editing the `+.csproj+` file, adding
 `+<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>+` inside a
 `+<PropertyGroup>+`.
 
-*Note*: checking can make individual integer operations several times
+NOTE: checking can make individual integer operations several times
 slower.
 
 [source,cs]
@@ -1513,7 +1513,7 @@ MethodName(value1);  // use defaults for optional arguments
 MethodName(required: value, secondOptional: value);  // use default for first optional but pass second optional
 ----
 
-*Note*: If the caller provides an argument for any one of a succession
+NOTE: If the caller provides an argument for any one of a succession
 of optional parameters, it must provide arguments for all preceding
 optional parameters. Comma-separated gaps in the argument list are not
 supported.
@@ -1548,7 +1548,7 @@ Use cases:
 copying large amounts of data (must be readonly, copied regardless
 otherwise)
 
-*Note*: use `+in+` only with readonly value types, because mutable value
+NOTE: use `+in+` only with readonly value types, because mutable value
 types can undo the performance benefits. (Mutable value types are
 typically a bad idea in any case.)
 
@@ -1624,7 +1624,7 @@ defined. +
 It’s just an illusion maintained by the C# compiler, one that it keeps
 up even in situations where method invocation happens implicitly.
 
-*Note*: Extension Method can be declared only inside static classes.
+NOTE: Extension Method can be declared only inside static classes.
 Extension methods are available only if their namespace is imported with
 the `+using+` keyword.
 
@@ -1659,7 +1659,7 @@ time the iterator function is called.
 It’s possible to use a `+yield break+` statement or exception to end the
 iteration.
 
-*Note*: Since an iterator returns an `+IEnumerable<T>+` is can be used
+NOTE: Since an iterator returns an `+IEnumerable<T>+` is can be used
 to implement a `+GetEnumerator()+`.
 
 [source,cs]
@@ -1731,7 +1731,7 @@ public struct Point
 }
 ----
 
-*Note*: From C# 10 is possible to have a parameterless constructor and
+NOTE: From C# 10 is possible to have a parameterless constructor and
 make a new struct using a `+with+` statement. *Note*: From C# 11
 uninitialized values will be filed with their defaults
 
@@ -1829,7 +1829,7 @@ class Class(Type Parameter, ...)  // primary constructor (like records)
 }
 ----
 
-*Note*: if a _primary constructor_ is used all other constructors must
+NOTE: if a _primary constructor_ is used all other constructors must
 use `+this(...)+` to invoke it
 
 == Properties & Fields
@@ -1892,7 +1892,7 @@ class Class
 }
 ----
 
-*Note*: The `+init+` accessor is a variant of the `+set+` accessor which
+NOTE: The `+init+` accessor is a variant of the `+set+` accessor which
 can only be called during object initialization. +
 Because `+init+` accessors can only be called during initialization,
 they are allowed to _mutate_ `+readonly+` fields of the enclosing class,
@@ -2097,7 +2097,7 @@ modifier because the two modifiers have opposite meanings. The
 actual implementations of all inherited `+abstract+` methods and
 accessors.
 
-*Note*: Use the `+abstract+` modifier in a method or property
+NOTE: Use the `+abstract+` modifier in a method or property
 declaration to indicate that the method or property does not contain
 implementation.
 
@@ -2164,7 +2164,7 @@ Deconstruction is not limited to tuples. By providing a
 `+Deconstruct(...)+` method(s) C# allows to use the same syntax with the
 users types.
 
-*Note*: Types with a deconstructor can also use _positional pattern
+NOTE: Types with a deconstructor can also use _positional pattern
 matching_.
 
 [source,cs]
@@ -2311,7 +2311,7 @@ But a nested type does have a containing type, so if a nested type is
 `+private+`, that type can be used only from inside the type within
 which it is nested.
 
-*Note*: Code in a nested type is allowed to use nonpublic members of its
+NOTE: Code in a nested type is allowed to use nonpublic members of its
 containing type. However, an instance of a nested type does not
 automatically get a reference to an instance of its containing type.
 
@@ -2374,7 +2374,7 @@ IContract.StaticProperty;
 IContract.StaticMethod();
 ----
 
-*Note*: Interfaces are reference types. Despite this, it’s possible tp
+NOTE: Interfaces are reference types. Despite this, it’s possible tp
 implement interfaces on both classes and structs. +
 However, be careful when doing so with a struct, because when getting
 hold of an interface-typed reference to a struct, it will be a reference
@@ -2490,7 +2490,7 @@ fields, methods, and other members, +
 both public and private—an instance of the derived class can do anything
 an instance of the base could do.
 
-*Note*: When deriving from a class, it’s not possible to make the
+NOTE: When deriving from a class, it’s not possible to make the
 derived class more visible than its base. This restriction does not
 apply to interfaces. +
 A `+public+` class is free to implement `+internal+` or `+private+`
@@ -2623,7 +2623,7 @@ nor contravariant.
 .covariance-vs-contravariance
 image::../../../img/dotnet_covariant_contravariant.png[covariance-vs-contravariance]
 
-*Note*: annotate generic type parameters with `+out+` and `+in+`
+NOTE: annotate generic type parameters with `+out+` and `+in+`
 annotations to specify whether they should behave covariantly or
 contravariantly.
 
@@ -2699,7 +2699,7 @@ multicastDelegate += Method;  // add method to delegate
 multicastDelegate -= Method;  // remove method from delegate
 ----
 
-*Note*: Delegate removal behaves in a potentially surprising way if the
+NOTE: Delegate removal behaves in a potentially surprising way if the
 delegate removed refers to multiple methods. +
 Subtraction of a multicast delegate succeeds only if the delegate from
 which subtract contains all of the methods in the delegate being
@@ -2724,7 +2724,7 @@ multicastDelegate.GetInvocationList();  // list of methods called by the delegat
 
 == Common Delegate Types
 
-*Note*: Each delegate has an overload taking from zero to 16 arguments;
+NOTE: Each delegate has an overload taking from zero to 16 arguments;
 
 [source,cs]
 ----
@@ -2934,7 +2934,7 @@ They also generate an executable file too, but it’s not a .NET assembly.
 It’s just a bootstrapper that starts the runtime and then loads and
 executes your application’s main assembly.
 
-*Note*: C# compiles to a binary intermediate language (IL), which is not
+NOTE: C# compiles to a binary intermediate language (IL), which is not
 directly executable. +
 The normal Windows mechanisms for loading and running the code in an
 executable or DLL won’t work with IL, because that can run only with the
@@ -3079,7 +3079,7 @@ other version number, either they match or one is higher than the other.
 The build system tells the compiler which version number to use for the
 assembly name via an assembly-level attribute.
 
-*Note*: NuGet packages also have version numbers, and these do not need
+NOTE: NuGet packages also have version numbers, and these do not need
 to be connected in any way to assembly versions. NuGet does treat the
 components of a package version number as having particular
 significance: it has adopted the widely used _semantic versioning_
@@ -3167,7 +3167,7 @@ annotation.
 [AttrName(Name = value)]  // valorize public properties or fields (no constructor needed)
 ----
 
-*Note*: The real name of an attribute ends with "`Attribute`"
+NOTE: The real name of an attribute ends with "`Attribute`"
 (`+[AttrName]+` refers to the `+AttrNameAttribute+` class)
 
 == Multiple Attributes
@@ -3194,7 +3194,7 @@ public class CustomAttribute : Attribute
 }
 ----
 
-*NOTE*: From C# 11 attributes can be generic and have type constraints
+NOTE: From C# 11 attributes can be generic and have type constraints
 
 == Retrieving Attributes
 
@@ -3261,7 +3261,7 @@ The reason `+Read+` is slightly tricky is that some streams are live,
 representing a source of information that produces data gradually as the
 program runs.
 
-*Note*: If asked for more than one byte at a time, a `+Stream+` is
+NOTE: If asked for more than one byte at a time, a `+Stream+` is
 always free to return less data than requested from Read for any reason.
 Never presume that a call to `+Read+` returned as much data as it could.
 
@@ -3303,7 +3303,7 @@ buffered data. +
 It is particularly important if there will be extended periods during
 which the stream is open but inactive.
 
-*Note*: When using a `+FileStream+`, the `+Flush+` method does not
+NOTE: When using a `+FileStream+`, the `+Flush+` method does not
 necessarily guarantee that the data being flushed has made it to disk
 yet. It merely makes the stream pass the data to the OS. +
 Before calling `+Flush+`, the OS hasn’t even seen the data, so if the
@@ -3462,7 +3462,7 @@ call `+Dispose+`.
 * `+EncryptedEncrypts+`: the file so that its contents cannot be read by
 other users.
 
-*Note*: The `+WriteThrough+` flag will ensure that when the stream is
+NOTE: The `+WriteThrough+` flag will ensure that when the stream is
 disposed or flushed, all the data written will have been delivered to
 the drive, but the drive will not necessarily have written that data
 persistently (drives can defer writing for performance), so data loss id
@@ -3613,7 +3613,7 @@ Serialization works directly with an object’s fields. It uses
 reflection, which enables it to access all members, whether public or
 private.
 
-*Note*: CLR Serialization produces binary streams in a .NET specific
+NOTE: CLR Serialization produces binary streams in a .NET specific
 format
 
 '''''
@@ -3679,7 +3679,7 @@ Span<int> numbers = stackalloc int[] { 1, 2, 3 };
 var first = numbers[0];
 ----
 
-*Note*: Normally, C# won’t allow to use `+stackalloc+` outside of code
+NOTE: Normally, C# won’t allow to use `+stackalloc+` outside of code
 marked as unsafe, since it allocates memory on the stack producing a
 pointer. However, the compiler makes an exception to this rule when
 assigning the pointer produced by a `+stackalloc+` expression directly
@@ -3714,7 +3714,7 @@ This restriction is necessary for .NET to be able to offer the
 combination of array-like performance, type safety, and the flexibility
 to work with multiple different containers.
 
-*Note*: it’s possible to use spans in local methods, and even declare a
+NOTE: it’s possible to use spans in local methods, and even declare a
 ref struct variable in the outer method and use it from the nested one,
 but with one restriction: it’s not possible a delegate that refers to
 that local method, because this would cause the compiler to move shared

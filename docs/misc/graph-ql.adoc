@@ -105,7 +105,7 @@ enum Type{
 }
 ----
 
-*Note*: GraphQL service implementations in various languages will have
+NOTE: GraphQL service implementations in various languages will have
 their own language-specific way to deal with enums. In languages that
 support enums as a first-class citizen, the implementation might take
 advantage of that; in a language like JavaScript with no enum support,
@@ -171,7 +171,7 @@ those might be of several different types.
 union Union = TypeA | TypeB | TypeC
 ----
 
-*Note*: members of a union type need to be _concrete_ object types; it’s
+NOTE: members of a union type need to be _concrete_ object types; it’s
 not possible to create a union type out of interfaces or other unions.
 
 == Input Type

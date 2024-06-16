@@ -600,7 +600,7 @@ let func = (value) => ({property: value});
 
 An object is a collection of related data and/or functionality.
 
-*Note*: It’s not possible to transform a variable in an object simply by
+NOTE: It’s not possible to transform a variable in an object simply by
 using the object assignment.
 
 [source,js]
@@ -986,7 +986,7 @@ if(date1 > date2){
 https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSRequestNotHttp[Firefox
 CORS not HTTP]
 
-*Note*: Firefox 68 and later define the origin of a page opened using a
+NOTE: Firefox 68 and later define the origin of a page opened using a
 `+file:///+` URI as unique. Therefore, other resources in the same
 directory or its subdirectories no longer satisfy the CORS same-origin
 rule. This new behavior is enabled by default using the

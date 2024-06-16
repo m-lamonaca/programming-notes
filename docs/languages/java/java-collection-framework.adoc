@@ -61,7 +61,7 @@ collection;
 
 == ArrayList
 
-*Note*: ArrayLists can’t contain _primitive_ values. _Use wrapper
+NOTE: ArrayLists can’t contain _primitive_ values. _Use wrapper
 classes_ instead.
 
 [source,java]

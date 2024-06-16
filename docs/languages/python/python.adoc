@@ -966,7 +966,7 @@ create an iterator that tries to retrieve the items in order, starting
 from the index `+0+`
 * on failure it returns `+TypeError+`
 
-*Note*: `+abc.Iterable+` does not check for the presence of
+NOTE: `+abc.Iterable+` does not check for the presence of
 `+__getitem__+` to decide if a sub-object is a member therefore the best
 test for iterability is to use `+iter()+` and handle exceptions.
 
@@ -1079,7 +1079,7 @@ coroutine.close()
 
 == `+yield from <iterabile>+`
 
-*Note*: auto-priming generators incompatible with `+yield from+`
+NOTE: auto-priming generators incompatible with `+yield from+`
 
 *DELEGATING GENERATOR*: generator function containing `+yield from+`
 *SUBGENERATOR*: generator obtained from `+yield from+` *CALLER-CLIENT*:
@@ -1264,7 +1264,7 @@ del object # delete object
 
 === Special Methods List
 
-*Note*: if the operator cannot be applied, returns `+NotImplemented+`
+NOTE: if the operator cannot be applied, returns `+NotImplemented+`
 
 [source,py]
 ----
@@ -1417,7 +1417,7 @@ __getattr__(self, name)
 __setattr__(self, name, value)
 ----
 
-*Note*: Itearbility is tricky.
+NOTE: Itearbility is tricky.
 
 To make an object directly iterable (`+for i in object+`) `+__iter__()+`
 and `+__next__()+` are needed. To make an iterable through an index
@@ -1474,7 +1474,7 @@ class Child(Parent): # parent class in brackets to inherit properties
 
 == Polymorphism
 
-*Note*: python does not support method overloading
+NOTE: python does not support method overloading
 
 [source,py]
 ----
@@ -1627,7 +1627,7 @@ Open binary file mode:
 * `+xb+`: exclusive creation, if the file already exists ->
 `+FileExistError+` (extended write mode)
 
-*Note*: Linux and MacOSX use `+UTF-8+` everywhere while windows uses
+NOTE: Linux and MacOSX use `+UTF-8+` everywhere while windows uses
 `+cp1252+`, `+cp850+`,`+mbcs+`, `+UTF-8+`. Don’t rely on default
 encoding and use *explicitly* `+UTF-8+`.
 

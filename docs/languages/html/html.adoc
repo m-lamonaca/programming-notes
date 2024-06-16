@@ -469,7 +469,7 @@ string or in the server logs
 </form>
 ----
 
-*Note*: The `+<label>+` tag is used to define the labels for `+<input>+`
+NOTE: The `+<label>+` tag is used to define the labels for `+<input>+`
 elements.
 
 Input Attributes:
@@ -490,7 +490,7 @@ One line areas that allow the user to input text.
 <input type="text" placeholder="placeholder-text" spellcheck="true" pattern="\regex\">
 ----
 
-*Note*: Text inputs can display a placeholder text that will disappear
+NOTE: Text inputs can display a placeholder text that will disappear
 as soon as some text is entered
 
 == Password Field

@@ -69,7 +69,7 @@ driver for multiple databases. Its possible to disable this behaviour
 setting `+PDO::ATTR_STRINGIFY_FETCHES+` and
 `+PDO::ATTR_EMULATE_PREPARES+` as `+false+`.
 
-*Note*: `+FETCH_OBJ+` abd `+FETCH_CLASS+` return classes and don’t have
+NOTE: `+FETCH_OBJ+` abd `+FETCH_CLASS+` return classes and don’t have
 this behaviour.
 
 [source,php]
@@ -110,7 +110,7 @@ $result->finalize();  // close result set, recommended calling before another ex
 $records = $results->fetchArray(SQLITE3_ASSOC);  // extract records as array (false if no results)
 ----
 
-*Note*: Result set objects retrieved by calling
+NOTE: Result set objects retrieved by calling
 `+SQLite3Stmt::execute()+` on the same statement object are not
 independent, but rather share the same underlying structure. Therefore
 it is recommended to call `+SQLite3Result::finalize()+`, before calling

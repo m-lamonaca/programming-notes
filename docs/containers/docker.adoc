@@ -166,7 +166,7 @@ docker run --entrypoint <executable> <args> <image>  # run with a non-default en
 docker run --name=<container_name> <image>  # set container name
 ----
 
-*Warn*: `+<image>+` must be last argument
+WARN: `+<image>+` must be last argument
 
 == https://docs.docker.com/engine/reference/commandline/container/[`+docker container+`]
 
@@ -342,7 +342,7 @@ containers. Cannot run multiple containers on the same port.
 * *None*: Containers are not attached to a network and cannot access
 other containers or the external network.
 
-*Note*: Mapping `+host-gateway+` to an hostname allows the container to
+NOTE: Mapping `+host-gateway+` to an hostname allows the container to
 reach the host network even with networks types different from `+host+`
 
 == User-defined Networks

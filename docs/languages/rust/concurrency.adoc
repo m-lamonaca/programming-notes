@@ -54,7 +54,7 @@ Getting a value back out of the thread is done by returning it from the
 closure. This return value can be obtained from the `+Result+` returned
 by the `+join+` method.
 
-*Note*: if a thread panics the handle will return the panic message so
+NOTE: if a thread panics the handle will return the panic message so
 that it can be handled.
 
 [source,rs]
@@ -79,7 +79,7 @@ outlive said scope. This makes possible to borrow data that outlives the
 scope. This is possible since the scope `+spawn+` function does not have
 a `+'static+` bound.
 
-*Note*: it’s not possible to spawn multiple threads sharing the same
+NOTE: it’s not possible to spawn multiple threads sharing the same
 data is one of the is mutating it.
 
 [source,rs]
@@ -136,7 +136,7 @@ words, any type `+T+` is `+Sync+` if `+&T+` (an immutable reference to
 thread. Similar to `+Send+`, primitive types are `+Sync+`, and types
 composed entirely of types that are `+Sync+`are also `+Sync+`.
 
-*Note*: All primitive types such as `+i32+`, `+bool+`, and `+str+` are
+NOTE: All primitive types such as `+i32+`, `+bool+`, and `+str+` are
 both `+Send+` and `+Sync+`.
 
 == Locking: Protecting Shared Data
@@ -197,7 +197,7 @@ holding the lock. Calling `+lock()+` on a poisoned mutex will return an
 `+Err+`. This poisoning mechanism protects against accessing data that
 may be in an inconsistent state.
 
-*Note*: The lock is still acquired and the `+Err+` variant contains the
+NOTE: The lock is still acquired and the `+Err+` variant contains the
 guard, allowing to correct the data inconsistency.
 
 == Reader-Writer Lock
@@ -241,7 +241,7 @@ is still recorded, and the next time the thread tries to park itself, it
 clears that request and directly continues without actually going to
 sleep.
 
-*Note*: calls to `+unpark()+` do not stack up.
+NOTE: calls to `+unpark()+` do not stack up.
 
 == Condition Variables
 
@@ -307,7 +307,7 @@ impl AtomicI32 {
 The `+load+` method atomically loads the value stored in the atomic
 variable, and the `+store+` method atomically stores a new value in it.
 
-*Note*: the store method takes a shared reference (`+&T+`) even though
+NOTE: the store method takes a shared reference (`+&T+`) even though
 it modifies itself.
 
 == Fetch-and-Modify Operations
@@ -561,7 +561,7 @@ atom.load(Relaxed);
 fence(Acquire);
 ----
 
-*Note*: Using a separate fence can result in an extra processor
+NOTE: Using a separate fence can result in an extra processor
 instruction which can be slightly less efficient. *Note*: A fence is not
 tied to any single atomic variable. This means that a single fence can
 be used for multiple variables at once.

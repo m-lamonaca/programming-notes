@@ -128,7 +128,7 @@ itself
 <button on:event|modifier={eventHandler}>
 ----
 
-*Note*: It’s possible to chain modifiers together,
+NOTE: It’s possible to chain modifiers together,
 e.g. `+on:click|once|capture={...}+`.
 
 == Binding

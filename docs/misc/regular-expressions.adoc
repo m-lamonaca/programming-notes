@@ -27,7 +27,7 @@ general category or named block specified by _name_.
 * `+\d+`: matches any decimal digit.
 * `+\D+`: matches any character other than a decimal digit.
 
-*Note*: `+^+`, `+\+`, `+-+` and `+]+` must be escaped to be used in
+NOTE: `+^+`, `+\+`, `+-+` and `+]+` must be escaped to be used in
 ranges. (`+[ \] \[ \^ \- ]+`)
 
 == Anchors
@@ -65,7 +65,7 @@ right based on the order of the opening parentheses in the regular
 expression, starting from `+1+`. The capture that’s numbered `+0+` is
 the text matched by the entire regular expression pattern.
 
-*Note*: named capture groups are always ordered last, after non-named
+NOTE: named capture groups are always ordered last, after non-named
 capture groups.
 
 It’s possible to access the captured group in the following ways:

@@ -166,7 +166,7 @@ class ClassTest extends TestCase
 }
 ----
 
-*Note*: `+setUp()+` and `+tearDown()+` are called _before_ and _after_
+NOTE: `+setUp()+` and `+tearDown()+` are called _before_ and _after_
 each test method.
 
 == Data Provider

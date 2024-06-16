@@ -17,7 +17,7 @@ ssh user@destination -g  # allow remote hosts to connect to local forwarded port
 ssh user@destination -t  # force pseudo-tty emulation
 ----
 
-*Note*: use `+~+` while connected to use the "`ssh console`".
+NOTE: use `+~+` while connected to use the "`ssh console`".
 
 == Jump-Hosts
 

@@ -482,7 +482,7 @@ each selector type:
 * `+0-0-0+`: Universal selector (`+*+`), combinators (`+++`, `+>+`,
 `+~+`, `+||+`) and negation pseudo-class `+:not()+`
 
-*Note*: The selectors declared inside `+:not()+` contribute to the
+NOTE: The selectors declared inside `+:not()+` contribute to the
 weight.
 
 == https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units[Units]
@@ -654,7 +654,7 @@ selector {
 }
 ----
 
-*Note*: `+width+` and `+height+` properties do not have effect on inline
+NOTE: `+width+` and `+height+` properties do not have effect on inline
 elements.
 
 == Hiding Elements
@@ -700,7 +700,7 @@ selector {
 }
 ----
 
-*Note*: Padding adds to the total size of the box, unless
+NOTE: Padding adds to the total size of the box, unless
 `+box-sizing: border-box;+` is used.
 
 == Border
@@ -747,7 +747,7 @@ selector {
 }
 ----
 
-*Note*: Border adds to the total size of the box,
+NOTE: Border adds to the total size of the box,
 `+unless box-sizing: border-box;+` is used
 
 == Box Sizing
@@ -784,7 +784,7 @@ selector {
 }
 ----
 
-*Note*: Top and bottom margins of near elements are collapsed into a
+NOTE: Top and bottom margins of near elements are collapsed into a
 single margin that is equal to the largest of the two margins.
 
 == https://developer.mozilla.org/en-US/docs/Web/CSS/position[Element Positioning]

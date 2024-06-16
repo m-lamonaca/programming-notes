@@ -176,7 +176,7 @@ In the JavaScript call the jQuery plugin on the DOM:
 $("form").validate();
 ----
 
-*Note*: always link to the
+NOTE: always link to the
 https://developers.google.com/speed/docs/insights/MinifyResources[minified]
 js files.
 

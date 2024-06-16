@@ -48,7 +48,7 @@ Declaration instructions:
 * `+dq+`: declare quad word (8 bytes)
 * `+equ+`: set a name to the value of an expression
 
-*Note*: See the NASM manual, section 3.2.1 for the full list. *Note*:
+NOTE: See the NASM manual, section 3.2.1 for the full list. *Note*:
 all byte declarations are
 https://en.wikipedia.org/wiki/Endianness[Little Endian]
 
@@ -165,5 +165,5 @@ shr rsi, 2  ; right (logical) bitshift: equivalent to rsi >> 2
 shl rsi, 3  ; left (logical) bitshift: equivalent to rsi << 3
 ----
 
-*Note*: there’s `+sar+` for arithmetic right shift and `+sal+` for
+NOTE: there’s `+sar+` for arithmetic right shift and `+sal+` for
 arithmetic shift left.

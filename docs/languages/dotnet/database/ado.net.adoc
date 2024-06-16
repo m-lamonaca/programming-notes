@@ -23,7 +23,7 @@ provider for SQLite]
 * MARS:
 `+Server=<server_name>; Database=<database>; Trusted_Connection=True; MultipleActiveResultSets=True;+`
 
-*Note*: _Multiple Active Result Sets_ (MARS) is a feature that works
+NOTE: _Multiple Active Result Sets_ (MARS) is a feature that works
 with SQL Server to allow the execution of multiple batches on a single
 connection.
 

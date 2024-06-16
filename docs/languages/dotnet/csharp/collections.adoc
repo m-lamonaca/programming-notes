@@ -155,7 +155,7 @@ called.
 It’s possible to use a `+yield break+` statement or exception to end the
 iteration.
 
-*Note*: Since an iterator returns an `+IEnumerable<T>+` is can be used
+NOTE: Since an iterator returns an `+IEnumerable<T>+` is can be used
 to implement a `+GetEnumerator()+`.
 
 [source,cs]
@@ -196,7 +196,7 @@ public interface IEnumerator<T>
 }
 ----
 
-*Note*: must call `+Dispose()+` on enumerators once finished with them,
+NOTE: must call `+Dispose()+` on enumerators once finished with them,
 because many of them rely on this. `+Reset()+` is legacy and can, in
 some situations, throw `+NotSupportedException()+`.
 

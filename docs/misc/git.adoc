@@ -123,7 +123,7 @@ history from remote +
 `+git clone --shallow+`: clone only repo files, not history of commits +
 `+git clone --depth <depth>+`: clone only last `+<depth>+` commits
 
-*Note*: for a in depth explanation of `+--force-if-includes+` see
+NOTE: for a in depth explanation of `+--force-if-includes+` see
 https://stackoverflow.com/a/65839129[this]
 
 == Viewing Project History

@@ -1,7 +1,7 @@
 = Minimal API
 :source-highlighter: highlight.js
 
-*Note*: Requires .NET 6+
+NOTE: Requires .NET 6+
 
 [source,cs]
 ----

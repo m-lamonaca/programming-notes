@@ -1153,7 +1153,7 @@ outStream.println("");
 outStream.close()  // close stream and write buffer contents.
 ----
 
-*Note*: writing operations do not write directly on the file. The sent
+NOTE: writing operations do not write directly on the file. The sent
 data is collected in a *buffer*. When the buffer is _full_ the data is
 written in the file. This is called _buffering_ and is used to append up
 operations.

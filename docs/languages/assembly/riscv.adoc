@@ -116,7 +116,7 @@ which is the address of the _first_ instruction that must be executed.
 .globl start # <-- program entry point 
 ----
 
-*Note*: the `+start+` label *must* be registered as a _global_ symbol
+NOTE: the `+start+` label *must* be registered as a _global_ symbol
 for the linker to recognize it as the entry point.
 
 == Program Sections

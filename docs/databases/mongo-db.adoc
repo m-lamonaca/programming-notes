@@ -97,7 +97,7 @@ db.<collection>.insertOne({document})  # implicit collection creation
 
 == Expressive Query Operator
 
-*Note*: `+$<key>+` is used to access the value of the field dynamically
+NOTE: `+$<key>+` is used to access the value of the field dynamically
 
 [source,json]
 ----
@@ -147,7 +147,7 @@ db.<collection>.insertMany([ { document }, { document }, ... ], options)  # inse
 db.<collection>.insertMany([ { document }, { document } ] , { "ordered": false })  # allow the unordered insertion, only documents that cause errors wont be inserted
 ----
 
-*Note*: If `+insertMany()+` fails the already inserted documents are not
+NOTE: If `+insertMany()+` fails the already inserted documents are not
 rolled back but all the successive ones (even the correct ones) will not
 be inserted.
 
@@ -192,7 +192,7 @@ db.<collection>.find().hint( { $natural : 1 } )  # force the query to perform a 
 db.<collection>.find().hint( { $natural : -1 } )  # force the query to perform a reverse collection scan
 ----
 
-*Note*: `+{ <key>: <value> }+` in case of a field array will match if
+NOTE: `+{ <key>: <value> }+` in case of a field array will match if
 the array _contains_ the value
 
 == Updating
@@ -435,7 +435,7 @@ db.setLogLevel(<level>, "<component>");  # set log level (output is OLD verbosit
 tail -f /path/to/mongod.log  # read end og log file
 ----
 
-*Note*: Log Message Structure:
+NOTE: Log Message Structure:
 `+<timestamp> <severity-level> <component> <connection> <event> ...+`
 
 == Database Profiling
@@ -452,7 +452,7 @@ Events captured by the profiler:
 * Administrative operations
 * Configuration operations
 
-*Note*: Logs are saved in the `+system.profile+` _capped_ collection.
+NOTE: Logs are saved in the `+system.profile+` _capped_ collection.
 
 [source,sh]
 ----
@@ -485,7 +485,7 @@ to the server. +
 This is the "`localhost exception`" and it closes after the _first_ user
 is created.
 
-*Warn*: Always create an admin user first (ideally with the
+WARN: Always create an admin user first (ideally with the
 `+userAdmin+` role)
 
 Role’s *Resources*:
@@ -623,10 +623,10 @@ db.<collection>.aggregate([
 })
 ----
 
-*Note*: `+$match+` can contain the `+$text+` query operation but it
+NOTE: `+$match+` can contain the `+$text+` query operation but it
 *must* ber the _first_ in a pipeline +
-*Note*: `+$match+` cannot contain use `+$where+` +
-*Note*: `+$match+` uses the same syntax as `+find()+`
+NOTE: `+$match+` cannot contain use `+$where+` +
+NOTE: `+$match+` uses the same syntax as `+find()+`
 
 [latexmath:[match_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/ "]match
 operator docs”
@@ -800,9 +800,9 @@ db.<collection>.aggregate([
 ], { "allowDiskUse": <bool> })
 ----
 
-*Note*: can take advantage of indexes if early int the pipeline and
+NOTE: can take advantage of indexes if early int the pipeline and
 before any `+%project+`, `+$group+` and `+$unwind+` +
-*Note*: By default `+$sort+` will use up to 10 MB of RAM. Setting
+NOTE: By default `+$sort+` will use up to 10 MB of RAM. Setting
 `+allowDiskUse: true+` will allow for larger sorts
 
 [latexmath:[sort_docs]: https://www.mongodb.com/docs/manual/reference/operator/aggregation/sort/ "]sort
@@ -840,7 +840,7 @@ The `+$lookup+` stage adds a new array field to each input document. The
 new array field contains the matching documents from the "`joined`"
 collection.
 
-*Note*: To combine elements from two different collections, use the
+NOTE: To combine elements from two different collections, use the
 [`+$unionWith+`][$unionWith_docs] pipeline stage.
 
 [source,sh]
@@ -890,9 +890,9 @@ db.<collection>.aggregate([
 ], { allowDiskUse: true })
 ----
 
-*Note*: Having the `+connectToField+` indexed will improve search
+NOTE: Having the `+connectToField+` indexed will improve search
 performance +
-*Warn*: Can exceed the `+100 Mb+` memory limit even with
+WARN: Can exceed the `+100 Mb+` memory limit even with
 `+{ allowDiskUse: true }+`
 
 [latexmath:[graph_lookup_docs]: https://www.mongodb.com/docs/upcoming/reference/operator/aggregation/graphLookup/ "]graphLookup

@@ -110,7 +110,7 @@ i32::MAX.saturating_add(value);  //  i32 => MIN <= x <= MAX (Clamp)
 i32::MAX.overflowing_add(value); // (i32, bool) => overflowed result and if overflowed
 ----
 
-*Note*: analogous method exist for other mathematical operation
+NOTE: analogous method exist for other mathematical operation
 
 == Floating-Point Types
 
@@ -129,7 +129,7 @@ Numeric Base Prefix:
 * `+0o+`: Octal Number
 * `+0b+`: Binary Number
 
-*Note*: Number can have `+_+` interposed for legibility (E.g:
+NOTE: Number can have `+_+` interposed for legibility (E.g:
 `+1_000_u64+`)
 
 Binary Literals:
@@ -288,7 +288,7 @@ _String Coercion_. The `+&String+` gets converted to a `+&str+` that
 borrows the entire string. The reverse is not possible since the slice
 lacks some information about the String.
 
-*Note*: When working with functions is easier to always expect a
+NOTE: When working with functions is easier to always expect a
 `+&str+` instead of a `+&String+`.
 
 [source,rs]
@@ -629,7 +629,7 @@ Similarly, if there is a _mutable reference_ to a value, it has
 exclusive access to the value; it’s not possible to use the owner at
 all, until the mutable reference goes away.
 
-*Note*: raw pointers can be used only in `+unsafe+` block. Rust doesn’t
+NOTE: raw pointers can be used only in `+unsafe+` block. Rust doesn’t
 track the pointed value
 
 _Mutable references_ have one big restriction: it’s possible to have
@@ -677,9 +677,9 @@ v.sort()  // implicit mutable borrow
 (&mut vec).sort()  // explicit mutable borrow
 ----
 
-*Note*: arithmetic expressions can "`see through`" one level of
+NOTE: arithmetic expressions can "`see through`" one level of
 references. +
-*Note*: comparison affect the final value of a reference chain. To
+NOTE: comparison affect the final value of a reference chain. To
 compare references directly use `+std::ptr::eq+`
 
 == Structs
@@ -730,7 +730,7 @@ let mut var = Struct {
 var.field = value;  // member access
 ----
 
-*Note*: the entire instance must be mutable; Rust doesn’t allow to mark
+NOTE: the entire instance must be mutable; Rust doesn’t allow to mark
 only certain fields as mutable.
 
 == Struct Update Syntax
@@ -840,7 +840,7 @@ Trait::method(value);
 <Type as Trait>::method(value);
 ----
 
-*Note*: fully qualified method calls also works with associated
+NOTE: fully qualified method calls also works with associated
 functions
 
 == Derive Traits
@@ -956,7 +956,7 @@ fn generic_func<T>() -> &T { }  // T could be heap-based type, returning referen
 fn generic<T: Trait>() -> Type { }  // use generic constraint
 ----
 
-*Note*: the calling code needs to import your new trait in addition to
+NOTE: the calling code needs to import your new trait in addition to
 the external type
 
 == Associated Types
@@ -982,7 +982,7 @@ Implementors of the `+Iterator+` trait will specify the concrete type
 for `+Item+`, and the next method will return an `+Option+` containing a
 value of that concrete type.
 
-*Note*: if the type is _generic_ then then they are called *generic
+NOTE: if the type is _generic_ then then they are called *generic
 associated types*
 
 == Generic Traits vs Associated Types
@@ -1013,7 +1013,7 @@ referent’s type.
 In memory, a trait object is a fat pointer consisting of a pointer to
 the value, plus a pointer to a table representing that value’s type.
 
-*Note*: Rust automatically converts ordinary references into trait
+NOTE: Rust automatically converts ordinary references into trait
 objects when needed
 
 [source,rs]
@@ -1142,7 +1142,7 @@ _pattern_ and the code that should be run if the value given to the
 beginning of the match expression fits that arm’s pattern. Rust takes
 the value given to match and looks through each arm’s pattern in turn.
 
-*Note*: `+match+` arms must be exhaustive for compilation.
+NOTE: `+match+` arms must be exhaustive for compilation.
 
 [source,rs]
 ----
@@ -1199,7 +1199,7 @@ to variable
 |Guard Expression |`+<pattern> if <condition>+` |`+match+` only
 |===
 
-*Note*: `+..+` in slices matches _any number_ of elements. `+..+` in
+NOTE: `+..+` in slices matches _any number_ of elements. `+..+` in
 structs _ignores_ all remaining fields
 
 [source,rs]
@@ -1326,7 +1326,7 @@ returned early from the enclosing function. +
 `+?+` can only be used in functions that return `+Result+` because of
 the early return of `+Err+` that it provides.
 
-*Note*: When `+None+` is used the type of `+Option<T>+` must be
+NOTE: When `+None+` is used the type of `+Option<T>+` must be
 specified, because the compiler can’t infer the type that the `+Some+`
 variant will hold by looking only at a `+None+` value. *Note*: error
 values that have the `+?+` operator called on them go through the
@@ -1346,7 +1346,7 @@ type GenericError = Box<dyn std::Error + Send + Sync + 'static>;
 type GenericResult<T> = Result<T; GenericError>;
 ----
 
-*Note*: the https://crates.io/crates/anyhow[`+anyhow+`] crate provides
+NOTE: the https://crates.io/crates/anyhow[`+anyhow+`] crate provides
 error and result types like `+GenericError+` with additional features
 
 == Custom Error Types
@@ -1364,7 +1364,7 @@ pub struct JsonError {
 }
 ----
 
-*Note*: the https://crates.io/crates/thiserror[`+thiserror+`] crate
+NOTE: the https://crates.io/crates/thiserror[`+thiserror+`] crate
 provides utilities to create custom error types
 
 == Collections
@@ -1789,7 +1789,7 @@ The usual ownership rules apply to the `+Rc<T>+` pointers themselves,
 and when the last extant `+Rc<T>+` is dropped, Rust drops the value as
 well.
 
-*Note*: A value owned by an `+Rc<T>+` pointer is immutable.
+NOTE: A value owned by an `+Rc<T>+` pointer is immutable.
 
 == `+RefCell<T>+` & Interior Mutability Pattern
 
@@ -1818,7 +1818,7 @@ certain memory-safe scenarios are then allowed, whereas they are
 disallowed by the compile-time checks. +
 Static analysis, like the Rust compiler, is inherently conservative.
 
-*Note*: `+RefCell<T>+` is only for use in single-threaded scenarios and
+NOTE: `+RefCell<T>+` is only for use in single-threaded scenarios and
 will cause a compile-time error if used it in a multithreaded context.
 
 When creating immutable and mutable references, the `+&+` and `+&mut+`

@@ -91,7 +91,7 @@ IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable, Func<TFirst, TSecond, T
 IEnumerable<TFirst>.Zip(IEnumerable<TSecond> enumerable); // Produces a sequence of tuples with elements from the two specified sequences.
 ----
 
-*Note*: `+Enumerable+` provides a set of `+static+` methods for querying
+NOTE: `+Enumerable+` provides a set of `+static+` methods for querying
 objects that implement `+IEnumerable<T>+`. Most methods are extensions
 of `+IEnumerable<T>+`
 

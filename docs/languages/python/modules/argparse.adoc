@@ -10,7 +10,7 @@ import argparse
 parser = argparse.ArgumentParser(description="description", allow_abbrev=True)
 ----
 
-*Note*: All parameters should be passed as keyword arguments.
+NOTE: All parameters should be passed as keyword arguments.
 
 * `+prog+`: The name of the program (default: `+sys.argv[0]+`)
 * `+usage+`: The string describing the program usage (default: generated
@@ -40,7 +40,7 @@ abbreviation is unambiguous. (default: True)
 ArgumentParser.add_argument("name_or_flags", nargs="...", action="...")
 ----
 
-*Note*: All parameters should be passed as keyword arguments.
+NOTE: All parameters should be passed as keyword arguments.
 
 * `+name or flags+`: Either a name or a list of option strings,
 e.g. `+foo+` or `+-f+`, `+--foo+`.
@@ -175,7 +175,7 @@ with a single action to be taken. The `+nargs+` keyword argument
 associates a different number of command-line arguments with a single
 action.
 
-*Note*: If the nargs keyword argument is not provided, the number of
+NOTE: If the nargs keyword argument is not provided, the number of
 arguments consumed is determined by the action.
 
 `+N+` (an integer): N arguments from the command line will be gathered
@@ -190,7 +190,7 @@ together into a list.
 Namespace(bar=['c'], foo=['a', 'b'])
 ----
 
-*Note*: `+nargs=1+` produces a list of one item. This is different from
+NOTE: `+nargs=1+` produces a list of one item. This is different from
 the default, in which the item is produced by itself.
 
 `+?+`: One argument will be consumed from the command line if possible,
