@@ -147,8 +147,7 @@ $c = 7E-10; // 0.0000000007
 
 == Mathematical Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+-+` |Subtraction
 |`+*+` |Multiplication
@@ -159,7 +158,7 @@ $c = 7E-10; // 0.0000000007
 |`+++var+` |Pre Increment
 |`+var--+` |Post Decrement
 |`+--var+` |Pre Decrement
-|==
+|===
 
 == Mathematical Functions
 
@@ -306,8 +305,7 @@ $italianDay["Mon"];  # evaluates to Lunedì
 
 == Conditional Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |$a `+=+` $b |value equality
 |$a `+==+` $b |value & type equality
@@ -319,14 +317,14 @@ $italianDay["Mon"];  # evaluates to Lunedì
 |$a `+<=+` $b |less or equal to
 |$a `+>=+` $b |greater or equal to
 |$a `+<=>+` $b |spaceship operator
-|==
+|===
 
 With `+=+` a string evaluates to `+0+`.
 
 == Logical Operators
 
 [width="100%",cols="12%,15%,73%",options="header",]
-|==
+|===
 |Operator |Example |Result
 |`+and+` |`+$a and $b+` |TRUE if both `+$a+` and `+$b+` are TRUE.
 
@@ -340,7 +338,7 @@ _not both_.
 |`+and+` |`+$a && $b+` |TRUE if both `+$a+` and `+$b+` are TRUE.
 
 |`+or+` |`+$a || $b+` |TRUE if either `+$a+` or `+$b+` is TRUE.
-|==
+|===
 
 == Ternary Operator
 

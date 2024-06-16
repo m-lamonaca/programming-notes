@@ -26,8 +26,7 @@ for and report various kinds of failure.
 
 == Assert Methods
 
-[cols=",",options="header",]
-|==
+|===
 |Method |Checks that
 |`+assertEqual(a, b)+` |`+a = b+`
 |`+assertNotEqual(a, b)+` |`+a != b+`
@@ -41,10 +40,10 @@ for and report various kinds of failure.
 |`+assertNotIn(a, b)+` |`+a not in b+`
 |`+assertIsInstance(a, b)+` |`+isinstance(a, b)+`
 |`+assertNotIsInstance(a, b)+` |`+not isinstance(a, b)+`
-|==
+|===
 
 [width="100%",cols="42%,58%",options="header",]
-|==
+|===
 |Method |Checks that
 |`+assertRaises(exc, fun, *args, **kwds)+` |`+fun(*args, **kwds)+`
 raises _exc_
@@ -60,10 +59,10 @@ raises warn
 
 |`+assertLogs(logger, level)+` |The with block logs on logger with
 minimum level
-|==
+|===
 
 [width="100%",cols="28%,72%",options="header",]
-|==
+|===
 |Method |Checks that
 |`+assertAlmostEqual(a, b)+` |`+round(a-b, 7) = 0+`
 
@@ -83,10 +82,9 @@ minimum level
 
 |`+assertCountEqual(a, b)+` |a and b have the same elements in the same
 number, regardless of their order.
-|==
+|===
 
-[cols=",",options="header",]
-|==
+|===
 |Method |Used to compare
 |`+assertMultiLineEqual(a, b)+` |strings
 |`+assertSequenceEqual(a, b)+` |sequences
@@ -94,4 +92,4 @@ number, regardless of their order.
 |`+assertTupleEqual(a, b)+` |tuples
 |`+assertSetEqual(a, b)+` |sets or frozensets
 |`+assertDictEqual(a, b)+` |dicts
-|==
+|===

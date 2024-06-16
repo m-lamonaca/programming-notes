@@ -21,7 +21,7 @@ logging.disable(level=LOG_LEVEL)
 == Format (`+basicConfig(format="")+`)
 
 [width="100%",cols="13%,15%,72%",options="header",]
-|==
+|===
 |Attribute name |Format |Description
 |asctime |`+%(asctime)s+` |Human-readable time when the LogRecord was
 created. Modified by `+basicConfig(datefmt="")+`
@@ -61,12 +61,12 @@ logging call was issued (if available).
 |thread |`+%(thread)d+` |Thread ID (if available).
 
 |threadName |`+%(threadName)s+` |Thread name (if available).
-|==
+|===
 
 == Datefmt (`+basicConfig(datefmt="")+`)
 
 [width="100%",cols="9%,91%",options="header",]
-|==
+|===
 |Directive |Meaning
 |`+%a+` |Locale’s abbreviated weekday name.
 
@@ -116,7 +116,7 @@ difference from UTC/GMT of the form +HHMM or -HHMM [-23:59, +23:59].
 |`+%Z+` |Time zone name (no characters if no time zone exists).
 
 |`+%%+` |A literal '`%`' character.
-|==
+|===
 
 == Logs
 

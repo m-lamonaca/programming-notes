@@ -90,8 +90,7 @@ let x: i32 = 11;  // shadowing
 
 == Integer Types
 
-[cols=",,",options="header",]
-|==
+|===
 |Length |Signed |Unsigned
 |8-bit |`+i8+` |`+u8+`
 |16-bit |`+i16+` |`+u16+`
@@ -99,7 +98,7 @@ let x: i32 = 11;  // shadowing
 |64-bit |`+i64+` |`+u64+`
 |128-bit |`+i128+` |`+u128+`
 |architecture |`+isize+` |`+usize+`
-|==
+|===
 
 === Explicit Mathematical Operations (Integers)
 
@@ -142,8 +141,7 @@ characters
 
 == Numeric Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+>+` |Greater than
 |`+>=+` |Greater or Equal to
@@ -151,19 +149,18 @@ characters
 |`+<=+` |Less or Equal to
 |`+=+` |Equals
 |`+!=+` |Not Equals
-|==
+|===
 
 == Comparison Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+++` |Addition
 |`+-+` |Subtraction
 |`+*+` |Multiplication
 |`+/+` |Division
 |`+%+` |Modulo
-|==
+|===
 
 == Boolean Types
 
@@ -174,18 +171,17 @@ using `+bool+`.
 
 == Bitwise Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+&+` |AND
 |`+|+` |OR
 |`+&&+` |SHORT-CIRCUIT AND
-|`+||+` |SHORT-CIRCUIT OR
+|`+\|\|+` |SHORT-CIRCUIT OR
 |`+^+` |XOR
 |`+!+` |NOT
 |`+<<+` |LEFT SHIFT
 |`+>>+` |RIGHT SHIFT
-|==
+|===
 
 == Character Types
 
@@ -1171,7 +1167,7 @@ fn match_variant(e: Enum) {
 == Pattern Matching
 
 [width="100%",cols="^25%,^30%,^45%",options="header",]
-|==
+|===
 |Pattern |Example |Notes
 |Literal |`+100+` |Match exact value or `+const+` name
 
@@ -1201,7 +1197,7 @@ to variable
 |Multiple Patterns |`+'a' \| 'A'+` |`+match, if let, while let+` only
 
 |Guard Expression |`+<pattern> if <condition>+` |`+match+` only
-|==
+|===
 
 *Note*: `+..+` in slices matches _any number_ of elements. `+..+` in
 structs _ignores_ all remaining fields

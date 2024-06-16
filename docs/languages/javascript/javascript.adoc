@@ -250,19 +250,17 @@ Number("A") = NaN;  //false ?!?
 
 == Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+(...)+` |grouping
 |a`+.+`b |member access
 |`+new+` a(…) |object creation
 |a `+in+` b |membership
-|==
+|===
 
 == Mathematical Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |a `+++` b |addition
 |a `+-+` b |subtraction
@@ -270,33 +268,30 @@ Number("A") = NaN;  //false ?!?
 |a `+**+` b |a^b
 |a `+/+` b |division
 |a `+%+` b |modulus
-|==
+|===
 
 == Unary Increment Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+--+`variable |prefix decrement
 |`++++`variable |prefix increment
 |variable`+--+` |postfix decrement
 |variable`++++` |postfix increment
-|==
+|===
 
 == Logical Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |a `+&&+` b |logical *AND*
-|a `+||+` b |logical *OR*
+|a `+\|\|+` b |logical *OR*
 |`+!+`a |logical *NOT*
-|==
+|===
 
 == Comparison Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |a `+<+` b |less than
 |a `+<=+` b |less or equal to
@@ -306,12 +301,11 @@ Number("A") = NaN;  //false ?!?
 |a `+!=+` b |inequality
 |a `+==+` b |strict equality
 |a `+!=+` b |strict inequality
-|==
+|===
 
 == Bitwise Logical Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |a `+&+` b |bitwise AND
 |a `+|+` b |bitwise OR
@@ -320,12 +314,11 @@ Number("A") = NaN;  //false ?!?
 |a `+<<+` b |bitwise left shift
 |a `+>>+` b |bitwise right shift
 |a `+>>>+` b |bitwise unsigned right shift
-|==
+|===
 
 == Compound Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |a `++=+` b |a = a + b
 |a `+-=+` b |a = a - b
@@ -339,7 +332,7 @@ Number("A") = NaN;  //false ?!?
 |a `+&=+` b |a = a & b
 |a `+^=+` b |a = a ^ b
 |a `+|=+` b |a = a ! b
-|==
+|===
 
 == Decision Statements
 

@@ -8,14 +8,13 @@
 /** javaDoc docstring */
 ----
 
-[cols=",",options="header",]
-|==
+|===
 |Java element |Case
 |package |lowercase
 |class |PascalCase
 |variable |camelCase
 |method |camelCase
-|==
+|===
 
 == Basics
 
@@ -172,8 +171,7 @@ char character = 'C';  //chars always in single quotes
 
 == Special Characters
 
-[cols=",",options="header",]
-|==
+|===
 |Escape Character |Character
 |`+\n+` |new line
 |`+\t+` |tab
@@ -186,7 +184,7 @@ char character = 'C';  //chars always in single quotes
 |`+\x<digits>+` |hexadecimal characters
 |`+\o<digits>+` |octal characters
 |`+\<digits>+` |ASCII character
-|==
+|===
 
 == String Concatenation
 
@@ -267,8 +265,7 @@ Math.toRadians(deg)
 
 == Arithmetic Operators
 
-[cols=",",options="header",]
-|==
+|===
 |operator |operation
 |a `+++` b |sum
 |a `+-+` b |subtraction
@@ -277,12 +274,11 @@ Math.toRadians(deg)
 |a `+%+` b |modulo
 |a`++++` |increment
 |a`+--+` |decrement
-|==
+|===
 
 == Comparison Operators
 
-[cols=",",options="header",]
-|==
+|===
 |operator |operation
 |a `+=+` b |equal to
 |a `+!=+` b |not equal to
@@ -290,22 +286,20 @@ Math.toRadians(deg)
 |a `+<+` b |lesser than
 |a `+>=+` b |greater than or equal to
 |a `+<=+` b |lesser than or equal to
-|==
+|===
 
 == Logical Operators
 
-[cols=",",options="header",]
-|==
+|===
 |operator |operation
 |`+!+`a |logical negation (*NOT*)
 |a `+&&+` b, |logical *AND*
-|a `+||+` b, |logical *OR*
-|==
+|a `+\|\|+` b, |logical *OR*
+|===
 
 == Bitwise Operators
 
-[cols=",",options="header",]
-|==
+|===
 |operator |operation
 |`+~+`a |bitwise *NOT*
 |a `+&+` b |bitwise *AND*
@@ -313,12 +307,11 @@ Math.toRadians(deg)
 |a `+^+` b |bitwise *XOR*
 |a `+<<+` b |bitwise left shift
 |a `+>>+` b |bitwise right shift
-|==
+|===
 
 == Compound Assignment Operators
 
-[cols=",",options="header",]
-|==
+|===
 |operator |operation
 |a `++=+` b |a = a + b
 |a `+-=+` b |a = a - b
@@ -330,7 +323,7 @@ Math.toRadians(deg)
 |a `+^=+` b |a = a ^ b
 |a `+<<=+` b |a = a << b
 |a `+>>=+` b |a = a >> b
-|==
+|===
 
 == Operator Precedence
 
@@ -343,7 +336,7 @@ Math.toRadians(deg)
 . bitwise operator `+&+`
 . bitwise operator `+|+`
 . logical operator `+&&+`
-. logical operator `+||+`
+. logical operator `+\|\|+`
 
 == Short Circuit Evaluation
 

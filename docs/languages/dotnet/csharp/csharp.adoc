@@ -49,8 +49,7 @@ then deployed instead of the IL code.
 
 == Naming Convention
 
-[cols=",",options="header",]
-|==
+|===
 |Element |Case
 |Namespace |PascalCase
 |Class, Interface |PascalCase
@@ -58,7 +57,7 @@ then deployed instead of the IL code.
 |Field, Property |PascalCase
 |Event, Enum, Enum Value, |PascalCase
 |Variables, Parameters |camelCase
-|==
+|===
 
 == Namespaces, Imports & Aliases
 
@@ -217,7 +216,7 @@ there.
 == Integral Numeric Types
 
 [width="100%",cols="^12%,^17%,^7%,^8%,28%,28%",options="header",]
-|==
+|===
 |Keyword |System Type |Example |Bit/Byte |Min Value |Max Value
 |`+sbyte+` |`+System.SByte+` | |8 bit |-128 |127
 
@@ -241,12 +240,12 @@ there.
 
 |`+ulong+` |`+System.UInt64+` |123ul |64 bit |0
 |18’446’744’073’709’551’615
-|==
+|===
 
 == Floating-Point Numeric Types
 
 [width="100%",cols="^11%,^13%,^5%,^6%,^4%,31%,30%",options="header",]
-|==
+|===
 |Keyword |System Types |Example |Bit/Byte |Digits |Min Value |Max Value
 |`+float+` |`+System.Single+` |3.14f |4 byte |6-9 |-3.402823 E+38
 |3.402823 E+38
@@ -257,7 +256,7 @@ E+308 |1.79769313486232 E+308
 |`+decimal+` |`+System.Decimal+` |3.14m |16 byte |28-29
 |-79’228’162’514’264’337’593’543’950’335
 |79’228’162’514’264’337’593’543’950’335
-|==
+|===
 
 The static fields and methods of the `+MathF+` class correspond to those
 of the `+Math+` class, except that their parameters are of type
@@ -934,7 +933,7 @@ code.
 == Primary Expressions
 
 [width="100%",cols="23%,77%",options="header",]
-|==
+|===
 |Syntax |Operation
 |x`+.+`m |access to member `+m+` of object `+x+` ("`.`" –> member access
 operator)
@@ -958,12 +957,11 @@ operator)
 |`+default(T)+` |default value of `+T+`
 
 |`+x!+` |declare x as not null
-|==
+|===
 
 == Unary Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+++`x |identity
 |`+-+`x |negation
@@ -974,12 +972,11 @@ operator)
 |x`++++` |post-increment
 |x`+--+` |post decrement
 |`+(type)+`x |explicit casting
-|==
+|===
 
 == Mathematical Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |x `+++` y |addition, string concatenation
 |x `+-+` y |subtraction
@@ -988,12 +985,11 @@ operator)
 |x `+%+` y |modulo, remainder
 |x `+<<+` y |left bit shift
 |x `+>>+` y |right bit shift
-|==
+|===
 
 == Relational Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |x `+<+` y |less than
 |x `+<=+` y |less or equal to
@@ -1002,12 +998,12 @@ operator)
 |x `+is+` T |`+true+` if `+x+` is an object of type `+T+`
 |x `+=+` y |equality
 |x `+!=+` y |inequality
-|==
+|===
 
 == Logical Operators
 
 [width="100%",cols="12%,68%,20%",options="header",]
-|==
+|===
 |Operator |Operation |Name
 |`+~+`x |bitwise NOT |
 
@@ -1019,19 +1015,18 @@ operator)
 
 |x `+&&+` y |evaluate `+y+` only if `+x+` is `+true+` |
 
-|x `+||+` y |evaluate `+y+` only if `+x+` is `+false+` |
+|x `+\|\|+` y |evaluate `+y+` only if `+x+` is `+false+` |
 
 |x `+??+` y |evaluates to `+y+` only if `+x+` is `+null+`, `+x+`
 otherwise |Null coalescing
 
 |x`+?.+`y |stop if `+x = null+`, evaluate `+x.y+` otherwise |Null
 conditional
-|==
+|===
 
 == Assignment
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |x `++=+` y |x = x + y
 |x `+-=+` y |x = x - y
@@ -1044,7 +1039,7 @@ conditional
 |x `+|=+` y |x = x
 |x `+^=+` y |x = x ^ y
 |x `+??=+` y |if (x = null) \{x = y}
-|==
+|===
 
 == Conditional Operator
 
@@ -3406,7 +3401,7 @@ public FileStream(string path, FileMode mode, FileAccess access, FileShare share
 ----
 
 [width="100%",cols="16%,53%,31%",options="header",]
-|==
+|===
 |`+FileMode+` |Behavior if file exists |Behavior if file does not exist
 |`+CreateNew+` |Throws `+IOException+` |Creates new file
 
@@ -3420,7 +3415,7 @@ public FileStream(string path, FileMode mode, FileAccess access, FileShare share
 
 |`+Append+` |Opens existing file, setting Position to end of file
 |Creates new file
-|==
+|===
 
 *`+FileAccess+` Enumeration*:
 
@@ -3892,7 +3887,7 @@ public TaskAwaiter GetAwaiter(/* ... */);
 ----
 
 [width="100%",cols="^10%,90%",options="header",]
-|==
+|===
 |Level |Description
 |`+None+` |All rules are disabled. Can selectively
 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-options[opt
@@ -3912,7 +3907,7 @@ rules are enabled as build warnings.
 |`+All+` |All rules are enabled as build warnings__. __Can selectively
 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-options[opt
 out] of individual rules to disable them.
-|==
+|===
 
 == https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages[Dependency Auditing]
 

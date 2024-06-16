@@ -47,7 +47,7 @@ The numerical `+dtypes+` are named the same way: a type name followed by
 a number indicating the number of bits per element.
 
 [width="100%",cols="26%,9%,65%",options="header",]
-|==
+|===
 |TYPE |TYPE CODE |DESCRIPTION
 |int8, uint8 |i1, u1 |Signed and unsigned 8-bit (1 byte) integer types
 
@@ -78,7 +78,7 @@ represented by two 32, 64, or 128 floats, respectively
 `+<num>+` is string length
 
 |unicode_ |`+U<num>+` |Fixed-length unicode type, `+<num>+` is length
-|==
+|===
 
 == OPERATIONS BETWEEN ARRAYS AND SCALARS
 

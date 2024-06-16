@@ -117,11 +117,11 @@ Examples of outcome for requests originating from:
 `+http://store.company.com/dir/page.htmlCross-origin+`
 
 [width="100%",cols="64%,11%,25%",options="header",]
-|==
+|===
 |URL |Outcome |Reason
 |`+http://store.company.com/dir2/other.html+` |success |
 |`+http://store.company.com/dir/inner/other.html+` |success |
 |`+https://store.company.com/secure.html+` |failure |Different protocol
 |`+http://store.company.com:81/dir/other.html+` |failure |Different port
 |`+http://news.company.com/dir/other.html+` |failure |Different host
-|==
+|===

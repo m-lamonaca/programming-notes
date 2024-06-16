@@ -489,8 +489,7 @@ weight.
 
 == Absolute Length units
 
-[cols=",,",options="header",]
-|==
+|===
 |Unit |Name |Equivalent to
 |`+cm+` |centimeters |1cm = 38px = 25/64in
 |`+mm+` |Millimeters |1mm = 1/10th of 1cm
@@ -499,12 +498,12 @@ weight.
 |`+pc+` |Picas |1pc = 1/6th of 1in
 |`+pt+` |Points |1pt = 1/72th of 1in
 |`+px+` |Pixels |1px = 1/96th of 1in
-|==
+|===
 
 == Relative Length Units
 
 [width="100%",cols="9%,91%",options="header",]
-|==
+|===
 |Unit |Relative to
 |`+rem+` |Font size of the root element.
 
@@ -526,7 +525,7 @@ font.
 |`+vmax+` |1% of the viewport’s larger dimension.
 
 |`+%+` |Relative to the parent element
-|==
+|===
 
 == Common Element Properties
 
@@ -668,13 +667,12 @@ in the layout
 * `+opacity: 0+` hides the element, still takes up space in the layout,
 events work
 
-[cols=",,,",options="header",]
-|==
+|===
 |Rule |Collapse |Events |Tab Order
 |`+display: none+` |Yes |No |No
 |`+visibility: hidden+` |No |No |No
 |`+opacity: 0+` |No |Yes |Yes
-|==
+|===
 
 == https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model[Box Model]
 

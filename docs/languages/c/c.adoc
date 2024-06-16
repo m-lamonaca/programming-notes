@@ -11,13 +11,12 @@
 
 == Special Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operator Name
 |`+::+` |global reference operator
 |`+&+` |address operator (returns a memory address)
 |`+*+` |deferentiation operator (returns the pointed value)
-|==
+|===
 
 == Namespace definition
 
@@ -58,8 +57,7 @@ type var_1, var_2, ..., var_n;
 
 == Variable Types
 
-[cols=",,",options="header",]
-|==
+|===
 |Type |Value Range |Byte
 |`+short+` |-32768 to 32765 |1
 |`+unsigned short+` |0 to 65535 |1
@@ -71,21 +69,19 @@ type var_1, var_2, ..., var_n;
 |`+float+` |+/- 3.4e +/- 38 (~7 digits) |4
 |`+double+` |+/- 1.7e +/- 308 (~15 digits) |8
 |`+long double+` | |16 (?)
-|==
+|===
 
-[cols=",",options="header",]
-|==
+|===
 |Type |Value
 |`+bool+` |true or false
 |`+char+` |ascii characters
 |`+string+` |sequence of ascii characters
 |`+NULL+` |empty value
-|==
+|===
 
 == Integer Numerals
 
-[cols=",",options="header",]
-|==
+|===
 |Example |Type
 |`+75+` |decimal
 |`+0113+` |octal (zero prefix)
@@ -95,25 +91,23 @@ type var_1, var_2, ..., var_n;
 |`+75l+` |long
 |`+75ul+` |unsigned long
 |`+75lu+` |unsigned long
-|==
+|===
 
 == Floating Point Numerals
 
-[cols=",",options="header",]
-|==
+|===
 |Example |Type
 |`+3.14159L+` |long double
 |`+60.22e23f+` |float
-|==
+|===
 
-[cols=",",options="header",]
-|==
+|===
 |Code |Value
 |`+3.14159+` |3.14159
 |`+6.02e23+` |6.022 * 10^23
 |`+1.6e-19+` |1.6 * 10^-19
 |`+3.0+` |3.0
-|==
+|===
 
 == Character/String Literals
 
@@ -122,8 +116,7 @@ type var_1, var_2, ..., var_n;
 
 == Special Characters
 
-[cols=",",options="header",]
-|==
+|===
 |Escape Character |Character
 |`+\n+` |newline
 |`+\r+` |carriage return
@@ -137,7 +130,7 @@ type var_1, var_2, ..., var_n;
 |`+\?+` |question mark (?)
 |`+\\+` |backslash ()
 |`+\0+` |string termination character
-|==
+|===
 
 == Standard Input/Output
 
@@ -161,8 +154,7 @@ scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted i
 
 == Format Specifiers `+%[width].[length][specifier]+`
 
-[cols=",",options="header",]
-|==
+|===
 |Specifier |Specified Format
 |`+%d+`, `+%i+` |singed decimal integer
 |`+%u+` |unsigned decimal integer
@@ -178,14 +170,13 @@ scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted i
 |`+%c+` |character
 |`+%s+` |string
 |`+%p+` |pointer address
-|==
+|===
 
 == Operators
 
 == Arithmetic Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |a `+++` b |sum
 |a `+-+` b |subtraction
@@ -194,12 +185,11 @@ scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted i
 |a `+%+` b |modulo
 |a`++++` |increment
 |a`+--+` |decrement
-|==
+|===
 
 == Comparison Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |a `+=+` b |equal to
 |a `+!=+` b |not equal to
@@ -207,17 +197,16 @@ scanf_s("%<fmt_spec>", &variable);    //return number of successfully accepted i
 |a `+<+` b |lesser than
 |a `+>=+` b |greater than or equal to
 |a `+<=+` b |lesser than or equal to
-|==
+|===
 
 == Logical Operator
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+!+`a, `+not+` a |logical negation (NOT)
 |a `+&&+` b, a `+and+` b |logical AND
-|a `+||+` b, a `+or+` b |logical OR
-|==
+|a `+\|\|+` b, a `+or+` b |logical OR
+|===
 
 == Conditional Ternary Operator
 
@@ -226,8 +215,7 @@ If condition is true evaluates to result_1, and otherwise to result_2
 
 == Bitwise Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+~+`a, `+compl+` a |bitwise *NOT*
 |a `+&+` b, a `+bitand+` b |bitwise *AND*
@@ -235,12 +223,11 @@ If condition is true evaluates to result_1, and otherwise to result_2
 |a `+^+` b, a `+xor+` b, |bitwise *XOR*
 |a `+<<+` b |bitwise left shift
 |a `+>>+` b |bitwise right shift
-|==
+|===
 
 == Compound Assignment Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |a `++=+` b |a = a + b
 |a `+-=+` b |a = a - b
@@ -252,7 +239,7 @@ If condition is true evaluates to result_1, and otherwise to result_2
 |a `+^=+` b |a = a ^ b
 |a `+<<=+` b |a = a << b
 |a `+>>=+` b |a = a >> b
-|==
+|===
 
 == Operator Precedence
 

@@ -10,7 +10,7 @@ that can change between documents in the same collection.
 == Data Types
 
 [width="99%",cols="20%,54%,26%",options="header",]
-|==
+|===
 |Type |Example Value |Function
 |Text |`+"Text"+` |
 
@@ -28,7 +28,7 @@ that can change between documents in the same collection.
 |Embedded Document |`+{"a": {...}}+` |
 
 |Embedded Array |`+{"b": [...]}+` |
-|==
+|===
 
 It’s mandatory for each document ot have an unique field `+_id+`.
 MongoDB automatically creates an `+ObjectId()+` if it’s not provided.

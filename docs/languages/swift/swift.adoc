@@ -140,7 +140,7 @@ dict[key] = value // value update
 == Primary Expressions
 
 [width="100%",cols="24%,76%",options="header",]
-|==
+|===
 |Syntax |Operation
 |x`+.+`m |access to member `+m+` of object `+x+` ("`.`" –> member access
 operator)
@@ -152,12 +152,11 @@ operator)
 |`+new+` T(…) |object instantiation
 
 |`+x!+` |declare x as not nil
-|==
+|===
 
 == Unary Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+++`x |identity
 |`+-+`x |negation
@@ -168,12 +167,11 @@ operator)
 |x`++++` |post-increment
 |x`+--+` |post decrement
 |`+(type)+`x |explicit casting
-|==
+|===
 
 == Mathematical Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |x `+++` y |addition, string concatenation
 |x `+-+` y |subtraction
@@ -182,12 +180,11 @@ operator)
 |x `+%+` y |modulo, remainder
 |x `+<<+` y |left bit shift
 |x `+>>+` y |right bit shift
-|==
+|===
 
 == Relational Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |x `+<=+` y |less or equal to
 |x `+>+` y |greater than
@@ -195,12 +192,12 @@ operator)
 |x `+is+` T |`+true+` if `+x+` is an object of type `+T+`
 |x `+=+` y |equality
 |`+!+`x |inequality
-|==
+|===
 
 == Logical Operators
 
 [width="100%",cols="17%,63%,20%",options="header",]
-|==
+|===
 |Operator |Operation |Name
 |`+~+`x |bitwise NOT |
 
@@ -212,19 +209,18 @@ operator)
 
 |x `+&&+` y |evaluate `+y+` only if `+x+` is `+true+` |
 
-|x `+||+` y |evaluate `+y+` only if `+x+` is `+false+` |
+|x `+\|\|+` y |evaluate `+y+` only if `+x+` is `+false+` |
 
 |x `+??+` y |evaluates to `+y+` only if `+x+` is `+nil+`, `+x+`
 otherwise |nil coalescing
 
 |x`+?.+`y |stop if `+x = nil+`, evaluate `+x.y+` otherwise |nil
 conditional
-|==
+|===
 
 == Assignment
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |x `++=+` y |x = x + y
 |x `+-=+` y |x = x - y
@@ -237,7 +233,7 @@ conditional
 |x `+|=+` y |x = x
 |x `+^=+` y |x = x ^ y
 |x `+??=+` y |if (x = nil) \{x = y}
-|==
+|===
 
 == Conditional Operator
 

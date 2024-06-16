@@ -223,7 +223,7 @@ The `+.string+`, `+.asciz+`, and `+.ascii+` directives add strings to
 the active section. The string is encoded as a sequence of bytes.
 
 [width="100%",cols="^15%,^22%,^63%",options="header",]
-|==
+|===
 |Directive |Arguments |Description
 |`+.byte+` |`+expr [, expr]*+` |Emit one or more *8bit* comma separated
 words
@@ -242,7 +242,7 @@ separated words
 |`+.asciz+` |`+string+` |Alias for `+.string+`
 
 |`+.ascii+` |`+string+` |Emit string without `+NULL+` character
-|==
+|===
 
 == The `+.set+` and `+.equ+` directives
 

@@ -102,17 +102,16 @@ print(f'Name is {name}, Marks are {marks} ') # formatting with f-strings
 Format:
 `+[[fill]align] [sign] [#] [width] [grouping] [.precision] [type]+`
 
-[cols=",",options="header",]
-|==
+|===
 |`+[align]+` |Alignment
 |`+:<+` |left alignment
 |`+:>+` |right alignment
 |`+:=+` |padding after the mark
 |`+:^+` |centered
-|==
+|===
 
 [width="100%",cols="7%,93%",options="header",]
-|==
+|===
 |`+[sign]+` |NUMBER SIGNS
 |`+:++` |sign for both positive and negative numbers
 
@@ -122,17 +121,16 @@ Format:
 
 |`+:#+` |alternative form:prefix integers type (0x, 0b, 0o), floats and
 complexes always have at least one decimal place
-|==
+|===
 
-[cols=",",options="header",]
-|==
+|===
 |`+[grouping]+` |GROUPING
 |`+:,+` |use comma to separate thousands
 |`+:_+` |use underscore to separate thousands
-|==
+|===
 
 [width="100%",cols="10%,90%",options="header",]
-|==
+|===
 |`+[type]+` |OUTPUT TYPE
 |`+:s+` |output is string
 
@@ -156,7 +154,7 @@ uppercase separator
 |`+:f+` |output is float (6-digit base precision)
 
 |`+:%+` |output is percentage (multiplies * 100, displays as:f)
-|==
+|===
 
 == Keyboard Input
 
@@ -552,8 +550,7 @@ v.ndim # integer indicating the size of the multidimensional array represented
 v.shape # tuple of integers indicating the shape of the memoryview
 ----
 
-[cols=",,,",options="header",]
-|==
+|===
 |Format String |C Type |Python Type |Standard Size
 |`+x+` |`+pad byte+` |`+no value+` |
 |`+c+` |`+char+` |`+bytes+` |`+1+`
@@ -574,7 +571,7 @@ v.shape # tuple of integers indicating the shape of the memoryview
 |`+F+` |`+double+` |`+float+` |`+8+`
 |`+s+` |`+char[]+` |`+bytes+` |
 |`+P+` |`+char[]+` |`+bytes+` |
-|==
+|===
 
 == Dictionaries
 
@@ -625,8 +622,7 @@ var = {key: value for element in sequence}
 
 == Mathematical Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |x `+++` y |addition, string concatenation
 |x `+-+` y |subtraction
@@ -635,12 +631,11 @@ var = {key: value for element in sequence}
 |x `+/+` y |division (result always float)
 |x `+//+` y |integer division
 |x `+%+` y |modulo, remainder
-|==
+|===
 
 == Relational Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |x `+<+` y |less than
 |x `+<=+` y |less or equal to
@@ -648,12 +643,11 @@ var = {key: value for element in sequence}
 |x `+>=+` y |greater or equal to
 |x `+=+` y |equality
 |x `+!=+` y |inequality
-|==
+|===
 
 == Assignment
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |x `++=+` y |x = x + y
 |x `+-=+` y |x = x - y
@@ -666,12 +660,11 @@ var = {key: value for element in sequence}
 |x `+&=+` y |x = x & y
 |x `+| =+` y |x = x
 |x `+^=+` y |x = x ^ y
-|==
+|===
 
 == Bitwise Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+~+`x |bitwise NOT
 |x `+&+` y |bitwise AND
@@ -679,35 +672,32 @@ var = {key: value for element in sequence}
 |x `+|+` y |bitwise OR
 |x `+<<+` y |left bit shift
 |x `+>>+` y |right bit shift
-|==
+|===
 
 == Logical Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+and+` |logical AND
 |`+or+` |logical OR
 |`+not+` |logical NOT
-|==
+|===
 
 == Identity Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+is+` |reference equality
 |`+is not+` |reference inequality
-|==
+|===
 
 == Membership Operators
 
-[cols=",",options="header",]
-|==
+|===
 |Operator |Operation
 |`+in+` |item in collection
 |`+not in+` |item not in collection
-|==
+|===
 
 == OPerator Precedence
 

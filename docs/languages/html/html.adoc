@@ -373,14 +373,13 @@ Surround content to turn into links.
 
 == Character Codes
 
-[cols=",",options="header",]
-|==
+|===
 |Code |Character
 |`+&copy;+` |Copyright
 |`+&lt;+` |less than (`+<+`)
 |`+&gt;+` |greater than (`+>+`)
 |`+&amp;+` |ampersand (`+&+`)
-|==
+|===
 
 == Block Element
 
