@@ -23,7 +23,7 @@ When a middleware short-circuits, it's called a *terminal middleware* because it
 
 The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other.
 
-![request-delegate-pipeline](../../../img/dotnet_request-delegate-pipeline.png)
+![request-delegate-pipeline](../../../img/dotnet_request-delegate-pipeline.avif)
 
 Each delegate can perform operations before and after the next delegate. Exception-handling delegates should be called early in the pipeline, so they can catch exceptions that occur in later stages of the pipeline. It's possible to chain multiple request delegates together with `Use`.
 
@@ -62,8 +62,8 @@ app.Run(async context =>
 
 ## Middleware Order
 
-![middleware-pipeline](../../../img/dotnet_middleware-pipeline.png)
-![mvc-endpoint](../../../img/dotnet_mvc-endpoint.png)
+![middleware-pipeline](../../../img/dotnet_middleware-pipeline.avif)
+![mvc-endpoint](../../../img/dotnet_mvc-endpoint.avif)
 
 The Endpoint middleware executes the filter pipeline for the corresponding app type.
 

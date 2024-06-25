@@ -262,7 +262,7 @@ Indexes are special data structures that store a small portion of the collection
 
 Indexes _slow down writing operations_ since the index must be updated at every writing.
 
-![IXSCAN](../img/mongodb_ixscan.png ".find() using an index")
+![IXSCAN](../img/mongodb_ixscan.avif ".find() using an index")
 
 ### [Index Types](https://docs.mongodb.com/manual/indexes/#index-types)
 
@@ -517,7 +517,7 @@ Shard components are:
 - A config server, instance of MongoDB which contains metadata on the cluster, that is the set of instances that have the shard data.
 - A router (or `mongos`), instance of MongoDB used to redirect the user instructions from the client to the correct server.
 
-![Shared Cluster](../img/mongodb_shared-cluster.png "Components of a shared cluster")
+![Shared Cluster](../img/mongodb_shared-cluster.avif "Components of a shared cluster")
 
 ---
 

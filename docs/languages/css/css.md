@@ -569,7 +569,7 @@ There are several methods to 'hide' elements:
 
 ## [Box Model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
 
-![Box Model](../../img/css_box-model.png)
+![Box Model](../../img/css_box-model.avif)
 
 ### Padding
 

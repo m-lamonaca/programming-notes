@@ -2148,7 +2148,7 @@ Generic type parameters support covariance and contravariance to provide greater
 - **Contravariance**: Enables to use a more generic (less derived) type than originally specified.
 - **Invariance**: it's possible to use _only_ the type originally specified; so an invariant generic type parameter is neither covariant nor contravariant.
 
-![covariance-vs-contravariance](../../../img/dotnet_covariant_contravariant.png)
+![covariance-vs-contravariance](../../../img/dotnet_covariant_contravariant.avif)
 
 > **Note**: annotate generic type parameters with `out` and `in` annotations to specify whether they should behave covariantly or contravariantly.
 

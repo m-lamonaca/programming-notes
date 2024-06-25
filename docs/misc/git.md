@@ -166,7 +166,7 @@ It's generally recommended creating annotated tags so it's possible to have all 
 
 ### Branching And Merging
 
-![branch](../img/git_branches.png "how branches work")
+![branch](../img/git_branches.avif "how branches work")
 
 `git branch`: shows branches  
 `git branch -vv`: show branch + last commit + remote status  

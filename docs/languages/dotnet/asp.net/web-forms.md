@@ -49,9 +49,9 @@ The fist loaded page is `Default.aspx` and its underlying code.
 <!-- LinkButton: POstBackEvent reloads the page -->
 <asp:LinkButton ID="lbtHome" runat="server" PostBackUrl="~/Page.aspx" OnClick="lbt_Click">BUTTON TEXT</asp:LinkButton>
 <!-- Image -->
-<asp:Image ID="img_" runat="server" ImageUrl="~/Images/image.png"/>
+<asp:Image ID="img_" runat="server" ImageUrl="~/Images/image.avif"/>
 <!-- ImageButton -->
-<asp:ImageButton ID="imb_" runat="server" ImageUrl="~/Images/image.png" PostBackUrl="~/Page.aspx"/>
+<asp:ImageButton ID="imb_" runat="server" ImageUrl="~/Images/image.avif" PostBackUrl="~/Page.aspx"/>
 
 <!-- SqlSataSource; connection string specified in Web.config -->
 <asp:SqlDataSource ID="sds_" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SQL Query"></asp:SqlDataSource>
