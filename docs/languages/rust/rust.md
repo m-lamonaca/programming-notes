@@ -1322,6 +1322,8 @@ impl Iterator for Counter {
 
 ## Smart Pointers
 
+![Rust Container Types](../../img/rust_container-types.svg "Rust Container Types Data Layout")
+
 A **pointer** is a general concept for a variable that contains an address in memory. This address refers to, or "points at" some other data.  
 The most common kind of pointer in Rust is a *reference*, which you learned about in Chapter 4. References are indicated by the `&` symbol and borrow the value they point to.  
 They don't have any special capabilities other than referring to data. Also, they don`t have any overhead and are the kind of pointer used most often.
