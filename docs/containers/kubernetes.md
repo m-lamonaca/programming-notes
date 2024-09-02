@@ -11,40 +11,40 @@ In production environments, the control plane usually runs across multiple compu
 
 ### Control Plane
 
-The conrtol plane is the container orchestration layer that exposes the API and interfaces to define, deploy, and manage the lifecycle of containers. It's components are:
+The control plane is the container orchestration layer that exposes the API and interfaces to define, deploy, and manage the lifecycle of containers. It's components are:
 
 - **kube-apiserver**: entrypoint of the cluster that exposes the kubernetes API
-- **kube-contoller-manager**: keeps track of what is happening in the cluster
+- **kube-controller-manager**: keeps track of what is happening in the cluster
 - **kube-scheduler**: ensures pod placement on the nodes based on node resource availability
 - **etcd**: key-value store used as Kubernetes backing store for all cluster data
 
-> **Note**: in production environment there are _at least_ two control planes to ensure constant availability of thier functionalities
+> **Note**: in production environment there are _at least_ two control planes to ensure constant availability of their functionalities
 
 ### Node
 
 Nodes are the worker machines in kubernetes. The node components are:
 
 - **kubelet**: the agent that runs on each node in the cluster. It makes sure that containers are running in a pod
-- **kube-proxy**: the network proxy paret of the cluster _virtual network_ that allows communication to pods from inside or outside of the cluster
-- **conatiner runtime**: the software that is responsible for running containers
+- **kube-proxy**: the network proxy part of the cluster _virtual network_ that allows communication to pods from inside or outside of the cluster
+- **container runtime**: the software that is responsible for running containers
 
 ## Kubernetes Components
 
 ### Pod
 
-**Pods** are the smallest unit in kubernetes. They are an abstraction over a set of running containers. The pod abstarction is used to make kubernetes independet from the container technology.
+**Pods** are the smallest unit in kubernetes. They are an abstraction over a set of running containers. The pod abstraction is used to make kubernetes independent from the container technology.
 
-Each pod has it's own IP address inside the virtual network of the cluster; this makes pod comunication possible.  
+Each pod has it's own IP address inside the virtual network of the cluster; this makes pod communication possible.  
 Since pods are _ephemeral_ resources when a pod dies another one will replace it. The new pod will get a new IP address.
 
 ### Service
 
-**Services** are permanet IP addresses and ar used to resolve the issue of changing pod IPs. Each pod can be atatched to a service. The lifecycle of a service is detached from a pod.  
+**Services** are permanent IP addresses and ar used to resolve the issue of changing pod IPs. Each pod can be attached to a service. The lifecycle of a service is detached from a pod.  
 _External_ services are used to make the contents of a pod accessible from the outside of the cluster while _internal_ services are not exposed.
 
 ### Ingress
 
-**Ingresses** are the componentst hat forwards external requests to specific services. Ingresses are used to expose services through secure protocols and friendly URLs instead of service IPs.
+**Ingresses** are the components hat forwards external requests to specific services. Ingresses are used to expose services through secure protocols and friendly URLs instead of service IPs.
 
 ### ConfigMap
 
@@ -60,7 +60,7 @@ Secrets are similar to ConfigMaps but are specifically intended to hold confiden
 
 Because Secrets can be created independently of the Pods that use them, there is less risk of the Secret (and its data) being exposed during the workflow of creating, viewing, and editing Pods.  
 
-> **Warn**: secrets, by dedfault, are _not_ encrypted: they are stored in base64. Conside using third-party encryption tools.
+> **Warn**: secrets, by default, are _not_ encrypted: they are stored in base64. Consider using third-party encryption tools.
 
 ### Volumes
 
@@ -76,7 +76,7 @@ Deployments can be used to manage the scaling of the replicas of a pod.
 
 ### ReplicaSet
 
-**ReplicaSets** are groups of identical pods and are used to guarantee the availability of the replicated appliaction. ReplicaSets are used to manage _stateless_ applications.
+**ReplicaSets** are groups of identical pods and are used to guarantee the availability of the replicated application. ReplicaSets are used to manage _stateless_ applications.
 
 ### StatefulSet
 
@@ -84,7 +84,7 @@ Deployments can be used to manage the scaling of the replicas of a pod.
 
 ### DaemonSet
 
-**DaemonSets** ensure the _all or some_ nodes in a cluster run a copy of a specifc pod.
+**DaemonSets** ensure the _all or some_ nodes in a cluster run a copy of a specific pod.
 
 ### Jobs
 
