@@ -11,8 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Install uv v0.4.2
-        run: curl -LsSf https://astral.sh/uv/0.4.2/install.sh | sh
+      - name: Install uv
+        uses: astral-sh/setup-uv@v1
+        with:
+          version: "latest"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
       
       - name: Setup Python
         uses: actions/setup-python@v5.0.0
