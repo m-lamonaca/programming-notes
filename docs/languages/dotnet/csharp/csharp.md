@@ -170,7 +170,7 @@ The .NET Runtime communicates with the operating system to determine what memory
 The .NET Runtime stores the value, then returns the memory address to the variable.  
 When your code uses the variable, the .NET Runtime seamlessly looks up the address stored in the variable and retrieves the value that's stored there.
 
-### Integral Numeric Types
+### Integer Numeric Types
 
 | Keyword  |   System Type    | Example | Bit/Byte | Min Value                  | Max Value                  |
 | :------: | :--------------: | :-----: | :------: | -------------------------- | -------------------------- |
