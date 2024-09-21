@@ -71,6 +71,10 @@ The applied config in each repository is the combination of all three scopes in 
 `git remote add <remote> <url | path>`: add a remote  
 `git remote remove <remote>`: remove the specified remote  
 `git remote rename <old_name> <new_name>`: rename a remote  
+`git remote set-url <name> <url>`: change the URL for the remote  
+`git remote set-url --add <name> <url>`: add another URL for the remote  
+`git remote set-url --add --push <name> <url>`: add another push URL for the remote  
+`git remote set-url <name> <url>`: change the URL for rhe remote  
 `git branch -u|--set-upstream-to=<remote>/<remote branch>`: set up correspondence between local and remote branch  
 
 `git push`: send objects to default remote on current branch  
