@@ -159,7 +159,7 @@ A quantifier specifies how many instances of the previous element (which can be 
 - `+`: Matches the previous element one or more times.
 - `?`: Matches the previous element zero or one time.
 - `{n}`: Matches the previous element exactly n times.
-- `{n}`: Matches the previous element at least n times.
+- `{n,}`: Matches the previous element at least n times.
 - `{n,m}`: Matches the previous element at least n times, but no more than m times.
 - `*?`: Matches the previous element zero or more times, but as few times as possible.
 - `+?`: Matches the previous element one or more times, but as few times as possible.
