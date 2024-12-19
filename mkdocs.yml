@@ -37,8 +37,8 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-      primary: teal
-      accent: cyan
+      primary: orange
+      accent: deep orange
 
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
@@ -46,8 +46,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-      primary: teal
-      accent: cyan
+      primary: orange
+      accent: deep orange
 
   features:
     - navigation.instant
