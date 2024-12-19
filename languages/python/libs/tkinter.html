@@ -1,0 +1,5832 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Marcello Lamonaca">
+      
+      
+        <link rel="canonical" href="http://m-lamonaca.github.io/dev-notes/languages/python/libs/tkinter.html">
+      
+      
+        <link rel="prev" href="../modules/unittest.html">
+      
+      
+        <link rel="next" href="numpy.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>TKinter - Dev Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="TKinter - Dev Notes" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="http://m-lamonaca.github.io/dev-notes/assets/images/social/languages/python/libs/tkinter.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="http://m-lamonaca.github.io/dev-notes/languages/python/libs/tkinter.html" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="TKinter - Dev Notes" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="http://m-lamonaca.github.io/dev-notes/assets/images/social/languages/python/libs/tkinter.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tkinter-modulelibrary" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="Dev Notes" class="md-header__button md-logo" aria-label="Dev Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TKinter
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/m-lamonaca/dev-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../containers/docker.html" class="md-tabs__link">
+          
+  
+    
+  
+  Containers
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../databases/redis.html" class="md-tabs__link">
+          
+  
+    
+  
+  Databases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../html/html.html" class="md-tabs__link">
+          
+  
+    
+  
+  Languages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../misc/git.html" class="md-tabs__link">
+          
+  
+    
+  
+  Misc
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../linux/filesystem/file-links.html" class="md-tabs__link">
+          
+  
+    
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="Dev Notes" class="md-nav__button md-logo" aria-label="Dev Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"/></svg>
+
+    </a>
+    Dev Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/m-lamonaca/dev-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Containers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Containers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../containers/docker.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../containers/kubernetes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Databases
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Databases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../databases/redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../databases/sql.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../databases/mongo-db.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Languages
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Languages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html/html.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/css.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c/c.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kotlin/kotlin.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kotlin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swift/swift.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Swift
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Assembly
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Assembly
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assembly/intel.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assembly/riscv.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RISC-V
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8_2" id="__nav_4_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/argparse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    argparse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    collection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/csv.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/ftplib.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ftplib
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/itertools.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    itertools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/json.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    json
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/shutil.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shutil
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/smtplib.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smtplib
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/socket.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    socket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/sqlite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sqlite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/time-datetime.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    time & datetime
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/unittest.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    unittest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_8_3" id="__nav_4_8_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Libraries
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            Libraries
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    TKinter
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="tkinter.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    TKinter
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#standard-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Imports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometry-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOMETRY MANAGEMENT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      EVENT HANDLING
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#widgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      WIDGETS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-widget" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRAME WIDGET
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FRAME WIDGET">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frame-padding" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRAME PADDING
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#label-widget" class="md-nav__link">
+    <span class="md-ellipsis">
+      LABEL WIDGET
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LABEL WIDGET">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-updating-label" class="md-nav__link">
+    <span class="md-ellipsis">
+      DEFINING UPDATING LABEL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-images-2-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY IMAGES (2 steps)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-image-and-or-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY IMAGE AND-OR TEXT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      LAYOUT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LAYOUT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-line-text-wrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      MULTI-LINE TEXT WRAP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-text-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONTROL TEXT JUSTIFICATION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#font-style-use-with-caution" class="md-nav__link">
+    <span class="md-ellipsis">
+      FONT STYLE (use with caution)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#button" class="md-nav__link">
+    <span class="md-ellipsis">
+      BUTTON
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BUTTON">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-or-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEXT or IMAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-invocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      BUTTON INVOCATION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      BUTTON STATE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkbutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHECKBUTTON
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CHECKBUTTON">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#widget-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      WIDGET VALUE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONFIG OPTIONS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radiobutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      RADIOBUTTON
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENTRY
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ENTRY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-entry-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGE ENTRY VALUE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entry-config-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENTRY CONFIG OPTIONS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combobox" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMBOBOX
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="COMBOBOX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#predefined-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      PREDEFINED VALUES
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listbox-tk-classic" class="md-nav__link">
+    <span class="md-ellipsis">
+      LISTBOX (Tk Classic)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LISTBOX (Tk Classic)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selecting-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECTING ITEMS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scrollbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      SCROLLBAR
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sizegrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      SIZEGRIP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-tk-classic" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEXT (Tk Classic)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#progressbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROGRESSBAR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PROGRESSBAR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#determinate-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      DETERMINATE PROGRESS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indeterminate-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      INDETERMINATE PROGRESS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      SCALE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spinbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      SPINBOX
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grid-geometry-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRID GEOMETRY MANAGER
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GRID GEOMETRY MANAGER">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layout-within-cell" class="md-nav__link">
+    <span class="md-ellipsis">
+      LAYOUT WITHIN CELL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-resize" class="md-nav__link">
+    <span class="md-ellipsis">
+      HANDLING RESIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padding" class="md-nav__link">
+    <span class="md-ellipsis">
+      PADDING
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows-and-dialogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      WINDOWS AND DIALOGS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WINDOWS AND DIALOGS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-toplevel-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      CREATING TOPLEVEL WINDOW
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-behavior-and-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGING BEHAVIOR AND STYLE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-dialogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      STANDARD DIALOGS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#separator" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEPARATOR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SEPARATOR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOTEBOOK
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NOTEBOOK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fonts-colors-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      FONTS, COLORS, IMAGES
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#named-fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      NAMED FONTS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLORS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#images" class="md-nav__link">
+    <span class="md-ellipsis">
+      IMAGES
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#images-w-pillow" class="md-nav__link">
+    <span class="md-ellipsis">
+      IMAGES W/ Pillow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="numpy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Numpy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pandas.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seaborn.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seaborn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="beautiful-soup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Beatiful Soup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    .NET
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            .NET
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9_1" id="__nav_4_9_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C#
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_9_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9_1">
+            <span class="md-nav__icon md-icon"></span>
+            C#
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/csharp/csharp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C#
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/csharp/linq.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/csharp/collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/csharp/reactive-extensions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reactive Extensions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/csharp/async-programming.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async Programming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/csharp/unit-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9_2" id="__nav_4_9_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ASP.NET
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            ASP.NET
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/asp.net/minimal-api.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Minimal API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/asp.net/filters.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FIlters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/asp.net/middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Middleware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/asp.net/razor-syntax.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Razor Syntax
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/asp.net/blazor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blazor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/asp.net/signalr.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SignalR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/asp.net/web-forms.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Forms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9_3" id="__nav_4_9_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/database/ado.net.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADO.NET
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/database/entity-framework.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Entity Framework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Java
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            Java
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/java.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/java-collection-framework.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java Collection Framework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/dao.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DAO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10_4" id="__nav_4_10_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Web
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_10_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10_4">
+            <span class="md-nav__icon md-icon"></span>
+            Web
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/web/servlet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serverlet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10_4_2" id="__nav_4_10_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Spring
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_10_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Spring
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/spring/pom.xml.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    POM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/spring/spring-project.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    PHP
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            PHP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/php.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/web.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/dependency-injection.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dependency Injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/unit-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/composer.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Composer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/psr-7.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PSR 7
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/plates-templating.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11_9" id="__nav_4_11_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Simple MVC
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_11_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11_9">
+            <span class="md-nav__icon md-icon"></span>
+            Simple MVC
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/simple-mvc/simple-mvc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple MVC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../php/simple-mvc/rest-api.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12" id="__nav_4_12_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Rust
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12">
+            <span class="md-nav__icon md-icon"></span>
+            Rust
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/rust.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rust
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/macros.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Macros
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/cargo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cargo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concurrency
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/unit-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_13" id="__nav_4_13_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Javascript
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            Javascript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/javascript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Javascript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/dom.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DOM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/events-animation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Events & Animation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ajax.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AJAX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/jquery.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jQuery
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_13_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_13_6" id="__nav_4_13_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_13_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13_6">
+            <span class="md-nav__icon md-icon"></span>
+            React
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/react/react.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/react/react-router.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/react/react-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/react/redux.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/react/redux-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redux Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/svelte/svelte.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Svelte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    PowerShell
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
+            <span class="md-nav__icon md-icon"></span>
+            PowerShell
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../powershell/scripting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scripting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../powershell/commands.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_15" id="__nav_4_15_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Bash
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_15">
+            <span class="md-nav__icon md-icon"></span>
+            Bash
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bash/scripting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scripting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bash/commands.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Misc
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Misc
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/git.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/graph-ql.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/regular-expressions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RegEx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/ssh.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/web-components.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WebComponents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Filesystem
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            Filesystem
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux/filesystem/file-links.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux/filesystem/procfs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    /proc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux/filesystem/sysfs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    /sys
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    System Init
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            System Init
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux/init/systemd.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systemd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux/init/open-rc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenRC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#standard-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Imports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometry-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOMETRY MANAGEMENT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      EVENT HANDLING
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#widgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      WIDGETS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-widget" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRAME WIDGET
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FRAME WIDGET">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frame-padding" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRAME PADDING
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#label-widget" class="md-nav__link">
+    <span class="md-ellipsis">
+      LABEL WIDGET
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LABEL WIDGET">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-updating-label" class="md-nav__link">
+    <span class="md-ellipsis">
+      DEFINING UPDATING LABEL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-images-2-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY IMAGES (2 steps)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#display-image-and-or-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY IMAGE AND-OR TEXT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      LAYOUT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LAYOUT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-line-text-wrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      MULTI-LINE TEXT WRAP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-text-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONTROL TEXT JUSTIFICATION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#font-style-use-with-caution" class="md-nav__link">
+    <span class="md-ellipsis">
+      FONT STYLE (use with caution)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#button" class="md-nav__link">
+    <span class="md-ellipsis">
+      BUTTON
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BUTTON">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-or-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEXT or IMAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-invocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      BUTTON INVOCATION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      BUTTON STATE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkbutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHECKBUTTON
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CHECKBUTTON">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#widget-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      WIDGET VALUE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONFIG OPTIONS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radiobutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      RADIOBUTTON
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENTRY
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ENTRY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-entry-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGE ENTRY VALUE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entry-config-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENTRY CONFIG OPTIONS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combobox" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMBOBOX
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="COMBOBOX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#predefined-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      PREDEFINED VALUES
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listbox-tk-classic" class="md-nav__link">
+    <span class="md-ellipsis">
+      LISTBOX (Tk Classic)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LISTBOX (Tk Classic)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selecting-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELECTING ITEMS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scrollbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      SCROLLBAR
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sizegrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      SIZEGRIP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-tk-classic" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEXT (Tk Classic)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#progressbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROGRESSBAR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PROGRESSBAR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#determinate-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      DETERMINATE PROGRESS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indeterminate-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      INDETERMINATE PROGRESS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      SCALE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spinbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      SPINBOX
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grid-geometry-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRID GEOMETRY MANAGER
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GRID GEOMETRY MANAGER">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layout-within-cell" class="md-nav__link">
+    <span class="md-ellipsis">
+      LAYOUT WITHIN CELL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-resize" class="md-nav__link">
+    <span class="md-ellipsis">
+      HANDLING RESIZE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padding" class="md-nav__link">
+    <span class="md-ellipsis">
+      PADDING
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows-and-dialogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      WINDOWS AND DIALOGS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WINDOWS AND DIALOGS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-toplevel-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      CREATING TOPLEVEL WINDOW
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-behavior-and-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGING BEHAVIOR AND STYLE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-dialogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      STANDARD DIALOGS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#separator" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEPARATOR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SEPARATOR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOTEBOOK
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NOTEBOOK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fonts-colors-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      FONTS, COLORS, IMAGES
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#named-fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      NAMED FONTS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLORS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#images" class="md-nav__link">
+    <span class="md-ellipsis">
+      IMAGES
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#images-w-pillow" class="md-nav__link">
+    <span class="md-ellipsis">
+      IMAGES W/ Pillow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="tkinter-modulelibrary">Tkinter Module/Library</h1>
+<h2 id="standard-imports">Standard Imports</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1"># import Python Tk Binding</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>  <span class="c1"># import Themed Widgets</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="geometry-management">GEOMETRY MANAGEMENT</h2>
+<p>Putting  widgets on screen<br />
+master widget &rarr; top-level window, frame<br />
+slave widget &rarr; widgets contained in master widget<br />
+geometry managers determine size and oder widget drawing properties</p>
+<h2 id="event-handling">EVENT HANDLING</h2>
+<p>event loop receives events from the OS<br />
+customizable events provide a callback as a widget configuration</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">widget</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>  <span class="c1"># method to capture any event and than execute an arbitrary piece of code (generally a function or lambda)</span>
+</code></pre></div></td></tr></table></div>
+<p>VIRTUAL EVENT &rarr; hig level event generated by widget (listed in widget docs)</p>
+<h2 id="widgets">WIDGETS</h2>
+<p>Widgets are objects and all things on screen. All widgets are children of a window.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">widget_name</span> <span class="o">=</span> <span class="n">tk_object</span><span class="p">(</span><span class="n">parent_window</span><span class="p">)</span>  <span class="c1"># widget is inserted into widget hierarchy</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="frame-widget">FRAME WIDGET</h2>
+<p>Displays a single rectangle, used as container for other widgets</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">borderwidth</span><span class="o">=</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c1"># BORDERWIDTH: sets frame border width (default: 0)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1"># width, height MUST be specified if frame is empty, otherwise determined by parent geometry manager</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="frame-padding">FRAME PADDING</h3>
+<p>Extra space inside widget (margin).</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;padding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>  <span class="c1"># same padding for every border</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;padding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">horizontal</span><span class="p">,</span> <span class="n">vertical</span><span class="p">)</span>  <span class="c1"># set horizontal THEN vertical padding</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;padding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">)</span>  <span class="c1"># set left, top, right, bottom padding</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="c1"># RELIEF: set border style, [flat (default), raised, sunken, solid, ridge, groove]</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;relief&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">border_style</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="label-widget">LABEL WIDGET</h2>
+<p>Display text or image without interactivity.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">label</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;label text&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="defining-updating-label">DEFINING UPDATING LABEL</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">var</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">()</span>  <span class="c1"># variable containing text, watches for changes. Use get, set methods to interact with the value</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;textvariable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">var</span>  <span class="c1"># attach var to label (only of type StringVar)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">var</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;new text label&quot;</span><span class="p">)</span>  <span class="c1">#  change label text</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="display-images-2-steps">DISPLAY IMAGES (2 steps)</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">image</span> <span class="o">=</span> <span class="n">PhotoImage</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">)</span>  <span class="c1"># create image object</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span>  <span class="c1"># use image config</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="display-image-and-or-text">DISPLAY IMAGE AND-OR TEXT</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;compound&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</code></pre></div></td></tr></table></div>
+<p>Compound value:</p>
+<ul>
+<li>none ../img if present, text otherwise)</li>
+<li>text (text only)</li>
+<li>image (image only)</li>
+<li>center (text in center of image)</li>
+<li>top (image above text), left, bottom, right</li>
+</ul>
+<h2 id="layout">LAYOUT</h2>
+<p>Specifies edge or corner that the label is attached.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;anchor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">compass_direction</span>  <span class="c1">#compass_direction: n, ne, e, se, s, sw, w, nw, center</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="multi-line-text-wrap">MULTI-LINE TEXT WRAP</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1"># use \n for multi line text</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;wraplength&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span>  <span class="c1"># max line length</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="control-text-justification">CONTROL TEXT JUSTIFICATION</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;justify&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>  <span class="c1">#value: left, center, right</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;relief&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_style</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;foreground&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>  <span class="c1"># color passed with name or HEX RGB codes</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;background&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>  <span class="c1"># color passed with name or HEX RGB codes</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="font-style-use-with-caution">FONT STYLE (use with caution)</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># used outside style option</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="n">label</span><span class="p">[</span><span class="s1">&#39;font&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">font</span>
+</code></pre></div></td></tr></table></div>
+<p>Fonts:</p>
+<ul>
+<li>TkDefaultFont    -- default for all GUI items</li>
+<li>TkTextFont    -- used for entry widgets, listboxes, etc</li>
+<li>TkFixedFont    -- standard fixed-width font</li>
+<li>TkMenuFont    -- used for menu items</li>
+<li>TkHeadingFont -- for column headings in lists and tables</li>
+<li>TkCaptionFont    -- for window and dialog caption bars</li>
+<li>TkSmallCaptionFont -- smaller caption for subwindows or tool dialogs</li>
+<li>TkIconFont    -- for icon caption</li>
+<li>TkTooltipFont    -- for tooltips</li>
+</ul>
+<h2 id="button">BUTTON</h2>
+<p>Press to perform some action</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="n">button</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;button_text&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">action_performed</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="text-or-image">TEXT or IMAGE</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="n">button</span><span class="p">[</span><span class="s1">&#39;text/textvariable&#39;</span><span class="p">],</span> <span class="n">button</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">],</span> <span class="n">button</span><span class="p">[</span><span class="s1">&#39;compound&#39;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="button-invocation">BUTTON INVOCATION</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="n">button</span><span class="o">.</span><span class="n">invoke</span><span class="p">()</span>  <span class="c1"># button activation in the program</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="button-state">BUTTON STATE</h3>
+<p>Activate or deactivate the widget.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="n">button</span><span class="o">.</span><span class="n">state</span><span class="p">([</span><span class="s1">&#39;disabled&#39;</span><span class="p">])</span>            <span class="c1"># set the disabled flag, disabling the button</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="n">button</span><span class="o">.</span><span class="n">state</span><span class="p">([</span><span class="s1">&#39;!disabled&#39;</span><span class="p">])</span>           <span class="c1"># clear the disabled flag</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="n">button</span><span class="o">.</span><span class="n">instate</span><span class="p">([</span><span class="s1">&#39;disabled&#39;</span><span class="p">])</span>          <span class="c1"># return true if the button is disabled, else false</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="n">button</span><span class="o">.</span><span class="n">instate</span><span class="p">([</span><span class="s1">&#39;!disabled&#39;</span><span class="p">])</span>         <span class="c1"># return true if the button is not disabled, else false</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="n">button</span><span class="o">.</span><span class="n">instate</span><span class="p">([</span><span class="s1">&#39;!disabled&#39;</span><span class="p">],</span> <span class="n">cmd</span><span class="p">)</span>  <span class="c1"># execute &#39;cmd&#39; if the button is not disabled</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="c1"># WIDGET STATE FLAGS: active, disabled, focus, pressed, selected, background, readonly, alternate, invalid</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="checkbutton">CHECKBUTTON</h2>
+<p>Button with binary value of some kind (e.g a toggle) and also invokes a command callback</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="n">checkbutton_var</span> <span class="o">=</span> <span class="n">TkVarType</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="n">check</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Checkbutton</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;button text&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">action_performed</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">checkbutton_var</span><span class="p">,</span> <span class="n">onvalue</span><span class="o">=</span><span class="n">value_on</span><span class="p">,</span> <span class="n">offvalue</span><span class="o">=</span><span class="n">value_off</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="widget-value">WIDGET VALUE</h3>
+<p>Variable option holds value of button, updated by widget toggle.<br />
+DEFAULT: 1 (while checked), 0 (while unchecked)<br />
+<code>onvalue</code>, <code>offvalue</code> are used to personalize checked and unchecked values<br />
+if linked variable is empty or different from on-off value the state flag is set to alternate<br />
+checkbutton won't set the linked variable (MUST be done in the program)</p>
+<h3 id="config-options">CONFIG OPTIONS</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="n">check</span><span class="p">[</span><span class="s1">&#39;text/textvariable&#39;</span><span class="p">]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="n">check</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="n">check</span><span class="p">[</span><span class="s1">&#39;compound&#39;</span><span class="p">]</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="n">check</span><span class="o">.</span><span class="n">state</span><span class="p">([</span><span class="s1">&#39;flag&#39;</span><span class="p">])</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="n">check</span><span class="o">.</span><span class="n">instate</span><span class="p">([</span><span class="s1">&#39;flag&#39;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="radiobutton">RADIOBUTTON</h2>
+<p>Multiple-choice selection (good if options are few).</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-19-10">10</a></span>
+<span class="normal"><a href="#__codelineno-19-11">11</a></span>
+<span class="normal"><a href="#__codelineno-19-12">12</a></span>
+<span class="normal"><a href="#__codelineno-19-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="c1">#RADIOBUTTON CREATION (usually as a set)</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="n">radio_var</span> <span class="o">=</span> <span class="n">TkVarType</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="n">radio_1</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Radiobutton</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;button text&#39;</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">radio_var</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">button_1_value</span><span class="p">)</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="n">radio_2</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Radiobutton</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;button text&#39;</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">radio_var</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">button_2_value</span><span class="p">)</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="n">radio_3</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Radiobutton</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;button text&#39;</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">radio_var</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">button_3_value</span><span class="p">)</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="c1"># if linked value does not exist flag state is alternate</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7"></a>
+<a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="c1"># CONFIG OPTIONS</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="n">radio</span><span class="p">[</span><span class="s1">&#39;text/textvariable&#39;</span><span class="p">]</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="n">radio</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11"></a><span class="n">radio</span><span class="p">[</span><span class="s1">&#39;compound&#39;</span><span class="p">]</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12"></a><span class="n">radio</span><span class="o">.</span><span class="n">state</span><span class="p">([</span><span class="s1">&#39;flag&#39;</span><span class="p">])</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13"></a><span class="n">radio</span><span class="o">.</span><span class="n">instate</span><span class="p">([</span><span class="s1">&#39;flag&#39;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="entry">ENTRY</h2>
+<p>Single line text field accepting a string.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="n">entry_var</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">()</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="n">entry</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">entry_var</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">char_num</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">symbol</span><span class="p">)</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="c1"># SHOW: replaces the entry test with symbol, used for password</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="c1"># entries don&#39;t have an associated label, needs a separate widget</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="change-entry-value">CHANGE ENTRY VALUE</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="n">entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>  <span class="c1"># returns entry value</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="n">entry</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">)</span>  <span class="c1"># delete between two indices, 0-based</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="n">entry</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;text value&#39;</span><span class="p">)</span>  <span class="c1"># insert new text at a given index</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="entry-config-options">ENTRY CONFIG OPTIONS</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="n">radio</span><span class="o">.</span><span class="n">state</span><span class="p">([</span><span class="s1">&#39;flag&#39;</span><span class="p">])</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="n">radio</span><span class="o">.</span><span class="n">instate</span><span class="p">([</span><span class="s1">&#39;flag&#39;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="combobox">COMBOBOX</h2>
+<p>Drop-down list of available options.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span>
+<span class="normal"><a href="#__codelineno-23-6">6</a></span>
+<span class="normal"><a href="#__codelineno-23-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="n">combobox_var</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">()</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="n">combo</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">combobox_var</span><span class="p">)</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="n">combobox</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>  <span class="c1"># return combobox current value</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="n">combobox</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>  <span class="c1"># set combobox new value</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="n">combobox</span><span class="o">.</span><span class="n">current</span><span class="p">()</span>  <span class="c1"># returns which item in the predefined values list is selected (0-based index of the provided list, -1 if not in the list)</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6"></a><span class="c1">#combobox will generate a bind-able &lt;ComboboxSelected&gt; virtual event whenever the value changes</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7"></a><span class="n">combobox</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;ComboboxSelected&gt;&gt;&#39;</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="predefined-values">PREDEFINED VALUES</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="n">combobox</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">value_1</span><span class="p">,</span> <span class="n">value_2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>  <span class="c1"># provides a list of choose-able values</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="n">combobox</span><span class="o">.</span><span class="n">state</span><span class="p">([</span><span class="s1">&#39;readonly&#39;</span><span class="p">])</span>  <span class="c1"># restricts choose-able values to those provided with &#39;values&#39; config option</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="c1"># SUGGESTION: call selection clear method on value change (on ComboboxSelected event) to avoid visual oddities</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="listbox-tk-classic">LISTBOX (Tk Classic)</h2>
+<p>Display list of single-line items, allows browsing and multiple selection (part og Tk classic, missing in themed Tk widgets).</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="n">lstbx</span> <span class="o">=</span> <span class="n">Listbox</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">listvariable</span><span class="o">=</span><span class="n">item_list</span><span class="p">:</span><span class="nb">list</span><span class="p">)</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="c1"># listvariable links a variable (MUST BE a list) to the listbox, each element is a item of the listbox</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="c1"># manipulation of the list changes the listbox</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="selecting-items">SELECTING ITEMS</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span>
+<span class="normal"><a href="#__codelineno-26-4">4</a></span>
+<span class="normal"><a href="#__codelineno-26-5">5</a></span>
+<span class="normal"><a href="#__codelineno-26-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="n">lstbx</span><span class="p">[</span><span class="s1">&#39;selectmode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mode</span>  <span class="c1"># MODE: browse (single selection), extended (multiple selection)</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="n">lstbx</span><span class="o">.</span><span class="n">curselection</span><span class="p">()</span>  <span class="c1"># returns list of indices of selected items</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="c1"># on selection change: generate event &lt;ListboxSelect&gt;</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="c1"># often each string in the program is associated with some other data item</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a><span class="c1"># keep a second list, parallel to the list of strings displayed in the listbox, which will hold the associated objects</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6"></a><span class="c1"># (association by index with .curselection() or with a dict).</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="scrollbar">SCROLLBAR</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span>
+<span class="normal"><a href="#__codelineno-27-3">3</a></span>
+<span class="normal"><a href="#__codelineno-27-4">4</a></span>
+<span class="normal"><a href="#__codelineno-27-5">5</a></span>
+<span class="normal"><a href="#__codelineno-27-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="n">scroll</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Scrollbar</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">widget</span><span class="o">.</span><span class="n">view</span><span class="p">)</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="c1"># ORIENT: VERTICAL, HORIZONTAL</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="c1"># WIDGET.VIEW: .xview, .yview</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a><span class="c1"># NEEDS ASSOCIATED WIDGET SCROLL CONFIG</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="n">widget</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">xscrollcommand</span><span class="o">=</span><span class="n">scroll</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6"></a><span class="n">widget</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">yscrollcommand</span><span class="o">=</span><span class="n">scroll</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="sizegrip">SIZEGRIP</h2>
+<p>Box in right bottom of widget, allows resize.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="n">ttk</span><span class="o">.</span><span class="n">Sizegrip</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">999</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">999</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">E</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="text-tk-classic">TEXT (Tk Classic)</h2>
+<p>Area accepting multiple line of text.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span>
+<span class="normal"><a href="#__codelineno-29-3">3</a></span>
+<span class="normal"><a href="#__codelineno-29-4">4</a></span>
+<span class="normal"><a href="#__codelineno-29-5">5</a></span>
+<span class="normal"><a href="#__codelineno-29-6">6</a></span>
+<span class="normal"><a href="#__codelineno-29-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="n">txt</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="n">flag</span><span class="p">)</span>  <span class="c1"># width is character num, height is row num</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="c1"># FLAG: none (no wrapping), char (wrap at every character), word (wrap at word boundaries)</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="n">txt</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flag</span>  <span class="c1"># FLAG: disabled, normal</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="c1"># accepts commands xscrollcommand and yscrollcommandand and yview, xview methods</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="n">txt</span><span class="o">.</span><span class="n">see</span><span class="p">(</span><span class="n">line_num</span><span class="o">.</span><span class="n">char_num</span><span class="p">)</span>  <span class="c1"># ensure that given line is visible (line is 1-based, char is 0-based)</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="n">txt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">index</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>   <span class="c1"># insert string in pos index (index = line.char), &#39;end&#39; is shortcut for end of text</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7"></a><span class="n">txt</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>  <span class="c1"># delete range of text</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="progressbar">PROGRESSBAR</h2>
+<p>Feedback about progress of lenghty operation.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span>
+<span class="normal"><a href="#__codelineno-30-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="n">progbar</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Progressbar</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="n">num</span><span class="p">:</span><span class="nb">float</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">)</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="c1"># DIRECTION: VERTICAL, HORIZONTAL</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="c1"># MODE: determinate (relative progress of completion), indeterminate (no estimate of completion)</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="c1"># LENGTH: dimension in pixel</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="c1"># VALUE: sets the progress, updates the bar as it changes</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="c1"># MAXIMUM: total number of steps (DEFAULT: 100)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="determinate-progress">DETERMINATE PROGRESS</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="n">progbar</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>  <span class="c1"># increment value of given amount (DEFAULT: 1.0)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="indeterminate-progress">INDETERMINATE PROGRESS</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
+<span class="normal"><a href="#__codelineno-32-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="n">progbar</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>  <span class="c1"># starts progressbar</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="n">progbar</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>  <span class="c1">#stoops progressbar</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="scale">SCALE</h2>
+<p>Provide a numeric value through direct manipulation.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span>
+<span class="normal"><a href="#__codelineno-33-2">2</a></span>
+<span class="normal"><a href="#__codelineno-33-3">3</a></span>
+<span class="normal"><a href="#__codelineno-33-4">4</a></span>
+<span class="normal"><a href="#__codelineno-33-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="n">scale</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">DIR</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">num</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="n">num</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">num</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">cmd</span><span class="p">)</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="c1"># COMMAND: calls cmd at every scale change, appends current value to func call</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="n">scale</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>  <span class="c1"># set or read current value</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="n">scale</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>  <span class="c1"># set current value</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="n">scale</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>  <span class="c1"># get current value</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="spinbox">SPINBOX</h2>
+<p>Choose numbers. The spinbox choses item from a list, arrows permit cycling lits items.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span>
+<span class="normal"><a href="#__codelineno-34-3">3</a></span>
+<span class="normal"><a href="#__codelineno-34-4">4</a></span>
+<span class="normal"><a href="#__codelineno-34-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="n">spinval</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">()</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="n">spin</span> <span class="o">=</span> <span class="n">Spinbox</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">spinval</span><span class="p">,</span> <span class="n">increment</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">lst</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="n">boolean</span><span class="p">)</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="c1"># INCREMENT specifies increment\decrement by arrow button</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4"></a><span class="c1"># VALUE: list of items associated with the spinbox</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="c1"># WRAP: boolean value determining if value should wrap around if beyond start-end value</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="grid-geometry-manager">GRID GEOMETRY MANAGER</h2>
+<p>Widgets are assigned a "column" number and a "row" number, which indicates their relative position to each other.<br />
+Column and row numbers must be integers, with the first column and row starting at 0.<br />
+Gaps in column and row numbers are handy to add more widgets in the middle of the user interface at a later time.<br />
+The width of each column (or height of each row) depends on the width or height of the widgets contained within the column or row.</p>
+<p>Widgets can take up more than a single cell in the grid ("columnspan" and "rowspan" options).</p>
+<h3 id="layout-within-cell">LAYOUT WITHIN CELL</h3>
+<p>By default, if a cell is larger than the widget contained in it, the widget will be centered within it,<br />
+both horizontally and vertically, with the master's background showing in the empty space around it.<br />
+The "sticky" option can be used to change this default behavior.<br />
+The value of the "sticky" option is a string of 0 or more of the compass directions "nsew", specifying which edges of the cell the widget should be "stuck" to.<br />
+Specifying two opposite edges means that the widget will be stretched so it is stuck to both.<br />
+Specifying "nsew" it will stick to every side.</p>
+<h3 id="handling-resize">HANDLING RESIZE</h3>
+<p>Every column and row has a "weight" grid option associated with it, which tells it how much it should grow if there is extra room in the master to fill.<br />
+By default, the weight of each column or row is 0, meaning don't expand to fill space.<br />
+This is done using the "columnconfigure" and "rowconfigure" methods of grid.<br />
+Both "columnconfigure" and "rowconfigure" also take a "minsize" grid option, which specifies a minimum size.</p>
+<h3 id="padding">PADDING</h3>
+<p>Normally, each column or row will be directly adjacent to the next, so that widgets will be right next to each other.<br />
+"padx" puts a bit of extra space to the left and right of the widget, while "pady" adds extra space top and bottom.<br />
+A single value for the option puts the same padding on both left and right (or top and bottom),<br />
+while a two-value list lets you put different amounts on left and right (or top and bottom).<br />
+To add padding around an entire row or column, the "columnconfigure" and "rowconfigure" methods accept a "pad" option.  </p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-35-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-35-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-35-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-35-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-35-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-35-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-35-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-35-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-35-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="n">widget</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="p">(),</span> <span class="n">padx</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="n">num</span><span class="p">)</span>  <span class="c1"># sticky: N, S, E, W</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="n">widget</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">num</span><span class="p">)</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3"></a><span class="n">widget</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">num</span><span class="p">)</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4"></a>
+<a id="__codelineno-35-5" name="__codelineno-35-5"></a><span class="n">widget</span><span class="o">.</span><span class="n">grid_slaves</span><span class="p">()</span>  <span class="c1"># returns map, list of widgets inside a master</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6"></a><span class="n">widget</span><span class="o">.</span><span class="n">grid_info</span><span class="p">()</span>  <span class="c1"># returns list of grid options</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7"></a><span class="n">widget</span><span class="o">.</span><span class="n">grid_configure</span><span class="p">()</span>  <span class="c1"># change one or more option</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8"></a>
+<a id="__codelineno-35-9" name="__codelineno-35-9"></a><span class="n">widget</span><span class="o">.</span><span class="n">grid_forget</span><span class="p">(</span><span class="n">slaves</span><span class="p">)</span>  <span class="c1"># takes a list of slaves, removes slaves from grid (forgets slaves options)</span>
+<a id="__codelineno-35-10" name="__codelineno-35-10"></a><span class="n">widget</span><span class="o">.</span><span class="n">grid_remove</span><span class="p">(</span><span class="n">slaves</span><span class="p">)</span>  <span class="c1"># takes a list of slaves, removes slaves from grid (remembers slaves options)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="windows-and-dialogs">WINDOWS AND DIALOGS</h2>
+<h3 id="creating-toplevel-window">CREATING TOPLEVEL WINDOW</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span>
+<span class="normal"><a href="#__codelineno-36-2">2</a></span>
+<span class="normal"><a href="#__codelineno-36-3">3</a></span>
+<span class="normal"><a href="#__codelineno-36-4">4</a></span>
+<span class="normal"><a href="#__codelineno-36-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="n">tlw</span> <span class="o">=</span> <span class="n">Toplevel</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>  <span class="c1"># parent of root window, no need to grid it</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2"></a>
+<a id="__codelineno-36-3" name="__codelineno-36-3"></a><span class="n">window</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4"></a><span class="c1"># can destroy every widget</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5"></a><span class="c1"># destroying parent also destroys it&#39;s children</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="changing-behavior-and-style">CHANGING BEHAVIOR AND STYLE</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-37-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-37-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-37-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-37-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-37-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-37-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-37-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-37-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-37-10">10</a></span>
+<span class="normal"><a href="#__codelineno-37-11">11</a></span>
+<span class="normal"><a href="#__codelineno-37-12">12</a></span>
+<span class="normal"><a href="#__codelineno-37-13">13</a></span>
+<span class="normal"><a href="#__codelineno-37-14">14</a></span>
+<span class="normal"><a href="#__codelineno-37-15">15</a></span>
+<span class="normal"><a href="#__codelineno-37-16">16</a></span>
+<span class="normal"><a href="#__codelineno-37-17">17</a></span>
+<span class="normal"><a href="#__codelineno-37-18">18</a></span>
+<span class="normal"><a href="#__codelineno-37-19">19</a></span>
+<span class="normal"><a href="#__codelineno-37-20">20</a></span>
+<span class="normal"><a href="#__codelineno-37-21">21</a></span>
+<span class="normal"><a href="#__codelineno-37-22">22</a></span>
+<span class="normal"><a href="#__codelineno-37-23">23</a></span>
+<span class="normal"><a href="#__codelineno-37-24">24</a></span>
+<span class="normal"><a href="#__codelineno-37-25">25</a></span>
+<span class="normal"><a href="#__codelineno-37-26">26</a></span>
+<span class="normal"><a href="#__codelineno-37-27">27</a></span>
+<span class="normal"><a href="#__codelineno-37-28">28</a></span>
+<span class="normal"><a href="#__codelineno-37-29">29</a></span>
+<span class="normal"><a href="#__codelineno-37-30">30</a></span>
+<span class="normal"><a href="#__codelineno-37-31">31</a></span>
+<span class="normal"><a href="#__codelineno-37-32">32</a></span>
+<span class="normal"><a href="#__codelineno-37-33">33</a></span>
+<span class="normal"><a href="#__codelineno-37-34">34</a></span>
+<span class="normal"><a href="#__codelineno-37-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="c1"># WINDOW TILE</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="n">window</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>  <span class="c1"># returns title of the window</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a><span class="n">window</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;new title&#39;</span><span class="p">)</span>  <span class="c1"># sets title</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4"></a>
+<a id="__codelineno-37-5" name="__codelineno-37-5"></a><span class="c1"># SIZE AND LOCATION</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="n">window</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="n">geo_specs</span><span class="p">)</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7"></a><span class="sd">&#39;&#39;&#39;full geometry specification: width * height +- x +- y (actual coordinates of screen)</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8"></a><span class="sd">+x --&gt; x pixels from left edge</span>
+<a id="__codelineno-37-9" name="__codelineno-37-9"></a><span class="sd">-x --&gt; x pixels from right edge</span>
+<a id="__codelineno-37-10" name="__codelineno-37-10"></a><span class="sd">+y --&gt; y pixels from top edge</span>
+<a id="__codelineno-37-11" name="__codelineno-37-11"></a><span class="sd">-y --&gt; y pixels from bottom edge&#39;&#39;&#39;</span>
+<a id="__codelineno-37-12" name="__codelineno-37-12"></a>
+<a id="__codelineno-37-13" name="__codelineno-37-13"></a><span class="c1"># STACKING ORDER</span>
+<a id="__codelineno-37-14" name="__codelineno-37-14"></a><span class="c1"># current stacking order (list from lowest to highest) --- NOT CLEANLY EXPOSED THROUGH TK API</span>
+<a id="__codelineno-37-15" name="__codelineno-37-15"></a><span class="n">root</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;wm stackorder &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
+<a id="__codelineno-37-16" name="__codelineno-37-16"></a><span class="c1"># check if window is above or below</span>
+<a id="__codelineno-37-17" name="__codelineno-37-17"></a><span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;wm stackorder &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">window</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; isabove &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">otherwindow</span><span class="p">))</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<a id="__codelineno-37-18" name="__codelineno-37-18"></a><span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">tk</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s1">&#39;wm stackorder &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">window</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; isbelow &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">otherwindow</span><span class="p">))</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<a id="__codelineno-37-19" name="__codelineno-37-19"></a><span class="c1"># raise or lower windows</span>
+<a id="__codelineno-37-20" name="__codelineno-37-20"></a><span class="n">window</span><span class="o">.</span><span class="n">lift</span><span class="p">()</span>  <span class="c1"># absolute position</span>
+<a id="__codelineno-37-21" name="__codelineno-37-21"></a><span class="n">window</span><span class="o">.</span><span class="n">lift</span><span class="p">(</span><span class="n">otherwin</span><span class="p">)</span>  <span class="c1"># relative to other window</span>
+<a id="__codelineno-37-22" name="__codelineno-37-22"></a><span class="n">window</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># absolute position</span>
+<a id="__codelineno-37-23" name="__codelineno-37-23"></a><span class="n">window</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">otherwin</span><span class="p">)</span>   <span class="c1"># relative to other window</span>
+<a id="__codelineno-37-24" name="__codelineno-37-24"></a>
+<a id="__codelineno-37-25" name="__codelineno-37-25"></a><span class="c1"># RESIZE BEHAVIOR</span>
+<a id="__codelineno-37-26" name="__codelineno-37-26"></a><span class="n">window</span><span class="o">.</span><span class="n">resizable</span><span class="p">(</span><span class="n">boolean</span><span class="p">,</span> <span class="n">boolean</span><span class="p">)</span>  <span class="c1"># sets if resizable in width (1st param) and width (2nd param)</span>
+<a id="__codelineno-37-27" name="__codelineno-37-27"></a><span class="n">window</span><span class="o">.</span><span class="n">minsize</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>  <span class="c1"># sets min width and height</span>
+<a id="__codelineno-37-28" name="__codelineno-37-28"></a><span class="n">window</span><span class="o">.</span><span class="n">maxsize</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>  <span class="c1"># sets max width and height</span>
+<a id="__codelineno-37-29" name="__codelineno-37-29"></a>
+<a id="__codelineno-37-30" name="__codelineno-37-30"></a><span class="c1"># ICONIFYING AND WITHDRAWING</span>
+<a id="__codelineno-37-31" name="__codelineno-37-31"></a><span class="c1"># WINDOW STATE: normal. iconic (iconified window), withdrawn, icon, zoomed</span>
+<a id="__codelineno-37-32" name="__codelineno-37-32"></a><span class="n">window</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>  <span class="c1"># returns current window state</span>
+<a id="__codelineno-37-33" name="__codelineno-37-33"></a><span class="n">window</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span>  <span class="c1"># sets window state</span>
+<a id="__codelineno-37-34" name="__codelineno-37-34"></a><span class="n">window</span><span class="o">.</span><span class="n">iconify</span><span class="p">()</span>  <span class="c1"># iconifies window</span>
+<a id="__codelineno-37-35" name="__codelineno-37-35"></a><span class="n">window</span><span class="o">.</span><span class="n">deiconify</span><span class="p">()</span>  <span class="c1"># deiconifies window</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="standard-dialogs">STANDARD DIALOGS</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-38-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-38-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-38-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-38-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-38-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-38-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-38-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-38-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-38-10">10</a></span>
+<span class="normal"><a href="#__codelineno-38-11">11</a></span>
+<span class="normal"><a href="#__codelineno-38-12">12</a></span>
+<span class="normal"><a href="#__codelineno-38-13">13</a></span>
+<span class="normal"><a href="#__codelineno-38-14">14</a></span>
+<span class="normal"><a href="#__codelineno-38-15">15</a></span>
+<span class="normal"><a href="#__codelineno-38-16">16</a></span>
+<span class="normal"><a href="#__codelineno-38-17">17</a></span>
+<span class="normal"><a href="#__codelineno-38-18">18</a></span>
+<span class="normal"><a href="#__codelineno-38-19">19</a></span>
+<span class="normal"><a href="#__codelineno-38-20">20</a></span>
+<span class="normal"><a href="#__codelineno-38-21">21</a></span>
+<span class="normal"><a href="#__codelineno-38-22">22</a></span>
+<span class="normal"><a href="#__codelineno-38-23">23</a></span>
+<span class="normal"><a href="#__codelineno-38-24">24</a></span>
+<span class="normal"><a href="#__codelineno-38-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="c1"># SLEETING FILE AND DIRECTORIES</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="c1"># on Windows and Mac invokes underlying OS dialogs directly</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4"></a><span class="n">filename</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">()</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5"></a><span class="n">filename</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">asksaveasfilename</span><span class="p">()</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6"></a><span class="n">dirname</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askdirectory</span><span class="p">()</span>
+<a id="__codelineno-38-7" name="__codelineno-38-7"></a><span class="sd">&#39;&#39;&#39;All of these commands produce modal dialogs, which means that the commands (and hence the program) will not continue running until the user submits the dialog.</span>
+<a id="__codelineno-38-8" name="__codelineno-38-8"></a><span class="sd">The commands return the full pathname of the file or directory the user has chosen, or return an empty string if the user cancels out of the dialog.&#39;&#39;&#39;</span>
+<a id="__codelineno-38-9" name="__codelineno-38-9"></a>
+<a id="__codelineno-38-10" name="__codelineno-38-10"></a><span class="c1"># SELECTING COLORS</span>
+<a id="__codelineno-38-11" name="__codelineno-38-11"></a><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">colorchooser</span>
+<a id="__codelineno-38-12" name="__codelineno-38-12"></a> <span class="c1"># returns HEX color code, INITIALCOLOR: exiting color, presumably to replace</span>
+<a id="__codelineno-38-13" name="__codelineno-38-13"></a><span class="n">colorchooser</span><span class="o">.</span><span class="n">askcolor</span><span class="p">(</span><span class="n">initialcolor</span><span class="o">=</span><span class="n">hex_color_code</span><span class="p">)</span>
+<a id="__codelineno-38-14" name="__codelineno-38-14"></a>
+<a id="__codelineno-38-15" name="__codelineno-38-15"></a><span class="c1"># ALERT AND COMFIRMATION DIALOGS</span>
+<a id="__codelineno-38-16" name="__codelineno-38-16"></a><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">messagebox</span>
+<a id="__codelineno-38-17" name="__codelineno-38-17"></a><span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>  <span class="c1"># simple box with message and OK button</span>
+<a id="__codelineno-38-18" name="__codelineno-38-18"></a><span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+<a id="__codelineno-38-19" name="__codelineno-38-19"></a><span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+<a id="__codelineno-38-20" name="__codelineno-38-20"></a><span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;secondary text&#39;</span> <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;icon&#39;</span><span class="p">)</span>
+<a id="__codelineno-38-21" name="__codelineno-38-21"></a><span class="n">messagebor</span><span class="o">.</span><span class="n">askokcancel</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;icon&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;secondary text&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">button</span><span class="p">)</span>  <span class="c1"># DEFAULT: default button, ok or cancel</span>
+<a id="__codelineno-38-22" name="__codelineno-38-22"></a><span class="n">messagebox</span><span class="o">.</span><span class="n">akdquestion</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;secondary text&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;icon&#39;</span><span class="p">)</span>
+<a id="__codelineno-38-23" name="__codelineno-38-23"></a><span class="n">messagebox</span><span class="o">.</span><span class="n">askretrycancel</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;secondary text&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;icon&#39;</span><span class="p">)</span>
+<a id="__codelineno-38-24" name="__codelineno-38-24"></a><span class="n">messagebox</span><span class="o">.</span><span class="n">askyesnocancel</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;secondary text&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;icon&#39;</span><span class="p">)</span>
+<a id="__codelineno-38-25" name="__codelineno-38-25"></a><span class="c1"># ICON: info (default), error, question, warning</span>
+</code></pre></div></td></tr></table></div>
+<p>POSSIBLE ALERT/CONFIRMATION RETURN VALUES:</p>
+<ul>
+<li><code>ok (default)</code> -- "ok"</li>
+<li><code>okcancel</code> -- "ok" or "cancel"</li>
+<li><code>yesno</code> -- "yes" or "no"</li>
+<li><code>yesnocancel</code> -- "yes", "no" or "cancel"</li>
+<li><code>retrycancel</code> -- "retry" or "cancel"</li>
+</ul>
+<h2 id="separator">SEPARATOR</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-39-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-39-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-39-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-39-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-39-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-39-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-39-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-39-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-39-10">10</a></span>
+<span class="normal"><a href="#__codelineno-39-11">11</a></span>
+<span class="normal"><a href="#__codelineno-39-12">12</a></span>
+<span class="normal"><a href="#__codelineno-39-13">13</a></span>
+<span class="normal"><a href="#__codelineno-39-14">14</a></span>
+<span class="normal"><a href="#__codelineno-39-15">15</a></span>
+<span class="normal"><a href="#__codelineno-39-16">16</a></span>
+<span class="normal"><a href="#__codelineno-39-17">17</a></span>
+<span class="normal"><a href="#__codelineno-39-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="c1"># horizontal or vertical line between groups of widgets</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a><span class="n">separator</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Separator</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3"></a><span class="c1"># DIRECTION: horizontal, vertical</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4"></a><span class="sd">&#39;&#39;&#39;LABEL FRAME&#39;&#39;&#39;</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5"></a><span class="c1"># labelled frame, used to group widgets</span>
+<a id="__codelineno-39-6" name="__codelineno-39-6"></a><span class="n">lf</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7"></a><span class="sd">&#39;&#39;&#39;PANED WINDOWS&#39;&#39;&#39;</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8"></a><span class="c1"># stack multimple resizable widgets</span>
+<a id="__codelineno-39-9" name="__codelineno-39-9"></a><span class="c1"># panes ara adjustable (drag sash between panes)</span>
+<a id="__codelineno-39-10" name="__codelineno-39-10"></a><span class="n">pw</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">PanedWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span>
+<a id="__codelineno-39-11" name="__codelineno-39-11"></a><span class="c1"># DIRECTION: horizontal, vertical</span>
+<a id="__codelineno-39-12" name="__codelineno-39-12"></a><span class="n">lf1</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-39-13" name="__codelineno-39-13"></a><span class="n">lf2</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-39-14" name="__codelineno-39-14"></a><span class="n">pw</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lf1</span><span class="p">)</span>  <span class="c1"># add widget to paned window</span>
+<a id="__codelineno-39-15" name="__codelineno-39-15"></a><span class="n">pw</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lf2</span><span class="p">)</span>
+<a id="__codelineno-39-16" name="__codelineno-39-16"></a><span class="n">pw</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">subwindow</span><span class="p">)</span>  <span class="c1"># insert widget at given position in list of panes (0, ..., n-1)</span>
+<a id="__codelineno-39-17" name="__codelineno-39-17"></a><span class="n">pw</span><span class="o">.</span><span class="n">forget</span><span class="p">(</span><span class="n">subwindow</span><span class="p">)</span>  <span class="c1"># remove widget from pane</span>
+<a id="__codelineno-39-18" name="__codelineno-39-18"></a><span class="n">pw</span><span class="o">.</span><span class="n">forget</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>  <span class="c1"># remove widget from pane</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="notebook">NOTEBOOK</h3>
+<p>Allows switching between multiple pages</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-40-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-40-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-40-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-40-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-40-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-40-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-40-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-40-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-40-10">10</a></span>
+<span class="normal"><a href="#__codelineno-40-11">11</a></span>
+<span class="normal"><a href="#__codelineno-40-12">12</a></span>
+<span class="normal"><a href="#__codelineno-40-13">13</a></span>
+<span class="normal"><a href="#__codelineno-40-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="n">nb</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2"></a><span class="n">f1</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>  <span class="c1"># child of notebook</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3"></a><span class="n">f2</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4"></a><span class="n">nb</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">subwindow</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;page title&#39;</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">flag</span><span class="p">)</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5"></a><span class="c1"># TEXT: name of page, STATE: normal, dusabled (not selectable), hidden</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6"></a>
+<a id="__codelineno-40-7" name="__codelineno-40-7"></a><span class="n">nb</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">subwindow</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+<a id="__codelineno-40-8" name="__codelineno-40-8"></a><span class="n">nb</span><span class="o">.</span><span class="n">forget</span><span class="p">(</span><span class="n">subwindow</span><span class="p">)</span>
+<a id="__codelineno-40-9" name="__codelineno-40-9"></a><span class="n">nb</span><span class="o">.</span><span class="n">forget</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+<a id="__codelineno-40-10" name="__codelineno-40-10"></a><span class="n">nb</span><span class="o">.</span><span class="n">tabs</span><span class="p">()</span>  <span class="c1"># retrieve all tabs</span>
+<a id="__codelineno-40-11" name="__codelineno-40-11"></a><span class="n">nb</span><span class="o">.</span><span class="n">select</span><span class="p">()</span>  <span class="c1"># return current tab</span>
+<a id="__codelineno-40-12" name="__codelineno-40-12"></a><span class="n">nb</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">position</span><span class="o">/</span><span class="n">subwindow</span><span class="p">)</span>  <span class="c1"># change current tab</span>
+<a id="__codelineno-40-13" name="__codelineno-40-13"></a><span class="n">nb</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="n">tabid</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># retrieve tab (TABID: position or subwindow) option</span>
+<a id="__codelineno-40-14" name="__codelineno-40-14"></a><span class="n">nb</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="n">tabid</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>   <span class="c1"># change tab option</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="fonts-colors-images">FONTS, COLORS, IMAGES</h4>
+<h4 id="named-fonts">NAMED FONTS</h4>
+<p>Creation of personalized fonts</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
+<span class="normal"><a href="#__codelineno-41-2">2</a></span>
+<span class="normal"><a href="#__codelineno-41-3">3</a></span>
+<span class="normal"><a href="#__codelineno-41-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">font</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2"></a><span class="n">font_name</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;font_family&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold/normal&#39;</span><span class="p">,</span> <span class="n">slant</span><span class="o">=</span><span class="s1">&#39;roman/italic&#39;</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="n">boolean</span><span class="p">,</span> <span class="n">overstrike</span><span class="o">=</span><span class="n">boolean</span><span class="p">)</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3"></a><span class="c1"># FAMILY: Courier, Times, Helvetica (support guaranteed)</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4"></a><span class="n">font</span><span class="o">.</span><span class="n">families</span><span class="p">()</span>  <span class="c1"># all avaiable font families</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="colors">COLORS</h4>
+<p>Specified w/ HEX RGB codes.</p>
+<h4 id="images">IMAGES</h4>
+<p>imgobj = PhotoImage(file='filename')
+label['image'] = imgobj</p>
+<h4 id="images-w-pillow">IMAGES W/ Pillow</h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span>
+<span class="normal"><a href="#__codelineno-42-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageTk</span><span class="p">,</span> <span class="n">Image</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2"></a><span class="n">myimg</span> <span class="o">=</span> <span class="n">ImageTk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../modules/unittest.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: unittest">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                unittest
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="numpy.html" class="md-footer__link md-footer__link--next" aria-label="Next: Numpy">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Numpy
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      MIT
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+    
+    
+    
+      
+      
+    
+    <a href="https://hachyderm.io/@m_lamonaca" target="_blank" rel="noopener me" title="hachyderm.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48 0 0 0-63.72 28.5-63.72 125.7 0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.5 102.5 0 0 1-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5m-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/m-lamonaca" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.tracking", "navigation.pruning", "navigation.sections", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.footer", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
