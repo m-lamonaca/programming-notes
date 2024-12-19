@@ -189,3 +189,11 @@ nav:
     - RegEx: misc/regular-expressions.md
     - SSH: misc/ssh.md
     - WebComponents: misc/web-components.md
+  - Linux:
+      - Filesystem:
+        - File Links: linux/filesystem/file-links.md
+        - /proc: linux/filesystem/procfs.md
+        - /sys: linux/filesystem/sysfs.md
+      - System Init:
+        - Systemd: linux/init/systemd.md
+        - OpenRC: linux/init/open-rc.md
