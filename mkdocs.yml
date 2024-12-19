@@ -1,10 +1,10 @@
-site_name: Programming Notes
-repo_url: https://github.com/m-lamonaca/programming-notes
+site_name: Dev Notes
+repo_url: https://github.com/m-lamonaca/dev-notes
 repo_name: GitHub
 edit_uri: /blob/main/docs
 remote_branch: gh-pages
 remote_name: origin
-site_url: http://m-lamonaca.github.io/programming-notes
+site_url: http://m-lamonaca.github.io/dev-notes
 site_author: Marcello Lamonaca
 copyright: MIT
 
